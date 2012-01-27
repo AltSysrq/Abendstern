@@ -1,0 +1,100 @@
+info	{
+ name	"Zaku",
+ alliance	["WUDR",]
+ mass	1376.0
+ version	0
+ bridge	"AAAA",
+ reinforcement	0.4499999881
+ class	"C",
+ sharing_enabled	t
+ author	"AbyssalYogSothOth",
+ fileid	376
+ ownerid	9
+ needs_uploading	f
+}
+cells	{
+ AAAA	{
+  type	"square",
+  neighbours	["",	"CAAA",	"BAAA",	"FAAA",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["AAAA",	"JAAA",	"",	"IAAA",]
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ CAAA	{
+  type	"square",
+  neighbours	["AAAA",	"DAAA",	"",	"JAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["CAAA",	"",	"",	"EAAA",]
+ }
+ EAAA	{
+  type	"square",
+  neighbours	["DAAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ FAAA	{
+  type	"square",
+  neighbours	["AAAA",	"IAAA",	"",	"GAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ GAAA	{
+  type	"square",
+  neighbours	["FAAA",	"",	"HAAA",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ HAAA	{
+  type	"square",
+  neighbours	["GAAA",	"",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ IAAA	{
+  type	"square",
+  neighbours	["BAAA",	"",	"",	"FAAA",]
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ JAAA	{
+  type	"square",
+  neighbours	["BAAA",	"CAAA",	"",	"",]
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+}

@@ -1,0 +1,647 @@
+info	{
+ name	"ship:rainmaker",
+ alliance	["ship:rainmaker",]
+ version	0
+ bridge	"AAAA",
+ reinforcement	0.1000000015
+ class	"C",
+ old_format	"cn00ss0pc30 s1pc30 n10ss0ean20ss0ean20ss0ean20ss0ean20ss0ean20"
+		"ss0ean20ss0ea.......n20sn20ss0pfs1pfn10ss0eas1pfn20ss0eas1pfn2"
+		"0ss0eas1pfn20ss0eas1pfn20ss0eas1pfn20ss0eas1pfn20ss0eas1pf...."
+		"...n20sn20sn10ss0eas1pfn20ss0eas1pfn20ss0eas1pfn20ss0eas1pfn20"
+		"ss0eas1pfn20ss0eas1pfn20ss0eas1pf.......n20sn20sn10ss0eas1pfn2"
+		"0ss0eas1pfn20ss0eas1pfn20ss0eas1pfn20ss0eas1pfn20ss0eas1pfn20s"
+		"s0eas1pf.......n30ss0eas1pfn20ss0eas1pfn20ss0eas1pfn20ss0eas1p"
+		"fn20ss0eas1pfn20ss0eas1pfn20ss0eas1pf.........n30ss0eas1pfn20s"
+		"s0eas1pfn20ss0eas1pfn20ss0eas1pfn20ss0eas1pfn20ss0eas1pfn20ss0"
+		"eas1pf.........n30ss0eas1pfn20ss0eas1pfn20ss0eas1pfn20ss0eas1p"
+		"fn20ss0eas1pfn20ss0eas1pfn20ss0eas1pf.........n30ss0ean20ss0ea"
+		"n20ss0ean20ss0ean20ss0ean20ss0ean20ss0ea.........\n0.1\n",
+ sharing_enabled	t
+ author	"AbyssalYogSothOth",
+ fileid	454
+ ownerid	9
+ needs_uploading	f
+}
+cells	{
+ AAAA	{
+  type	"circle",
+  neighbours	["BAAA",	"",	"",	"",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["AAAA",	"CAAA",	"JAAA",	"FCAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ CAAA	{
+  type	"square",
+  neighbours	["BAAA",	"",	"DAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["CAAA",	"",	"EAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ EAAA	{
+  type	"square",
+  neighbours	["DAAA",	"",	"FAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ FAAA	{
+  type	"square",
+  neighbours	["EAAA",	"",	"GAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ GAAA	{
+  type	"square",
+  neighbours	["FAAA",	"",	"HAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ HAAA	{
+  type	"square",
+  neighbours	["GAAA",	"",	"IAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ IAAA	{
+  type	"square",
+  neighbours	["HAAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ JAAA	{
+  type	"square",
+  neighbours	["BAAA",	"",	"KAAA",	"",]
+ }
+ KAAA	{
+  type	"square",
+  neighbours	["JAAA",	"LAAA",	"SAAA",	"YBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ LAAA	{
+  type	"square",
+  neighbours	["KAAA",	"",	"MAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ MAAA	{
+  type	"square",
+  neighbours	["LAAA",	"",	"NAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ NAAA	{
+  type	"square",
+  neighbours	["MAAA",	"",	"OAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ OAAA	{
+  type	"square",
+  neighbours	["NAAA",	"",	"PAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ PAAA	{
+  type	"square",
+  neighbours	["OAAA",	"",	"QAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ QAAA	{
+  type	"square",
+  neighbours	["PAAA",	"",	"RAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ RAAA	{
+  type	"square",
+  neighbours	["QAAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ SAAA	{
+  type	"square",
+  neighbours	["KAAA",	"",	"TAAA",	"",]
+ }
+ TAAA	{
+  type	"square",
+  neighbours	["SAAA",	"UAAA",	"BBAA",	"RBAA",]
+ }
+ UAAA	{
+  type	"square",
+  neighbours	["TAAA",	"",	"VAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ VAAA	{
+  type	"square",
+  neighbours	["UAAA",	"",	"WAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ WAAA	{
+  type	"square",
+  neighbours	["VAAA",	"",	"XAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ XAAA	{
+  type	"square",
+  neighbours	["WAAA",	"",	"YAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ YAAA	{
+  type	"square",
+  neighbours	["XAAA",	"",	"ZAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ZAAA	{
+  type	"square",
+  neighbours	["YAAA",	"",	"ABAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ABAA	{
+  type	"square",
+  neighbours	["ZAAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ BBAA	{
+  type	"square",
+  neighbours	["TAAA",	"",	"CBAA",	"",]
+ }
+ CBAA	{
+  type	"square",
+  neighbours	["BBAA",	"DBAA",	"",	"KBAA",]
+ }
+ DBAA	{
+  type	"square",
+  neighbours	["CBAA",	"",	"EBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ EBAA	{
+  type	"square",
+  neighbours	["DBAA",	"",	"FBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ FBAA	{
+  type	"square",
+  neighbours	["EBAA",	"",	"GBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ GBAA	{
+  type	"square",
+  neighbours	["FBAA",	"",	"HBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ HBAA	{
+  type	"square",
+  neighbours	["GBAA",	"",	"IBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ IBAA	{
+  type	"square",
+  neighbours	["HBAA",	"",	"JBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ JBAA	{
+  type	"square",
+  neighbours	["IBAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ KBAA	{
+  type	"square",
+  neighbours	["CBAA",	"",	"LBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ LBAA	{
+  type	"square",
+  neighbours	["KBAA",	"",	"MBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ MBAA	{
+  type	"square",
+  neighbours	["LBAA",	"",	"NBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ NBAA	{
+  type	"square",
+  neighbours	["MBAA",	"",	"OBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ OBAA	{
+  type	"square",
+  neighbours	["NBAA",	"",	"PBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ PBAA	{
+  type	"square",
+  neighbours	["OBAA",	"",	"QBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ QBAA	{
+  type	"square",
+  neighbours	["PBAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ RBAA	{
+  type	"square",
+  neighbours	["TAAA",	"",	"SBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ SBAA	{
+  type	"square",
+  neighbours	["RBAA",	"",	"TBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ TBAA	{
+  type	"square",
+  neighbours	["SBAA",	"",	"UBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ UBAA	{
+  type	"square",
+  neighbours	["TBAA",	"",	"VBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ VBAA	{
+  type	"square",
+  neighbours	["UBAA",	"",	"WBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ WBAA	{
+  type	"square",
+  neighbours	["VBAA",	"",	"XBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ XBAA	{
+  type	"square",
+  neighbours	["WBAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ YBAA	{
+  type	"square",
+  neighbours	["KAAA",	"",	"ZBAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ZBAA	{
+  type	"square",
+  neighbours	["YBAA",	"",	"ACAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ACAA	{
+  type	"square",
+  neighbours	["ZBAA",	"",	"BCAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ BCAA	{
+  type	"square",
+  neighbours	["ACAA",	"",	"CCAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ CCAA	{
+  type	"square",
+  neighbours	["BCAA",	"",	"DCAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ DCAA	{
+  type	"square",
+  neighbours	["CCAA",	"",	"ECAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ECAA	{
+  type	"square",
+  neighbours	["DCAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ FCAA	{
+  type	"square",
+  neighbours	["BAAA",	"",	"GCAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ GCAA	{
+  type	"square",
+  neighbours	["FCAA",	"",	"HCAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ HCAA	{
+  type	"square",
+  neighbours	["GCAA",	"",	"ICAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ ICAA	{
+  type	"square",
+  neighbours	["HCAA",	"",	"JCAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ JCAA	{
+  type	"square",
+  neighbours	["ICAA",	"",	"KCAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ KCAA	{
+  type	"square",
+  neighbours	["JCAA",	"",	"LCAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ LCAA	{
+  type	"square",
+  neighbours	["KCAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+}

@@ -1,0 +1,25 @@
+class_list = [ "planet", "nebula", "galaxy" ];
+
+planet = {
+  list = [ "jupiter", "mars", "mercury", "saturn" ];
+  natural_distance = 0.15;
+  min_distance = 0.25;
+  max_distance = 0.1;
+  natural_size = 1.0;
+};
+
+nebula = {
+  list = [ "catseye", "crab", "eskimo", "helix", "hourglass", "ring" ];
+  natural_distance = 0.1;
+  min_distance = 0.15;
+  max_distance = 0.05;
+  natural_size = 1.5;
+};
+
+galaxy = {
+  list = [ "antennae", "hoag", "ngc4414", "sombrero" ];
+  natural_distance = 0.01;
+  min_distance = 0.05;
+  max_distance = 0.005;
+  natural_size = 0.75;
+};

@@ -1,0 +1,54 @@
+# INITIAL CONFIG INFO FOR SHIP EDITOR.
+# THIS IS NOT A CONFIGURATION FILE.
+# DO NOT EDIT IF YOU AREN'T MODIFYING THE SHIP EDITOR!
+
+current_mode="none";
+error=false;
+is_error_fatal=false;
+error_message=[""];
+status_message="Ready";
+modified=false;
+
+history_times = [];
+
+filename="";
+mountname="";
+
+new_cell_type="square";
+rightt_orient=0;
+show_shields=true;
+show_centre=false;
+
+sys0_type="none";
+sys0_capacitance=30;
+sys0_shield_strength=5.0;
+sys0_shield_radius=5.0;
+sys0_gatling_turbo=false;
+sys1_type="none";
+sys1_capacitance=30;
+sys1_shield_strength=5.0;
+sys1_shield_radius=5.0;
+sys1_gatling_turbo=false;
+
+ship_mass=0.0;
+ship_radius=0.0;
+ship_length=0.0;
+ship_width=0.0;
+ship_cost=0;
+ship_cell_count=0;
+ship_power_gen=0;
+ship_power_use_no_accel=0;
+ship_power_use_all_accel=0;
+ship_supports_stealth_mode=false;
+ship_power_gen_stealth=0;
+ship_power_use_stealth_no_accel=0;
+ship_power_use_stealth_all_accel=0;
+ship_stealth_acceleration=0.0;
+ship_stealth_rotaccel=0.0;
+ship_reinforcement=1.0;
+ship_acceleration=0.0;
+ship_rotaccel=0.0;
+ship_class="C";
+ship_name="";
+ship_author="";
+ship_alliances=["EUF","WUDR"];

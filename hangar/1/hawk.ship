@@ -1,0 +1,598 @@
+info	{
+ name	"Hawk",
+ alliance	["EUF",]
+ version	0
+ author	"AltSysrq",
+ bridge	"AAAA",
+ reinforcement	1.5
+ class	"B",
+ old_format	"cn00ss0pus1pun20cs0wps1pun10ss0pus1pun10es0pu.n22cs0pus1pun02s"
+		"s0pc30 s1pc30 n01cs0pc30 s1pc30 n00rs0xrn23cs0xs5 2 s1pc30 n00"
+		"rs0xrn23cs0pc30 s1pc30 n00rs0xrn21cs0xs5 2 s1pc30 n02ss0pc30 s"
+		"1pc30 n02cs0pc30 s1pc30 n13ss0pus1pc30 ...n20rs0xr.......n22ss"
+		"0pc30 s1pc30 n03cs0xs5 2 s1pc30 n02ss0ebs1xhn02ss0ebs1xhn02ss0"
+		"ebs1xh......n30es0pu..n30es0pu...n30ss0pus1pun10cs0pc30 s1pc30"
+		" n20ss0pc30 s1pc30 n20cs0xs5 2 n22rs0xr.n30rs0xrn20cs0pc30 s1p"
+		"c30 n10rs0xrn20cs0xs5 2 s1pc30 n10rs0xrn21cs0pc30 s1pc30 n02ss"
+		"0pc30 s1pc30 n02cs0pus1pun11ss0pus1pc30 .n30es0pu..n30e..n30ss"
+		"0pc30 s1pc30 n20cs0xs5 2 s1pc30 n30ss0ebs1xhn22ss0ebs1xhn02ss0"
+		"ebs1xh..............n30es0pu....n20es0xs5 3 n10ss0ebs1xhn20ss0"
+		"ebs1xhn20ss0ebs1xhn20cs0xs5 2 s1xh....n20ss0ebs1xhn20ss0ebs1xh"
+		"n20ss0ebs1xhn20cs0xs5 2 s1xh......\n1.5\n",
+ mass	21640.0
+ energy_levels	{
+  PlasmaBurst	20
+ }
+ verification_signature	292137596
+ sharing_enabled	t
+ fileid	264
+ ownerid	1
+ needs_uploading	f
+}
+cells	{
+ AAAA	{
+  type	"circle",
+  neighbours	["BAAA",	"TBAA",	"VBAA",	"WAAA",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["AAAA",	"",	"CAAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ CAAA	{
+  type	"circle",
+  neighbours	["BAAA",	"DAAA",	"",	"ZAAA",]
+  s0	{
+   type	"PlasmaBurstLauncher",
+   orient	2
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["CAAA",	"EAAA",	"FAAA",	"PAAA",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ EAAA	{
+  type	"equil",
+  neighbours	["DAAA",	"",	"",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+ }
+ FAAA	{
+  type	"circle",
+  neighbours	["GAAA",	"QAAA",	"DAAA",	"YAAA",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ GAAA	{
+  type	"square",
+  neighbours	["HAAA",	"JAAA",	"FAAA",	"XAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ HAAA	{
+  type	"circle",
+  neighbours	["IAAA",	"GAAA",	"SAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ IAAA	{
+  type	"right",
+  neighbours	["HAAA",	"",	"JAAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+ }
+ JAAA	{
+  type	"circle",
+  neighbours	["KAAA",	"QAAA",	"GAAA",	"IAAA",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ KAAA	{
+  type	"right",
+  neighbours	["JAAA",	"",	"LAAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+ }
+ LAAA	{
+  type	"circle",
+  neighbours	["MAAA",	"OAAA",	"QAAA",	"KAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ MAAA	{
+  type	"right",
+  neighbours	["LAAA",	"",	"NAAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+ }
+ NAAA	{
+  type	"circle",
+  neighbours	["OAAA",	"MAAA",	"RAAA",	"",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ OAAA	{
+  type	"square",
+  neighbours	["PAAA",	"LAAA",	"NAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ PAAA	{
+  type	"circle",
+  neighbours	["DAAA",	"QAAA",	"OAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ QAAA	{
+  type	"square",
+  neighbours	["FAAA",	"JAAA",	"LAAA",	"PAAA",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ RAAA	{
+  type	"right",
+  neighbours	["NAAA",	"",	"",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+ }
+ SAAA	{
+  type	"square",
+  neighbours	["TAAA",	"",	"HAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ TAAA	{
+  type	"circle",
+  neighbours	["UAAA",	"",	"",	"SAAA",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ UAAA	{
+  type	"square",
+  neighbours	["VAAA",	"",	"TAAA",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ VAAA	{
+  type	"square",
+  neighbours	["WAAA",	"",	"UAAA",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ WAAA	{
+  type	"square",
+  neighbours	["AAAA",	"",	"VAAA",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ XAAA	{
+  type	"equil",
+  neighbours	["GAAA",	"",	"",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+ }
+ YAAA	{
+  type	"equil",
+  neighbours	["FAAA",	"",	"",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+ }
+ ZAAA	{
+  type	"square",
+  neighbours	["CAAA",	"ABAA",	"LBAA",	"UBAA",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ ABAA	{
+  type	"circle",
+  neighbours	["ZAAA",	"",	"BBAA",	"MBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ BBAA	{
+  type	"square",
+  neighbours	["ABAA",	"",	"CBAA",	"FBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ CBAA	{
+  type	"circle",
+  neighbours	["BBAA",	"",	"DBAA",	"EBAA",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+ }
+ DBAA	{
+  type	"right",
+  neighbours	["",	"",	"CBAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+ }
+ EBAA	{
+  type	"right",
+  neighbours	["CBAA",	"",	"FBAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+ }
+ FBAA	{
+  type	"circle",
+  neighbours	["EBAA",	"GBAA",	"MBAA",	"BBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ GBAA	{
+  type	"right",
+  neighbours	["FBAA",	"",	"HBAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+ }
+ HBAA	{
+  type	"circle",
+  neighbours	["GBAA",	"IBAA",	"KBAA",	"MBAA",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ IBAA	{
+  type	"right",
+  neighbours	["HBAA",	"",	"JBAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+ }
+ JBAA	{
+  type	"circle",
+  neighbours	["KBAA",	"IBAA",	"",	"PBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ KBAA	{
+  type	"square",
+  neighbours	["LBAA",	"HBAA",	"JBAA",	"OBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ LBAA	{
+  type	"circle",
+  neighbours	["ZAAA",	"MBAA",	"KBAA",	"NBAA",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ MBAA	{
+  type	"square",
+  neighbours	["HBAA",	"LBAA",	"ABAA",	"FBAA",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ NBAA	{
+  type	"equil",
+  neighbours	["LBAA",	"",	"",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+ }
+ OBAA	{
+  type	"equil",
+  neighbours	["KBAA",	"",	"",	"",]
+ }
+ PBAA	{
+  type	"square",
+  neighbours	["JBAA",	"",	"QBAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ QBAA	{
+  type	"circle",
+  neighbours	["PBAA",	"",	"",	"RBAA",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ RBAA	{
+  type	"square",
+  neighbours	["QBAA",	"",	"SBAA",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ SBAA	{
+  type	"square",
+  neighbours	["TBAA",	"",	"RBAA",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	3
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ TBAA	{
+  type	"square",
+  neighbours	["AAAA",	"",	"SBAA",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	3
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ UBAA	{
+  type	"equil",
+  neighbours	["ZAAA",	"",	"",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+ }
+ VBAA	{
+  type	"equil",
+  neighbours	["AAAA",	"WBAA",	"ACAA",	"",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	3.0
+   strength	5.0
+  }
+ }
+ WBAA	{
+  type	"square",
+  neighbours	["VBAA",	"",	"XBAA",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	3
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ XBAA	{
+  type	"square",
+  neighbours	["WBAA",	"",	"YBAA",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	3
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ YBAA	{
+  type	"square",
+  neighbours	["XBAA",	"",	"ZBAA",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	3
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ ZBAA	{
+  type	"circle",
+  neighbours	["YBAA",	"",	"",	"",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ ACAA	{
+  type	"square",
+  neighbours	["VBAA",	"",	"BCAA",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ BCAA	{
+  type	"square",
+  neighbours	["ACAA",	"",	"CCAA",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ CCAA	{
+  type	"square",
+  neighbours	["BCAA",	"",	"DCAA",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ DCAA	{
+  type	"circle",
+  neighbours	["CCAA",	"",	"",	"",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+}

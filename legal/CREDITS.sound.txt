@@ -1,0 +1,27 @@
+All sounds not synthesised within the game are derived from files
+from freesound.org.
+
+The source files (and the resulting mixed files) are licensed under
+the Creative Commons Sampling Plus 1.0 license.
+See http://creativecommons.org/licenses/sampling+/1.0/
+
+The list below indicates the disk-stored sound files (without
+extension) and the original sources (also without extension);
+these sources have the format
+  ID__AUTHOR_TITLE
+
+magbombp1	3379__patchen_Rhino_04
+magbombp2	3379__patchen_Rhino_04
+magbombop	25756__FreqMan_raygun04
+smgbombax	2465__Jovica__STAB_029_mastered_16_bit
+bramjet		93078__CGEffex_Space_Shuttle_Launch
+fuspow		5638__NoiseCollector_granupowerplant 5640__NoiseCollector_granuvoltage
+shielda		14258__harri__onboard_alien_craft
+shieldh		16089__ignotus__distress_lo
+antipow		49692__ejfortin__Dual_Energy_Daggers_Loop
+relionacc	103294__Timbre__like_a_jet_engine_revving_up
+gpblnorm	115271__Timbre__synthetic_low_rev_engine
+gpblturb	115271__Timbre__synthetic_low_rev_engine
+missile		102962__Timbre__growing_pipe_s_2
+partbeam	34205__themfish__zoup 45935__torn.rugged.audio.35__alien_phaser.R
+monophas	81907__Timbre__Sci_Fi_lazery_thing

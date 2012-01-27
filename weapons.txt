@@ -1,0 +1,47 @@
+Group 1A (standard rapid-fire)
+C EnergyCharge
+B PlasmaBurst
+A GatlingPlasma
+A MonophasicEnergyPulse
+
+Group 1B (standard heavy)
+C MagnetoBomb
+B SemiguidedBomb
+A Missile
+A ParticleBeam
+
+Group 2A (heavy)
+C AdvancedEnergyCharge
+B HeavyPlasmaBurst
+B HeavySemiguidedBomb
+A AdvancedEnergyChargeII
+
+Group 2B (torpedo)
+C Small torpedo
+B Medium torpedo
+A Large torpedo
+A Antimatter torpedo
+
+Group 3A (capital offence)
+C CapitalEnergyPulse
+B CapitalPlasmaBurst
+B AntimatterCannon
+A GravityPulse
+
+Group 3B (capital defence)
+- Flack guns (C light, B medium, A heavy)
+C TrackingAvancedEnergyCharge
+B TrackingHeavyPlasmaBurst
+A TrackingHeavyGatlingPlasmaBurst
+
+Group 4A (exotica)
+? EMPCannon (disable number of systems on impacted ship, chance of damage to user)
+? QuantumTunneller (on impact, spawn invisible sub-projectile that explodes later)
+? Firework (projectile splits into smaller, which do the same after some time, and those explode at random)
+? ExperimentalLaser
+
+Group 4B (alien)
+? AlienLaser
+? AlienParticleEmitter (like gatling plasma, but no heat)
+? AlienMissile
+? AlienTorpedo

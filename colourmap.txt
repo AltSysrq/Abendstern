@@ -1,0 +1,20 @@
+00      Transparent
+01-7F   Black to full ship colour ramp
+80      Fusion power
+81      Fission power
+82      Antimatter power generator
+83      Capacitor
+84      Heatsink
+
+90-93   Bussard animation
+94-99   Shield generator animation
+
+C0-C3   Darkening cyan gradient (00E0E0,00C0C0,00A0A0,008080)
+C4-C7   Darkening blue gradient (0000E0,0000C0,0000A0,000080)
+C8-CB   Dark yellow to orange gradient (FFFF00,FFC000,FF8000,FF4000)
+CC-CF   Dark grey to light grey gradient (333333,666666,999999,CCCCCC)
+
+FC      Bright green (00FF00)
+FD      Dark yellow (CCCC00)
+FE      Dark blue-cyan (0080FF)
+FF      White (FFFFFF)

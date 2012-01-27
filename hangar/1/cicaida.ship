@@ -1,0 +1,584 @@
+info	{
+ name	"Cicaida",
+ alliance	["WUDR",]
+ version	0
+ author	"AltSysrq",
+ bridge	"AAAA",
+ reinforcement	1.600000024
+ class	"C",
+ old_format	"cn00ss0pc30 s1wen11cs0pc30 s1pc30 n01ss0pc30 s1pc30 n30rn10en2"
+		"0en20es0wb...n22ss0pc30 s1wen00rn10en10en10es0wb...n22ss0pc30 "
+		"s1pc30 n00cs0pc30 s1pc30 n20ss0pc30 s1pc30 n10ss0wes1ean20ss0p"
+		"c30 s1ea..n21cs0pc30 s1pc30 n02ss0pfs1pfn01cs0pc30 s1pc30 n02s"
+		"s0pc30 s1pc30 n30ss0wes1ean20ss0pc30 s1ea...n20ss0pfs1pfn10cs0"
+		"pfs1pfn20ss0pfs1pfn20ss0pc30 s1ean20ss0pc30 s1ea..n31cs0pfs1pf"
+		"n02ss0pfs1pfn01cs0pfs1pfn20ss0pc30 s1pc30 n10cs0pfs1pfn20ss0pc"
+		"30 s1pc30 n20ss0pc30 s1ean20ss0pc30 s1ea..n31cs0pc30 s1pc30 n0"
+		"2ss0pfs1pfn01cs0pc30 s1pc30 n20ss0pc30 s1pc30 n10cs0pfs1pfn20s"
+		"s0pc30 s1pc30 n31cs0pc30 s1pc30 n02ss0pfs1pfn01cs0pc30 s1pc30 "
+		"n22rs0pc30 n00cs0pc30 s1pc30 n22rs0pc30 .n30es0pc30 .........."
+		"....n30ss0pc30 s1ean20ss0pc30 s1ea........n30ss0pc30 s1ean20ss"
+		"0pc30 s1ea................\n1.6\n",
+ mass	22372.0
+ energy_levels	{
+  EnergyCharge	5
+  MagnetoBomb	3
+ }
+ sharing_enabled	t
+ fileid	189
+ ownerid	1
+ needs_uploading	f
+ verification_signature	1058955191
+}
+cells	{
+ AAAA	{
+  type	"circle",
+  neighbours	["BAAA",	"PAAA",	"TAAA",	"VAAA",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["AAAA",	"CAAA",	"",	"OAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ CAAA	{
+  type	"circle",
+  neighbours	["DAAA",	"BAAA",	"VAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["",	"CAAA",	"",	"EAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ EAAA	{
+  type	"right",
+  neighbours	["DAAA",	"FAAA",	"IAAA",	"",]
+ }
+ FAAA	{
+  type	"equil",
+  neighbours	["EAAA",	"",	"GAAA",	"",]
+ }
+ GAAA	{
+  type	"equil",
+  neighbours	["FAAA",	"",	"HAAA",	"",]
+ }
+ HAAA	{
+  type	"equil",
+  neighbours	["GAAA",	"",	"",	"",]
+  s0	{
+   type	"MagnetoBombLauncher",
+   orient	1
+  }
+ }
+ IAAA	{
+  type	"square",
+  neighbours	["JAAA",	"",	"EAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ JAAA	{
+  type	"right",
+  neighbours	["IAAA",	"KAAA",	"NAAA",	"",]
+ }
+ KAAA	{
+  type	"equil",
+  neighbours	["JAAA",	"LAAA",	"",	"",]
+ }
+ LAAA	{
+  type	"equil",
+  neighbours	["KAAA",	"MAAA",	"",	"",]
+ }
+ MAAA	{
+  type	"equil",
+  neighbours	["LAAA",	"",	"",	"",]
+  s0	{
+   type	"MagnetoBombLauncher",
+   orient	2
+  }
+ }
+ NAAA	{
+  type	"square",
+  neighbours	["OAAA",	"",	"JAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ OAAA	{
+  type	"circle",
+  neighbours	["NAAA",	"",	"PAAA",	"BAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ PAAA	{
+  type	"square",
+  neighbours	["OAAA",	"QAAA",	"SAAA",	"AAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ QAAA	{
+  type	"square",
+  neighbours	["PAAA",	"",	"RAAA",	"",]
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ RAAA	{
+  type	"square",
+  neighbours	["QAAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ SAAA	{
+  type	"circle",
+  neighbours	["TAAA",	"PAAA",	"",	"ABAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ TAAA	{
+  type	"square",
+  neighbours	["UAAA",	"AAAA",	"SAAA",	"ZAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ UAAA	{
+  type	"circle",
+  neighbours	["VAAA",	"TAAA",	"YAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ VAAA	{
+  type	"square",
+  neighbours	["CAAA",	"AAAA",	"UAAA",	"WAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ WAAA	{
+  type	"square",
+  neighbours	["VAAA",	"",	"XAAA",	"",]
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ XAAA	{
+  type	"square",
+  neighbours	["WAAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ YAAA	{
+  type	"square",
+  neighbours	["UAAA",	"ZAAA",	"FBAA",	"ACAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ZAAA	{
+  type	"circle",
+  neighbours	["YAAA",	"TAAA",	"ABAA",	"EBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ABAA	{
+  type	"square",
+  neighbours	["ZAAA",	"SAAA",	"BBAA",	"DBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ BBAA	{
+  type	"square",
+  neighbours	["ABAA",	"",	"CBAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ CBAA	{
+  type	"square",
+  neighbours	["BBAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ DBAA	{
+  type	"circle",
+  neighbours	["EBAA",	"ABAA",	"",	"IBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ EBAA	{
+  type	"square",
+  neighbours	["FBAA",	"ZAAA",	"DBAA",	"HBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ FBAA	{
+  type	"circle",
+  neighbours	["YAAA",	"EBAA",	"GBAA",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ GBAA	{
+  type	"square",
+  neighbours	["FBAA",	"HBAA",	"NBAA",	"YBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ HBAA	{
+  type	"circle",
+  neighbours	["GBAA",	"EBAA",	"IBAA",	"MBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ IBAA	{
+  type	"square",
+  neighbours	["HBAA",	"DBAA",	"JBAA",	"LBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ JBAA	{
+  type	"square",
+  neighbours	["IBAA",	"",	"KBAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ KBAA	{
+  type	"square",
+  neighbours	["JBAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ LBAA	{
+  type	"circle",
+  neighbours	["MBAA",	"IBAA",	"",	"QBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ MBAA	{
+  type	"square",
+  neighbours	["NBAA",	"HBAA",	"LBAA",	"PBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ NBAA	{
+  type	"circle",
+  neighbours	["GBAA",	"MBAA",	"OBAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ OBAA	{
+  type	"square",
+  neighbours	["NBAA",	"PBAA",	"TBAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ PBAA	{
+  type	"circle",
+  neighbours	["OBAA",	"MBAA",	"QBAA",	"SBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ QBAA	{
+  type	"square",
+  neighbours	["PBAA",	"LBAA",	"",	"RBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ RBAA	{
+  type	"circle",
+  neighbours	["SBAA",	"QBAA",	"",	"WBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ SBAA	{
+  type	"square",
+  neighbours	["TBAA",	"PBAA",	"RBAA",	"VBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ TBAA	{
+  type	"circle",
+  neighbours	["OBAA",	"SBAA",	"UBAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ UBAA	{
+  type	"right",
+  neighbours	["VBAA",	"",	"TBAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ VBAA	{
+  type	"circle",
+  neighbours	["UBAA",	"SBAA",	"WBAA",	"XBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ WBAA	{
+  type	"right",
+  neighbours	["RBAA",	"",	"VBAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ XBAA	{
+  type	"equil",
+  neighbours	["VBAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ YBAA	{
+  type	"square",
+  neighbours	["GBAA",	"",	"ZBAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ ZBAA	{
+  type	"square",
+  neighbours	["YBAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ ACAA	{
+  type	"square",
+  neighbours	["YAAA",	"",	"BCAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ BCAA	{
+  type	"square",
+  neighbours	["ACAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+}

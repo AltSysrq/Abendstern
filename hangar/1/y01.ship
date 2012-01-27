@@ -1,0 +1,355 @@
+info	{
+ name	"Y-01",
+ alliance	["WUDR",]
+ mass	4530.0
+ version	0
+ bridge	"AAAA",
+ reinforcement	0.200000003
+ class	"B",
+ energy_levels	{
+  EnergyCharge	3
+  PlasmaBurst	3
+  SGBomb	3
+ }
+ verification_signature	841145469
+ sharing_enabled	t
+ author	"AltSysrq",
+ fileid	194
+ ownerid	1
+ needs_uploading	f
+}
+cells	{
+ AAAA	{
+  type	"circle",
+  neighbours	["VAAA",	"BAAA",	"XAAA",	"LAAA",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["AAAA",	"",	"CAAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"BussardRamjet",
+   orient	3
+  }
+ }
+ CAAA	{
+  type	"square",
+  neighbours	["BAAA",	"DAAA",	"",	"FAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["CAAA",	"",	"EAAA",	"JAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ EAAA	{
+  type	"square",
+  neighbours	["DAAA",	"KAAA",	"",	"",]
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+  s1	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+ }
+ FAAA	{
+  type	"square",
+  neighbours	["CAAA",	"IAAA",	"GAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ GAAA	{
+  type	"square",
+  neighbours	["FAAA",	"",	"",	"HAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"SuperParticleAccelerator",
+   orient	2
+  }
+ }
+ HAAA	{
+  type	"square",
+  neighbours	["GAAA",	"",	"YAAA",	"",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+  s1	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ IAAA	{
+  type	"square",
+  neighbours	["FAAA",	"",	"",	"",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+  s1	{
+   type	"BussardRamjet",
+   orient	3
+  }
+ }
+ JAAA	{
+  type	"square",
+  neighbours	["DAAA",	"",	"",	"",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+  s1	{
+   type	"BussardRamjet",
+   orient	3
+  }
+ }
+ KAAA	{
+  type	"square",
+  neighbours	["EAAA",	"",	"WAAA",	"",]
+  s0	{
+   type	"PlasmaBurstLauncher",
+   orient	3
+  }
+  s1	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ LAAA	{
+  type	"square",
+  neighbours	["AAAA",	"",	"MAAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ MAAA	{
+  type	"square",
+  neighbours	["LAAA",	"NAAA",	"",	"RAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ NAAA	{
+  type	"square",
+  neighbours	["MAAA",	"",	"PAAA",	"OAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ OAAA	{
+  type	"square",
+  neighbours	["NAAA",	"",	"",	"",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+  s1	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ PAAA	{
+  type	"square",
+  neighbours	["NAAA",	"QAAA",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"SuperParticleAccelerator",
+   orient	2
+  }
+ }
+ QAAA	{
+  type	"square",
+  neighbours	["PAAA",	"",	"YAAA",	"",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+  s1	{
+   type	"BussardRamjet",
+   orient	3
+  }
+ }
+ RAAA	{
+  type	"square",
+  neighbours	["MAAA",	"SAAA",	"TAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ SAAA	{
+  type	"square",
+  neighbours	["RAAA",	"",	"",	"",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+  s1	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ TAAA	{
+  type	"square",
+  neighbours	["RAAA",	"",	"",	"UAAA",]
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+  s1	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+ }
+ UAAA	{
+  type	"square",
+  neighbours	["TAAA",	"",	"WAAA",	"",]
+  s0	{
+   type	"PlasmaBurstLauncher",
+   orient	1
+  }
+  s1	{
+   type	"BussardRamjet",
+   orient	3
+  }
+ }
+ VAAA	{
+  type	"square",
+  neighbours	["AAAA",	"BBAA",	"WAAA",	"CBAA",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ WAAA	{
+  type	"square",
+  neighbours	["VAAA",	"UAAA",	"",	"KAAA",]
+  s0	{
+   type	"SemiguidedBombLauncher",
+   orient	2
+  }
+  s1	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+ }
+ XAAA	{
+  type	"square",
+  neighbours	["AAAA",	"ZAAA",	"YAAA",	"ABAA",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ YAAA	{
+  type	"square",
+  neighbours	["XAAA",	"HAAA",	"DBAA",	"QAAA",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ ZAAA	{
+  type	"equil",
+  neighbours	["XAAA",	"",	"",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+ }
+ ABAA	{
+  type	"equil",
+  neighbours	["XAAA",	"",	"",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+ }
+ BBAA	{
+  type	"equil",
+  neighbours	["VAAA",	"",	"",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+ }
+ CBAA	{
+  type	"equil",
+  neighbours	["VAAA",	"",	"",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+ }
+ DBAA	{
+  type	"equil",
+  neighbours	["YAAA",	"EBAA",	"FBAA",	"",]
+ }
+ EBAA	{
+  type	"equil",
+  neighbours	["DBAA",	"",	"",	"",]
+ }
+ FBAA	{
+  type	"equil",
+  neighbours	["DBAA",	"",	"",	"",]
+ }
+}

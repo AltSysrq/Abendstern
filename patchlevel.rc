@@ -1,0 +1,6 @@
+notes	"This file contains information on any dynamic patches that have been a"
+	"pplied. It is distributed with the Zip file since that will not need a"
+	"ny patches out-of-the-box. It is NOT, however, distributed via update,"
+	" so that the hotpatch script can easily determine if any migrations mu"
+	"st be performed, instead of relying on heuristics. ",
+local-migration	t

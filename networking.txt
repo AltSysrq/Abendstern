@@ -1,0 +1,517 @@
+Abendstern network protocol
+
+OVERVIEW
+Abendstern operates as a peer-to-peer (adaptable to server-client) over IPv4
+or IPv6 UDP (server port 12544).
+
+All values are little-endian, unless otherwise specified. Two adjacent nybbles
+are LSN, MSN. An A "fixed" value is a 32-bit signed integer that is 65536 times
+the float it represents (so it has range from -32768--+32767). When multiple
+bits from a byte are used as an integer, the most significant bit from the byte
+is also the most significant bit of the resulting value. "Sequence numbers" (or
+seq) start at zero per connection and are incremented upon each use.
+
+An IP address is sent containing both IPv4 and IPv6 information, using the
+following structure:
+  byte[4]       The IPv4 octets
+  uint16[8]     The IPv6 shorts. The shorts are in standard order, while each
+                short itself is little-endian.
+Total size: 20 bytes. If either address format in unsupported/unknown, it is
+filled with zeroes.
+
+A Peer is uniquely and globally identified by the following structure:
+  byte[4]       Internet IPv4 address
+  uint16[8]     Internet IPv6 address
+  uint16        Internet port
+  byte[4]       LAN IPv4 address
+  uint16[8]     LAN IPv6 address
+  uint16        LAN port
+Total size: 44 bytes
+
+STRUCTURE
+While usable as server-client, the protocol is generally used in a purely
+Peer-to-Peer layout, all participants connected to all others.
+
+A peer is not guaranteed to be able to handle more than 8192 packets (not
+superpackets) pending at once. It is generally most efficient to limit the number
+of unacknowledged packets to ~8000.
+
+SUPERPACKETS
+All data packets are transmitted within superpackets (which are actual UDP packets).
+There are three types of superpackets: standard, which hold exactly one packet;
+composite, which group multiple smaller ones into one, and jumbos, which allow
+large packets to fragment. All superpackets start with the following six bytes:
+  byte:
+    0..1        The type of superpacket. 1=standard, 2=composite, 3=jumbo,
+                0=not a superpacket
+    2..7        Type-specific.
+  uint24        Secret number known only to the two peers communicating (and
+                anyone else on the same LAN). A peer must ignore superpackets
+                with the wrong number.
+  uint16        Superpacket sequence number. Used to filter duplicates out.
+The secret number is used to prevent packet forgery from outside the peer's LAN.
+People on the same LAN generally know each other and won't try to kill each
+other's connection, so exposure of that value in that case is of no concern.
+
+A standard superpacket has no further data other than the packet it contains. The
+type-specific bits should be zero.
+
+The type-specific bits for composite superpackets represent the number of packets
+within (ie, a 6-bit unsigned); namely, count=(flags >> 2)&0x3F. The structure
+must repeat that many times as follows:
+  byte          Length of next packet
+  <packet data>
+
+The type-specific bits for jumbo packets are:
+  2..4          Index of this jumbo superpacket.
+  5..7          Number of fragments. 0 indicates 8.
+After the superpacket header is a uint16 indicating the sequence number of the
+contained packet. Following that is the appropriate fragment. After all jumbos
+are received, the packet is reassembled. The packet number from the contained
+packet is not included, as it is already part of the jumbo.
+
+If a superpacket begins with 0x3F (jumbo-3/1, an otherwise invalid packet), an
+extra jumbo superpacket is being indicated. It has the form
+  0x3F          Signature
+  uint24        Secret number
+  uint16        Superpacket seq
+  byte          Index of this fragment
+  byte          Number of fragments, 0=256
+  uint16        Seq of contained packet
+Extra jumbo superpackets are handled exactly the same way as normal jumbos.
+
+CORE PACKETS
+All core packets start with this header, which is very much like that of the
+superpacket header:
+  byte:
+    0..1        Zero
+    2..7        Type
+  uint24        Secret number
+  uint16        Type-specific sequence number
+
+Types of core packets:
+0x00 ACK - Acknowledges the reception of packets. A peer should retransmit
+unacknowledged packets until acknowledgement. Packets contained in jumbo superpackets
+are listed here only when all fragments have been received.
+  Repeating structure:
+  uint16        Base packet number
+  byte          Number of consecutive values. 0 indicates 256.
+
+0x01 JREQ - Handles requests for jumbo packets.
+  Repeating structure:
+  uint16        Packet number
+  byte          Indicates index of the packet indicated by bit zero below
+  byte          Bitset indicating fragments being requested.
+
+0x10 RCXN (Request connection) - Requests to initiate connection. The secret
+number in this packet is random. Seq should be zero. Exactly one ACXN or FCXN
+should be sent for each RCXN received.
+  Structure:
+  char[10]      "Abendstern"
+  byte          Zero
+  Peer          global identification information
+
+0x11 ACXN - Accepts connection. The secret number in this packet is random. If
+more than one ACXN must be sent to the same peer (from multiple RCXNs), the
+secret number must be the same. The secret number should NOT be the same as that
+from the RCXN. Seq should be zero. The secret number in all further
+communications is the XOR of the ones in the RCXN and ACXN packets. This packet
+is empty (but contents should be ignored, as it might not be in the future).
+
+0x12 FCXN (Forbid connection) - Rejects connection. The secret number is the
+same value sent in the RCXN packet. Seq should be zero.
+  Structure:
+  NTBS          Reason for rejection.
+
+0x20 PING - Requests a PONG be dispatched back to the sender immediately. The
+packet is empty.
+
+0x21 PONG - Answer to PING. Used by peers to determine transit time.
+
+0x30 WARN - Sends a textual warning to the peer.
+  Structure:
+  NTBS          Warning message.
+
+0x31 ERRF (Error, Fatal) - Sends a textual error to the peer and terminates
+connection.
+  Structure:
+  NTBS          Error message.
+
+0x3F KTHX - Terminates connection gracefully. Packet is empty.
+
+CONNECTION PROTOCOL
+The connection is initiated first by a RCXN/ACXN exchange. It must then find the
+overseer and authenticate, by sending JOIN requests and following NTOS
+instructions until it recvives a JROK or ERRF as response. After JROK, the
+overseer must be queried with OQRY. It can then switch to Observation or
+Participation mode and begin connecting to other peers.
+
+STANDARD-TYPE PACKETS
+A standard packet starts with the following header:
+  uint16        Type-independant sequence number
+  byte          Packet type
+
+Packets relating to state:
+0x00 STAT - Indicates peer status
+  Structure:
+  byte          Type:
+                  00=Not ready
+                  01=Ready
+                  02=Observation
+                  03=Participation
+  The meaning of each status:
+  Not ready: This is the initial state. The peer is still busy performing
+             actions that prevent it from properly handling network information.
+             No data should be sent to a Not Ready peer.
+  Ready: The peer can handle network information, but currently does not
+         maintain any game state. It can not, therefore, process object packets,
+         etc.
+  Observation: The peer is actively viewing game state.
+  Participation: Same as Observation at the network level, but higher-level code
+                 may assign other interpretations.
+
+Packets relating to high-level communication:
+Each of these packet types has a separate sequence number; this sequence is shared
+among all of them, and one of the packets can only be processed if its sequence
+number IMMEDIATELY follows the previous.
+
+0x02 UCMD - Indicates a unicast peer-to-peer command
+0x03 BCMD - Indicates a broadcast peer-to-peer command
+0x04 OCMD - Indicates a unicast peer-to-overseer command
+  Structure:
+  uint16        Seq
+  NTBS          Command
+  The command is a Tcl-list, passed to the higher-level game object.
+
+0x05 SDAT - Sets a shared (global) value
+0x06 PDAT - Sets a peer-specific value
+  Structure:
+  uint16        Seq
+  NTBS          path to value
+  byte          Data format:
+    0x00        String          /.*/
+    0x01        Integer         /0|[1-9][0-9]*/
+    0x02        Integer list    /(0|[1-9][0-9]*)( (0|[1-9][0-9]*))+/
+  <data>
+
+  Data format for String:
+    NTBS        payload
+  Data format for Integer:
+    uint32      payload
+  Data format for Integer list:
+    uint16      length
+    uint32[]    payload
+
+  The data type is inferred from the Tcl input string; the string formats were
+  selected to ensure that there is exactly a 1-to-1 input-to-output mapping
+  after converting both ways.
+  These packets, with an empty path, are sent implicitly immediately after a
+  peer's transition to the Observation or Participation and from the Ready stati
+  is accepted.
+
+0x07 JOIN - Requests permission of the overseer to join the game
+  Structure:
+  uint16        Seq
+  byte          Authentication type:
+    0x00        No authentication
+    0x01        Password
+    0x02        Centralised
+  uint32        Abendstern Network userid
+  NTBS          Password
+
+  The receiver may respond with NTOS if it is not the overseer, with JROK if
+  authentication passes, or ERRF if authentication fails.
+
+0x08 NTOS - Not The OverSeer
+  Indicates that the peer who received an JOIN is not the overseer, and
+  indicates who it believes is the actual overseer.
+  Structure:
+  uint16        Seq
+  Peer          overseer
+
+0x09 JROK - Join Request OK
+  Structure:
+  uint16        Seq
+
+  Sent by the overseer in response to JOIN. This indicates that the peer has
+  been added to the game's peer list, and other peers in the game will soon
+  accept the peer's connection.
+
+0x0A VOTE - Vote to kick a player
+  Structure:
+  uint16        Seq
+  Peer          peer to kick
+  byte          reason
+    0x00        Bad connection
+    0x01        Data problems
+    0x02        Abusive
+    0x03        Team-killing
+    0x04        Cheating
+    0x05        Spamming
+
+  All VOTEs are broadcast to all peers, EXCEPT the peer that is being voted on.
+  When a peer finds that more than 1/2 of peers, including itself but not the
+  one being voted on (so npeers-1), it will immediately disconnect from that
+  peer and refuse new connections from it. This applies even if the voted peer
+  was the overseer.
+
+Packets relating to player communication:
+0x0F CHAT - Sends textual message to peer
+  Structure:
+  NTBS          Text
+
+Packets relating to objects:
+All networked objects are given 24-bit names that are used to refer to them over
+the network. Each peer should try to maximize the time between reuse of a
+particular value. The name 0 is reserved for NULL.
+It is up to the receiving Peer to evaluate whether each object should be used as
+a reference for that Peer.
+
+0x10 ONEW - Creates new object.
+  Structure:
+  byte:         Type:
+                  00=Ship
+                  01=EnergyCharge
+                  02=MagnetoBomb
+                  03=PlasmaBurst
+                  04=SemiguidedBomb
+                  05=MonophasicEnergyPulse
+                  06=Missile
+                  07=ParticleEmitter
+                  FF=Ship16
+  uint24        Object name
+  uint24        Object that caused creation (same as this object = nothing)
+  (type-specific creation information)
+
+0x11 OUPD - Updates object. Not all object types get updates.
+            An update packet is not sent if the given peer is not absolutely
+            known to have received the corresponding ONEW.
+  Structure:
+  uint24        Object name
+  (type-specific update information)
+
+0x12 ODEL - Deletes object.
+  Structure:
+  uint24        Object name
+  (possibly type-specific deletion information)
+
+0x13 OBLT - Indicates blast collision with object owned by remote peer.
+            Collisions between two networked objects are not carried on the
+            network; each peer modifies their own objects, but leaves the
+            remotes untouched until otherwise notified. The existence of the two
+            objects in the packet are not hard guarantees; each peer must handle
+            non-existent objects here gracefully. The location of the object
+            being blasted is included explicitly to partially compensate for
+            lag.
+  Structure:
+  uint24        Object name (local to the receiver)
+  uint24        Name of object that caused it (local to the sender)
+  byte          Sender-local blame ID
+  fixed         x
+  fixed         y
+  fixed         falloff
+  fixed         strength
+  fixed         size
+  byte:
+    0           causesDamage
+    1           direct
+    2..7        Zero
+  fixed         x of collidee at time of collision
+  fixed         y of collidee at time of collision
+  fixed         theta of collidee at time of collision
+
+0x15 OTAG - Specifies a text name for an object.
+  Structure:
+  uint24        Object name
+  NTBS          Tag
+
+Type-specific creation data for Ship/Ship16:
+  ("cellix" is byte for Ship and packed uint12 for Ship16)
+  fixed         x
+  fixed         y
+  fixed         theta
+  fixed         vx
+  fixed         vy
+  fixed         vtheta
+  byte          red
+  byte          green
+  byte          blue
+  byte          256*currentCapacitance/totalCapacitance
+  fixed         reinforcement
+  uint32        insignia
+  byte          Orientation of cell 0, in 15 degree increments. 0..23
+                This MUST be 0 for living ships.
+  byte:
+    0           isFragment
+    1           thrustOn
+    2           brakeOn
+    3           shieldsDeactivated
+    4           isStealth
+    5..7        Zero
+  cells...
+Each cell is the following structure:
+  byte:
+    0..1        Type (0=square, 1=circle, 2=equilateral triangle,
+                3=right triangle)
+    2           Set if bridge (MUST be zeroth cell)
+    3           Set if system 0 is present
+    4           Set if system 1 is present
+    5..7        Zero
+  byte          Damage amount (255=destroyed/non-existent)
+  cellix[4]     Neighbour cell indices. 254/0xFFE=empty cell,
+                255/0xFFF=no neighbour
+  (system 0, if present)
+  (system 1, if present)
+
+ShipSystem creation data:
+  byte {
+  0..5          Type:
+                  0x00 = BussardRamjet
+                  0x01 = Capacitor
+                  0x02 = EnergyChargeLauncher
+                  0x03 = FissionPower
+                  0x04 = FusionPower
+                  0x05 = Heatsink
+                  0x06 = MagnetoBombLauncher
+                  0x07 = ParticleAccelerator
+                  0x08 = PlasmaBurstLauncher
+                  0x09 = ReinforcementBulkhead
+                  0x0A = SelfDestructCharge
+                  0x0B = SemiguidedBombLauncher
+                  0x0C = ShieldGenerator
+                  0x0D = SuperParticleAccelerator
+                  0x0E = AntimatterPower
+                  0x0F = RelIonAccelerator
+                  0x10 = GatlingPlasmaBurstLauncher
+                  0x11 = MonophaseEnergyEmitter
+                  0x12 = DispersionShield
+                  0x13 = CloakingDevice
+                  0x14 = MiniGravwaveDrive
+                  0x15 = MiniGravwaveDriveMKII
+                  0x16 = PowerCell
+                  0x17 = MissileLauncher
+                  0x18 = ParticleBeamLauncher
+  6..7          Orientation
+  (possible type-specific data)
+Capacitor creation data:
+  byte          Capacitance
+ShieldGenerator creation data:
+  fixed         Strength
+  fixed         Radius
+  byte          CurrentStrength (0..255)
+  byte          CurrentStability (0..255)
+GatlingPlasmaBurstLauncher cration data:
+  byte          Turbo (true if non-zero)
+
+Type-specific creation data for EnergyCharge (the parent is the object that
+"caused" the EnergyCharge; this is the same for all weapons):
+  fixed         x
+  fixed         y
+  fixed         vx
+  fixed         vy
+  fixed         theta
+  fixed         intensity
+
+Type-specific creation data for MagnetoBomb and SemiguidedBomb:
+  fixed         x
+  fixed         y
+  fixed         vx
+  fixed         vy
+  byte          power (ie, the energy level of the launcher)
+
+Type-specific creation data for PlasmaBurst:
+  fixed         x
+  fixed         y
+  fixed         vx
+  fixed         vy
+  fixed         theta
+  fixed         mass
+
+Type-specific creation data for MonophaseEnergyPulse:
+  fixed         x
+  fixed         y
+  fixed         vx
+  fixed         vy
+  byte          power (ie, energy level of the launcher)
+  byte          timeAlive, in half-deciseconds
+
+Type-specific creation data for Missile:
+  fixed         x
+  fixed         y
+  fixed         vx
+  fixed         vy
+  fixed         ax (acceleration in X direction)
+  fixed         ay (acceleration in Y direction)
+  byte          energy level
+  byte          time alive, in half-deciseconds
+
+Type-specific creation data for ParticleEmitter:
+  fixed         x
+  fixed         y
+  fixed         vx
+  fixed         vy
+  byte[8]       Random information
+  byte:         Flags
+    0..1        Type (0=neutron, 1=muon, 2=antiproton, 3=positron)
+    2..4        rmajor
+    5..7        rminor
+  byte          Time alive, in centiseconds
+  byte          BlameID local to sender
+
+Type-specific update data for Ship and Ship16:
+  fixed         x
+  fixed         y
+  fixed         theta
+  fixed         vx
+  fixed         vy
+  fixed         vtheta
+  byte          256*currentCapacitance/totalCapacitance
+  byte          throttle
+  uint24        Target (name of this = no target)
+  byte          Orientation of cell 0. Same format as for creation. A peer will
+                not notice abritrary changes in this value.
+  byte:
+    0           isFragment
+    1           thrustOn
+    2           brakeOn
+    3           shieldsDeactivated
+    4           isStealth
+    5..7        Zero
+  cells...
+Cell update data:
+  byte          Damage level 0..254; 255=destroyed or non-existent
+  byte:
+    0           Set if system 0 exists
+    1           Set if system 1 exists
+    2..7        Zero
+  (type-specific update data for system 0)
+  (type-specific update data for system 1)
+ShieldGenerator update data:
+  byte          Current strength level, 0..255
+  byte          Current stability level, 0..255
+  byte          Current alpha, 0..255
+
+Type-specific update data for MagnetoBomb and SemiguidedBomb:
+  fixed         x
+  fixed         y
+  fixed         vx
+  fixed         vy
+
+Type-specific update data for Missile:
+  fixed         x
+  fixed         y
+  fixed         vx
+  fixed         vy
+  fixed         ax (acceleration in X direction)
+  fixed         ay (acceleration in Y direction)
+
+Type-specific deletion data for EnergyCharge, MagnetoBomb, PlasmaBurst,
+SemiguidedBomb, MonophaseEnergyPulse, Missile:
+  byte:
+    0           Set if the object exploded, clear if it simply ceased to exist.
+    1..7        Zero
+
+Type-specific deletion data for Ship/Ship16:
+  Optional: Same format as update packet, beginning with a duplication of the
+  object name. This allows the receiver to produce any effects that should
+  occur.

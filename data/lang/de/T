@@ -1,0 +1,143 @@
+~de
+ Abendstern Testing messages
+ Author: Jason Lingle
+ This file contains user-accessible text that is only used by testing
+ software.
+ The final release should not contain the T catalogue.
+@a
+-begin_game
++Jetzt spielen
+-deep_space_battle
++Tiefe \a&Weltraumschlacht
+-planetary_battle
++Orbitale Schlacht
+-nebular_battle
++Nebelschlacht
+-acct_mgmt
++Meine \a&Konto
+-shipbrowse
++Netzwerkschiffe durchsuchen
+-logout
++Abmelden
+-ship_mgmt
++Schiffverwaltung
+-update_abendstern
++Abendstern Aktualisieren
+
+-TSMFreeForAll
++Jedes für sich selbst
+-TSMLastManStanding
++Letzter der Standet
+-TSMStandardTeam
++Standarde Mannschaften
+-TSMHomogeneousTeam
++Ungemischte Mannschaften
+-TSMHeterogeneousTeam
++Gemischte Mannschaften
+-TSMManVsWorld
++Mensch vs Welt
+
+-choose_hangar
++Hangar \a&auswählen
+-new_dots
++Neu...
+-edit_dots
++Bearbeiten...
+-delete
++Entfernen
+
+-save
++Speichern
+-apply
++Ver\a&wenden (nicht speichern)
+-revert
++Rückgängig
+
+-size
++Große
+-numais
++Zahl der KI
+-ship_colour
++Farbe des Schiffs des Spielers:
+-nteams
++Mannschafften
+
+-background
++Hintergrund:
+-StarField
++Sternesfeld
+-Planet
++Erde
+-Nebula
++Nebula
+
+-difficulty
++Schwerigkeit:
+-difficulty_0
++Sehr schwach
+-difficulty_1
++Schwach
+-difficulty_2
++Faire Schlacht
+-difficulty_3
++Experte
+-difficulty_4
++Der Tod schmeckt mir gut!
+
+-settings_game
++Spiel
+-fullscreen
++Vollbild
+-antialiasing
++Antialiasing
+-full_alpha_blending
++Extra Transparenz
+-any_alpha_blending
++Nutzen Transparenz
+-smooth_scaling
++Glatt skalieren
+-low_res_textures
++Neidrige-Resolution Textures
+-high_quality
++Spezielle Effekte
+-font_size
++Fontgroße
+-settings_graphics
++Graphike
+-settings_language
++Sprache
+-settings_controls
++Kontrolle
+-settings_colours
++Farben
+
+-tab_main
++Haupt
+-tab_hangar
++Hangar
+-tab_ship
++Schiff
+-tab_mode
++Modus
+-tab_game
++Spiel
+-tab_settings
++Einstellungen
+
+-Standard
++Standard
+-Warning
++Warnung
+-Danger
++Vorsicht
+-Special
++Speziell
+
+-red
++Rot
+-green
++Grün
+-blue
++Blau
+-opacity
++Undurch.

@@ -1,0 +1,69 @@
+Abendstern Scripting Graphics Interface
+
+The ASGI is a simple graphics framework, based heavily on the OpenGL 1.x
+interface. It allows the scripts to do everything they might need to, and
+nothing more.
+
+PRIMITIVE ENUMERATION VALUES
+  GL_POINTS
+  GL_LINES
+  GL_LINE_STRIP
+  GL_LINE_LOOP
+  GL_TRIANGLES
+  GL_TRIANGLE_STRIP
+  GL_TRIANGLE_FAN
+  GL_QUADS
+
+FUNCTIONS
+  glBegin enum
+    Begin drawing primitives.
+  glEnd
+    End drawing primitives.
+  glVertex float x, float y
+    Add a new primitive. MUST occurr between glBegin and glEnd.
+  glVertex2f
+    Synonym for glVertex
+  glColour3f float r, float g, float b
+    Same as glColor4f r, g, b, 1
+  glColour4f
+    Synonym for glColour
+  glColour float r, float g, float b, float a
+    Set the colour for the next vertex
+  glColor3f ...
+    Synonym for glColour3f
+  glColor4f
+    Synonym for glColour4f
+  glPushMatrix
+    Duplicate the top of the model matrix stack
+  glPopMatrix
+    Pop the top of the model matrix stack
+  glLoadIdentity
+    Load the effective identity to the top of the matrix stack
+  glTranslatef float x, float y, float
+    Same as glTranslate x y (the last argument is dropped)
+  glTranslate float x, float y
+    Translate the given distance
+  glRotatef float theta, float xfac, float yfac, float zfac
+    Same as glRotate theta (all other arguments are ignored)
+  glRotate float theta
+    Rotate about the Y axis by the given number of degrees (degrees
+    are used only because radians are inconvenient in Tcl, eg
+    [expr (pi/2)]).
+  glScalef float x, float y, float z
+    Same as glScale x y (the last argument is dropped)
+  glScale x y
+    Scale in the given directions.
+  glUscale fac
+    Uniform scale the given amount
+    
+  glReset
+    Resets ASGI. This is an unsafe function. Current drawing operations are aborted,
+    and the matrix stack is cleared. This should only be called from the top-level
+    Tcl driver script. This MUST be called before ASGI is ready to run correctly.
+
+DRAWING
+Drawing works exactly in OpenGL 1.3, given the limited API (begin...end, vertices and colours).
+
+MATRICES
+All transforms must effect the same matrix stack used by the rest of the game.
+No matrix operation may be called between glBegin and glEnd.

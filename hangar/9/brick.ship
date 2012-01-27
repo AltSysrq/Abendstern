@@ -1,0 +1,141 @@
+info	{
+ name	"brick",
+ alliance	["WUDR",]
+ version	0
+ bridge	"AAAA",
+ reinforcement	1.0
+ class	"C",
+ old_format	"sn00ss0wbs1pfn10ss0pfs1pfn30ss0pc30 s1pc30 n20ss0pc30 s1pc30 n"
+		"12rs0ea.n30ss0pc30 s1pc30 n10ss0wes1pc30 .n20ss0pc30 s1pc30 n2"
+		"0rs0ea.n30ss0pc30 s1pc30 n20ss0pfs1pf.........\n1\n",
+ sharing_enabled	t
+ author	"AbyssalYogSothOth",
+ fileid	307
+ ownerid	9
+ needs_uploading	f
+}
+cells	{
+ AAAA	{
+  type	"square",
+  neighbours	["BAAA",	"",	"",	"",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["AAAA",	"CAAA",	"",	"LAAA",]
+  s0	{
+   type	"MagnetoBombLauncher",
+   orient	2
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ CAAA	{
+  type	"square",
+  neighbours	["BAAA",	"",	"",	"DAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["CAAA",	"",	"EAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ EAAA	{
+  type	"square",
+  neighbours	["DAAA",	"FAAA",	"",	"GAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ FAAA	{
+  type	"right",
+  neighbours	["",	"",	"EAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	0
+  }
+ }
+ GAAA	{
+  type	"square",
+  neighbours	["EAAA",	"HAAA",	"IAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ HAAA	{
+  type	"square",
+  neighbours	["GAAA",	"",	"",	"",]
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ IAAA	{
+  type	"square",
+  neighbours	["GAAA",	"",	"JAAA",	"KAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ JAAA	{
+  type	"right",
+  neighbours	["IAAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	2
+  }
+ }
+ KAAA	{
+  type	"square",
+  neighbours	["IAAA",	"",	"LAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ LAAA	{
+  type	"square",
+  neighbours	["KAAA",	"",	"",	"BAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+}

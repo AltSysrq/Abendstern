@@ -1,0 +1,223 @@
+info	{
+ name	"Armageddon",
+ author	"AbyssalYogSothOth",
+ version	0
+ bridge	"konnichiwa",
+ reinforcement	2.0
+ class	"C",
+ alliance	["EUF",	"WUDR",]
+ mass	10565.0
+ verification_signature	19655
+ sharing_enabled	t
+ fileid	450
+ ownerid	9
+ needs_uploading	f
+}
+cells	{
+ konnichiwa	{
+  type	"square",
+  neighbours	["boiwidu",	"ryoideja",	"moigaifoi",	"sufaidai",]
+ }
+ moigaifoi	{
+  neighbours	["konnichiwa",	"dugunshu",	"pouyousoi",	"maryousi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	30
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ pouyousoi	{
+  neighbours	["moigaifoi",	"",	"jeitaiyo",	"",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	30
+  }
+ }
+ jeitaiyo	{
+  neighbours	["pouyousoi",	"toupotai",	"",	"ryupeidu",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ toupotai	{
+  neighbours	["jeitaiyo",	"",	"",	"ryokoifu",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	30
+  }
+ }
+ ryokoifu	{
+  neighbours	["toupotai",	"",	"",	"",]
+  type	"square",
+  s0	{
+   type	"ParticleAccelerator",
+   orient	2
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ryupeidu	{
+  neighbours	["jeitaiyo",	"poihesa",	"",	"",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	30
+  }
+ }
+ poihesa	{
+  neighbours	["ryupeidu",	"",	"",	"",]
+  type	"square",
+  s0	{
+   type	"ParticleAccelerator",
+   orient	2
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ boiwidu	{
+  neighbours	["konnichiwa",	"",	"",	"",]
+  type	"square",
+  s0	{
+   type	"MagnetoBombLauncher",
+   orient	2
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	30
+  }
+ }
+ ryoideja	{
+  neighbours	["konnichiwa",	"",	"woryowo",	"",]
+  type	"square",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ sufaidai	{
+  neighbours	["konnichiwa",	"maryousi",	"wenryehe",	"",]
+  type	"square",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ maryousi	{
+  neighbours	["moigaifoi",	"ryefijei",	"sufaidai",	"",]
+  type	"right",
+  s0	{
+   type	"Capacitor",
+   capacity	30
+  }
+ }
+ dugunshu	{
+  neighbours	["",	"giryaiwo",	"moigaifoi",	"",]
+  type	"right",
+  s0	{
+   type	"Capacitor",
+   capacity	30
+  }
+ }
+ ryefijei	{
+  neighbours	["maryousi",	"",	"sosainru",	"",]
+  type	"circle",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ giryaiwo	{
+  neighbours	["dugunshu",	"",	"yousainroin",	"",]
+  type	"circle",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ sosainru	{
+  neighbours	["ryefijei",	"",	"begaiji",	"",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	30
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ yousainroin	{
+  neighbours	["giryaiwo",	"",	"binkiyu",	"",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	30
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ binkiyu	{
+  neighbours	["",	"",	"yousainroin",	"",]
+  type	"right",
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ begaiji	{
+  neighbours	["sosainru",	"",	"",	"",]
+  type	"right",
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ woryowo	{
+  neighbours	["ryoideja",	"",	"",	"",]
+  type	"right",
+  s0	{
+   type	"ParticleAccelerator",
+   orient	2
+  }
+ }
+ wenryehe	{
+  neighbours	["",	"",	"sufaidai",	"",]
+  type	"right",
+  s0	{
+   type	"ParticleAccelerator",
+   orient	0
+  }
+ }
+}

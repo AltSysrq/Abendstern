@@ -1,0 +1,69 @@
+info	{
+ name	"Photon",
+ alliance	["ship:photon",]
+ version	0
+ author	"AltSysrq",
+ bridge	"AAAA",
+ reinforcement	0.0
+ class	"B",
+ old_format	"cn02ss0pus1pun02ss0pc99 s1wp.n10ss0pus1eb.n30ss0pus1eb...\n0\n",
+ mass	1111.0
+ energy_levels	{
+  PlasmaBurst	3
+ }
+ sharing_enabled	t
+ fileid	231
+ ownerid	1
+ needs_uploading	f
+ verification_signature	1333913384
+}
+cells	{
+ AAAA	{
+  type	"circle",
+  neighbours	["BAAA",	"",	"",	"",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["CAAA",	"DAAA",	"AAAA",	"EAAA",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ CAAA	{
+  type	"square",
+  neighbours	["",	"",	"BAAA",	"",]
+  s0	{
+   capacity	99
+   type	"Capacitor",
+  }
+  s1	{
+   type	"PlasmaBurstLauncher",
+   orient	0
+  }
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["BAAA",	"",	"",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"BussardRamjet",
+   orient	3
+  }
+ }
+ EAAA	{
+  type	"square",
+  neighbours	["BAAA",	"",	"",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+}

@@ -1,0 +1,10 @@
+N glBeginTransformFeedback
+N glBindBufferBase
+> glBindVertexArray
+> glDeleteVertexArrays
+N glEndTransformFeedback
+> glGenVertexArrays
+N glMapBuffer
+N glTransformFeedbackVaryings
+N glUnmapBuffer
+N glUnMapBuffer

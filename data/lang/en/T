@@ -1,0 +1,143 @@
+~en
+ Abendstern Testing messages
+ Author: Jason Lingle
+ This file contains user-accessible text that is only used by testing
+ software.
+ The final release should not contain the T catalogue.
+@a
+-begin_game
++Play Now
+-deep_space_battle
++Deep Space Battle
+-planetary_battle
++Planetary Battle
+-nebular_battle
++Nebular Battle
+-acct_mgmt
++My \a&Account
+-shipbrowse
++Network Ship Browser
+-logout
++Log off
+-ship_mgmt
++Ship Management
+-update_abendstern
++Update Abendstern
+
+-TSMFreeForAll
++Free-for-All
+-TSMLastManStanding
++Last Man Standing
+-TSMStandardTeam
++Standard Teams
+-TSMHomogeneousTeam
++Homogeneous Teams
+-TSMHeterogeneousTeam
++Heterogeneous Teams
+-TSMManVsWorld
++Man vs World
+
+-choose_hangar
++Choose Hangar
+-new_dots
++New...
+-edit_dots
++Edit...
+-delete
++Delete
+
+-save
++Save
+-apply
++Apply (don't save)
+-revert
++Revert
+
+-size
++Size
+-numais
++Num AIs
+-ship_colour
++Player Ship Colour
+-nteams
++Teams
+
+-background
++Background:
+-StarField
++Field of Stars
+-Planet
++Earth
+-Nebula
++Nebula
+
+-difficulty
++Difficulty:
+-difficulty_0
++Very Easy
+-difficulty_1
++Beginner
+-difficulty_2
++Fair fight
+-difficulty_3
++Expert
+-difficulty_4
++I love the taste of death!
+
+-settings_game
++Game
+-fullscreen
++Full-screen
+-antialiasing
++Antialiasing
+-full_alpha_blending
++Extra Transparency
+-any_alpha_blending
++Enable Transparency
+-smooth_scaling
++Smooth Scaling
+-low_res_textures
++Low-Resolution Textures
+-high_quality
++Special Effects
+-font_size
++Font Size
+-settings_graphics
++Graphics
+-settings_language
++Language
+-settings_controls
++Controls
+-settings_colours
++Colours
+
+-tab_main
++Main
+-tab_hangar
++Hangar
+-tab_ship
++Ship
+-tab_mode
++Mode
+-tab_game
++Game
+-tab_settings
++Settings
+
+-Standard
++Standard
+-Warning
++Warning
+-Danger
++Danger
+-Special
++Special
+
+-red
++Red
+-green
++Green
+-blue
++Blue
+-opacity
++Opacity

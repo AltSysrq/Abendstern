@@ -1,0 +1,1046 @@
+~de
+ Core Abendstern messages
+ Author: Jason Lingle
+ German, Germany
+
+@gui
+ Common things
+-quit
++Verlassen
+
+-accelerators
++abcdefghijklmnopqrstuvwxyz1234567890äöüß
+
+-ok
++Okay
+
+-yes
++Ja
+
+-no
++Nein
+
+-cancel
++Abbrechen
+
+-close
++Schließen
+
+-abort
++Abbrechen
+
+-warning
++Warnung
+
+-wait
++Bitte warten...
+
+-error
++Fehler
+
+-untitled
++Unbenannt
+
+-unknown
++Unbekannt
+
+@hud_abbr
+ Weapon abbreviations MUST be 13 or fewer characters
+-energy_charge
+ 1234567890123
++ENERGIELADUNG
+
+-magneto_bomb
++MAGNETOBOMBE
+
+-plasma_burst
++PLASMABERSTEN
+
+-semiguided_bomb
++SEMIGELEITETE
+
+-gatling_plasma_burst
++GAT PLASMA
+
+-monophasic
++EINPHASERPULS
+
+-missile
++RAKETE
+
+-particle_beam
++PARTIKLSTRAHL
+
+-pow_cap_throt_heat_stren_stab
+ Strom Kapazität Drossel Heiß Stärke Stabilität
++SKDHSS
+
+-level
++GRD:\x20
+
+-count
++ZHL:\x20
+
+-weapon_not_found0
++SYSFHL404
+-weapon_not_found1
++N. GEFUND
+
+@hud
+-target_prefix
++ZIEL:\x20
+-message_prefix
++\a[(white)NACHRICHT:\x20
+-target_none
++(KEIN)
+
+
+@editor
+-cant_put_systems_in_bridge
++Systeme können nicht in die Brücke gestellt werden.
+
+-bridge_relocator_instructions
++Klicken Sie an dem neuen Platz, wohin die Brücke verschoben werden soll.
+
+-bridge_relocator_cell_not_empty
++\a[(danger)Zelle nicht leer\a]
+
+-bridge_relocator_unsuitable_cell
++\a[(danger)Ungeeignete Zelle der Brücke\a]
+
+-bridge_relocator_cell_rotated
++\a[(danger)Die Brücke kann nicht in eine rotierte Zelle verschoben werden.\a]
+
+-cell_creation_brush_instructions
++Klicken Sie, um Zellen zu malen.
+
+-cell_creation_brush_error
++\a[(danger)Neue Zellen können da nicht geschaffen werden.\a]
+
+-cell_deletion_brush_instructions
++Klicken Sie eine Zelle, um sie zu entfernen. (Waisen werden auch entfernt.)
+
+-cell_deletion_brush_bridge
++\a[(danger)Die Brücke kann nicht entfernt werden.\a]
+
+-cell_rotator_instructions
++Klicken Sie ein rechtwinkliges Dreieck, um es zu rotieren.
+
+-system_creation_brush_instructions
++Klicken und ziehen Sie, um Systeme zu malen.
+
+-system_creation_rectangle_instructions
++Klicken und ziehen Sie, um ein Rechteck mit Systemen zu füllen.
+
+-system_info_copier_instructions
++Klicken Sie eine Zelle, um ihre Informationen zu kopieren.
+
+-system_rotator_instructions
++Klicken Sie eine Zelle, um ihre Systeme zu rotieren.
+
+-idle
++Kein Werkzeug aktiv.
+
+-initmode_title
++Schiffverwaltungsmenü
+
+-new_ship
++\a&Neues Schiff
+
+-open_ship
++Schiff \a&öffnen
+
+-delete_ship
++Schiff \a&löschen
+
+-couldnt_load_ship
++Das Schiff konnte nicht geladen werden.
+
+-delmode_title
++\a[(danger)Schiff löschen\a]
+
+-delmode_prompt
++Sind Sie sicher, dass Sie dieses Schiff \a[(warning)dauerhaft\a] löschen wollen:
+
+-menu_file
++Datei
+
+-menu_edit
++Bearbeiten
+
+-menu_view
++Ansicht
+
+-menu_prop
++Eigenschaften
+
+-menu_info
++Informationen
+
+-fork_successful
++Neues Schiff wird erfolgreich gegabelt:
+
+-change_class_fail
++\a[(danger)Die Klasse konnte nicht zu %s geändert werden.\a]
+
+-change_class_success
++Die Klasse wurde erfolgreich zu %s geändert.
+
+-newmode_title
++Neues Schiff erschaffen
+
+-ship_name
++Name
+
+-author
++Autor
+
+-ship_class
++Klasse des Schiffs
+
+-bridge_type
++Brückentype
+
+-class
++Klasse
+
+-class_prefix
++Klasse-
+
+-anonymous
++Namenlos
+
+-create
++Erschaffen
+
+-save_changes
++Änderungen \a&speichern
+-save_as_fork
++Schiffe \a&gabeln
+-revert
++Änderungen \a&verwerfen
+
+-undo
++Rückgängig
+-history
++Verlauf
+-new_cells
++Zellen \a&erschaffen
+-del_cells
++Zellen ent\a&fernen
+-rot_cells
++Zellen \a&rotieren
+-set_sys
++\a&Systeme erschaffen
+-rot_sys
++Systeme \a&drehen
+-move_bridge
++Brücke \a&verschieben
+
+-history_current
++Aktuell
+-history_seconds
++Vor %d Sekunden
+-history_minutes
++Vor %d:%02d Min.
+-history_hours
++Vor %d:%02d:%02d S.
+
+-general_header
++Allgemein
+-physical_header
++Physikalisch
+-cells
++Zellen
+-mass
++Masse
+-radius
++Radius
+-length
++Länge
+-width
++Breite
+-reinforcement
++Verstärkung
+-cost
++Kost
+-capabilities_header
++Fähigkeiten
+-power_gen
++Strom
+-max_power_use
++Max Strom verbrauch
+-min_power_use
++Min Strom verbrauch
+-acceleration
++Beschleun
+-rotation
++Rotation
+-stealth_header
++Tarnkappen
+-supported
++Fähig
+
+-ship_properties_header
++Schiffeigenschaften
+-reinforcement_abbr
++Vst
+
+-quit_without_saving_p
++Ungespeicherte Änderungen verwerfen?
+
+-system_cat_header
++Systemskategorie
+-no_change
++Nicht ändern
+-delete
++Entfernen
+
+-change_dots
++Ändern...
+
+-primary_header
++Primäres
+-secondary_header
++Sekundäres
+
+-paint_mode
++Malenmodus
+-paint_mode_brush
++Pinsel
+-paint_mode_rect
++Rechteck
+
+-copy_from_cell
++Von Zelle \a&kopieren
+
+-shield_radius
++Radius
+-shield_strength
++Stärke
+-capac_amt
++Kap
+-gpbl_turbo
++Turbo
+
+-zoom_in
++Ver\a&größern
+-zoom_out
++Ver\a&kleinern
+-reset_view
++Zurücksetzen
+-show_shields
++Schutz zeigen
+-show_centre_lines
++Zentrumlinien zeigen
+
+-sharing_enabled
++Dieses Schiff teilen
+
+@cell
+-circle
++Kreis
+-square
++Quadrat
+-equilt
++Gleichseitiges
+-rightt
++Rechtwinkliges
+-empty
++Leer
+
+@sys
+-engine
++Triebwerk
+-power
++Strom
+-weapon
++Waffe
+-shield
++Schutz
+-stealth
++Tarnkappen
+-misc
++Andere
+
+-antimatter_power
++Antimateriereaktor
+-antimatter_power_s
++Antimaterie
+-bussard_ramjet
++Bussard Rammenstrahl
+-bussard_ramjet_s
++Bussard Rammenstrahl
+-capacitor
++Kondensator
+-capacitor_s
++Kondensator
+-cloaking_device
++Tarnkappengerät
+-cloaking_device_s
++Tarnkappengerät
+-dispersion_shield
++Aufsaugenschutz
+-dispersion_shield_s
++Aufsaugenschutz
+-energy_charge_launcher
++Energieladungswaffe
+-energy_charge_launcher_s
++Energieladung
+-fission_power
++Kernspaltungsreaktor
+-fission_power_s
++Kernspaltung
+-fusion_power
++Fusionsreaktor
+-fusion_power_s
++Fusion
+-gatling_plasma_burst_launcher
++Gatling Plasmaberstenwerfer
+-gatling_plasma_burst_launcher_s
++Gatling Plasmabersten
+-heatsink
++Kühler
+-heatsink_s
++Kühler
+-magneto_bomb_launcher
++Magnetobombewerfer
+-magneto_bomb_launcher_s
++Magnetobombe
+-mini_gravwave_drive
++Kleines Schwerkraftwelletriebwerk
+-mini_gravwave_drive_s
++Kleines SKWTW
+-mini_gravwave_drive_ii
++Kleines Schwerkraftwelletriebwerk MKII
+-mini_gravwave_drive_ii_s
++Kleines SKWTW II
+-missile_launcher
++Raketewerfer
+-missile_launcher_s
++Rakete
+-monophasic_energy_emitter
++Einphaserpulsstrahler
+-monophasic_energy_emitter_s
++Einphaserpuls
+-particle_accelerator
++Partikelbeschleuniger
+-particle_accelerator_s
++Partikelbeschl.
+-particle_beam_launcher
++Partikelstrahlerwaffe
+-particle_beam_launcher_s
++Particlestrahler
+-plasma_burst_launcher
++Plasmaberstenwerfer
+-plasma_burst_launcher_s
++Plasmabersten
+-power_cell
++Stromzelle
+-power_cell_s
++Stromzelle
+-reinforcement_bulkhead
++Verstärkungsschott
+-reinforcement_bulkhead_s
++Verstärkungsschott
+-rel_ion_accelerator
++Relativistischer Ionbeschleuniger
+-rel_ion_accelerator_s
++Rel. Ionbeschl.
+-self_destruct_charge
++Selbstzerstörer
+-self_destruct_charge_s
++Selbstzerstörer
+-semiguided_bomb_launcher
++Semigeleitete Bombewerfer
+-semiguided_bomb_launcher_s
++Semigeleitete Bombe
+-shield_generator
++Schutzgenerator
+-shield_generator_s
++Schutzgenerator
+-super_particle_accelerator
++Verbesserter Partikelbeschleuniger
+-super_particle_accelerator_s
++Verbesser. Partikelbeschl.
+
+
+@engine_mounting_conditions
+-particle_accelerator
++Partikelbeschleuniger braucht mindestens einen Eingang und einen Ausgang.
+
+-mini_gravwave_drive
++Kleines Schwerkraftwelletriebwerk braucht einen Ausgang.
+
+-bussard_ramjet
++Bussard Rammenstrahl braucht einen direkten Eingang und Ausgang.
+
+-rel_ion_accelerator
++Relativistischer Ionbeschleuniger braucht einen Ausgang.
+
+-not_circle
++Triebwerk kann nicht in eine Kreisezelle gestellt werden.
+
+-output_blocked
++Nachbarzelle blockiert Ausgang des Triebwerks.
+
+@ship
+-invalid_cell_connection
++Ungütlige Zelleverbindung
+
+-err_empty
++Leeres Schiff
+
+-err_too_many_cells
++Shiff hat mehr als 4094 Zellen.
+
+-err_rt_bridge
++Rechtwinkliges Dreieckbrücke
+
+-two_large_sys
++Zwei große Systeme in einer Zelle
+
+-two_same_loc_sys
++Zwei Systeme mit die gleiche spezielle Positionierung
+
+-adjacent_circles
++Benachbarte Kreise
+
+-cells_overlap
++Zellen sich überliegen
+
+-load_newer_version
++Datie kommt aus ein späteres Version Abendsterns .
+
+-bridge_not_found
++Die Brücke des Schiffs konnte nicht gefunden werden.
+
+-unknown_cell_type
++Unbekanntes Zelletype
+
+-too_many_neighbours
++Zu viele Nachbarn in einer Zelle
+
+-triangular_4_neighbours
++Dreieckzelle mit vier Nachbarn
+
+-cell_ref_nx_neighbour
++Zelle referenziert Nachbar, den nicht finden werden konnte.
+
+-system_too_advanced
++System kommt aus eine fortgeschrittenere Klasse als das Schiff.
+
+@launcher
+-no_exposed_faces
++Keine freie Fläche dem Werfer
+-invalid_orientation
++Ungütlige Orientierung des Werfer
+-selected_face_occupied
++Ausgewählte Fläche dem Werfer schon besetzt
+-maint_reqd_0
++\a[(danger)WARTUNG\a]
+-maint_reqd_1
++\a[(danger)BENÖTIGT\a]
+
+@ship_chooser
+-acceleration
++Beschleunigung
+-rotation
++Rotation
+-power
++Strom
+-free_power
++Frier Strom
+-capacitance
++Kapazität
+-reinforcement
++Verstärkung
+-mass
++Masse
+
+-filter
++Filter
+
+-no_ships
++Keine Schiffe im Katalog
+
+@hangar
+-in_hangar
++Im \a&Hangar
+-available
++Verfügbar
+-weight
++Gewicht
+
+-add
++<< Hin\a&zu
+-rem
++Her\a&aus >>
+
+@plasma_burst_launcher
+-ok
++OK
+-hot
++HEIß
+-overheat
++ÜBERHITZEN
+
+@monophasic
+-wavelen
++WELLELÄNGE
+
+@particle_beam
+-neutron
++NEUTRON
+-muon
++MUON
+-antiproton
++ANTIPROTON
+-positron
++POSITRON
+
+@missile
+-ready
++BEREIT
+-reload
++NEU LADE
+-recharge
++AUFLADE
+
+@magneto_bomb
+-ready
++BEREIT
+-reload
++NEU LADE
+-overload
++\a[(danger)ÜBERLADEN\a]
+
+@misc
+-all_class_x
++Jedes Klasse-%s
+-class_all_ships
++Alles
+
+@control_scheme
+-*default
++Standardkontrollschema
+-*spacecadet
++Spezielles Tastaturschema
+
+@login
+-tlogin
++Zum Netzwerk Abendsternes anmelden
+-tcreate
++Konto mit dem Netzwerk Abendsternes erschaffen
+-toffline
++Offline-Modus
+-tmanagement
++Kontoverwaltung
+-tdelete
++\a[(danger)Konto löschen\a]
+
+-username
++Benutzername
+-password
++Passwort
+-automatic
++Automatisch mit diesen Berechtigungsnachweisen anmelden
+
+-login
++Anmelden
+-create
++Erschaffen
+-alter
++Benutzername/Passwort ändern
+-delete
++\a[(danger)Konto löschen\a]
+
+-switchcreate
++Eine Konto erschaffen
+-switchlogin
++Mit Existierender anmelden
+-offline
++Offline spielen
+-possible_avatars
++Avatarbilder
+-change_avatar
++Avatar ändern
+
+-creating
++Erschaffe Konto...
+-logging_in
++Melden an...
+-altering
++Informationen werden geändert...
+
+-offline_auto
++Abendstern tritt Offline-Modus automatisch ein,
++ weil Problemme getroffen wurden, während die
++ Verbindung mit dem Server geöffnet wurde.
+
+-offline_disadvantages
++In Offline-Modus können Sie weder nicht in online Spiele gegen
++ andere Leute spielen, benutzerdefinierte Schiffe teilen
++ und bekommen, noch die stetig Verbesserungen des AI der
++ rechner-controllierte Gegner bekommen.
+
+-deletewarn
++Wenn Sie Ihre Konto löschen, werden sie und ihre Dateien
++ allen dauerhaft entfernt.
+*\a[(danger)DIESE AKTION KANN NICHT ZURÜCK GEMACHT WERDEN!\a]
+*Sind Sie sicher, dass Sie Ihere Konto löschen wollen?
+
+-avatar_howto
++Um Ihre Bilder in der Liste zu sehen, stellen Sie die Dateien
++ in Ihren Abendstern-Ordner. PNG, JPEG, BMP, und GIF werden verstanden.
+
+-dont_show_again
++Diese Dialog nie wieder zeigen
+
+-pwnotmatch
++(Passwörter passen sich nicht)
+-pwshort
++(Passwort zu kurz)
+-pwnotchanged
++(Passwort wird nicht geändert)
+-pwok
++(Passwort okay)
+
+@shipbrowse
+-title
++Schiffe durchsuchen
+
+-sorting
++Sortierung
+-sortalpha
++Alphabetisch
+-sortnships
++Schiffezahl
+-sortpop
++Popularität
+-sortrate
++A.M. der Bewertungen
+
+-userlist
++Benutzer
+-shiplist
++Schiffe        \x20
+-ships
++Schiffe
+-users
++Benutzer
+
+-downloads_fmt
++%d mal untergeladen
+-rating_fmt
++Bewertung: %s (%d)
+
+-shiprate
++Schiff bewerten:
+-shiprate+
++Gut
+-shiprate-
++Schlecht
+
+-rating0
++schrecklich
+-rating1
++schlecht
+-rating2
++mittelmäßig
+-rating3
++gut
+-rating4
++großartig
+-rating5
++perfekt
+
+-user_subscribe
++Schiffe dieses Benutzers abonnieren
+-ship_subscribe
++Dieses Schiff abonnieren
+
+@game
+-resume
++Weiter \a&spielen
+-exit
++Spiel \a&verlassen
+
+-g_dm_long
++Todeskampf
+-g_dm
++TK
+-g_xtdm_long
++Todeskampf %s Mannschaften
+-g_xtdm
++TK%sM
+-g_lms
++LÜS
+-g_lms_long
++Letzter überlebender Spieler
+-g_lxts
++LÜ%sM
+-g_lxts_long
++Letzte überlebende von %s Manschafften
+-g_hvc
++MGC
+-g_hvc_long
++Mensch gegen Cyborg
+
+-vpeer_connected_fmt
++Verbunden: \a[%s%s\a]
+-vpeer_disconnected_fmt
++Getrennt: \a[%s%s\a]
+-respawn_in_fmt
++Erneut spawnen in %d Sekunde(n)...
+-newmatch_in_fmt
++Unterbrechung; neues Spiel in %d Sekunde(n)...
+-newround_in_fmt
++Unterbrechung; neue Runde in %d Sekunde(n)...
+-waiting_for_next_round
++Bitte warten auf der nächste Runde...
+
+-winner_fmt
++Sieger: %s
+-best_player_fmt
++Bester Spieler: %s
+-survivor_fmt
++%s überlebte!
+-survivor_team_fmt
++%s überlebten!
+-survivor_nobody
++Keine überlebten!
+
+-team_join
++%s trat bei \a[%s%s\a]
+-team_change
++%s trat von \a[%s%s\a] bei \a[%s%s\a]
+
+-time_left_fmt
++noch %02d:%02d
+-round_fmt
++Runde %d von %d
+-match_over
++Spiel vorbei
+
+-stats_overseer_note
++(\a[(white)!\a] = Spieler ist Aufseher)
+
+-hvc_assimilated_fmt
++\a[(white)%s WURDE ASSIMILIERT
+-hvc_resistance_was_futile
++Widerstand war sinnlos
+
+-kill_kill0
++%s hat %s getötet
+-kill_kill1
++%s hat %s vernichtet
+-kill_kill2
++%s hat %s zerstört
+-kill_kill3
++%s hat %s deaktiviert
+-kill_kill4
++%s hat %s terminiert
+
+-kill_kill_assist0
++%s und %s haben %s getötet
+-kill_kill_assist1
++%s und %s haben %s vernichtet
+-kill_kill_assist2
++%s und %s haben %s zerstört
+-kill_kill_assist3
++%s und %s haben %s deaktiviert
+-kill_kill_assist4
++%s und %s haben %s terminert
+
+-kill_kill_again0
++%s hat %s wieder getötet
+-kill_kill_again1
++%s hat %s wieder vernichtet
+-kill_kill_again2
++%s hört nicht auf, %s zu töten
+-kill_kill_again3
++%s hat %s wieder zerstört
+-kill_kill_again4
++%s hat %s schon wieder getötet
+
+-kill_kill_again_assist0
++%s und %s haben %s wieder getötet
+-kill_kill_again_assist1
++%s und %s hat %s wieder vernichtet
+-kill_kill_again_assist2
++%s und %s hören nicht auf, %s zu töten
+-kill_kill_again_assist3
++%s und %s haben %s wieder zerstört
+-kill_kill_again_assist4
++%s und %s haben %s schon wieder vernichtet
+
+-kill_dominate0
++%s \a[(white)dominiert\a] %s!
+-kill_dominate1
++%s hat %s gemacht, sich zur \a[(white)Dominierung\a] verbeugen!
+-kill_dominate2
++%s versichert \a[(white)Überlegenheit\a] über %s!
+-kill_dominate3
++%s ist \a[(white)unbesiegbar\a] gegen %s!
+-kill_dominate4
++%s \a[(white)überwältigt\a] %s!
+
+-kill_dominate_assist0
++%s (mit %ss Hilfe) \a[(white)dominiert\a] %s!
+-kill_dominate_assist1
++%s (mit %ss Hilfe) macht %s sich zur \a[(white)Dominierung\a] verbeugen!
+-kill_dominate_assist2
++%s (mit %ss Hilfe) versichert \a[(white)Überlegenheit\a] über %s!
+-kill_dominate_assist3
++%s (mit %ss Hilfe) ist \a[(white)unbesiegbar\a] gegen %s!
+-kill_dominate_assist4
++%s (mit %ss Hilfe) \a[(white)überwältigt\a] %s!
+
+-kill_domcont0
++%s hört nicht auf, %s zu \a[(white)dominieren\a]
+-kill_domcont1
++%s kann nicht aufhören, %s zu vernichten
+-kill_domcont2
++%s frisst Punker wie %s zum Frühstück
+-kill_domcont3
++%s lässt wenige Hoffnung für %s
+-kill_domcont4
++%s bekommt noch mehr Punkte von %s
+
+-kill_domcont_assist0
++%s und %s hören nicht auf, %s zu \a[(white)dominieren\a]
+-kill_domcont_assist1
++%s und %s können nicht aufhören, %s zu vernichten
+-kill_domcont_assist2
++%s und %s fressen Punker wie %s zum Frühstück
+-kill_domcont_assist3
++%s und lassen wenige Hoffnung für %s
+-kill_domcont_assist4
++%s und %s bekommen noch mehr Punkte von %s
+
+-kill_revenge0
++%s hat sich an %s \a[(white)gerächt\a]!
+-kill_revenge1
++%s hat sich an %s endlich \a[(white)gerächt\a]!
+-kill_revenge2
++%s hat sich an %s \a[(white)gerächt\a]!
+-kill_revenge3
++%s hat %s \a[(white)endlich getötet\a]!
+-kill_revenge4
++%s hat %ss Dominierung \a[(white)zu Ende\a] gemacht!
+
+-kill_revenge_assist0
++%2$s hat %1$s geholfen, sich an %3$s zu \a[(white)rächen\a]!
+-kill_revenge_assist1
++%s und %s haben sich an %s \a[(white)gerächt\a]!
+-kill_revenge_assist2
++%2$s hat %1$s geholfen, sich an %3$s endlich zu \a[(white)rächen\a]!
+-kill_revenge_assist3
++%1$s hat %3$s \a[(white)enlich getötet\a] mit %2$ss Hilfe!
+-kill_revenge_assist4
++%s und %s haben %ss Dominierung \a[(white)zu ende\a] gemacht!
+
+-kill_suicide0
++%s hat sich selbst gemordet
+-kill_suicide1
++%s hat Selbstmord begangen
+-kill_suicide2
++%s hat entscheidet, dass das Leben nicht genug wertvoll ist
+-kill_suicide3
++%s hat den schwache Weg heraus genommen
+-kill_suicide4
++%s hat durch seine eigene Waffen gestorben
+
+-kill_suicide_assist0
++%s hat %s geholfen, sich selbst zumorden
+-kill_suicide_assist1
++%s hat %s-geholfen-Selbstmord begangen
+-kill_suicide_assist2
++%0.0s%s hat %s erkennen gemacht, dass das Leben nicht genug wertvoll ist
+-kill_suicide_assist3
++%0.0s%s hat %s überzeugt, den schwache Weg heraus zu nehmen
+-kill_suicide_assist4
++%0.0s%s hat %s zum Selbstmord getreiben
+
+-kill_teamkill0
++%s hat %s \a{\a[(white)MANNSCHAFFTGETÖTET\a]\a}!
+-kill_teamkill1
++%s hat \a{\a[(white)MANNSCHAFFTKOLLEGE\a]\a} %s getötet!
+-kill_teamkill2
++%s hat \a{\a[(white)MANNSCHAFFTKOLLEGE\a]\a} %s vernichtet!
+-kill_teamkill3
++%s hat \a{\a[(white)MANNSCHAFFTKOLLEGE\a]\a} %s terminiert!
+-kill_teamkill4
++%s hat \a{\a[(white)MANNSCHAFFTKOLLEGE\a]\a} %s zerstört!
+
+-kill_teamkill_assist0
++%s%0.0s hat %s \a{\a[(white)MANNSCHAFFTGETÖTET\a]\a}!
+-kill_teamkill_assist1
++%s%0.0s hat \a{\a[(white)MANNSCHAFFTKOLLEGE\a]\a} %s getötet!
+-kill_teamkill_assist2
++%s%0.0s hat \a{\a[(white)MANNSCHAFFTKOLLEGE\a]\a} %s vernichtet!
+-kill_teamkill_assist3
++%s%0.0s hat \a{\a[(white)MANNSCHAFFTKOLLEGE\a]\a} %s terminiert!
+-kill_teamkill_assist4
++%s%0.0s hat \a{\a[(white)MANNSCHAFFTKOLLEGE\a]\a} %s zerstört!
+
+-killing_spree
++%s \a[(white)läuft Amok\a]!
+
+@boot
+-hotpatch
++Anwende Abwärtskompatibilität-Änderungen
+-loadlib
++Lade Bibliotheken
+-version
++Lese die Versionsinformation
+-network
++Lade Netzwerkkomponenten
+-backgrnd
++Starte Hintergrundprozess
+-bootnext
+ Blank
++
+-ships
++Lade Schiffe
+-miscgui
++
+-miscdat
++
+-loginnxt
++
+-opencxn
++Verbinde mit dem Netzwerk Abendsternes
+-logingui
++
+-acctinfo
++Hole Einstellungen Ihrer Kontos
+-acctinfs
++Speichere Einstellungen Ihrer Kontos
+-shipupld
++Lade geteilte Shiffe hoch
+-shipdelo
++Lösche entfernte Schiffe
+-shipdnld
++Vorbereite, Schiffe herunterzuladen
+-shipdnld_fetchsubs
++Hole Abonnementinformationen
+-shipdnld_find
++Lege fest, welche Schiffe aktualisieren werden mussen
+-shipdnld_main
++Lade abonnierte Schiffe herunter
+-aidownld
++Lade Daten des AIs herunter
+-mainmenu
++
+-logout
++Melde ab
+-confsync
++Schreibe Konfigurationsdateien
+-shutdown
++
+-headless
++Sie sollten dies nicht sehen!
+-aistage
++

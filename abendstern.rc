@@ -1,0 +1,509 @@
+display	{
+ headless	f
+ width	0
+ height	0
+ bits	16
+ fullscreen	f
+}
+language	"en",
+game	{
+ mode	"lxts",
+ background	"StarField",
+ size	32
+ nai	31
+ nteams	6
+ dmgmul	1.0
+}
+audio_enabled	t
+ship_colour	[0.0	1.0	0.0]
+chat_message_time	10000.0
+max_chat_messages	5
+graphics	{
+ antialiasing	t
+ full_alpha_blending	t
+ any_alpha_blending	t
+ smooth_scaling	t
+ low_res_textures	0
+ high_quality	t
+ detail_level	3
+ shader_profile	"pretty",
+ ship_draw_rate	24
+}
+hud	{
+ font_size	0.02500000037
+ colours	{
+  white	[1.0	1.0	1.0	1.0]
+  standard	[0.150000006	1.0	0.3000000119	0.400000006]
+  warning	[1.0	1.0	0.150000006	0.5]
+  danger	[1.0	0.1000000015	0.0	0.6499999762]
+  special	[0.150000006	0.349999994	1.0	0.400000006]
+ }
+}
+network_accounts	()
+control_scheme	"default_control",
+lanpatch	t
+default_control	{
+ comment	"*default",
+ analogue	{
+  horiz	{
+   sensitivity	2.0
+   recentre	t
+   action	"rotate",
+  }
+  vert	{
+   sensitivity	0.002000000095
+   recentre	t
+   action	"none",
+  }
+ }
+ mouse	{
+  left	{
+   action	"accel",
+   repeat	f
+  }
+  middle	{
+   action	"fire",
+   repeat	t
+  }
+  right	{
+   action	"decel",
+   repeat	f
+  }
+  up	{
+   action	"throttle",
+   repeat	f
+   value	0.05000000075
+  }
+  down	{
+   action	"throttle",
+   repeat	f
+   value	-0.05000000075
+  }
+ }
+ keyboard	{
+  key_307	{
+   action	"stats",
+   repeat	f
+  }
+  key_308	{
+   action	"stats",
+   repeat	f
+  }
+  key_273	{
+   action	"accel",
+   repeat	f
+  }
+  key_274	{
+   action	"decel",
+   repeat	f
+  }
+  key_275	{
+   action	"rotate",
+   repeat	t
+   value	-0.00400000019
+  }
+  key_276	{
+   action	"rotate",
+   repeat	t
+   value	0.00400000019
+  }
+  key_032	{
+   action	"fire",
+   repeat	t
+  }
+  key_039	{
+   action	"compose",
+   repeat	f
+  }
+  key_122	{
+   action	"throttle",
+   value	-0.05000000075
+   repeat	t
+  }
+  key_121	{
+   action	"throttle",
+   value	-0.05000000075
+   repeat	t
+  }
+  key_120	{
+   action	"throttle",
+   value	0.05000000075
+   repeat	t
+  }
+  key_099	{
+   action	"adjust weapon power",
+   value	-1
+   repeat	t
+  }
+  key_118	{
+   action	"adjust weapon power",
+   value	1
+   repeat	t
+  }
+  key_097	{
+   action	"set current weapon",
+   value	"EnergyChargeLauncher",
+   repeat	f
+  }
+  key_115	{
+   action	"set current weapon",
+   value	"PlasmaBurstLauncher",
+   repeat	f
+  }
+  key_100	{
+   action	"set current weapon",
+   value	"GatlingPlasmaBurstLauncher",
+   repeat	f
+  }
+  key_102	{
+   action	"set current weapon",
+   value	"MonophasicEnergyEmitter",
+   repeat	f
+  }
+  key_113	{
+   action	"set current weapon",
+   value	"MagnetoBombLauncher",
+   repeat	f
+  }
+  key_119	{
+   action	"set current weapon",
+   value	"SGBombLauncher",
+   repeat	f
+  }
+  key_101	{
+   action	"set current weapon",
+   value	"MissileLauncher",
+   repeat	f
+  }
+  key_114	{
+   action	"set current weapon",
+   value	"ParticleBeamLauncher",
+   repeat	f
+  }
+  key_116	{
+   action	"retarget",
+   repeat	f
+  }
+  key_103	{
+   action	"adjust camera zoom",
+   repeat	t
+   value	-0.1000000015
+  }
+  key_098	{
+   action	"adjust camera zoom",
+   repeat	t
+   value	0.1000000015
+  }
+  key_009	{
+   action	"show fullscreen map",
+   repeat	f
+  }
+  key_106	{
+   action	"set camera mode",
+   repeat	f
+   value	"none",
+  }
+  key_107	{
+   action	"set camera mode",
+   repeat	f
+   value	"rotation",
+  }
+  key_108	{
+   action	"set camera mode",
+   repeat	f
+   value	"velocity",
+  }
+  key_117	{
+   action	"adjust camera lookahead",
+   repeat	t
+   value	0.009999999776
+  }
+  key_105	{
+   action	"adjust camera lookahead",
+   repeat	t
+   value	-0.009999999776
+  }
+  key_104	{
+   action	"stealth",
+   repeat	f
+  }
+  key_008	{
+   action	"self destruct",
+   repeat	f
+  }
+  key_027	{
+   action	"__ exit",
+   repeat	f
+  }
+  key_290	{
+   action	"__ frameXframe",
+   repeat	f
+  }
+  key_291	{
+   action	"__ fast",
+   repeat	f
+  }
+  key_292	{
+   action	"__ halt",
+   repeat	f
+  }
+  key_293	{
+   action	"__ slow",
+   repeat	f
+  }
+ }
+}
+spacecadet_control	{
+ comment	"*spacecadet",
+ analogue	{
+  horiz	{
+   sensitivity	1.5
+   recentre	t
+   action	"rotate",
+  }
+  vert	{
+   sensitivity	0.002000000095
+   recentre	f
+   action	"none",
+  }
+ }
+ mouse	{
+  left	{
+   action	"accel",
+   repeat	f
+  }
+  middle	{
+   action	"fire",
+   repeat	t
+  }
+  right	{
+   action	"decel",
+   repeat	f
+  }
+  up	{
+   action	"throttle",
+   repeat	f
+   value	0.05000000075
+  }
+  down	{
+   action	"throttle",
+   repeat	f
+   value	-0.05000000075
+  }
+ }
+ keyboard	{
+  key_307	{
+   action	"stats",
+   repeat	f
+  }
+  key_308	{
+   action	"stats",
+   repeat	f
+  }
+  key_100	{
+   action	"rotate",
+   repeat	t
+   value	0.00400000019
+  }
+  key_102	{
+   action	"rotate",
+   repeat	t
+   value	-0.00400000019
+  }
+  key_107	{
+   action	"accel",
+   repeat	f
+  }
+  key_106	{
+   action	"decel",
+   repeat	f
+  }
+  key_109	{
+   action	"throttle",
+   repeat	t
+   value	-0.05000000075
+  }
+  key_110	{
+   action	"throttle",
+   repeat	t
+   value	0.05000000075
+  }
+  key_104	{
+   action	"stealth",
+   repeat	f
+  }
+  key_108	{
+   action	"adjust weapon power",
+   value	1
+   repeat	t
+  }
+  key_059	{
+   action	"adjust weapon power",
+   value	-1
+   repeat	t
+  }
+  key_044	{
+   action	"adjust weapon power",
+   value	8
+   repeat	t
+  }
+  key_046	{
+   action	"adjust weapon power",
+   value	-8
+   repeat	t
+  }
+  key_111	{
+   action	"adjust weapon power",
+   value	4
+   repeat	t
+  }
+  key_112	{
+   action	"adjust weapon power",
+   value	-4
+   repeat	t
+  }
+  key_032	{
+   action	"fire",
+   repeat	t
+  }
+  key_039	{
+   action	"compose",
+   repeat	f
+  }
+  key_091	{
+   action	"adjust camera zoom",
+   repeat	t
+   value	-0.200000003
+  }
+  key_093	{
+   action	"adjust camera zoom",
+   repeat	t
+   value	0.200000003
+  }
+  key_045	{
+   action	"adjust camera zoom",
+   repeat	t
+   value	-0.1000000015
+  }
+  key_061	{
+   action	"adjust camera zoom",
+   repeat	t
+   value	0.1000000015
+  }
+  key_008	{
+   action	"self destruct",
+   repeat	f
+  }
+  key_115	{
+   action	"set current weapon",
+   repeat	f
+   value	"EnergyChargeLauncher",
+  }
+  key_097	{
+   action	"set current weapon",
+   repeat	f
+   value	"PlasmaBurstLauncher",
+  }
+  key_120	{
+   action	"set current weapon",
+   repeat	f
+   value	"ParticleBeamLauncher",
+  }
+  key_122	{
+   action	"set current weapon",
+   repeat	f
+   value	"MonophasicEnergyEmitter",
+  }
+  key_121	{
+   action	"set current weapon",
+   repeat	f
+   value	"MonophasicEnergyEmitter",
+  }
+  key_119	{
+   action	"set current weapon",
+   repeat	f
+   value	"MissileLauncher",
+  }
+  key_101	{
+   action	"set current weapon",
+   repeat	f
+   value	"MagnetoBombLauncher",
+  }
+  key_114	{
+   action	"set current weapon",
+   repeat	f
+   value	"SGBombLauncher",
+  }
+  key_113	{
+   action	"set current weapon",
+   repeat	f
+   value	"GatlingPlasmaBurstLauncher",
+  }
+  key_009	{
+   action	"retarget",
+   repeat	f
+  }
+  key_301	{
+   action	"show fullscreen map",
+   repeat	f
+  }
+  key_054	{
+   action	"adjust camera lookahead",
+   repeat	t
+   value	-0.009999999776
+  }
+  key_055	{
+   action	"adjust camera lookahead",
+   repeat	t
+   value	0.009999999776
+  }
+  key_056	{
+   action	"set camera mode",
+   repeat	f
+   value	"none",
+  }
+  key_057	{
+   action	"set camera mode",
+   repeat	f
+   value	"rotation",
+  }
+  key_048	{
+   action	"set camera mode",
+   repeat	f
+   value	"velocity",
+  }
+  key_027	{
+   action	"__ exit",
+   repeat	f
+  }
+  key_290	{
+   action	"__ frameXframe",
+   repeat	f
+  }
+  key_291	{
+   action	"__ fast",
+   repeat	f
+  }
+  key_292	{
+   action	"__ halt",
+   repeat	f
+  }
+  key_293	{
+   action	"__ slow",
+   repeat	f
+  }
+ }
+}
+camera	{
+ mode	"rotation",
+ lookahead	0.2400000542
+}
+testing_numenemies	127
+vframe_granularity	10
+user_subscriptions	[]
+ship_subscriptions	[]
+auto_login	{
+ name	"AltSysrq",
+ pass	"2c50ac20a14542d853e6a1c18e622b8e96986b6ded92724167c8892fa1f3eae8",
+}
+default_share_ships	t

@@ -1,0 +1,301 @@
+info	{
+ name	"Cylon",
+ author	"AltSysrq",
+ version	0
+ bridge	"ryoidoigai",
+ reinforcement	1.0
+ class	"A",
+ alliance	["EUF",	"WUDR",]
+ mass	15138.0
+ energy_levels	{
+  Monophase	5
+  Missile	2
+ }
+ sharing_enabled	t
+ fileid	248
+ ownerid	1
+ needs_uploading	f
+ verification_signature	2137778585
+}
+cells	{
+ konnichiwa	{
+  type	"square",
+  neighbours	["ryoidoigai",	"faiwainain",	"hifokei",	"boubija",]
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ hifokei	{
+  neighbours	["konnichiwa",	"hainhoisan",	"",	"jairaya",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	2
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ hainhoisan	{
+  neighbours	["hifokei",	"faiwainain",	"suheihan",	"",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ suheihan	{
+  neighbours	["hainhoisan",	"yaidamu",	"",	"",]
+  type	"square",
+  s0	{
+   type	"SuperParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ jairaya	{
+  neighbours	["hifokei",	"",	"sewinwei",	"boubija",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ sewinwei	{
+  neighbours	["jairaya",	"",	"",	"houhainou",]
+  type	"square",
+  s0	{
+   type	"SuperParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ faiwainain	{
+  neighbours	["konnichiwa",	"jainjoudu",	"yaidamu",	"hainhoisan",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ yaidamu	{
+  neighbours	["faiwainain",	"boijaisho",	"roinhegain",	"suheihan",]
+  type	"square",
+  s0	{
+   type	"DispersionShield",
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ roinhegain	{
+  neighbours	["yaidamu",	"faintandoi",	"",	"",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ boubija	{
+  neighbours	["konnichiwa",	"jairaya",	"houhainou",	"sheipudou",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ houhainou	{
+  neighbours	["boubija",	"sewinwei",	"dunoiwei",	"nanmeiyei",]
+  type	"square",
+  s0	{
+   type	"DispersionShield",
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ dunoiwei	{
+  neighbours	["houhainou",	"",	"",	"youyenyi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ faintandoi	{
+  neighbours	["roinhegain",	"boijaisho",	"tutoijou",	"",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ boijaisho	{
+  neighbours	["faintandoi",	"yaidamu",	"jainjoudu",	"jesapei",]
+  type	"square",
+  s0	{
+   type	"ShieldGenerator",
+   radius	4.0
+   strength	10.0
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ jainjoudu	{
+  neighbours	["boijaisho",	"faiwainain",	"ryoidoigai",	"rijanyi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ ryoidoigai	{
+  neighbours	["jeperyai",	"jainjoudu",	"konnichiwa",	"sheipudou",]
+  type	"square",
+ }
+ sheipudou	{
+  neighbours	["ryoidoigai",	"boubija",	"nanmeiyei",	"togaishan",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ nanmeiyei	{
+  neighbours	["sheipudou",	"houhainou",	"youyenyi",	"gairyoida",]
+  type	"square",
+  s0	{
+   type	"ShieldGenerator",
+   radius	4.0
+   strength	10.0
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ youyenyi	{
+  neighbours	["nanmeiyei",	"dunoiwei",	"",	"peipatein",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ jesapei	{
+  neighbours	["boijaisho",	"rijanyi",	"",	"tutoijou",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ rijanyi	{
+  neighbours	["jesapei",	"jainjoudu",	"jeperyai",	"",]
+  type	"square",
+  s0	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ jeperyai	{
+  neighbours	["rijanyi",	"ryoidoigai",	"togaishan",	"",]
+  type	"square",
+  s0	{
+   type	"MissileLauncher",
+   orient	3
+  }
+  s1	{
+   type	"DispersionShield",
+  }
+ }
+ togaishan	{
+  neighbours	["jeperyai",	"sheipudou",	"gairyoida",	"",]
+  type	"square",
+  s0	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ gairyoida	{
+  neighbours	["togaishan",	"nanmeiyei",	"peipatein",	"",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ tutoijou	{
+  neighbours	["jesapei",	"",	"faintandoi",	"",]
+  type	"right",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ peipatein	{
+  neighbours	["youyenyi",	"",	"gairyoida",	"",]
+  type	"right",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+}

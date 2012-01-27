@@ -1,0 +1,102 @@
+Abendstern Game Modes
+
+1. Deathmatch (DM)
+  Every player is an enemy with every other.
+  No rounds.
+  Perfect radar
+  Respawn after 3 seconds, or 15 on suicide.
+  Winner is the one with most points
+2. X-Team Deathmatch (XTDM)
+  Players organised into X teams.
+  No rounds.
+  Respawn after 3 seconds, or 15 on suicide.
+  Points awarded to team on enemy kills.
+  Winner is team with most points.
+3. Last-Man-Standing (LMS)
+  Every player is an enemy with every other.
+  Rounds; end when one or zero players remain.
+  Respawn at beginning of round.
+  Perfect radar
+  Point bonus to last surviver.
+  Winner is the one with most points.
+4. Last-of-X-Teams-Standing (LXTS)
+  Players organised into X teams.
+  Rounds; end when one or zero players remain.
+  Respawn at beginning of round.
+  Points awarded to team on enemy kills.
+  Bonus points to surviving team.
+  Winner is team with most points.
+5. X-team Capture the Flag (XCTF)
+  Players organised into X teams.
+  No rounds.
+  Respawn after 7 seconds, or 15 on suicide.
+  Respawn in confined areas arranged radially.
+  Team flags placed in respawn areas.
+  To score, a player runs over the enemy flag and takes it back to his.
+  Can only score if own flag is in base.
+  If the flag carrier is destroyed, the flag remains in his position until
+  another enemy picks it up (and carries it) or an owner hits it, which
+  teleports it back to base.
+  Bonus points awarded to player and team on flag capture.
+  Winner is team with most points.
+6. Keep The Flag (KTF)
+  Every player is an enemy with every other.
+  No rounds.
+  Respawn after 3 seconds, or 15 on suicide.
+  Perfect radar
+  Single flag placed randomly.
+  Player begins to carry flag when he hits it.
+  When carrier destroyed, flag remains in location of death until picked up.
+  No points for kills.
+  Carrier receives one point for every second he carries the flag.
+  Winner is player with most points.
+7. X-team Centre-of-Gravity (XCOG)
+  Players organised into X teams.
+  No rounds.
+  Respawn after 3 seconds, or 15 on suicide.
+  Respawning in designated areas, which are control points (CPs).
+  Respawn occurs in a randomly-selected CP that the player's team controls.
+  There are 1+3*X CPs arranged in a spoked graph, each spoke being three
+  nodes long (not including the centre)
+  The presence of a living ship of a certain team increases that team's control
+  of that point by that ship's mass per second, and decreases other teams'
+  control by the same amount. This only occurs if that team either owns this
+  CP or owns a CP adjacent to it. Control is capped to a maximum.
+  The team with the most control of a CP is considered to own it.
+  At the beginning, each team is assigned a spoke and has full control over all
+  its CPs, and no team has any control over the centre.
+  When a team has no CPs left, all living players of that team immediately die;
+  all players are transfered to the reamining teams at random.
+  Winner is the team with the most CPs when the game ends; in case of tie, the
+  tie is broken based on the sum of the team's per-player points.
+8. X-team Spacial Control (XSC)
+  Mostly the same as XCOG. Differences below.
+  CPs replaced by regular grid which covers entire field (ie, every ship will
+  always be present in exactly one control area (CA)).
+  Grid size is (X*2)x(X*2).
+  Non-suicide respawn is instant if death occurred within owned CA.
+  Respawn always occurs in CA adjacent to a CA with less-than-perfect control,
+  if this is possible (ie, respawn on the front lines).
+  Initial ownership of CAs chosen completely at random, but giving each team
+  exactly the same number of CAs.
+9. Humans vs Cyborgs (HVC)
+  Players organised into humans (mutually neutral) and cyborgs (allies).
+  Initially N/10 (rounded up) cyborgs, all others human
+  Rounds; end when one or zero humans remain.
+  Respawn after 10 seconds.
+  If human killed by cyborg, reassigned to cyborg team
+  Perfect radar
+  Players awarded points for cross-species kills (human-human is neutral and
+  cyborg-cyborg is negative)
+  Bonus points to last human remaining
+  Initial cyborgs get bonus points
+  Winner is player with most points
+10. Point Race (RACE)
+  Every player is an enemy of every other
+  "Starting gate" is 5-screen-radius circle at centre of map
+  All players initially spawn here
+  Respawn is instant, except for suicide, which is 5 seconds
+  Respawn occurs in same location where player died
+  Number of checkpoints placed in space randomly
+  Winner is first player to touch all checkpoints and then the starting gate
+11. Strategy mode (STRAT)

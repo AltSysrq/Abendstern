@@ -1,0 +1,315 @@
+OVERALL DESIGN
+The second attempt at an effective Genetic Programming AI in Abendstern breaks
+the AI into smaller components, termed Cortices, which perform a well-defined
+and -understood purpose, and communicate with each other through fixed means.
+Each cortex is its own AI for programming's sake, being linked, evolved, and
+scored separately.
+
+The design is also altered to eliminate a number of concepts that were found to
+be problematic. In particular, enumerated values are avoided by separating them
+into multiple cortices, using maximum-of-evaluation for selection and
+evaluation of a particular, separate cortex for each possible value in other
+cases.
+
+ORGANISATION
+The list of species is stored the same way as the former genetic AI, but in a
+file named 0,AI2 (so earlier clients are not broken). It is otherwise
+interpreted the exact same way.
+
+The actual species file is different. The top level group contains lists named
+after the cortex they correspond to; array cortices have their indices appended
+as plain text (eg, Aiming2). These lists contain the instances; each instance
+is a group of lists. Each item in the instance is an output, and maps to a flat
+list that is the expression tree implicitly represented in flat form.
+Specifically, the list contains an implicit 5-level binary tree; the root is
+at index 0; each left child is 2*ix+1, and right is 2*ix+2. Indices 0 to 30 are
+all functions, while 31 to 62 are leaves (inputs and constants). This design
+prevents bloat and ultimately simplifies the genetic algorithm.
+
+CORTEX INFORMATION and NOTATION
+Each cortex has the following attributes:
+  Inputs:
+    Variables that may be used in output expressions. The values for inputs may
+    come from a variety of sources, including other cortices.
+  Output functions:
+    Map inputs to outputs with combination with functions and constants. These
+    are affected by crossover and mutation, and are particular to each
+    instance.
+    In some cases, individual outputs gain additional inputs.
+  Parameters:
+    Some cortex types have floating-point parameters which affect the way
+    algorithms outside of the output functions work. Like output functions,
+    these are affected by crossover and mutation and are particular to each
+    instance.
+  Scoring method.
+  Procedure instructions:
+    Describe what other cortices, if any, are executed after this cortex
+    depending on the results of evaluation.
+
+FUNCTIONS
+All output functions have the following functions at their disposal:
+  +/2
+  -/2
+  */2
+  //2           x/0 = 1
+  %/2           Modulo; x%0 = 0
+  ^/2           Exponentiation; anything <= 0 ^ x -> 1
+  _/1           Negation
+  |/1           Absolute value
+  ~/1           Angle normalisation (normalises input to -π..+π range)
+  =/1           Noop
+  sqrt/1        Square root; sqrt(<0) = 0
+  rand/0        Random float, [0,1)
+  max/2         Returns greater value
+  min/2         Returns lesser value
+Output functions that may take angles as inputs additionally get the following
+functions:
+  cos/1
+  sin/1
+  tan/1
+Output functions that output angles get:
+  acos/1
+  asin/1
+  atan/1
+  atan2/2       Same as C++ std::atan2(y,x); atan(0,0) = 0
+
+CORTEX DESCRIPTIONS
+Reflex Cortex           Allows the AI to react quickly to certain events
+Inputs: sx, sy, svx, svy, sacc
+Outputs:
+  edge          (+in:fieldw,fieldh)
+  dodge         (+in:fear,painta)
+  runaway       (+in:nervous,painta,painpa)
+Parameters: none
+Procedure:
+  Evaluate all three outputs; take the maximum.
+  If it is <= 0, execute cortex Frontal.
+  Else if edge, execute cortex AvoidAdge.
+  Else if dodge, execute cortex Dodge.
+  Else if runaway, execute cortex Runaway.
+Scoring:
+  Time spent in Frontal execution
+
+AvoidEdge Cortex        Reflex to avoid flying off the edge
+Inputs: sx, sy, st, svx, svy, svt, sacc, srota, sspin,
+        spowerumin, spowerumax, spowerprod, fieldw, fieldh
+Outputs:
+  throttle      Clamped to 0..1 (ship-controlling output)
+  accel?        True if > 0 (ship-controlling output)
+  brake?        True if > 0 (ship-controlling output)
+  spin          Clamped to -1..+1 (ship-controlling output)
+Parameters: none
+Procedure: Finish
+Scoring:
+  Sum of (per frame)
+    time*dot(velocity,normalise(vector centre of map))
+
+Dodge Cortex            Reflex to get away from incomming weapons
+Inputs: sx, sy, st, svx, svy, svt, sacc, srota, sspin,
+        spowerumin, spowerumax, spowerprod, fear, feart,
+        painpa, painpt, painta, paintt
+Outputs:
+  throttle      Clamped to 0..1 (ship-controlling output)
+  accel?        True if > 0 (ship-controlling output)
+  brake?        True if > 0 (ship-controlling output)
+  spin          Clamped to -1..+1 (ship-controlling output)
+Parameters: none
+Procedure: Finish
+Scoring:
+  Negative damage taken, over time spent in the state
+
+RunAway Cortex          Reflex to leave threatened area
+Inputs: sx, sy, st, svx, svy, svt, sacc, srota, sspin,
+        spowerumin, spowerumax, spowerprod, nervous,
+        nervoust
+Outputs:
+  throttle
+  accel?
+  brake?
+  spin
+Parameters: none
+Procedure: Finish
+Scoring:
+  Average reduction of nervous per millisecond
+
+Frontal Cortex          Decides a high-level objective to persue
+The frontal cortex processes potential objectives in the field and
+determines which objective to persue. This is a rather expensive cortex; its
+outputs are cached and only reevaluated once every one to two seconds.
+Each objective type has its own output type.
+Inputs: sx, sy, svx, svy, sacc
+Derived inputs: ox, oy, ovx, ovy, opriority, ocurr, otel
+  (ox: X of objective;
+   oy: Y of objective;
+   ovx: vX of objective;
+   ovy: vY of objective;
+   opriority: controller-assigned priority of objective;
+   ocurr: 1 if this is the current objective, 0 otherwise;
+   otel: sum of objective outputs for all friends that chose this objective)
+Outputs:
+  target                For enemy ships (in:orad,omass)
+Derived outputs:
+  ox,oy,ovx,ovy         These inputs for the chosen objective
+Parameters:
+  distance              If the objective is a target, consider it within attack
+                        range if its distance is less than this.
+  scoreWeight           For opriority, multiply the score of a target by this
+  dislikeWeight         For opriority, multiply the blame of a target against
+                        the agent by this
+  happyWeight           For opriority, multiply the blame of the agent against
+                        a target by this
+Procedure:
+  Choose the objective that got the highest score.
+  Update telepathy appropriately.
+  If the objective is a target and the distance is less than the distance
+  parameter, proceed to TargetAnalysis;
+  otherwise, to Navigation.
+Scoring:
+  Final score of ship
+
+Navigation Cortex       Navigates the ship to a desired location
+Inputs: sx, sy, st, svx, svy, svt, sacc, srota, sspin, powerumin, powerumax,
+        powerprod, ox, oy, ovx, ovy
+Outputs:
+  throttle
+  accel?
+  brake?
+  spin
+Parameters: none
+Procedure: Finish
+Scoring:
+  Sum of time/max(dist((sx,sy),(ox,oy)),1e-6)/max(length(svx-ovx,svy-ovy),1e-8)
+
+TargetAnalysis Cortex   Analyses the cells in a target ship
+Each evaluation, a random non-Empty Cell from the target ship is chosen; the
+outputs for a base cell, plus those for the cell's contents, are summed; if
+it exceeds the current maximum (which decays over time, and resets on target
+changes), the new maximum is set and target cell inforation is altered
+accordingly.
+Inputs: celldamage, cxo, cyo
+Outputs:
+  base          (for all cells; +in:cnsidesfree,cbridge)
+  power         (each power system; +in:sysclass)
+  capac         (each capacitor)
+  engine        (each engine; +in:sysclass)
+  weapon        (each weapon; +in:sysclass)
+  shield        (each shield; +in:sysclass)
+Derived outputs:
+  cx, cy, cvx, cvy
+Parameters: none
+Procedure: Proceed to StrategicWeapon
+Scoring:
+  Score of agent
+
+StrategicWeapon         Chooses a weapon for overall effectiveness
+There are eight outputs, one corresponding to each weapon. They all work the
+exact same way. Each is evaluated once for each Launcher on the ship of that
+type; the resulting scores are summed.
+Inputs: orad, omass,
+        cx, cy, cvx, cvy,
+        wx, wy, wt, wn,
+        spowerumin, spowerumax, spowerprod, scapac, smass
+Outputs: score[8]
+Parameters: none
+Procedure: Continue to the Aiming cortex corresponding to the weapon with
+  the highest score.
+Scoring:
+  +4 every time the chosen weapon is actually fired, -1 whenever a different
+  weapon is fired
+
+Aiming                  Controls the ship to aim the strategic weapon
+Each output corresponds to a weapon choice from StrategicWeapon.
+Inputs: sx, sy, st, svx, svy, svt, srad, smass, sacc, srota, sspin,
+        ox, oy, ot, ovx, ovy, ovt, orad, omass,
+        cx, cy, cvx, cvy,
+        spowerumin, spowerumax, spowerprod
+Outputs:
+  throttle[8]
+  accel?[8]
+  brake?[8]
+  spin[8]
+Parameters: none
+Procedure: Proceed to OpportunisticWeapon
+Scoring:
+  +1 whenever the strategic weapon is fired
+
+OpportunisticWeapon     Chooses a weapon for current situation
+This works like StrategicWeapon; however, if the maximum is greater than zero,
+the weapon will be fired.
+Inputs: sx, sy, st, svx, svy, svt, srad, smass,
+        ox, oy, ot, ovx, ovy, ovy, orad, omass,
+        cx, cy, cvx, cvy,
+        wx, wy, wt, wn
+        spowerumin, spowerumax, spowerprod, scapac
+Outputs: score[8]
+Parameters: none
+Procedure:
+  If the maximum is > 0, proceed to WeaponLevel
+  Otherwise, Finish
+Scoring:
+  Plus damage caused to the target, divided by shots fired plus one.
+
+WeaponLevel             Determines what level to fire the weapon at
+The output corresponding to the weapon chosen by OpportunisticWeapon is used.
+Inputs: sx, sy, st, svx, svy, svt, srad, smass,
+        ox, oy, vt, ovx, ovy, ovy, orad, omass,
+        cx, cy, cvx, cvy,
+        wx, wy, wt, wn
+        spowerumin, spowerumax, spowerprod, scapac
+Outputs: level[8]  (clamped to legal values for the weapon)
+  The appropriate output is run once for each weapon, and the results are
+  averaged.
+  If the result is zero or lower, the weapon is not fired.
+Parameters: none
+Procedure: Finish
+Scoring:
+  Plus damage caused to the target, halved when hitting zero capacitance
+
+INPUT LIST
+sx                      Self X coordinate
+sy                      Self Y coordinate
+st                      Self θ
+svx                     Self X velocity
+svy                     Self Y velocity
+svt                     Self ω
+sacc                    Self acceleration (at 100% throttle)
+srota                   Self controlled rotational acceleration
+sspin                   Self uncontrolled rotational accel at 100% throttle
+spowerumin              Power usage, throttle=0
+spowerumax              Power usage, throttle=1
+spowerprod              Power production
+scapac                  Current capacitance
+srad                    Radius
+smass                   Mass
+fieldw                  Width of field
+fieldh                  Height of field
+nervous                 Sum of enemy ships pointing at agent
+nervoust                Direction of greatest source of nervous
+fear                    Sum of weapons that could hit the agent
+feart                   Direction of greatest source of fear
+painta                  Temporary pain amount
+paintt                  Temporary pain direction
+painpa                  Persistent pain amount
+painpt                  Persistent pain direction
+celldamage              Damage percent of a cell (0=undamaged,1=destroyed)
+cxo                     Absolute X offset of a cell
+cyo                     Absolute Y offset of a cell
+cnsidesfree             Number of neighbour slots on the Cell free
+cbridge                 1 if a cell is a bridge, 0 otherwise
+sysclass                Class of system (1=C,2=B,3=A)
+ox                      Objective X
+oy                      Objective Y
+ot                      Objective θ (targets only)
+ovx                     Objective X velocity
+ovy                     Objective Y velocity
+ovt                     Objective ω (targets only)
+orad                    Objective radius (targets only)
+omass                   Objective mass (targets only)
+cx                      X coordinate of target Cell
+cy                      Y coordinate of target Cell
+cvx                     X coordinate of target Cell
+cvy                     Y coordinate of target Cell
+wx                      Offset X coordinate of a Launcher
+wy                      Offset Y coordinate of a Launcher
+wt                      Offset launch angle of a Launcher
+wn                      Number of Launchers of the appropriate type

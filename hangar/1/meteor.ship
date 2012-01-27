@@ -1,0 +1,118 @@
+info	{
+ name	"Meteor",
+ alliance	["ship:meteor",]
+ version	0
+ author	"AltSysrq",
+ bridge	"AAAA",
+ reinforcement	0.6999999881
+ class	"B",
+ old_format	"[ Light, 4-engine ship \n  The Komet upgraded to class B]\nc\n"
+		"n20s {\n s0pc50 s1pc50\n n13s s1pu s0eb.\n n31s s1pu s0eb.\n n"
+		"20s s0pu s1xh.\n}.\nn02s {\n s0pc50 s1xs5 3\n n13s s1pu s0eb."
+		"\n n31s s1pu s0eb.\n n02c s0pu s1wp.\n}.\n.\n0.7\n",
+ mass	2491.0
+ energy_levels	{
+  PlasmaBurst	5
+ }
+ sharing_enabled	t
+ fileid	259
+ ownerid	1
+ needs_uploading	f
+ verification_signature	1473048421
+}
+cells	{
+ AAAA	{
+  type	"circle",
+  neighbours	["FAAA",	"",	"BAAA",	"",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["AAAA",	"CAAA",	"EAAA",	"DAAA",]
+  s0	{
+   capacity	50
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	50
+   type	"Capacitor",
+  }
+ }
+ CAAA	{
+  type	"square",
+  neighbours	["",	"",	"",	"BAAA",]
+  s0	{
+   type	"BussardRamjet",
+   orient	2
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["",	"BAAA",	"",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	2
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ EAAA	{
+  type	"square",
+  neighbours	["BAAA",	"",	"",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ FAAA	{
+  type	"square",
+  neighbours	["IAAA",	"GAAA",	"AAAA",	"HAAA",]
+  s0	{
+   capacity	50
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ShieldGenerator",
+   radius	3.0
+   strength	5.0
+  }
+ }
+ GAAA	{
+  type	"square",
+  neighbours	["",	"",	"",	"FAAA",]
+  s0	{
+   type	"BussardRamjet",
+   orient	2
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ HAAA	{
+  type	"square",
+  neighbours	["",	"FAAA",	"",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	2
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ IAAA	{
+  type	"circle",
+  neighbours	["",	"",	"FAAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"PlasmaBurstLauncher",
+   orient	0
+  }
+ }
+}

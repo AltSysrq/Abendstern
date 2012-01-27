@@ -1,0 +1,6 @@
+# ASCII, Greek, Cyrillic
+if {($ch >= 32 && $ch <= 402)
+||  ($ch >= 894 && $ch <= 974)
+||  ($ch >= 1025 && $ch <= 1169)} {
+  set font ttfs/unifont.ttf
+}

@@ -1,0 +1,68 @@
+info	{
+ name	"Microstealth",
+ alliance	["ship:photon",]
+ version	0
+ author	"AltSysrq",
+ bridge	"AAAA",
+ reinforcement	1.0
+ class	"B",
+ mass	2086.0
+ energy_levels	{
+  PlasmaBurst	3
+ }
+ verification_signature	292137596
+ sharing_enabled	t
+ fileid	262
+ ownerid	1
+ needs_uploading	f
+}
+cells	{
+ AAAA	{
+  type	"circle",
+  neighbours	["BAAA",	"",	"",	"",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["CAAA",	"DAAA",	"AAAA",	"EAAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ CAAA	{
+  type	"square",
+  neighbours	["",	"",	"BAAA",	"",]
+  s0	{
+   capacity	99
+   type	"Capacitor",
+  }
+  s1	{
+   type	"PlasmaBurstLauncher",
+   orient	0
+  }
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["BAAA",	"",	"",	"",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"MiniGravwaveDrive",
+   orient	3
+  }
+ }
+ EAAA	{
+  type	"square",
+  neighbours	["BAAA",	"",	"",	"",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"MiniGravwaveDrive",
+   orient	1
+  }
+ }
+}

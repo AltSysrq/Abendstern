@@ -1,0 +1,305 @@
+info	{
+ name	"Schlachtengel",
+ author	"AltSysrq",
+ version	0
+ bridge	"konnichiwa",
+ reinforcement	2.299999952
+ class	"A",
+ alliance	["EUF",	"WUDR",]
+ mass	22270.0
+ energy_levels	{
+  GatlingPlasma	17
+  Monophase	3
+  Missile	2
+  ParticleBeam	3
+ }
+ verification_signature	1889291512
+ sharing_enabled	t
+ fileid	245
+ ownerid	1
+ needs_uploading	f
+}
+cells	{
+ konnichiwa	{
+  type	"square",
+  neighbours	["hefusa",	"burasoi",	"manyenmun",	"seiguyai",]
+ }
+ burasoi	{
+  neighbours	["konnichiwa",	"semabou",	"beiseiye",	"",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ beiseiye	{
+  neighbours	["burasoi",	"",	"",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	3
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ seiguyai	{
+  neighbours	["konnichiwa",	"",	"tadasi",	"dandafi",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ tadasi	{
+  neighbours	["seiguyai",	"",	"",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ manyenmun	{
+  neighbours	["konnichiwa",	"gainwisho",	"heikeigei",	"fayeiboi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"ShieldGenerator",
+   radius	3.299999952
+   strength	5.0
+  }
+ }
+ heikeigei	{
+  neighbours	["manyenmun",	"seishunu",	"shayega",	"youhefoi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"DispersionShield",
+  }
+ }
+ seishunu	{
+  neighbours	["heikeigei",	"gainwisho",	"",	"nouwonfen",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ youhefoi	{
+  neighbours	["heikeigei",	"rouyugoi",	"",	"fayeiboi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ shayega	{
+  neighbours	["heikeigei",	"nouwonfen",	"",	"rouyugoi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ gainwisho	{
+  neighbours	["manyenmun",	"wasoiryei",	"seishunu",	"",]
+  type	"right",
+  s0	{
+   type	"AntimatterPower",
+  }
+ }
+ fayeiboi	{
+  neighbours	["youhefoi",	"poubeibo",	"manyenmun",	"",]
+  type	"right",
+  s0	{
+   type	"AntimatterPower",
+  }
+ }
+ rouyugoi	{
+  neighbours	["shayega",	"",	"youhefoi",	"",]
+  type	"right",
+  s0	{
+   type	"AntimatterPower",
+  }
+ }
+ nouwonfen	{
+  neighbours	["seishunu",	"",	"shayega",	"",]
+  type	"right",
+  s0	{
+   type	"AntimatterPower",
+  }
+ }
+ semabou	{
+  neighbours	["burasoi",	"hefusa",	"jurouhe",	"tonteiwou",]
+  type	"circle",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ dandafi	{
+  neighbours	["seiguyai",	"wunanfu",	"noraiwoi",	"hefusa",]
+  type	"circle",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ hefusa	{
+  neighbours	["konnichiwa",	"dandafi",	"ryoujoupoun",	"semabou",]
+  type	"square",
+  s0	{
+   type	"DispersionShield",
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ jurouhe	{
+  neighbours	["semabou",	"ryoujoupoun",	"",	"morupoun",]
+  type	"square",
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s0	{
+   type	"MissileLauncher",
+   orient	2
+  }
+ }
+ ryoujoupoun	{
+  neighbours	["jurouhe",	"hefusa",	"noraiwoi",	"",]
+  type	"square",
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	3
+   turbo	f
+  }
+ }
+ noraiwoi	{
+  neighbours	["ryoujoupoun",	"dandafi",	"tushaifai",	"",]
+  type	"square",
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s0	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+ }
+ morupoun	{
+  neighbours	["jurouhe",	"doufeipe",	"tonteiwou",	"",]
+  type	"right",
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+ }
+ tushaifai	{
+  neighbours	["wunanfu",	"tibouse",	"noraiwoi",	"",]
+  type	"right",
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.0
+   strength	5.0
+  }
+ }
+ tonteiwou	{
+  neighbours	["morupoun",	"",	"semabou",	"",]
+  type	"right",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ wunanfu	{
+  neighbours	["dandafi",	"",	"tushaifai",	"",]
+  type	"right",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ wasoiryei	{
+  neighbours	["gainwisho",	"",	"ryareimo",	"",]
+  type	"right",
+  s0	{
+   type	"Heatsink",
+  }
+ }
+ poubeibo	{
+  neighbours	["dasheinai",	"",	"fayeiboi",	"",]
+  type	"right",
+  s0	{
+   type	"Heatsink",
+  }
+ }
+ ryareimo	{
+  neighbours	["wasoiryei",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"Heatsink",
+  }
+ }
+ dasheinai	{
+  neighbours	["poubeibo",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"Heatsink",
+  }
+ }
+ doufeipe	{
+  neighbours	["morupoun",	"",	"",	"",]
+  type	"right",
+  s0	{
+   type	"ParticleBeamLauncher",
+   orient	1
+  }
+ }
+ tibouse	{
+  neighbours	["",	"",	"tushaifai",	"",]
+  type	"right",
+  s0	{
+   type	"ParticleBeamLauncher",
+   orient	1
+  }
+ }
+}

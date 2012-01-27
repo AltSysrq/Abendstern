@@ -1,0 +1,284 @@
+Jason Lingle
+Design of Genetic AI for Abendstern
+
+ORGANISATION
+Due to the rather large domain of the problem, the AI will be distributed
+across all network-connected clients of the game; that is, the clients will get
+AI information from the server, evaluate its performance, and report these data
+back to the server. Only the server actually modifies the data, according to
+these reports.
+
+The AI data is arranged into three levels:
++ Species: Separate groups of information that do not cross.
++ Generations: Iterations of a single species; only the latest generation
+  actually matters, and clients are expected to upgrade to the latest whenever
+  it is produced.
++ Instances: A single member of a generation; drives a single agent within the
+  game.
+
+The list of species is stored in the file 0,AI on the server. This is a
+libconfig file with a subgroup, "species", whose contents describe the
+names of the species and their current generations. Each name corresponds
+to a file 0,NAME.dna.
+
+The AI data files are libconfig files with an "list" entry, which is a list of
+groups. Each group in this list represents an instance. An instance binds a
+number of named outputs to expressions. An expression is one of the following:
++ A floating-point value; this is a constant (ie, the result of the expression)
++ A string; this is the name of an input variable
++ A heterogeneous list; the first element of the list is the name of a
+  function, and the rest of the list are the function's arguments
+
+INPUTS and OUTPUTS
+The genetic AI's purpose is to map a number of inputs to a number of outputs
+using floating-point expressions. Most of these are natually in floating-point
+format; however, there are two other data types that need to be represented:
++ booleans: Positive floats are considered true, non-positive false.
+            True is converted to 1, false to 0.
++ unsigned, limited range integers:
+    Given a float f and exclusive maximum n, the conversion is
+      f = fmod(f,n);
+      if (f<0) f+=n;
+      i = (unsigned int)f;
+    The integer is converted to a float the normal way.
+
+Each input or output is given a name (used in the format described in the
+ORGANISATION section); most outputs are also valid inputs. Any input-output
+will always output the most recent input value verbatim (ie, no normalisation
+to non-floating-point values is reflected), unless otherwise noted. The outputs
+are divided into a number of passes; during a single pass, every input
+maintains the same value (ie, an input-output will not alter the input value
+until after the pass). Outputs are also assigned to these passes, since some
+behaviours depend on their values.
+
+Inputs can be divided into a number of categories:
++ Basic spatial data, like the position and velocity of the agent and its
+  target
++ Core state (the values of direct control outputs)
++ Secondary state (IOs that the agent can use for any purpose)
++ Introspection (simple information about the ship the agent is piloting)
++ Visual focus (what the agent "sees" at a selected point in space)
++ Emotions (inputs which greatly simplify certain concepts, such as taking
+  damage)
++ Telepathy (links to friendly AIs of the same species)
+
+The telepathic links allow communication between agents, and are used (combined
+with the agent itself) for swarm positioning and velocity information.
+
+The table below lists all inputs (I) and outputs (O), their pass number (if
+applicable) and their type (f=float, i=integer, b=boolean).
+
+(Directives)
+ O0b retarget	If true, evaluate the scantgt output instead of the normal
+		set of outputs (allows the agent to search for a new target)
+ O-b scantgt	Only evaluated after retarget is true; if true, the target will
+		be switched to the ship scaned this iteration. During this
+		evaluation, the target- values match those of the scanned ship
+		instead of the actual current target
+(Basic Spatial and Misc)
+I  f sx		Self-x; the X coordinate of the agent
+I  f sy		Self-y; the Y coordinate of the agent
+I  f st		Self-theta; the θ of the agent (0..2π)
+I  f svx	Self-vx; the X velocity (screen/ms) of the agent
+I  f svy	Self-vy; the Y velocity (screen/ms) of the agent
+I  f svt	Self-vθ; the rotational velocity (radian/ms) of the agent
+I  f tx		Target-x; not updated when no target
+I  f ty		Target-y; not updated when no target
+I  f tt		Target-θ; not updated when no target
+I  f tvx	Target-vx; not updated when no target
+I  f tvy	Target-vy; not updated when no target
+I  f tvt	Target-vθ; not updated when no target
+I  i tid	Target-ID; integer ID of current target (-1 when no target)
+I  f fx		Focussed-object-X (the rest f* behave like t*)
+I  f fy
+I  f ft		Only defined in focus mode 0
+I  f fvx
+I  f fvy
+I  f fvt	Only defined in focus mode 0
+I  i fid	Only defined in focus modes 0 and 1
+I  f fieldw	Field width (maximum X coord)
+I  f fieldh	Field height (maximum Y coord)
+I  f time	Number of milliseconds alive
+I  f rand	Random value, constant over single frame
+I  f noise	Random value, different on every access
+I  f swarmcx	Central X of linked swarm
+I  f swarmcy	Central Y of linked swarm
+I  f swarmvx	Average X velocity of linked swarm
+I  f swarmvy	Average Y velocity of linked swarm
+(Emotional)
+I  f paintt	Pain-temporary-theta; absolute direction of strongest decaying
+		pain (recent damage) input
+I  f painta	Pain-temporary-amount; value of strongest decaying pain input
+I  f painpt	Pain-persistent-theta; absolute direction of strongest
+		persistent pain (cumulative damage) input
+I  f painpa	Pain-persistent-amount; the value of strongest persistent pain
+I  f happys	Increased whenever the agent scores, decays over time
+I  f happyg	Increased whenever an enemy is destroyed, inversely
+		proportional to distance; decays over time
+I  f sads	Increased whenever a friend the agent had a telepathic link
+		with is destroyed; decays over time
+I  f sadg	Increased whenever a friend is destroyed, inversely
+		proportional to distance; decays over time
+I  f nervous	Sum of values based on enemies pointing at the ship, their
+		masses, and their weapons (updated about once per second)
+I  f fear	Sum of values based on weaponry that may hit the ship
+		(updated about once per second)
+I  f frustrate	Ratio of time versus damage dealt to target since last retarget
+I  f dislike	Score of current target
+(Visual Focus)
+IO1i focusmode	mod 3; 0 = details on single point; 1 = local neighbourhood;
+		2 = entire map (10% of the field at a time)
+IO2f focusx	X coordinate (relative to ship) to centre focus on
+IO2f focusy	Y coordinate (relative to ship) to centre focus on
+I  i f2nf	Number of friends in focussed area of map (mode 2)
+I  i f2ne	Number of enemies in focussed area of map (mode 2)
+ O3f f1concern	Objects within the focus for mode 1 are evaluated on this
+		(with focussed-object being that object); the highest value
+		is used as the focussed object for later passes
+I  i ftype	The type of the focussed object (0=nothing, 1=defunct ship,
+		2=friendly ship, 3=enemy ship, 4=light weapon, 5=heavy weapon,
+		-1=self).
+I  f f0celld	Current damage level (1=undamaged, 0=destroyed) of the cell
+		under the focus cursor in mode 0
+I  i f0sys0t	The type of system 0 in the cell under the focus cursor in mode
+		0 (0=none, 1=power, 2=capacitor, 3=weapon, 4=shield, 5=engine,
+		6=misc)
+I  i f0sys1t	Same as f0sys0t, but for system 1
+I  i f0sys0c	The class of system 0 in the cell under the focus cursor in
+		mode 0 (0=none, 1=C, 2=B, 3=A)
+I  i f0sys1c    Same as f0sys0c, but for system 1
+I  b f0bridge	True if the cell under the focus cursor is the bridge
+(Introspection)
+I  f smass	Mass of self
+I  f sacc	Acceleration of self
+I  f srota	Rotational acceleration of self
+I  f sradius	Radius of self
+I  f spoweru	Current power use
+I  f spowerp	Current power production
+I  f scapac	Current capacitance level
+I  b shasweap	True if the currently-selected weapon exists
+I  f swx	Absolute X offset of a launcher of the current weapon (which
+		launcher is selected randomly at the end of pass 7)
+I  f swy	Absolute Y offset of a launcher of the current weapon
+I  f swt	Absolute θ offset of a launcher of the current weapon
+(Core State)
+IO9f throttle	Clamped to 0..1; throttle to use
+IO9b accel	If true, use engines to accelerate
+IO9b brake	If true, use engines to brake
+IO9f turning	Clamped to -1..+1; amount of rotation to apply
+IO9b stealth	If true, use stealth mode
+IO7i weapon	The weapon to use (0=energy charge, 1=magneto bomb, 2=plasma
+		burst, 3=semiguided bomb, 4=gatling plasma, 5=missile,
+		6=monophasic, 7=particle beam)
+IO8i weaplvl	Energy level to use for the current weapon (clamped to minimum
+		and maximum)
+IO9b fire	If true, fire the weapon
+IO9b selfdestr	If true, activate self-destruct
+(Secondary State)
+IO9f mem0	Ignored
+IO9f mem1	Ignored
+IO9f mem2	Ignored
+IO9f mem3	Ignored
+IO9f mem4	Ignored
+IO9f mem5	Ignored
+IO9f mem6	Ignored
+IO9f mem7	Ignored
+(Telepathy)
+IO9f tel0	Link to telepathic friend 0; input and output are not related
+IO9f tel1
+IO9f tel2
+IO9f tel3
+IO9f tel4
+IO9f tel5
+IO9f tel6
+IO9f tel7
+
+FUNCTIONS
+The AI maps the above inputs to outputs by passing them through functions, each
+function taking one or more arguments. Each function has an associated cost,
+which represents the time needed to compute the function. These costs will be
+determined experimentally later.
+
+The functions are shown below, using Prolog-like /-notation to indicate arity.
+(Standard functions)
++/2	Sum of arguments
+-/2	Difference of arguments
+*/2	Product of arguments
+//2	Division of arguments; anything/0 = 0
+%/2	Floating-point positive modulo
+^/2	Exponentiation
+|/1	Absolute value
+_/1	Negative
+~/1	Not (0 -> 1, anything else -> 0)
+=/2	Evaluates to 1 if arguments are equal, 0 otherwise
+</2	Evaluates to 1 if A < B (further comparision operators not explained)
+>/2
+~=/2
+<=/2
+>=/2
+cos/1	Cosine (radians, and like for the following)
+sin/1
+tan/1	tan(π/2) = tan(-π/2) = maximum float value
+acos/1	Arc cosine (same mapping as for std::cos in <cmath>)
+asin/1
+atan/1
+atan2/2	Like atan2 from <cmath>; returns 0 for (0,0)
+sqrt/1	Square root
+ln/1	Natural logarithm
+(Short-circuit functions)
+||	Logical OR; evaluates A; if true, returns A, otherwise evaluates and
+	returns B. Cost is cost(A) if A is true, or cost(A)+cost(B) otherwise.
+&&	Logical AND; evaluates A; if false, returns A, otherwise evaluates and
+	returns B. Cost is cost(A) if A is false, or cost(A)+cost(B) otherwise.
+if/3	Returns B if A is true (using above boolean convention), otherwise C.
+	B and C only get evaluated if they will be returned.
+	Cost is cost(A) + cost(returned).
+
+EVALUATION
+For each output, the expression tree is translated into a string of commands
+for a simple stack machine, which can quickly evaluate a function without
+recursion (except for short-circuit evaluation).
+
+Every time an output is calculated, the total cost involved is subtracted from
+the agents time allotment. This allotment is increased over time. The agent
+cannot perform operations while this counter is negative (this discourages the
+AI from becomming overly complex and prevents any AI from slowing the game
+down).
+
+SCORING
+Each instance of the AI will be rated based on a single life (though multiple
+ratings will be required to advance generations).
+
+The score of a run of an AI instance is:
+  agent-score + (change in team-score during life)/(life time in minutes)
+The agent-score and team-score are game mode dependent, and are the same values
+that will be ascribed to humans; a rough example of the scores (which are
+summed) for particular actions follows:
+  +4	Primary cause of enemy destruction
+  +2	Secondary cause of enemy destruction
+  +1	Assist in enemy destruction
+  -2	Suicide
+  -8	Team kill
+
+This scoring system places the majority of the emphasis on individual scoring
+when the species is undeveloped; however, as the species becomes better, the
+individual scores will become more similar, and the team performance score will
+introduce a bias towards instances that benefit their team.
+
+EVOLUTION
+After sufficient samples from the clients have been recorded for every instance
+of the current generation of a species ("sufficient" probably being 2 or 4),
+the samples for each instance are averaged, and the instances are sorted
+according to their average score. Whenever an instance is to be selected, the
+eight are selected randomly, and the best is used.
+
+To create a new generation, instances are produced from the previous generation
+using four possible methods, randomly selected for each instance:
++ Elitist: An instance is selected and used without modification (10%)
++ Crossover: Two instances are selected (a "primary" and "secondary"). A
+  randomly-selected subexpression from the secondary is used to replace another
+  randomly-selected subexpression in the first. (40%)
++ Constant mutation: A number of floating-point constants are randomly mutated
+  +/- 10% of their previous value, from a single instance. (40%)
++ Expression mutation: A randomly-selected subexpression in a single instance
+  is replaced with a randomly-generated expression. (10%)

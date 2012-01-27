@@ -1,0 +1,185 @@
+digraph cortexai {
+  node [shape=component,fillcolor=grey85,style=filled];
+  subgraph global_inputs {
+    node [shape=note,fillcolor=white];
+    iscoord     [label="Coordinates and Velocity"];
+    istheta     [label="Rotation Information"];
+    ifields     [label="Field Size"];
+    ipain       [label="Pain Emotion"];
+    ifear       [label="Fear Emotion"];
+    inervous    [label="Nervous Emotion"];
+    iengine     [label="Engine Capabilities"];
+    ipower      [label="Power Capabilities"];
+    itel        [label="Telepathy"];
+  }
+
+  subgraph derived_inputs {
+    node [shape=note,fillcolor=grey50];
+    diocoord    [label="Objective Coords"];
+    diecoord    [label="Examined Coords"];
+    diccoord    [label="Cell Coords"];
+  }
+
+  subgraph properties {
+    node [shape=folder,fillcolor=blue,fontcolor=white];
+    robjective  [label="Objective"];
+    rtgtcell    [label="Target Cell"];
+    rtgtcells   [label="Decaying Cell Score"];
+  }
+
+  subgraph collections {
+    node [shape=box3d,fillcolor=red,fontcolor=white];
+    xobjects    [label="Objects"];
+    xcells      [label="Target's Cells"];
+    xweapons    [label="Weapons"];
+  }
+
+  subgraph global_outputs {
+    node [shape=note,fillcolor=black,fontcolor=white];
+    oengine     [label="Engine Control"];
+    oweap       [label="Which Weapon"];
+    owlvl       [label="Weapon Level"];
+    ofire       [label="Fire Weapon?"];
+    otel        [label="Telepathy"];
+  }
+  #define PROC(lbl) [penwidth=4.0,arrowhead=vee,color=green,label=lbl]
+
+  creflex       [label="Reflex"];
+  iscoord       ->      creflex;
+  ifields       ->      creflex;
+  ipain         ->      creflex;
+  ifear         ->      creflex;
+  inervous      ->      creflex;
+  iengine       ->      creflex;
+
+  preflex       [shape=Mdiamond,label="Max Bool"];
+  creflex       ->      preflex         [label="Edge"];
+  creflex       ->      preflex         [label="Dodge"];
+  creflex       ->      preflex         [label="Run Away"];
+  creflex       ->      preflex         PROC("");
+
+  cavoidedge    [label="Avoid Edge"];
+  preflex       ->      cavoidedge      PROC("Edge");
+  preflex       ->      cdodge          PROC("Dodge");
+  preflex       ->      crunaway        PROC("Run Away");
+  preflex       ->      cfrontal        PROC("otherwise");
+
+  cavoidedge    [label="Avoid Edge"];
+  iscoord       ->      cavoidedge;
+  istheta       ->      cavoidedge;
+  ifields       ->      cavoidedge;
+  iengine       ->      cavoidedge;
+  ipower        ->      cavoidedge;
+  cavoidedge    ->      oengine;
+
+  cdodge        [label="Dodge"];
+  iscoord       ->      cdodge;
+  istheta       ->      cdodge;
+  iengine       ->      cdodge;
+  ipower        ->      cdodge;
+  ifear         ->      cdodge;
+  ipain         ->      cdodge;
+  cdodge        ->      oengine;
+
+  crunaway      [label="Run Away"];
+  iscoord       ->      crunaway;
+  istheta       ->      crunaway;
+  iengine       ->      crunaway;
+  ipower        ->      crunaway;
+  inervous      ->      crunaway;
+  crunaway      ->      oengine;
+
+  cfrontal      [label="Frontal"];
+  iscoord       ->      cfrontal;
+  itel          ->      cfrontal;
+  pfrontalfor   [label="For Each",shape=Mdiamond,fillcolor=grey20,
+                 fontcolor=white];
+  xobjects      ->      pfrontalfor [color=red];
+  pfrontalfor   ->      diecoord;
+  robjective    ->      diocoord;
+  diecoord      ->      cfrontal;
+  pfrontalmax   [label="Select",shape=Mdiamond];
+  cfrontal      ->      pfrontalmax;
+  pfrontalmax   ->      robjective;
+  pfrontalmax   ->      otel;
+
+  pfrontal      [label="Objective Type",shape=Mdiamond];
+  cfrontal      ->      pfrontal        PROC("");
+  robjective    ->      pfrontal;
+  pfrontal      ->      ctgtanalyse     PROC("Target, close");
+  pfrontal      ->      cnavigate       PROC("otherwise");
+
+  cnavigate     [label="Navigation"];
+  iscoord       ->      cnavigate;
+  istheta       ->      cnavigate;
+  iengine       ->      cnavigate;
+  ipower        ->      cnavigate;
+  diocoord      ->      cnavigate;
+  cnavigate     ->      oengine;
+
+  ctgtanalyse   [label="Target Analysis"];
+  ptgtarand [label="Select Random",shape=Mdiamond,
+             fillcolor=grey20,fontcolor=white];
+  robjective    ->      xcells          [color=red];
+  xcells        ->      ptgtarand       [color=red];
+  ptgtarand     ->      ctgtanalyse;
+  ctgtanalyse   ->      ptgtanalyse;
+  ctgtanalyse   ->      ptgtanalyse     PROC("");
+  ptgtarand     ->      ptgtanalyse;
+  ptgtanalyse   [label="Alter if Greater",shape=Mdiamond];
+  rtgtcells     ->      ptgtanalyse;
+  ptgtanalyse   ->      rtgtcells;
+  ptgtanalyse   ->      rtgtcell;
+  rtgtcell      ->      diccoord;
+
+  subgraph strategic_weapon_selection {
+    pswsfor     [label="For Each",shape=Mdiamond,
+                 fillcolor=grey20,fontcolor=white];
+    cstratweap  [label="Strategic Weapon",fillcolor=lightblue];
+    xweapons    ->      pswsfor         [color=red];
+    ipower      ->      cstratweap;
+    diccoord    ->      cstratweap;
+    pswsfor     ->      cstratweap;
+    ptgtanalyse ->      cstratweap      PROC("");
+  }
+
+  subgraph aiming {
+    caiming     [label="Aiming",fillcolor=lightblue];
+    cstratweap  ->      caiming         PROC("");
+    iscoord     ->      caiming;
+    istheta     ->      caiming;
+    ipower      ->      caiming;
+    iengine     ->      caiming;
+    diccoord    ->      caiming;
+    diocoord    ->      caiming;
+    caiming     ->      oengine;
+  }
+
+  coppweap      [label="Opportunistic Weapon",fillcolor=lightblue];
+  powfor        [label="For Each",shape=Mdiamond,
+                 fillcolor=grey20,fontcolor=white];
+  xweapons      ->      powfor          [color=red];
+  caiming       ->      coppweap        PROC("");
+  iscoord       ->      coppweap;
+  istheta       ->      coppweap;
+  ipower        ->      coppweap;
+  diocoord      ->      coppweap;
+  diccoord      ->      coppweap;
+  powfor        ->      coppweap;
+
+  poppweap      [label="Select",shape=Mdiamond];
+  coppweap      ->      poppweap;
+  poppweap      ->      oweap;
+  poppweap      ->      ofire           [label=">0?"];
+
+  cweaplvl      [label="Weapon Level",fillcolor=lightblue];
+  coppweap      ->      cweaplvl        PROC(">0?");
+  poppweap      ->      cweaplvl;
+  iscoord       ->      cweaplvl;
+  istheta       ->      cweaplvl;
+  ipower        ->      cweaplvl;
+  diocoord      ->      cweaplvl;
+  diccoord      ->      cweaplvl;
+  cweaplvl      ->      owlvl;
+  cweaplvl      ->      ofire           [label=">0?"];
+}

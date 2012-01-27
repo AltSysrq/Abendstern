@@ -1,0 +1,257 @@
+Abendstern Network Protocol
+
+OVERVIEW
+Abendstern's networking design operates as a peer-to-peer system over IPv4 or
+IPv6 UDP. Unlike previous versions, this protocol primarily operates by
+manipulation of byte arrays, removing the headaches associated with the older
+event-driven designs.
+
+All values are little-endian, unless otherwise noted. All structures are aligned
+only to byte boundaries. In sub-byte structures, lower bits are listed before
+higher. Floats are represented as IEEE 754-2008 single-precision values, in
+little-endian byte order.
+
+Strings are represented as NUL-terminated byte strings.
+
+TOP-LEVEL
+All packets begin with the following data:
+  uint16        Sequence number
+  uint16        Channel number
+The sequence number is used to temporarily identify the packet, for purposes of
+duplicate removal and acknowledgement. Sequence numbers in a connection start
+from zero for both peers, and are incremented with every packet. Packets with
+sequence numbers out of a certain range are silently ignored.
+
+The channel number identifies the logical destination of the packet. A packet
+directed to a channel that is not open is silently ignored.
+
+Each channel can be bound to a "Gerät" (device best describes the concept, but
+"network device" generally refers to the physical object) which handles the
+actual payload of the packet. Initially, only channel 0 is open to the Synchronous
+Command Gerät.
+
+BLOCK GERÄTE
+The majority of Geräte belong to a class called "block Geräte", which define a
+structure lying on top of a byte array. The remote peer communicates by mutating
+the block using the protocol described below. When a block Gerät is opened, the
+array's contents are initially zero (but the object is considered uninitialised
+until the first complete mutation operation).
+
+Communicatino with a block Gerät is done via mutation operations. Since these
+operations may be larger than 256 bytes, they are often split into multiple
+packets. Therefore, this sub-protocol comes in two layers. The upper layer
+prefixes fragments with the following structure:
+  uint16        Operation sequence number
+  uint16        Previous mutation this operation applies to
+  uint16        Fragment index
+  uint16        Number of fragments
+  <payload>
+The operation sequence number starts at 1; the first 0 is the implicit
+initialisation of the block to zero. The second field allows proper sequencing
+(and ignoring) of operations such that a consistent state is preserved.
+
+An operation is not applied until all fragments have been received. When all
+fragments are received, and if the operation is still applicable (has not been
+obsoleted by another operation that depended on a mutation that came before the
+one we are concerned with), the payloads are concatenated by order of fragment
+index, and the result is interpreted as described below.
+
+An operation is composed of a series of deltata; each delta has the following
+high-level format:
+  index-format
+  offset (also called "start" below) from end of previous segment
+  length
+  byte[length] data
+
+The index-format is a byte specifing the format of the indices:
+  0     If set, the offset is embedded in bits 1-4, and the length in 5-7, in
+        this byte. Otherwise, bits 1-7 specify format.
+  1-3   If not embedded (see bit 1), determines the format of the indices
+        following the format byte:
+          0     4-4     (s=p[1]&0xF,                    l=(p[1]>>4)&0xF)
+          1     6-2     (s=p[1]&0x3F,                   l=(p[1]>>6)&0x3)
+          2     8-8     (s=p[1],                        l=p[2])
+          3     12-4    (s=p[1]|((p[2]&0xF) << 8),      l=(p[2]>>4)&0xF)
+          4     16-8    (s=p[1]|(p[2]<<8),              l=p[3])
+          5     16-16   (s=p[1]|(p[2]<<8),              l=p[3]|(p[4]<<8))
+          6     24-24   (similar)
+          7     8-4     (s=p[1], l=p[0]>>4)
+  4-7   In format 7, the length
+The data that follow the indices are copied into the block at the given location.
+Out-of-bounds indices are ignored.
+
+--- STANDARD GERÄTE ---
+The Geräte below are used by the protocol, and are not specific to Abendstern.
+
+SYNCHRONOUS COMMAND GERÄTE
+The SCG is used for controlling the protocol itself. The SCG does not have an
+assigned number, and it is an error to close the channel is open on.
+
+The SCG, as its name suggests, only allows one outstanding packet at a time,
+using its own synchronous acknowledgement system, separate from the asynchronous
+acknowledgement Gerät.
+
+Each packet it sends is prefixed with a byte indicating the packet's purpose:
+  0x02  STX     Start of transmission
+  0x04  EOT     End of transmission
+  0x06  ACK     Synchronous Acknowledgement
+  0x22  SYN     Synchronous Idle
+  0x11  XON     Open channel(s)
+  0x13  XOF     Close channel(s)
+
+Packet format for STX:
+  byte[16]      Protocol version hash
+  string        Application name ("Abendstern")
+An STX requests to open two-way communication between peers. An STX is answered
+with an ACK or an EOT, depending on whether the peers are compatible and willing
+to talk to each other.
+
+Packet format for EOT:
+  string        Disconnect reason
+A connection is considered closed after transmission of an EOT. EOTs are not
+ACKed; rather, the EOT is sent several times to make delivery likely.
+
+Packet format for ACK:
+  uint16        Sequence number of packet being acknowledged.
+An ACK indicates that the specified packet has been received successfully. An ACK
+is assumed to reach the destination unless the acknowledged packet is
+retransmitted. Every reception of an ACK-needing packet is to be answered with
+exactly one ACK.
+
+Packet format for SYN:
+  empty
+SYN is sent to indicate that the sender has nothing to send. It primarily serves
+to give a distinction between loss of connectivity and a successful ACK. A SYN
+is not replied to.
+
+Packet format for XON (repeated for each channel to open):
+  uint16        Gerät number
+  uint16        Channel number
+XON opens a Gerät on the given channel. It must be ACKed.
+
+Packet format for XOF (repeated for each channel to open):
+  uint16        Channel number
+XOF closes the given channel and its Gerät. Closing Gerät zero effectively ends
+the connection, since it terminates the ability for the SCG of the other peer
+to communicate (no ACKs can be sent in reply).
+
+LATENCY DISCOVERY GERÄT
+Gerät number: 0
+Number per connection: 0 or 1
+Requires: none
+The LDG, when open by both peers, allows calculating round-trip delay of packets.
+It uses no acknowledgement system; packets which do not reach the destination can be
+simply considered dropped. The first byte of a packet identifies the type: 0 is
+PING and 1 is PONG. When a peer receives a PING, it should immediately respond
+with a PONG containing the same payload data. The payload data is implementation
+specific.
+
+ASYNCHRONOUS ACKNOWLEDGEMENT GERÄT
+Gerät number: 1
+Number per connection: 0 or 1 (effectively 1, since everything uses it)
+This is a block Gerät. Structure:
+  byte[256]     Bitset of acknowledgement of received packets
+  byte[256]     Bitset of sent packts that must be acknowledged
+The AAD provides a layer that guarantees eventual delivery of packets, as well as
+the ability to determine whether a peer has received a certain packet.
+
+When a packet is sent through this Gerät, the bit in the sent bitset
+corresponding to that package will be set to 1. Once the remote peer has received
+that packet and the change of the bitset, it will set the bit in the
+acknowledgement bitset corresponding to that packet to 1. When the local peer
+receives this acknowledgement, it clears that bit in the sent bitset, allowing
+the remote peer to do the same in the acknowledgement set.
+
+Since packets may be received before their corresponding request-for-
+acknowledgement, the Gerät will handle this by storing these packet numbers in
+anticipation of the request.
+
+This Gerät is self-dependent; that is, it uses its own functionality to ensure
+delivery of its packets.
+
+Packets that remain unacknowledged will be retransmitted a few times per second.
+
+SEQUNTIAL TEXT GERÄT
+Gerät number: 2
+Number per connection: 0 or 1
+Requires: AAG, acceptance (via PIG)
+
+All packets from this Gerät have the following structure:
+  uint64        Strong sequence number
+  NTBS          payload
+
+Sequence numbers start at zero, and are incremented on every outgoing packet.
+STD packets are guaranteed too be processed in the order they are transmitted;
+one is not processed until its sequence number is exactly what is expected.
+
+TEXT MESSAGE GERÄT
+Gerät number: 3
+Number per connection: 0 or 1
+Requires: AAG, acceptance (via PIG)
+
+Packets have the following structure:
+  NTBS          payload
+
+This device passes user text messages, which do not need strong ordering (and are
+handled quite differently from sequential text in Abendstern).
+
+PEER INFORMATION GERÄT
+Gerät number: 4
+Number per connection: 1
+Requires: AAG
+
+Block structure:
+  byte[4]       Internet IPv4 address
+  uint16[8]     Internet IPv6 address
+  uint16        Internet port
+  byte[4]       LAN IPv4 address
+  uint16[8]     LAN IPv6 address
+  uint16        LAN port
+  uint32        Client number (userid for Internet game, part of LAN IP address
+                for LAN game)
+  uint256       Authentication information (provided by Abendstern Network
+                for Internet game, hash of game password for LAN game)
+  byte          Flags
+    0           IP version; 0=IPv4, 1=IPv6
+    1           Game type; 0=Internet, 1=LAN
+    2           bool: ready for remote acceptance evaluation?
+    3           bool: has the peer accepted the remote's information?
+
+Only the addresses matching the IP version used are actually filled out.
+
+In order to be considered part of a game, a Peer must pass acceptance with
+all peers in the game. The process is as follows:
+  1. Local peer fills out data
+  2. Local peer sets the ready-for-acceptance bit
+  3. Remote peer notices ready bit, evaluates information
+  4. If accepted, remote peer sets accepted bit; otherwise, terminates
+     connection
+
+For Internet games, the Abendstern Network provides a base key to authenticate
+with. For authentication, the local peer uses a SHA-256 hash of the following
+text:
+  <local-id><remote-id><base-key>
+where local-id and remote-id are textual representations of the local and remote
+global-unique IDs. The remote peer sends this hash, as well as the local and
+remote IDs, to the Abendstern Network, allowing confirmation of the local peer.
+
+For LAN games, every peer knows the plaintext password. Authentication works
+similarly to Internet games, except the base-key is the plaintext password, and
+peers can validate the authentication themselves.
+
+
+--- Begin: Abendstern-Specific ---
+ABENDSTERN OBJECTS
+All Abendstern objects to be sent on the network are block devices. Channels for
+objects are only created to remote peers if it is deemed necessary for them to
+know about them. Non-transient objects, like Ships, are always considered
+necessary (for radar, etc). Others, like weapons, are only created if within a
+certain distance of any of the remote peer's ships, typically a radius of 8.
+Some objects, like EnergyCharges, can be perfectly extrapolated after creation.
+These objects do not have updates sent over the network, until their
+destruction. Since many objects need to be altered before being destroyed, an
+object channel is not closed until its final update operation has been con be
+confirmed processed.
+
+The structure for objects themselves is defined in  src/net/definition.tcl .
+See src/net/generate.tcl for a formal description of the file's contents.

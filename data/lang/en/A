@@ -1,0 +1,1115 @@
+~en
+ Core Abendstern messages
+ Author: Jason Lingle
+ English, GB
+
+ How to create a new translation:
+ 1. Copy the English language directory (data/lang/en) to a new directory
+    named after the new translation (eg, data/lang/es for a Spanish translation).
+ 2. Follow the translation instructions below for all contained files (eg, A and T).
+ 3. Add the new language to the manifest (data/lang/manifest) by inserting a line
+    containing the same abbreviation used in the directory, followed by the name
+    of the language (in that language; eg, Español for Spanish). If the language
+    name contains spaces, enclose it in braces (eg, one might have a line
+      tkpn      {Toki Pona}
+    ).
+
+ Each catalogue file contains a number of language entries. Each line's meaning is
+ identified by its first character:
+   ~    Declares language
+   @    Starts a section
+   -    Starts an entry
+   +    Adds text to an entry
+   *    Adds a new line character plus text to an entry
+ Comments start with whitespace or the # character and are entirely ignored.
+
+ When beginning translation of a catalogue, you should start by changing the language
+ declared with ~ (usually in the first line) to match the name of the new language
+ directory (ie, for Spanish, you would change the first line from ~en to ~es).
+ Also change the comments at the top to indicate the long name of the language, in
+ English, as well as giving yourself credit for the translation.
+
+ What to translate: Text following a * or +. Line breaks are not inserted with +, so
+ it is OK to insert breaks whereever you please, but take care regarding whitespace:
+   +foo
+   +bar
+ becomes "foobar", while
+   +foo
+   + bar
+ becomes "foo bar".
+
+ Trailing spaces should be indicated with \x20 instead of an actual space, for the
+ sake of readability.
+
+ What NOT to translate: section and entry identifiers (following @ and -), as well
+ as internal colour specifiers (eg, translating \a[(danger)Danger!\a] to Spanish
+ should yield \a[(danger)¡Cuidado!\a]).
+
+ Occurrances of string-format specifiers (eg, %s, %.1f) MUST occur in the translated
+ text, and currently MUST occur in the same order as in the English if there are
+ more than one.
+
+ In general, preserving the spirit of the text is more important than a literal
+ translation. This especially applies to science-fiction terms specific to the
+ game, which often would become awkward when translated literally.
+
+ Items for the heads-up-display which are in ALL CAPS should be so in the translation,
+ or a rough equivilant of such formatting that suggests a harsh computing environment,
+ if the language does not have such letter case. Since HUD space is quite limitted, one
+ must keep these translations short. A couple cases have strict character limits; these
+ are stated in comments. For those that don't, try not to increase the length by more
+ than 25% of the English.
+
+ Keyboard accelerators can be suggested to the GUI by prefixing the appropriate character
+ with "\a&" (eg, using "The \a&Button" will cause the GUI to try to use B as the keyboard
+ shortcut before T, h, and e).
+
+ The following sequences have special meaning:
+ \\     \
+ \n     newline character
+ \a     Alert character
+ \t     horizontal tab
+ \xXX   Raw byte, XX is a hexadecimal byte
+
+@gui
+ Common things
+-quit
++Quit
+
+-accelerators
+ This is a list of characters that can be used as keyboard accelerators.
+ They will be used in the order specified, though preferring initial characters
+ to latter. This must be in all lowercase
++abcdefghijklmnopqrstuvwxyz1234567890
+
+-ok
++OK
+
+-yes
++Yes
+
+-no
++No
+
+-cancel
++Cancel
+
+-close
++Close
+
+-abort
++Abort
+
+-warning
++Warning
+
+-wait
++Please wait...
+
+-error
++Error
+
+-untitled
++Untitled
+
+-unknown
++Unknown
+
+@hud_abbr
+ Weapon abbreviations MUST be 13 or fewer characters
+-energy_charge
++ENERGY CHG
+
+-magneto_bomb
++MAGNETO BOMB
+
+-plasma_burst
++PLASMA BURST
+
+-semiguided_bomb
++SEMIGUIDED
+
+-gatling_plasma_burst
++GAT PLASMA
+
+-monophasic
++MONOPHASIC
+
+-missile
++MISSILE
+
+-particle_beam
++PARTICLE BEAM
+
+-pow_cap_throt_heat_stren_stab
++PCTHSS
+
+-level
++LVL:\x20
+
+-count
++CNT:\x20
+
+-weapon_not_found0
++SYSERR404
+-weapon_not_found1
++NOT PRSNT
+
+@hud
+-target_prefix
++TGT:\x20
+-message_prefix
++\a[(white)MESSAGE:\x20
+-target_none
++(NONE)
+
+
+@editor
+-cant_put_systems_in_bridge
++Cannot put systems in bridge
+
+-bridge_relocator_instructions
++Click on new location for bridge
+
+-bridge_relocator_cell_not_empty
++\a[(danger)Cell not empty\a]
+
+-bridge_relocator_unsuitable_cell
++\a[(danger)Unsuitable cell type for bridge\a]
+
+-bridge_relocator_cell_rotated
++\a[(danger)Cannot place bridge in rotated cell\a]
+
+-cell_creation_brush_instructions
++Click to paint cells
+
+-cell_creation_brush_error
++\a[(danger)Cannot create new cells there\a]
+
+-cell_deletion_brush_instructions
++Click a cell to delete (orpans will be removed too)
+
+-cell_deletion_brush_bridge
++\a[(danger)Cannot delete bridge.\a]
+
+-cell_rotator_instructions
++Click a right triangle to rotate
+
+-system_creation_brush_instructions
++Click and drag to paint systems
+
+-system_creation_rectangle_instructions
++Click and drag to fill a rectangle with systems
+
+-system_info_copier_instructions
++Click on a cell to copy information
+
+-system_rotator_instructions
++Click a cell to rotate its systems
+
+-idle
++No tool active
+
+-initmode_title
++Ship Management Interface
+
+-new_ship
++New ship
+
+-open_ship
++Open ship
+
+-delete_ship
++Delete ship
+
+-couldnt_load_ship
++The ship could not be loaded
+
+-delmode_title
++\a[(danger)Delete Ship\a]
+
+-delmode_prompt
++Are you sure you want to \a[(warning)permanently\a] delete
+
+-menu_file
++File
+
+-menu_edit
++Edit
+
+-menu_view
++View
+
+-menu_prop
++Properties
+
+-menu_info
++Information
+
+-fork_successful
++New ship forked successfully:
+
+-change_class_fail
++\a[(danger)Could not change class to %s.\a]
+
+-change_class_success
++Changed ship to class %s successfully.
+
+-newmode_title
++Create New Ship
+
+-ship_name
++Name
+
+-author
++Author
+
+-ship_class
++Ship Class
+
+-bridge_type
++Bridge Type
+
+-class
++Class
+
+-class_prefix
++Class\x20
+
+-anonymous
++Anonymous
+
+-create
++Create
+
+-save_changes
++Save changes
+-save_as_fork
++Save as fork
+-revert
++Revert file
+
+-undo
++Undo
+-history
++History
+-new_cells
++New cells
+-del_cells
++Delete cells
+-rot_cells
++Rotate cells
+-set_sys
++Set systems
+-rot_sys
++Rotate systems
+-move_bridge
++Move bridge
+
+-history_current
++Current
+-history_seconds
++%d seconds ago
+-history_minutes
++%d:%02d min ago
+-history_hours
++%d:%02d:%02d hr ago
+
+-general_header
++General
+-physical_header
++Physical
+-cells
++Cells
+-mass
++Mass
+-radius
++Radius
+-length
++Length
+-width
++Width
+-reinforcement
++Reinforce
+-cost
++Cost
+-capabilities_header
++Capabilities
+-power_gen
++Pow gen
+-max_power_use
++Power use max
+-min_power_use
++Power use min
+-acceleration
++Accel
+-rotation
++Rotation
+-stealth_header
++Stealth
+-supported
++Supported
+
+-ship_properties_header
++Ship Properties
+-reinforcement_abbr
++Rnf
+
+-quit_without_saving_p
++Quit without saving?
+
+-system_cat_header
++System Category
+-no_change
++No Change
+-delete
++Delete
+
+-change_dots
++Change...
+
+-primary_header
++Primary
+-secondary_header
++Secondary
+
+-paint_mode
++Paint Mode
+-paint_mode_brush
++Brush
+-paint_mode_rect
++Rectangle
+
+-copy_from_cell
++Copy from Cell
+
+-shield_radius
++Radius
+-shield_strength
++Strength
+-capac_amt
++Amt
+-gpbl_turbo
++Turbo
+
+-zoom_in
++Zoom In
+-zoom_out
++Zoom Out
+-reset_view
++Reset
+-show_shields
++Show shields
+-show_centre_lines
++Show centre lines
+
+-sharing_enabled
++Share this ship
+
+@cell
+-circle
++Circle
+-square
++Square
+-equilt
++Equilateral
+-rightt
++Right Triangle
+-empty
++Empty
+
+@sys
+-engine
++Engine
+-power
++Power
+-weapon
++Weapon
+-shield
++Shield
+-stealth
++Stealth
+-misc
++Misc
+
+-antimatter_power
++Antimatter Reactor
+-antimatter_power_s
++Antimatter
+-bussard_ramjet
++Bussard Ramjet
+-bussard_ramjet_s
++Bussard Ramjet
+-capacitor
++Capacitor
+-capacitor_s
++Capacitor
+-cloaking_device
++Cloaking Device
+-cloaking_device_s
++Cloaking Device
+-dispersion_shield
++Dispersion Shield
+-dispersion_shield_s
++Dispersion Shield
+-energy_charge_launcher
++Energy Charge Launcher
+-energy_charge_launcher_s
++Energy Charge
+-fission_power
++Fission Power
+-fission_power_s
++Fission
+-fusion_power
++Fusion Power
+-fusion_power_s
++Fusion
+-gatling_plasma_burst_launcher
++Gatling Plasma Burst Launcher
+-gatling_plasma_burst_launcher_s
++Gatling Plasma
+-heatsink
++Heatsink
+-heatsink_s
++Heatsink
+-magneto_bomb_launcher
++Magneto Bomb Launcher
+-magneto_bomb_launcher_s
++Magneto Bomb
+-mini_gravwave_drive
++Miniature Gravity-Wave Drive
+-mini_gravwave_drive_s
++Mini Gravwave
+-mini_gravwave_drive_ii
++Miniature Gravity-Wave Drive MKII
+-mini_gravwave_drive_ii_s
++Mini Gravwave II
+-missile_launcher
++Missile Launcher
+-missile_launcher_s
++Missile
+-monophasic_energy_emitter
++Monophasic Energy Emitter
+-monophasic_energy_emitter_s
++Monophasic Energy
+-particle_accelerator
++Particle Accelerator
+-particle_accelerator_s
++Particle Acc.
+-particle_beam_launcher
++Particle Beam Launcher
+-particle_beam_launcher_s
++Particle Beam
+-plasma_burst_launcher
++Plasma Burst Launcher
+-plasma_burst_launcher_s
++Plasma Burst
+-power_cell
++Power Cell
+-power_cell_s
++Power Cell
+-reinforcement_bulkhead
++Reinforcement Bulkhead
+-reinforcement_bulkhead_s
++Reinf. Bulkhead
+-rel_ion_accelerator
++Relativistic Ion Accelerator
+-rel_ion_accelerator_s
++Rel. Ion. Acc.
+-self_destruct_charge
++Self-Destruct Charge
+-self_destruct_charge_s
++Self-Destruct
+-semiguided_bomb_launcher
++Semi-Guided Bomb Launcher
+-semiguided_bomb_launcher_s
++Semi-Guided Bomb
+-shield_generator
++Shield Generator
+-shield_generator_s
++Shield Generator
+-super_particle_accelerator
++Enhanced Particle Accelerator
+-super_particle_accelerator_s
++Enh. Part. Acc.
+
+
+@engine_mounting_conditions
+-particle_accelerator
++Particle accelerator requires at least one intake and one output
+
+-mini_gravwave_drive
++Mini gravwave drive requires direct output
+
+-bussard_ramjet
++Bussard ramjet requires direct intake and direct output
+
+-rel_ion_accelerator
++Relativistic Ion Accelerator requires direct output
+
+-not_circle
++Engine cannot be mounted in a circle cell
+
+-output_blocked
++Engine output blocked by neighbour cell
+
+
+@ship
+-invalid_cell_connection
++Invalid cell connection
+
+-err_empty
++Empty ship
+
+-err_too_many_cells
++Ship has more than 4094 cells
+
+-err_rt_bridge
++Right-triangle bridge
+
+-two_large_sys
++Two large systems in one cell
+
+-two_same_loc_sys
++Two systems with identical, non-standard positioning
+
+-adjacent_circles
++Adjacent circle cells
+
+-cells_overlap
++Cells overlap
+
+-load_newer_version
++File requires a later version of Abendstern than the current
+
+-bridge_not_found
++The bridge of the ship could not be found
+
+-unknown_cell_type
++Unknown cell type
+
+-too_many_neighbours
++Too many neighbours for cell
+
+-triangular_4_neighbours
++Triangular cell with four neighbours
+
+-cell_ref_nx_neighbour
++Cell references non-existent neighbour
+
+-system_too_advanced
++System from more advanced class than ship
+
+@launcher
+-no_exposed_faces
++No exposed faces for launcher
+-invalid_orientation
++Invalid orientation
+-selected_face_occupied
++Selected launcher face occupied
+-maint_reqd_0
++\a[(danger)MAINTENANCE\a]
+-maint_reqd_1
++\a[(danger)REQIRED\a]
+
+@ship_chooser
+-acceleration
++Acceleration
+-rotation
++Rotation
+-power
++Power Supply
+-free_power
++Free Power Supply
+-capacitance
++Capacitance
+-reinforcement
++Reinforcement
+-mass
++Mass
+
+-filter
++Filter
+
+-no_ships
++No ships in catalogue
+
+@hangar
+-in_hangar
++In Hangar
+-available
++Available
+-weight
++Weight
+
+-add
++<< Add
+-rem
++Rem >>
+
+@plasma_burst_launcher
+-ok
++OK
+-hot
++HOT
+-overheat
++OVERHEAT
+
+@monophasic
+-wavelen
++WAVELEN
+
+@particle_beam
+-neutron
++NEUTRON
+-muon
++MUON
+-antiproton
++ANTIPROTON
+-positron
++POSITRON
+
+@missile
+-ready
++READY
+-recharge
++RECHARGE
+-reload
++RELOAD
+
+@magneto_bomb
+-ready
++READY
+-reload
++RELOAD
+-overload
++\a[(danger)OVERLOAD\a]
+
+@misc
+-all_class_x
++All Class %s
+-class_all_ships
++Everything
+
+@control_scheme
+-*default
++Default control scheme
+-*spacecadet
++Advanced keyboard scheme
+
+@login
+-tlogin
++Log in to Abendstern Network
+-tcreate
++Create account on Abendstern Network
+-toffline
++Offline Mode
+-tmanagement
++Account Management
+-tdelete
++\a[(danger)Delete Account\a]
+
+-username
++Username
+-password
++Password
+-automatic
++Automatically log in with these credentials
+
+-login
++Log in
+-create
++Create
+-offline
++Play offline
+-alter
++Change Name/Password
+-delete
++\a[(danger)Delete Account\a]
+-possible_avatars
++Avatar Images
+-change_avatar
++Change Avatar
+
+-switchcreate
++Create an Account
+-switchlogin
++Login with Existing
+
+-creating
++Creating Account...
+-logging_in
++Logging in...
+-altering
++Changing Information...
+
+-offline_auto
++Abendstern is automatically entering offline mode,
++ since there were problems establishing a connection
++ to the server.
+
+-offline_disadvantages
++In offline mode, you will not be able to participate in
++ online games against other people, share and receive custom
++ ship designs, or receive the continuous improvements to the
++ AI for computer-controlled opponents.
+
+-deletewarn
++If you delete your account, it and all data associated with
++ it will be gone forever.
+*\a[(danger)THIS ACTION CANNOT BE UNDONE!\a]
+*Are you \a[(warning)sure\a] you want to delete your account?
+
+-avatar_howto
++To add custom images to the list below, place the files into
++ your Abendstern folder. PNG, JPEG, BMP, and GIF are supported.
+
+-dont_show_again
++Don't show this message again
+
+-pwnotmatch
++(Passwords don't match)
+-pwshort
++(Password too short)
+-pwnotchanged
++(Password will not be changed)
+-pwok
++(Password OK)
+
+@shipbrowse
+-title
++Ship Browser
+
+-sorting
++Sorting
+-sortalpha
++Alphabetic
+-sortnships
++Num ships
+-sortpop
++Popularity
+-sortrate
++Avg rating
+
+-userlist
++Users
+-shiplist
++Ships          \x20
+-users
++Users
+-ships
++Ships
+
+-downloads_fmt
++Downloads: %d
+-rating_fmt
++Rating: %s (%d)
+
+-shiprate
++Rate this ship:
+-shiprate+
++Good
+-shiprate-
++Poor
+
+-rating0
++Terrible
+-rating1
++Bad
+-rating2
++Mediocre
+-rating3
++Good
+-rating4
++Great
+-rating5
++Perfect
+
+-subscribe_user
++Subscribe to this user's ships
+-subscribe_ship
++Subscribe to this ship
+
+@game
+-resume
++Resume
+-exit
++Quit Game
+
+-g_dm_long
++Deathmatch
+-g_dm
++DM
+-g_xtdm_long
++%s-Team Deathmatch
+-g_xtdm
++%sTDM
+-g_lms
++LMS
+-g_lms_long
++Last Man Standing
+-g_lxts
++L%sTS
+-g_lxts_long
++Last of %s Teams Standing
+-g_hvc
++HVC
+-g_hvc_long
++Humans vs Cyborgs
+
+-vpeer_connected_fmt
++Connected: \a[%s%s\a]
+-vpeer_disconnected_fmt
++Disconnected: \a[%s%s\a]
+-respawn_in_fmt
++Respawn in %d second(s)...
+-newmatch_in_fmt
++Intermission; new match in %d second(s)...
+-newround_in_fmt
++Intermission; new round in %d second(s)...
+-waiting_for_next_round
++Waiting for next round...
+
+-winner_fmt
++Winner: %s
+-best_player_fmt
++Best player: %s
+-survivor_fmt
++%s survived!
+-survivor_team_fmt
++%s survived!
+-survivor_nobody
++Nobody survived!
+
+-team_join
++%s joined team \a[%s%s\a]
+-team_change
++%s changed from team \a[%s%s\a] to \a[%s%s\a]
+
+-time_left_fmt
++%02d:%02d left
+-round_fmt
++Round %d of %d
+-match_over
++Match over
+
+-stats_overseer_note
++(\a[(white)!\a] = peer is overseer)
+
+-hvc_assimilated_fmt
++\a[(white)%s HAS BEEN ASSIMILATED\a]
+-hvc_resistance_was_futile
++Resistance was futile.
+
+-kill_kill0
++%s killed %s
+-kill_kill1
++%s fragged %s
+-kill_kill2
++%s destroyed %s
+-kill_kill3
++%s disabled %s
+-kill_kill4
++%s terminated %s
+
+-kill_kill_assist0
++%s and %s killed %s
+-kill_kill_assist1
++%s and %s fragged %s
+-kill_kill_assist2
++%s and %s destroyed %s
+-kill_kill_assist3
++%s and %s disabled %s
+-kill_kill_assist4
++%s and %s terminated %s
+
+-kill_kill_again0
++%s killed %s again
+-kill_kill_again1
++%s fragged %s again
+-kill_kill_again2
++%s continues to kill %s
+-kill_kill_again3
++%s destroyed %s again
+-kill_kill_again4
++%s fragged %s yet again
+
+-kill_kill_again_assist0
++%s and %s killed %s again
+-kill_kill_again_assist1
++%s and %s fragged %s again
+-kill_kill_again_assist2
++%s and %s continue to kill %s
+-kill_kill_again_assist3
++%s and %s destroyed %s again
+-kill_kill_again_assist4
++%s and %s fragged %s yet again
+
+-kill_dominate0
++%s is \a[(white)dominating\a] %s!
+-kill_dominate1
++%s makes %s bow to \a[(white)domination\a]!
+-kill_dominate2
++%s asserts \a[(white)superiority\a] over %s!
+-kill_dominate3
++%s is \a[(white)invulnerable\a] to %s!
+-kill_dominate4
++%s is \a[(white)overpowering\a] %s!
+
+-kill_dominate_assist0
++%s (with %s's help) is \a[(white)dominating\a] %s!
+-kill_dominate_assist1
++%s (with %s's help) makes %s bow to \a[(white)domination\a]!
+-kill_dominate_assist2
++%s (with %s's help) asserts \a[(white)superiority\a] over %s!
+-kill_dominate_assist3
++%s (with %s's help) is \a[(white)invulnerable\a] to %s!
+-kill_dominate_assist4
++%s (with %s's help) is \a[(white)overpowering\a]%s!
+
+-kill_domcont0
++%s continues to \a[(white)dominate\a] %s
+-kill_domcont1
++%s can't stop fragging %s
+-kill_domcont2
++%s eats punks like %s for breakfast
+-kill_domcont3
++%s leaves little hope for %s
+-kill_domcont4
++%s gets even more points from %s
+
+-kill_domcont_assist0
++%s and %s continue to \a[(white)dominate\a] %s
+-kill_domcont_assist1
++%s and %s can't stop fragging %s
+-kill_domcont_assist2
++%s and %s eat punks like %s for breakfast
+-kill_domcont_assist3
++%s and %s leave little hope for %s
+-kill_domcont_assist4
++%s and %s get even more points from %s
+
+-kill_revenge0
++%s got \a[(white)revenge\a] on %s!
+-kill_revenge1
++%s extracted \a[(white)revenge\a] on %s!
+-kill_revenge2
++%s has \a[(white)avenged\a] himself against %s!
+-kill_revenge3
++%s has \a[(white)finally killed\a] %s!
+-kill_revenge4
++%s has \a[(white)ended\a] %s's domination!
+
+-kill_revenge_assist0
++%2$s helped %1$s get \a[(white)revenge\a] on %3$s!
+-kill_revenge_assist1
++%s and %s extracted \a[(white)revenge\a] on %s!
+-kill_revenge_assist2
++%2$s helped %1$s \a[(white)avenge\a] himself against %3$s!
+-kill_revenge_assist3
++%1$s has \a[(white)finally killed\a] %3$s with %2$s's help!
+-kill_revenge_assist4
++%s and %s have \a[(white)ended\a] %s's domination!
+
+-kill_suicide0
++%s commited suicide
+-kill_suicide1
++%s suicided
+-kill_suicide2
++%s decided life wasn't worth it
+-kill_suicide3
++%s took the easy way out
+-kill_suicide4
++%s died by his own weapon
+
+-kill_suicide_assist0
++%s commited suicide with %s's assistance
+-kill_suicide_assist1
++%s committed %s-assisted-suicide
+-kill_suicide_assist2
++%0.0s%s made %s realise life wasn't worth living
+-kill_suicide_assist3
++%0.0s%s convinced %s to take the easy way out
+-kill_suicide_assist4
++%0.0s%s drove %s to suicide
+
+-kill_teamkill0
++%s \a{\a[(white)TEAMKILLED\a]\a} %s!
+-kill_teamkill1
++%s killed \a{\a[(white)TEAMMATE\a]\a} %s!
+-kill_teamkill2
++%s fragged \a{\a[(white)TEAMMATE\a]\a} %s!
+-kill_teamkill3
++%s terminated \a{\a[(white)TEAMMATE\a]\a} %s!
+-kill_teamkill4
++%s destroyed \a{\a[(white)TEAMMATE\a]\a} %s!
+
+-kill_teamkill_assist0
++%s%0.0s \a{\a[(white)TEAMKILLED\a]\a} %s!
+-kill_teamkill_assist1
++%s%0.0s killed \a{\a[(white)TEAMMATE\a]\a} %s!
+-kill_teamkill_assist2
++%s%0.0s fragged \a{\a[(white)TEAMMATE\a]\a} %s!
+-kill_teamkill_assist3
++%s%0.0s terminated \a{\a[(white)TEAMMATE\a]\a} %s!
+-kill_teamkill_assist4
++%s%0.0s destroyed \a{\a[(white)TEAMMATE\a]\a} %s!
+
+-killing_spree
++%s is on a \a[(white)killing spree\a]!
+
+@boot
+-hotpatch
++Applying backwards-compatibility patches
+-loadlib
++Loading libraries
+-version
++Reading version information
+-network
++Loading networking components
+-backgrnd
++Initialising background processing
+-bootnext
++
+-ships
++Loading ships
+-miscgui
++
+-miscdat
++
+-loginnxt
++
+-opencxn
++Connecting to Abendstern Network
+-logingui
++
+-acctinfo
++Retrieving your account settings
+-shipupld
++Uploading shared ships
+-shipdelo
++Deleting removed ships
+-shipdnld
++Preparing to download ships
+-shipdnld_fetchsubs
++Retrieving subscription information
+-shipdnld_find
++Determining ships that must be updated
+-shipdnld_main
++Downloading subscribed ships
+-aidownld
++Downloading AI data
+-acctinfs
++Saving your account settings
+-mainmenu
++
+-logout
++Logging out
+-confsync
++Writing configuration data
+-shutdown
++
+-headless
++You shouldn't see this!
+-aistage
++

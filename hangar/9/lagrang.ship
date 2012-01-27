@@ -1,0 +1,794 @@
+info	{
+ name	"lagrang",
+ alliance	["WUDR",]
+ version	0
+ bridge	"AAAA",
+ reinforcement	20.0
+ class	"C",
+ old_format	"sn00sn10sn10sn20sn10sn20sn10sn20sn20sn10sn20sn20sn10sn20sn20sn"
+		"20sn10sn20sn20sn30sn30sn20sn20sn20sn30sn21sn30sn20sn21sn32rn00"
+		"rn22rn00rn22rn00rn22rn00rn22rn00rn22rn00sn20sn20sn20sn20sn20sn"
+		"21sn02sn02sn02sn02sn01sn02sn02sn02sn02sn01sn01sn02ss0pfs1pfn02"
+		"ss0pfs1pfn02ss0pfs1pfn03sn02sn03sn01ss0pfs1pfn01sn03s.n22sn02s"
+		"n02sn03sn02sn02sn03sn10rn22rn00rn22rn00rn22rn00sn10sn20sn30sn2"
+		"1sn02sn01sn01sn02s................n32sn02ss0pfs1pfn03ss0pfs1pf"
+		"n02ss0pfs1pfn32ss0pfs1pfn03s...n10ss0pfs1pf..................."
+		"................................................n20rn22rn00rs0"
+		"wbn22rn00rn22rn00rn22rn00rn22rn00rn22rn00rn20sn10sn20sn20sn20s"
+		"n22rn00rn22rn00rn20sn10s......n30ss0pc30 s1pc30 n20ss0pc30 s1p"
+		"c30 n20ss0pc30 s1pc30 n20ss0pc30 s1pc30 n20ss0pc30 s1pc30 n30s"
+		"s0pc30 s1pc30 n20ss0pc30 s1pc30 n20sn20sn30sn20sn22sn01sn02sn0"
+		"2ss0pc30 s1pc30 n03ss0pc30 s1pc30 n21ss0pc30 s1pc30 n02ss0pc30"
+		" s1pc30 n02sn31sn20ss0pc30 s1pc30 n20ss0pc30 s1pc30 n30ss0pc30"
+		" s1pc30 n30ss0pc30 s1pc30 n20s................................"
+		".....................\n20\n",
+ sharing_enabled	t
+ author	"AbyssalYogSothOth",
+ fileid	338
+ ownerid	9
+ needs_uploading	f
+}
+cells	{
+ AAAA	{
+  type	"square",
+  neighbours	["BAAA",	"HAAA",	"FAAA",	"DAAA",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["AAAA",	"CAAA",	"KAAA",	"IAAA",]
+ }
+ CAAA	{
+  type	"square",
+  neighbours	["BAAA",	"DAAA",	"NAAA",	"LAAA",]
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["CAAA",	"AAAA",	"EAAA",	"OAAA",]
+ }
+ EAAA	{
+  type	"square",
+  neighbours	["DAAA",	"FAAA",	"RAAA",	"PAAA",]
+ }
+ FAAA	{
+  type	"square",
+  neighbours	["EAAA",	"AAAA",	"GAAA",	"SAAA",]
+ }
+ GAAA	{
+  type	"square",
+  neighbours	["FAAA",	"HAAA",	"",	"TAAA",]
+ }
+ HAAA	{
+  type	"square",
+  neighbours	["GAAA",	"AAAA",	"IAAA",	"",]
+ }
+ IAAA	{
+  type	"square",
+  neighbours	["HAAA",	"BAAA",	"JAAA",	"",]
+ }
+ JAAA	{
+  type	"square",
+  neighbours	["IAAA",	"KAAA",	"TDAA",	"",]
+ }
+ KAAA	{
+  type	"square",
+  neighbours	["JAAA",	"BAAA",	"LAAA",	"",]
+ }
+ LAAA	{
+  type	"square",
+  neighbours	["KAAA",	"CAAA",	"MAAA",	"",]
+ }
+ MAAA	{
+  type	"square",
+  neighbours	["LAAA",	"NAAA",	"DBAA",	"",]
+ }
+ NAAA	{
+  type	"square",
+  neighbours	["MAAA",	"CAAA",	"OAAA",	"CBAA",]
+ }
+ OAAA	{
+  type	"square",
+  neighbours	["NAAA",	"DAAA",	"PAAA",	"BBAA",]
+ }
+ PAAA	{
+  type	"square",
+  neighbours	["OAAA",	"EAAA",	"QAAA",	"ABAA",]
+ }
+ QAAA	{
+  type	"square",
+  neighbours	["PAAA",	"RAAA",	"XAAA",	"ZAAA",]
+ }
+ RAAA	{
+  type	"square",
+  neighbours	["QAAA",	"EAAA",	"SAAA",	"WAAA",]
+ }
+ SAAA	{
+  type	"square",
+  neighbours	["RAAA",	"FAAA",	"TAAA",	"VAAA",]
+ }
+ TAAA	{
+  type	"square",
+  neighbours	["SAAA",	"GAAA",	"",	"UAAA",]
+ }
+ UAAA	{
+  type	"square",
+  neighbours	["TAAA",	"",	"",	"VAAA",]
+ }
+ VAAA	{
+  type	"square",
+  neighbours	["UAAA",	"",	"WAAA",	"SAAA",]
+ }
+ WAAA	{
+  type	"square",
+  neighbours	["VAAA",	"",	"XAAA",	"RAAA",]
+ }
+ XAAA	{
+  type	"square",
+  neighbours	["WAAA",	"",	"YAAA",	"QAAA",]
+ }
+ YAAA	{
+  type	"square",
+  neighbours	["XAAA",	"",	"",	"ZAAA",]
+ }
+ ZAAA	{
+  type	"square",
+  neighbours	["YAAA",	"",	"ABAA",	"QAAA",]
+ }
+ ABAA	{
+  type	"square",
+  neighbours	["PAAA",	"ZAAA",	"",	"BBAA",]
+ }
+ BBAA	{
+  type	"square",
+  neighbours	["ABAA",	"",	"CBAA",	"OAAA",]
+ }
+ CBAA	{
+  type	"square",
+  neighbours	["BBAA",	"",	"DBAA",	"NAAA",]
+ }
+ DBAA	{
+  type	"square",
+  neighbours	["MAAA",	"CBAA",	"",	"EBAA",]
+ }
+ EBAA	{
+  type	"right",
+  neighbours	["FBAA",	"",	"DBAA",	"",]
+ }
+ FBAA	{
+  type	"right",
+  neighbours	["EBAA",	"",	"GBAA",	"",]
+ }
+ GBAA	{
+  type	"right",
+  neighbours	["HBAA",	"",	"FBAA",	"",]
+ }
+ HBAA	{
+  type	"right",
+  neighbours	["GBAA",	"",	"IBAA",	"",]
+ }
+ IBAA	{
+  type	"right",
+  neighbours	["JBAA",	"",	"HBAA",	"",]
+ }
+ JBAA	{
+  type	"right",
+  neighbours	["IBAA",	"",	"KBAA",	"",]
+ }
+ KBAA	{
+  type	"right",
+  neighbours	["LBAA",	"",	"JBAA",	"",]
+ }
+ LBAA	{
+  type	"right",
+  neighbours	["KBAA",	"",	"MBAA",	"",]
+ }
+ MBAA	{
+  type	"right",
+  neighbours	["NBAA",	"",	"LBAA",	"",]
+ }
+ NBAA	{
+  type	"right",
+  neighbours	["MBAA",	"",	"OBAA",	"",]
+ }
+ OBAA	{
+  type	"right",
+  neighbours	["PBAA",	"",	"NBAA",	"",]
+ }
+ PBAA	{
+  type	"square",
+  neighbours	["OBAA",	"",	"QBAA",	"TCAA",]
+ }
+ QBAA	{
+  type	"square",
+  neighbours	["PBAA",	"",	"RBAA",	"SCAA",]
+ }
+ RBAA	{
+  type	"square",
+  neighbours	["QBAA",	"",	"SBAA",	"RCAA",]
+ }
+ SBAA	{
+  type	"square",
+  neighbours	["RBAA",	"",	"TBAA",	"QCAA",]
+ }
+ TBAA	{
+  type	"square",
+  neighbours	["SBAA",	"",	"UBAA",	"OCAA",]
+ }
+ UBAA	{
+  type	"square",
+  neighbours	["TBAA",	"",	"VBAA",	"PCAA",]
+ }
+ VBAA	{
+  type	"square",
+  neighbours	["WBAA",	"UBAA",	"",	"",]
+ }
+ WBAA	{
+  type	"square",
+  neighbours	["XBAA",	"PCAA",	"VBAA",	"",]
+ }
+ XBAA	{
+  type	"square",
+  neighbours	["YBAA",	"MCAA",	"WBAA",	"",]
+ }
+ YBAA	{
+  type	"square",
+  neighbours	["ZBAA",	"LCAA",	"XBAA",	"",]
+ }
+ ZBAA	{
+  type	"square",
+  neighbours	["ACAA",	"KCAA",	"YBAA",	"",]
+ }
+ ACAA	{
+  type	"square",
+  neighbours	["BCAA",	"ZBAA",	"",	"",]
+ }
+ BCAA	{
+  type	"square",
+  neighbours	["CCAA",	"KCAA",	"ACAA",	"",]
+ }
+ CCAA	{
+  type	"square",
+  neighbours	["DCAA",	"JCAA",	"BCAA",	"",]
+ }
+ DCAA	{
+  type	"square",
+  neighbours	["ECAA",	"ICAA",	"CCAA",	"",]
+ }
+ ECAA	{
+  type	"square",
+  neighbours	["FCAA",	"HCAA",	"DCAA",	"",]
+ }
+ FCAA	{
+  type	"square",
+  neighbours	["GCAA",	"ECAA",	"",	"",]
+ }
+ GCAA	{
+  type	"square",
+  neighbours	["HCAA",	"FCAA",	"WCAA",	"MDAA",]
+ }
+ HCAA	{
+  type	"square",
+  neighbours	["ICAA",	"ECAA",	"GCAA",	"NDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ICAA	{
+  type	"square",
+  neighbours	["JCAA",	"DCAA",	"HCAA",	"ODAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ JCAA	{
+  type	"square",
+  neighbours	["KCAA",	"CCAA",	"ICAA",	"SDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ KCAA	{
+  type	"square",
+  neighbours	["LCAA",	"ZBAA",	"BCAA",	"JCAA",]
+ }
+ LCAA	{
+  type	"square",
+  neighbours	["MCAA",	"YBAA",	"KCAA",	"SDAA",]
+ }
+ MCAA	{
+  type	"square",
+  neighbours	["NCAA",	"PCAA",	"XBAA",	"LCAA",]
+ }
+ NCAA	{
+  type	"square",
+  neighbours	["OCAA",	"MCAA",	"SDAA",	"PDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ OCAA	{
+  type	"square",
+  neighbours	["PCAA",	"NCAA",	"QCAA",	"TBAA",]
+ }
+ PCAA	{
+  type	"square",
+  neighbours	["UBAA",	"WBAA",	"MCAA",	"OCAA",]
+ }
+ QCAA	{
+  type	"square",
+  neighbours	["RCAA",	"SBAA",	"OCAA",	"PDAA",]
+ }
+ RCAA	{
+  type	"square",
+  neighbours	["SCAA",	"RBAA",	"QCAA",	"QDAA",]
+ }
+ SCAA	{
+  type	"square",
+  neighbours	["TCAA",	"QBAA",	"RCAA",	"RDAA",]
+ }
+ TCAA	{
+  type	"square",
+  neighbours	["UCAA",	"",	"PBAA",	"SCAA",]
+ }
+ UCAA	{
+  type	"square",
+  neighbours	["VCAA",	"",	"TCAA",	"RDAA",]
+ }
+ VCAA	{
+  type	"square",
+  neighbours	["WCAA",	"",	"UCAA",	"MDAA",]
+ }
+ WCAA	{
+  type	"square",
+  neighbours	["GCAA",	"XCAA",	"",	"VCAA",]
+ }
+ XCAA	{
+  type	"right",
+  neighbours	["WCAA",	"",	"YCAA",	"",]
+ }
+ YCAA	{
+  type	"right",
+  neighbours	["ZCAA",	"",	"XCAA",	"",]
+ }
+ ZCAA	{
+  type	"right",
+  neighbours	["YCAA",	"",	"ADAA",	"",]
+ }
+ ADAA	{
+  type	"right",
+  neighbours	["BDAA",	"",	"ZCAA",	"",]
+ }
+ BDAA	{
+  type	"right",
+  neighbours	["ADAA",	"",	"CDAA",	"",]
+ }
+ CDAA	{
+  type	"right",
+  neighbours	["DDAA",	"",	"BDAA",	"",]
+ }
+ DDAA	{
+  type	"square",
+  neighbours	["CDAA",	"EDAA",	"KDAA",	"",]
+ }
+ EDAA	{
+  type	"square",
+  neighbours	["DDAA",	"",	"FDAA",	"LDAA",]
+ }
+ FDAA	{
+  type	"square",
+  neighbours	["EDAA",	"",	"",	"GDAA",]
+ }
+ GDAA	{
+  type	"square",
+  neighbours	["FDAA",	"",	"HDAA",	"LDAA",]
+ }
+ HDAA	{
+  type	"square",
+  neighbours	["IDAA",	"GDAA",	"",	"",]
+ }
+ IDAA	{
+  type	"square",
+  neighbours	["JDAA",	"LDAA",	"HDAA",	"",]
+ }
+ JDAA	{
+  type	"square",
+  neighbours	["KDAA",	"IDAA",	"",	"",]
+ }
+ KDAA	{
+  type	"square",
+  neighbours	["LDAA",	"JDAA",	"",	"DDAA",]
+ }
+ LDAA	{
+  type	"square",
+  neighbours	["GDAA",	"IDAA",	"KDAA",	"EDAA",]
+ }
+ MDAA	{
+  type	"square",
+  neighbours	["NDAA",	"GCAA",	"VCAA",	"RDAA",]
+ }
+ NDAA	{
+  type	"square",
+  neighbours	["ODAA",	"HCAA",	"MDAA",	"QDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ODAA	{
+  type	"square",
+  neighbours	["PDAA",	"SDAA",	"ICAA",	"NDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ PDAA	{
+  type	"square",
+  neighbours	["QCAA",	"NCAA",	"ODAA",	"QDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ QDAA	{
+  type	"square",
+  neighbours	["RDAA",	"RCAA",	"PDAA",	"NDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ RDAA	{
+  type	"square",
+  neighbours	["MDAA",	"UCAA",	"SCAA",	"QDAA",]
+ }
+ SDAA	{
+  type	"square",
+  neighbours	["ODAA",	"NCAA",	"LCAA",	"JCAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ TDAA	{
+  type	"right",
+  neighbours	["JAAA",	"",	"UDAA",	"",]
+ }
+ UDAA	{
+  type	"right",
+  neighbours	["VDAA",	"",	"TDAA",	"",]
+ }
+ VDAA	{
+  type	"right",
+  neighbours	["UDAA",	"",	"WDAA",	"",]
+  s0	{
+   type	"MagnetoBombLauncher",
+   orient	1
+  }
+ }
+ WDAA	{
+  type	"right",
+  neighbours	["XDAA",	"",	"VDAA",	"",]
+ }
+ XDAA	{
+  type	"right",
+  neighbours	["WDAA",	"",	"YDAA",	"",]
+ }
+ YDAA	{
+  type	"right",
+  neighbours	["ZDAA",	"",	"XDAA",	"",]
+ }
+ ZDAA	{
+  type	"right",
+  neighbours	["YDAA",	"",	"AEAA",	"",]
+ }
+ AEAA	{
+  type	"right",
+  neighbours	["BEAA",	"",	"ZDAA",	"",]
+ }
+ BEAA	{
+  type	"right",
+  neighbours	["AEAA",	"",	"CEAA",	"",]
+ }
+ CEAA	{
+  type	"right",
+  neighbours	["DEAA",	"",	"BEAA",	"",]
+ }
+ DEAA	{
+  type	"right",
+  neighbours	["CEAA",	"",	"EEAA",	"",]
+ }
+ EEAA	{
+  type	"right",
+  neighbours	["FEAA",	"",	"DEAA",	"",]
+ }
+ FEAA	{
+  type	"right",
+  neighbours	["EEAA",	"",	"GEAA",	"",]
+ }
+ GEAA	{
+  type	"square",
+  neighbours	["FEAA",	"HEAA",	"DFAA",	"",]
+ }
+ HEAA	{
+  type	"square",
+  neighbours	["GEAA",	"",	"IEAA",	"EFAA",]
+ }
+ IEAA	{
+  type	"square",
+  neighbours	["HEAA",	"",	"JEAA",	"FFAA",]
+ }
+ JEAA	{
+  type	"square",
+  neighbours	["IEAA",	"",	"KEAA",	"GFAA",]
+ }
+ KEAA	{
+  type	"square",
+  neighbours	["JEAA",	"",	"LEAA",	"REAA",]
+ }
+ LEAA	{
+  type	"right",
+  neighbours	["MEAA",	"",	"KEAA",	"",]
+ }
+ MEAA	{
+  type	"right",
+  neighbours	["LEAA",	"",	"NEAA",	"",]
+ }
+ NEAA	{
+  type	"right",
+  neighbours	["OEAA",	"",	"MEAA",	"",]
+ }
+ OEAA	{
+  type	"right",
+  neighbours	["NEAA",	"",	"PEAA",	"",]
+ }
+ PEAA	{
+  type	"square",
+  neighbours	["OEAA",	"QEAA",	"",	"",]
+ }
+ QEAA	{
+  type	"square",
+  neighbours	["PEAA",	"",	"",	"",]
+ }
+ REAA	{
+  type	"square",
+  neighbours	["KEAA",	"",	"SEAA",	"GFAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ SEAA	{
+  type	"square",
+  neighbours	["REAA",	"",	"TEAA",	"HFAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ TEAA	{
+  type	"square",
+  neighbours	["SEAA",	"",	"UEAA",	"MFAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ UEAA	{
+  type	"square",
+  neighbours	["TEAA",	"",	"VEAA",	"NFAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ VEAA	{
+  type	"square",
+  neighbours	["UEAA",	"",	"",	"WEAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ WEAA	{
+  type	"square",
+  neighbours	["VEAA",	"",	"XEAA",	"NFAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ XEAA	{
+  type	"square",
+  neighbours	["WEAA",	"",	"YEAA",	"OFAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ YEAA	{
+  type	"square",
+  neighbours	["XEAA",	"",	"ZEAA",	"PFAA",]
+ }
+ ZEAA	{
+  type	"square",
+  neighbours	["YEAA",	"",	"",	"AFAA",]
+ }
+ AFAA	{
+  type	"square",
+  neighbours	["ZEAA",	"",	"BFAA",	"PFAA",]
+ }
+ BFAA	{
+  type	"square",
+  neighbours	["AFAA",	"",	"CFAA",	"KFAA",]
+ }
+ CFAA	{
+  type	"square",
+  neighbours	["DFAA",	"JFAA",	"BFAA",	"",]
+ }
+ DFAA	{
+  type	"square",
+  neighbours	["EFAA",	"CFAA",	"",	"GEAA",]
+ }
+ EFAA	{
+  type	"square",
+  neighbours	["FFAA",	"JFAA",	"DFAA",	"HEAA",]
+ }
+ FFAA	{
+  type	"square",
+  neighbours	["GFAA",	"IFAA",	"EFAA",	"IEAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ GFAA	{
+  type	"square",
+  neighbours	["JEAA",	"REAA",	"HFAA",	"FFAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ HFAA	{
+  type	"square",
+  neighbours	["IFAA",	"GFAA",	"SEAA",	"MFAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ IFAA	{
+  type	"square",
+  neighbours	["JFAA",	"FFAA",	"HFAA",	"LFAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ JFAA	{
+  type	"square",
+  neighbours	["CFAA",	"EFAA",	"IFAA",	"KFAA",]
+ }
+ KFAA	{
+  type	"square",
+  neighbours	["BFAA",	"JFAA",	"LFAA",	"PFAA",]
+ }
+ LFAA	{
+  type	"square",
+  neighbours	["KFAA",	"IFAA",	"MFAA",	"OFAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ MFAA	{
+  type	"square",
+  neighbours	["LFAA",	"HFAA",	"TEAA",	"NFAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ NFAA	{
+  type	"square",
+  neighbours	["MFAA",	"UEAA",	"WEAA",	"OFAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ OFAA	{
+  type	"square",
+  neighbours	["NFAA",	"XEAA",	"PFAA",	"LFAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ PFAA	{
+  type	"square",
+  neighbours	["OFAA",	"YEAA",	"AFAA",	"KFAA",]
+ }
+}

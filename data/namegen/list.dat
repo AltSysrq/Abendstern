@@ -1,0 +1,4 @@
+enbc = { filename = "data/namegen/enbc.dat"; weight = 10; };
+ruola = { filename = "data/namegen/ru_old_latin.dat"; weight = 7; };
+ruwcy = { filename = "data/namegen/ru_word_cyr.dat"; weight = 1; };
+de = { filename = "data/namegen/de.dat"; weight = 7; };

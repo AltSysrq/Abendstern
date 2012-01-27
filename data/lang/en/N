@@ -1,0 +1,53 @@
+~en
+ Networking messages
+ Author: Jason Lingle
+
+@cxn
+-rejected
++Unable to connect to server
+-timeout
++The server took too long to respond
+-unexpected
++The connection was unexpectedly broken
+
+@protocol
+-error
++The server sent an invalid or unexpected request
+
+@name
+-too_short
++Name is too short (3 chars min)
+-too_long
++Name is too long (32 chars max)
+-has_control
++Name contains control characters
+-insuf_alpha
++Name has too few letters (3 min)
+-duplicate
++Name is already in use
+-bad_prefix
++Name begins with a restricted prefix
+
+@login
+-failed
++Username/password combo not found
+-already
++Account in use; perhaps try waiting a few minutes
+
+@file
+-refused
++The server refused to work with the given file.
+-insuf_space
++Your disk usage quota has been exceeded.
+-not_found
++File not found.
+
+@general
+-success
++The operation completed successfully
+-failure
++The operation could not be completed
+
+@session
+-timeout
++The session has expired

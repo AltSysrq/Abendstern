@@ -1,0 +1,91 @@
+# Standard AI configuration
+test = {
+  boot = (
+    { module = "core/procedure";
+      weight = 1;
+      modules = (
+        { module = "introspection/engines"; },
+        { module = "introspection/throttle"; weight = 4; },
+        { module = "introspection/weapons"; weight = 7; },
+        { module = "target/nearest"; },
+        { module = "state/goto"; target = "navigate"; }
+      );
+    }
+  );
+  navigate = (
+    { module = "navigation/target";
+      weight = 1;
+      cruising_speed = 2.0;
+    },
+    { module = "state/target_distance";
+      weight = 1;
+      consider_this_close = 4.0;
+      close_state = "attack";
+      far_state = "navigate";
+    },
+    { module = "state/edge_detect"; scared = "avoid_edge"; weight = 1; },
+    { module = "introspection/throttle"; weight = 1; },
+    { module = "introspection/weapons"; weight = 1; },
+    { module = "target/nearest"; weight = 1; }
+  );
+  attack = (
+    { module = "introspection/weapons"; weight = 1; },
+    { module = "attack/basic_aim"; weight = 4; },
+    { module = "core/procedure"; weight = 4;
+      modules = (
+        { module = "attack/select_weapon"; },
+        { module = "attack/weapon_level"; },
+        { module = "attack/fire"; }
+      ); },
+    { module = "state/edge_detect"; scared = "avoid_edge"; otherwise = "attack"; weight = 1; },
+    { module = "target/nearest"; weight = 1; },
+    { module = "state/target_distance";
+      weight = 1;
+      consider_this_close = 4.0;
+      close_state = "attack";
+      far_state = "navigate";
+    },
+    { module = "state/detect_overlap";
+      weight = 1;
+      overlap = "overlap";
+    }
+  );
+  avoid_edge = (
+    { module = "navigation/avoid_edge"; weight = 3; },
+    { module = "state/edge_detect"; scared = "avoid_edge"; otherwise = "navigate"; weight = 1; }
+  );
+  overlap = (
+    { module = "navigation/run_away_simple"; weight = 1; },
+    { module = "state/detect_overlap"; weight = 1; otherwise = "navigate"; }
+  );
+};
+
+# AI to use on player ships when paused in
+# non-pausable modes
+temp = {
+  boot = (
+    { module = "state/goto"; target = "main"; weight = 1; }
+  );
+  main = (
+    { module = "introspection/throttle"; weight = 1; },
+    { module = "state/edge_detect"; scared = "avoid_edge"; otherwise = "main";
+      consider_this_scary = 20000; weight = 1; },
+    { module = "core/procedure"; weight = 1;
+      modules = (
+        { module = "navigation/run_away_simple"; },
+        { module = "core/idle"; weight = 50; }
+      );
+    },
+    { module = "core/procedure"; weight = 1;
+      modules = (
+        { module = "navigation/park"; },
+        { module = "core/idle"; weight = 50; }
+      );
+    }
+  );
+  avoid_edge = (
+    { module = "navigation/avoid_edge"; weight = 3; },
+    { module = "state/edge_detect"; scared = "avoid_edge"; otherwise = "main";
+      consider_this_scary = 20000; weight = 1; }
+  );
+};

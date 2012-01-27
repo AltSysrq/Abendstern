@@ -1,0 +1,13 @@
+# Loads secondary packages not directly required by BootManager
+
+if {$PLATFORM == "WINDOWS"} {
+  source tcllib/aes/aes.tcl
+  source tcllib/sha1/sha256.tcl
+}
+
+package require http
+package require tls
+package require aes
+package require sha256
+
+source tcl/lssinfo.tcl

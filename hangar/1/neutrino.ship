@@ -1,0 +1,113 @@
+info	{
+ name	"Neutrino",
+ alliance	["ship:neutrino",]
+ version	0
+ author	"AltSysrq",
+ bridge	"AAAA",
+ reinforcement	1.0
+ class	"C",
+ old_format	"cn00ss0pc30 s1pc30 n10rs0we.n20ss0wbs1pc30 .n32rs0we..n10ss0ea"
+		"s1pf.n20ss0pfs1pfn10es0pf.n30es0pf..n30ss0eas1pf..\n1\n",
+ mass	2610.0
+ energy_levels	{
+  EnergyCharge	4
+  MagnetoBomb	3
+ }
+ verification_signature	1474576536
+ sharing_enabled	t
+ fileid	217
+ ownerid	1
+ needs_uploading	f
+}
+cells	{
+ AAAA	{
+  type	"circle",
+  neighbours	["BAAA",	"FAAA",	"GAAA",	"JAAA",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["AAAA",	"CAAA",	"DAAA",	"EAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ CAAA	{
+  type	"right",
+  neighbours	["BAAA",	"",	"",	"",]
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["BAAA",	"",	"",	"",]
+  s0	{
+   type	"MagnetoBombLauncher",
+   orient	2
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ EAAA	{
+  type	"right",
+  neighbours	["",	"",	"BAAA",	"",]
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	0
+  }
+ }
+ FAAA	{
+  type	"square",
+  neighbours	["AAAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ GAAA	{
+  type	"square",
+  neighbours	["AAAA",	"HAAA",	"",	"IAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ HAAA	{
+  type	"equil",
+  neighbours	["GAAA",	"",	"",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ IAAA	{
+  type	"equil",
+  neighbours	["GAAA",	"",	"",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ JAAA	{
+  type	"square",
+  neighbours	["AAAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+}

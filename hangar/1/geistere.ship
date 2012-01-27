@@ -1,0 +1,258 @@
+info	{
+ name	"Geisterengel",
+ author	"AltSysrq",
+ version	0
+ bridge	"konnichiwa",
+ reinforcement	1.0
+ class	"A",
+ alliance	["EUF",	"WUDR",]
+ mass	10408.0
+ energy_levels	{
+  SGBomb	3
+  Monophase	3
+ }
+ verification_signature	61109615
+ sharing_enabled	t
+ fileid	220
+ ownerid	1
+ needs_uploading	f
+}
+cells	{
+ konnichiwa	{
+  type	"square",
+  neighbours	["douroupou",	"foitasi",	"mibajou",	"shamoura",]
+ }
+ mibajou	{
+  neighbours	["konnichiwa",	"shaishougai",	"yiwabou",	"meshoufei",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"CloakingDevice",
+  }
+ }
+ yiwabou	{
+  neighbours	["mibajou",	"geidupei",	"",	"moifenou",]
+  type	"square",
+  s0	{
+   type	"MiniGravwaveDriveMKII",
+   orient	2
+  }
+  s1	{
+   type	"CloakingDevice",
+  }
+ }
+ geidupei	{
+  neighbours	["yiwabou",	"shaishougai",	"gainryejo",	"",]
+  type	"square",
+  s0	{
+   type	"MiniGravwaveDriveMKII",
+   orient	3
+  }
+  s1	{
+   type	"CloakingDevice",
+  }
+ }
+ gainryejo	{
+  neighbours	["geidupei",	"poyofi",	"",	"",]
+  type	"square",
+  s0	{
+   type	"MiniGravwaveDriveMKII",
+   orient	3
+  }
+  s1	{
+   type	"CloakingDevice",
+  }
+ }
+ moifenou	{
+  neighbours	["yiwabou",	"",	"sepouri",	"meshoufei",]
+  type	"square",
+  s0	{
+   type	"MiniGravwaveDriveMKII",
+   orient	1
+  }
+  s1	{
+   type	"CloakingDevice",
+  }
+ }
+ sepouri	{
+  neighbours	["moifenou",	"",	"",	"meinseinei",]
+  type	"square",
+  s0	{
+   type	"MiniGravwaveDriveMKII",
+   orient	1
+  }
+  s1	{
+   type	"CloakingDevice",
+  }
+ }
+ shaishougai	{
+  neighbours	["geidupei",	"mibajou",	"foitasi",	"poyofi",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"CloakingDevice",
+  }
+ }
+ meshoufei	{
+  neighbours	["mibajou",	"moifenou",	"meinseinei",	"shamoura",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"CloakingDevice",
+  }
+ }
+ foitasi	{
+  neighbours	["konnichiwa",	"gaimeisei",	"wunije",	"shaishougai",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ wunije	{
+  neighbours	["foitasi",	"shujorain",	"",	"poyofi",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ shamoura	{
+  neighbours	["konnichiwa",	"meshoufei",	"sahounjoi",	"foijousai",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ sahounjoi	{
+  neighbours	["shamoura",	"meinseinei",	"",	"nomeidai",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ douroupou	{
+  neighbours	["konnichiwa",	"foijousai",	"mojatai",	"gaimeisei",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ gaimeisei	{
+  neighbours	["douroupou",	"jireinai",	"shujorain",	"foitasi",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ foijousai	{
+  neighbours	["douroupou",	"shamoura",	"nomeidai",	"toiyijai",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ jireinai	{
+  neighbours	["gaimeisei",	"mojatai",	"",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ mojatai	{
+  neighbours	["jireinai",	"douroupou",	"toiyijai",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ toiyijai	{
+  neighbours	["mojatai",	"foijousai",	"",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ poyofi	{
+  neighbours	["shaishougai",	"wunije",	"",	"gainryejo",]
+  type	"circle",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ meinseinei	{
+  neighbours	["meshoufei",	"sepouri",	"",	"sahounjoi",]
+  type	"circle",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ shujorain	{
+  neighbours	["wunije",	"gaimeisei",	"",	"",]
+  type	"circle",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	2
+  }
+ }
+ nomeidai	{
+  neighbours	["sahounjoi",	"",	"",	"foijousai",]
+  type	"circle",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"SemiguidedBombLauncher",
+   orient	2
+  }
+ }
+}

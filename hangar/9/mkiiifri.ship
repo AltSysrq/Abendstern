@@ -1,0 +1,5527 @@
+info	{
+ name	"Mk. III Frigate \"Victory\"",
+ alliance	["EUF",]
+ mass	330830.0
+ ai	({
+   species	27188
+   uid	32239
+   generation	0
+   performance	[6.79922141e-06	0.0	0.0]
+   edgeCaution	2336.49707
+   navCaution	28968.16797
+   considerThisFast	0.003390301019
+   firingAngles	{
+    EnergyCharge	1.015622377
+    MagnetoBomb	-2.160198689
+    PlasmaBurst	-0.7753551006
+    SGBomb	2.06700635
+   }
+   typeSpecific	({
+     typename	"ship:interceptor",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2505504787
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2505504787
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2505504787
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2505504787
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:odyssey",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:vic",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:haifisch3",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:panzer",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:komet",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    })
+  }	{
+   species	31230
+   uid	5633
+   generation	0
+   performance	[0.0	0.0	0.0	0.0	4.544845069e-06	0.0
+		0.0	3.606839982e-06	0.0	1.66023051e-06	6.640922038e-06
+		0.0	0.0	0.0]
+   edgeCaution	8263.801758
+   navCaution	41113.92578
+   considerThisFast	0.002718893811
+   firingAngles	{
+    EnergyCharge	0.8336482048
+    MagnetoBomb	-1.485418081
+    PlasmaBurst	0.0254073143
+    SGBomb	-2.737376451
+   }
+   typeSpecific	({
+     typename	"ship:interceptor",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2505504787
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2505504787
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2505504787
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2505504787
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:komet",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:odyssey",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:panzer",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:vic",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:haifisch3",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:haifisch2",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    })
+  }	{
+   species	32607
+   uid	16321
+   generation	0
+   performance	[6.814851986e-06	0.0	0.0	4.254232863e-06	0.0
+		2.134913757e-06	1.798548169e-06	1.704126248e-06	0.0
+		4.980691301e-06	0.0	0.0	6.641881555e-06]
+   edgeCaution	12737.20508
+   navCaution	34413.89453
+   considerThisFast	0.009579760022
+   firingAngles	{
+    EnergyCharge	2.891546488
+    MagnetoBomb	-1.212361336
+    PlasmaBurst	-1.593183517
+    SGBomb	2.303821802
+   }
+   typeSpecific	({
+     typename	"ship:interceptor",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2505504787
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2505504787
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2505504787
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2505504787
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:komet",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:vic",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:odyssey",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:haifisch2",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:panzer",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:haifisch3",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    })
+  }	{
+   species	1825
+   uid	24419
+   generation	0
+   performance	[]
+   edgeCaution	11358.37891
+   navCaution	58262.27734
+   considerThisFast	0.008284859359
+   firingAngles	{
+    EnergyCharge	0.09424686432
+    MagnetoBomb	0.4942443371
+    PlasmaBurst	1.999317408
+    SGBomb	2.558470488
+   }
+   typeSpecific	()
+  }	{
+   species	13768
+   uid	14200
+   generation	0
+   performance	[]
+   edgeCaution	33670.46094
+   navCaution	42260.20312
+   considerThisFast	0.001085238182
+   firingAngles	{
+    EnergyCharge	0.9684507847
+    MagnetoBomb	-0.2202289104
+    PlasmaBurst	-2.9958601
+    SGBomb	2.361347914
+   }
+   typeSpecific	()
+  }	{
+   species	24158
+   uid	12807
+   generation	0
+   performance	[0.0	3.320461019e-06]
+   edgeCaution	43767.20312
+   navCaution	16560.56445
+   considerThisFast	0.0006799523253
+   firingAngles	{
+    EnergyCharge	0.257237196
+    MagnetoBomb	0.8996112347
+    PlasmaBurst	-2.702860832
+    SGBomb	-1.881005526
+   }
+   typeSpecific	({
+     typename	"ship:haifisch2",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:panzer",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:haifisch3",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.245647639
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.245647639
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.245647639
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.245647639
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:odyssey",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:vic",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:komet",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1969196349
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1969196349
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1969196349
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1969196349
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:interceptor",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341834903
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341834903
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341834903
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341834903
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    })
+  }	{
+   species	7969
+   uid	10100
+   generation	0
+   performance	[]
+   edgeCaution	32537.00586
+   navCaution	1847.590454
+   considerThisFast	0.0005911435001
+   firingAngles	{
+    EnergyCharge	1.8510921
+    MagnetoBomb	1.384364367
+    PlasmaBurst	-1.46413362
+    SGBomb	3.108802557
+   }
+   typeSpecific	()
+  }	{
+   species	6227
+   uid	17126
+   generation	0
+   performance	[1.66023051e-06]
+   edgeCaution	6403.393555
+   navCaution	5789.97168
+   considerThisFast	0.009378337301
+   firingAngles	{
+    EnergyCharge	-0.8039264679
+    MagnetoBomb	0.1538822651
+    PlasmaBurst	-1.802961946
+    SGBomb	1.106321573
+   }
+   typeSpecific	({
+     typename	"ship:odyssey",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:vic",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:panzer",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2341338098
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:komet",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:haifisch2",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    })
+  }	{
+   species	9891
+   uid	2517
+   generation	0
+   performance	[1.66023051e-06]
+   edgeCaution	12262.94824
+   navCaution	44127.93359
+   considerThisFast	0.000880764157
+   firingAngles	{
+    EnergyCharge	0.8273200989
+    MagnetoBomb	-0.7577137947
+    PlasmaBurst	2.836321115
+    SGBomb	-0.3903143406
+   }
+   typeSpecific	({
+     typename	"ship:odyssey",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:haifisch3",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2487614006
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2487614006
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2487614006
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2487614006
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:komet",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.1963135004
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:haifisch2",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2141467035
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:vic",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    })
+  }	{
+   species	30389
+   uid	14530
+   generation	0
+   performance	[0.0]
+   edgeCaution	56812.03906
+   navCaution	45962.70703
+   considerThisFast	0.003684194293
+   firingAngles	{
+    EnergyCharge	1.48560977
+    MagnetoBomb	0.264523983
+    PlasmaBurst	0.5703704357
+    SGBomb	2.91072154
+   }
+   typeSpecific	({
+     typename	"ship:odyssey",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.265656054
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:vic",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.3161954284
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:haifisch3",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2459148765
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    }	{
+     typename	"ship:interceptor",
+     dangerAngle	0.0
+     dangerAngleSize	0.1000000015
+     vulnAngle	3.141592741
+     vulnAngleSize	0.1000000015
+     strategy	"Simple",
+     weaponInfo	{
+      EnergyCharge	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2519181073
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      MagnetoBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2519181073
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      PlasmaBurst	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2519181073
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+      SGBomb	{
+       weight	0.5
+       marginOfError	0.5235987902
+       minDist	0.2519181073
+       maxDistOff	2.0
+       levelBrackets	({
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        }	{
+         score	3.141592741
+         power	5
+        })
+      }
+     }
+    })
+  }	{
+   species	1436
+   uid	14671
+   generation	0
+   performance	[]
+   edgeCaution	4770.042969
+   navCaution	48689.22656
+   considerThisFast	0.007607043255
+   firingAngles	{
+    EnergyCharge	2.495766878
+    MagnetoBomb	1.739107847
+    PlasmaBurst	-2.853770733
+    SGBomb	1.197596312
+   }
+   typeSpecific	()
+  }	{
+   species	12279
+   uid	1460
+   generation	0
+   performance	[]
+   edgeCaution	38125.55078
+   navCaution	15634.02246
+   considerThisFast	0.0009570604307
+   firingAngles	{
+    EnergyCharge	-1.588965058
+    MagnetoBomb	2.870069742
+    PlasmaBurst	-0.4181184769
+    SGBomb	-0.6610701084
+   }
+   typeSpecific	()
+  }	{
+   species	6913
+   uid	17642
+   generation	0
+   performance	[]
+   edgeCaution	5916.318359
+   navCaution	40723.90234
+   considerThisFast	0.009918210097
+   firingAngles	{
+    EnergyCharge	2.425010443
+    MagnetoBomb	-1.744860649
+    PlasmaBurst	-2.514558792
+    SGBomb	-0.1327893734
+   }
+   typeSpecific	()
+  }	{
+   species	25983
+   uid	17676
+   generation	0
+   performance	[]
+   edgeCaution	36380.50391
+   navCaution	52129.88672
+   considerThisFast	0.0004486221005
+   firingAngles	{
+    EnergyCharge	-2.719735146
+    MagnetoBomb	0.1644284725
+    PlasmaBurst	0.2507174015
+    SGBomb	2.648977995
+   }
+   typeSpecific	()
+  }	{
+   species	7283
+   uid	11135
+   generation	0
+   performance	[]
+   edgeCaution	21460.61523
+   navCaution	24297.00586
+   considerThisFast	0.008233283646
+   firingAngles	{
+    EnergyCharge	1.880238295
+    MagnetoBomb	2.788382769
+    PlasmaBurst	-0.01332688332
+    SGBomb	1.625014544
+   }
+   typeSpecific	()
+  }	{
+   species	1589
+   uid	30755
+   generation	0
+   performance	[]
+   edgeCaution	33644.82422
+   navCaution	36098.51172
+   considerThisFast	0.009028595872
+   firingAngles	{
+    EnergyCharge	1.82002759
+    MagnetoBomb	-2.689438105
+    PlasmaBurst	2.858564615
+    SGBomb	2.776877642
+   }
+   typeSpecific	()
+  })
+ version	0
+ bridge	"AAAA",
+ reinforcement	7.0
+ class	"C",
+ sharing_enabled	t
+ author	"AbyssalYogSothOth",
+ fileid	460
+ ownerid	9
+ needs_uploading	f
+}
+cells	{
+ AAAA	{
+  type	"square",
+  neighbours	["BAAA",	"HAAA",	"FAAA",	"DAAA",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["AAAA",	"CAAA",	"",	"IAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ CAAA	{
+  type	"square",
+  neighbours	["BAAA",	"DAAA",	"VAAA",	"NAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["CAAA",	"AAAA",	"EAAA",	"ABAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ EAAA	{
+  type	"square",
+  neighbours	["DAAA",	"FAAA",	"",	"BBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ FAAA	{
+  type	"square",
+  neighbours	["EAAA",	"AAAA",	"GAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ GAAA	{
+  type	"square",
+  neighbours	["FAAA",	"HAAA",	"JBAA",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ HAAA	{
+  type	"square",
+  neighbours	["GAAA",	"AAAA",	"IAAA",	"IBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ IAAA	{
+  type	"square",
+  neighbours	["HAAA",	"BAAA",	"JAAA",	"FBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ JAAA	{
+  type	"square",
+  neighbours	["IAAA",	"",	"KAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ KAAA	{
+  type	"square",
+  neighbours	["JAAA",	"LAAA",	"SAAA",	"UAAA",]
+ }
+ LAAA	{
+  type	"square",
+  neighbours	["KAAA",	"",	"MAAA",	"RAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ MAAA	{
+  type	"square",
+  neighbours	["LAAA",	"NAAA",	"OAAA",	"QAAA",]
+ }
+ NAAA	{
+  type	"square",
+  neighbours	["MAAA",	"",	"CAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ OAAA	{
+  type	"square",
+  neighbours	["MAAA",	"",	"MCAA",	"PAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ PAAA	{
+  type	"square",
+  neighbours	["OAAA",	"LCAA",	"JCAA",	"QAAA",]
+ }
+ QAAA	{
+  type	"square",
+  neighbours	["PAAA",	"ICAA",	"RAAA",	"MAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ RAAA	{
+  type	"square",
+  neighbours	["QAAA",	"HCAA",	"SAAA",	"LAAA",]
+ }
+ SAAA	{
+  type	"square",
+  neighbours	["RAAA",	"GCAA",	"TAAA",	"KAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ TAAA	{
+  type	"square",
+  neighbours	["SAAA",	"FCAA",	"DCAA",	"UAAA",]
+ }
+ UAAA	{
+  type	"square",
+  neighbours	["TAAA",	"ACAA",	"",	"KAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ VAAA	{
+  type	"square",
+  neighbours	["CAAA",	"ABAA",	"WAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ WAAA	{
+  type	"square",
+  neighbours	["VAAA",	"ZAAA",	"XAAA",	"YBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ XAAA	{
+  type	"square",
+  neighbours	["WAAA",	"YAAA",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ YAAA	{
+  type	"square",
+  neighbours	["XAAA",	"ZAAA",	"EBAA",	"ZDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ZAAA	{
+  type	"square",
+  neighbours	["YAAA",	"WAAA",	"ABAA",	"DBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ ABAA	{
+  type	"square",
+  neighbours	["ZAAA",	"VAAA",	"DAAA",	"BBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ BBAA	{
+  type	"square",
+  neighbours	["ABAA",	"EAAA",	"CBAA",	"DBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ CBAA	{
+  type	"square",
+  neighbours	["BBAA",	"",	"TBAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ DBAA	{
+  type	"square",
+  neighbours	["BBAA",	"",	"EBAA",	"ZAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ EBAA	{
+  type	"square",
+  neighbours	["DBAA",	"",	"AEAA",	"YAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ FBAA	{
+  type	"square",
+  neighbours	["IAAA",	"",	"GBAA",	"IBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ GBAA	{
+  type	"square",
+  neighbours	["FBAA",	"ZBAA",	"NBAA",	"HBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ HBAA	{
+  type	"square",
+  neighbours	["GBAA",	"MBAA",	"KBAA",	"IBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ IBAA	{
+  type	"square",
+  neighbours	["HBAA",	"JBAA",	"HAAA",	"FBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ JBAA	{
+  type	"square",
+  neighbours	["IBAA",	"KBAA",	"OBAA",	"GAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ KBAA	{
+  type	"square",
+  neighbours	["JBAA",	"HBAA",	"LBAA",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ LBAA	{
+  type	"square",
+  neighbours	["KBAA",	"MBAA",	"XDAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ MBAA	{
+  type	"square",
+  neighbours	["LBAA",	"HBAA",	"NBAA",	"WDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ NBAA	{
+  type	"square",
+  neighbours	["MBAA",	"GBAA",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ OBAA	{
+  type	"square",
+  neighbours	["JBAA",	"",	"PBAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ PBAA	{
+  type	"square",
+  neighbours	["OBAA",	"WBAA",	"XCAA",	"QBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ QBAA	{
+  type	"square",
+  neighbours	["PBAA",	"",	"RBAA",	"",]
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ RBAA	{
+  type	"square",
+  neighbours	["QBAA",	"",	"SBAA",	"",]
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ SBAA	{
+  type	"square",
+  neighbours	["RBAA",	"",	"TBAA",	"",]
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ TBAA	{
+  type	"square",
+  neighbours	["SBAA",	"PCAA",	"UBAA",	"CBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ UBAA	{
+  type	"square",
+  neighbours	["TBAA",	"",	"VBAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ VBAA	{
+  type	"square",
+  neighbours	["UBAA",	"",	"KEAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ WBAA	{
+  type	"square",
+  neighbours	["PBAA",	"",	"XBAA",	"",]
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ XBAA	{
+  type	"square",
+  neighbours	["WBAA",	"",	"EEAA",	"",]
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ YBAA	{
+  type	"square",
+  neighbours	["",	"WAAA",	"",	"MCAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ ZBAA	{
+  type	"square",
+  neighbours	["",	"ACAA",	"",	"GBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ ACAA	{
+  type	"square",
+  neighbours	["UAAA",	"DCAA",	"BCAA",	"ZBAA",]
+ }
+ BCAA	{
+  type	"square",
+  neighbours	["ACAA",	"CCAA",	"DEAA",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ CCAA	{
+  type	"square",
+  neighbours	["BCAA",	"DCAA",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ DCAA	{
+  type	"square",
+  neighbours	["CCAA",	"ACAA",	"TAAA",	"ECAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ECAA	{
+  type	"square",
+  neighbours	["DCAA",	"FCAA",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ FCAA	{
+  type	"square",
+  neighbours	["ECAA",	"TAAA",	"GCAA",	"ADAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ GCAA	{
+  type	"square",
+  neighbours	["FCAA",	"SAAA",	"HCAA",	"BDAA",]
+ }
+ HCAA	{
+  type	"square",
+  neighbours	["GCAA",	"RAAA",	"ICAA",	"CDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ICAA	{
+  type	"square",
+  neighbours	["HCAA",	"QAAA",	"JCAA",	"DDAA",]
+ }
+ JCAA	{
+  type	"square",
+  neighbours	["ICAA",	"PAAA",	"KCAA",	"EDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ KCAA	{
+  type	"square",
+  neighbours	["JCAA",	"LCAA",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ LCAA	{
+  type	"square",
+  neighbours	["KCAA",	"PAAA",	"MCAA",	"OCAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ MCAA	{
+  type	"square",
+  neighbours	["LCAA",	"OAAA",	"YBAA",	"NCAA",]
+ }
+ NCAA	{
+  type	"square",
+  neighbours	["MCAA",	"",	"CEAA",	"OCAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ OCAA	{
+  type	"square",
+  neighbours	["NCAA",	"",	"",	"LCAA",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ PCAA	{
+  type	"square",
+  neighbours	["TBAA",	"",	"QCAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ QCAA	{
+  type	"square",
+  neighbours	["PCAA",	"RCAA",	"SEAA",	"YCAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ RCAA	{
+  type	"square",
+  neighbours	["QCAA",	"",	"SCAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ SCAA	{
+  type	"square",
+  neighbours	["RCAA",	"",	"TCAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ TCAA	{
+  type	"square",
+  neighbours	["SCAA",	"",	"UCAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ UCAA	{
+  type	"square",
+  neighbours	["TCAA",	"XCAA",	"VCAA",	"MEAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ VCAA	{
+  type	"square",
+  neighbours	["UCAA",	"",	"WCAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ WCAA	{
+  type	"square",
+  neighbours	["VCAA",	"",	"GEAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ XCAA	{
+  type	"square",
+  neighbours	["PBAA",	"",	"UCAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ YCAA	{
+  type	"square",
+  neighbours	["QCAA",	"",	"ZCAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ ZCAA	{
+  type	"square",
+  neighbours	["YCAA",	"",	"IEAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ ADAA	{
+  type	"square",
+  neighbours	["FCAA",	"BDAA",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ BDAA	{
+  type	"square",
+  neighbours	["ADAA",	"GCAA",	"CDAA",	"FDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ CDAA	{
+  type	"square",
+  neighbours	["BDAA",	"HCAA",	"DDAA",	"",]
+ }
+ DDAA	{
+  type	"square",
+  neighbours	["CDAA",	"ICAA",	"EDAA",	"LDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ EDAA	{
+  type	"square",
+  neighbours	["DDAA",	"JCAA",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ FDAA	{
+  type	"square",
+  neighbours	["BDAA",	"",	"GDAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ GDAA	{
+  type	"square",
+  neighbours	["FDAA",	"HDAA",	"ODAA",	"QDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ HDAA	{
+  type	"square",
+  neighbours	["GDAA",	"",	"IDAA",	"NDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ IDAA	{
+  type	"square",
+  neighbours	["HDAA",	"LDAA",	"JDAA",	"MDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ JDAA	{
+  type	"square",
+  neighbours	["IDAA",	"",	"SDAA",	"KDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ KDAA	{
+  type	"square",
+  neighbours	["JDAA",	"",	"",	"MDAA",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ LDAA	{
+  type	"square",
+  neighbours	["IDAA",	"",	"DDAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ MDAA	{
+  type	"square",
+  neighbours	["IDAA",	"KDAA",	"VDAA",	"NDAA",]
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ NDAA	{
+  type	"square",
+  neighbours	["MDAA",	"UDAA",	"ODAA",	"HDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ODAA	{
+  type	"square",
+  neighbours	["NDAA",	"TDAA",	"PDAA",	"GDAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ PDAA	{
+  type	"square",
+  neighbours	["ODAA",	"",	"",	"QDAA",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ QDAA	{
+  type	"square",
+  neighbours	["GDAA",	"PDAA",	"RDAA",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ RDAA	{
+  type	"square",
+  neighbours	["QDAA",	"",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ SDAA	{
+  type	"square",
+  neighbours	["JDAA",	"",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ TDAA	{
+  type	"square",
+  neighbours	["ODAA",	"UDAA",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ UDAA	{
+  type	"square",
+  neighbours	["TDAA",	"NDAA",	"VDAA",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ VDAA	{
+  type	"square",
+  neighbours	["UDAA",	"MDAA",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ WDAA	{
+  type	"square",
+  neighbours	["MBAA",	"",	"",	"XDAA",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ XDAA	{
+  type	"square",
+  neighbours	["WDAA",	"YDAA",	"",	"LBAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ YDAA	{
+  type	"square",
+  neighbours	["XDAA",	"",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ ZDAA	{
+  type	"square",
+  neighbours	["YAAA",	"AEAA",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ AEAA	{
+  type	"square",
+  neighbours	["ZDAA",	"EBAA",	"",	"BEAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ BEAA	{
+  type	"square",
+  neighbours	["AEAA",	"",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ CEAA	{
+  type	"square",
+  neighbours	["NCAA",	"",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ DEAA	{
+  type	"square",
+  neighbours	["BCAA",	"",	"",	"",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ EEAA	{
+  type	"square",
+  neighbours	["XBAA",	"",	"FEAA",	"",]
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ FEAA	{
+  type	"square",
+  neighbours	["EEAA",	"",	"",	"",]
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ GEAA	{
+  type	"square",
+  neighbours	["WCAA",	"",	"HEAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ HEAA	{
+  type	"square",
+  neighbours	["GEAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ IEAA	{
+  type	"square",
+  neighbours	["ZCAA",	"",	"JEAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ JEAA	{
+  type	"square",
+  neighbours	["IEAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ KEAA	{
+  type	"square",
+  neighbours	["VBAA",	"",	"LEAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ LEAA	{
+  type	"square",
+  neighbours	["KEAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ MEAA	{
+  type	"square",
+  neighbours	["UCAA",	"",	"NEAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ NEAA	{
+  type	"square",
+  neighbours	["MEAA",	"OEAA",	"",	"WEAA",]
+ }
+ OEAA	{
+  type	"square",
+  neighbours	["NEAA",	"",	"PEAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ PEAA	{
+  type	"square",
+  neighbours	["OEAA",	"",	"QEAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ QEAA	{
+  type	"square",
+  neighbours	["PEAA",	"",	"REAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ REAA	{
+  type	"square",
+  neighbours	["QEAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ SEAA	{
+  type	"square",
+  neighbours	["QCAA",	"",	"TEAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ TEAA	{
+  type	"square",
+  neighbours	["SEAA",	"UEAA",	"",	"XEAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ UEAA	{
+  type	"square",
+  neighbours	["TEAA",	"",	"VEAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ VEAA	{
+  type	"square",
+  neighbours	["UEAA",	"",	"WEAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ WEAA	{
+  type	"square",
+  neighbours	["VEAA",	"",	"NEAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ XEAA	{
+  type	"square",
+  neighbours	["TEAA",	"",	"YEAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ YEAA	{
+  type	"square",
+  neighbours	["XEAA",	"",	"ZEAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ ZEAA	{
+  type	"square",
+  neighbours	["YEAA",	"",	"AFAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ AFAA	{
+  type	"square",
+  neighbours	["ZEAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+}

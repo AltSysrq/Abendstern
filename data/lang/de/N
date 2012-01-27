@@ -1,0 +1,54 @@
+~de
+ Networking messages
+ Author: Jason Lingle
+
+@cxn
+-rejected
++Verbindung zum Server konnte nicht geöffnet werden.
+-timeout
++Der Server hat zu lange zu reagieren.
+-unexpected
++Die Verbindung wurde unerwartet verschlossen.
+
+@protocol
+-error
++Der Server sendet eine ungültige oder unerwartete Nachfrage.
+
+@name
+-too_short
++Name ist zu kurz (mind. 3 Zeichen)
+-too_long
++Name ist zu lang (meist. 32 Zeichen)
+-has_control
++Name hat Steuerzeichen
+-insuf_alpha
++Name hat zu wenige Buchstaben
+-duplicate
++Name wird schon benutzt
+-bad_prefix
++Name beginnt mit einem verbotenen Präfix
+
+@login
+-failed
++Benützernamen/Passwort-Kombination nicht gefunden.
+-already
++Konto schon benutzt; velleicht versuchen, einige Minuten zu warten.
+
+@file
+-refused
++Der Server lehnte ab, mit der Datei zu arbeiten.
+-insuf_space
++Ihre Speichernutzungsquote wurde übersteigen.
+-not_found
++Datei nicht gefunden.
+
+@general
+-success
++Die Operation wurde erfolgreich fertiggemacht.
+-failure
++Die Operation konnte nicht fertiggemacht werden.
+
+@session
+-timeout
++Die Sitzung erlosch.
+

@@ -1,0 +1,200 @@
+info	{
+ name	"Tie Bomber",
+ alliance	["ship:tie_b",]
+ version	0
+ author	"AltSysrq",
+ bridge	"AAAA",
+ reinforcement	1.0
+ class	"B",
+ old_format	"[ The Tie-Bomber! ]\nc{\n n13s s1wg s0eb {\n  n13s s0xs5 3 {\n"
+		"   n02s s0pu s1pc30 {n02e s0pc30.}.\n   n20s s0pu s1pc30 {n20e"
+		" s0pc30.}.\n   n13s s0xr s1pc30 {\n    n02r s0xr.\n    n20r s0"
+		"xr.\n   }.\n  }.\n }.\n n31s s1wp s0eb {\n  n31s s0xs5 3 {\n  "
+		" n02s s0pu s1pc30 {n02e s0pc30.}.\n   n20s s0pu s1pc30 {n20e s"
+		"0pc30.}.\n   n31s s0xr s1pc30 {\n    n00r s0xr.\n    n22r s0xr"
+		".\n   }.\n  }.\n }.\n}.\n1.0\n  \n",
+ mass	4442.0
+ energy_levels	{
+  PlasmaBurst	3
+  SGBomb	2
+ }
+ verification_signature	292137596
+ sharing_enabled	t
+ fileid	252
+ ownerid	1
+ needs_uploading	f
+}
+cells	{
+ AAAA	{
+  type	"circle",
+  neighbours	["",	"BAAA",	"",	"KAAA",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["",	"CAAA",	"",	"AAAA",]
+  s0	{
+   type	"BussardRamjet",
+   orient	2
+  }
+  s1	{
+   type	"SemiguidedBombLauncher",
+   orient	0
+  }
+ }
+ CAAA	{
+  type	"square",
+  neighbours	["DAAA",	"HAAA",	"FAAA",	"BAAA",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	3.0
+   strength	5.0
+  }
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["EAAA",	"IAAA",	"CAAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ EAAA	{
+  type	"equil",
+  neighbours	["",	"",	"DAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ FAAA	{
+  type	"square",
+  neighbours	["CAAA",	"JAAA",	"GAAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ GAAA	{
+  type	"equil",
+  neighbours	["FAAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ HAAA	{
+  type	"square",
+  neighbours	["IAAA",	"",	"JAAA",	"CAAA",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ IAAA	{
+  type	"right",
+  neighbours	["DAAA",	"",	"HAAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+ }
+ JAAA	{
+  type	"right",
+  neighbours	["HAAA",	"",	"FAAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+ }
+ KAAA	{
+  type	"square",
+  neighbours	["",	"AAAA",	"",	"LAAA",]
+  s0	{
+   type	"BussardRamjet",
+   orient	2
+  }
+  s1	{
+   type	"PlasmaBurstLauncher",
+   orient	0
+  }
+ }
+ LAAA	{
+  type	"square",
+  neighbours	["MAAA",	"KAAA",	"OAAA",	"QAAA",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	3.0
+   strength	5.0
+  }
+ }
+ MAAA	{
+  type	"square",
+  neighbours	["NAAA",	"",	"LAAA",	"RAAA",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ NAAA	{
+  type	"equil",
+  neighbours	["",	"",	"MAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ OAAA	{
+  type	"square",
+  neighbours	["LAAA",	"",	"PAAA",	"SAAA",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ PAAA	{
+  type	"equil",
+  neighbours	["OAAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ QAAA	{
+  type	"square",
+  neighbours	["RAAA",	"LAAA",	"SAAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ RAAA	{
+  type	"right",
+  neighbours	["QAAA",	"",	"MAAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+ }
+ SAAA	{
+  type	"right",
+  neighbours	["OAAA",	"",	"QAAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+ }
+}

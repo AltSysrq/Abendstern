@@ -1,0 +1,103 @@
+The language of the Democratic Union of Western Republics is a fusion of American English and American Spanish. Only differences 
+from American English are shown.
+
+Is/Es
+Like Spanish, DUWR English has two forms of "be", albeit only in the present tense. "Is" is the equivalent of "estar" in Spanish, 
+and is conjugated the same as the English word. "Es" is the equivalent of "ser", and conjugated to "er" for plural.
+
+Articles
+All articles (and similar) have plural forms.
+  a -> as ("as" as a connector never used)
+  an -> anes (replaces "some")
+  the -> these
+  all -> alles (replaces "all of")
+  
+'Y':
+All syllable-initial 'y' sounds mutate to 'j' (you->jew, yellow->jello).
+
+Jew/Jall (You/Y'all)
+Under influence from southern dialect and Spanish differentiation of Ud/Uds, "jew" split into two separate pronouns. "Jew" is 
+singular, and receives a singular verb; "jall" is plural and receives a plural verb.
+
+Gender
+The word "it" is dropped. All nouns have masculine/feminine gender. For the sake of sanity (since this /is/ a hypothetical language, 
+after all), the gender of a noun is determined by these rules, in order of precedence:
+  + Ends with -ma: Masculine
+  + Ends with -ion: Feminine
+  + Ends with -o: Masculine
+  + Ends with -a: Feminine
+  + Ends with -or: Masculine
+  + Finally, if both first and last lettre have no curves or both have curves in their uppercase form, masculine
+  + Otherwise (different curve/no curve), feminine
+To illustrate the last two rules:
+  WORD: W is only straight lines, D has a curve, so feminine
+  SHIP: S and D both have curves, so masculine
+
+Conjugation
+The English present participle -ing ending fused with -a/e/iendo to become -ingo. This change affects all verbs.
+The English past participle (and only in this function) -ed, when a separate syllable, mutates to -ado.
+The -er suffix is replaced by -ador.
+Conditional verbs suffixed by -ia.
+
+Plurals
+Regular English plurals now follow these rules (based on last lettre):
+  a -> as
+  b -> bes
+  c -> ks
+  d -> des
+  e -> es
+  f -> fs
+  g -> g(g)es
+  h -> hes
+  i -> is
+  j -> jes
+  k -> ks
+  l -> l(l)es
+  m -> m(m)es
+  n -> n(n)es
+  ng -> nges
+  o -> os
+  p -> ps
+  r -> res
+  s -> s(s)es
+  t -> ts
+  u -> us
+  v -> ves
+  w -> wes
+  x -> xes
+  y -> ys
+  z -> zes
+
+Word mutations
+Any word starting with 's' plus another consonant has an 'e' placed at the begining.
+The -tion suffix is replaced by -sion (-asion after an 's').
+"of the" and "of these" are contracted to "othe" and "othese"
+
+Grammar mutations
+Short boolean questions with single- or double-syllable verbs are often stated in VOS form, although do-SVO is common for larger 
+questions or verbs.
+The language often prefers Head-of-Mod construction instead of Mod-Head.
+All occurrances of the -er/-est suffices are replaced by more+/most+ for all regular adjectives.
+Adjectives have "a" appended if they do not already end in it for feminine nouns.
+Occurrances of "wr" replaced with "r".
+Generally, German style verbs-with-prepositions are avoided in exchange for one-word alternatives.
+Self-references ("myself", etc) moved to immediately before the verb in declarative sentences, and changed to "self".
+Adverbs are often not marked with -ly.
+
+Word replacements
+The numbers 0--10 are sero, won, to, tree, four, five, sex, sete, ot, dien
+All occurrances of "as", "somewhat" (and synonyms) are replaced by "like"
+The word "like", when meaning "enjoy", replaced by "gusta" (gusta/gustas/gustingo/gustad/gustado).
+"Not" is replaced simply by "no".
+"North" replaced by "norte".
+"And" replaced by "y" (except in front of words starting with /i/ or /I/ sound)
+"Or" replaced by "o" (except in front of words starting with /o/ sound)
+"When" replaced by "quen".
+"That", "than", and "what" replaced by "que".
+
+Sample Text
+The Wind othe Norte y the Son were disputingo who was the more estrong quen a travelador came along rapped in a warma cloak. They 
+agreed que the first que succeeds to force the travelador to remove his cloak consideria to es more estrong que the other. Then the 
+Wind othe Norte blew like hard like she could but the more que she blew the more close the travelador self fold his cloak around. Y 
+final the Wind othe Norte quitted the attempsion. Then the Son shined warm out, y immediate the travelador removed his cloak. Y like 
+the Wind othe Norte had to confess que the Son was the more estrong of these to.

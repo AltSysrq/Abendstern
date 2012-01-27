@@ -1,0 +1,3 @@
+#! /bin/sh
+for x in gl14 gl21 release debug optoprof; do cd "$x"; make clean; cd ..; done
+

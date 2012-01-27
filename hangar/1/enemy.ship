@@ -1,0 +1,114 @@
+info	{
+ name	"Original Enemy",
+ alliance	["ship:enemy",]
+ version	0
+ author	"AltSysrq",
+ bridge	"AAAA",
+ reinforcement	2.0
+ class	"C",
+ old_format	"[The test ship for the enemy.]\ns\n n20s [s0ea] s1pf\n  n13s s"
+		"1pc30\n   n10r s0ea.\n  .\n  n31s s1pc30\n   n32r s0ea.\n  .\n"
+		" .\n n13s s0pc30 .\n n31s s0pc30 .\n n02s s0pf s1pf\n  n13s s1"
+		"we.\n  n31s s1wb.\n  n00e.\n .\n.\n2.0\n",
+ mass	5590.0
+ energy_levels	{
+  EnergyCharge	3
+  MagnetoBomb	1
+ }
+ sharing_enabled	t
+ verification_signature	920399348
+ fileid	226
+ ownerid	1
+ needs_uploading	f
+}
+cells	{
+ AAAA	{
+  type	"square",
+  neighbours	["IAAA",	"GAAA",	"BAAA",	"HAAA",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["AAAA",	"CAAA",	"",	"EAAA",]
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ CAAA	{
+  type	"square",
+  neighbours	["GAAA",	"DAAA",	"",	"BAAA",]
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ DAAA	{
+  type	"right",
+  neighbours	["CAAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	2
+  }
+ }
+ EAAA	{
+  type	"square",
+  neighbours	["HAAA",	"BAAA",	"",	"FAAA",]
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ FAAA	{
+  type	"right",
+  neighbours	["",	"",	"EAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	0
+  }
+ }
+ GAAA	{
+  type	"square",
+  neighbours	["JAAA",	"",	"CAAA",	"AAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ HAAA	{
+  type	"square",
+  neighbours	["KAAA",	"AAAA",	"EAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ IAAA	{
+  type	"square",
+  neighbours	["LAAA",	"JAAA",	"AAAA",	"KAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ JAAA	{
+  type	"square",
+  neighbours	["",	"",	"GAAA",	"IAAA",]
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	0
+  }
+ }
+ KAAA	{
+  type	"square",
+  neighbours	["",	"IAAA",	"HAAA",	"",]
+  s1	{
+   type	"MagnetoBombLauncher",
+   orient	0
+  }
+ }
+ LAAA	{
+  type	"equil",
+  neighbours	["IAAA",	"",	"",	"",]
+ }
+}

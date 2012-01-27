@@ -1,0 +1,326 @@
+info	{
+ name	"Haifisch V",
+ alliance	["EUF",]
+ version	0
+ bridge	"AAAA",
+ reinforcement	1.0
+ class	"C",
+ mass	8515.0
+ author	"AltSysrq",
+ energy_levels	{
+  EnergyCharge	5
+  MagnetoBomb	3
+ }
+ sharing_enabled	t
+ verification_signature	138888965
+ fileid	187
+ ownerid	1
+ needs_uploading	f
+}
+cells	{
+ AAAA	{
+  type	"circle",
+  neighbours	["EAAA",	"DAAA",	"BAAA",	"FAAA",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["AAAA",	"CAAA",	"",	"GAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ CAAA	{
+  type	"right",
+  neighbours	["DAAA",	"",	"BAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["CAAA",	"AAAA",	"HAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ EAAA	{
+  type	"square",
+  neighbours	["HAAA",	"AAAA",	"IAAA",	"JAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ FAAA	{
+  type	"square",
+  neighbours	["IAAA",	"AAAA",	"GAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ GAAA	{
+  type	"right",
+  neighbours	["BAAA",	"",	"FAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ HAAA	{
+  type	"right",
+  neighbours	["EAAA",	"",	"DAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ IAAA	{
+  type	"right",
+  neighbours	["FAAA",	"",	"EAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ JAAA	{
+  type	"circle",
+  neighbours	["EAAA",	"KAAA",	"QAAA",	"NAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ KAAA	{
+  type	"square",
+  neighbours	["JAAA",	"",	"LAAA",	"",]
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ LAAA	{
+  type	"square",
+  neighbours	["KAAA",	"",	"MAAA",	"",]
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ MAAA	{
+  type	"square",
+  neighbours	["LAAA",	"",	"",	"",]
+  s1	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ NAAA	{
+  type	"square",
+  neighbours	["JAAA",	"",	"OAAA",	"",]
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ OAAA	{
+  type	"square",
+  neighbours	["NAAA",	"",	"PAAA",	"",]
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ PAAA	{
+  type	"square",
+  neighbours	["OAAA",	"",	"",	"",]
+  s1	{
+   type	"ParticleAccelerator",
+   orient	3
+  }
+ }
+ QAAA	{
+  type	"square",
+  neighbours	["JAAA",	"RAAA",	"TAAA",	"VAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ RAAA	{
+  type	"right",
+  neighbours	["QAAA",	"",	"SAAA",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ SAAA	{
+  type	"circle",
+  neighbours	["RAAA",	"",	"YAAA",	"TAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ TAAA	{
+  type	"square",
+  neighbours	["SAAA",	"XAAA",	"UAAA",	"QAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ UAAA	{
+  type	"circle",
+  neighbours	["TAAA",	"WAAA",	"",	"VAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ VAAA	{
+  type	"right",
+  neighbours	["UAAA",	"",	"QAAA",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ WAAA	{
+  type	"right",
+  neighbours	["XAAA",	"GBAA",	"UAAA",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ XAAA	{
+  type	"circle",
+  neighbours	["WAAA",	"TAAA",	"YAAA",	"ZAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ YAAA	{
+  type	"right",
+  neighbours	["SAAA",	"HBAA",	"XAAA",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ ZAAA	{
+  type	"square",
+  neighbours	["XAAA",	"ABAA",	"",	"DBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ ABAA	{
+  type	"square",
+  neighbours	["ZAAA",	"HBAA",	"BBAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ BBAA	{
+  type	"square",
+  neighbours	["ABAA",	"",	"CBAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ CBAA	{
+  type	"equil",
+  neighbours	["BBAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ DBAA	{
+  type	"square",
+  neighbours	["ZAAA",	"",	"EBAA",	"GBAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ EBAA	{
+  type	"square",
+  neighbours	["DBAA",	"",	"FBAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"MagnetoBombLauncher",
+   orient	1
+  }
+ }
+ FBAA	{
+  type	"equil",
+  neighbours	["EBAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ GBAA	{
+  type	"right",
+  neighbours	["",	"WAAA",	"DBAA",	"",]
+ }
+ HBAA	{
+  type	"right",
+  neighbours	["ABAA",	"YAAA",	"",	"",]
+ }
+}

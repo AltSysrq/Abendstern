@@ -1,0 +1,7 @@
+The new ship editor is a C++/Tcl-symbiant system, using libconfig++ as a means of
+storing shared information. The C++ side (the "manipulator") handles all actual editing,
+while the Tcl side (the "interface") interacts with the user.
+
+The interface is in charge of setting the current mode of the manipulator, which determines
+how the latter interprets left mouse-clicks. Certain modes are instant actions, which, after
+successful completion, immediately reset the mode to "none".

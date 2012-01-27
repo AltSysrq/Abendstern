@@ -1,0 +1,152 @@
+info	{
+ name	"SWP003",
+ alliance	["SPAWN",]
+ version	0
+ bridge	"AAAA",
+ reinforcement	0.5
+ class	"C",
+ old_format	"en00es0pfn10es0pfn10es0wen10es0pfn10es0pf.n22rs0pfn12rn00rs0ea"
+		".n12rs0pc30 .....n20rs0pfn10rn10rs0pc30 .n22rs0ea.....n10es0pc"
+		"30 n10rs0pc30 n10rs0ea..n22rs0pc30 n12rs0ea....\n0.5\n",
+ sharing_enabled	t
+ author	"AbyssalYogSothOth",
+ fileid	361
+ ownerid	9
+ needs_uploading	f
+}
+cells	{
+ AAAA	{
+  type	"equil",
+  neighbours	["BAAA",	"OAAA",	"FAAA",	"",]
+ }
+ BAAA	{
+  type	"equil",
+  neighbours	["AAAA",	"CAAA",	"",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ CAAA	{
+  type	"equil",
+  neighbours	["BAAA",	"DAAA",	"KAAA",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ DAAA	{
+  type	"equil",
+  neighbours	["CAAA",	"EAAA",	"",	"",]
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ EAAA	{
+  type	"equil",
+  neighbours	["DAAA",	"FAAA",	"GAAA",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ FAAA	{
+  type	"equil",
+  neighbours	["EAAA",	"AAAA",	"",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ GAAA	{
+  type	"right",
+  neighbours	["",	"HAAA",	"EAAA",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ HAAA	{
+  type	"right",
+  neighbours	["IAAA",	"JAAA",	"GAAA",	"",]
+ }
+ IAAA	{
+  type	"right",
+  neighbours	["HAAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ JAAA	{
+  type	"right",
+  neighbours	["",	"",	"HAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ KAAA	{
+  type	"right",
+  neighbours	["CAAA",	"LAAA",	"",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ LAAA	{
+  type	"right",
+  neighbours	["KAAA",	"MAAA",	"NAAA",	"",]
+ }
+ MAAA	{
+  type	"right",
+  neighbours	["LAAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ NAAA	{
+  type	"right",
+  neighbours	["",	"",	"LAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	1
+  }
+ }
+ OAAA	{
+  type	"equil",
+  neighbours	["AAAA",	"PAAA",	"RAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ PAAA	{
+  type	"right",
+  neighbours	["OAAA",	"QAAA",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ QAAA	{
+  type	"right",
+  neighbours	["PAAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	2
+  }
+ }
+ RAAA	{
+  type	"right",
+  neighbours	["",	"SAAA",	"OAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ SAAA	{
+  type	"right",
+  neighbours	["",	"",	"RAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	0
+  }
+ }
+}

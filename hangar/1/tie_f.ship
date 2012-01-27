@@ -1,0 +1,126 @@
+info	{
+ name	"Tie Fighter",
+ alliance	["ship:tie_f",]
+ version	0
+ author	"AltSysrq",
+ bridge	"AAAA",
+ reinforcement	0.5
+ class	"C",
+ old_format	"[ The Tie-Fighter! ]\nc{\n n13s s1we s0pf{\n  n13s s0pf s1pf{"
+		"\n   n02s s1pc30 {n02e.}.\n   n20s s1pc30 {n20s s0ea.}.\n  }."
+		"\n }.\n n31s s1we s0pf{\n  n31s s0pf s1pf{\n   n02s s1pc30 {n0"
+		"2e.}.\n   n20s s1pc30 {n20s s0ea.}.\n  }.\n }.\n}.\n0.5\n  \n",
+ mass	2144.0
+ energy_levels	{
+  EnergyCharge	3
+ }
+ sharing_enabled	t
+ fileid	186
+ ownerid	1
+ needs_uploading	f
+ verification_signature	1751026817
+}
+cells	{
+ AAAA	{
+  type	"circle",
+  neighbours	["",	"BAAA",	"",	"HAAA",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["",	"CAAA",	"",	"AAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	0
+  }
+ }
+ CAAA	{
+  type	"square",
+  neighbours	["DAAA",	"",	"FAAA",	"BAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["EAAA",	"",	"CAAA",	"",]
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ EAAA	{
+  type	"equil",
+  neighbours	["",	"",	"DAAA",	"",]
+ }
+ FAAA	{
+  type	"square",
+  neighbours	["CAAA",	"",	"GAAA",	"",]
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ GAAA	{
+  type	"square",
+  neighbours	["FAAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	2
+  }
+ }
+ HAAA	{
+  type	"square",
+  neighbours	["",	"AAAA",	"",	"IAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	0
+  }
+ }
+ IAAA	{
+  type	"square",
+  neighbours	["JAAA",	"HAAA",	"LAAA",	"",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ JAAA	{
+  type	"square",
+  neighbours	["KAAA",	"",	"IAAA",	"",]
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ KAAA	{
+  type	"equil",
+  neighbours	["",	"",	"JAAA",	"",]
+ }
+ LAAA	{
+  type	"square",
+  neighbours	["IAAA",	"",	"MAAA",	"",]
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ MAAA	{
+  type	"square",
+  neighbours	["LAAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	2
+  }
+ }
+}

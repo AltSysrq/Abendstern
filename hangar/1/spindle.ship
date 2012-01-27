@@ -1,0 +1,64 @@
+info	{
+ name	"Spindle",
+ alliance	["ship:spindle",]
+ version	0
+ author	"AltSysrq",
+ bridge	"AAAA",
+ reinforcement	0.75
+ class	"C",
+ old_format	"s {\n n20c s0pf s1pf {\n  n10r s0ea.\n  n32r s0ea.\n }.\n n02s"
+		" s0pc45 s1we.\n}.\n0.75\n\n",
+ mass	1046.0
+ energy_levels	{
+  EnergyCharge	3
+ }
+ sharing_enabled	t
+ verification_signature	1928888996
+ fileid	215
+ ownerid	1
+ needs_uploading	f
+}
+cells	{
+ AAAA	{
+  type	"square",
+  neighbours	["EAAA",	"",	"BAAA",	"",]
+ }
+ BAAA	{
+  type	"circle",
+  neighbours	["AAAA",	"CAAA",	"",	"DAAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ CAAA	{
+  type	"right",
+  neighbours	["BAAA",	"",	"",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	2
+  }
+ }
+ DAAA	{
+  type	"right",
+  neighbours	["",	"",	"BAAA",	"",]
+  s0	{
+   type	"ParticleAccelerator",
+   orient	0
+  }
+ }
+ EAAA	{
+  type	"square",
+  neighbours	["",	"",	"AAAA",	"",]
+  s0	{
+   capacity	45
+   type	"Capacitor",
+  }
+  s1	{
+   type	"EnergyChargeLauncher",
+   orient	0
+  }
+ }
+}

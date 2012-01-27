@@ -1,0 +1,70 @@
+1. Semiguided bombs have incorrect power in network play
+   Cause: Divides by MBL_POW_MULT instead of the corresponding value
+   for semiguided.
+   Reproduce: Use semiguided bombs in network play. Best manifistation occurs
+   with power level 8, which will kill the client due to a "power" > 9
+   Status: Closed 2011.03.04
+
+2. Ships go haywire in network play.
+   Cause: Infinite radius due to uninitialized values in accidental "linked list"
+     of EmptyCells
+   Reproduce: Unknown
+   Status: Closed 2011.02.26
+
+3. EnergyCharges appear to small when zoomed out too much.
+   Cause: Zoom and the small size of the weapon
+   Reproduce: Zoom out and use EnergyCharge
+   Status: Closed 2011.02.24
+
+4. Ship verification does not catch cells that overlap very much.
+   Cause: Probably FP error and other issues with collision detection
+   Reproduce: Use the ship editor to draw a "coil" of right triangles
+   Status: Closed
+
+5. Damage does not seem to work against shields in network play.
+   Cause: Unknown
+   Reproduce: Class B network play, use ships with shields and shoot
+   Status: Closed 2011.02.24
+
+6. MonophasicEnergyPulse not yet supported in network
+   Status: Closed 2011.03.04
+
+7. Feature: Mark centre of gravity in new ship editor, like the old did
+   Status: Closed 2011.03.09
+
+8. ShipEditor does not yet allow making ReinforcementBulkheads stealth-compatible
+   Status: Obsoleted 2011.07.23
+
+9. Network protocol does not understand stealth mode.
+   Status: Closed 2011.03.03
+
+10. Network protocol does not allow specifying whether ReinforcementBulkhead
+    is stealth-compatible.
+    Status: Obsoleted 2011.07.23
+
+11. There may be an issue with collision/damage detection.
+    Cause: Improvements to collision detection performance (tree->gnome sort)
+    Reproduce: Uncertain. Must involve many objects colliding at once
+    Status: Closed 2011.03.01
+
+12. ShipEditor has issues with EquTCells
+    Cause: Error in collision detection.
+    Reproduce: Try to put EquTCells in tight spaces
+    Status: Closed 2011.03.10
+
+13. Fandango-on-core in network when a 16-bit ship is fragmented such that a
+    new fragment has <= 254 cells but has cell indices >= 254.
+    Cause: Ship network type detection does not check whether a fragment should
+           be 16-bit despite being small enough for 8-bit.
+    Reproduce: See description.
+    Status: Closed 2011.05.13
+
+14. Server sometimes tries to access graphics device (calls newVAO()).
+    Cause: Unknown
+    Reproduce: Unknown
+    Status: Open
+
+15. Imported missiles do not learn about their target.
+    Cause: Unknown
+    Reproduce: Use missiles in network play
+    Status: Open

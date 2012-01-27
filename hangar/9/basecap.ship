@@ -1,0 +1,8297 @@
+info	{
+ name	"Base Cap",
+ alliance	["EUF",]
+ version	0
+ bridge	"AAAA",
+ reinforcement	31.99671173
+ class	"C",
+ mass	109020848.0
+ author	"AbyssalYogSothOth",
+ sharing_enabled	t
+ verification_signature	13504
+ fileid	301
+ ownerid	9
+ needs_uploading	f
+}
+cells	{
+ AAAA	{
+  type	"circle",
+  neighbours	["BAAA",	"HAAA",	"FAAA",	"DAAA",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["AAAA",	"CAAA",	"KAAA",	"IAAA",]
+ }
+ CAAA	{
+  type	"square",
+  neighbours	["BAAA",	"DAAA",	"NAAA",	"LAAA",]
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["CAAA",	"AAAA",	"EAAA",	"OAAA",]
+ }
+ EAAA	{
+  type	"square",
+  neighbours	["DAAA",	"FAAA",	"RAAA",	"PAAA",]
+ }
+ FAAA	{
+  type	"square",
+  neighbours	["EAAA",	"AAAA",	"GAAA",	"SAAA",]
+ }
+ GAAA	{
+  type	"square",
+  neighbours	["FAAA",	"HAAA",	"VAAA",	"TAAA",]
+ }
+ HAAA	{
+  type	"square",
+  neighbours	["GAAA",	"AAAA",	"IAAA",	"WAAA",]
+ }
+ IAAA	{
+  type	"square",
+  neighbours	["HAAA",	"BAAA",	"JAAA",	"XAAA",]
+ }
+ JAAA	{
+  type	"square",
+  neighbours	["IAAA",	"KAAA",	"ABAA",	"YAAA",]
+ }
+ KAAA	{
+  type	"square",
+  neighbours	["JAAA",	"BAAA",	"LAAA",	"BBAA",]
+ }
+ LAAA	{
+  type	"square",
+  neighbours	["KAAA",	"CAAA",	"MAAA",	"CBAA",]
+ }
+ MAAA	{
+  type	"square",
+  neighbours	["LAAA",	"NAAA",	"FBAA",	"DBAA",]
+ }
+ NAAA	{
+  type	"square",
+  neighbours	["MAAA",	"CAAA",	"OAAA",	"GBAA",]
+ }
+ OAAA	{
+  type	"square",
+  neighbours	["NAAA",	"DAAA",	"PAAA",	"HBAA",]
+ }
+ PAAA	{
+  type	"square",
+  neighbours	["OAAA",	"EAAA",	"QAAA",	"IBAA",]
+ }
+ QAAA	{
+  type	"square",
+  neighbours	["PAAA",	"RAAA",	"LBAA",	"JBAA",]
+ }
+ RAAA	{
+  type	"square",
+  neighbours	["QAAA",	"EAAA",	"SAAA",	"MBAA",]
+ }
+ SAAA	{
+  type	"square",
+  neighbours	["RAAA",	"FAAA",	"TAAA",	"NBAA",]
+ }
+ TAAA	{
+  type	"square",
+  neighbours	["SAAA",	"GAAA",	"UAAA",	"OBAA",]
+ }
+ UAAA	{
+  type	"square",
+  neighbours	["TAAA",	"VAAA",	"RBAA",	"PBAA",]
+ }
+ VAAA	{
+  type	"square",
+  neighbours	["UAAA",	"GAAA",	"WAAA",	"SBAA",]
+ }
+ WAAA	{
+  type	"square",
+  neighbours	["VAAA",	"HAAA",	"XAAA",	"TBAA",]
+ }
+ XAAA	{
+  type	"square",
+  neighbours	["WAAA",	"IAAA",	"YAAA",	"UBAA",]
+ }
+ YAAA	{
+  type	"square",
+  neighbours	["XAAA",	"JAAA",	"ZAAA",	"VBAA",]
+ }
+ ZAAA	{
+  type	"square",
+  neighbours	["YAAA",	"ABAA",	"YBAA",	"WBAA",]
+ }
+ ABAA	{
+  type	"square",
+  neighbours	["ZAAA",	"JAAA",	"BBAA",	"ZBAA",]
+ }
+ BBAA	{
+  type	"square",
+  neighbours	["ABAA",	"KAAA",	"CBAA",	"ACAA",]
+ }
+ CBAA	{
+  type	"square",
+  neighbours	["BBAA",	"LAAA",	"DBAA",	"BCAA",]
+ }
+ DBAA	{
+  type	"square",
+  neighbours	["CBAA",	"MAAA",	"EBAA",	"CCAA",]
+ }
+ EBAA	{
+  type	"square",
+  neighbours	["DBAA",	"FBAA",	"toudeishei",	"DCAA",]
+ }
+ FBAA	{
+  type	"square",
+  neighbours	["EBAA",	"MAAA",	"GBAA",	"woujoufai",]
+ }
+ GBAA	{
+  type	"square",
+  neighbours	["FBAA",	"NAAA",	"HBAA",	"soingouji",]
+ }
+ HBAA	{
+  type	"square",
+  neighbours	["GBAA",	"OAAA",	"IBAA",	"doiheigi",]
+ }
+ IBAA	{
+  type	"square",
+  neighbours	["HBAA",	"PAAA",	"JBAA",	"ketoiyo",]
+ }
+ JBAA	{
+  type	"square",
+  neighbours	["IBAA",	"QAAA",	"KBAA",	"ryiwoite",]
+ }
+ KBAA	{
+  type	"square",
+  neighbours	["JBAA",	"LBAA",	"SCAA",	"sanouru",]
+ }
+ LBAA	{
+  type	"square",
+  neighbours	["KBAA",	"QAAA",	"MBAA",	"ruheisai",]
+ }
+ MBAA	{
+  type	"square",
+  neighbours	["LBAA",	"RAAA",	"NBAA",	"meinouryein",]
+ }
+ NBAA	{
+  type	"square",
+  neighbours	["MBAA",	"SAAA",	"OBAA",	"bibeito",]
+ }
+ OBAA	{
+  type	"square",
+  neighbours	["NBAA",	"TAAA",	"PBAA",	"youpema",]
+ }
+ PBAA	{
+  type	"square",
+  neighbours	["OBAA",	"UAAA",	"QBAA",	"ryeshato",]
+ }
+ QBAA	{
+  type	"square",
+  neighbours	["PBAA",	"RBAA",	"fimeisei",	"KDAA",]
+ }
+ RBAA	{
+  type	"square",
+  neighbours	["QBAA",	"UAAA",	"SBAA",	"roimuwoi",]
+ }
+ SBAA	{
+  type	"square",
+  neighbours	["RBAA",	"VAAA",	"TBAA",	"ryeinhointou",]
+ }
+ TBAA	{
+  type	"square",
+  neighbours	["SBAA",	"WAAA",	"UBAA",	"ryapajou",]
+ }
+ UBAA	{
+  type	"square",
+  neighbours	["TBAA",	"XAAA",	"VBAA",	"tojoiwei",]
+ }
+ VBAA	{
+  type	"square",
+  neighbours	["UBAA",	"YAAA",	"WBAA",	"najeidi",]
+ }
+ WBAA	{
+  type	"square",
+  neighbours	["VBAA",	"ZAAA",	"XBAA",	"rononrain",]
+ }
+ XBAA	{
+  type	"square",
+  neighbours	["WBAA",	"YBAA",	"KCAA",	"ryoiraiwai",]
+ }
+ YBAA	{
+  type	"square",
+  neighbours	["XBAA",	"ZAAA",	"ZBAA",	"JCAA",]
+ }
+ ZBAA	{
+  type	"square",
+  neighbours	["YBAA",	"ABAA",	"ACAA",	"ICAA",]
+ }
+ ACAA	{
+  type	"square",
+  neighbours	["ZBAA",	"BBAA",	"BCAA",	"HCAA",]
+ }
+ BCAA	{
+  type	"square",
+  neighbours	["ACAA",	"CBAA",	"CCAA",	"GCAA",]
+ }
+ CCAA	{
+  type	"square",
+  neighbours	["BCAA",	"DBAA",	"DCAA",	"FCAA",]
+ }
+ DCAA	{
+  type	"square",
+  neighbours	["CCAA",	"EBAA",	"yoiwari",	"ECAA",]
+ }
+ ECAA	{
+  type	"square",
+  neighbours	["DCAA",	"kadeide",	"RCAA",	"FCAA",]
+ }
+ FCAA	{
+  type	"square",
+  neighbours	["ECAA",	"QCAA",	"GCAA",	"CCAA",]
+ }
+ GCAA	{
+  type	"square",
+  neighbours	["FCAA",	"PCAA",	"HCAA",	"BCAA",]
+ }
+ HCAA	{
+  type	"square",
+  neighbours	["GCAA",	"OCAA",	"ICAA",	"ACAA",]
+ }
+ ICAA	{
+  type	"square",
+  neighbours	["HCAA",	"NCAA",	"JCAA",	"ZBAA",]
+ }
+ JCAA	{
+  type	"square",
+  neighbours	["ICAA",	"MCAA",	"KCAA",	"YBAA",]
+ }
+ KCAA	{
+  type	"square",
+  neighbours	["JCAA",	"LCAA",	"sehihou",	"XBAA",]
+ }
+ LCAA	{
+  type	"square",
+  neighbours	["KCAA",	"MCAA",	"gosoimoin",	"meiroifi",]
+ }
+ MCAA	{
+  type	"square",
+  neighbours	["LCAA",	"JCAA",	"NCAA",	"HHAA",]
+ }
+ NCAA	{
+  type	"square",
+  neighbours	["MCAA",	"ICAA",	"OCAA",	"GHAA",]
+ }
+ OCAA	{
+  type	"square",
+  neighbours	["NCAA",	"HCAA",	"PCAA",	"ZGAA",]
+ }
+ PCAA	{
+  type	"square",
+  neighbours	["OCAA",	"GCAA",	"QCAA",	"AHAA",]
+ }
+ QCAA	{
+  type	"square",
+  neighbours	["PCAA",	"FCAA",	"RCAA",	"BHAA",]
+ }
+ RCAA	{
+  type	"square",
+  neighbours	["QCAA",	"ECAA",	"mohougou",	"majiha",]
+ }
+ SCAA	{
+  type	"square",
+  neighbours	["KBAA",	"ruheisai",	"TCAA",	"woitanfa",]
+ }
+ TCAA	{
+  type	"square",
+  neighbours	["SCAA",	"XCAA",	"UCAA",	"IEAA",]
+ }
+ UCAA	{
+  type	"square",
+  neighbours	["TCAA",	"moishepein",	"VCAA",	"jeshoyu",]
+ }
+ VCAA	{
+  type	"square",
+  neighbours	["UCAA",	"YCAA",	"WCAA",	"MEAA",]
+ }
+ WCAA	{
+  type	"square",
+  neighbours	["VCAA",	"toujurya",	"ZCAA",	"ryohiryou",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ XCAA	{
+  type	"square",
+  neighbours	["TCAA",	"ruheisai",	"LDAA",	"moishepein",]
+ }
+ YCAA	{
+  type	"square",
+  neighbours	["VCAA",	"moishepein",	"PDAA",	"toujurya",]
+ }
+ ZCAA	{
+  type	"square",
+  neighbours	["WCAA",	"ADAA",	"QFAA",	"REAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ADAA	{
+  type	"square",
+  neighbours	["ZCAA",	"toujurya",	"BDAA",	"moshaige",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ BDAA	{
+  type	"square",
+  neighbours	["ADAA",	"youwaikoin",	"CDAA",	"geigemai",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ CDAA	{
+  type	"square",
+  neighbours	["BDAA",	"jonjuho",	"DDAA",	"fasefe",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ DDAA	{
+  type	"square",
+  neighbours	["CDAA",	"soupoume",	"EDAA",	"jenifai",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ EDAA	{
+  type	"square",
+  neighbours	["DDAA",	"kunoryou",	"FDAA",	"kaipunnu",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ FDAA	{
+  type	"square",
+  neighbours	["EDAA",	"GDAA",	"CEAA",	"XEAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ GDAA	{
+  type	"square",
+  neighbours	["FDAA",	"kunoryou",	"HDAA",	"seryeibain",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ HDAA	{
+  type	"square",
+  neighbours	["GDAA",	"SDAA",	"IDAA",	"XDAA",]
+ }
+ IDAA	{
+  type	"square",
+  neighbours	["HDAA",	"raimoukain",	"JDAA",	"keihairyai",]
+ }
+ JDAA	{
+  type	"square",
+  neighbours	["IDAA",	"ODAA",	"KDAA",	"TDAA",]
+ }
+ KDAA	{
+  type	"square",
+  neighbours	["JDAA",	"ryeshato",	"QBAA",	"sheiryaryoi",]
+ }
+ LDAA	{
+  type	"square",
+  neighbours	["XCAA",	"meinouryein",	"MDAA",	"haikuki",]
+ }
+ MDAA	{
+  type	"square",
+  neighbours	["LDAA",	"bibeito",	"NDAA",	"mibinhoi",]
+ }
+ NDAA	{
+  type	"square",
+  neighbours	["MDAA",	"youpema",	"ODAA",	"tebudoi",]
+ }
+ ODAA	{
+  type	"square",
+  neighbours	["NDAA",	"ryeshato",	"JDAA",	"raimoukain",]
+ }
+ PDAA	{
+  type	"square",
+  neighbours	["YCAA",	"haikuki",	"QDAA",	"youwaikoin",]
+ }
+ QDAA	{
+  type	"square",
+  neighbours	["PDAA",	"mibinhoi",	"RDAA",	"jonjuho",]
+ }
+ RDAA	{
+  type	"square",
+  neighbours	["QDAA",	"tebudoi",	"SDAA",	"soupoume",]
+ }
+ SDAA	{
+  type	"square",
+  neighbours	["RDAA",	"raimoukain",	"HDAA",	"kunoryou",]
+ }
+ TDAA	{
+  type	"square",
+  neighbours	["JDAA",	"sheiryaryoi",	"UDAA",	"keihairyai",]
+ }
+ UDAA	{
+  type	"square",
+  neighbours	["TDAA",	"baimutou",	"VDAA",	"honryouba",]
+ }
+ VDAA	{
+  type	"square",
+  neighbours	["UDAA",	"saishoujai",	"jiteida",	"nafainsoi",]
+ }
+ XDAA	{
+  type	"square",
+  neighbours	["HDAA",	"keihairyai",	"YDAA",	"seryeibain",]
+ }
+ YDAA	{
+  type	"square",
+  neighbours	["XDAA",	"honryouba",	"ZDAA",	"risotou",]
+ }
+ ZDAA	{
+  type	"square",
+  neighbours	["YDAA",	"nafainsoi",	"AEAA",	"ryuhaiha",]
+ }
+ AEAA	{
+  type	"square",
+  neighbours	["ZDAA",	"BEAA",	"dagiryoi",	"yokoibou",]
+ }
+ BEAA	{
+  type	"square",
+  neighbours	["AEAA",	"nafainsoi",	"jiteida",	"kouhoisai",]
+ }
+ CEAA	{
+  type	"square",
+  neighbours	["FDAA",	"seryeibain",	"DEAA",	"koiyenkoi",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ DEAA	{
+  type	"square",
+  neighbours	["CEAA",	"risotou",	"EEAA",	"gobaiwoin",]
+ }
+ EEAA	{
+  type	"square",
+  neighbours	["DEAA",	"ryuhaiha",	"FEAA",	"kouyuyoi",]
+ }
+ FEAA	{
+  type	"square",
+  neighbours	["EEAA",	"yokoibou",	"GEAA",	"tuhidu",]
+ }
+ GEAA	{
+  type	"square",
+  neighbours	["FEAA",	"HEAA",	"neiwagei",	"ronjinwei",]
+ }
+ HEAA	{
+  type	"square",
+  neighbours	["GEAA",	"yokoibou",	"dagiryoi",	"furoijin",]
+ }
+ IEAA	{
+  type	"square",
+  neighbours	["TCAA",	"jeshoyu",	"JEAA",	"woitanfa",]
+ }
+ JEAA	{
+  type	"square",
+  neighbours	["IEAA",	"debougo",	"KEAA",	"peweife",]
+ }
+ KEAA	{
+  type	"square",
+  neighbours	["JEAA",	"jeinnaiboi",	"jineitei",	"gainounkoi",]
+ }
+ MEAA	{
+  type	"square",
+  neighbours	["VCAA",	"ryohiryou",	"NEAA",	"jeshoyu",]
+ }
+ NEAA	{
+  type	"square",
+  neighbours	["MEAA",	"morobe",	"OEAA",	"debougo",]
+ }
+ OEAA	{
+  type	"square",
+  neighbours	["NEAA",	"koupengou",	"PEAA",	"jeinnaiboi",]
+ }
+ PEAA	{
+  type	"square",
+  neighbours	["OEAA",	"painoikou",	"jenwaiga",	"QEAA",]
+ }
+ QEAA	{
+  type	"square",
+  neighbours	["PEAA",	"teishaiyai",	"jineitei",	"jeinnaiboi",]
+ }
+ REAA	{
+  type	"square",
+  neighbours	["ZCAA",	"shaipekein",	"SEAA",	"ryohiryou",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ SEAA	{
+  type	"square",
+  neighbours	["REAA",	"yatufo",	"TEAA",	"morobe",]
+ }
+ TEAA	{
+  type	"square",
+  neighbours	["SEAA",	"moisagu",	"UEAA",	"koupengou",]
+ }
+ UEAA	{
+  type	"square",
+  neighbours	["TEAA",	"joteitou",	"VEAA",	"painoikou",]
+ }
+ VEAA	{
+  type	"square",
+  neighbours	["UEAA",	"ryadainfoi",	"fubunfon",	"WEAA",]
+ }
+ WEAA	{
+  type	"square",
+  neighbours	["VEAA",	"daireipei",	"jenwaiga",	"painoikou",]
+ }
+ XEAA	{
+  type	"square",
+  neighbours	["FDAA",	"koiyenkoi",	"YEAA",	"kaipunnu",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ YEAA	{
+  type	"square",
+  neighbours	["XEAA",	"IMAA",	"ZEAA",	"KIAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ZEAA	{
+  type	"square",
+  neighbours	["YEAA",	"seiruje",	"AFAA",	"LIAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ AFAA	{
+  type	"square",
+  neighbours	["ZEAA",	"feiturai",	"BFAA",	"MIAA",]
+ }
+ BFAA	{
+  type	"square",
+  neighbours	["AFAA",	"CFAA",	"PFAA",	"ZFAA",]
+ }
+ CFAA	{
+  type	"square",
+  neighbours	["BFAA",	"feiturai",	"DFAA",	"gopaigun",]
+ }
+ DFAA	{
+  type	"square",
+  neighbours	["CFAA",	"teitiryu",	"EFAA",	"wehouyi",]
+ }
+ EFAA	{
+  type	"square",
+  neighbours	["DFAA",	"nekejai",	"baisoushou",	"mugufoi",]
+ }
+ FFAA	{
+  type	"square",
+  neighbours	["baisoushou",	"yaitougon",	"GFAA",	"mugufoi",]
+ }
+ GFAA	{
+  type	"square",
+  neighbours	["FFAA",	"teiwoja",	"HFAA",	"YGAA",]
+ }
+ HFAA	{
+  type	"square",
+  neighbours	["GFAA",	"gawawa",	"IFAA",	"ryashupu",]
+ }
+ IFAA	{
+  type	"square",
+  neighbours	["HFAA",	"ryairyoita",	"sajaidu",	"JFAA",]
+ }
+ JFAA	{
+  type	"square",
+  neighbours	["IFAA",	"nawojai",	"KFAA",	"ryashupu",]
+ }
+ KFAA	{
+  type	"square",
+  neighbours	["JFAA",	"fehuhou",	"LFAA",	"youndeitou",]
+ }
+ LFAA	{
+  type	"square",
+  neighbours	["KFAA",	"tuyopoin",	"MFAA",	"woukanou",]
+ }
+ MFAA	{
+  type	"square",
+  neighbours	["LFAA",	"MKAA",	"LGAA",	"NFAA",]
+ }
+ NFAA	{
+  type	"square",
+  neighbours	["MFAA",	"BJAA",	"OFAA",	"woukanou",]
+ }
+ OFAA	{
+  type	"square",
+  neighbours	["NFAA",	"AJAA",	"PFAA",	"WGAA",]
+ }
+ PFAA	{
+  type	"square",
+  neighbours	["OFAA",	"ZIAA",	"BFAA",	"gopaigun",]
+ }
+ QFAA	{
+  type	"square",
+  neighbours	["ZCAA",	"moshaige",	"RFAA",	"shaipekein",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ RFAA	{
+  type	"square",
+  neighbours	["QFAA",	"SIAA",	"SFAA",	"BMAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ SFAA	{
+  type	"square",
+  neighbours	["RFAA",	"RIAA",	"TFAA",	"dudogo",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ TFAA	{
+  type	"square",
+  neighbours	["SFAA",	"QIAA",	"UFAA",	"totoishi",]
+ }
+ UFAA	{
+  type	"square",
+  neighbours	["TFAA",	"VFAA",	"MGAA",	"AGAA",]
+ }
+ VFAA	{
+  type	"square",
+  neighbours	["UFAA",	"QIAA",	"WFAA",	"HJAA",]
+ }
+ WFAA	{
+  type	"square",
+  neighbours	["VFAA",	"PIAA",	"XFAA",	"IJAA",]
+ }
+ XFAA	{
+  type	"square",
+  neighbours	["WFAA",	"OIAA",	"YFAA",	"JJAA",]
+ }
+ YFAA	{
+  type	"square",
+  neighbours	["XFAA",	"NIAA",	"ZFAA",	"KJAA",]
+ }
+ ZFAA	{
+  type	"square",
+  neighbours	["YFAA",	"MIAA",	"BFAA",	"ZIAA",]
+ }
+ AGAA	{
+  type	"square",
+  neighbours	["UFAA",	"jotushoi",	"BGAA",	"totoishi",]
+ }
+ BGAA	{
+  type	"square",
+  neighbours	["AGAA",	"seshanu",	"CGAA",	"gushanryu",]
+ }
+ CGAA	{
+  type	"square",
+  neighbours	["BGAA",	"yuryeiryu",	"hajoman",	"mibenfei",]
+ }
+ DGAA	{
+  type	"square",
+  neighbours	["ryashouka",	"EGAA",	"jedeipai",	"PGAA",]
+ }
+ EGAA	{
+  type	"square",
+  neighbours	["DGAA",	"bogaishoun",	"FGAA",	"pumenshai",]
+ }
+ FGAA	{
+  type	"square",
+  neighbours	["EGAA",	"neigipai",	"GGAA",	"ryeiharyai",]
+ }
+ GGAA	{
+  type	"square",
+  neighbours	["FGAA",	"OGAA",	"HGAA",	"OJAA",]
+ }
+ HGAA	{
+  type	"square",
+  neighbours	["GGAA",	"FJAA",	"IGAA",	"NLAA",]
+ }
+ IGAA	{
+  type	"square",
+  neighbours	["HGAA",	"EJAA",	"JGAA",	"OLAA",]
+ }
+ JGAA	{
+  type	"square",
+  neighbours	["IGAA",	"DJAA",	"KGAA",	"PLAA",]
+ }
+ KGAA	{
+  type	"square",
+  neighbours	["JGAA",	"CJAA",	"LGAA",	"QLAA",]
+ }
+ LGAA	{
+  type	"square",
+  neighbours	["KGAA",	"BJAA",	"MFAA",	"RLAA",]
+ }
+ MGAA	{
+  type	"square",
+  neighbours	["UFAA",	"HJAA",	"NGAA",	"jotushoi",]
+ }
+ NGAA	{
+  type	"square",
+  neighbours	["MGAA",	"GJAA",	"OGAA",	"TGAA",]
+ }
+ OGAA	{
+  type	"square",
+  neighbours	["NGAA",	"FJAA",	"GGAA",	"neigipai",]
+ }
+ PGAA	{
+  type	"square",
+  neighbours	["DGAA",	"yonuma",	"jareisi",	"QGAA",]
+ }
+ QGAA	{
+  type	"square",
+  neighbours	["PGAA",	"mureinti",	"RGAA",	"ryashouka",]
+ }
+ RGAA	{
+  type	"square",
+  neighbours	["QGAA",	"sedeno",	"SGAA",	"VGAA",]
+ }
+ SGAA	{
+  type	"square",
+  neighbours	["RGAA",	"paiyaisha",	"hajoman",	"yuryeiryu",]
+ }
+ TGAA	{
+  type	"square",
+  neighbours	["NGAA",	"neigipai",	"UGAA",	"jotushoi",]
+ }
+ UGAA	{
+  type	"square",
+  neighbours	["TGAA",	"bogaishoun",	"VGAA",	"seshanu",]
+ }
+ VGAA	{
+  type	"square",
+  neighbours	["UGAA",	"ryashouka",	"RGAA",	"yuryeiryu",]
+ }
+ WGAA	{
+  type	"square",
+  neighbours	["OFAA",	"gopaigun",	"XGAA",	"woukanou",]
+ }
+ XGAA	{
+  type	"square",
+  neighbours	["WGAA",	"wehouyi",	"YGAA",	"youndeitou",]
+ }
+ YGAA	{
+  type	"square",
+  neighbours	["XGAA",	"mugufoi",	"GFAA",	"ryashupu",]
+ }
+ ZGAA	{
+  type	"square",
+  neighbours	["OCAA",	"AHAA",	"EHAA",	"GHAA",]
+ }
+ AHAA	{
+  type	"square",
+  neighbours	["ZGAA",	"PCAA",	"BHAA",	"DHAA",]
+ }
+ BHAA	{
+  type	"square",
+  neighbours	["AHAA",	"QCAA",	"majiha",	"CHAA",]
+ }
+ CHAA	{
+  type	"square",
+  neighbours	["BHAA",	"dotomoun",	"NHAA",	"DHAA",]
+ }
+ DHAA	{
+  type	"square",
+  neighbours	["CHAA",	"MHAA",	"EHAA",	"AHAA",]
+ }
+ EHAA	{
+  type	"square",
+  neighbours	["DHAA",	"LHAA",	"FHAA",	"ZGAA",]
+ }
+ FHAA	{
+  type	"square",
+  neighbours	["EHAA",	"KHAA",	"IHAA",	"GHAA",]
+ }
+ GHAA	{
+  type	"square",
+  neighbours	["FHAA",	"HHAA",	"NCAA",	"ZGAA",]
+ }
+ HHAA	{
+  type	"square",
+  neighbours	["GHAA",	"IHAA",	"gosoimoin",	"MCAA",]
+ }
+ IHAA	{
+  type	"square",
+  neighbours	["HHAA",	"FHAA",	"JHAA",	"tukatu",]
+ }
+ JHAA	{
+  type	"square",
+  neighbours	["IHAA",	"KHAA",	"SHAA",	"runhanoin",]
+ }
+ KHAA	{
+  type	"square",
+  neighbours	["JHAA",	"FHAA",	"LHAA",	"RHAA",]
+ }
+ LHAA	{
+  type	"square",
+  neighbours	["KHAA",	"EHAA",	"MHAA",	"QHAA",]
+ }
+ MHAA	{
+  type	"square",
+  neighbours	["LHAA",	"DHAA",	"NHAA",	"PHAA",]
+ }
+ NHAA	{
+  type	"square",
+  neighbours	["MHAA",	"CHAA",	"ryoisiki",	"OHAA",]
+ }
+ OHAA	{
+  type	"square",
+  neighbours	["NHAA",	"yeikayo",	"XHAA",	"PHAA",]
+ }
+ PHAA	{
+  type	"square",
+  neighbours	["OHAA",	"WHAA",	"QHAA",	"MHAA",]
+ }
+ QHAA	{
+  type	"square",
+  neighbours	["PHAA",	"VHAA",	"RHAA",	"LHAA",]
+ }
+ RHAA	{
+  type	"square",
+  neighbours	["QHAA",	"UHAA",	"SHAA",	"KHAA",]
+ }
+ SHAA	{
+  type	"square",
+  neighbours	["RHAA",	"THAA",	"fiwoha",	"JHAA",]
+ }
+ THAA	{
+  type	"square",
+  neighbours	["SHAA",	"UHAA",	"CIAA",	"ryinyenyain",]
+ }
+ UHAA	{
+  type	"square",
+  neighbours	["THAA",	"RHAA",	"VHAA",	"BIAA",]
+ }
+ VHAA	{
+  type	"square",
+  neighbours	["UHAA",	"QHAA",	"WHAA",	"AIAA",]
+ }
+ WHAA	{
+  type	"square",
+  neighbours	["VHAA",	"PHAA",	"XHAA",	"ZHAA",]
+ }
+ XHAA	{
+  type	"square",
+  neighbours	["WHAA",	"OHAA",	"keifosou",	"YHAA",]
+ }
+ YHAA	{
+  type	"square",
+  neighbours	["XHAA",	"weirebin",	"HIAA",	"ZHAA",]
+ }
+ ZHAA	{
+  type	"square",
+  neighbours	["YHAA",	"GIAA",	"AIAA",	"WHAA",]
+ }
+ AIAA	{
+  type	"square",
+  neighbours	["ZHAA",	"FIAA",	"BIAA",	"VHAA",]
+ }
+ BIAA	{
+  type	"square",
+  neighbours	["AIAA",	"EIAA",	"CIAA",	"UHAA",]
+ }
+ CIAA	{
+  type	"square",
+  neighbours	["BIAA",	"DIAA",	"peinpoboin",	"THAA",]
+ }
+ DIAA	{
+  type	"square",
+  neighbours	["CIAA",	"EIAA",	"shaishafei",	"ruhoushan",]
+ }
+ EIAA	{
+  type	"square",
+  neighbours	["DIAA",	"BIAA",	"FIAA",	"touryoito",]
+ }
+ FIAA	{
+  type	"square",
+  neighbours	["EIAA",	"AIAA",	"GIAA",	"yaiyanryu",]
+ }
+ GIAA	{
+  type	"square",
+  neighbours	["FIAA",	"ZHAA",	"HIAA",	"goupanoin",]
+ }
+ HIAA	{
+  type	"square",
+  neighbours	["GIAA",	"YHAA",	"gamunfou",	"geihoiku",]
+ }
+ KIAA	{
+  type	"square",
+  neighbours	["kaipunnu",	"YEAA",	"LIAA",	"XIAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ LIAA	{
+  type	"square",
+  neighbours	["KIAA",	"ZEAA",	"MIAA",	"YIAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ MIAA	{
+  type	"square",
+  neighbours	["LIAA",	"AFAA",	"ZFAA",	"NIAA",]
+ }
+ NIAA	{
+  type	"square",
+  neighbours	["MIAA",	"YFAA",	"OIAA",	"YIAA",]
+ }
+ OIAA	{
+  type	"square",
+  neighbours	["NIAA",	"XFAA",	"PIAA",	"VIAA",]
+ }
+ PIAA	{
+  type	"square",
+  neighbours	["OIAA",	"WFAA",	"QIAA",	"UIAA",]
+ }
+ QIAA	{
+  type	"square",
+  neighbours	["PIAA",	"VFAA",	"TFAA",	"RIAA",]
+ }
+ RIAA	{
+  type	"square",
+  neighbours	["QIAA",	"SFAA",	"SIAA",	"UIAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ SIAA	{
+  type	"square",
+  neighbours	["RIAA",	"RFAA",	"moshaige",	"TIAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ TIAA	{
+  type	"square",
+  neighbours	["geigemai",	"WIAA",	"UIAA",	"SIAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ UIAA	{
+  type	"square",
+  neighbours	["TIAA",	"VIAA",	"PIAA",	"RIAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ VIAA	{
+  type	"square",
+  neighbours	["UIAA",	"WIAA",	"YIAA",	"OIAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ WIAA	{
+  type	"square",
+  neighbours	["VIAA",	"TIAA",	"fasefe",	"XIAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ XIAA	{
+  type	"square",
+  neighbours	["jenifai",	"KIAA",	"YIAA",	"WIAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ YIAA	{
+  type	"square",
+  neighbours	["XIAA",	"LIAA",	"NIAA",	"VIAA",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ ZIAA	{
+  type	"square",
+  neighbours	["ZFAA",	"PFAA",	"AJAA",	"KJAA",]
+ }
+ AJAA	{
+  type	"square",
+  neighbours	["ZIAA",	"OFAA",	"BJAA",	"LJAA",]
+ }
+ BJAA	{
+  type	"square",
+  neighbours	["AJAA",	"NFAA",	"LGAA",	"CJAA",]
+ }
+ CJAA	{
+  type	"square",
+  neighbours	["BJAA",	"KGAA",	"DJAA",	"LJAA",]
+ }
+ DJAA	{
+  type	"square",
+  neighbours	["CJAA",	"JGAA",	"EJAA",	"MJAA",]
+ }
+ EJAA	{
+  type	"square",
+  neighbours	["DJAA",	"IGAA",	"FJAA",	"NJAA",]
+ }
+ FJAA	{
+  type	"square",
+  neighbours	["EJAA",	"HGAA",	"OGAA",	"GJAA",]
+ }
+ GJAA	{
+  type	"square",
+  neighbours	["FJAA",	"NGAA",	"HJAA",	"NJAA",]
+ }
+ HJAA	{
+  type	"square",
+  neighbours	["GJAA",	"MGAA",	"VFAA",	"IJAA",]
+ }
+ IJAA	{
+  type	"square",
+  neighbours	["HJAA",	"WFAA",	"JJAA",	"NJAA",]
+ }
+ JJAA	{
+  type	"square",
+  neighbours	["IJAA",	"XFAA",	"KJAA",	"MJAA",]
+ }
+ KJAA	{
+  type	"square",
+  neighbours	["JJAA",	"YFAA",	"ZIAA",	"LJAA",]
+ }
+ LJAA	{
+  type	"square",
+  neighbours	["KJAA",	"AJAA",	"CJAA",	"MJAA",]
+ }
+ MJAA	{
+  type	"square",
+  neighbours	["LJAA",	"DJAA",	"NJAA",	"JJAA",]
+ }
+ NJAA	{
+  type	"square",
+  neighbours	["MJAA",	"EJAA",	"GJAA",	"IJAA",]
+ }
+ OJAA	{
+  type	"square",
+  neighbours	["GGAA",	"NLAA",	"PJAA",	"ryeiharyai",]
+ }
+ PJAA	{
+  type	"square",
+  neighbours	["OJAA",	"MLAA",	"EKAA",	"QJAA",]
+ }
+ QJAA	{
+  type	"square",
+  neighbours	["PJAA",	"wougawe",	"RJAA",	"ryeiharyai",]
+ }
+ RJAA	{
+  type	"square",
+  neighbours	["QJAA",	"kanpuse",	"SJAA",	"pumenshai",]
+ }
+ SJAA	{
+  type	"square",
+  neighbours	["RJAA",	"goyoiryou",	"TJAA",	"jedeipai",]
+ }
+ TJAA	{
+  type	"square",
+  neighbours	["SJAA",	"bubeirya",	"UJAA",	"yonuma",]
+ }
+ UJAA	{
+  type	"square",
+  neighbours	["TJAA",	"baryeto",	"VJAA",	"wihaibu",]
+ }
+ VJAA	{
+  type	"square",
+  neighbours	["UJAA",	"WJAA",	"teigairyi",	"dousaifa",]
+ }
+ WJAA	{
+  type	"square",
+  neighbours	["VJAA",	"baryeto",	"XJAA",	"reipuhei",]
+ }
+ XJAA	{
+  type	"square",
+  neighbours	["WJAA",	"YJAA",	"gaibairye",	"jeinmoiju",]
+ }
+ YJAA	{
+  type	"square",
+  neighbours	["XJAA",	"baryeto",	"ZJAA",	"ranankei",]
+ }
+ ZJAA	{
+  type	"square",
+  neighbours	["YJAA",	"bubeirya",	"AKAA",	"jeiroubou",]
+ }
+ AKAA	{
+  type	"square",
+  neighbours	["ZJAA",	"goyoiryou",	"BKAA",	"yipouti",]
+ }
+ BKAA	{
+  type	"square",
+  neighbours	["AKAA",	"kanpuse",	"CKAA",	"guryoyu",]
+ }
+ CKAA	{
+  type	"square",
+  neighbours	["BKAA",	"wougawe",	"DKAA",	"seibongu",]
+ }
+ DKAA	{
+  type	"square",
+  neighbours	["CKAA",	"EKAA",	"WLAA",	"HLAA",]
+ }
+ EKAA	{
+  type	"square",
+  neighbours	["DKAA",	"wougawe",	"PJAA",	"FKAA",]
+ }
+ FKAA	{
+  type	"square",
+  neighbours	["EKAA",	"MLAA",	"GKAA",	"WLAA",]
+ }
+ GKAA	{
+  type	"square",
+  neighbours	["FKAA",	"LLAA",	"HKAA",	"VLAA",]
+ }
+ HKAA	{
+  type	"square",
+  neighbours	["GKAA",	"KLAA",	"IKAA",	"ULAA",]
+ }
+ IKAA	{
+  type	"square",
+  neighbours	["HKAA",	"JLAA",	"JKAA",	"TLAA",]
+ }
+ JKAA	{
+  type	"square",
+  neighbours	["IKAA",	"ILAA",	"KKAA",	"SLAA",]
+ }
+ KKAA	{
+  type	"square",
+  neighbours	["JKAA",	"LKAA",	"jeiniwoun",	"NKAA",]
+ }
+ LKAA	{
+  type	"square",
+  neighbours	["KKAA",	"ILAA",	"MKAA",	"ALAA",]
+ }
+ MKAA	{
+  type	"square",
+  neighbours	["LKAA",	"RLAA",	"MFAA",	"tuyopoin",]
+ }
+ NKAA	{
+  type	"square",
+  neighbours	["KKAA",	"OKAA",	"BLAA",	"SLAA",]
+ }
+ OKAA	{
+  type	"square",
+  neighbours	["NKAA",	"jeiniwoun",	"PKAA",	"ryousheingai",]
+ }
+ PKAA	{
+  type	"square",
+  neighbours	["OKAA",	"poukunhan",	"QKAA",	"deisewu",]
+ }
+ QKAA	{
+  type	"square",
+  neighbours	["PKAA",	"moupatai",	"RKAA",	"doyoiku",]
+ }
+ RKAA	{
+  type	"square",
+  neighbours	["QKAA",	"fofunjan",	"SKAA",	"mipekou",]
+ }
+ SKAA	{
+  type	"square",
+  neighbours	["RKAA",	"ryashuryoi",	"TKAA",	"fiwenai",]
+ }
+ TKAA	{
+  type	"square",
+  neighbours	["SKAA",	"UKAA",	"gegoipi",	"fomouba",]
+ }
+ UKAA	{
+  type	"square",
+  neighbours	["TKAA",	"ryashuryoi",	"VKAA",	"hawuga",]
+ }
+ VKAA	{
+  type	"square",
+  neighbours	["UKAA",	"WKAA",	"naishudein",	"ryaihoifei",]
+ }
+ WKAA	{
+  type	"square",
+  neighbours	["VKAA",	"ryashuryoi",	"XKAA",	"wutuwoi",]
+ }
+ XKAA	{
+  type	"square",
+  neighbours	["WKAA",	"fofunjan",	"YKAA",	"sajaidu",]
+ }
+ YKAA	{
+  type	"square",
+  neighbours	["XKAA",	"moupatai",	"ZKAA",	"nawojai",]
+ }
+ ZKAA	{
+  type	"square",
+  neighbours	["YKAA",	"poukunhan",	"ALAA",	"fehuhou",]
+ }
+ ALAA	{
+  type	"square",
+  neighbours	["ZKAA",	"jeiniwoun",	"LKAA",	"tuyopoin",]
+ }
+ BLAA	{
+  type	"square",
+  neighbours	["NKAA",	"ryousheingai",	"jiyero",	"CLAA",]
+ }
+ CLAA	{
+  type	"square",
+  neighbours	["BLAA",	"deinweino",	"DLAA",	"SLAA",]
+ }
+ DLAA	{
+  type	"square",
+  neighbours	["CLAA",	"joujainfain",	"ELAA",	"TLAA",]
+ }
+ ELAA	{
+  type	"square",
+  neighbours	["DLAA",	"nikoyoi",	"FLAA",	"ULAA",]
+ }
+ FLAA	{
+  type	"square",
+  neighbours	["ELAA",	"foisaikoi",	"GLAA",	"VLAA",]
+ }
+ GLAA	{
+  type	"square",
+  neighbours	["FLAA",	"ditamai",	"HLAA",	"WLAA",]
+ }
+ HLAA	{
+  type	"square",
+  neighbours	["GLAA",	"bipouno",	"seibongu",	"DKAA",]
+ }
+ ILAA	{
+  type	"square",
+  neighbours	["JKAA",	"JLAA",	"RLAA",	"LKAA",]
+ }
+ JLAA	{
+  type	"square",
+  neighbours	["ILAA",	"IKAA",	"KLAA",	"QLAA",]
+ }
+ KLAA	{
+  type	"square",
+  neighbours	["JLAA",	"HKAA",	"LLAA",	"PLAA",]
+ }
+ LLAA	{
+  type	"square",
+  neighbours	["KLAA",	"GKAA",	"MLAA",	"OLAA",]
+ }
+ MLAA	{
+  type	"square",
+  neighbours	["LLAA",	"FKAA",	"PJAA",	"NLAA",]
+ }
+ NLAA	{
+  type	"square",
+  neighbours	["MLAA",	"OJAA",	"HGAA",	"OLAA",]
+ }
+ OLAA	{
+  type	"square",
+  neighbours	["NLAA",	"IGAA",	"PLAA",	"LLAA",]
+ }
+ PLAA	{
+  type	"square",
+  neighbours	["OLAA",	"JGAA",	"QLAA",	"KLAA",]
+ }
+ QLAA	{
+  type	"square",
+  neighbours	["PLAA",	"KGAA",	"RLAA",	"JLAA",]
+ }
+ RLAA	{
+  type	"square",
+  neighbours	["QLAA",	"LGAA",	"MKAA",	"ILAA",]
+ }
+ SLAA	{
+  type	"square",
+  neighbours	["JKAA",	"NKAA",	"CLAA",	"TLAA",]
+ }
+ TLAA	{
+  type	"square",
+  neighbours	["SLAA",	"DLAA",	"ULAA",	"IKAA",]
+ }
+ ULAA	{
+  type	"square",
+  neighbours	["TLAA",	"ELAA",	"VLAA",	"HKAA",]
+ }
+ VLAA	{
+  type	"square",
+  neighbours	["ULAA",	"FLAA",	"WLAA",	"GKAA",]
+ }
+ WLAA	{
+  type	"square",
+  neighbours	["VLAA",	"GLAA",	"DKAA",	"FKAA",]
+ }
+ BMAA	{
+  type	"square",
+  neighbours	["RFAA",	"dudogo",	"CMAA",	"shaipekein",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ CMAA	{
+  type	"square",
+  neighbours	["BMAA",	"boheinwu",	"DMAA",	"yatufo",]
+ }
+ DMAA	{
+  type	"square",
+  neighbours	["CMAA",	"bobeifai",	"EMAA",	"moisagu",]
+ }
+ EMAA	{
+  type	"square",
+  neighbours	["DMAA",	"ryaitaibai",	"FMAA",	"joteitou",]
+ }
+ FMAA	{
+  type	"square",
+  neighbours	["EMAA",	"dawewei",	"GMAA",	"ryadainfoi",]
+ }
+ GMAA	{
+  type	"square",
+  neighbours	["FMAA",	"jeiwonja",	"wounryoido",	"HMAA",]
+ }
+ HMAA	{
+  type	"square",
+  neighbours	["GMAA",	"QOAA",	"fubunfon",	"ryadainfoi",]
+ }
+ IMAA	{
+  type	"square",
+  neighbours	["YEAA",	"koiyenkoi",	"JMAA",	"seiruje",]
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ JMAA	{
+  type	"square",
+  neighbours	["IMAA",	"gobaiwoin",	"KMAA",	"hoyoihi",]
+ }
+ KMAA	{
+  type	"square",
+  neighbours	["JMAA",	"kouyuyoi",	"LMAA",	"yushaisou",]
+ }
+ LMAA	{
+  type	"square",
+  neighbours	["KMAA",	"tuhidu",	"MMAA",	"tosumu",]
+ }
+ MMAA	{
+  type	"square",
+  neighbours	["LMAA",	"ronjinwei",	"NMAA",	"hairipei",]
+ }
+ NMAA	{
+  type	"square",
+  neighbours	["MMAA",	"OMAA",	"neisino",	"rebepai",]
+ }
+ OMAA	{
+  type	"square",
+  neighbours	["NMAA",	"ronjinwei",	"neiwagei",	"RMAA",]
+ }
+ RMAA	{
+  type	"square",
+  neighbours	["OMAA",	"SMAA",	"fairyouse",	"neisino",]
+ }
+ SMAA	{
+  type	"square",
+  neighbours	["RMAA",	"neiwagei",	"TMAA",	"numushin",]
+ }
+ TMAA	{
+  type	"square",
+  neighbours	["SMAA",	"furoijin",	"poinepein",	"UMAA",]
+ }
+ UMAA	{
+  type	"square",
+  neighbours	["TMAA",	"VMAA",	"duponen",	"numushin",]
+ }
+ VMAA	{
+  type	"square",
+  neighbours	["UMAA",	"poinepein",	"WMAA",	"gairoijoi",]
+ }
+ WMAA	{
+  type	"square",
+  neighbours	["VMAA",	"moshainjoi",	"XMAA",	"jajukin",]
+ }
+ XMAA	{
+  type	"square",
+  neighbours	["WMAA",	"soseiba",	"garoitai",	"YMAA",]
+ }
+ YMAA	{
+  type	"square",
+  neighbours	["XMAA",	"ZMAA",	"youdoutou",	"jajukin",]
+ }
+ ZMAA	{
+  type	"square",
+  neighbours	["YMAA",	"garoitai",	"ANAA",	"hiryenei",]
+ }
+ ANAA	{
+  type	"square",
+  neighbours	["ZMAA",	"roidoishoun",	"BNAA",	"ryangeiko",]
+ }
+ BNAA	{
+  type	"square",
+  neighbours	["ANAA",	"jouryaijei",	"kanruwe",	"peisajei",]
+ }
+ QOAA	{
+  type	"square",
+  neighbours	["HMAA",	"wounryoido",	"buwanmun",	"ROAA",]
+ }
+ ROAA	{
+  type	"square",
+  neighbours	["QOAA",	"wopoura",	"SOAA",	"fubunfon",]
+ }
+ SOAA	{
+  type	"square",
+  neighbours	["ROAA",	"TOAA",	"shougeryu",	"daireipei",]
+ }
+ TOAA	{
+  type	"square",
+  neighbours	["SOAA",	"wopoura",	"jeyounna",	"UOAA",]
+ }
+ UOAA	{
+  type	"square",
+  neighbours	["TOAA",	"pareisho",	"VOAA",	"shougeryu",]
+ }
+ VOAA	{
+  type	"square",
+  neighbours	["UOAA",	"geiyeifen",	"WOAA",	"tenhufoin",]
+ }
+ WOAA	{
+  type	"square",
+  neighbours	["VOAA",	"XOAA",	"temibe",	"sinryoru",]
+ }
+ XOAA	{
+  type	"square",
+  neighbours	["WOAA",	"geiyeifen",	"youwoirou",	"YOAA",]
+ }
+ YOAA	{
+  type	"square",
+  neighbours	["XOAA",	"somoiri",	"ZOAA",	"temibe",]
+ }
+ ZOAA	{
+  type	"square",
+  neighbours	["YOAA",	"reisuten",	"APAA",	"yoiwupoi",]
+ }
+ APAA	{
+  type	"square",
+  neighbours	["ZOAA",	"wahoinfu",	"HQAA",	"ryadudo",]
+ }
+ FQAA	{
+  type	"square",
+  neighbours	["weifoufoin",	"miyonshou",	"GQAA",	"soigijin",]
+ }
+ GQAA	{
+  type	"square",
+  neighbours	["FQAA",	"HQAA",	"wahoinfu",	"tointihu",]
+ }
+ HQAA	{
+  type	"square",
+  neighbours	["GQAA",	"miyonshou",	"ryoifago",	"APAA",]
+ }
+ weirebin	{
+  neighbours	["YHAA",	"keifosou",	"dedaiya",	"gamunfou",]
+  type	"square",
+ }
+ gamunfou	{
+  neighbours	["weirebin",	"donshoryou",	"weiheku",	"HIAA",]
+  type	"square",
+ }
+ keifosou	{
+  neighbours	["weirebin",	"XHAA",	"yeikayo",	"ranoujei",]
+  type	"square",
+ }
+ weiheku	{
+  neighbours	["gamunfou",	"rashoinjei",	"yaiyoupun",	"geihoiku",]
+  type	"square",
+ }
+ yaiyoupun	{
+  neighbours	["weiheku",	"joseishe",	"soishabou",	"nasore",]
+  type	"square",
+ }
+ soishabou	{
+  neighbours	["yaiyoupun",	"pishenai",	"waihowei",	"kairome",]
+  type	"square",
+ }
+ waihowei	{
+  neighbours	["soishabou",	"woinshaibi",	"weikouha",	"wopawe",]
+  type	"square",
+ }
+ shaishafei	{
+  neighbours	["DIAA",	"touryoito",	"gaidaiji",	"hapoiyi",]
+  type	"square",
+ }
+ gaidaiji	{
+  neighbours	["shaishafei",	"doihatai",	"pofefu",	"duwoifein",]
+  type	"square",
+ }
+ ryinyenyain	{
+  neighbours	["THAA",	"peinpoboin",	"ryejenga",	"fiwoha",]
+  type	"square",
+ }
+ peinpoboin	{
+  neighbours	["ryinyenyain",	"CIAA",	"ruhoushan",	"ruweidei",]
+  type	"square",
+ }
+ ruhoushan	{
+  neighbours	["peinpoboin",	"DIAA",	"hapoiyi",	"pipesu",]
+  type	"square",
+ }
+ hapoiyi	{
+  neighbours	["ruhoushan",	"shaishafei",	"duwoifein",	"soudouje",]
+  type	"square",
+ }
+ duwoifein	{
+  neighbours	["hapoiyi",	"gaidaiji",	"giriwa",	"joubito",]
+  type	"square",
+ }
+ giriwa	{
+  neighbours	["duwoifein",	"pofefu",	"peisopa",	"shairedou",]
+  type	"square",
+ }
+ peisopa	{
+  neighbours	["giriwa",	"wahoirou",	"taibouboun",	"fuhouboi",]
+  type	"square",
+ }
+ geihoiku	{
+  neighbours	["HIAA",	"weiheku",	"nasore",	"goupanoin",]
+  type	"square",
+ }
+ nasore	{
+  neighbours	["geihoiku",	"yaiyoupun",	"kairome",	"raigupai",]
+  type	"square",
+ }
+ pipesu	{
+  neighbours	["ruhoushan",	"soudouje",	"jairanno",	"ruweidei",]
+  type	"square",
+ }
+ soudouje	{
+  neighbours	["pipesu",	"hapoiyi",	"joubito",	"noumonbe",]
+  type	"square",
+ }
+ joubito	{
+  neighbours	["soudouje",	"duwoifein",	"shairedou",	"foigarei",]
+  type	"square",
+ }
+ shairedou	{
+  neighbours	["joubito",	"giriwa",	"fuhouboi",	"kibagi",]
+  type	"square",
+ }
+ fuhouboi	{
+  neighbours	["shairedou",	"peisopa",	"yeiryoima",	"guntufo",]
+  type	"square",
+ }
+ yeiryoima	{
+  neighbours	["fuhouboi",	"taibouboun",	"peyofe",	"tinaipa",]
+  type	"square",
+ }
+ peyofe	{
+  neighbours	["yeiryoima",	"yikeihe",	"basoufi",	"noinbosoi",]
+  type	"square",
+ }
+ rashoinjei	{
+  neighbours	["weiheku",	"donshoryou",	"nousheinkou",	"joseishe",]
+  type	"square",
+ }
+ donshoryou	{
+  neighbours	["rashoinjei",	"gamunfou",	"dedaiya",	"boshensho",]
+  type	"square",
+ }
+ woinshaibi	{
+  neighbours	["waihowei",	"pishenai",	"kutisi",	"dageitai",]
+  type	"square",
+ }
+ pishenai	{
+  neighbours	["soishabou",	"joseishe",	"hoininku",	"woinshaibi",]
+  type	"square",
+ }
+ dageitai	{
+  neighbours	["woinshaibi",	"bainpeihai",	"bowuro",	"weikouha",]
+  type	"square",
+ }
+ bowuro	{
+  neighbours	["dageitai",	"masifai",	"goukeiye",	"nehisei",]
+  type	"square",
+ }
+ joseishe	{
+  neighbours	["rashoinjei",	"diyainbai",	"pishenai",	"yaiyoupun",]
+  type	"square",
+ }
+ doihatai	{
+  neighbours	["gaidaiji",	"touryoito",	"douryiyei",	"feimeyi",]
+  type	"square",
+ }
+ douryiyei	{
+  neighbours	["doihatai",	"yaiyanryu",	"raigupai",	"yaifaiki",]
+  type	"square",
+ }
+ raigupai	{
+  neighbours	["douryiyei",	"goupanoin",	"nasore",	"jidandoi",]
+  type	"square",
+ }
+ jidandoi	{
+  neighbours	["raigupai",	"kairome",	"meitisu",	"yaifaiki",]
+  type	"square",
+ }
+ meitisu	{
+  neighbours	["jidandoi",	"wopawe",	"soujaisei",	"bipoibon",]
+  type	"square",
+ }
+ soujaisei	{
+  neighbours	["meitisu",	"beshamai",	"bouhefo",	"goupeibe",]
+  type	"square",
+ }
+ bouhefo	{
+  neighbours	["soujaisei",	"moijairo",	"kiyeiroun",	"segemu",]
+  type	"square",
+ }
+ kiyeiroun	{
+  neighbours	["bouhefo",	"moisairain",	"fairyaishoi",	"niyoiwou",]
+  type	"square",
+ }
+ niyoiwou	{
+  neighbours	["kiyeiroun",	"ronabe",	"ryinreshai",	"segemu",]
+  type	"square",
+ }
+ ronabe	{
+  neighbours	["niyoiwou",	"fairyaishoi",	"nibainei",	"ryaisose",]
+  type	"square",
+ }
+ nibainei	{
+  neighbours	["ronabe",	"goiriwei",	"neihusha",	"newesai",]
+  type	"square",
+ }
+ neihusha	{
+  neighbours	["nibainei",	"shoideido",	"teiryato",	"henhawei",]
+  type	"square",
+ }
+ teiryato	{
+  neighbours	["neihusha",	"dahoidi",	"reimoubei",	"gaiyunbei",]
+  type	"square",
+ }
+ reimoubei	{
+  neighbours	["teiryato",	"yeifeinhoi",	"paibati",	"toudoijou",]
+  type	"square",
+ }
+ feimeyi	{
+  neighbours	["doihatai",	"yaifaiki",	"bukoigo",	"pofefu",]
+  type	"square",
+ }
+ bukoigo	{
+  neighbours	["feimeyi",	"bipoibon",	"ryoteije",	"wahoirou",]
+  type	"square",
+ }
+ ryoteije	{
+  neighbours	["bukoigo",	"goupeibe",	"meiyeikou",	"dainryoijoi",]
+  type	"square",
+ }
+ meiyeikou	{
+  neighbours	["ryoteije",	"segemu",	"ryinreshai",	"doindodain",]
+  type	"square",
+ }
+ ryinreshai	{
+  neighbours	["meiyeikou",	"niyoiwou",	"ryaisose",	"moiruno",]
+  type	"square",
+ }
+ taibouboun	{
+  neighbours	["peisopa",	"dainryoijoi",	"yikeihe",	"yeiryoima",]
+  type	"square",
+ }
+ yikeihe	{
+  neighbours	["taibouboun",	"doindodain",	"ryouraini",	"peyofe",]
+  type	"square",
+ }
+ ryouraini	{
+  neighbours	["yikeihe",	"moiruno",	"weinwoshu",	"basoufi",]
+  type	"square",
+ }
+ weinwoshu	{
+  neighbours	["ryouraini",	"geifoiyi",	"naikaimi",	"gainfasi",]
+  type	"square",
+ }
+ moiruno	{
+  neighbours	["ryouraini",	"doindodain",	"ryinreshai",	"geifoiyi",]
+  type	"square",
+ }
+ geifoiyi	{
+  neighbours	["moiruno",	"ryaisose",	"naimaisou",	"weinwoshu",]
+  type	"square",
+ }
+ naimaisou	{
+  neighbours	["geifoiyi",	"newesai",	"habusain",	"naikaimi",]
+  type	"square",
+ }
+ habusain	{
+  neighbours	["naimaisou",	"henhawei",	"ryaikingu",	"fanfeitai",]
+  type	"square",
+ }
+ ryaikingu	{
+  neighbours	["habusain",	"gaiyunbei",	"wifundoi",	"kiduryei",]
+  type	"square",
+ }
+ ryaisose	{
+  neighbours	["ronabe",	"newesai",	"geifoiyi",	"ryinreshai",]
+  type	"square",
+ }
+ newesai	{
+  neighbours	["ryaisose",	"nibainei",	"henhawei",	"naimaisou",]
+  type	"square",
+ }
+ henhawei	{
+  neighbours	["newesai",	"neihusha",	"gaiyunbei",	"habusain",]
+  type	"square",
+ }
+ gaiyunbei	{
+  neighbours	["henhawei",	"teiryato",	"toudoijou",	"ryaikingu",]
+  type	"square",
+ }
+ toudoijou	{
+  neighbours	["gaiyunbei",	"reimoubei",	"dainounai",	"wifundoi",]
+  type	"square",
+ }
+ dainounai	{
+  neighbours	["toudoijou",	"paibati",	"houryaiwo",	"sokoiwa",]
+  type	"square",
+ }
+ paibati	{
+  neighbours	["reimoubei",	"daijufou",	"peipahoi",	"dainounai",]
+  type	"square",
+ }
+ peipahoi	{
+  neighbours	["paibati",	"weironkai",	"jireige",	"houryaiwo",]
+  type	"square",
+ }
+ jireige	{
+  neighbours	["peipahoi",	"yoinsheifein",	"naigimu",	"ryegeya",]
+  type	"square",
+ }
+ naigimu	{
+  neighbours	["jireige",	"ryerainou",	"ryugounbe",	"youtujo",]
+  type	"square",
+ }
+ weikouha	{
+  neighbours	["waihowei",	"dageitai",	"nehisei",	"beshamai",]
+  type	"square",
+ }
+ nehisei	{
+  neighbours	["weikouha",	"bowuro",	"romurei",	"moijairo",]
+  type	"square",
+ }
+ romurei	{
+  neighbours	["nehisei",	"goukeiye",	"beikumei",	"moisairain",]
+  type	"square",
+ }
+ moisairain	{
+  neighbours	["romurei",	"puryoishoin",	"kiyeiroun",	"moijairo",]
+  type	"square",
+ }
+ fairyaishoi	{
+  neighbours	["kiyeiroun",	"puryoishoin",	"goiriwei",	"ronabe",]
+  type	"square",
+ }
+ goiriwei	{
+  neighbours	["fairyaishoi",	"firyeiren",	"shoideido",	"nibainei",]
+  type	"square",
+ }
+ shoideido	{
+  neighbours	["goiriwei",	"pushagu",	"dahoidi",	"neihusha",]
+  type	"square",
+ }
+ dahoidi	{
+  neighbours	["shoideido",	"goitike",	"yeifeinhoi",	"teiryato",]
+  type	"square",
+ }
+ yeifeinhoi	{
+  neighbours	["dahoidi",	"yeijeboi",	"daijufou",	"reimoubei",]
+  type	"square",
+ }
+ daijufou	{
+  neighbours	["yeifeinhoi",	"haishaiba",	"weironkai",	"paibati",]
+  type	"square",
+ }
+ puryoishoin	{
+  neighbours	["moisairain",	"beikumei",	"firyeiren",	"fairyaishoi",]
+  type	"square",
+ }
+ firyeiren	{
+  neighbours	["puryoishoin",	"sheifeitai",	"pushagu",	"goiriwei",]
+  type	"square",
+ }
+ pushagu	{
+  neighbours	["firyeiren",	"keiryemoi",	"goitike",	"shoideido",]
+  type	"square",
+ }
+ goitike	{
+  neighbours	["pushagu",	"boteigi",	"yeijeboi",	"dahoidi",]
+  type	"square",
+ }
+ touryoito	{
+  neighbours	["shaishafei",	"EIAA",	"yaiyanryu",	"doihatai",]
+  type	"square",
+ }
+ yaiyanryu	{
+  neighbours	["touryoito",	"FIAA",	"goupanoin",	"douryiyei",]
+  type	"square",
+ }
+ goupanoin	{
+  neighbours	["yaiyanryu",	"GIAA",	"geihoiku",	"raigupai",]
+  type	"square",
+ }
+ yaifaiki	{
+  neighbours	["jidandoi",	"bipoibon",	"feimeyi",	"douryiyei",]
+  type	"square",
+ }
+ bipoibon	{
+  neighbours	["meitisu",	"goupeibe",	"bukoigo",	"yaifaiki",]
+  type	"square",
+ }
+ wahoirou	{
+  neighbours	["bukoigo",	"dainryoijoi",	"peisopa",	"pofefu",]
+  type	"square",
+ }
+ dainryoijoi	{
+  neighbours	["wahoirou",	"ryoteije",	"doindodain",	"taibouboun",]
+  type	"square",
+ }
+ doindodain	{
+  neighbours	["dainryoijoi",	"meiyeikou",	"moiruno",	"yikeihe",]
+  type	"square",
+ }
+ pofefu	{
+  neighbours	["wahoirou",	"giriwa",	"gaidaiji",	"feimeyi",]
+  type	"square",
+ }
+ goupeibe	{
+  neighbours	["ryoteije",	"bipoibon",	"soujaisei",	"segemu",]
+  type	"square",
+ }
+ segemu	{
+  neighbours	["goupeibe",	"bouhefo",	"niyoiwou",	"meiyeikou",]
+  type	"square",
+ }
+ beshamai	{
+  neighbours	["soujaisei",	"wopawe",	"weikouha",	"moijairo",]
+  type	"square",
+ }
+ wopawe	{
+  neighbours	["beshamai",	"meitisu",	"kairome",	"waihowei",]
+  type	"square",
+ }
+ kairome	{
+  neighbours	["wopawe",	"jidandoi",	"nasore",	"soishabou",]
+  type	"square",
+ }
+ moijairo	{
+  neighbours	["beshamai",	"nehisei",	"moisairain",	"bouhefo",]
+  type	"square",
+ }
+ beikumei	{
+  neighbours	["puryoishoin",	"romurei",	"riguji",	"sheifeitai",]
+  type	"square",
+ }
+ yeikayo	{
+  neighbours	["OHAA",	"ryoisiki",	"rejanoi",	"keifosou",]
+  type	"square",
+ }
+ dedaiya	{
+  neighbours	["weirebin",	"ranoujei",	"sonkihou",	"donshoryou",]
+  type	"square",
+ }
+ nousheinkou	{
+  neighbours	["rashoinjei",	"boshensho",	"wemuwei",	"diyainbai",]
+  type	"square",
+ }
+ diyainbai	{
+  neighbours	["nousheinkou",	"shunesin",	"hoininku",	"joseishe",]
+  type	"square",
+ }
+ hoininku	{
+  neighbours	["diyainbai",	"woiminou",	"kutisi",	"pishenai",]
+  type	"square",
+ }
+ kutisi	{
+  neighbours	["hoininku",	"tewairou",	"bainpeihai",	"woinshaibi",]
+  type	"square",
+ }
+ bainpeihai	{
+  neighbours	["kutisi",	"jejerei",	"masifai",	"dageitai",]
+  type	"square",
+ }
+ masifai	{
+  neighbours	["bainpeihai",	"gonseiwa",	"kusiroi",	"bowuro",]
+  type	"square",
+ }
+ kusiroi	{
+  neighbours	["masifai",	"dainsabou",	"taindoiwo",	"goukeiye",]
+  type	"square",
+ }
+ goukeiye	{
+  neighbours	["kusiroi",	"riguji",	"romurei",	"bowuro",]
+  type	"square",
+ }
+ riguji	{
+  neighbours	["goukeiye",	"taindoiwo",	"founeiba",	"beikumei",]
+  type	"square",
+ }
+ founeiba	{
+  neighbours	["riguji",	"wijijein",	"jeisinu",	"sheifeitai",]
+  type	"square",
+ }
+ sheifeitai	{
+  neighbours	["founeiba",	"keiryemoi",	"firyeiren",	"beikumei",]
+  type	"square",
+ }
+ keiryemoi	{
+  neighbours	["sheifeitai",	"jeisinu",	"boteigi",	"pushagu",]
+  type	"square",
+ }
+ fiwoha	{
+  neighbours	["ryinyenyain",	"debeibi",	"runhanoin",	"SHAA",]
+  type	"square",
+ }
+ ruweidei	{
+  neighbours	["peinpoboin",	"pipesu",	"joinyoinshe",	"ryejenga",]
+  type	"square",
+ }
+ noumonbe	{
+  neighbours	["soudouje",	"foigarei",	"meiryarou",	"jairanno",]
+  type	"square",
+ }
+ foigarei	{
+  neighbours	["noumonbe",	"joubito",	"kibagi",	"fegayu",]
+  type	"square",
+ }
+ kibagi	{
+  neighbours	["foigarei",	"shairedou",	"guntufo",	"keijudu",]
+  type	"square",
+ }
+ guntufo	{
+  neighbours	["kibagi",	"fuhouboi",	"tinaipa",	"beipouja",]
+  type	"square",
+ }
+ tinaipa	{
+  neighbours	["guntufo",	"yeiryoima",	"noinbosoi",	"gainoiwoi",]
+  type	"square",
+ }
+ noinbosoi	{
+  neighbours	["tinaipa",	"peyofe",	"touwoto",	"kofahai",]
+  type	"square",
+ }
+ touwoto	{
+  neighbours	["noinbosoi",	"basoufi",	"boisouro",	"ryuwoiyin",]
+  type	"square",
+ }
+ basoufi	{
+  neighbours	["touwoto",	"peyofe",	"ryouraini",	"gainfasi",]
+  type	"square",
+ }
+ gainfasi	{
+  neighbours	["basoufi",	"weinwoshu",	"heroutu",	"boisouro",]
+  type	"square",
+ }
+ heroutu	{
+  neighbours	["gainfasi",	"naikaimi",	"geishekei",	"shoujoigoi",]
+  type	"square",
+ }
+ naikaimi	{
+  neighbours	["heroutu",	"weinwoshu",	"naimaisou",	"fanfeitai",]
+  type	"square",
+ }
+ fanfeitai	{
+  neighbours	["naikaimi",	"habusain",	"kiduryei",	"geishekei",]
+  type	"square",
+ }
+ seryeibain	{
+  neighbours	["CEAA",	"GDAA",	"XDAA",	"risotou",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ risotou	{
+  neighbours	["seryeibain",	"YDAA",	"ryuhaiha",	"DEAA",]
+  type	"square",
+ }
+ ryuhaiha	{
+  neighbours	["risotou",	"ZDAA",	"yokoibou",	"EEAA",]
+  type	"square",
+ }
+ yokoibou	{
+  neighbours	["ryuhaiha",	"AEAA",	"HEAA",	"FEAA",]
+  type	"square",
+ }
+ jiteida	{
+  neighbours	["BEAA",	"VDAA",	"",	"shutunhi",]
+  type	"square",
+ }
+ shutunhi	{
+  neighbours	["jiteida",	"danuhe",	"kofunhe",	"kouhoisai",]
+  type	"square",
+ }
+ danuhe	{
+  neighbours	["shutunhi",	"",	"",	"kegoidi",]
+  type	"square",
+ }
+ honryouba	{
+  neighbours	["YDAA",	"keihairyai",	"UDAA",	"nafainsoi",]
+  type	"square",
+ }
+ keihairyai	{
+  neighbours	["honryouba",	"XDAA",	"IDAA",	"TDAA",]
+  type	"square",
+ }
+ nafainsoi	{
+  neighbours	["ZDAA",	"honryouba",	"VDAA",	"BEAA",]
+  type	"square",
+ }
+ kouhoisai	{
+  neighbours	["BEAA",	"shutunhi",	"jiwoimo",	"dagiryoi",]
+  type	"square",
+ }
+ dagiryoi	{
+  neighbours	["kouhoisai",	"nousewa",	"HEAA",	"AEAA",]
+  type	"square",
+ }
+ kouyuyoi	{
+  neighbours	["EEAA",	"tuhidu",	"KMAA",	"gobaiwoin",]
+  type	"square",
+ }
+ gobaiwoin	{
+  neighbours	["kouyuyoi",	"JMAA",	"koiyenkoi",	"DEAA",]
+  type	"square",
+ }
+ neiwagei	{
+  neighbours	["GEAA",	"furoijin",	"SMAA",	"OMAA",]
+  type	"square",
+ }
+ tuhidu	{
+  neighbours	["kouyuyoi",	"FEAA",	"ronjinwei",	"LMAA",]
+  type	"square",
+ }
+ ronjinwei	{
+  neighbours	["tuhidu",	"GEAA",	"OMAA",	"MMAA",]
+  type	"square",
+ }
+ koiyenkoi	{
+  neighbours	["gobaiwoin",	"IMAA",	"XEAA",	"CEAA",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ furoijin	{
+  neighbours	["HEAA",	"nousewa",	"TMAA",	"neiwagei",]
+  type	"square",
+ }
+ nousewa	{
+  neighbours	["furoijin",	"dagiryoi",	"jiwoimo",	"poinepein",]
+  type	"square",
+ }
+ poinepein	{
+  neighbours	["nousewa",	"moshainjoi",	"VMAA",	"TMAA",]
+  type	"square",
+ }
+ moshainjoi	{
+  neighbours	["poinepein",	"jiwoimo",	"soseiba",	"WMAA",]
+  type	"square",
+ }
+ soseiba	{
+  neighbours	["moshainjoi",	"kofunhe",	"tiraimein",	"XMAA",]
+  type	"square",
+ }
+ tiraimein	{
+  neighbours	["soseiba",	"kegoidi",	"teryeinu",	"garoitai",]
+  type	"square",
+ }
+ teryeinu	{
+  neighbours	["tiraimein",	"yewoke",	"deibaidu",	"roidoishoun",]
+  type	"square",
+ }
+ deibaidu	{
+  neighbours	["teryeinu",	"ryeinreidou",	"bikonmi",	"jouryaijei",]
+  type	"square",
+ }
+ yewoke	{
+  neighbours	["teryeinu",	"kegoidi",	"",	"ryeinreidou",]
+  type	"square",
+ }
+ kegoidi	{
+  neighbours	["danuhe",	"yewoke",	"tiraimein",	"kofunhe",]
+  type	"square",
+ }
+ kofunhe	{
+  neighbours	["shutunhi",	"kegoidi",	"soseiba",	"jiwoimo",]
+  type	"square",
+ }
+ jiwoimo	{
+  neighbours	["nousewa",	"kouhoisai",	"kofunhe",	"moshainjoi",]
+  type	"square",
+ }
+ ryeinreidou	{
+  neighbours	["yewoke",	"",	"biryaikou",	"deibaidu",]
+  type	"square",
+ }
+ jouryaijei	{
+  neighbours	["BNAA",	"roidoishoun",	"deibaidu",	"ryuryupoi",]
+  type	"square",
+ }
+ roidoishoun	{
+  neighbours	["ANAA",	"garoitai",	"teryeinu",	"jouryaijei",]
+  type	"square",
+ }
+ garoitai	{
+  neighbours	["roidoishoun",	"ZMAA",	"XMAA",	"tiraimein",]
+  type	"square",
+ }
+ ryeshato	{
+  neighbours	["ODAA",	"youpema",	"PBAA",	"KDAA",]
+  type	"square",
+ }
+ youpema	{
+  neighbours	["ryeshato",	"NDAA",	"bibeito",	"OBAA",]
+  type	"square",
+ }
+ bibeito	{
+  neighbours	["youpema",	"MDAA",	"meinouryein",	"NBAA",]
+  type	"square",
+ }
+ meinouryein	{
+  neighbours	["bibeito",	"LDAA",	"ruheisai",	"MBAA",]
+  type	"square",
+ }
+ haikuki	{
+  neighbours	["LDAA",	"mibinhoi",	"PDAA",	"moishepein",]
+  type	"square",
+ }
+ moishepein	{
+  neighbours	["haikuki",	"YCAA",	"UCAA",	"XCAA",]
+  type	"square",
+ }
+ ruheisai	{
+  neighbours	["XCAA",	"SCAA",	"LBAA",	"meinouryein",]
+  type	"square",
+ }
+ tebudoi	{
+  neighbours	["RDAA",	"mibinhoi",	"NDAA",	"raimoukain",]
+  type	"square",
+ }
+ raimoukain	{
+  neighbours	["tebudoi",	"ODAA",	"IDAA",	"SDAA",]
+  type	"square",
+ }
+ mibinhoi	{
+  neighbours	["QDAA",	"haikuki",	"MDAA",	"tebudoi",]
+  type	"square",
+ }
+ jonjuho	{
+  neighbours	["QDAA",	"soupoume",	"CDAA",	"youwaikoin",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ soupoume	{
+  neighbours	["jonjuho",	"RDAA",	"kunoryou",	"DDAA",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ kunoryou	{
+  neighbours	["soupoume",	"SDAA",	"GDAA",	"EDAA",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ youwaikoin	{
+  neighbours	["jonjuho",	"BDAA",	"toujurya",	"PDAA",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ toujurya	{
+  neighbours	["youwaikoin",	"ADAA",	"WCAA",	"YCAA",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ moshaige	{
+  neighbours	["ADAA",	"geigemai",	"SIAA",	"QFAA",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ geigemai	{
+  neighbours	["moshaige",	"BDAA",	"fasefe",	"TIAA",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ fasefe	{
+  neighbours	["geigemai",	"CDAA",	"jenifai",	"WIAA",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ jenifai	{
+  neighbours	["fasefe",	"DDAA",	"kaipunnu",	"XIAA",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ kaipunnu	{
+  neighbours	["jenifai",	"EDAA",	"XEAA",	"KIAA",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ jeshoyu	{
+  neighbours	["IEAA",	"UCAA",	"MEAA",	"debougo",]
+  type	"square",
+ }
+ debougo	{
+  neighbours	["jeshoyu",	"NEAA",	"jeinnaiboi",	"JEAA",]
+  type	"square",
+ }
+ jeinnaiboi	{
+  neighbours	["debougo",	"OEAA",	"QEAA",	"KEAA",]
+  type	"square",
+ }
+ jineitei	{
+  neighbours	["KEAA",	"QEAA",	"munseiwoi",	"",]
+  type	"square",
+ }
+ shaipekein	{
+  neighbours	["BMAA",	"yatufo",	"REAA",	"QFAA",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ yatufo	{
+  neighbours	["shaipekein",	"CMAA",	"moisagu",	"SEAA",]
+  type	"square",
+ }
+ moisagu	{
+  neighbours	["yatufo",	"DMAA",	"joteitou",	"TEAA",]
+  type	"square",
+ }
+ joteitou	{
+  neighbours	["moisagu",	"EMAA",	"ryadainfoi",	"UEAA",]
+  type	"square",
+ }
+ daireipei	{
+  neighbours	["WEAA",	"fubunfon",	"SOAA",	"fogenru",]
+  type	"square",
+ }
+ fubunfon	{
+  neighbours	["daireipei",	"VEAA",	"HMAA",	"ROAA",]
+  type	"square",
+ }
+ ryadainfoi	{
+  neighbours	["VEAA",	"joteitou",	"FMAA",	"HMAA",]
+  type	"square",
+ }
+ painoikou	{
+  neighbours	["WEAA",	"PEAA",	"koupengou",	"UEAA",]
+  type	"square",
+ }
+ koupengou	{
+  neighbours	["painoikou",	"OEAA",	"morobe",	"TEAA",]
+  type	"square",
+ }
+ morobe	{
+  neighbours	["koupengou",	"NEAA",	"ryohiryou",	"SEAA",]
+  type	"square",
+ }
+ jenwaiga	{
+  neighbours	["WEAA",	"fogenru",	"teishaiyai",	"PEAA",]
+  type	"square",
+ }
+ ryohiryou	{
+  neighbours	["morobe",	"MEAA",	"WCAA",	"REAA",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ teishaiyai	{
+  neighbours	["jenwaiga",	"nounjunwe",	"munseiwoi",	"QEAA",]
+  type	"square",
+ }
+ nounjunwe	{
+  neighbours	["teishaiyai",	"fogenru",	"tenhufoin",	"sebame",]
+  type	"square",
+ }
+ sebame	{
+  neighbours	["nounjunwe",	"sinryoru",	"peifaipe",	"munseiwoi",]
+  type	"square",
+ }
+ peifaipe	{
+  neighbours	["sebame",	"kaifeinyai",	"meiwoimai",	"beijeiye",]
+  type	"square",
+ }
+ meiwoimai	{
+  neighbours	["peifaipe",	"sheseishu",	"jukoigu",	"",]
+  type	"square",
+ }
+ fogenru	{
+  neighbours	["nounjunwe",	"jenwaiga",	"daireipei",	"shougeryu",]
+  type	"square",
+ }
+ shougeryu	{
+  neighbours	["fogenru",	"SOAA",	"UOAA",	"tenhufoin",]
+  type	"square",
+ }
+ tenhufoin	{
+  neighbours	["shougeryu",	"VOAA",	"sinryoru",	"nounjunwe",]
+  type	"square",
+ }
+ sinryoru	{
+  neighbours	["tenhufoin",	"WOAA",	"kaifeinyai",	"sebame",]
+  type	"square",
+ }
+ kaifeinyai	{
+  neighbours	["sinryoru",	"temibe",	"sheseishu",	"peifaipe",]
+  type	"square",
+ }
+ sheseishu	{
+  neighbours	["kaifeinyai",	"yoiwupoi",	"monshiga",	"meiwoimai",]
+  type	"square",
+ }
+ monshiga	{
+  neighbours	["sheseishu",	"ryadudo",	"toiteiwei",	"jukoigu",]
+  type	"square",
+ }
+ toiteiwei	{
+  neighbours	["monshiga",	"ryoifago",	"gimenu",	"ryejeihai",]
+  type	"square",
+ }
+ gimenu	{
+  neighbours	["toiteiwei",	"haishaisha",	"jeinkeintan",	"shusenei",]
+  type	"square",
+ }
+ munseiwoi	{
+  neighbours	["teishaiyai",	"sebame",	"beijeiye",	"jineitei",]
+  type	"square",
+ }
+ beijeiye	{
+  neighbours	["munseiwoi",	"peifaipe",	"",	"",]
+  type	"square",
+ }
+ shusenei	{
+  neighbours	["",	"",	"ryejeihai",	"gimenu",]
+  type	"square",
+ }
+ ryejeihai	{
+  neighbours	["shusenei",	"",	"jukoigu",	"toiteiwei",]
+  type	"square",
+ }
+ jukoigu	{
+  neighbours	["ryejeihai",	"",	"meiwoimai",	"monshiga",]
+  type	"square",
+ }
+ temibe	{
+  neighbours	["kaifeinyai",	"WOAA",	"YOAA",	"yoiwupoi",]
+  type	"square",
+ }
+ yoiwupoi	{
+  neighbours	["temibe",	"ZOAA",	"ryadudo",	"sheseishu",]
+  type	"square",
+ }
+ ryadudo	{
+  neighbours	["yoiwupoi",	"APAA",	"ryoifago",	"monshiga",]
+  type	"square",
+ }
+ ryoifago	{
+  neighbours	["ryadudo",	"HQAA",	"haishaisha",	"toiteiwei",]
+  type	"square",
+ }
+ haishaisha	{
+  neighbours	["ryoifago",	"miyonshou",	"doinahou",	"gimenu",]
+  type	"square",
+ }
+ miyonshou	{
+  neighbours	["haishaisha",	"HQAA",	"FQAA",	"dipiru",]
+  type	"square",
+ }
+ jeiwonja	{
+  neighbours	["GMAA",	"dawewei",	"tinejei",	"ryoimutei",]
+  type	"square",
+ }
+ tinejei	{
+  neighbours	["jeiwonja",	"washekai",	"kaishepun",	"yebaite",]
+  type	"square",
+ }
+ kaishepun	{
+  neighbours	["tinejei",	"hosheirya",	"bouhuryei",	"firyifen",]
+  type	"square",
+ }
+ bouhuryei	{
+  neighbours	["kaishepun",	"paiyaisha",	"begawi",	"pemindu",]
+  type	"square",
+ }
+ pemindu	{
+  neighbours	["bouhuryei",	"yoinhoungou",	"heitaitou",	"firyifen",]
+  type	"square",
+ }
+ yoinhoungou	{
+  neighbours	["pemindu",	"begawi",	"ryoujenbou",	"douduryoi",]
+  type	"square",
+ }
+ ryoujenbou	{
+  neighbours	["yoinhoungou",	"toumeko",	"dogenbe",	"mimeju",]
+  type	"square",
+ }
+ dogenbe	{
+  neighbours	["ryoujenbou",	"neinryaibou",	"shashaja",	"retapei",]
+  type	"square",
+ }
+ shashaja	{
+  neighbours	["dogenbe",	"dousaifa",	"teigairyi",	"kuryewo",]
+  type	"square",
+ }
+ teigairyi	{
+  neighbours	["shashaja",	"VJAA",	"reipuhei",	"heitoimai",]
+  type	"square",
+ }
+ reipuhei	{
+  neighbours	["teigairyi",	"WJAA",	"jeinmoiju",	"shouseimoi",]
+  type	"square",
+ }
+ jeinmoiju	{
+  neighbours	["reipuhei",	"XJAA",	"hoinyengoi",	"fependo",]
+  type	"square",
+ }
+ goiwainwa	{
+  neighbours	["",	"feijounno",	"sanouru",	"peweife",]
+  type	"square",
+ }
+ peweife	{
+  neighbours	["goiwainwa",	"woitanfa",	"JEAA",	"gainounkoi",]
+  type	"square",
+ }
+ woitanfa	{
+  neighbours	["peweife",	"sanouru",	"SCAA",	"IEAA",]
+  type	"square",
+ }
+ gainounkoi	{
+  neighbours	["peweife",	"KEAA",	"",	"",]
+  type	"square",
+ }
+ sanouru	{
+  neighbours	["KBAA",	"woitanfa",	"goiwainwa",	"ryiwoite",]
+  type	"square",
+ }
+ wopoura	{
+  neighbours	["TOAA",	"ROAA",	"buwanmun",	"tisifai",]
+  type	"square",
+ }
+ tisifai	{
+  neighbours	["wopoura",	"kubaiyu",	"gufaikou",	"jeyounna",]
+  type	"square",
+ }
+ kubaiyu	{
+  neighbours	["tisifai",	"buwanmun",	"badomei",	"deitondo",]
+  type	"square",
+ }
+ geiyeifen	{
+  neighbours	["XOAA",	"VOAA",	"pareisho",	"rihashu",]
+  type	"square",
+ }
+ pareisho	{
+  neighbours	["geiyeifen",	"UOAA",	"jeyounna",	"poifoshei",]
+  type	"square",
+ }
+ jeyounna	{
+  neighbours	["pareisho",	"TOAA",	"tisifai",	"yeingeije",]
+  type	"square",
+ }
+ badomei	{
+  neighbours	["kubaiyu",	"yoinusou",	"meihaisou",	"pesanjoi",]
+  type	"square",
+ }
+ meihaisou	{
+  neighbours	["badomei",	"jofoinroin",	"sesoijo",	"tefehen",]
+  type	"square",
+ }
+ sesoijo	{
+  neighbours	["meihaisou",	"yaikoushai",	"gouduyou",	"jaseinei",]
+  type	"square",
+ }
+ gouduyou	{
+  neighbours	["sesoijo",	"takeinen",	"duraiwou",	"mounipoi",]
+  type	"square",
+ }
+ duraiwou	{
+  neighbours	["gouduyou",	"heitaitou",	"kepaipi",	"jaibomi",]
+  type	"square",
+ }
+ jaibomi	{
+  neighbours	["duraiwou",	"pagaihai",	"jenhaingo",	"mounipoi",]
+  type	"square",
+ }
+ pagaihai	{
+  neighbours	["jaibomi",	"kepaipi",	"shouhimoi",	"yoikounpai",]
+  type	"square",
+ }
+ shouhimoi	{
+  neighbours	["pagaihai",	"youneitou",	"ryounbanyo",	"nouraipe",]
+  type	"square",
+ }
+ ryounbanyo	{
+  neighbours	["shouhimoi",	"toihede",	"gigusho",	"pejasi",]
+  type	"square",
+ }
+ gigusho	{
+  neighbours	["ryounbanyo",	"jeidugoun",	"keihoupa",	"pefeyo",]
+  type	"square",
+ }
+ pefeyo	{
+  neighbours	["gigusho",	"kutounou",	"neipuni",	"pejasi",]
+  type	"square",
+ }
+ yoikounpai	{
+  neighbours	["pagaihai",	"nouraipe",	"",	"jenhaingo",]
+  type	"square",
+ }
+ kutounou	{
+  neighbours	["pefeyo",	"keihoupa",	"goujouhoi",	"hoguya",]
+  type	"square",
+ }
+ goujouhoi	{
+  neighbours	["kutounou",	"jaiyubou",	"menwainwoi",	"routurai",]
+  type	"square",
+ }
+ menwainwoi	{
+  neighbours	["goujouhoi",	"faigeboi",	"shagerin",	"rutuyo",]
+  type	"square",
+ }
+ shagerin	{
+  neighbours	["menwainwoi",	"tainaiki",	"goudounbon",	"moumomai",]
+  type	"square",
+ }
+ moumomai	{
+  neighbours	["shagerin",	"baitounryou",	"tounofei",	"rutuyo",]
+  type	"square",
+ }
+ baitounryou	{
+  neighbours	["moumomai",	"goudounbon",	"dotatei",	"gainryaiyon",]
+  type	"square",
+ }
+ dotatei	{
+  neighbours	["baitounryou",	"dijedoi",	"hodeiwoi",	"kogiyo",]
+  type	"square",
+ }
+ hodeiwoi	{
+  neighbours	["dotatei",	"rendowou",	"yoinatai",	"tupainbou",]
+  type	"square",
+ }
+ tupainbou	{
+  neighbours	["hodeiwoi",	"fopaini",	"",	"kogiyo",]
+  type	"square",
+ }
+ fopaini	{
+  neighbours	["tupainbou",	"yoinatai",	"mopuro",	"peirowi",]
+  type	"square",
+ }
+ peirowi	{
+  neighbours	["fopaini",	"neigenna",	"",	"",]
+  type	"square",
+ }
+ neigenna	{
+  neighbours	["peirowi",	"mopuro",	"wikiru",	"",]
+  type	"square",
+ }
+ wikiru	{
+  neighbours	["neigenna",	"gutiwein",	"geigirye",	"",]
+  type	"square",
+ }
+ gutiwein	{
+  neighbours	["wikiru",	"mopuro",	"gaiyigan",	"monhomai",]
+  type	"square",
+ }
+ monhomai	{
+  neighbours	["gutiwein",	"moitohoi",	"hoinhisha",	"geigirye",]
+  type	"square",
+ }
+ hoinhisha	{
+  neighbours	["monhomai",	"ryufeise",	"kufennei",	"woireinen",]
+  type	"square",
+ }
+ kufennei	{
+  neighbours	["hoinhisha",	"maibeiya",	"jupiroi",	"fetinyo",]
+  type	"square",
+ }
+ jupiroi	{
+  neighbours	["kufennei",	"serakoi",	"pomuki",	"shawewoun",]
+  type	"square",
+ }
+ pomuki	{
+  neighbours	["jupiroi",	"shoujushai",	"geijoitou",	"",]
+  type	"square",
+ }
+ ryiwoite	{
+  neighbours	["JBAA",	"sanouru",	"feijounno",	"ketoiyo",]
+  type	"square",
+ }
+ sheiryaryoi	{
+  neighbours	["KDAA",	"fimeisei",	"baimutou",	"TDAA",]
+  type	"square",
+ }
+ roimuwoi	{
+  neighbours	["fimeisei",	"RBAA",	"ryeinhointou",	"soiyeikoi",]
+  type	"square",
+ }
+ baimutou	{
+  neighbours	["yeyaiwai",	"saishoujai",	"UDAA",	"sheiryaryoi",]
+  type	"square",
+ }
+ jajukin	{
+  neighbours	["YMAA",	"rouwinei",	"gairoijoi",	"WMAA",]
+  type	"square",
+ }
+ gairoijoi	{
+  neighbours	["jajukin",	"ryaryoinoi",	"duponen",	"VMAA",]
+  type	"square",
+ }
+ duponen	{
+  neighbours	["gairoijoi",	"meinjesi",	"koryousi",	"UMAA",]
+  type	"square",
+ }
+ koryousi	{
+  neighbours	["duponen",	"mosaimai",	"haigoiyei",	"numushin",]
+  type	"square",
+ }
+ haigoiyei	{
+  neighbours	["koryousi",	"hedaigo",	"goimeku",	"fairyouse",]
+  type	"square",
+ }
+ fairyouse	{
+  neighbours	["haigoiyei",	"fegaifi",	"RMAA",	"numushin",]
+  type	"square",
+ }
+ fegaifi	{
+  neighbours	["fairyouse",	"goimeku",	"shutirya",	"neisino",]
+  type	"square",
+ }
+ goimeku	{
+  neighbours	["fegaifi",	"haigoiyei",	"neinshagai",	"tuworyoi",]
+  type	"square",
+ }
+ tuworyoi	{
+  neighbours	["goimeku",	"rougoumi",	"toshoufoi",	"shutirya",]
+  type	"square",
+ }
+ toshoufoi	{
+  neighbours	["tuworyoi",	"haidenru",	"naisendei",	"yaifairu",]
+  type	"square",
+ }
+ naisendei	{
+  neighbours	["toshoufoi",	"ryejime",	"pougarai",	"yudeipu",]
+  type	"square",
+ }
+ pougarai	{
+  neighbours	["naisendei",	"humimai",	"gaibunyi",	"wapoitoi",]
+  type	"square",
+ }
+ gaibunyi	{
+  neighbours	["pougarai",	"jokuki",	"heinjepe",	"ryuyeitu",]
+  type	"square",
+ }
+ heinjepe	{
+  neighbours	["gaibunyi",	"toiryaiha",	"nounmenpei",	"shihaki",]
+  type	"square",
+ }
+ nounmenpei	{
+  neighbours	["heinjepe",	"shomounshun",	"komoupu",	"yeisairyo",]
+  type	"square",
+ }
+ komoupu	{
+  neighbours	["nounmenpei",	"dusouja",	"monana",	"deinmawe",]
+  type	"square",
+ }
+ monana	{
+  neighbours	["komoupu",	"keiryeifo",	"peigaiji",	"kahongei",]
+  type	"square",
+ }
+ peigaiji	{
+  neighbours	["monana",	"ryoimouyo",	"huryipu",	"ryanoikin",]
+  type	"square",
+ }
+ huryipu	{
+  neighbours	["peigaiji",	"deineiha",	"hounkaboi",	"banyemi",]
+  type	"square",
+ }
+ numushin	{
+  neighbours	["SMAA",	"UMAA",	"koryousi",	"fairyouse",]
+  type	"square",
+ }
+ dusouja	{
+  neighbours	["komoupu",	"shomounshun",	"neireshu",	"keiryeifo",]
+  type	"square",
+ }
+ keiryeifo	{
+  neighbours	["dusouja",	"hepeine",	"ryoimouyo",	"monana",]
+  type	"square",
+ }
+ ryoimouyo	{
+  neighbours	["keiryeifo",	"ryedamou",	"deineiha",	"peigaiji",]
+  type	"square",
+ }
+ deineiha	{
+  neighbours	["ryoimouyo",	"rideirai",	"yaryukou",	"huryipu",]
+  type	"square",
+ }
+ rideirai	{
+  neighbours	["deineiha",	"ryedamou",	"soidihe",	"keishoisou",]
+  type	"square",
+ }
+ keishoisou	{
+  neighbours	["rideirai",	"jusunron",	"wabugu",	"yaryukou",]
+  type	"square",
+ }
+ wabugu	{
+  neighbours	["keishoisou",	"munoikei",	"fokanmu",	"guwufou",]
+  type	"square",
+ }
+ fokanmu	{
+  neighbours	["wabugu",	"faishaiyei",	"shufobo",	"deinbubi",]
+  type	"square",
+ }
+ shufobo	{
+  neighbours	["fokanmu",	"joushahou",	"rainpuyun",	"minsenain",]
+  type	"square",
+ }
+ rainpuyun	{
+  neighbours	["shufobo",	"ryouweiku",	"wouraihe",	"pitenpu",]
+  type	"square",
+ }
+ ryouweiku	{
+  neighbours	["rainpuyun",	"joushahou",	"koiweiwu",	"rashigu",]
+  type	"square",
+ }
+ rashigu	{
+  neighbours	["ryouweiku",	"hishipen",	"jaingaman",	"wouraihe",]
+  type	"square",
+ }
+ jaingaman	{
+  neighbours	["rashigu",	"souwiwoi",	"ryaryine",	"boijoye",]
+  type	"square",
+ }
+ ryaryine	{
+  neighbours	["jaingaman",	"koiboushou",	"heryegai",	"konjantai",]
+  type	"square",
+ }
+ heryegai	{
+  neighbours	["ryaryine",	"nekouye",	"timeyu",	"murouwu",]
+  type	"square",
+ }
+ timeyu	{
+  neighbours	["heryegai",	"paimouja",	"bouguryo",	"weikouhu",]
+  type	"square",
+ }
+ bouguryo	{
+  neighbours	["timeyu",	"ryomapo",	"keifasa",	"shuyipi",]
+  type	"square",
+ }
+ shuyipi	{
+  neighbours	["bouguryo",	"jebasoi",	"hiryeime",	"weikouhu",]
+  type	"square",
+ }
+ jebasoi	{
+  neighbours	["shuyipi",	"keifasa",	"feyairye",	"waifeiba",]
+  type	"square",
+ }
+ toiryaiha	{
+  neighbours	["heinjepe",	"jokuki",	"shewoutoi",	"shomounshun",]
+  type	"square",
+ }
+ shomounshun	{
+  neighbours	["toiryaiha",	"tuyaisho",	"dusouja",	"nounmenpei",]
+  type	"square",
+ }
+ neireshu	{
+  neighbours	["dusouja",	"tuyaisho",	"shomoirain",	"hepeine",]
+  type	"square",
+ }
+ hepeine	{
+  neighbours	["keiryeifo",	"neireshu",	"roheishei",	"ryedamou",]
+  type	"square",
+ }
+ ryedamou	{
+  neighbours	["hepeine",	"gowoide",	"rideirai",	"ryoimouyo",]
+  type	"square",
+ }
+ faishaiyei	{
+  neighbours	["fokanmu",	"munoikei",	"foukounde",	"joushahou",]
+  type	"square",
+ }
+ hishipen	{
+  neighbours	["rashigu",	"koiweiwu",	"meihaiye",	"souwiwoi",]
+  type	"square",
+ }
+ souwiwoi	{
+  neighbours	["hishipen",	"pifouyi",	"koiboushou",	"jaingaman",]
+  type	"square",
+ }
+ koiboushou	{
+  neighbours	["souwiwoi",	"shapounnen",	"nekouye",	"ryaryine",]
+  type	"square",
+ }
+ nekouye	{
+  neighbours	["koiboushou",	"tarikai",	"paimouja",	"heryegai",]
+  type	"square",
+ }
+ paimouja	{
+  neighbours	["nekouye",	"raisoutou",	"ryomapo",	"timeyu",]
+  type	"square",
+ }
+ ryomapo	{
+  neighbours	["paimouja",	"neijounpu",	"duseryi",	"bouguryo",]
+  type	"square",
+ }
+ haidenru	{
+  neighbours	["toshoufoi",	"rougoumi",	"jesada",	"ryejime",]
+  type	"square",
+ }
+ ryejime	{
+  neighbours	["haidenru",	"daguwei",	"humimai",	"naisendei",]
+  type	"square",
+ }
+ humimai	{
+  neighbours	["ryejime",	"yeinneigu",	"jokuki",	"pougarai",]
+  type	"square",
+ }
+ jokuki	{
+  neighbours	["humimai",	"ryigouryi",	"toiryaiha",	"gaibunyi",]
+  type	"square",
+ }
+ ryigouryi	{
+  neighbours	["jokuki",	"yeinneigu",	"",	"shewoutoi",]
+  type	"square",
+ }
+ shewoutoi	{
+  neighbours	["ryigouryi",	"",	"tuyaisho",	"toiryaiha",]
+  type	"square",
+ }
+ tuyaisho	{
+  neighbours	["shewoutoi",	"",	"neireshu",	"shomounshun",]
+  type	"square",
+ }
+ shomoirain	{
+  neighbours	["neireshu",	"",	"",	"roheishei",]
+  type	"square",
+ }
+ roheishei	{
+  neighbours	["hepeine",	"shomoirain",	"",	"gowoide",]
+  type	"square",
+ }
+ gowoide	{
+  neighbours	["roheishei",	"",	"soidihe",	"ryedamou",]
+  type	"square",
+ }
+ soidihe	{
+  neighbours	["gowoide",	"",	"jusunron",	"rideirai",]
+  type	"square",
+ }
+ jusunron	{
+  neighbours	["soidihe",	"punnoki",	"munoikei",	"keishoisou",]
+  type	"square",
+ }
+ punnoki	{
+  neighbours	["jusunron",	"",	"",	"mosoryo",]
+  type	"square",
+ }
+ mosoryo	{
+  neighbours	["punnoki",	"",	"foukounde",	"munoikei",]
+  type	"square",
+ }
+ foukounde	{
+  neighbours	["mosoryo",	"",	"jiwoushai",	"faishaiyei",]
+  type	"square",
+ }
+ jiwoushai	{
+  neighbours	["foukounde",	"",	"koiweiwu",	"joushahou",]
+  type	"square",
+ }
+ koiweiwu	{
+  neighbours	["jiwoushai",	"fesinou",	"hishipen",	"ryouweiku",]
+  type	"square",
+ }
+ fesinou	{
+  neighbours	["koiweiwu",	"",	"",	"meihaiye",]
+  type	"square",
+ }
+ meihaiye	{
+  neighbours	["fesinou",	"",	"pifouyi",	"hishipen",]
+  type	"square",
+ }
+ pifouyi	{
+  neighbours	["meihaiye",	"",	"shapounnen",	"souwiwoi",]
+  type	"square",
+ }
+ shapounnen	{
+  neighbours	["pifouyi",	"",	"tarikai",	"koiboushou",]
+  type	"square",
+ }
+ tarikai	{
+  neighbours	["shapounnen",	"",	"raisoutou",	"nekouye",]
+  type	"square",
+ }
+ raisoutou	{
+  neighbours	["tarikai",	"",	"neijounpu",	"paimouja",]
+  type	"square",
+ }
+ neijounpu	{
+  neighbours	["raisoutou",	"",	"",	"ryomapo",]
+  type	"square",
+ }
+ keifasa	{
+  neighbours	["bouguryo",	"duseryi",	"hoinboiyei",	"jebasoi",]
+  type	"square",
+ }
+ duseryi	{
+  neighbours	["keifasa",	"ryomapo",	"",	"shohaho",]
+  type	"square",
+ }
+ munoikei	{
+  neighbours	["jusunron",	"mosoryo",	"faishaiyei",	"wabugu",]
+  type	"square",
+ }
+ joushahou	{
+  neighbours	["faishaiyei",	"jiwoushai",	"ryouweiku",	"shufobo",]
+  type	"square",
+ }
+ neisino	{
+  neighbours	["fegaifi",	"dorijo",	"NMAA",	"RMAA",]
+  type	"square",
+ }
+ dorijo	{
+  neighbours	["neisino",	"shutirya",	"neirainso",	"rebepai",]
+  type	"square",
+ }
+ neirainso	{
+  neighbours	["dorijo",	"yaifairu",	"meinbeishoi",	"ryatuje",]
+  type	"square",
+ }
+ meinbeishoi	{
+  neighbours	["neirainso",	"yudeipu",	"weikebei",	"pudoudou",]
+  type	"square",
+ }
+ weikebei	{
+  neighbours	["meinbeishoi",	"wapoitoi",	"boupitu",	"dushoufou",]
+  type	"square",
+ }
+ boupitu	{
+  neighbours	["weikebei",	"ryuyeitu",	"yigene",	"bifeju",]
+  type	"square",
+ }
+ deinmawe	{
+  neighbours	["komoupu",	"kahongei",	"koishoitai",	"yeisairyo",]
+  type	"square",
+ }
+ kahongei	{
+  neighbours	["deinmawe",	"monana",	"ryanoikin",	"ryaihoifei",]
+  type	"square",
+ }
+ ryanoikin	{
+  neighbours	["kahongei",	"peigaiji",	"banyemi",	"hawuga",]
+  type	"square",
+ }
+ banyemi	{
+  neighbours	["ryanoikin",	"huryipu",	"mugisei",	"gegoipi",]
+  type	"square",
+ }
+ yeisairyo	{
+  neighbours	["deinmawe",	"tainryaisain",	"shihaki",	"nounmenpei",]
+  type	"square",
+ }
+ shihaki	{
+  neighbours	["yeisairyo",	"yigene",	"ryuyeitu",	"heinjepe",]
+  type	"square",
+ }
+ ryuyeitu	{
+  neighbours	["shihaki",	"boupitu",	"wapoitoi",	"gaibunyi",]
+  type	"square",
+ }
+ wapoitoi	{
+  neighbours	["ryuyeitu",	"weikebei",	"yudeipu",	"pougarai",]
+  type	"square",
+ }
+ yudeipu	{
+  neighbours	["wapoitoi",	"meinbeishoi",	"yaifairu",	"naisendei",]
+  type	"square",
+ }
+ yaifairu	{
+  neighbours	["yudeipu",	"neirainso",	"shutirya",	"toshoufoi",]
+  type	"square",
+ }
+ shutirya	{
+  neighbours	["yaifairu",	"dorijo",	"fegaifi",	"tuworyoi",]
+  type	"square",
+ }
+ hoinboiyei	{
+  neighbours	["keifasa",	"shohaho",	"moumerya",	"feyairye",]
+  type	"square",
+ }
+ moumerya	{
+  neighbours	["hoinboiyei",	"japarye",	"raiwoukain",	"toiyugoi",]
+  type	"square",
+ }
+ raiwoukain	{
+  neighbours	["moumerya",	"ryounoijo",	"kainteitu",	"wisaiye",]
+  type	"square",
+ }
+ kainteitu	{
+  neighbours	["raiwoukain",	"tedoipou",	"baryeikai",	"hainshoima",]
+  type	"square",
+ }
+ baryeikai	{
+  neighbours	["kainteitu",	"manpeitei",	"tuyoinkon",	"janike",]
+  type	"square",
+ }
+ tuyoinkon	{
+  neighbours	["baryeikai",	"jibepu",	"nugahin",	"shiryounshin",]
+  type	"square",
+ }
+ nugahin	{
+  neighbours	["tuyoinkon",	"ryeiyaku",	"reishoimo",	"heinkeibai",]
+  type	"square",
+ }
+ reishoimo	{
+  neighbours	["nugahin",	"faipoidi",	"fumoiwa",	"bopaibe",]
+  type	"square",
+ }
+ shohaho	{
+  neighbours	["duseryi",	"",	"japarye",	"hoinboiyei",]
+  type	"square",
+ }
+ japarye	{
+  neighbours	["shohaho",	"",	"ryounoijo",	"moumerya",]
+  type	"square",
+ }
+ ryounoijo	{
+  neighbours	["japarye",	"",	"tedoipou",	"raiwoukain",]
+  type	"square",
+ }
+ tedoipou	{
+  neighbours	["ryounoijo",	"",	"manpeitei",	"kainteitu",]
+  type	"square",
+ }
+ manpeitei	{
+  neighbours	["tedoipou",	"",	"jibepu",	"baryeikai",]
+  type	"square",
+ }
+ jibepu	{
+  neighbours	["manpeitei",	"",	"ryeiyaku",	"tuyoinkon",]
+  type	"square",
+ }
+ ryeiyaku	{
+  neighbours	["jibepu",	"",	"faipoidi",	"nugahin",]
+  type	"square",
+ }
+ faipoidi	{
+  neighbours	["ryeiyaku",	"",	"noushiju",	"reishoimo",]
+  type	"square",
+ }
+ noushiju	{
+  neighbours	["faipoidi",	"",	"bofoibu",	"fumoiwa",]
+  type	"square",
+ }
+ bofoibu	{
+  neighbours	["noushiju",	"",	"jairujoi",	"tobeibe",]
+  type	"square",
+ }
+ jairujoi	{
+  neighbours	["bofoibu",	"",	"dagaisoun",	"kiwetu",]
+  type	"square",
+ }
+ dagaisoun	{
+  neighbours	["jairujoi",	"",	"ryunjewai",	"hokakin",]
+  type	"square",
+ }
+ ryunjewai	{
+  neighbours	["dagaisoun",	"",	"meijaiwo",	"sushufoi",]
+  type	"square",
+ }
+ meijaiwo	{
+  neighbours	["ryunjewai",	"",	"konteinshu",	"yinfigoi",]
+  type	"square",
+ }
+ konteinshu	{
+  neighbours	["meijaiwo",	"",	"",	"koisheijei",]
+  type	"square",
+ }
+ koisheijei	{
+  neighbours	["konteinshu",	"",	"",	"yinfigoi",]
+  type	"square",
+ }
+ yinfigoi	{
+  neighbours	["koisheijei",	"",	"sushufoi",	"meijaiwo",]
+  type	"square",
+ }
+ sushufoi	{
+  neighbours	["yinfigoi",	"nemudi",	"hokakin",	"ryunjewai",]
+  type	"square",
+ }
+ nemudi	{
+  neighbours	["sushufoi",	"",	"",	"bousatoi",]
+  type	"square",
+ }
+ bousatoi	{
+  neighbours	["nemudi",	"wairugou",	"yougosoi",	"hokakin",]
+  type	"square",
+ }
+ wairugou	{
+  neighbours	["bousatoi",	"",	"",	"nokoiwi",]
+  type	"square",
+ }
+ nokoiwi	{
+  neighbours	["wairugou",	"",	"gusujou",	"yougosoi",]
+  type	"square",
+ }
+ gusujou	{
+  neighbours	["nokoiwi",	"danwoupe",	"densigai",	"kijouryai",]
+  type	"square",
+ }
+ danwoupe	{
+  neighbours	["gusujou",	"",	"",	"shuhaiji",]
+  type	"square",
+ }
+ shuhaiji	{
+  neighbours	["danwoupe",	"",	"jamono",	"densigai",]
+  type	"square",
+ }
+ jamono	{
+  neighbours	["shuhaiji",	"",	"herori",	"woibusai",]
+  type	"square",
+ }
+ herori	{
+  neighbours	["jamono",	"",	"jabiyo",	"tairashai",]
+  type	"square",
+ }
+ jabiyo	{
+  neighbours	["herori",	"kaifairo",	"miryadei",	"ryowodi",]
+  type	"square",
+ }
+ kaifairo	{
+  neighbours	["jabiyo",	"",	"",	"hajunryai",]
+  type	"square",
+ }
+ hajunryai	{
+  neighbours	["kaifairo",	"",	"hasoiryu",	"miryadei",]
+  type	"square",
+ }
+ hasoiryu	{
+  neighbours	["hajunryai",	"",	"keiyohai",	"pijoyou",]
+  type	"square",
+ }
+ keiyohai	{
+  neighbours	["hasoiryu",	"",	"fapeshe",	"jobusha",]
+  type	"square",
+ }
+ fapeshe	{
+  neighbours	["keiyohai",	"",	"wopenso",	"somainryoi",]
+  type	"square",
+ }
+ wopenso	{
+  neighbours	["fapeshe",	"ryeirinfou",	"baikerei",	"ryainyeika",]
+  type	"square",
+ }
+ ryeirinfou	{
+  neighbours	["wopenso",	"",	"",	"noraifo",]
+  type	"square",
+ }
+ noraifo	{
+  neighbours	["ryeirinfou",	"roushunjei",	"meitape",	"baikerei",]
+  type	"square",
+ }
+ roushunjei	{
+  neighbours	["noraifo",	"",	"peinpano",	"peisoiya",]
+  type	"square",
+ }
+ peinpano	{
+  neighbours	["roushunjei",	"",	"",	"nakaida",]
+  type	"square",
+ }
+ tonmapo	{
+  neighbours	["",	"foryetai",	"hirodo",	"waikifain",]
+  type	"square",
+ }
+ hirodo	{
+  neighbours	["tonmapo",	"riryunryu",	"bunoinshi",	"hoideyo",]
+  type	"square",
+ }
+ manyoiyoi	{
+  neighbours	["",	"",	"hemogei",	"mouseikou",]
+  type	"square",
+ }
+ hemogei	{
+  neighbours	["manyoiyoi",	"",	"ryeishoingei",	"nosamo",]
+  type	"square",
+ }
+ ryeishoingei	{
+  neighbours	["hemogei",	"mijinre",	"jebawei",	"sobeishai",]
+  type	"square",
+ }
+ jebawei	{
+  neighbours	["ryeishoingei",	"neshousha",	"sotaisho",	"waindagoi",]
+  type	"square",
+ }
+ sotaisho	{
+  neighbours	["jebawei",	"roruhu",	"ryouboikei",	"gugeinjou",]
+  type	"square",
+ }
+ ryouboikei	{
+  neighbours	["sotaisho",	"reiwengai",	"dainkashai",	"fopoida",]
+  type	"square",
+ }
+ fopoida	{
+  neighbours	["ryouboikei",	"pikoisi",	"toikunju",	"gugeinjou",]
+  type	"square",
+ }
+ pikoisi	{
+  neighbours	["fopoida",	"dainkashai",	"serakoi",	"gudirou",]
+  type	"square",
+ }
+ serakoi	{
+  neighbours	["pikoisi",	"shoujushai",	"jupiroi",	"maibeiya",]
+  type	"square",
+ }
+ shoujushai	{
+  neighbours	["serakoi",	"dainkashai",	"moufade",	"pomuki",]
+  type	"square",
+ }
+ moufade	{
+  neighbours	["shoujushai",	"reidadou",	"wikupu",	"geijoitou",]
+  type	"square",
+ }
+ mounipoi	{
+  neighbours	["gouduyou",	"jaibomi",	"juwoimi",	"jaseinei",]
+  type	"square",
+ }
+ jaseinei	{
+  neighbours	["mounipoi",	"joumourei",	"tefehen",	"sesoijo",]
+  type	"square",
+ }
+ pejasi	{
+  neighbours	["ryounbanyo",	"pefeyo",	"",	"nouraipe",]
+  type	"square",
+ }
+ nouraipe	{
+  neighbours	["pejasi",	"",	"yoikounpai",	"shouhimoi",]
+  type	"square",
+ }
+ neipuni	{
+  neighbours	["pefeyo",	"hoguya",	"",	"",]
+  type	"square",
+ }
+ hoguya	{
+  neighbours	["neipuni",	"kutounou",	"routurai",	"",]
+  type	"square",
+ }
+ tounofei	{
+  neighbours	["moumomai",	"gainryaiyon",	"",	"",]
+  type	"square",
+ }
+ rutuyo	{
+  neighbours	["moumomai",	"",	"routurai",	"menwainwoi",]
+  type	"square",
+ }
+ routurai	{
+  neighbours	["rutuyo",	"",	"hoguya",	"goujouhoi",]
+  type	"square",
+ }
+ shawewoun	{
+  neighbours	["jupiroi",	"",	"",	"fetinyo",]
+  type	"square",
+ }
+ fetinyo	{
+  neighbours	["shawewoun",	"",	"woireinen",	"kufennei",]
+  type	"square",
+ }
+ woireinen	{
+  neighbours	["fetinyo",	"",	"geigirye",	"hoinhisha",]
+  type	"square",
+ }
+ geigirye	{
+  neighbours	["woireinen",	"",	"wikiru",	"monhomai",]
+  type	"square",
+ }
+ kogiyo	{
+  neighbours	["tupainbou",	"",	"gainryaiyon",	"dotatei",]
+  type	"square",
+ }
+ gainryaiyon	{
+  neighbours	["kogiyo",	"",	"tounofei",	"baitounryou",]
+  type	"square",
+ }
+ geijoitou	{
+  neighbours	["pomuki",	"moufade",	"giwuba",	"",]
+  type	"square",
+ }
+ giwuba	{
+  neighbours	["geijoitou",	"wikupu",	"sosoiyo",	"",]
+  type	"square",
+ }
+ sosoiyo	{
+  neighbours	["giwuba",	"yondupai",	"sibusai",	"",]
+  type	"square",
+ }
+ sibusai	{
+  neighbours	["sosoiyo",	"haikesa",	"tewisei",	"",]
+  type	"square",
+ }
+ tewisei	{
+  neighbours	["sibusai",	"karaisha",	"hemekei",	"",]
+  type	"square",
+ }
+ hemekei	{
+  neighbours	["tewisei",	"poipomoi",	"maryouki",	"",]
+  type	"square",
+ }
+ maryouki	{
+  neighbours	["hemekei",	"paintumo",	"shiwenhu",	"",]
+  type	"square",
+ }
+ shiwenhu	{
+  neighbours	["maryouki",	"kepounryu",	"ryojonmou",	"",]
+  type	"square",
+ }
+ ryojonmou	{
+  neighbours	["shiwenhu",	"shegeipo",	"rimoda",	"",]
+  type	"square",
+ }
+ rimoda	{
+  neighbours	["ryojonmou",	"yufipou",	"shukoinno",	"",]
+  type	"square",
+ }
+ shukoinno	{
+  neighbours	["rimoda",	"boryine",	"yaryebo",	"",]
+  type	"square",
+ }
+ yaryebo	{
+  neighbours	["shukoinno",	"reinnoka",	"sokoigan",	"",]
+  type	"square",
+ }
+ sokoigan	{
+  neighbours	["yaryebo",	"setaimu",	"ryoibeifu",	"",]
+  type	"square",
+ }
+ ryoibeifu	{
+  neighbours	["sokoigan",	"ryairama",	"sounfoiha",	"",]
+  type	"square",
+ }
+ sounfoiha	{
+  neighbours	["ryoibeifu",	"kosaihi",	"",	"",]
+  type	"square",
+ }
+ kosaihi	{
+  neighbours	["sounfoiha",	"ryairama",	"",	"",]
+  type	"square",
+ }
+ ryairama	{
+  neighbours	["kosaihi",	"ryoibeifu",	"setaimu",	"",]
+  type	"square",
+ }
+ setaimu	{
+  neighbours	["sokoigan",	"reinnoka",	"yonhinye",	"ryairama",]
+  type	"square",
+ }
+ dainkashai	{
+  neighbours	["ryouboikei",	"reidadou",	"shoujushai",	"pikoisi",]
+  type	"square",
+ }
+ baikerei	{
+  neighbours	["wopenso",	"noraifo",	"kinbairei",	"feinpaimi",]
+  type	"square",
+ }
+ feinpaimi	{
+  neighbours	["baikerei",	"weisoshein",	"waifeiba",	"ryainyeika",]
+  type	"square",
+ }
+ waifeiba	{
+  neighbours	["feinpaimi",	"hiryeime",	"jebasoi",	"tokofoun",]
+  type	"square",
+ }
+ ryainyeika	{
+  neighbours	["wopenso",	"feinpaimi",	"tokofoun",	"somainryoi",]
+  type	"square",
+ }
+ tokofoun	{
+  neighbours	["ryainyeika",	"waifeiba",	"feyairye",	"munnaga",]
+  type	"square",
+ }
+ feyairye	{
+  neighbours	["tokofoun",	"jebasoi",	"hoinboiyei",	"toiyugoi",]
+  type	"square",
+ }
+ reidadou	{
+  neighbours	["moufade",	"dainkashai",	"reiwengai",	"segirei",]
+  type	"square",
+ }
+ reiwengai	{
+  neighbours	["reidadou",	"ryouboikei",	"roruhu",	"shougeiye",]
+  type	"square",
+ }
+ roruhu	{
+  neighbours	["reiwengai",	"sotaisho",	"neshousha",	"bakousai",]
+  type	"square",
+ }
+ neshousha	{
+  neighbours	["roruhu",	"jebawei",	"mijinre",	"noushefu",]
+  type	"square",
+ }
+ mijinre	{
+  neighbours	["neshousha",	"ryeishoingei",	"",	"",]
+  type	"square",
+ }
+ soirairyein	{
+  neighbours	["",	"",	"doiwondei",	"sheiwudou",]
+  type	"square",
+ }
+ garyaisi	{
+  neighbours	["",	"jishoimoi",	"feiyishou",	"ponfete",]
+  type	"square",
+ }
+ jishoimoi	{
+  neighbours	["garyaisi",	"",	"",	"rumikei",]
+  type	"square",
+ }
+ miwouba	{
+  neighbours	["",	"",	"nokaiyu",	"sayaryu",]
+  type	"square",
+ }
+ yonhinye	{
+  neighbours	["",	"",	"setaimu",	"nokaiyu",]
+  type	"square",
+ }
+ hokakin	{
+  neighbours	["dagaisoun",	"sushufoi",	"bousatoi",	"kiwetu",]
+  type	"square",
+ }
+ kiwetu	{
+  neighbours	["hokakin",	"yougosoi",	"tobeibe",	"jairujoi",]
+  type	"square",
+ }
+ tobeibe	{
+  neighbours	["kiwetu",	"kijouryai",	"fumoiwa",	"bofoibu",]
+  type	"square",
+ }
+ fumoiwa	{
+  neighbours	["tobeibe",	"yutowo",	"reishoimo",	"noushiju",]
+  type	"square",
+ }
+ janike	{
+  neighbours	["baryeikai",	"shiryounshin",	"soishena",	"hainshoima",]
+  type	"square",
+ }
+ hainshoima	{
+  neighbours	["kainteitu",	"janike",	"rigare",	"wisaiye",]
+  type	"square",
+ }
+ wisaiye	{
+  neighbours	["hainshoima",	"meinodi",	"toiyugoi",	"raiwoukain",]
+  type	"square",
+ }
+ toiyugoi	{
+  neighbours	["wisaiye",	"munnaga",	"feyairye",	"moumerya",]
+  type	"square",
+ }
+ munnaga	{
+  neighbours	["toiyugoi",	"meinodi",	"somainryoi",	"tokofoun",]
+  type	"square",
+ }
+ meinodi	{
+  neighbours	["munnaga",	"wisaiye",	"rigare",	"jobusha",]
+  type	"square",
+ }
+ rigare	{
+  neighbours	["meinodi",	"hainshoima",	"soishena",	"pijoyou",]
+  type	"square",
+ }
+ shiryounshin	{
+  neighbours	["janike",	"tuyoinkon",	"heinkeibai",	"ryowodi",]
+  type	"square",
+ }
+ heinkeibai	{
+  neighbours	["shiryounshin",	"nugahin",	"bopaibe",	"tairashai",]
+  type	"square",
+ }
+ bopaibe	{
+  neighbours	["heinkeibai",	"reishoimo",	"yutowo",	"woibusai",]
+  type	"square",
+ }
+ yutowo	{
+  neighbours	["bopaibe",	"fumoiwa",	"kijouryai",	"densigai",]
+  type	"square",
+ }
+ kijouryai	{
+  neighbours	["yutowo",	"tobeibe",	"yougosoi",	"gusujou",]
+  type	"square",
+ }
+ yougosoi	{
+  neighbours	["kijouryai",	"kiwetu",	"bousatoi",	"nokoiwi",]
+  type	"square",
+ }
+ densigai	{
+  neighbours	["gusujou",	"shuhaiji",	"woibusai",	"yutowo",]
+  type	"square",
+ }
+ woibusai	{
+  neighbours	["densigai",	"jamono",	"tairashai",	"bopaibe",]
+  type	"square",
+ }
+ tairashai	{
+  neighbours	["woibusai",	"herori",	"ryowodi",	"heinkeibai",]
+  type	"square",
+ }
+ ryowodi	{
+  neighbours	["tairashai",	"jabiyo",	"soishena",	"shiryounshin",]
+  type	"square",
+ }
+ soishena	{
+  neighbours	["ryowodi",	"miryadei",	"rigare",	"janike",]
+  type	"square",
+ }
+ somainryoi	{
+  neighbours	["munnaga",	"jobusha",	"fapeshe",	"ryainyeika",]
+  type	"square",
+ }
+ jobusha	{
+  neighbours	["meinodi",	"pijoyou",	"keiyohai",	"somainryoi",]
+  type	"square",
+ }
+ pijoyou	{
+  neighbours	["jobusha",	"rigare",	"miryadei",	"hasoiryu",]
+  type	"square",
+ }
+ miryadei	{
+  neighbours	["pijoyou",	"soishena",	"jabiyo",	"hajunryai",]
+  type	"square",
+ }
+ reinnoka	{
+  neighbours	["yaryebo",	"boryine",	"nokaiyu",	"setaimu",]
+  type	"square",
+ }
+ boryine	{
+  neighbours	["reinnoka",	"shukoinno",	"yufipou",	"hefenou",]
+  type	"square",
+ }
+ yufipou	{
+  neighbours	["boryine",	"rimoda",	"shegeipo",	"songinryo",]
+  type	"square",
+ }
+ shegeipo	{
+  neighbours	["yufipou",	"ryojonmou",	"kepounryu",	"bapirye",]
+  type	"square",
+ }
+ kepounryu	{
+  neighbours	["shegeipo",	"shiwenhu",	"paintumo",	"naiwaishoin",]
+  type	"square",
+ }
+ paintumo	{
+  neighbours	["kepounryu",	"maryouki",	"poipomoi",	"beikaiha",]
+  type	"square",
+ }
+ poipomoi	{
+  neighbours	["paintumo",	"hemekei",	"karaisha",	"desherei",]
+  type	"square",
+ }
+ karaisha	{
+  neighbours	["poipomoi",	"tewisei",	"haikesa",	"babasoi",]
+  type	"square",
+ }
+ haikesa	{
+  neighbours	["karaisha",	"sibusai",	"yondupai",	"goinoure",]
+  type	"square",
+ }
+ yondupai	{
+  neighbours	["haikesa",	"sosoiyo",	"wikupu",	"tudiyei",]
+  type	"square",
+ }
+ wikupu	{
+  neighbours	["yondupai",	"giwuba",	"moufade",	"segirei",]
+  type	"square",
+ }
+ segirei	{
+  neighbours	["wikupu",	"reidadou",	"shougeiye",	"tudiyei",]
+  type	"square",
+ }
+ shougeiye	{
+  neighbours	["segirei",	"reiwengai",	"bakousai",	"tuserai",]
+  type	"square",
+ }
+ bakousai	{
+  neighbours	["shougeiye",	"roruhu",	"noushefu",	"jihonou",]
+  type	"square",
+ }
+ jihonou	{
+  neighbours	["bakousai",	"teisuga",	"poijudu",	"tuserai",]
+  type	"square",
+ }
+ teisuga	{
+  neighbours	["jihonou",	"noushefu",	"",	"yoiwedou",]
+  type	"square",
+ }
+ noushefu	{
+  neighbours	["teisuga",	"bakousai",	"neshousha",	"",]
+  type	"square",
+ }
+ yoiwedou	{
+  neighbours	["teisuga",	"",	"sheiwudou",	"poijudu",]
+  type	"square",
+ }
+ sheiwudou	{
+  neighbours	["yoiwedou",	"",	"soirairyein",	"yeikointa",]
+  type	"square",
+ }
+ yeikointa	{
+  neighbours	["sheiwudou",	"doiwondei",	"doyaiboi",	"poijudu",]
+  type	"square",
+ }
+ doiwondei	{
+  neighbours	["yeikointa",	"soirairyein",	"ryounjounshoin",
+		"newehen",]
+  type	"square",
+ }
+ ryounjounshoin	{
+  neighbours	["doiwondei",	"",	"ponfete",	"megego",]
+  type	"square",
+ }
+ ponfete	{
+  neighbours	["ryounjounshoin",	"",	"garyaisi",	"matunpu",]
+  type	"square",
+ }
+ matunpu	{
+  neighbours	["ponfete",	"feiyishou",	"naiwaishoin",	"megego",]
+  type	"square",
+ }
+ feiyishou	{
+  neighbours	["matunpu",	"garyaisi",	"rumikei",	"bapirye",]
+  type	"square",
+ }
+ rumikei	{
+  neighbours	["feiyishou",	"jishoimoi",	"sayaryu",	"songinryo",]
+  type	"square",
+ }
+ sayaryu	{
+  neighbours	["rumikei",	"",	"miwouba",	"hefenou",]
+  type	"square",
+ }
+ hefenou	{
+  neighbours	["sayaryu",	"nokaiyu",	"boryine",	"songinryo",]
+  type	"square",
+ }
+ nokaiyu	{
+  neighbours	["hefenou",	"miwouba",	"yonhinye",	"reinnoka",]
+  type	"square",
+ }
+ songinryo	{
+  neighbours	["hefenou",	"yufipou",	"bapirye",	"rumikei",]
+  type	"square",
+ }
+ bapirye	{
+  neighbours	["songinryo",	"shegeipo",	"naiwaishoin",	"feiyishou",]
+  type	"square",
+ }
+ naiwaishoin	{
+  neighbours	["bapirye",	"kepounryu",	"beikaiha",	"matunpu",]
+  type	"square",
+ }
+ beikaiha	{
+  neighbours	["naiwaishoin",	"paintumo",	"desherei",	"megego",]
+  type	"square",
+ }
+ desherei	{
+  neighbours	["beikaiha",	"poipomoi",	"babasoi",	"newehen",]
+  type	"square",
+ }
+ babasoi	{
+  neighbours	["desherei",	"karaisha",	"goinoure",	"doyaiboi",]
+  type	"square",
+ }
+ goinoure	{
+  neighbours	["babasoi",	"haikesa",	"tudiyei",	"shouryuda",]
+  type	"square",
+ }
+ shouryuda	{
+  neighbours	["goinoure",	"tuserai",	"poijudu",	"doyaiboi",]
+  type	"square",
+ }
+ tuserai	{
+  neighbours	["shouryuda",	"tudiyei",	"shougeiye",	"jihonou",]
+  type	"square",
+ }
+ doyaiboi	{
+  neighbours	["shouryuda",	"yeikointa",	"newehen",	"babasoi",]
+  type	"square",
+ }
+ tudiyei	{
+  neighbours	["tuserai",	"goinoure",	"yondupai",	"segirei",]
+  type	"square",
+ }
+ poijudu	{
+  neighbours	["yeikointa",	"shouryuda",	"jihonou",	"yoiwedou",]
+  type	"square",
+ }
+ newehen	{
+  neighbours	["doyaiboi",	"doiwondei",	"megego",	"desherei",]
+  type	"square",
+ }
+ megego	{
+  neighbours	["newehen",	"ryounjounshoin",	"matunpu",
+		"beikaiha",]
+  type	"square",
+ }
+ gegoipi	{
+  neighbours	["banyemi",	"jabeifoi",	"TKAA",	"hawuga",]
+  type	"square",
+ }
+ hawuga	{
+  neighbours	["UKAA",	"ryaihoifei",	"ryanoikin",	"gegoipi",]
+  type	"square",
+ }
+ ryaihoifei	{
+  neighbours	["hawuga",	"VKAA",	"koishoitai",	"kahongei",]
+  type	"square",
+ }
+ koishoitai	{
+  neighbours	["ryaihoifei",	"naishudein",	"tainryaisain",	"deinmawe",]
+  type	"square",
+ }
+ tainryaisain	{
+  neighbours	["koishoitai",	"bonshaipe",	"yigene",	"yeisairyo",]
+  type	"square",
+ }
+ yigene	{
+  neighbours	["tainryaisain",	"poyouto",	"boupitu",	"shihaki",]
+  type	"square",
+ }
+ dushoufou	{
+  neighbours	["weikebei",	"bifeju",	"yaitougon",	"pudoudou",]
+  type	"square",
+ }
+ pudoudou	{
+  neighbours	["dushoufou",	"fayenryi",	"ryatuje",	"meinbeishoi",]
+  type	"square",
+ }
+ ryatuje	{
+  neighbours	["pudoudou",	"shaifukei",	"rebepai",	"neirainso",]
+  type	"square",
+ }
+ rebepai	{
+  neighbours	["ryatuje",	"hairipei",	"NMAA",	"dorijo",]
+  type	"square",
+ }
+ gugeinjou	{
+  neighbours	["sotaisho",	"fopoida",	"souryoumu",	"waindagoi",]
+  type	"square",
+ }
+ waindagoi	{
+  neighbours	["gugeinjou",	"nanheidoin",	"sobeishai",	"jebawei",]
+  type	"square",
+ }
+ sobeishai	{
+  neighbours	["waindagoi",	"bokainhi",	"nosamo",	"ryeishoingei",]
+  type	"square",
+ }
+ nosamo	{
+  neighbours	["sobeishai",	"peshoten",	"mouseikou",	"hemogei",]
+  type	"square",
+ }
+ mouseikou	{
+  neighbours	["nosamo",	"fainoinda",	"weijisho",	"manyoiyoi",]
+  type	"square",
+ }
+ weijisho	{
+  neighbours	["mouseikou",	"beyeiton",	"",	"",]
+  type	"square",
+ }
+ hoideyo	{
+  neighbours	["goujounai",	"feijounwai",	"waikifain",	"hirodo",]
+  type	"square",
+ }
+ waikifain	{
+  neighbours	["hoideyo",	"wanbanmoi",	"rishoihe",	"tonmapo",]
+  type	"square",
+ }
+ sousoune	{
+  neighbours	["",	"nokedou",	"nakaida",	"",]
+  type	"square",
+ }
+ nakaida	{
+  neighbours	["sousoune",	"dokuwoi",	"peisoiya",	"peinpano",]
+  type	"square",
+ }
+ peisoiya	{
+  neighbours	["nakaida",	"goiyeimain",	"meitape",	"roushunjei",]
+  type	"square",
+ }
+ meitape	{
+  neighbours	["peisoiya",	"konafei",	"kinbairei",	"noraifo",]
+  type	"square",
+ }
+ kinbairei	{
+  neighbours	["meitape",	"jonmashe",	"weisoshein",	"baikerei",]
+  type	"square",
+ }
+ weisoshein	{
+  neighbours	["kinbairei",	"judeiboi",	"hiryeime",	"feinpaimi",]
+  type	"square",
+ }
+ hiryeime	{
+  neighbours	["weisoshein",	"feshimoi",	"shuyipi",	"waifeiba",]
+  type	"square",
+ }
+ feshimoi	{
+  neighbours	["hiryeime",	"judeiboi",	"younoiryoi",	"weikouhu",]
+  type	"square",
+ }
+ younoiryoi	{
+  neighbours	["feshimoi",	"piniki",	"japouwan",	"murouwu",]
+  type	"square",
+ }
+ murouwu	{
+  neighbours	["younoiryoi",	"konjantai",	"heryegai",	"weikouhu",]
+  type	"square",
+ }
+ konjantai	{
+  neighbours	["murouwu",	"japouwan",	"boijoye",	"ryaryine",]
+  type	"square",
+ }
+ boijoye	{
+  neighbours	["konjantai",	"biwoungu",	"wouraihe",	"jaingaman",]
+  type	"square",
+ }
+ weikouhu	{
+  neighbours	["murouwu",	"timeyu",	"shuyipi",	"feshimoi",]
+  type	"square",
+ }
+ wouraihe	{
+  neighbours	["boijoye",	"ryouyonwu",	"rainpuyun",	"rashigu",]
+  type	"square",
+ }
+ guwufou	{
+  neighbours	["wabugu",	"deinbubi",	"haroudi",	"yaryukou",]
+  type	"square",
+ }
+ yaryukou	{
+  neighbours	["guwufou",	"hounkaboi",	"deineiha",	"keishoisou",]
+  type	"square",
+ }
+ deinbubi	{
+  neighbours	["guwufou",	"fokanmu",	"minsenain",	"paifaipo",]
+  type	"square",
+ }
+ minsenain	{
+  neighbours	["deinbubi",	"shufobo",	"pitenpu",	"jaidopin",]
+  type	"square",
+ }
+ pitenpu	{
+  neighbours	["minsenain",	"rainpuyun",	"ryouyonwu",	"dejutou",]
+  type	"square",
+ }
+ ryouyonwu	{
+  neighbours	["pitenpu",	"wouraihe",	"biwoungu",	"yaidagei",]
+  type	"square",
+ }
+ biwoungu	{
+  neighbours	["ryouyonwu",	"boijoye",	"japouwan",	"genkadu",]
+  type	"square",
+ }
+ japouwan	{
+  neighbours	["biwoungu",	"konjantai",	"younoiryoi",	"ryubesa",]
+  type	"square",
+ }
+ judeiboi	{
+  neighbours	["feshimoi",	"weisoshein",	"jonmashe",	"piniki",]
+  type	"square",
+ }
+ piniki	{
+  neighbours	["judeiboi",	"bushoure",	"ryubesa",	"younoiryoi",]
+  type	"square",
+ }
+ ryubesa	{
+  neighbours	["piniki",	"jeryaidai",	"genkadu",	"japouwan",]
+  type	"square",
+ }
+ genkadu	{
+  neighbours	["ryubesa",	"gekaiban",	"yaidagei",	"biwoungu",]
+  type	"square",
+ }
+ yaidagei	{
+  neighbours	["genkadu",	"fayufa",	"dejutou",	"ryouyonwu",]
+  type	"square",
+ }
+ dejutou	{
+  neighbours	["yaidagei",	"wouyofi",	"jaidopin",	"pitenpu",]
+  type	"square",
+ }
+ jaidopin	{
+  neighbours	["dejutou",	"saifino",	"paifaipo",	"minsenain",]
+  type	"square",
+ }
+ paifaipo	{
+  neighbours	["jaidopin",	"jedoshoi",	"haroudi",	"deinbubi",]
+  type	"square",
+ }
+ haroudi	{
+  neighbours	["paifaipo",	"yakefi",	"hounkaboi",	"guwufou",]
+  type	"square",
+ }
+ hounkaboi	{
+  neighbours	["haroudi",	"mugisei",	"huryipu",	"yaryukou",]
+  type	"square",
+ }
+ mugisei	{
+  neighbours	["hounkaboi",	"yakefi",	"jabeifoi",	"banyemi",]
+  type	"square",
+ }
+ doyoiku	{
+  neighbours	["QKAA",	"mipekou",	"widoihei",	"deisewu",]
+  type	"square",
+ }
+ deisewu	{
+  neighbours	["doyoiku",	"deinberi",	"ryousheingai",	"PKAA",]
+  type	"square",
+ }
+ ryousheingai	{
+  neighbours	["deisewu",	"weirane",	"BLAA",	"OKAA",]
+  type	"square",
+ }
+ mipekou	{
+  neighbours	["doyoiku",	"RKAA",	"fiwenai",	"weikouro",]
+  type	"square",
+ }
+ fiwenai	{
+  neighbours	["mipekou",	"SKAA",	"fomouba",	"hoigaihoun",]
+  type	"square",
+ }
+ fomouba	{
+  neighbours	["fiwenai",	"TKAA",	"jabeifoi",	"rojesoi",]
+  type	"square",
+ }
+ jabeifoi	{
+  neighbours	["gegoipi",	"mugisei",	"yoiwube",	"fomouba",]
+  type	"square",
+ }
+ rojesoi	{
+  neighbours	["fomouba",	"yoiwube",	"fuwino",	"hoigaihoun",]
+  type	"square",
+ }
+ fuwino	{
+  neighbours	["rojesoi",	"gesindou",	"ryenjaifi",	"naiwoha",]
+  type	"square",
+ }
+ fayufa	{
+  neighbours	["yaidagei",	"gekaiban",	"daishoshou",	"wouyofi",]
+  type	"square",
+ }
+ daishoshou	{
+  neighbours	["fayufa",	"goupaido",	"bituke",	"soiraboi",]
+  type	"square",
+ }
+ goupaido	{
+  neighbours	["daishoshou",	"gekaiban",	"nimeiti",	"soutoufa",]
+  type	"square",
+ }
+ nimeiti	{
+  neighbours	["goupaido",	"jeryaidai",	"wahekoi",	"boingouman",]
+  type	"square",
+ }
+ wahekoi	{
+  neighbours	["nimeiti",	"bushoure",	"konafei",	"sunobu",]
+  type	"square",
+ }
+ konafei	{
+  neighbours	["wahekoi",	"jonmashe",	"meitape",	"goiyeimain",]
+  type	"square",
+ }
+ bushoure	{
+  neighbours	["wahekoi",	"jeryaidai",	"piniki",	"jonmashe",]
+  type	"square",
+ }
+ jeryaidai	{
+  neighbours	["bushoure",	"nimeiti",	"gekaiban",	"ryubesa",]
+  type	"square",
+ }
+ gekaiban	{
+  neighbours	["jeryaidai",	"goupaido",	"fayufa",	"genkadu",]
+  type	"square",
+ }
+ jonmashe	{
+  neighbours	["bushoure",	"judeiboi",	"kinbairei",	"konafei",]
+  type	"square",
+ }
+ wouyofi	{
+  neighbours	["fayufa",	"soiraboi",	"saifino",	"dejutou",]
+  type	"square",
+ }
+ saifino	{
+  neighbours	["wouyofi",	"foushasou",	"jedoshoi",	"jaidopin",]
+  type	"square",
+ }
+ jedoshoi	{
+  neighbours	["saifino",	"gesindou",	"yakefi",	"paifaipo",]
+  type	"square",
+ }
+ gesindou	{
+  neighbours	["jedoshoi",	"foushasou",	"fuwino",	"yoiwube",]
+  type	"square",
+ }
+ yoiwube	{
+  neighbours	["gesindou",	"rojesoi",	"jabeifoi",	"yakefi",]
+  type	"square",
+ }
+ foushasou	{
+  neighbours	["gesindou",	"saifino",	"soiraboi",	"ryenjaifi",]
+  type	"square",
+ }
+ ryenjaifi	{
+  neighbours	["foushasou",	"gepayoi",	"sheikoimo",	"fuwino",]
+  type	"square",
+ }
+ yakefi	{
+  neighbours	["mugisei",	"haroudi",	"jedoshoi",	"yoiwube",]
+  type	"square",
+ }
+ soiraboi	{
+  neighbours	["foushasou",	"wouyofi",	"daishoshou",	"gepayoi",]
+  type	"square",
+ }
+ gepayoi	{
+  neighbours	["soiraboi",	"bituke",	"shuryepou",	"ryenjaifi",]
+  type	"square",
+ }
+ bituke	{
+  neighbours	["gepayoi",	"daishoshou",	"soutoufa",	"jimoijoi",]
+  type	"square",
+ }
+ soutoufa	{
+  neighbours	["bituke",	"goupaido",	"boingouman",	"sugeisha",]
+  type	"square",
+ }
+ boingouman	{
+  neighbours	["soutoufa",	"nimeiti",	"sunobu",	"weinmudei",]
+  type	"square",
+ }
+ sunobu	{
+  neighbours	["boingouman",	"wahekoi",	"goiyeimain",	"shoikupoin",]
+  type	"square",
+ }
+ goiyeimain	{
+  neighbours	["sunobu",	"konafei",	"peisoiya",	"dokuwoi",]
+  type	"square",
+ }
+ dokuwoi	{
+  neighbours	["goiyeimain",	"nakaida",	"nokedou",	"shoikupoin",]
+  type	"square",
+ }
+ shoikupoin	{
+  neighbours	["dokuwoi",	"pejeisai",	"weinmudei",	"sunobu",]
+  type	"square",
+ }
+ weinmudei	{
+  neighbours	["shoikupoin",	"tanewo",	"sugeisha",	"boingouman",]
+  type	"square",
+ }
+ tanewo	{
+  neighbours	["weinmudei",	"pejeisai",	"dunhotei",	"yuwobu",]
+  type	"square",
+ }
+ yuwobu	{
+  neighbours	["tanewo",	"jeryeifo",	"roukeinyoi",	"sugeisha",]
+  type	"square",
+ }
+ roukeinyoi	{
+  neighbours	["yuwobu",	"wogoiboun",	"boidaiboi",	"jimoijoi",]
+  type	"square",
+ }
+ naiwoha	{
+  neighbours	["fuwino",	"sheikoimo",	"mingasein",	"hoigaihoun",]
+  type	"square",
+ }
+ weikouro	{
+  neighbours	["mipekou",	"hoigaihoun",	"mingasein",	"widoihei",]
+  type	"square",
+ }
+ hoigaihoun	{
+  neighbours	["naiwoha",	"weikouro",	"fiwenai",	"rojesoi",]
+  type	"square",
+ }
+ sheikoimo	{
+  neighbours	["naiwoha",	"ryenjaifi",	"shuryepou",	"dagomon",]
+  type	"square",
+ }
+ shuryepou	{
+  neighbours	["sheikoimo",	"gepayoi",	"jimoijoi",	"boidaiboi",]
+  type	"square",
+ }
+ jimoijoi	{
+  neighbours	["shuryepou",	"bituke",	"sugeisha",	"roukeinyoi",]
+  type	"square",
+ }
+ dagomon	{
+  neighbours	["sheikoimo",	"boidaiboi",	"ganpiwoi",	"mingasein",]
+  type	"square",
+ }
+ boidaiboi	{
+  neighbours	["dagomon",	"shuryepou",	"roukeinyoi",	"kuyoiri",]
+  type	"square",
+ }
+ sugeisha	{
+  neighbours	["jimoijoi",	"soutoufa",	"weinmudei",	"yuwobu",]
+  type	"square",
+ }
+ pejeisai	{
+  neighbours	["shoikupoin",	"nokedou",	"",	"tanewo",]
+  type	"square",
+ }
+ nokedou	{
+  neighbours	["pejeisai",	"dokuwoi",	"sousoune",	"",]
+  type	"square",
+ }
+ weyashe	{
+  neighbours	["",	"rishoihe",	"wanbanmoi",	"botounfe",]
+  type	"square",
+ }
+ wanbanmoi	{
+  neighbours	["weyashe",	"waikifain",	"feijounwai",	"koupoushein",]
+  type	"square",
+ }
+ feijounwai	{
+  neighbours	["wanbanmoi",	"hoideyo",	"jeikoife",	"yaishewi",]
+  type	"square",
+ }
+ jeikoife	{
+  neighbours	["feijounwai",	"goujounai",	"mikoumen",	"raryousha",]
+  type	"square",
+ }
+ beyeiton	{
+  neighbours	["",	"weijisho",	"fainoinda",	"koidibei",]
+  type	"square",
+ }
+ fainoinda	{
+  neighbours	["beyeiton",	"mouseikou",	"peshoten",	"keijouyo",]
+  type	"square",
+ }
+ maibeiya	{
+  neighbours	["serakoi",	"kufennei",	"ryufeise",	"gudirou",]
+  type	"square",
+ }
+ gudirou	{
+  neighbours	["maibeiya",	"noinnedan",	"toikunju",	"pikoisi",]
+  type	"square",
+ }
+ toikunju	{
+  neighbours	["gudirou",	"homunboi",	"souryoumu",	"fopoida",]
+  type	"square",
+ }
+ souryoumu	{
+  neighbours	["toikunju",	"boiwafe",	"nanheidoin",	"gugeinjou",]
+  type	"square",
+ }
+ nanheidoin	{
+  neighbours	["souryoumu",	"yaipoumai",	"bokainhi",	"waindagoi",]
+  type	"square",
+ }
+ yaipoumai	{
+  neighbours	["nanheidoin",	"boiwafe",	"nurunei",	"dogeifo",]
+  type	"square",
+ }
+ dogeifo	{
+  neighbours	["yaipoumai",	"hairyaryoi",	"baijejo",	"bokainhi",]
+  type	"square",
+ }
+ baijejo	{
+  neighbours	["dogeifo",	"keworo",	"keijouyo",	"peshoten",]
+  type	"square",
+ }
+ peshoten	{
+  neighbours	["baijejo",	"fainoinda",	"nosamo",	"bokainhi",]
+  type	"square",
+ }
+ bokainhi	{
+  neighbours	["peshoten",	"sobeishai",	"nanheidoin",	"dogeifo",]
+  type	"square",
+ }
+ boiwafe	{
+  neighbours	["yaipoumai",	"souryoumu",	"homunboi",	"pafeha",]
+  type	"square",
+ }
+ homunboi	{
+  neighbours	["boiwafe",	"toikunju",	"noinnedan",	"seimepoi",]
+  type	"square",
+ }
+ seimepoi	{
+  neighbours	["homunboi",	"shoigoisho",	"shotoijoi",	"pafeha",]
+  type	"square",
+ }
+ shoigoisho	{
+  neighbours	["seimepoi",	"noinnedan",	"moitohoi",	"moshaipo",]
+  type	"square",
+ }
+ noinnedan	{
+  neighbours	["shoigoisho",	"homunboi",	"gudirou",	"ryufeise",]
+  type	"square",
+ }
+ ryufeise	{
+  neighbours	["noinnedan",	"maibeiya",	"hoinhisha",	"moitohoi",]
+  type	"square",
+ }
+ moitohoi	{
+  neighbours	["ryufeise",	"monhomai",	"gaiyigan",	"shoigoisho",]
+  type	"square",
+ }
+ gaiyigan	{
+  neighbours	["moitohoi",	"gutiwein",	"shayainryoi",	"moshaipo",]
+  type	"square",
+ }
+ shayainryoi	{
+  neighbours	["gaiyigan",	"mopuro",	"yoinatai",	"faikiwoi",]
+  type	"square",
+ }
+ mopuro	{
+  neighbours	["shayainryoi",	"gutiwein",	"neigenna",	"fopaini",]
+  type	"square",
+ }
+ yoinatai	{
+  neighbours	["shayainryoi",	"fopaini",	"hodeiwoi",	"shideimi",]
+  type	"square",
+ }
+ moshaipo	{
+  neighbours	["gaiyigan",	"faikiwoi",	"shotoijoi",	"shoigoisho",]
+  type	"square",
+ }
+ faikiwoi	{
+  neighbours	["moshaipo",	"shayainryoi",	"shideimi",	"popoinje",]
+  type	"square",
+ }
+ dijedoi	{
+  neighbours	["dotatei",	"goudounbon",	"ryoijutei",	"rendowou",]
+  type	"square",
+ }
+ rendowou	{
+  neighbours	["hodeiwoi",	"dijedoi",	"yupairyou",	"shideimi",]
+  type	"square",
+ }
+ shideimi	{
+  neighbours	["rendowou",	"sefoinou",	"faikiwoi",	"yoinatai",]
+  type	"square",
+ }
+ goudounbon	{
+  neighbours	["dijedoi",	"baitounryou",	"shagerin",	"wukisi",]
+  type	"square",
+ }
+ jaiyubou	{
+  neighbours	["goujouhoi",	"keihoupa",	"jeineimou",	"faigeboi",]
+  type	"square",
+ }
+ youneitou	{
+  neighbours	["shouhimoi",	"kepaipi",	"mimeju",	"toihede",]
+  type	"square",
+ }
+ kepaipi	{
+  neighbours	["youneitou",	"pagaihai",	"duraiwou",	"douduryoi",]
+  type	"square",
+ }
+ takeinen	{
+  neighbours	["gouduyou",	"yaikoushai",	"firyifen",	"heitaitou",]
+  type	"square",
+ }
+ yaikoushai	{
+  neighbours	["takeinen",	"sesoijo",	"jofoinroin",	"yebaite",]
+  type	"square",
+ }
+ jofoinroin	{
+  neighbours	["yaikoushai",	"meihaisou",	"yoinusou",	"ryoimutei",]
+  type	"square",
+ }
+ yoinusou	{
+  neighbours	["jofoinroin",	"badomei",	"buwanmun",	"wounryoido",]
+  type	"square",
+ }
+ buwanmun	{
+  neighbours	["yoinusou",	"kubaiyu",	"wopoura",	"QOAA",]
+  type	"square",
+ }
+ wounryoido	{
+  neighbours	["yoinusou",	"QOAA",	"GMAA",	"ryoimutei",]
+  type	"square",
+ }
+ ryoimutei	{
+  neighbours	["wounryoido",	"jeiwonja",	"yebaite",	"jofoinroin",]
+  type	"square",
+ }
+ yebaite	{
+  neighbours	["ryoimutei",	"tinejei",	"firyifen",	"yaikoushai",]
+  type	"square",
+ }
+ firyifen	{
+  neighbours	["yebaite",	"kaishepun",	"pemindu",	"takeinen",]
+  type	"square",
+ }
+ heitaitou	{
+  neighbours	["pemindu",	"douduryoi",	"duraiwou",	"takeinen",]
+  type	"square",
+ }
+ douduryoi	{
+  neighbours	["heitaitou",	"yoinhoungou",	"mimeju",	"kepaipi",]
+  type	"square",
+ }
+ mimeju	{
+  neighbours	["douduryoi",	"ryoujenbou",	"retapei",	"youneitou",]
+  type	"square",
+ }
+ retapei	{
+  neighbours	["mimeju",	"dogenbe",	"kuryewo",	"toihede",]
+  type	"square",
+ }
+ toihede	{
+  neighbours	["retapei",	"jeidugoun",	"ryounbanyo",	"youneitou",]
+  type	"square",
+ }
+ jeidugoun	{
+  neighbours	["toihede",	"kuryewo",	"woisodou",	"gigusho",]
+  type	"square",
+ }
+ woisodou	{
+  neighbours	["jeidugoun",	"heitoimai",	"jeineimou",	"keihoupa",]
+  type	"square",
+ }
+ keihoupa	{
+  neighbours	["woisodou",	"jaiyubou",	"kutounou",	"gigusho",]
+  type	"square",
+ }
+ kuryewo	{
+  neighbours	["jeidugoun",	"retapei",	"shashaja",	"heitoimai",]
+  type	"square",
+ }
+ heitoimai	{
+  neighbours	["kuryewo",	"teigairyi",	"shouseimoi",	"woisodou",]
+  type	"square",
+ }
+ shouseimoi	{
+  neighbours	["heitoimai",	"reipuhei",	"fependo",	"jeineimou",]
+  type	"square",
+ }
+ jeineimou	{
+  neighbours	["shouseimoi",	"ryiponjei",	"jaiyubou",	"woisodou",]
+  type	"square",
+ }
+ faigeboi	{
+  neighbours	["jaiyubou",	"ryiponjei",	"tainaiki",	"menwainwoi",]
+  type	"square",
+ }
+ ryiponjei	{
+  neighbours	["faigeboi",	"jeineimou",	"fependo",	"mushetei",]
+  type	"square",
+ }
+ fependo	{
+  neighbours	["jeinmoiju",	"hikouhe",	"ryiponjei",	"shouseimoi",]
+  type	"square",
+ }
+ baryeto	{
+  neighbours	["WJAA",	"UJAA",	"bubeirya",	"YJAA",]
+  type	"square",
+ }
+ bubeirya	{
+  neighbours	["baryeto",	"TJAA",	"goyoiryou",	"ZJAA",]
+  type	"square",
+ }
+ kanpuse	{
+  neighbours	["RJAA",	"wougawe",	"BKAA",	"goyoiryou",]
+  type	"square",
+ }
+ wougawe	{
+  neighbours	["kanpuse",	"QJAA",	"EKAA",	"CKAA",]
+  type	"square",
+ }
+ goyoiryou	{
+  neighbours	["kanpuse",	"AKAA",	"bubeirya",	"SJAA",]
+  type	"square",
+ }
+ poukunhan	{
+  neighbours	["PKAA",	"jeiniwoun",	"ZKAA",	"moupatai",]
+  type	"square",
+ }
+ moupatai	{
+  neighbours	["poukunhan",	"YKAA",	"fofunjan",	"QKAA",]
+  type	"square",
+ }
+ fofunjan	{
+  neighbours	["moupatai",	"XKAA",	"ryashuryoi",	"RKAA",]
+  type	"square",
+ }
+ jeiniwoun	{
+  neighbours	["poukunhan",	"OKAA",	"KKAA",	"ALAA",]
+  type	"square",
+ }
+ ryashuryoi	{
+  neighbours	["fofunjan",	"WKAA",	"UKAA",	"SKAA",]
+  type	"square",
+ }
+ naishudein	{
+  neighbours	["VKAA",	"wutuwoi",	"bonshaipe",	"koishoitai",]
+  type	"square",
+ }
+ bonshaipe	{
+  neighbours	["naishudein",	"ryairyoita",	"poyouto",	"tainryaisain",]
+  type	"square",
+ }
+ poyouto	{
+  neighbours	["bonshaipe",	"gawawa",	"bifeju",	"yigene",]
+  type	"square",
+ }
+ bifeju	{
+  neighbours	["poyouto",	"teiwoja",	"dushoufou",	"boupitu",]
+  type	"square",
+ }
+ shaifukei	{
+  neighbours	["ryatuje",	"fayenryi",	"kuwiyo",	"hairipei",]
+  type	"square",
+ }
+ hairipei	{
+  neighbours	["shaifukei",	"tosumu",	"MMAA",	"rebepai",]
+  type	"square",
+ }
+ fayenryi	{
+  neighbours	["shaifukei",	"pudoudou",	"yaitougon",	"baisoushou",]
+  type	"square",
+ }
+ yaitougon	{
+  neighbours	["fayenryi",	"dushoufou",	"teiwoja",	"FFAA",]
+  type	"square",
+ }
+ teiwoja	{
+  neighbours	["yaitougon",	"bifeju",	"gawawa",	"GFAA",]
+  type	"square",
+ }
+ gawawa	{
+  neighbours	["teiwoja",	"poyouto",	"ryairyoita",	"HFAA",]
+  type	"square",
+ }
+ ryairyoita	{
+  neighbours	["gawawa",	"bonshaipe",	"wutuwoi",	"IFAA",]
+  type	"square",
+ }
+ wutuwoi	{
+  neighbours	["ryairyoita",	"naishudein",	"WKAA",	"sajaidu",]
+  type	"square",
+ }
+ sajaidu	{
+  neighbours	["wutuwoi",	"XKAA",	"nawojai",	"IFAA",]
+  type	"square",
+ }
+ nawojai	{
+  neighbours	["sajaidu",	"YKAA",	"fehuhou",	"JFAA",]
+  type	"square",
+ }
+ fehuhou	{
+  neighbours	["ZKAA",	"tuyopoin",	"KFAA",	"nawojai",]
+  type	"square",
+ }
+ tuyopoin	{
+  neighbours	["fehuhou",	"ALAA",	"MKAA",	"LFAA",]
+  type	"square",
+ }
+ youndeitou	{
+  neighbours	["KFAA",	"woukanou",	"XGAA",	"ryashupu",]
+  type	"square",
+ }
+ ryashupu	{
+  neighbours	["YGAA",	"HFAA",	"JFAA",	"youndeitou",]
+  type	"square",
+ }
+ woukanou	{
+  neighbours	["youndeitou",	"LFAA",	"NFAA",	"WGAA",]
+  type	"square",
+ }
+ wehouyi	{
+  neighbours	["XGAA",	"gopaigun",	"DFAA",	"mugufoi",]
+  type	"square",
+ }
+ mugufoi	{
+  neighbours	["wehouyi",	"EFAA",	"FFAA",	"YGAA",]
+  type	"square",
+ }
+ gopaigun	{
+  neighbours	["wehouyi",	"WGAA",	"PFAA",	"CFAA",]
+  type	"square",
+ }
+ feiturai	{
+  neighbours	["CFAA",	"AFAA",	"seiruje",	"teitiryu",]
+  type	"square",
+ }
+ seiruje	{
+  neighbours	["feiturai",	"ZEAA",	"IMAA",	"hoyoihi",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ hoyoihi	{
+  neighbours	["seiruje",	"JMAA",	"yushaisou",	"teitiryu",]
+  type	"square",
+ }
+ yushaisou	{
+  neighbours	["hoyoihi",	"KMAA",	"tosumu",	"nekejai",]
+  type	"square",
+ }
+ nekejai	{
+  neighbours	["yushaisou",	"kuwiyo",	"EFAA",	"teitiryu",]
+  type	"square",
+ }
+ teitiryu	{
+  neighbours	["nekejai",	"DFAA",	"feiturai",	"hoyoihi",]
+  type	"square",
+ }
+ kuwiyo	{
+  neighbours	["nekejai",	"tosumu",	"shaifukei",	"baisoushou",]
+  type	"square",
+ }
+ tosumu	{
+  neighbours	["kuwiyo",	"yushaisou",	"LMAA",	"hairipei",]
+  type	"square",
+ }
+ baisoushou	{
+  neighbours	["kuwiyo",	"fayenryi",	"FFAA",	"EFAA",]
+  type	"square",
+ }
+ jotushoi	{
+  neighbours	["MGAA",	"TGAA",	"seshanu",	"AGAA",]
+  type	"square",
+ }
+ seshanu	{
+  neighbours	["jotushoi",	"UGAA",	"yuryeiryu",	"BGAA",]
+  type	"square",
+ }
+ yuryeiryu	{
+  neighbours	["seshanu",	"VGAA",	"SGAA",	"CGAA",]
+  type	"square",
+ }
+ mibenfei	{
+  neighbours	["CGAA",	"shokoimo",	"bobeifai",	"gushanryu",]
+  type	"square",
+ }
+ gushanryu	{
+  neighbours	["mibenfei",	"boheinwu",	"totoishi",	"BGAA",]
+  type	"square",
+ }
+ totoishi	{
+  neighbours	["gushanryu",	"dudogo",	"TFAA",	"AGAA",]
+  type	"square",
+ }
+ dudogo	{
+  neighbours	["totoishi",	"boheinwu",	"BMAA",	"SFAA",]
+  type	"square",
+  s0	{
+   type	"FissionPower",
+  }
+  s1	{
+   type	"FissionPower",
+  }
+ }
+ boheinwu	{
+  neighbours	["dudogo",	"gushanryu",	"bobeifai",	"CMAA",]
+  type	"square",
+ }
+ bobeifai	{
+  neighbours	["boheinwu",	"mibenfei",	"ryaitaibai",	"DMAA",]
+  type	"square",
+ }
+ ryaitaibai	{
+  neighbours	["bobeifai",	"shokoimo",	"dawewei",	"EMAA",]
+  type	"square",
+ }
+ shokoimo	{
+  neighbours	["ryaitaibai",	"mibenfei",	"hajoman",	"washekai",]
+  type	"square",
+ }
+ hajoman	{
+  neighbours	["shokoimo",	"CGAA",	"SGAA",	"hosheirya",]
+  type	"square",
+ }
+ hosheirya	{
+  neighbours	["hajoman",	"paiyaisha",	"kaishepun",	"washekai",]
+  type	"square",
+ }
+ washekai	{
+  neighbours	["hosheirya",	"tinejei",	"dawewei",	"shokoimo",]
+  type	"square",
+ }
+ dawewei	{
+  neighbours	["washekai",	"jeiwonja",	"FMAA",	"ryaitaibai",]
+  type	"square",
+ }
+ begawi	{
+  neighbours	["bouhuryei",	"sedeno",	"toumeko",	"yoinhoungou",]
+  type	"square",
+ }
+ toumeko	{
+  neighbours	["begawi",	"mureinti",	"neinryaibou",	"ryoujenbou",]
+  type	"square",
+ }
+ neinryaibou	{
+  neighbours	["toumeko",	"jareisi",	"dousaifa",	"dogenbe",]
+  type	"square",
+ }
+ wihaibu	{
+  neighbours	["UJAA",	"dousaifa",	"jareisi",	"yonuma",]
+  type	"square",
+ }
+ yonuma	{
+  neighbours	["wihaibu",	"PGAA",	"jedeipai",	"TJAA",]
+  type	"square",
+ }
+ jedeipai	{
+  neighbours	["yonuma",	"DGAA",	"pumenshai",	"SJAA",]
+  type	"square",
+ }
+ pumenshai	{
+  neighbours	["jedeipai",	"EGAA",	"ryeiharyai",	"RJAA",]
+  type	"square",
+ }
+ dousaifa	{
+  neighbours	["neinryaibou",	"wihaibu",	"VJAA",	"shashaja",]
+  type	"square",
+ }
+ ryeiharyai	{
+  neighbours	["pumenshai",	"FGAA",	"OJAA",	"QJAA",]
+  type	"square",
+ }
+ neigipai	{
+  neighbours	["FGAA",	"bogaishoun",	"TGAA",	"OGAA",]
+  type	"square",
+ }
+ bogaishoun	{
+  neighbours	["neigipai",	"EGAA",	"ryashouka",	"UGAA",]
+  type	"square",
+ }
+ ryashouka	{
+  neighbours	["bogaishoun",	"DGAA",	"QGAA",	"VGAA",]
+  type	"square",
+ }
+ jareisi	{
+  neighbours	["wihaibu",	"neinryaibou",	"mureinti",	"PGAA",]
+  type	"square",
+ }
+ mureinti	{
+  neighbours	["jareisi",	"toumeko",	"sedeno",	"QGAA",]
+  type	"square",
+ }
+ sedeno	{
+  neighbours	["mureinti",	"begawi",	"paiyaisha",	"RGAA",]
+  type	"square",
+ }
+ paiyaisha	{
+  neighbours	["sedeno",	"bouhuryei",	"hosheirya",	"SGAA",]
+  type	"square",
+ }
+ hikouhe	{
+  neighbours	["fependo",	"hoinyengoi",	"ryoiryegi",	"mushetei",]
+  type	"square",
+ }
+ ryoiryegi	{
+  neighbours	["hikouhe",	"mitaimo",	"sesheikou",	"houryumouhou",]
+  type	"square",
+ }
+ houryumouhou	{
+  neighbours	["ryoiryegi",	"foudoiju",	"wukisi",	"mushetei",]
+  type	"square",
+ }
+ mushetei	{
+  neighbours	["houryumouhou",	"tainaiki",	"ryiponjei",	"hikouhe",]
+  type	"square",
+ }
+ wukisi	{
+  neighbours	["houryumouhou",	"ryoijutei",	"goudounbon",	"tainaiki",]
+  type	"square",
+ }
+ ryoijutei	{
+  neighbours	["wukisi",	"foudoiju",	"yupairyou",	"dijedoi",]
+  type	"square",
+ }
+ yupairyou	{
+  neighbours	["ryoijutei",	"jeinpougi",	"sefoinou",	"rendowou",]
+  type	"square",
+ }
+ tainaiki	{
+  neighbours	["shagerin",	"faigeboi",	"mushetei",	"wukisi",]
+  type	"square",
+ }
+ sefoinou	{
+  neighbours	["yupairyou",	"houtodoi",	"popoinje",	"shideimi",]
+  type	"square",
+ }
+ popoinje	{
+  neighbours	["sefoinou",	"nunnouwun",	"shotoijoi",	"faikiwoi",]
+  type	"square",
+ }
+ shotoijoi	{
+  neighbours	["popoinje",	"doijounai",	"seimepoi",	"moshaipo",]
+  type	"square",
+ }
+ pafeha	{
+  neighbours	["seimepoi",	"doijounai",	"nurunei",	"boiwafe",]
+  type	"square",
+ }
+ doijounai	{
+  neighbours	["pafeha",	"shotoijoi",	"nunnouwun",	"ganujoi",]
+  type	"square",
+ }
+ nunnouwun	{
+  neighbours	["doijounai",	"popoinje",	"houtodoi",	"hajoishoi",]
+  type	"square",
+ }
+ houtodoi	{
+  neighbours	["nunnouwun",	"sefoinou",	"jeinpougi",	"bisufei",]
+  type	"square",
+ }
+ jeinpougi	{
+  neighbours	["houtodoi",	"yupairyou",	"foudoiju",	"joigidu",]
+  type	"square",
+ }
+ foudoiju	{
+  neighbours	["jeinpougi",	"ryoijutei",	"houryumouhou",	"sesheikou",]
+  type	"square",
+ }
+ sesheikou	{
+  neighbours	["foudoiju",	"ryoiryegi",	"gaifaite",	"joigidu",]
+  type	"square",
+ }
+ mitaimo	{
+  neighbours	["ryoiryegi",	"hoinyengoi",	"pusetei",	"gaifaite",]
+  type	"square",
+ }
+ pusetei	{
+  neighbours	["mitaimo",	"gaibairye",	"jeryoiryoi",	"semeiki",]
+  type	"square",
+ }
+ jeryoiryoi	{
+  neighbours	["pusetei",	"ranankei",	"shigoutun",	"tihoishu",]
+  type	"square",
+ }
+ shigoutun	{
+  neighbours	["jeryoiryoi",	"jeiroubou",	"sheipejai",	"weikugo",]
+  type	"square",
+ }
+ sheipejai	{
+  neighbours	["shigoutun",	"yipouti",	"wipiga",	"bounbije",]
+  type	"square",
+ }
+ wipiga	{
+  neighbours	["sheipejai",	"guryoyu",	"miwoiwei",	"maimine",]
+  type	"square",
+ }
+ miwoiwei	{
+  neighbours	["wipiga",	"seibongu",	"bipouno",	"houhoisin",]
+  type	"square",
+ }
+ bipouno	{
+  neighbours	["miwoiwei",	"HLAA",	"ditamai",	"ponhowa",]
+  type	"square",
+ }
+ ditamai	{
+  neighbours	["bipouno",	"GLAA",	"foisaikoi",	"beiseitai",]
+  type	"square",
+ }
+ foisaikoi	{
+  neighbours	["ditamai",	"FLAA",	"nikoyoi",	"gakondai",]
+  type	"square",
+ }
+ nikoyoi	{
+  neighbours	["foisaikoi",	"ELAA",	"joujainfain",	"kufinja",]
+  type	"square",
+ }
+ joujainfain	{
+  neighbours	["nikoyoi",	"DLAA",	"deinweino",	"youryoite",]
+  type	"square",
+ }
+ deinweino	{
+  neighbours	["joujainfain",	"CLAA",	"jiyero",	"sijajai",]
+  type	"square",
+ }
+ jiyero	{
+  neighbours	["deinweino",	"BLAA",	"weirane",	"ryadoiko",]
+  type	"square",
+ }
+ weirane	{
+  neighbours	["jiyero",	"ryousheingai",	"deinberi",	"woufare",]
+  type	"square",
+ }
+ deinberi	{
+  neighbours	["weirane",	"deisewu",	"widoihei",	"koutoubo",]
+  type	"square",
+ }
+ widoihei	{
+  neighbours	["deinberi",	"doyoiku",	"weikouro",	"mouroinne",]
+  type	"square",
+ }
+ mouroinne	{
+  neighbours	["widoihei",	"mingasein",	"ganpiwoi",	"koutoubo",]
+  type	"square",
+ }
+ mingasein	{
+  neighbours	["mouroinne",	"weikouro",	"naiwoha",	"dagomon",]
+  type	"square",
+ }
+ koutoubo	{
+  neighbours	["mouroinne",	"ryineinbai",	"woufare",	"deinberi",]
+  type	"square",
+ }
+ seibongu	{
+  neighbours	["HLAA",	"miwoiwei",	"guryoyu",	"CKAA",]
+  type	"square",
+ }
+ guryoyu	{
+  neighbours	["seibongu",	"wipiga",	"yipouti",	"BKAA",]
+  type	"square",
+ }
+ yipouti	{
+  neighbours	["guryoyu",	"sheipejai",	"jeiroubou",	"AKAA",]
+  type	"square",
+ }
+ jeiroubou	{
+  neighbours	["yipouti",	"shigoutun",	"ranankei",	"ZJAA",]
+  type	"square",
+ }
+ ranankei	{
+  neighbours	["jeiroubou",	"jeryoiryoi",	"gaibairye",	"YJAA",]
+  type	"square",
+ }
+ gaibairye	{
+  neighbours	["ranankei",	"pusetei",	"hoinyengoi",	"XJAA",]
+  type	"square",
+ }
+ hoinyengoi	{
+  neighbours	["gaibairye",	"mitaimo",	"hikouhe",	"jeinmoiju",]
+  type	"square",
+ }
+ joigidu	{
+  neighbours	["sesheikou",	"youfishou",	"bisufei",	"jeinpougi",]
+  type	"square",
+ }
+ bisufei	{
+  neighbours	["joigidu",	"maiyego",	"hajoishoi",	"houtodoi",]
+  type	"square",
+ }
+ hajoishoi	{
+  neighbours	["bisufei",	"rainoirou",	"ganujoi",	"nunnouwun",]
+  type	"square",
+ }
+ ganujoi	{
+  neighbours	["hajoishoi",	"yodiju",	"nurunei",	"doijounai",]
+  type	"square",
+ }
+ nurunei	{
+  neighbours	["ganujoi",	"hairyaryoi",	"yaipoumai",	"pafeha",]
+  type	"square",
+ }
+ hairyaryoi	{
+  neighbours	["nurunei",	"yodiju",	"keworo",	"dogeifo",]
+  type	"square",
+ }
+ keworo	{
+  neighbours	["hairyaryoi",	"huryiru",	"ryasouryo",	"baijejo",]
+  type	"square",
+ }
+ ryasouryo	{
+  neighbours	["keworo",	"heidunnu",	"shonshinain",	"keijouyo",]
+  type	"square",
+ }
+ shonshinain	{
+  neighbours	["ryasouryo",	"woyende",	"ryoryoinyai",	"koidibei",]
+  type	"square",
+ }
+ ryoryoinyai	{
+  neighbours	["shonshinain",	"faiboisi",	"",	"",]
+  type	"square",
+ }
+ hantiyi	{
+  neighbours	["geinjidoi",	"hirifei",	"feidousai",	"shoukaihou",]
+  type	"square",
+ }
+ feidousai	{
+  neighbours	["hantiyi",	"humaifoun",	"jewirya",	"raryousha",]
+  type	"square",
+ }
+ jewirya	{
+  neighbours	["feidousai",	"doingeifoi",	"raintehou",	"yaishewi",]
+  type	"square",
+ }
+ raintehou	{
+  neighbours	["jewirya",	"yiseiryai",	"roiryenyon",	"koupoushein",]
+  type	"square",
+ }
+ roiryenyon	{
+  neighbours	["raintehou",	"rousaiyu",	"shuterou",	"botounfe",]
+  type	"square",
+ }
+ botounfe	{
+  neighbours	["roiryenyon",	"",	"weyashe",	"koupoushein",]
+  type	"square",
+ }
+ dunhotei	{
+  neighbours	["",	"jeryeifo",	"tanewo",	"",]
+  type	"square",
+ }
+ shuterou	{
+  neighbours	["",	"",	"roiryenyon",	"fosaike",]
+  type	"square",
+ }
+ koupoushein	{
+  neighbours	["botounfe",	"wanbanmoi",	"yaishewi",	"raintehou",]
+  type	"square",
+ }
+ yaishewi	{
+  neighbours	["koupoushein",	"feijounwai",	"raryousha",	"jewirya",]
+  type	"square",
+ }
+ raryousha	{
+  neighbours	["yaishewi",	"jeikoife",	"shoukaihou",	"feidousai",]
+  type	"square",
+ }
+ koidibei	{
+  neighbours	["",	"beyeiton",	"keijouyo",	"shonshinain",]
+  type	"square",
+ }
+ keijouyo	{
+  neighbours	["koidibei",	"fainoinda",	"baijejo",	"ryasouryo",]
+  type	"square",
+ }
+ heidunnu	{
+  neighbours	["ryasouryo",	"huryiru",	"tuyeiyou",	"woyende",]
+  type	"square",
+ }
+ tuyeiyou	{
+  neighbours	["heidunnu",	"shobeifu",	"yinunka",	"nenreihi",]
+  type	"square",
+ }
+ yinunka	{
+  neighbours	["tuyeiyou",	"nodaidu",	"gafirei",	"fawoufoin",]
+  type	"square",
+ }
+ nodaidu	{
+  neighbours	["yinunka",	"shobeifu",	"maiyego",	"bokaishei",]
+  type	"square",
+ }
+ bokaishei	{
+  neighbours	["nodaidu",	"youfishou",	"semeiki",	"gafirei",]
+  type	"square",
+ }
+ youfishou	{
+  neighbours	["bokaishei",	"maiyego",	"joigidu",	"gaifaite",]
+  type	"square",
+ }
+ maiyego	{
+  neighbours	["youfishou",	"nodaidu",	"rainoirou",	"bisufei",]
+  type	"square",
+ }
+ rainoirou	{
+  neighbours	["maiyego",	"shobeifu",	"yodiju",	"hajoishoi",]
+  type	"square",
+ }
+ yodiju	{
+  neighbours	["rainoirou",	"huryiru",	"hairyaryoi",	"ganujoi",]
+  type	"square",
+ }
+ huryiru	{
+  neighbours	["yodiju",	"shobeifu",	"heidunnu",	"keworo",]
+  type	"square",
+ }
+ shobeifu	{
+  neighbours	["huryiru",	"rainoirou",	"nodaidu",	"tuyeiyou",]
+  type	"square",
+ }
+ semeiki	{
+  neighbours	["bokaishei",	"gaifaite",	"pusetei",	"tihoishu",]
+  type	"square",
+ }
+ gaifaite	{
+  neighbours	["semeiki",	"youfishou",	"sesheikou",	"mitaimo",]
+  type	"square",
+ }
+ tihoishu	{
+  neighbours	["semeiki",	"jeryoiryoi",	"weikugo",	"gafirei",]
+  type	"square",
+ }
+ weikugo	{
+  neighbours	["tihoishu",	"shigoutun",	"bounbije",	"daidenjei",]
+  type	"square",
+ }
+ bounbije	{
+  neighbours	["weikugo",	"sheipejai",	"maimine",	"pateja",]
+  type	"square",
+ }
+ gafirei	{
+  neighbours	["tihoishu",	"daidenjei",	"yinunka",	"bokaishei",]
+  type	"square",
+ }
+ houhoisin	{
+  neighbours	["miwoiwei",	"ponhowa",	"tesoitou",	"maimine",]
+  type	"square",
+ }
+ ponhowa	{
+  neighbours	["houhoisin",	"bipouno",	"beiseitai",	"yoinmenyoi",]
+  type	"square",
+ }
+ beiseitai	{
+  neighbours	["ponhowa",	"ditamai",	"gakondai",	"ryeipahi",]
+  type	"square",
+ }
+ youryoite	{
+  neighbours	["joujainfain",	"sijajai",	"geiroji",	"kufinja",]
+  type	"square",
+ }
+ geiroji	{
+  neighbours	["youryoite",	"tidita",	"shoifanjoun",	"foideshai",]
+  type	"square",
+ }
+ tidita	{
+  neighbours	["geiroji",	"sijajai",	"nejunpo",	"kigirya",]
+  type	"square",
+ }
+ nejunpo	{
+  neighbours	["tidita",	"ryadoiko",	"hoiryojai",	"yusayoi",]
+  type	"square",
+ }
+ ryineinbai	{
+  neighbours	["koutoubo",	"ganpiwoi",	"todaton",	"hoiryojai",]
+  type	"square",
+ }
+ woufare	{
+  neighbours	["koutoubo",	"hoiryojai",	"ryadoiko",	"weirane",]
+  type	"square",
+ }
+ hoiryojai	{
+  neighbours	["woufare",	"ryineinbai",	"wouraifou",	"nejunpo",]
+  type	"square",
+ }
+ ryadoiko	{
+  neighbours	["nejunpo",	"sijajai",	"jiyero",	"woufare",]
+  type	"square",
+ }
+ sijajai	{
+  neighbours	["ryadoiko",	"tidita",	"youryoite",	"deinweino",]
+  type	"square",
+ }
+ kufinja	{
+  neighbours	["youryoite",	"foideshai",	"gakondai",	"nikoyoi",]
+  type	"square",
+ }
+ gakondai	{
+  neighbours	["kufinja",	"suhaipoun",	"beiseitai",	"foisaikoi",]
+  type	"square",
+ }
+ maimine	{
+  neighbours	["houhoisin",	"koshate",	"bounbije",	"wipiga",]
+  type	"square",
+ }
+ koshate	{
+  neighbours	["maimine",	"tesoitou",	"janerai",	"pateja",]
+  type	"square",
+ }
+ pateja	{
+  neighbours	["koshate",	"houkipai",	"daidenjei",	"bounbije",]
+  type	"square",
+ }
+ houkipai	{
+  neighbours	["pateja",	"janerai",	"yujairyin",	"fawoufoin",]
+  type	"square",
+ }
+ fawoufoin	{
+  neighbours	["houkipai",	"nenreihi",	"yinunka",	"daidenjei",]
+  type	"square",
+ }
+ nenreihi	{
+  neighbours	["fawoufoin",	"yujairyin",	"woyende",	"tuyeiyou",]
+  type	"square",
+ }
+ woyende	{
+  neighbours	["nenreihi",	"faiboisi",	"shonshinain",	"heidunnu",]
+  type	"square",
+ }
+ daidenjei	{
+  neighbours	["fawoufoin",	"gafirei",	"weikugo",	"pateja",]
+  type	"square",
+ }
+ yujairyin	{
+  neighbours	["nenreihi",	"houkipai",	"dahajin",	"faiboisi",]
+  type	"square",
+ }
+ dahajin	{
+  neighbours	["yujairyin",	"janerai",	"rounbemoi",	"pabaijon",]
+  type	"square",
+ }
+ pabaijon	{
+  neighbours	["dahajin",	"bijeiyoi",	"",	"faiboisi",]
+  type	"square",
+ }
+ bijeiyoi	{
+  neighbours	["pabaijon",	"rounbemoi",	"feirosha",	"",]
+  type	"square",
+ }
+ feirosha	{
+  neighbours	["bijeiyoi",	"sairaiwoin",	"hirifei",	"geinjidoi",]
+  type	"square",
+ }
+ hirifei	{
+  neighbours	["feirosha",	"sewebou",	"humaifoun",	"hantiyi",]
+  type	"square",
+ }
+ humaifoun	{
+  neighbours	["hirifei",	"kokiso",	"doingeifoi",	"feidousai",]
+  type	"square",
+ }
+ kokiso	{
+  neighbours	["humaifoun",	"sewebou",	"tenjoine",	"ryowounmei",]
+  type	"square",
+ }
+ ryowounmei	{
+  neighbours	["kokiso",	"noushaintoi",	"yatiko",	"doingeifoi",]
+  type	"square",
+ }
+ yatiko	{
+  neighbours	["ryowounmei",	"shoifanjoun",	"naipaintai",	"yiseiryai",]
+  type	"square",
+ }
+ shoifanjoun	{
+  neighbours	["yatiko",	"noushaintoi",	"geiroji",	"kigirya",]
+  type	"square",
+ }
+ kigirya	{
+  neighbours	["shoifanjoun",	"tidita",	"yusayoi",	"naipaintai",]
+  type	"square",
+ }
+ yusayoi	{
+  neighbours	["kigirya",	"nejunpo",	"wouraifou",	"yijisho",]
+  type	"square",
+ }
+ wouraifou	{
+  neighbours	["yusayoi",	"hoiryojai",	"todaton",	"geifojou",]
+  type	"square",
+ }
+ todaton	{
+  neighbours	["wouraifou",	"ryineinbai",	"kuyoiri",	"sosoukain",]
+  type	"square",
+ }
+ ganpiwoi	{
+  neighbours	["ryineinbai",	"mouroinne",	"dagomon",	"kuyoiri",]
+  type	"square",
+ }
+ kuyoiri	{
+  neighbours	["ganpiwoi",	"boidaiboi",	"wogoiboun",	"todaton",]
+  type	"square",
+ }
+ wogoiboun	{
+  neighbours	["kuyoiri",	"roukeinyoi",	"jeryeifo",	"sosoukain",]
+  type	"square",
+ }
+ jeryeifo	{
+  neighbours	["wogoiboun",	"yuwobu",	"dunhotei",	"soushoisou",]
+  type	"square",
+ }
+ sosoukain	{
+  neighbours	["wogoiboun",	"soushoisou",	"geifojou",	"todaton",]
+  type	"square",
+ }
+ soushoisou	{
+  neighbours	["sosoukain",	"jeryeifo",	"",	"ryasiroi",]
+  type	"square",
+ }
+ ryasiroi	{
+  neighbours	["soushoisou",	"",	"fosaike",	"geifojou",]
+  type	"square",
+ }
+ fosaike	{
+  neighbours	["ryasiroi",	"shuterou",	"rousaiyu",	"yijisho",]
+  type	"square",
+ }
+ yijisho	{
+  neighbours	["fosaike",	"naipaintai",	"yusayoi",	"geifojou",]
+  type	"square",
+ }
+ geifojou	{
+  neighbours	["yijisho",	"wouraifou",	"sosoukain",	"ryasiroi",]
+  type	"square",
+ }
+ rousaiyu	{
+  neighbours	["fosaike",	"roiryenyon",	"yiseiryai",	"naipaintai",]
+  type	"square",
+ }
+ yiseiryai	{
+  neighbours	["rousaiyu",	"raintehou",	"doingeifoi",	"yatiko",]
+  type	"square",
+ }
+ naipaintai	{
+  neighbours	["rousaiyu",	"yatiko",	"kigirya",	"yijisho",]
+  type	"square",
+ }
+ doingeifoi	{
+  neighbours	["jewirya",	"humaifoun",	"ryowounmei",	"yiseiryai",]
+  type	"square",
+ }
+ tenjoine	{
+  neighbours	["kokiso",	"wikoutai",	"suhaipoun",	"noushaintoi",]
+  type	"square",
+ }
+ wikoutai	{
+  neighbours	["tenjoine",	"sewebou",	"souwairi",	"ryeipahi",]
+  type	"square",
+ }
+ suhaipoun	{
+  neighbours	["tenjoine",	"ryeipahi",	"gakondai",	"foideshai",]
+  type	"square",
+ }
+ foideshai	{
+  neighbours	["geiroji",	"noushaintoi",	"suhaipoun",	"kufinja",]
+  type	"square",
+ }
+ noushaintoi	{
+  neighbours	["foideshai",	"shoifanjoun",	"ryowounmei",	"tenjoine",]
+  type	"square",
+ }
+ ryeipahi	{
+  neighbours	["wikoutai",	"yoinmenyoi",	"beiseitai",	"suhaipoun",]
+  type	"square",
+ }
+ yoinmenyoi	{
+  neighbours	["ryeipahi",	"souwairi",	"tesoitou",	"ponhowa",]
+  type	"square",
+ }
+ tesoitou	{
+  neighbours	["yoinmenyoi",	"ryeinube",	"koshate",	"houhoisin",]
+  type	"square",
+ }
+ ryeinube	{
+  neighbours	["tesoitou",	"souwairi",	"rounbemoi",	"janerai",]
+  type	"square",
+ }
+ janerai	{
+  neighbours	["ryeinube",	"dahajin",	"houkipai",	"koshate",]
+  type	"square",
+ }
+ sewebou	{
+  neighbours	["hirifei",	"sairaiwoin",	"wikoutai",	"kokiso",]
+  type	"square",
+ }
+ sairaiwoin	{
+  neighbours	["sewebou",	"feirosha",	"rounbemoi",	"souwairi",]
+  type	"square",
+ }
+ rounbemoi	{
+  neighbours	["sairaiwoin",	"bijeiyoi",	"dahajin",	"ryeinube",]
+  type	"square",
+ }
+ souwairi	{
+  neighbours	["ryeinube",	"yoinmenyoi",	"wikoutai",	"sairaiwoin",]
+  type	"square",
+ }
+ faiboisi	{
+  neighbours	["yujairyin",	"pabaijon",	"ryoryoinyai",	"woyende",]
+  type	"square",
+ }
+ poifoshei	{
+  neighbours	["pareisho",	"yeingeije",	"ryeineshei",	"rihashu",]
+  type	"square",
+ }
+ rihashu	{
+  neighbours	["poifoshei",	"yomamei",	"youwoirou",	"geiyeifen",]
+  type	"square",
+ }
+ youwoirou	{
+  neighbours	["rihashu",	"yoweindu",	"somoiri",	"XOAA",]
+  type	"square",
+ }
+ somoiri	{
+  neighbours	["youwoirou",	"beimoiwo",	"reisuten",	"YOAA",]
+  type	"square",
+ }
+ reisuten	{
+  neighbours	["somoiri",	"yofero",	"wahoinfu",	"ZOAA",]
+  type	"square",
+ }
+ wahoinfu	{
+  neighbours	["reisuten",	"doishawi",	"GQAA",	"APAA",]
+  type	"square",
+ }
+ ryeineshei	{
+  neighbours	["poifoshei",	"ryokushai",	"shourawei",	"yomamei",]
+  type	"square",
+ }
+ yomamei	{
+  neighbours	["ryeineshei",	"bosoinren",	"yoweindu",	"rihashu",]
+  type	"square",
+ }
+ yoweindu	{
+  neighbours	["yomamei",	"moipouti",	"beimoiwo",	"youwoirou",]
+  type	"square",
+ }
+ beimoiwo	{
+  neighbours	["yoweindu",	"routouhi",	"yofero",	"somoiri",]
+  type	"square",
+ }
+ yofero	{
+  neighbours	["beimoiwo",	"shoutoira",	"doishawi",	"reisuten",]
+  type	"square",
+ }
+ doishawi	{
+  neighbours	["yofero",	"sonshoryain",	"tointihu",	"wahoinfu",]
+  type	"square",
+ }
+ tointihu	{
+  neighbours	["doishawi",	"wowarai",	"soigijin",	"GQAA",]
+  type	"square",
+ }
+ soigijin	{
+  neighbours	["tointihu",	"geikeigi",	"kekunbun",	"FQAA",]
+  type	"square",
+ }
+ kekunbun	{
+  neighbours	["soigijin",	"doroupu",	"bengekou",	"weifoufoin",]
+  type	"square",
+ }
+ tefehen	{
+  neighbours	["meihaisou",	"jaseinei",	"houyedai",	"pesanjoi",]
+  type	"square",
+ }
+ pesanjoi	{
+  neighbours	["tefehen",	"gounoihei",	"deitondo",	"badomei",]
+  type	"square",
+ }
+ deitondo	{
+  neighbours	["pesanjoi",	"sumoipoi",	"gufaikou",	"kubaiyu",]
+  type	"square",
+ }
+ gufaikou	{
+  neighbours	["deitondo",	"yidoro",	"yeingeije",	"tisifai",]
+  type	"square",
+ }
+ yeingeije	{
+  neighbours	["gufaikou",	"ryokushai",	"poifoshei",	"jeyounna",]
+  type	"square",
+ }
+ moipouti	{
+  neighbours	["yoweindu",	"bosoinren",	"",	"routouhi",]
+  type	"square",
+ }
+ routouhi	{
+  neighbours	["moipouti",	"",	"shoutoira",	"beimoiwo",]
+  type	"square",
+ }
+ shoutoira	{
+  neighbours	["routouhi",	"woupeise",	"sonshoryain",	"yofero",]
+  type	"square",
+ }
+ sonshoryain	{
+  neighbours	["shoutoira",	"monbounmoi",	"wowarai",	"doishawi",]
+  type	"square",
+ }
+ wowarai	{
+  neighbours	["sonshoryain",	"bawairu",	"geikeigi",	"tointihu",]
+  type	"square",
+ }
+ geikeigi	{
+  neighbours	["wowarai",	"dunjusoi",	"doroupu",	"soigijin",]
+  type	"square",
+ }
+ doroupu	{
+  neighbours	["geikeigi",	"tesaiki",	"rousedi",	"kekunbun",]
+  type	"square",
+ }
+ rousedi	{
+  neighbours	["doroupu",	"ryawusi",	"boubajou",	"bengekou",]
+  type	"square",
+ }
+ boubajou	{
+  neighbours	["rousedi",	"kouyunai",	"hadoumo",	"doitate",]
+  type	"square",
+ }
+ sumoipoi	{
+  neighbours	["deitondo",	"gounoihei",	"",	"yidoro",]
+  type	"square",
+ }
+ yidoro	{
+  neighbours	["sumoipoi",	"",	"ryokushai",	"gufaikou",]
+  type	"square",
+ }
+ ryokushai	{
+  neighbours	["yidoro",	"shaihijei",	"ryeineshei",	"yeingeije",]
+  type	"square",
+ }
+ shaihijei	{
+  neighbours	["ryokushai",	"",	"",	"shourawei",]
+  type	"square",
+ }
+ shourawei	{
+  neighbours	["shaihijei",	"",	"bosoinren",	"ryeineshei",]
+  type	"square",
+ }
+ bosoinren	{
+  neighbours	["shourawei",	"",	"moipouti",	"yomamei",]
+  type	"square",
+ }
+ feijounno	{
+  neighbours	["goiwainwa",	"",	"gatano",	"ryiwoite",]
+  type	"square",
+ }
+ gatano	{
+  neighbours	["feijounno",	"",	"moryago",	"ketoiyo",]
+  type	"square",
+ }
+ moryago	{
+  neighbours	["gatano",	"",	"yeigano",	"doiheigi",]
+  type	"square",
+ }
+ yeigano	{
+  neighbours	["moryago",	"",	"feinhari",	"soingouji",]
+  type	"square",
+ }
+ feinhari	{
+  neighbours	["yeigano",	"",	"kenesha",	"woujoufai",]
+  type	"square",
+ }
+ kenesha	{
+  neighbours	["feinhari",	"",	"",	"toudeishei",]
+  type	"square",
+ }
+ toudeishei	{
+  neighbours	["kenesha",	"yoiwari",	"EBAA",	"woujoufai",]
+  type	"square",
+ }
+ yoiwari	{
+  neighbours	["toudeishei",	"",	"kadeide",	"DCAA",]
+  type	"square",
+ }
+ kadeide	{
+  neighbours	["yoiwari",	"",	"mohougou",	"ECAA",]
+  type	"square",
+ }
+ mohougou	{
+  neighbours	["kadeide",	"",	"bouboishon",	"RCAA",]
+  type	"square",
+ }
+ bouboishon	{
+  neighbours	["mohougou",	"",	"roudonan",	"majiha",]
+  type	"square",
+ }
+ roudonan	{
+  neighbours	["bouboishon",	"",	"boikoingo",	"dotomoun",]
+  type	"square",
+ }
+ boikoingo	{
+  neighbours	["roudonan",	"",	"rejanoi",	"ryoisiki",]
+  type	"square",
+ }
+ rejanoi	{
+  neighbours	["boikoingo",	"joiputoi",	"ranoujei",	"yeikayo",]
+  type	"square",
+ }
+ ranoujei	{
+  neighbours	["rejanoi",	"sofeihoin",	"dedaiya",	"keifosou",]
+  type	"square",
+ }
+ sofeihoin	{
+  neighbours	["ranoujei",	"joiputoi",	"",	"sonkihou",]
+  type	"square",
+ }
+ joiputoi	{
+  neighbours	["sofeihoin",	"rejanoi",	"",	"",]
+  type	"square",
+ }
+ sonkihou	{
+  neighbours	["sofeihoin",	"",	"boshensho",	"dedaiya",]
+  type	"square",
+ }
+ boshensho	{
+  neighbours	["sonkihou",	"topoiwe",	"nousheinkou",	"donshoryou",]
+  type	"square",
+ }
+ topoiwe	{
+  neighbours	["",	"",	"wemuwei",	"boshensho",]
+  type	"square",
+ }
+ wemuwei	{
+  neighbours	["topoiwe",	"",	"shunesin",	"nousheinkou",]
+  type	"square",
+ }
+ shunesin	{
+  neighbours	["wemuwei",	"",	"woiminou",	"diyainbai",]
+  type	"square",
+ }
+ woiminou	{
+  neighbours	["shunesin",	"",	"tewairou",	"hoininku",]
+  type	"square",
+ }
+ tewairou	{
+  neighbours	["woiminou",	"",	"jejerei",	"kutisi",]
+  type	"square",
+ }
+ jejerei	{
+  neighbours	["tewairou",	"boinjeishai",	"gonseiwa",	"bainpeihai",]
+  type	"square",
+ }
+ gonseiwa	{
+  neighbours	["jejerei",	"shemerai",	"dainsabou",	"masifai",]
+  type	"square",
+ }
+ dainsabou	{
+  neighbours	["gonseiwa",	"janbaitei",	"yunrato",	"kusiroi",]
+  type	"square",
+ }
+ yunrato	{
+  neighbours	["dainsabou",	"dafushe",	"koufaiko",	"taindoiwo",]
+  type	"square",
+ }
+ koufaiko	{
+  neighbours	["yunrato",	"nougarai",	"waifeitai",	"wijijein",]
+  type	"square",
+ }
+ boinjeishai	{
+  neighbours	["",	"",	"shemerai",	"jejerei",]
+  type	"square",
+ }
+ shemerai	{
+  neighbours	["boinjeishai",	"",	"janbaitei",	"gonseiwa",]
+  type	"square",
+ }
+ janbaitei	{
+  neighbours	["shemerai",	"yoinogei",	"dafushe",	"dainsabou",]
+  type	"square",
+ }
+ taindoiwo	{
+  neighbours	["kusiroi",	"yunrato",	"wijijein",	"riguji",]
+  type	"square",
+ }
+ wijijein	{
+  neighbours	["taindoiwo",	"koufaiko",	"shanbajoin",	"founeiba",]
+  type	"square",
+ }
+ shanbajoin	{
+  neighbours	["wijijein",	"waifeitai",	"senjayain",	"jeisinu",]
+  type	"square",
+ }
+ senjayain	{
+  neighbours	["shanbajoin",	"ninhetai",	"rousheiwon",	"rounnoryi",]
+  type	"square",
+ }
+ jeisinu	{
+  neighbours	["founeiba",	"shanbajoin",	"rounnoryi",	"keiryemoi",]
+  type	"square",
+ }
+ rounnoryi	{
+  neighbours	["jeisinu",	"senjayain",	"bufounu",	"boteigi",]
+  type	"square",
+ }
+ bufounu	{
+  neighbours	["rounnoryi",	"rousheiwon",	"seimoisa",	"toigougun",]
+  type	"square",
+ }
+ boteigi	{
+  neighbours	["keiryemoi",	"rounnoryi",	"toigougun",	"goitike",]
+  type	"square",
+ }
+ woiboiwe	{
+  neighbours	["seimoisa",	"gadoiho",	"haishaiba",	"toigougun",]
+  type	"square",
+ }
+ toigougun	{
+  neighbours	["woiboiwe",	"yeijeboi",	"boteigi",	"bufounu",]
+  type	"square",
+ }
+ yeijeboi	{
+  neighbours	["toigougun",	"haishaiba",	"yeifeinhoi",	"goitike",]
+  type	"square",
+ }
+ haishaiba	{
+  neighbours	["yeijeboi",	"woiboiwe",	"rumenryu",	"daijufou",]
+  type	"square",
+ }
+ rumenryu	{
+  neighbours	["haishaiba",	"gadoiho",	"rakouhoi",	"weironkai",]
+  type	"square",
+ }
+ waifeitai	{
+  neighbours	["koufaiko",	"sheimaju",	"ninhetai",	"shanbajoin",]
+  type	"square",
+ }
+ ninhetai	{
+  neighbours	["waifeitai",	"weinkoudun",	"daineki",	"senjayain",]
+  type	"square",
+ }
+ daineki	{
+  neighbours	["ninhetai",	"bousanbai",	"ryainainhai",	"rousheiwon",]
+  type	"square",
+ }
+ ryainainhai	{
+  neighbours	["daineki",	"yosakai",	"houyourya",	"reibudi",]
+  type	"square",
+ }
+ houyourya	{
+  neighbours	["ryainainhai",	"",	"goryouhe",	"yuhumoi",]
+  type	"square",
+ }
+ goryouhe	{
+  neighbours	["houyourya",	"",	"",	"boiyimoi",]
+  type	"square",
+ }
+ dafushe	{
+  neighbours	["janbaitei",	"hudinei",	"nougarai",	"yunrato",]
+  type	"square",
+ }
+ nougarai	{
+  neighbours	["dafushe",	"wenouryu",	"sheimaju",	"koufaiko",]
+  type	"square",
+ }
+ sheimaju	{
+  neighbours	["nougarai",	"weinajun",	"weinkoudun",	"waifeitai",]
+  type	"square",
+ }
+ weinkoudun	{
+  neighbours	["sheimaju",	"pijeigou",	"bousanbai",	"ninhetai",]
+  type	"square",
+ }
+ bousanbai	{
+  neighbours	["weinkoudun",	"",	"yosakai",	"daineki",]
+  type	"square",
+ }
+ yosakai	{
+  neighbours	["bousanbai",	"",	"",	"ryainainhai",]
+  type	"square",
+ }
+ hudinei	{
+  neighbours	["dafushe",	"yoinogei",	"",	"wenouryu",]
+  type	"square",
+ }
+ wenouryu	{
+  neighbours	["hudinei",	"",	"weinajun",	"nougarai",]
+  type	"square",
+ }
+ weinajun	{
+  neighbours	["wenouryu",	"",	"pijeigou",	"sheimaju",]
+  type	"square",
+ }
+ pijeigou	{
+  neighbours	["weinkoudun",	"weinajun",	"",	"",]
+  type	"square",
+ }
+ yoinogei	{
+  neighbours	["janbaitei",	"",	"",	"hudinei",]
+  type	"square",
+ }
+ rousheiwon	{
+  neighbours	["senjayain",	"daineki",	"reibudi",	"bufounu",]
+  type	"square",
+ }
+ reibudi	{
+  neighbours	["rousheiwon",	"ryainainhai",	"yuhumoi",	"seimoisa",]
+  type	"square",
+ }
+ yuhumoi	{
+  neighbours	["reibudi",	"houyourya",	"boiyimoi",	"joukoudei",]
+  type	"square",
+ }
+ boiyimoi	{
+  neighbours	["yuhumoi",	"goryouhe",	"noijounwe",	"mainruja",]
+  type	"square",
+ }
+ noijounwe	{
+  neighbours	["boiyimoi",	"",	"dainene",	"fanboukai",]
+  type	"square",
+ }
+ dainene	{
+  neighbours	["noijounwe",	"",	"",	"joufoinba",]
+  type	"square",
+ }
+ seimoisa	{
+  neighbours	["bufounu",	"reibudi",	"joukoudei",	"woiboiwe",]
+  type	"square",
+ }
+ joukoudei	{
+  neighbours	["seimoisa",	"yuhumoi",	"mainruja",	"gadoiho",]
+  type	"square",
+ }
+ mainruja	{
+  neighbours	["joukoudei",	"boiyimoi",	"fanboukai",	"yetoryai",]
+  type	"square",
+ }
+ fanboukai	{
+  neighbours	["mainruja",	"noijounwe",	"joufoinba",	"tisiku",]
+  type	"square",
+ }
+ joufoinba	{
+  neighbours	["fanboukai",	"dainene",	"pesheidei",	"jusheihou",]
+  type	"square",
+ }
+ pesheidei	{
+  neighbours	["joufoinba",	"",	"bougekan",	"punsherai",]
+  type	"square",
+ }
+ bougekan	{
+  neighbours	["pesheidei",	"",	"",	"ryaboishou",]
+  type	"square",
+ }
+ jusheihou	{
+  neighbours	["joufoinba",	"punsherai",	"gigeiryo",	"tisiku",]
+  type	"square",
+ }
+ punsherai	{
+  neighbours	["jusheihou",	"pesheidei",	"ryaboishou",	"disagoin",]
+  type	"square",
+ }
+ ryaboishou	{
+  neighbours	["punsherai",	"bougekan",	"meikesho",	"hoiroirai",]
+  type	"square",
+ }
+ meikesho	{
+  neighbours	["ryaboishou",	"",	"",	"poumoire",]
+  type	"square",
+ }
+ disagoin	{
+  neighbours	["punsherai",	"hoiroirai",	"bomeijoi",	"gigeiryo",]
+  type	"square",
+ }
+ hoiroirai	{
+  neighbours	["disagoin",	"ryaboishou",	"poumoire",	"ryeiyundoi",]
+  type	"square",
+ }
+ poumoire	{
+  neighbours	["hoiroirai",	"meikesho",	"bairyeiya",	"ryidushou",]
+  type	"square",
+ }
+ bairyeiya	{
+  neighbours	["poumoire",	"",	"",	"yeibidu",]
+  type	"square",
+ }
+ ryeiyundoi	{
+  neighbours	["hoiroirai",	"ryidushou",	"jeideitain",	"bomeijoi",]
+  type	"square",
+ }
+ ryidushou	{
+  neighbours	["ryeiyundoi",	"poumoire",	"yeibidu",	"yinkofoi",]
+  type	"square",
+ }
+ yeibidu	{
+  neighbours	["ryidushou",	"bairyeiya",	"shaireinoi",	"noiyesa",]
+  type	"square",
+ }
+ shaireinoi	{
+  neighbours	["yeibidu",	"",	"",	"yoshaijei",]
+  type	"square",
+ }
+ noiyesa	{
+  neighbours	["yeibidu",	"yoshaijei",	"ryinjoihei",	"yinkofoi",]
+  type	"square",
+ }
+ yoshaijei	{
+  neighbours	["noiyesa",	"shaireinoi",	"hoifaho",	"pouhoma",]
+  type	"square",
+ }
+ hoifaho	{
+  neighbours	["yoshaijei",	"",	"gounoipoin",	"",]
+  type	"square",
+ }
+ gounoipoin	{
+  neighbours	["hoifaho",	"",	"konupain",	"",]
+  type	"square",
+ }
+ konupain	{
+  neighbours	["",	"",	"",	"gounoipoin",]
+  type	"square",
+ }
+ ryugounbe	{
+  neighbours	["naigimu",	"shorotun",	"teishoryi",	"hairinbei",]
+  type	"square",
+ }
+ teishoryi	{
+  neighbours	["ryugounbe",	"bomeijoi",	"jeideitain",	"ruhaita",]
+  type	"square",
+ }
+ jeideitain	{
+  neighbours	["teishoryi",	"ryeiyundoi",	"yinkofoi",	"neijoboi",]
+  type	"square",
+ }
+ yinkofoi	{
+  neighbours	["jeideitain",	"ryidushou",	"noiyesa",	"shunniryei",]
+  type	"square",
+ }
+ bomeijoi	{
+  neighbours	["ryeiyundoi",	"teishoryi",	"shorotun",	"disagoin",]
+  type	"square",
+ }
+ shorotun	{
+  neighbours	["bomeijoi",	"ryugounbe",	"ryerainou",	"gigeiryo",]
+  type	"square",
+ }
+ ryerainou	{
+  neighbours	["shorotun",	"naigimu",	"yoinsheifein",	"fogeija",]
+  type	"square",
+ }
+ yoinsheifein	{
+  neighbours	["ryerainou",	"jireige",	"weironkai",	"rakouhoi",]
+  type	"square",
+ }
+ weironkai	{
+  neighbours	["yoinsheifein",	"peipahoi",	"daijufou",	"rumenryu",]
+  type	"square",
+ }
+ gadoiho	{
+  neighbours	["rumenryu",	"woiboiwe",	"joukoudei",	"yetoryai",]
+  type	"square",
+ }
+ yetoryai	{
+  neighbours	["gadoiho",	"mainruja",	"tisiku",	"rakouhoi",]
+  type	"square",
+ }
+ tisiku	{
+  neighbours	["yetoryai",	"fanboukai",	"jusheihou",	"fogeija",]
+  type	"square",
+ }
+ gigeiryo	{
+  neighbours	["jusheihou",	"disagoin",	"shorotun",	"fogeija",]
+  type	"square",
+ }
+ fogeija	{
+  neighbours	["gigeiryo",	"ryerainou",	"rakouhoi",	"tisiku",]
+  type	"square",
+ }
+ rakouhoi	{
+  neighbours	["fogeija",	"yoinsheifein",	"rumenryu",	"yetoryai",]
+  type	"square",
+ }
+ geinjidoi	{
+  neighbours	["feirosha",	"hantiyi",	"",	"",]
+  type	"square",
+ }
+ shoukaihou	{
+  neighbours	["",	"hantiyi",	"raryousha",	"mikoumen",]
+  type	"square",
+ }
+ bunoinshi	{
+  neighbours	["hirodo",	"moushouho",	"",	"goujounai",]
+  type	"square",
+ }
+ goujounai	{
+  neighbours	["bunoinshi",	"noiguni",	"jeikoife",	"hoideyo",]
+  type	"square",
+ }
+ mikoumen	{
+  neighbours	["jeikoife",	"noiguni",	"",	"shoukaihou",]
+  type	"square",
+ }
+ ketoiyo	{
+  neighbours	["ryiwoite",	"gatano",	"doiheigi",	"IBAA",]
+  type	"square",
+ }
+ soingouji	{
+  neighbours	["GBAA",	"doiheigi",	"yeigano",	"woujoufai",]
+  type	"square",
+ }
+ woujoufai	{
+  neighbours	["soingouji",	"feinhari",	"toudeishei",	"FBAA",]
+  type	"square",
+ }
+ doiheigi	{
+  neighbours	["soingouji",	"HBAA",	"ketoiyo",	"moryago",]
+  type	"square",
+ }
+ ryoisiki	{
+  neighbours	["NHAA",	"dotomoun",	"boikoingo",	"yeikayo",]
+  type	"square",
+ }
+ dotomoun	{
+  neighbours	["ryoisiki",	"CHAA",	"majiha",	"roudonan",]
+  type	"square",
+ }
+ majiha	{
+  neighbours	["dotomoun",	"BHAA",	"RCAA",	"bouboishon",]
+  type	"square",
+ }
+ jeinkeintan	{
+  neighbours	["gimenu",	"doinahou",	"wongoinjai",	"",]
+  type	"square",
+ }
+ wongoinjai	{
+  neighbours	["jeinkeintan",	"senperye",	"douteimoi",	"",]
+  type	"square",
+ }
+ douteimoi	{
+  neighbours	["wongoinjai",	"tinfanwon",	"baidaita",	"",]
+  type	"square",
+ }
+ baidaita	{
+  neighbours	["douteimoi",	"jubewai",	"haitiryi",	"",]
+  type	"square",
+ }
+ jubewai	{
+  neighbours	["baidaita",	"tinfanwon",	"keyennai",	"wakunoin",]
+  type	"square",
+ }
+ keyennai	{
+  neighbours	["jubewai",	"pinhama",	"roinkeirou",	"bugenryu",]
+  type	"square",
+ }
+ roinkeirou	{
+  neighbours	["keyennai",	"tounufou",	"seyamei",	"woumate",]
+  type	"square",
+ }
+ seyamei	{
+  neighbours	["roinkeirou",	"doitate",	"hadoumo",	"boukeibu",]
+  type	"square",
+ }
+ hadoumo	{
+  neighbours	["seyamei",	"boubajou",	"painpaisi",	"jasheido",]
+  type	"square",
+ }
+ doitate	{
+  neighbours	["seyamei",	"tounufou",	"bengekou",	"boubajou",]
+  type	"square",
+ }
+ bengekou	{
+  neighbours	["doitate",	"miryiyu",	"kekunbun",	"rousedi",]
+  type	"square",
+ }
+ weifoufoin	{
+  neighbours	["kekunbun",	"miryiyu",	"dipiru",	"FQAA",]
+  type	"square",
+ }
+ miryiyu	{
+  neighbours	["weifoufoin",	"bengekou",	"tounufou",	"deimaisu",]
+  type	"square",
+ }
+ tounufou	{
+  neighbours	["miryiyu",	"doitate",	"roinkeirou",	"pinhama",]
+  type	"square",
+ }
+ pinhama	{
+  neighbours	["tounufou",	"keyennai",	"tinfanwon",	"deimaisu",]
+  type	"square",
+ }
+ tinfanwon	{
+  neighbours	["pinhama",	"jubewai",	"douteimoi",	"senperye",]
+  type	"square",
+ }
+ senperye	{
+  neighbours	["tinfanwon",	"wongoinjai",	"doinahou",	"deimaisu",]
+  type	"square",
+ }
+ doinahou	{
+  neighbours	["senperye",	"jeinkeintan",	"haishaisha",	"dipiru",]
+  type	"square",
+ }
+ dipiru	{
+  neighbours	["doinahou",	"miyonshou",	"weifoufoin",	"deimaisu",]
+  type	"square",
+ }
+ deimaisu	{
+  neighbours	["dipiru",	"miryiyu",	"pinhama",	"senperye",]
+  type	"square",
+ }
+ haitiryi	{
+  neighbours	["baidaita",	"wakunoin",	"raifougo",	"",]
+  type	"square",
+ }
+ raifougo	{
+  neighbours	["haitiryi",	"fisegei",	"jakufai",	"noidouben",]
+  type	"square",
+ }
+ noidouben	{
+  neighbours	["raifougo",	"ryaihonjai",	"",	"",]
+  type	"square",
+ }
+ fisegei	{
+  neighbours	["raifougo",	"wakunoin",	"paiyairyo",	"kounyahe",]
+  type	"square",
+ }
+ paiyairyo	{
+  neighbours	["fisegei",	"bugenryu",	"manfoibu",	"kepeiyou",]
+  type	"square",
+ }
+ manfoibu	{
+  neighbours	["paiyairyo",	"woumate",	"wouroiyu",	"yoiroigou",]
+  type	"square",
+ }
+ wouroiyu	{
+  neighbours	["manfoibu",	"boukeibu",	"hainofi",	"kouyaihoin",]
+  type	"square",
+ }
+ hainofi	{
+  neighbours	["wouroiyu",	"jasheido",	"roipasi",	"shaipiwou",]
+  type	"square",
+ }
+ roipasi	{
+  neighbours	["hainofi",	"diworyu",	"goifaryei",	"jeishoija",]
+  type	"square",
+ }
+ jasheido	{
+  neighbours	["hainofi",	"boukeibu",	"hadoumo",	"diworyu",]
+  type	"square",
+ }
+ monbounmoi	{
+  neighbours	["sonshoryain",	"woupeise",	"",	"bawairu",]
+  type	"square",
+ }
+ woupeise	{
+  neighbours	["monbounmoi",	"shoutoira",	"",	"",]
+  type	"square",
+ }
+ bawairu	{
+  neighbours	["monbounmoi",	"",	"dunjusoi",	"wowarai",]
+  type	"square",
+ }
+ dunjusoi	{
+  neighbours	["bawairu",	"",	"tesaiki",	"geikeigi",]
+  type	"square",
+ }
+ tesaiki	{
+  neighbours	["dunjusoi",	"shandoitai",	"ryawusi",	"doroupu",]
+  type	"square",
+ }
+ ryawusi	{
+  neighbours	["tesaiki",	"koheinsai",	"kouyunai",	"rousedi",]
+  type	"square",
+ }
+ kouyunai	{
+  neighbours	["ryawusi",	"kenkeitei",	"painpaisi",	"boubajou",]
+  type	"square",
+ }
+ painpaisi	{
+  neighbours	["kouyunai",	"rapogai",	"diworyu",	"hadoumo",]
+  type	"square",
+ }
+ diworyu	{
+  neighbours	["painpaisi",	"doupoikoi",	"roipasi",	"jasheido",]
+  type	"square",
+ }
+ jeishoija	{
+  neighbours	["roipasi",	"joijoijin",	"hushawou",	"shaipiwou",]
+  type	"square",
+ }
+ hushawou	{
+  neighbours	["jeishoija",	"henpahai",	"poihofe",	"peisitun",]
+  type	"square",
+ }
+ poihofe	{
+  neighbours	["hushawou",	"shenpanwei",	"fanyokei",	"feirume",]
+  type	"square",
+ }
+ fanyokei	{
+  neighbours	["poihofe",	"reisise",	"shouwito",	"bejemu",]
+  type	"square",
+ }
+ shouwito	{
+  neighbours	["fanyokei",	"seiwoire",	"fourubai",	"kadeifoi",]
+  type	"square",
+ }
+ shandoitai	{
+  neighbours	["tesaiki",	"",	"",	"koheinsai",]
+  type	"square",
+ }
+ koheinsai	{
+  neighbours	["shandoitai",	"",	"kenkeitei",	"ryawusi",]
+  type	"square",
+ }
+ rapogai	{
+  neighbours	["painpaisi",	"kenkeitei",	"",	"doupoikoi",]
+  type	"square",
+ }
+ kenkeitei	{
+  neighbours	["rapogai",	"kouyunai",	"koheinsai",	"",]
+  type	"square",
+ }
+ doupoikoi	{
+  neighbours	["rapogai",	"",	"goifaryei",	"diworyu",]
+  type	"square",
+ }
+ goifaryei	{
+  neighbours	["doupoikoi",	"",	"joijoijin",	"roipasi",]
+  type	"square",
+ }
+ joijoijin	{
+  neighbours	["goifaryei",	"",	"henpahai",	"jeishoija",]
+  type	"square",
+ }
+ henpahai	{
+  neighbours	["joijoijin",	"",	"shenpanwei",	"hushawou",]
+  type	"square",
+ }
+ shenpanwei	{
+  neighbours	["henpahai",	"meinshoundou",	"reisise",	"poihofe",]
+  type	"square",
+ }
+ reisise	{
+  neighbours	["shenpanwei",	"yoikoipoun",	"seiwoire",	"fanyokei",]
+  type	"square",
+ }
+ seiwoire	{
+  neighbours	["reisise",	"jopeinge",	"fusoihoi",	"shouwito",]
+  type	"square",
+ }
+ fusoihoi	{
+  neighbours	["seiwoire",	"notojai",	"shomairou",	"fourubai",]
+  type	"square",
+ }
+ ryaihonjai	{
+  neighbours	["noidouben",	"jakufai",	"rureira",	"",]
+  type	"square",
+ }
+ rureira	{
+  neighbours	["ryaihonjai",	"shoudeiwei",	"shaihairin",	"",]
+  type	"square",
+ }
+ shaihairin	{
+  neighbours	["rureira",	"ransoinwa",	"nokaimu",	"poihiha",]
+  type	"square",
+ }
+ nokaimu	{
+  neighbours	["shaihairin",	"mouwedu",	"reidano",	"gifouro",]
+  type	"square",
+ }
+ reidano	{
+  neighbours	["nokaimu",	"fikoibo",	"shoiwonbou",	"kirouhou",]
+  type	"square",
+ }
+ shoiwonbou	{
+  neighbours	["reidano",	"geyowoi",	"neitenmoi",	"weibeisi",]
+  type	"square",
+ }
+ weibeisi	{
+  neighbours	["shoiwonbou",	"bedairou",	"",	"kirouhou",]
+  type	"square",
+ }
+ bedairou	{
+  neighbours	["weibeisi",	"neitenmoi",	"rainheinu",	"",]
+  type	"square",
+ }
+ rainheinu	{
+  neighbours	["bedairou",	"nafenma",	"jimehi",	"",]
+  type	"square",
+ }
+ jimehi	{
+  neighbours	["rainheinu",	"keipouba",	"",	"",]
+  type	"square",
+ }
+ keipouba	{
+  neighbours	["jimehi",	"nafenma",	"ryipibou",	"yukiroi",]
+  type	"square",
+ }
+ yukiroi	{
+  neighbours	["keipouba",	"woukunde",	"keiwourun",	"",]
+  type	"square",
+ }
+ keiwourun	{
+  neighbours	["yukiroi",	"yibaru",	"",	"",]
+  type	"square",
+ }
+ poihiha	{
+  neighbours	["shaihairin",	"gifouro",	"",	"",]
+  type	"square",
+ }
+ gifouro	{
+  neighbours	["poihiha",	"nokaimu",	"kirouhou",	"",]
+  type	"square",
+ }
+ kirouhou	{
+  neighbours	["gifouro",	"reidano",	"weibeisi",	"",]
+  type	"square",
+ }
+ meinshoundou	{
+  neighbours	["shenpanwei",	"",	"",	"yoikoipoun",]
+  type	"square",
+ }
+ yoikoipoun	{
+  neighbours	["meinshoundou",	"",	"jopeinge",	"reisise",]
+  type	"square",
+ }
+ jopeinge	{
+  neighbours	["yoikoipoun",	"",	"notojai",	"seiwoire",]
+  type	"square",
+ }
+ notojai	{
+  neighbours	["jopeinge",	"",	"fudeishai",	"fusoihoi",]
+  type	"square",
+ }
+ fudeishai	{
+  neighbours	["notojai",	"",	"paimomun",	"shomairou",]
+  type	"square",
+ }
+ paimomun	{
+  neighbours	["fudeishai",	"",	"banaige",	"pepeti",]
+  type	"square",
+ }
+ banaige	{
+  neighbours	["paimomun",	"",	"",	"mougefai",]
+  type	"square",
+ }
+ mougefai	{
+  neighbours	["banaige",	"hipabo",	"jeheindu",	"pepeti",]
+  type	"square",
+ }
+ jeheindu	{
+  neighbours	["mougefai",	"samoube",	"jogato",	"ringubu",]
+  type	"square",
+ }
+ jogato	{
+  neighbours	["jeheindu",	"soisonnoi",	"hashora",	"foushusu",]
+  type	"square",
+ }
+ hashora	{
+  neighbours	["jogato",	"ryapaiju",	"buryusoi",	"soikounen",]
+  type	"square",
+ }
+ buryusoi	{
+  neighbours	["hashora",	"raiyouye",	"beigoukoi",	"moujuhi",]
+  type	"square",
+ }
+ beigoukoi	{
+  neighbours	["buryusoi",	"soifoujoin",	"gihoune",	"shenpomi",]
+  type	"square",
+ }
+ gihoune	{
+  neighbours	["beigoukoi",	"teigusoi",	"ryipibou",	"yishira",]
+  type	"square",
+ }
+ ryipibou	{
+  neighbours	["gihoune",	"woukunde",	"keipouba",	"toiyeisoi",]
+  type	"square",
+ }
+ shomairou	{
+  neighbours	["fusoihoi",	"fudeishai",	"pepeti",	"hairunpai",]
+  type	"square",
+ }
+ pepeti	{
+  neighbours	["shomairou",	"paimomun",	"mougefai",	"ringubu",]
+  type	"square",
+ }
+ hipabo	{
+  neighbours	["mougefai",	"",	"deibunou",	"samoube",]
+  type	"square",
+ }
+ deibunou	{
+  neighbours	["hipabo",	"",	"",	"reiponi",]
+  type	"square",
+ }
+ reiponi	{
+  neighbours	["deibunou",	"kubaidi",	"doimafe",	"samoube",]
+  type	"square",
+ }
+ doimafe	{
+  neighbours	["reiponi",	"bopapai",	"paneinun",	"soisonnoi",]
+  type	"square",
+ }
+ paneinun	{
+  neighbours	["doimafe",	"dufukou",	"maihuryei",	"ryapaiju",]
+  type	"square",
+ }
+ maihuryei	{
+  neighbours	["paneinun",	"jeisiryan",	"dairyoiwu",	"raiyouye",]
+  type	"square",
+ }
+ dairyoiwu	{
+  neighbours	["maihuryei",	"shigoikei",	"boiryesai",	"soifoujoin",]
+  type	"square",
+ }
+ boiryesai	{
+  neighbours	["dairyoiwu",	"moiryoira",	"yibaru",	"teigusoi",]
+  type	"square",
+ }
+ yibaru	{
+  neighbours	["boiryesai",	"keibeya",	"keiwourun",	"woukunde",]
+  type	"square",
+ }
+ woukunde	{
+  neighbours	["yibaru",	"yukiroi",	"ryipibou",	"teigusoi",]
+  type	"square",
+ }
+ teigusoi	{
+  neighbours	["woukunde",	"gihoune",	"soifoujoin",	"boiryesai",]
+  type	"square",
+ }
+ soifoujoin	{
+  neighbours	["teigusoi",	"beigoukoi",	"raiyouye",	"dairyoiwu",]
+  type	"square",
+ }
+ raiyouye	{
+  neighbours	["soifoujoin",	"buryusoi",	"ryapaiju",	"maihuryei",]
+  type	"square",
+ }
+ ryapaiju	{
+  neighbours	["raiyouye",	"hashora",	"soisonnoi",	"paneinun",]
+  type	"square",
+ }
+ soisonnoi	{
+  neighbours	["ryapaiju",	"jogato",	"samoube",	"doimafe",]
+  type	"square",
+ }
+ samoube	{
+  neighbours	["soisonnoi",	"jeheindu",	"hipabo",	"reiponi",]
+  type	"square",
+ }
+ keibeya	{
+  neighbours	["yibaru",	"moiryoira",	"neinaisei",	"",]
+  type	"square",
+ }
+ neinaisei	{
+  neighbours	["keibeya",	"yushabe",	"",	"",]
+  type	"square",
+ }
+ yushabe	{
+  neighbours	["neinaisei",	"moiryoira",	"yeisherya",	"foruhu",]
+  type	"square",
+ }
+ yeisherya	{
+  neighbours	["yushabe",	"shigoikei",	"houfiwa",	"sisonho",]
+  type	"square",
+ }
+ houfiwa	{
+  neighbours	["yeisherya",	"jeisiryan",	"feshunryoi",	"pawako",]
+  type	"square",
+ }
+ feshunryoi	{
+  neighbours	["houfiwa",	"dufukou",	"redipa",	"wunuhon",]
+  type	"square",
+ }
+ redipa	{
+  neighbours	["feshunryoi",	"bopapai",	"wekeisou",	"weiyishoi",]
+  type	"square",
+ }
+ wekeisou	{
+  neighbours	["redipa",	"kubaidi",	"",	"",]
+  type	"square",
+ }
+ kubaidi	{
+  neighbours	["wekeisou",	"bopapai",	"reiponi",	"",]
+  type	"square",
+ }
+ bopapai	{
+  neighbours	["kubaidi",	"redipa",	"dufukou",	"doimafe",]
+  type	"square",
+ }
+ dufukou	{
+  neighbours	["bopapai",	"feshunryoi",	"jeisiryan",	"paneinun",]
+  type	"square",
+ }
+ jeisiryan	{
+  neighbours	["dufukou",	"houfiwa",	"shigoikei",	"maihuryei",]
+  type	"square",
+ }
+ shigoikei	{
+  neighbours	["jeisiryan",	"yeisherya",	"moiryoira",	"dairyoiwu",]
+  type	"square",
+ }
+ moiryoira	{
+  neighbours	["shigoikei",	"yushabe",	"keibeya",	"boiryesai",]
+  type	"square",
+ }
+ foruhu	{
+  neighbours	["yushabe",	"sisonho",	"jinwopi",	"",]
+  type	"square",
+ }
+ jinwopi	{
+  neighbours	["foruhu",	"puwanje",	"",	"",]
+  type	"square",
+ }
+ puwanje	{
+  neighbours	["jinwopi",	"sisonho",	"naihunso",	"yuyupu",]
+  type	"square",
+ }
+ naihunso	{
+  neighbours	["puwanje",	"pawako",	"seshougai",	"daibuga",]
+  type	"square",
+ }
+ seshougai	{
+  neighbours	["naihunso",	"wunuhon",	"doinsoso",	"yohaipo",]
+  type	"square",
+ }
+ doinsoso	{
+  neighbours	["seshougai",	"weiyishoi",	"",	"",]
+  type	"square",
+ }
+ weiyishoi	{
+  neighbours	["doinsoso",	"wunuhon",	"redipa",	"",]
+  type	"square",
+ }
+ wunuhon	{
+  neighbours	["weiyishoi",	"seshougai",	"pawako",	"feshunryoi",]
+  type	"square",
+ }
+ pawako	{
+  neighbours	["wunuhon",	"naihunso",	"sisonho",	"houfiwa",]
+  type	"square",
+ }
+ sisonho	{
+  neighbours	["pawako",	"puwanje",	"foruhu",	"yeisherya",]
+  type	"square",
+ }
+ yuyupu	{
+  neighbours	["puwanje",	"daibuga",	"toutinkai",	"",]
+  type	"square",
+ }
+ daibuga	{
+  neighbours	["yuyupu",	"naihunso",	"yohaipo",	"toumosei",]
+  type	"square",
+ }
+ yohaipo	{
+  neighbours	["daibuga",	"seshougai",	"",	"jaiwoukei",]
+  type	"square",
+ }
+ toumosei	{
+  neighbours	["daibuga",	"jaiwoukei",	"noubawei",	"toutinkai",]
+  type	"square",
+ }
+ boukeibu	{
+  neighbours	["jasheido",	"wouroiyu",	"woumate",	"seyamei",]
+  type	"square",
+ }
+ woumate	{
+  neighbours	["boukeibu",	"manfoibu",	"bugenryu",	"roinkeirou",]
+  type	"square",
+ }
+ bugenryu	{
+  neighbours	["woumate",	"paiyairyo",	"wakunoin",	"keyennai",]
+  type	"square",
+ }
+ wakunoin	{
+  neighbours	["bugenryu",	"fisegei",	"haitiryi",	"jubewai",]
+  type	"square",
+ }
+ kounyahe	{
+  neighbours	["fisegei",	"kepeiyou",	"woiharya",	"jakufai",]
+  type	"square",
+ }
+ jakufai	{
+  neighbours	["kounyahe",	"shoudeiwei",	"ryaihonjai",	"raifougo",]
+  type	"square",
+ }
+ shoudeiwei	{
+  neighbours	["jakufai",	"woiharya",	"ransoinwa",	"rureira",]
+  type	"square",
+ }
+ ransoinwa	{
+  neighbours	["shoudeiwei",	"fahusain",	"mouwedu",	"shaihairin",]
+  type	"square",
+ }
+ mouwedu	{
+  neighbours	["ransoinwa",	"dekiron",	"fikoibo",	"nokaimu",]
+  type	"square",
+ }
+ fikoibo	{
+  neighbours	["mouwedu",	"kanaji",	"geyowoi",	"reidano",]
+  type	"square",
+ }
+ geyowoi	{
+  neighbours	["fikoibo",	"yasentoi",	"seipeishou",	"shoiwonbou",]
+  type	"square",
+ }
+ seipeishou	{
+  neighbours	["geyowoi",	"yunaigi",	"toiyeisoi",	"neitenmoi",]
+  type	"square",
+ }
+ neitenmoi	{
+  neighbours	["seipeishou",	"nafenma",	"bedairou",	"shoiwonbou",]
+  type	"square",
+ }
+ toiyeisoi	{
+  neighbours	["seipeishou",	"yishira",	"ryipibou",	"nafenma",]
+  type	"square",
+ }
+ nafenma	{
+  neighbours	["toiyeisoi",	"keipouba",	"rainheinu",	"neitenmoi",]
+  type	"square",
+ }
+ yishira	{
+  neighbours	["toiyeisoi",	"yunaigi",	"shenpomi",	"gihoune",]
+  type	"square",
+ }
+ shenpomi	{
+  neighbours	["yishira",	"ryigousou",	"moujuhi",	"beigoukoi",]
+  type	"square",
+ }
+ moujuhi	{
+  neighbours	["shenpomi",	"jeishago",	"soikounen",	"buryusoi",]
+  type	"square",
+ }
+ soikounen	{
+  neighbours	["moujuhi",	"faidoko",	"foushusu",	"hashora",]
+  type	"square",
+ }
+ foushusu	{
+  neighbours	["soikounen",	"yekinai",	"ringubu",	"jogato",]
+  type	"square",
+ }
+ ringubu	{
+  neighbours	["foushusu",	"hairunpai",	"pepeti",	"jeheindu",]
+  type	"square",
+ }
+ hairunpai	{
+  neighbours	["ringubu",	"yekinai",	"fourubai",	"shomairou",]
+  type	"square",
+ }
+ fourubai	{
+  neighbours	["hairunpai",	"ryinweiko",	"shouwito",	"fusoihoi",]
+  type	"square",
+ }
+ ryinweiko	{
+  neighbours	["fourubai",	"yekinai",	"keindadon",	"kadeifoi",]
+  type	"square",
+ }
+ kadeifoi	{
+  neighbours	["shouwito",	"ryinweiko",	"rironwu",	"bejemu",]
+  type	"square",
+ }
+ bejemu	{
+  neighbours	["kadeifoi",	"ryaidoryou",	"feirume",	"fanyokei",]
+  type	"square",
+ }
+ feirume	{
+  neighbours	["bejemu",	"shouboshe",	"peisitun",	"poihofe",]
+  type	"square",
+ }
+ peisitun	{
+  neighbours	["feirume",	"yeitairyi",	"shaipiwou",	"hushawou",]
+  type	"square",
+ }
+ shaipiwou	{
+  neighbours	["peisitun",	"kouyaihoin",	"hainofi",	"jeishoija",]
+  type	"square",
+ }
+ kouyaihoin	{
+  neighbours	["shaipiwou",	"yeitairyi",	"yoiroigou",	"wouroiyu",]
+  type	"square",
+ }
+ yoiroigou	{
+  neighbours	["kouyaihoin",	"ryougemi",	"kepeiyou",	"manfoibu",]
+  type	"square",
+ }
+ kepeiyou	{
+  neighbours	["yoiroigou",	"hunjaju",	"kounyahe",	"paiyairyo",]
+  type	"square",
+ }
+ hunjaju	{
+  neighbours	["kepeiyou",	"ryougemi",	"geijoiboun",	"woiharya",]
+  type	"square",
+ }
+ woiharya	{
+  neighbours	["hunjaju",	"fahusain",	"shoudeiwei",	"kounyahe",]
+  type	"square",
+ }
+ fahusain	{
+  neighbours	["woiharya",	"geijoiboun",	"dekiron",	"ransoinwa",]
+  type	"square",
+ }
+ dekiron	{
+  neighbours	["fahusain",	"riraisan",	"kanaji",	"mouwedu",]
+  type	"square",
+ }
+ kanaji	{
+  neighbours	["dekiron",	"moinise",	"yasentoi",	"fikoibo",]
+  type	"square",
+ }
+ yasentoi	{
+  neighbours	["kanaji",	"wunmiwei",	"yunaigi",	"geyowoi",]
+  type	"square",
+ }
+ yunaigi	{
+  neighbours	["yasentoi",	"ryigousou",	"yishira",	"seipeishou",]
+  type	"square",
+ }
+ ryigousou	{
+  neighbours	["yunaigi",	"wunmiwei",	"jeishago",	"shenpomi",]
+  type	"square",
+ }
+ jeishago	{
+  neighbours	["ryigousou",	"pupouko",	"faidoko",	"moujuhi",]
+  type	"square",
+ }
+ faidoko	{
+  neighbours	["jeishago",	"keindadon",	"yekinai",	"soikounen",]
+  type	"square",
+ }
+ yekinai	{
+  neighbours	["faidoko",	"ryinweiko",	"hairunpai",	"foushusu",]
+  type	"square",
+ }
+ keindadon	{
+  neighbours	["faidoko",	"pupouko",	"rironwu",	"ryinweiko",]
+  type	"square",
+ }
+ rironwu	{
+  neighbours	["keindadon",	"nunaitei",	"ryaidoryou",	"kadeifoi",]
+  type	"square",
+ }
+ ryaidoryou	{
+  neighbours	["rironwu",	"ryaiwounou",	"shouboshe",	"bejemu",]
+  type	"square",
+ }
+ shouboshe	{
+  neighbours	["ryaidoryou",	"hukowu",	"yeitairyi",	"feirume",]
+  type	"square",
+ }
+ yeitairyi	{
+  neighbours	["shouboshe",	"ryougemi",	"kouyaihoin",	"peisitun",]
+  type	"square",
+ }
+ ryougemi	{
+  neighbours	["yeitairyi",	"hukowu",	"hunjaju",	"yoiroigou",]
+  type	"square",
+ }
+ hukowu	{
+  neighbours	["ryougemi",	"shouboshe",	"ryaiwounou",	"geijoiboun",]
+  type	"square",
+ }
+ geijoiboun	{
+  neighbours	["hukowu",	"riraisan",	"fahusain",	"hunjaju",]
+  type	"square",
+ }
+ riraisan	{
+  neighbours	["geijoiboun",	"ryaiwounou",	"moinise",	"dekiron",]
+  type	"square",
+ }
+ moinise	{
+  neighbours	["riraisan",	"nunaitei",	"wunmiwei",	"kanaji",]
+  type	"square",
+ }
+ wunmiwei	{
+  neighbours	["moinise",	"pupouko",	"ryigousou",	"yasentoi",]
+  type	"square",
+ }
+ pupouko	{
+  neighbours	["wunmiwei",	"nunaitei",	"keindadon",	"jeishago",]
+  type	"square",
+ }
+ nunaitei	{
+  neighbours	["pupouko",	"moinise",	"ryaiwounou",	"rironwu",]
+  type	"square",
+ }
+ ryaiwounou	{
+  neighbours	["nunaitei",	"riraisan",	"hukowu",	"ryaidoryou",]
+  type	"square",
+ }
+ jaiwoukei	{
+  neighbours	["toumosei",	"yohaipo",	"",	"",]
+  type	"square",
+ }
+ toutinkai	{
+  neighbours	["toumosei",	"",	"",	"yuyupu",]
+  type	"square",
+ }
+ noubawei	{
+  neighbours	["toumosei",	"",	"gekoudou",	"",]
+  type	"square",
+ }
+ gekoudou	{
+  neighbours	["noubawei",	"",	"",	"",]
+  type	"square",
+ }
+ rononrain	{
+  neighbours	["WBAA",	"ryoiraiwai",	"kaijipu",	"najeidi",]
+  type	"square",
+ }
+ najeidi	{
+  neighbours	["rononrain",	"gaidasa",	"tojoiwei",	"VBAA",]
+  type	"square",
+ }
+ tojoiwei	{
+  neighbours	["najeidi",	"baipainhoi",	"ryapajou",	"UBAA",]
+  type	"square",
+ }
+ ryapajou	{
+  neighbours	["tojoiwei",	"fuyouhei",	"ryeinhointou",	"TBAA",]
+  type	"square",
+ }
+ ryeinhointou	{
+  neighbours	["ryapajou",	"feibounmu",	"roimuwoi",	"SBAA",]
+  type	"square",
+ }
+ fimeisei	{
+  neighbours	["roimuwoi",	"yeyaiwai",	"sheiryaryoi",	"QBAA",]
+  type	"square",
+ }
+ jenhaingo	{
+  neighbours	["jaibomi",	"yoikounpai",	"",	"juwoimi",]
+  type	"square",
+ }
+ juwoimi	{
+  neighbours	["jenhaingo",	"",	"joumourei",	"mounipoi",]
+  type	"square",
+ }
+ houyedai	{
+  neighbours	["tefehen",	"joumourei",	"",	"gounoihei",]
+  type	"square",
+ }
+ joumourei	{
+  neighbours	["houyedai",	"jaseinei",	"juwoimi",	"",]
+  type	"square",
+ }
+ gounoihei	{
+  neighbours	["houyedai",	"",	"sumoipoi",	"pesanjoi",]
+  type	"square",
+ }
+ gosoimoin	{
+  neighbours	["LCAA",	"HHAA",	"tukatu",	"rogufoin",]
+  type	"square",
+ }
+ tukatu	{
+  neighbours	["gosoimoin",	"IHAA",	"runhanoin",	"weisomi",]
+  type	"square",
+ }
+ runhanoin	{
+  neighbours	["fiwoha",	"gaijoudo",	"tukatu",	"JHAA",]
+  type	"square",
+ }
+ debeibi	{
+  neighbours	["fiwoha",	"ryejenga",	"foiryodei",	"gaijoudo",]
+  type	"square",
+ }
+ ryejenga	{
+  neighbours	["debeibi",	"ryinyenyain",	"ruweidei",	"goukemai",]
+  type	"square",
+ }
+ jairanno	{
+  neighbours	["pipesu",	"noumonbe",	"jasoushein",	"joinyoinshe",]
+  type	"square",
+ }
+ boisouro	{
+  neighbours	["touwoto",	"gainfasi",	"shoujoigoi",	"sheseyai",]
+  type	"square",
+ }
+ shoujoigoi	{
+  neighbours	["boisouro",	"heroutu",	"daryusi",	"rashakoi",]
+  type	"square",
+ }
+ daryusi	{
+  neighbours	["shoujoigoi",	"geishekei",	"semopon",	"suyounna",]
+  type	"square",
+ }
+ semopon	{
+  neighbours	["daryusi",	"shoyishoin",	"poifaikou",	"moifofai",]
+  type	"square",
+ }
+ poifaikou	{
+  neighbours	["semopon",	"daijouhu",	"fanobi",	"puwepei",]
+  type	"square",
+ }
+ fanobi	{
+  neighbours	["poifaikou",	"hodutoun",	"kushouhan",	"fusoijou",]
+  type	"square",
+ }
+ kushouhan	{
+  neighbours	["fanobi",	"wonoshi",	"numoimai",	"ryoijija",]
+  type	"square",
+ }
+ wonoshi	{
+  neighbours	["kushouhan",	"hodutoun",	"shudura",	"kankaitei",]
+  type	"square",
+ }
+ shudura	{
+  neighbours	["wonoshi",	"joikairyoi",	"foufiba",	"jadene",]
+  type	"square",
+ }
+ foufiba	{
+  neighbours	["shudura",	"sokoiwa",	"houryaiwo",	"raidoiryei",]
+  type	"square",
+ }
+ houryaiwo	{
+  neighbours	["foufiba",	"dainounai",	"peipahoi",	"ryegeya",]
+  type	"square",
+ }
+ ryegeya	{
+  neighbours	["houryaiwo",	"jireige",	"youtujo",	"raidoiryei",]
+  type	"square",
+ }
+ raidoiryei	{
+  neighbours	["ryegeya",	"touwahou",	"jadene",	"foufiba",]
+  type	"square",
+ }
+ jadene	{
+  neighbours	["raidoiryei",	"keiyoryoi",	"kankaitei",	"shudura",]
+  type	"square",
+ }
+ kankaitei	{
+  neighbours	["jadene",	"jaisishou",	"numoimai",	"wonoshi",]
+  type	"square",
+ }
+ numoimai	{
+  neighbours	["kankaitei",	"yungibe",	"pafusou",	"kushouhan",]
+  type	"square",
+ }
+ gainoiwoi	{
+  neighbours	["tinaipa",	"kofahai",	"yekoinwun",	"beipouja",]
+  type	"square",
+ }
+ kofahai	{
+  neighbours	["gainoiwoi",	"noinbosoi",	"ryuwoiyin",	"ryaireini",]
+  type	"square",
+ }
+ ryuwoiyin	{
+  neighbours	["kofahai",	"touwoto",	"sheseyai",	"geshouro",]
+  type	"square",
+ }
+ sheseyai	{
+  neighbours	["ryuwoiyin",	"boisouro",	"rashakoi",	"koigohai",]
+  type	"square",
+ }
+ rashakoi	{
+  neighbours	["sheseyai",	"shoujoigoi",	"suyounna",	"houryainyai",]
+  type	"square",
+ }
+ suyounna	{
+  neighbours	["rashakoi",	"daryusi",	"moifofai",	"shoupeisu",]
+  type	"square",
+ }
+ moifofai	{
+  neighbours	["suyounna",	"semopon",	"puwepei",	"poirahe",]
+  type	"square",
+ }
+ puwepei	{
+  neighbours	["moifofai",	"poifaikou",	"fusoijou",	"gojatai",]
+  type	"square",
+ }
+ fusoijou	{
+  neighbours	["puwepei",	"fanobi",	"ryoijija",	"hanmeryoin",]
+  type	"square",
+ }
+ geshouro	{
+  neighbours	["ryuwoiyin",	"koigohai",	"hobouwai",	"ryaireini",]
+  type	"square",
+ }
+ koigohai	{
+  neighbours	["geshouro",	"sheseyai",	"houryainyai",	"fohoyo",]
+  type	"square",
+ }
+ houryainyai	{
+  neighbours	["koigohai",	"rashakoi",	"shoupeisu",	"paiweiso",]
+  type	"square",
+ }
+ shoupeisu	{
+  neighbours	["houryainyai",	"suyounna",	"poirahe",	"tisonyu",]
+  type	"square",
+ }
+ poirahe	{
+  neighbours	["shoupeisu",	"moifofai",	"gojatai",	"boinjoiga",]
+  type	"square",
+ }
+ jaisishou	{
+  neighbours	["kankaitei",	"keiyoryoi",	"soishaji",	"yungibe",]
+  type	"square",
+ }
+ soishaji	{
+  neighbours	["jaisishou",	"womouja",	"tosuyoi",	"webumou",]
+  type	"square",
+ }
+ webumou	{
+  neighbours	["soishaji",	"",	"",	"yungibe",]
+  type	"square",
+ }
+ keiyoryoi	{
+  neighbours	["jadene",	"touwahou",	"womouja",	"jaisishou",]
+  type	"square",
+ }
+ womouja	{
+  neighbours	["keiyoryoi",	"ryutuko",	"febuwou",	"soishaji",]
+  type	"square",
+ }
+ febuwou	{
+  neighbours	["womouja",	"touyaijou",	"kimougou",	"tosuyoi",]
+  type	"square",
+ }
+ kimougou	{
+  neighbours	["febuwou",	"ryaideinrya",	"ryoutepain",	"seshaihu",]
+  type	"square",
+ }
+ pouhoma	{
+  neighbours	["yoshaijei",	"",	"",	"ryinjoihei",]
+  type	"square",
+ }
+ ryinjoihei	{
+  neighbours	["pouhoma",	"dofaise",	"shunniryei",	"noiyesa",]
+  type	"square",
+ }
+ shunniryei	{
+  neighbours	["yinkofoi",	"ryinjoihei",	"tojairai",	"neijoboi",]
+  type	"square",
+ }
+ tojairai	{
+  neighbours	["shunniryei",	"dofaise",	"ryoutepain",	"ryaideinrya",]
+  type	"square",
+ }
+ dofaise	{
+  neighbours	["tojairai",	"ryinjoihei",	"",	"",]
+  type	"square",
+ }
+ ryoutepain	{
+  neighbours	["tojairai",	"",	"",	"kimougou",]
+  type	"square",
+ }
+ neijoboi	{
+  neighbours	["jeideitain",	"shunniryei",	"ryaideinrya",	"ruhaita",]
+  type	"square",
+ }
+ ryaideinrya	{
+  neighbours	["neijoboi",	"tojairai",	"kimougou",	"touyaijou",]
+  type	"square",
+ }
+ seshaihu	{
+  neighbours	["kimougou",	"",	"",	"tosuyoi",]
+  type	"square",
+ }
+ tosuyoi	{
+  neighbours	["seshaihu",	"",	"soishaji",	"febuwou",]
+  type	"square",
+ }
+ touyaijou	{
+  neighbours	["febuwou",	"ryutuko",	"ruhaita",	"ryaideinrya",]
+  type	"square",
+ }
+ ruhaita	{
+  neighbours	["touyaijou",	"hairinbei",	"teishoryi",	"neijoboi",]
+  type	"square",
+ }
+ youtujo	{
+  neighbours	["naigimu",	"hairinbei",	"touwahou",	"ryegeya",]
+  type	"square",
+ }
+ touwahou	{
+  neighbours	["youtujo",	"ryutuko",	"keiyoryoi",	"raidoiryei",]
+  type	"square",
+ }
+ yungibe	{
+  neighbours	["jaisishou",	"webumou",	"",	"numoimai",]
+  type	"square",
+ }
+ ryutuko	{
+  neighbours	["womouja",	"touwahou",	"hairinbei",	"touyaijou",]
+  type	"square",
+ }
+ hairinbei	{
+  neighbours	["ryutuko",	"youtujo",	"ryugounbe",	"ruhaita",]
+  type	"square",
+ }
+ ryoijija	{
+  neighbours	["kushouhan",	"pafusou",	"",	"fusoijou",]
+  type	"square",
+ }
+ pafusou	{
+  neighbours	["ryoijija",	"numoimai",	"",	"",]
+  type	"square",
+ }
+ gojatai	{
+  neighbours	["puwepei",	"hanmeryoin",	"",	"poirahe",]
+  type	"square",
+ }
+ hanmeryoin	{
+  neighbours	["gojatai",	"fusoijou",	"",	"",]
+  type	"square",
+ }
+ saishoujai	{
+  neighbours	["baimutou",	"",	"",	"VDAA",]
+  type	"square",
+ }
+ yeyaiwai	{
+  neighbours	["baimutou",	"fimeisei",	"soiyeikoi",	"",]
+  type	"square",
+ }
+ soiyeikoi	{
+  neighbours	["yeyaiwai",	"roimuwoi",	"feibounmu",	"",]
+  type	"square",
+ }
+ feibounmu	{
+  neighbours	["soiyeikoi",	"ryeinhointou",	"fuyouhei",	"",]
+  type	"square",
+ }
+ fuyouhei	{
+  neighbours	["feibounmu",	"ryapajou",	"baipainhoi",	"",]
+  type	"square",
+ }
+ baipainhoi	{
+  neighbours	["fuyouhei",	"tojoiwei",	"gaidasa",	"",]
+  type	"square",
+ }
+ gaidasa	{
+  neighbours	["baipainhoi",	"najeidi",	"kaijipu",	"",]
+  type	"square",
+ }
+ kaijipu	{
+  neighbours	["gaidasa",	"rononrain",	"",	"",]
+  type	"square",
+ }
+ ryoiraiwai	{
+  neighbours	["rononrain",	"XBAA",	"sehihou",	"",]
+  type	"square",
+ }
+ sehihou	{
+  neighbours	["ryoiraiwai",	"KCAA",	"meiroifi",	"",]
+  type	"square",
+ }
+ meiroifi	{
+  neighbours	["sehihou",	"LCAA",	"rogufoin",	"",]
+  type	"square",
+ }
+ rogufoin	{
+  neighbours	["meiroifi",	"gosoimoin",	"weisomi",	"",]
+  type	"square",
+ }
+ weisomi	{
+  neighbours	["rogufoin",	"tukatu",	"gaijoudo",	"",]
+  type	"square",
+ }
+ gaijoudo	{
+  neighbours	["weisomi",	"runhanoin",	"debeibi",	"",]
+  type	"square",
+ }
+ foiryodei	{
+  neighbours	["debeibi",	"goukemai",	"",	"",]
+  type	"square",
+ }
+ goukemai	{
+  neighbours	["foiryodei",	"ryejenga",	"joinyoinshe",	"",]
+  type	"square",
+ }
+ joinyoinshe	{
+  neighbours	["goukemai",	"ruweidei",	"jairanno",	"",]
+  type	"square",
+ }
+ jasoushein	{
+  neighbours	["jairanno",	"meiryarou",	"",	"",]
+  type	"square",
+ }
+ meiryarou	{
+  neighbours	["jasoushein",	"noumonbe",	"fegayu",	"",]
+  type	"square",
+ }
+ fegayu	{
+  neighbours	["meiryarou",	"foigarei",	"keijudu",	"",]
+  type	"square",
+ }
+ keijudu	{
+  neighbours	["fegayu",	"kibagi",	"beipouja",	"",]
+  type	"square",
+ }
+ beipouja	{
+  neighbours	["keijudu",	"guntufo",	"gainoiwoi",	"",]
+  type	"square",
+ }
+ yekoinwun	{
+  neighbours	["gainoiwoi",	"ryaireini",	"",	"",]
+  type	"square",
+ }
+ ryaireini	{
+  neighbours	["yekoinwun",	"kofahai",	"geshouro",	"",]
+  type	"square",
+ }
+ hobouwai	{
+  neighbours	["geshouro",	"fohoyo",	"",	"",]
+  type	"square",
+ }
+ fohoyo	{
+  neighbours	["hobouwai",	"koigohai",	"paiweiso",	"",]
+  type	"square",
+ }
+ paiweiso	{
+  neighbours	["fohoyo",	"houryainyai",	"tisonyu",	"",]
+  type	"square",
+ }
+ tisonyu	{
+  neighbours	["paiweiso",	"shoupeisu",	"boinjoiga",	"",]
+  type	"square",
+ }
+ boinjoiga	{
+  neighbours	["tisonyu",	"poirahe",	"",	"",]
+  type	"square",
+ }
+ sokoiwa	{
+  neighbours	["dainounai",	"foufiba",	"joikairyoi",	"wifundoi",]
+  type	"square",
+ }
+ joikairyoi	{
+  neighbours	["sokoiwa",	"shudura",	"hodutoun",	"taiyanei",]
+  type	"square",
+ }
+ hodutoun	{
+  neighbours	["joikairyoi",	"wonoshi",	"fanobi",	"daijouhu",]
+  type	"square",
+ }
+ daijouhu	{
+  neighbours	["hodutoun",	"poifaikou",	"shoyishoin",	"taiyanei",]
+  type	"square",
+ }
+ shoyishoin	{
+  neighbours	["daijouhu",	"semopon",	"geishekei",	"kiduryei",]
+  type	"square",
+ }
+ kiduryei	{
+  neighbours	["shoyishoin",	"fanfeitai",	"ryaikingu",	"taiyanei",]
+  type	"square",
+ }
+ geishekei	{
+  neighbours	["fanfeitai",	"shoyishoin",	"daryusi",	"heroutu",]
+  type	"square",
+ }
+ taiyanei	{
+  neighbours	["kiduryei",	"wifundoi",	"joikairyoi",	"daijouhu",]
+  type	"square",
+ }
+ wifundoi	{
+  neighbours	["taiyanei",	"ryaikingu",	"toudoijou",	"sokoiwa",]
+  type	"square",
+ }
+ biryaikou	{
+  neighbours	["ryeinreidou",	"",	"woidennoi",	"bikonmi",]
+  type	"square",
+ }
+ woidennoi	{
+  neighbours	["biryaikou",	"",	"",	"yupeiju",]
+  type	"square",
+ }
+ bikonmi	{
+  neighbours	["deibaidu",	"biryaikou",	"yupeiju",	"ryuryupoi",]
+  type	"square",
+ }
+ yupeiju	{
+  neighbours	["bikonmi",	"woidennoi",	"joifoifa",	"riyogei",]
+  type	"square",
+ }
+ joifoifa	{
+  neighbours	["yupeiju",	"",	"sojoigi",	"sheiryaiwu",]
+  type	"square",
+ }
+ sojoigi	{
+  neighbours	["joifoifa",	"",	"kounese",	"jainjaiyo",]
+  type	"square",
+ }
+ kounese	{
+  neighbours	["sojoigi",	"",	"shoukouhi",	"wisoibei",]
+  type	"square",
+ }
+ shoukouhi	{
+  neighbours	["kounese",	"",	"shoigaiti",	"wenasa",]
+  type	"square",
+ }
+ shoigaiti	{
+  neighbours	["shoukouhi",	"",	"kairyounsei",	"yaikadou",]
+  type	"square",
+ }
+ kairyounsei	{
+  neighbours	["shoigaiti",	"pouhounko",	"foinkaifu",	"deikoigai",]
+  type	"square",
+ }
+ pouhounko	{
+  neighbours	["kairyounsei",	"",	"",	"jukohei",]
+  type	"square",
+ }
+ jukohei	{
+  neighbours	["pouhounko",	"",	"muyonku",	"foinkaifu",]
+  type	"square",
+ }
+ foinkaifu	{
+  neighbours	["jukohei",	"moideshu",	"sheihouryai",	"kairyounsei",]
+  type	"square",
+ }
+ moideshu	{
+  neighbours	["foinkaifu",	"muyonku",	"soshoje",	"gataiwe",]
+  type	"square",
+ }
+ muyonku	{
+  neighbours	["moideshu",	"jukohei",	"",	"hanomu",]
+  type	"square",
+ }
+ soshoje	{
+  neighbours	["moideshu",	"hanomu",	"ryoifuhu",	"gouhatoi",]
+  type	"square",
+ }
+ hanomu	{
+  neighbours	["soshoje",	"muyonku",	"gogeitu",	"ryaishobei",]
+  type	"square",
+ }
+ gogeitu	{
+  neighbours	["hanomu",	"",	"",	"foiweinji",]
+  type	"square",
+ }
+ foiweinji	{
+  neighbours	["gogeitu",	"",	"shopoya",	"ryaishobei",]
+  type	"square",
+ }
+ shopoya	{
+  neighbours	["foiweinji",	"",	"sainryanai",	"meinoiwa",]
+  type	"square",
+ }
+ sainryanai	{
+  neighbours	["shopoya",	"",	"pouwuja",	"merenei",]
+  type	"square",
+ }
+ pouwuja	{
+  neighbours	["sainryanai",	"",	"gohinu",	"tabiko",]
+  type	"square",
+ }
+ gohinu	{
+  neighbours	["pouwuja",	"",	"dumuje",	"yousido",]
+  type	"square",
+ }
+ dumuje	{
+  neighbours	["gohinu",	"",	"",	"rojoigei",]
+  type	"square",
+ }
+ ryaishobei	{
+  neighbours	["hanomu",	"foiweinji",	"meinoiwa",	"ryoifuhu",]
+  type	"square",
+ }
+ meinoiwa	{
+  neighbours	["ryaishobei",	"shopoya",	"merenei",	"sugofa",]
+  type	"square",
+ }
+ merenei	{
+  neighbours	["sainryanai",	"tabiko",	"mupainra",	"meinoiwa",]
+  type	"square",
+ }
+ mebira	{
+  neighbours	["",	"feyage",	"yingimu",	"rojoigei",]
+  type	"square",
+ }
+ feyage	{
+  neighbours	["mebira",	"",	"",	"waifaishai",]
+  type	"square",
+ }
+ ryoifuhu	{
+  neighbours	["soshoje",	"ryaishobei",	"sugofa",	"fabohoi",]
+  type	"square",
+ }
+ sugofa	{
+  neighbours	["ryoifuhu",	"meinoiwa",	"mupainra",	"younhagu",]
+  type	"square",
+ }
+ mupainra	{
+  neighbours	["sugofa",	"merenei",	"kofoiryei",	"yoireyu",]
+  type	"square",
+ }
+ kofoiryei	{
+  neighbours	["mupainra",	"tabiko",	"keidufei",	"humoiga",]
+  type	"square",
+ }
+ keidufei	{
+  neighbours	["kofoiryei",	"yousido",	"rousaisai",	"ryapushou",]
+  type	"square",
+ }
+ rousaisai	{
+  neighbours	["keidufei",	"rojoigei",	"yingimu",	"haihoufo",]
+  type	"square",
+ }
+ yingimu	{
+  neighbours	["rousaisai",	"mebira",	"waifaishai",	"juryudo",]
+  type	"square",
+ }
+ waifaishai	{
+  neighbours	["yingimu",	"feyage",	"waijanjoi",	"yogaifa",]
+  type	"square",
+ }
+ waijanjoi	{
+  neighbours	["waifaishai",	"",	"kouryarei",	"shankokan",]
+  type	"square",
+ }
+ kouryarei	{
+  neighbours	["waijanjoi",	"",	"",	"maiminu",]
+  type	"square",
+ }
+ maiminu	{
+  neighbours	["kouryarei",	"keibeiwo",	"houjoshain",	"shankokan",]
+  type	"square",
+ }
+ rojoigei	{
+  neighbours	["rousaisai",	"yousido",	"dumuje",	"mebira",]
+  type	"square",
+ }
+ yousido	{
+  neighbours	["rojoigei",	"keidufei",	"tabiko",	"gohinu",]
+  type	"square",
+ }
+ tabiko	{
+  neighbours	["yousido",	"kofoiryei",	"merenei",	"pouwuja",]
+  type	"square",
+ }
+ keibeiwo	{
+  neighbours	["maiminu",	"",	"henaibu",	"gafoudo",]
+  type	"square",
+ }
+ henaibu	{
+  neighbours	["keibeiwo",	"",	"",	"moutijou",]
+  type	"square",
+ }
+ moutijou	{
+  neighbours	["henaibu",	"joidaifa",	"gigouhai",	"gafoudo",]
+  type	"square",
+ }
+ joidaifa	{
+  neighbours	["moutijou",	"",	"gawepi",	"genhaijai",]
+  type	"square",
+ }
+ gawepi	{
+  neighbours	["joidaifa",	"",	"",	"daipadoi",]
+  type	"square",
+ }
+ daipadoi	{
+  neighbours	["gawepi",	"tiwadou",	"kikofu",	"genhaijai",]
+  type	"square",
+ }
+ tiwadou	{
+  neighbours	["daipadoi",	"",	"dusonou",	"",]
+  type	"square",
+ }
+ dusonou	{
+  neighbours	["tiwadou",	"",	"",	"",]
+  type	"square",
+ }
+ kikofu	{
+  neighbours	["daipadoi",	"",	"",	"jeitisai",]
+  type	"square",
+ }
+ jeitisai	{
+  neighbours	["kikofu",	"",	"yaiginun",	"genhaijai",]
+  type	"square",
+ }
+ yaiginun	{
+  neighbours	["jeitisai",	"naihoge",	"rinsoutin",	"gigouhai",]
+  type	"square",
+ }
+ naihoge	{
+  neighbours	["yaiginun",	"",	"",	"fumuho",]
+  type	"square",
+ }
+ fumuho	{
+  neighbours	["naihoge",	"",	"founkouhou",	"rinsoutin",]
+  type	"square",
+ }
+ founkouhou	{
+  neighbours	["fumuho",	"bihouso",	"foumukai",	"heryeisho",]
+  type	"square",
+ }
+ bihouso	{
+  neighbours	["founkouhou",	"",	"",	"shouyoimei",]
+  type	"square",
+ }
+ shouyoimei	{
+  neighbours	["bihouso",	"",	"pinyuboi",	"foumukai",]
+  type	"square",
+ }
+ pinyuboi	{
+  neighbours	["shouyoimei",	"tujaishoi",	"janyoinshi",	"ryimitou",]
+  type	"square",
+ }
+ tujaishoi	{
+  neighbours	["pinyuboi",	"",	"",	"wujounbain",]
+  type	"square",
+ }
+ wujounbain	{
+  neighbours	["tujaishoi",	"",	"gaimunan",	"janyoinshi",]
+  type	"square",
+ }
+ gaimunan	{
+  neighbours	["wujounbain",	"dofuya",	"tayoisei",	"soufutein",]
+  type	"square",
+ }
+ dofuya	{
+  neighbours	["gaimunan",	"",	"",	"feiyaro",]
+  type	"square",
+ }
+ yeinneigu	{
+  neighbours	["ryigouryi",	"humimai",	"daguwei",	"",]
+  type	"square",
+ }
+ daguwei	{
+  neighbours	["yeinneigu",	"ryejime",	"jesada",	"",]
+  type	"square",
+ }
+ jesada	{
+  neighbours	["daguwei",	"haidenru",	"nisoifei",	"",]
+  type	"square",
+ }
+ nisoifei	{
+  neighbours	["jesada",	"rougoumi",	"toiyeiryei",	"",]
+  type	"square",
+ }
+ toiyeiryei	{
+  neighbours	["nisoifei",	"neinshagai",	"faibeida",	"",]
+  type	"square",
+ }
+ faibeida	{
+  neighbours	["toiyeiryei",	"hedaigo",	"foinreirou",	"",]
+  type	"square",
+ }
+ foinreirou	{
+  neighbours	["faibeida",	"mosaimai",	"noiryabei",	"",]
+  type	"square",
+ }
+ noiryabei	{
+  neighbours	["foinreirou",	"meinjesi",	"putoishi",	"nokeishu",]
+  type	"square",
+ }
+ putoishi	{
+  neighbours	["noiryabei",	"ryaryoinoi",	"sishine",	"noideise",]
+  type	"square",
+ }
+ sishine	{
+  neighbours	["putoishi",	"rouwinei",	"resharyi",	"mipoisu",]
+  type	"square",
+ }
+ resharyi	{
+  neighbours	["sishine",	"youdoutou",	"yageihou",	"raisoji",]
+  type	"square",
+ }
+ kanruwe	{
+  neighbours	["BNAA",	"ryuryupoi",	"keiryougo",	"naihoufoun",]
+  type	"square",
+ }
+ keiryougo	{
+  neighbours	["kanruwe",	"riyogei",	"boisufu",	"jahunei",]
+  type	"square",
+ }
+ jahunei	{
+  neighbours	["keiryougo",	"pabeijai",	"jonofe",	"naihoufoun",]
+  type	"square",
+ }
+ jonofe	{
+  neighbours	["jahunei",	"foseidu",	"waiyasha",	"soijaidou",]
+  type	"square",
+ }
+ soijaidou	{
+  neighbours	["jonofe",	"puhikei",	"jijuhei",	"naihoufoun",]
+  type	"square",
+ }
+ jijuhei	{
+  neighbours	["soijaidou",	"boumodei",	"yourora",	"peisajei",]
+  type	"square",
+ }
+ boumodei	{
+  neighbours	["jijuhei",	"puhikei",	"taitoyei",	"naikeinji",]
+  type	"square",
+ }
+ naikeinji	{
+  neighbours	["boumodei",	"nounjuhai",	"keiyetou",	"yourora",]
+  type	"square",
+ }
+ yourora	{
+  neighbours	["naikeinji",	"yageihou",	"ryangeiko",	"jijuhei",]
+  type	"square",
+ }
+ yageihou	{
+  neighbours	["yourora",	"keiyetou",	"resharyi",	"hiryenei",]
+  type	"square",
+ }
+ pabeijai	{
+  neighbours	["jahunei",	"boisufu",	"weigoidi",	"foseidu",]
+  type	"square",
+ }
+ weigoidi	{
+  neighbours	["pabeijai",	"woungofei",	"sajoiji",	"jugipin",]
+  type	"square",
+ }
+ sajoiji	{
+  neighbours	["weigoidi",	"kosage",	"bopayan",	"tunoije",]
+  type	"square",
+ }
+ bopayan	{
+  neighbours	["sajoiji",	"seinjajo",	"moiwunfan",	"garetou",]
+  type	"square",
+ }
+ moiwunfan	{
+  neighbours	["bopayan",	"gabidi",	"sujinnoi",	"faipoija",]
+  type	"square",
+ }
+ sujinnoi	{
+  neighbours	["moiwunfan",	"bouyouyei",	"roindaitoun",	"yoiyamei",]
+  type	"square",
+ }
+ yoireyu	{
+  neighbours	["mupainra",	"humoiga",	"tosopa",	"younhagu",]
+  type	"square",
+ }
+ tosopa	{
+  neighbours	["yoireyu",	"yugeitai",	"dikemu",	"shoikaitai",]
+  type	"square",
+ }
+ yugeitai	{
+  neighbours	["tosopa",	"humoiga",	"firinfei",	"wouyoishu",]
+  type	"square",
+ }
+ firinfei	{
+  neighbours	["yugeitai",	"ryapushou",	"ryufoidai",	"fimihou",]
+  type	"square",
+ }
+ ryufoidai	{
+  neighbours	["firinfei",	"haihoufo",	"shojounoi",	"ropupa",]
+  type	"square",
+ }
+ ropupa	{
+  neighbours	["ryufoidai",	"sennoisi",	"gejuyoi",	"fimihou",]
+  type	"square",
+ }
+ fimihou	{
+  neighbours	["ropupa",	"yeirenba",	"wouyoishu",	"firinfei",]
+  type	"square",
+ }
+ wouyoishu	{
+  neighbours	["fimihou",	"jengawi",	"dikemu",	"yugeitai",]
+  type	"square",
+ }
+ dikemu	{
+  neighbours	["wouyoishu",	"jumoifoi",	"keiraja",	"tosopa",]
+  type	"square",
+ }
+ keiraja	{
+  neighbours	["dikemu",	"hesoubu",	"shunouti",	"shoikaitai",]
+  type	"square",
+ }
+ shunouti	{
+  neighbours	["keiraja",	"donmaira",	"baweina",	"jirunai",]
+  type	"square",
+ }
+ baweina	{
+  neighbours	["shunouti",	"yodashou",	"bakoinmi",	"moidoifi",]
+  type	"square",
+ }
+ bakoinmi	{
+  neighbours	["baweina",	"tainwainwoi",	"roindaitoun",	"dagufe",]
+  type	"square",
+ }
+ roindaitoun	{
+  neighbours	["bakoinmi",	"jaikode",	"sujinnoi",	"nunakei",]
+  type	"square",
+ }
+ sennoisi	{
+  neighbours	["ropupa",	"shojounoi",	"poigoihu",	"jidehu",]
+  type	"square",
+ }
+ poigoihu	{
+  neighbours	["sennoisi",	"bairefoi",	"woijowou",	"shasuku",]
+  type	"square",
+ }
+ woijowou	{
+  neighbours	["poigoihu",	"weisaira",	"baiposu",	"yipifei",]
+  type	"square",
+ }
+ baiposu	{
+  neighbours	["woijowou",	"houjoshain",	"feiryayou",	"heryeisho",]
+  type	"square",
+ }
+ feiryayou	{
+  neighbours	["baiposu",	"gafoudo",	"gigouhai",	"rinsoutin",]
+  type	"square",
+ }
+ gigouhai	{
+  neighbours	["feiryayou",	"moutijou",	"genhaijai",	"yaiginun",]
+  type	"square",
+ }
+ genhaijai	{
+  neighbours	["gigouhai",	"joidaifa",	"daipadoi",	"jeitisai",]
+  type	"square",
+ }
+ rinsoutin	{
+  neighbours	["feiryayou",	"yaiginun",	"fumuho",	"heryeisho",]
+  type	"square",
+ }
+ heryeisho	{
+  neighbours	["rinsoutin",	"founkouhou",	"yipifei",	"baiposu",]
+  type	"square",
+ }
+ yipifei	{
+  neighbours	["heryeisho",	"foumukai",	"shasuku",	"woijowou",]
+  type	"square",
+ }
+ shasuku	{
+  neighbours	["yipifei",	"ryimitou",	"jidehu",	"poigoihu",]
+  type	"square",
+ }
+ jidehu	{
+  neighbours	["shasuku",	"doiyeke",	"gejuyoi",	"sennoisi",]
+  type	"square",
+ }
+ gejuyoi	{
+  neighbours	["jidehu",	"kaiyatei",	"yeirenba",	"ropupa",]
+  type	"square",
+ }
+ yoiyamei	{
+  neighbours	["sujinnoi",	"jaikode",	"shaihifei",	"faipoija",]
+  type	"square",
+ }
+ faipoija	{
+  neighbours	["yoiyamei",	"giryoumo",	"garetou",	"moiwunfan",]
+  type	"square",
+ }
+ garetou	{
+  neighbours	["faipoija",	"ryabainrai",	"tunoije",	"bopayan",]
+  type	"square",
+ }
+ tunoije	{
+  neighbours	["garetou",	"gisuryou",	"jugipin",	"sajoiji",]
+  type	"square",
+ }
+ jugipin	{
+  neighbours	["tunoije",	"paineijou",	"foseidu",	"weigoidi",]
+  type	"square",
+ }
+ foseidu	{
+  neighbours	["jugipin",	"yoihoutoin",	"jonofe",	"pabeijai",]
+  type	"square",
+ }
+ jaikode	{
+  neighbours	["yoiyamei",	"roindaitoun",	"tainwainwoi",	"wairyoujou",]
+  type	"square",
+ }
+ tainwainwoi	{
+  neighbours	["jaikode",	"bakoinmi",	"yodashou",	"raitoinda",]
+  type	"square",
+ }
+ yodashou	{
+  neighbours	["tainwainwoi",	"baweina",	"donmaira",	"tupedi",]
+  type	"square",
+ }
+ donmaira	{
+  neighbours	["yodashou",	"shunouti",	"hesoubu",	"wipotei",]
+  type	"square",
+ }
+ hesoubu	{
+  neighbours	["donmaira",	"keiraja",	"jumoifoi",	"seinboiwou",]
+  type	"square",
+ }
+ jumoifoi	{
+  neighbours	["hesoubu",	"dikemu",	"jengawi",	"ryeinokoi",]
+  type	"square",
+ }
+ jengawi	{
+  neighbours	["jumoifoi",	"wouyoishu",	"yeirenba",	"gobehu",]
+  type	"square",
+ }
+ yeirenba	{
+  neighbours	["jengawi",	"fimihou",	"gejuyoi",	"doungeiryei",]
+  type	"square",
+ }
+ nokeishu	{
+  neighbours	["noiryabei",	"noideise",	"",	"",]
+  type	"square",
+ }
+ noideise	{
+  neighbours	["nokeishu",	"putoishi",	"mipoisu",	"",]
+  type	"square",
+ }
+ mipoisu	{
+  neighbours	["noideise",	"sishine",	"raisoji",	"",]
+  type	"square",
+ }
+ raisoji	{
+  neighbours	["mipoisu",	"resharyi",	"keiyetou",	"",]
+  type	"square",
+ }
+ keiyetou	{
+  neighbours	["raisoji",	"yageihou",	"naikeinji",	"",]
+  type	"square",
+ }
+ puhikei	{
+  neighbours	["boumodei",	"soijaidou",	"waiyasha",	"gogoihai",]
+  type	"square",
+ }
+ waiyasha	{
+  neighbours	["puhikei",	"jonofe",	"yoihoutoin",	"ginryako",]
+  type	"square",
+ }
+ yoihoutoin	{
+  neighbours	["waiyasha",	"foseidu",	"paineijou",	"koisheiryen",]
+  type	"square",
+ }
+ paineijou	{
+  neighbours	["yoihoutoin",	"jugipin",	"gisuryou",	"koinfapou",]
+  type	"square",
+ }
+ gisuryou	{
+  neighbours	["paineijou",	"tunoije",	"ryabainrai",	"yaraifa",]
+  type	"square",
+ }
+ ryabainrai	{
+  neighbours	["gisuryou",	"garetou",	"giryoumo",	"youweibai",]
+  type	"square",
+ }
+ giryoumo	{
+  neighbours	["ryabainrai",	"faipoija",	"shaihifei",	"moijiwein",]
+  type	"square",
+ }
+ shaihifei	{
+  neighbours	["giryoumo",	"yoiyamei",	"wairyoujou",	"sidousou",]
+  type	"square",
+ }
+ wairyoujou	{
+  neighbours	["shaihifei",	"jaikode",	"raitoinda",	"jeisunou",]
+  type	"square",
+ }
+ raitoinda	{
+  neighbours	["wairyoujou",	"tainwainwoi",	"tupedi",	"yoinryoimei",]
+  type	"square",
+ }
+ tupedi	{
+  neighbours	["raitoinda",	"yodashou",	"wipotei",	"waiwefou",]
+  type	"square",
+ }
+ wipotei	{
+  neighbours	["tupedi",	"donmaira",	"seinboiwou",	"youkubi",]
+  type	"square",
+ }
+ gobehu	{
+  neighbours	["jengawi",	"doungeiryei",	"nehedai",	"ryeinokoi",]
+  type	"square",
+ }
+ ryeinokoi	{
+  neighbours	["jumoifoi",	"gobehu",	"ryonbofai",	"seinboiwou",]
+  type	"square",
+ }
+ doungeiryei	{
+  neighbours	["gobehu",	"yeirenba",	"kaiyatei",	"firyoha",]
+  type	"square",
+ }
+ kaiyatei	{
+  neighbours	["doungeiryei",	"gejuyoi",	"doiyeke",	"soufutein",]
+  type	"square",
+ }
+ doiyeke	{
+  neighbours	["kaiyatei",	"jidehu",	"ryimitou",	"janyoinshi",]
+  type	"square",
+ }
+ foumukai	{
+  neighbours	["yipifei",	"founkouhou",	"shouyoimei",	"ryimitou",]
+  type	"square",
+ }
+ ryimitou	{
+  neighbours	["foumukai",	"pinyuboi",	"doiyeke",	"shasuku",]
+  type	"square",
+ }
+ seinboiwou	{
+  neighbours	["ryeinokoi",	"roibawo",	"wipotei",	"hesoubu",]
+  type	"square",
+ }
+ nounjuhai	{
+  neighbours	["naikeinji",	"taitoyei",	"",	"",]
+  type	"square",
+ }
+ taitoyei	{
+  neighbours	["nounjuhai",	"boumodei",	"gogoihai",	"",]
+  type	"square",
+ }
+ gogoihai	{
+  neighbours	["taitoyei",	"puhikei",	"ginryako",	"",]
+  type	"square",
+ }
+ ginryako	{
+  neighbours	["gogoihai",	"waiyasha",	"koisheiryen",	"",]
+  type	"square",
+ }
+ koisheiryen	{
+  neighbours	["ginryako",	"yoihoutoin",	"koinfapou",	"toukiti",]
+  type	"square",
+ }
+ koinfapou	{
+  neighbours	["koisheiryen",	"paineijou",	"yaraifa",	"joinwiryou",]
+  type	"square",
+ }
+ yaraifa	{
+  neighbours	["koinfapou",	"gisuryou",	"youweibai",	"pahougei",]
+  type	"square",
+ }
+ youweibai	{
+  neighbours	["yaraifa",	"ryabainrai",	"moijiwein",	"roiparye",]
+  type	"square",
+ }
+ moijiwein	{
+  neighbours	["youweibai",	"giryoumo",	"sidousou",	"koiboihu",]
+  type	"square",
+ }
+ sidousou	{
+  neighbours	["moijiwein",	"shaihifei",	"jeisunou",	"raideiha",]
+  type	"square",
+ }
+ jeisunou	{
+  neighbours	["sidousou",	"wairyoujou",	"yoinryoimei",	"keishinei",]
+  type	"square",
+ }
+ yoinryoimei	{
+  neighbours	["jeisunou",	"raitoinda",	"waiwefou",	"nonoiyoi",]
+  type	"square",
+ }
+ waiwefou	{
+  neighbours	["yoinryoimei",	"tupedi",	"youkubi",	"yoihoinkai",]
+  type	"square",
+ }
+ youkubi	{
+  neighbours	["waiwefou",	"wipotei",	"roibawo",	"feihomi",]
+  type	"square",
+ }
+ roibawo	{
+  neighbours	["seinboiwou",	"ryonbofai",	"dondoyein",	"youkubi",]
+  type	"square",
+ }
+ ryonbofai	{
+  neighbours	["roibawo",	"ryeinokoi",	"nehedai",	"weyowu",]
+  type	"square",
+ }
+ nehedai	{
+  neighbours	["ryonbofai",	"gobehu",	"firyoha",	"kewupoi",]
+  type	"square",
+ }
+ firyoha	{
+  neighbours	["nehedai",	"doungeiryei",	"soufutein",	"tayoisei",]
+  type	"square",
+ }
+ soufutein	{
+  neighbours	["firyoha",	"kaiyatei",	"janyoinshi",	"gaimunan",]
+  type	"square",
+ }
+ janyoinshi	{
+  neighbours	["soufutein",	"doiyeke",	"pinyuboi",	"wujounbain",]
+  type	"square",
+ }
+ riyogei	{
+  neighbours	["yupeiju",	"sheiryaiwu",	"keiryougo",	"ryuryupoi",]
+  type	"square",
+ }
+ sheiryaiwu	{
+  neighbours	["riyogei",	"joifoifa",	"jainjaiyo",	"boisufu",]
+  type	"square",
+ }
+ jainjaiyo	{
+  neighbours	["sheiryaiwu",	"sojoigi",	"wisoibei",	"woungofei",]
+  type	"square",
+ }
+ ryuryupoi	{
+  neighbours	["riyogei",	"kanruwe",	"jouryaijei",	"bikonmi",]
+  type	"square",
+ }
+ wisoibei	{
+  neighbours	["jainjaiyo",	"kounese",	"wenasa",	"kosage",]
+  type	"square",
+ }
+ wenasa	{
+  neighbours	["wisoibei",	"shoukouhi",	"yaikadou",	"seinjajo",]
+  type	"square",
+ }
+ yaikadou	{
+  neighbours	["wenasa",	"shoigaiti",	"deikoigai",	"gabidi",]
+  type	"square",
+ }
+ deikoigai	{
+  neighbours	["yaikadou",	"kairyounsei",	"sheihouryai",	"bouyouyei",]
+  type	"square",
+ }
+ sheihouryai	{
+  neighbours	["deikoigai",	"foinkaifu",	"gataiwe",	"nunakei",]
+  type	"square",
+ }
+ gataiwe	{
+  neighbours	["sheihouryai",	"moideshu",	"gouhatoi",	"dagufe",]
+  type	"square",
+ }
+ gouhatoi	{
+  neighbours	["gataiwe",	"soshoje",	"fabohoi",	"moidoifi",]
+  type	"square",
+ }
+ fabohoi	{
+  neighbours	["gouhatoi",	"ryoifuhu",	"younhagu",	"jirunai",]
+  type	"square",
+ }
+ younhagu	{
+  neighbours	["fabohoi",	"sugofa",	"yoireyu",	"shoikaitai",]
+  type	"square",
+ }
+ humoiga	{
+  neighbours	["yoireyu",	"kofoiryei",	"ryapushou",	"yugeitai",]
+  type	"square",
+ }
+ ryapushou	{
+  neighbours	["humoiga",	"keidufei",	"haihoufo",	"firinfei",]
+  type	"square",
+ }
+ haihoufo	{
+  neighbours	["ryapushou",	"rousaisai",	"juryudo",	"ryufoidai",]
+  type	"square",
+ }
+ juryudo	{
+  neighbours	["haihoufo",	"yingimu",	"yogaifa",	"shojounoi",]
+  type	"square",
+ }
+ yogaifa	{
+  neighbours	["juryudo",	"waifaishai",	"shankokan",	"bairefoi",]
+  type	"square",
+ }
+ shankokan	{
+  neighbours	["yogaifa",	"waijanjoi",	"maiminu",	"weisaira",]
+  type	"square",
+ }
+ weisaira	{
+  neighbours	["shankokan",	"houjoshain",	"woijowou",	"bairefoi",]
+  type	"square",
+ }
+ houjoshain	{
+  neighbours	["weisaira",	"maiminu",	"gafoudo",	"baiposu",]
+  type	"square",
+ }
+ gafoudo	{
+  neighbours	["houjoshain",	"keibeiwo",	"moutijou",	"feiryayou",]
+  type	"square",
+ }
+ bairefoi	{
+  neighbours	["weisaira",	"poigoihu",	"shojounoi",	"yogaifa",]
+  type	"square",
+ }
+ shojounoi	{
+  neighbours	["bairefoi",	"sennoisi",	"ryufoidai",	"juryudo",]
+  type	"square",
+ }
+ jirunai	{
+  neighbours	["shunouti",	"moidoifi",	"fabohoi",	"shoikaitai",]
+  type	"square",
+ }
+ moidoifi	{
+  neighbours	["jirunai",	"baweina",	"dagufe",	"gouhatoi",]
+  type	"square",
+ }
+ shoikaitai	{
+  neighbours	["jirunai",	"younhagu",	"tosopa",	"keiraja",]
+  type	"square",
+ }
+ dagufe	{
+  neighbours	["bakoinmi",	"nunakei",	"gataiwe",	"moidoifi",]
+  type	"square",
+ }
+ nunakei	{
+  neighbours	["dagufe",	"roindaitoun",	"bouyouyei",	"sheihouryai",]
+  type	"square",
+ }
+ bouyouyei	{
+  neighbours	["nunakei",	"sujinnoi",	"gabidi",	"deikoigai",]
+  type	"square",
+ }
+ woungofei	{
+  neighbours	["weigoidi",	"boisufu",	"jainjaiyo",	"kosage",]
+  type	"square",
+ }
+ boisufu	{
+  neighbours	["woungofei",	"pabeijai",	"keiryougo",	"sheiryaiwu",]
+  type	"square",
+ }
+ kosage	{
+  neighbours	["woungofei",	"wisoibei",	"seinjajo",	"sajoiji",]
+  type	"square",
+ }
+ seinjajo	{
+  neighbours	["kosage",	"wenasa",	"gabidi",	"bopayan",]
+  type	"square",
+ }
+ gabidi	{
+  neighbours	["seinjajo",	"yaikadou",	"bouyouyei",	"moiwunfan",]
+  type	"square",
+ }
+ naihoufoun	{
+  neighbours	["jahunei",	"soijaidou",	"peisajei",	"kanruwe",]
+  type	"square",
+ }
+ peisajei	{
+  neighbours	["naihoufoun",	"jijuhei",	"ryangeiko",	"BNAA",]
+  type	"square",
+ }
+ ryangeiko	{
+  neighbours	["peisajei",	"yourora",	"hiryenei",	"ANAA",]
+  type	"square",
+ }
+ rougoumi	{
+  neighbours	["nisoifei",	"haidenru",	"tuworyoi",	"neinshagai",]
+  type	"square",
+ }
+ neinshagai	{
+  neighbours	["rougoumi",	"goimeku",	"hedaigo",	"toiyeiryei",]
+  type	"square",
+ }
+ hedaigo	{
+  neighbours	["neinshagai",	"haigoiyei",	"mosaimai",	"faibeida",]
+  type	"square",
+ }
+ mosaimai	{
+  neighbours	["hedaigo",	"koryousi",	"meinjesi",	"foinreirou",]
+  type	"square",
+ }
+ ryaryoinoi	{
+  neighbours	["gairoijoi",	"rouwinei",	"putoishi",	"meinjesi",]
+  type	"square",
+ }
+ rouwinei	{
+  neighbours	["ryaryoinoi",	"jajukin",	"youdoutou",	"sishine",]
+  type	"square",
+ }
+ youdoutou	{
+  neighbours	["rouwinei",	"YMAA",	"hiryenei",	"resharyi",]
+  type	"square",
+ }
+ hiryenei	{
+  neighbours	["youdoutou",	"ZMAA",	"ryangeiko",	"yageihou",]
+  type	"square",
+ }
+ meinjesi	{
+  neighbours	["ryaryoinoi",	"noiryabei",	"mosaimai",	"duponen",]
+  type	"square",
+ }
+ toukiti	{
+  neighbours	["koisheiryen",	"joinwiryou",	"",	"",]
+  type	"square",
+ }
+ joinwiryou	{
+  neighbours	["toukiti",	"koinfapou",	"pahougei",	"",]
+  type	"square",
+ }
+ pahougei	{
+  neighbours	["joinwiryou",	"yaraifa",	"roiparye",	"",]
+  type	"square",
+ }
+ roiparye	{
+  neighbours	["pahougei",	"youweibai",	"koiboihu",	"",]
+  type	"square",
+ }
+ koiboihu	{
+  neighbours	["roiparye",	"moijiwein",	"raideiha",	"",]
+  type	"square",
+ }
+ raideiha	{
+  neighbours	["sidousou",	"keishinei",	"",	"koiboihu",]
+  type	"square",
+ }
+ keishinei	{
+  neighbours	["raideiha",	"jeisunou",	"nonoiyoi",	"",]
+  type	"square",
+ }
+ nonoiyoi	{
+  neighbours	["keishinei",	"yoinryoimei",	"yoihoinkai",	"",]
+  type	"square",
+ }
+ yoihoinkai	{
+  neighbours	["nonoiyoi",	"waiwefou",	"feihomi",	"doiryoudi",]
+  type	"square",
+ }
+ feihomi	{
+  neighbours	["yoihoinkai",	"youkubi",	"dondoyein",	"touyomei",]
+  type	"square",
+ }
+ dondoyein	{
+  neighbours	["feihomi",	"roibawo",	"weyowu",	"nodaijo",]
+  type	"square",
+ }
+ weyowu	{
+  neighbours	["dondoyein",	"ryonbofai",	"kewupoi",	"houdushu",]
+  type	"square",
+ }
+ kewupoi	{
+  neighbours	["weyowu",	"nehedai",	"tayoisei",	"koibeidoun",]
+  type	"square",
+ }
+ tayoisei	{
+  neighbours	["kewupoi",	"firyoha",	"gaimunan",	"feiyaro",]
+  type	"square",
+ }
+ doiryoudi	{
+  neighbours	["yoihoinkai",	"touyomei",	"",	"",]
+  type	"square",
+ }
+ touyomei	{
+  neighbours	["doiryoudi",	"feihomi",	"nodaijo",	"",]
+  type	"square",
+ }
+ nodaijo	{
+  neighbours	["touyomei",	"dondoyein",	"houdushu",	"",]
+  type	"square",
+ }
+ houdushu	{
+  neighbours	["nodaijo",	"weyowu",	"koibeidoun",	"",]
+  type	"square",
+ }
+ feiyaro	{
+  neighbours	["tayoisei",	"dofuya",	"",	"koibeidoun",]
+  type	"square",
+ }
+ koibeidoun	{
+  neighbours	["feiyaro",	"",	"houdushu",	"kewupoi",]
+  type	"square",
+ }
+ rishoihe	{
+  neighbours	["weyashe",	"",	"",	"waikifain",]
+  type	"square",
+ }
+ noiguni	{
+  neighbours	["goujounai",	"",	"",	"mikoumen",]
+  type	"square",
+ }
+ moushouho	{
+  neighbours	["bunoinshi",	"riryunryu",	"fawabo",	"",]
+  type	"square",
+ }
+ fawabo	{
+  neighbours	["moushouho",	"yejohei",	"kusaiwu",	"",]
+  type	"square",
+ }
+ yejohei	{
+  neighbours	["fawabo",	"riryunryu",	"toimaibai",	"kipuhe",]
+  type	"square",
+ }
+ toimaibai	{
+  neighbours	["yejohei",	"foryetai",	"",	"nouwebi",]
+  type	"square",
+ }
+ foryetai	{
+  neighbours	["toimaibai",	"riryunryu",	"tonmapo",	"",]
+  type	"square",
+ }
+ riryunryu	{
+  neighbours	["foryetai",	"yejohei",	"moushouho",	"hirodo",]
+  type	"square",
+ }
+ kipuhe	{
+  neighbours	["yejohei",	"nouwebi",	"yinheijen",	"kusaiwu",]
+  type	"square",
+ }
+ yinheijen	{
+  neighbours	["kipuhe",	"",	"pashoijou",	"",]
+  type	"square",
+ }
+ nouwebi	{
+  neighbours	["kipuhe",	"toimaibai",	"",	"",]
+  type	"square",
+ }
+ kusaiwu	{
+  neighbours	["kipuhe",	"",	"",	"fawabo",]
+  type	"square",
+ }
+ pashoijou	{
+  neighbours	["yinheijen",	"",	"",	"",]
+  type	"square",
+ }
+}

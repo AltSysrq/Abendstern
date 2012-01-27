@@ -1,0 +1,38 @@
+The alien species of Abendstern is a nitrogen-based, amonia-breathing lifeform. They are only capable of producing vowel-like sounds,
+so their language is obviously restricted to these. For the sake of English speakers, the language has been designed to use easily-
+pronounceable vowels, and the Romanization is intended to be immediately pronounceable.
+
+SOUNDS
+Only seven sounds (five vowels, two semivowels) exist: The cardinal vowels (Spanish A/E/I/O/U), W, and Y. W and Y are actually U and I,
+but are used to separate syllables. There is an eighth sound, H, which is only pronounced in some dialects of the language, but also
+serves to separate syllables. All contiguous vowels are blended together.
+
+GRAMMAR
+All sentences consist of four or fewer terms; a term is usually one word, but phrases can be nested. The maximum structure is shown below;
+any number of terms may be left out.
+  pre-condition subject object post-condition
+If both pre- and post-conditions are missing, the statement is state-of-being.
+The function of a word is determined by declining the last vowel (all words in dictionary given in subject form):
+  PRE	SUBJ	OBJ	POST
+  ai	a	au	ou
+  eu	e	eu	ei
+  yu	i	ui	ai (if a semivowel is immediately before -i, the pre-condition becomes iyu)
+  oi	o	ou	oo
+  uhi	u	uha	uye
+
+PRONOUNS
+The pronouns and their translations are in the below table.
+  ya	I/we
+  we	You
+  yoi	This/that; what the speaker is thinking of
+  wai	Nothing
+  wuu	Unknown
+  yau	(Only valid as object) The subject
+
+Any pronoun starting with H is special. It is declined according to its current function, with the final subject vowel
+of the word from the previous sentence as its base.
+
+DICTIONARY
+hoho	Possess
+yahou	Desire
+

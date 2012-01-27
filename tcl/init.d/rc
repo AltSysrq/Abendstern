@@ -1,0 +1,75 @@
+# Scripts in this directory are run at startup/shutdown.
+# Each script must either do everything it must immediately
+# after sourcing, or should
+#   $::state setSubState somestate
+# to enter an interactive state, or run
+#   $::state setCallback description code
+# where code returns an integer indicating percent progress;
+# the callback will be called once per frame until a value
+# greater than 100 is returned.
+#
+# Each array in this file defines a startup catalogue; the
+# strings are both l10n keys for A.boot and names of files
+# found under tcl/init.d.
+# The boot catalogue is run immediately after Tcl gets
+# control, whether or not the program is running in
+# headless mode.
+#
+# After boot is run, bootgraph is run if not headless;
+# otherwise, headless is run. In non-headless mode,
+# login is run after bootgraph, and whenever new login
+# credentials are required.
+#
+# When the game exits, the shutdown catalogue is run.
+
+boot [
+  "hotpatch",
+  "loadlib",
+  "version",
+  "network",
+  "backgrnd",
+  "bootnext",
+]
+bootgraph [
+  "ships",
+  "miscgui",
+  "miscdat",
+  "loginnxt",
+]
+headless [
+  "ships",
+  "miscgui",
+  "miscdat",
+  "headless",
+]
+login [
+  "opencxn",
+  "logingui",
+  "acctinfo",
+  "shipdnld",
+  "aidownld",
+  "mainmenu",
+]
+refreshShips [
+  "shipdnld",
+  "mainmenu",
+]
+logout [
+  "shipupld",
+  "shipdelo",
+  "acctinfs",
+  "logout",
+  "loginnxt",
+]
+shutdown [
+  "shipupld",
+  "shipdelo",
+  "acctinfs",
+  "logout",
+  "confsync",
+  "shutdown",
+]
+aistaging [
+  "aidownld",
+  "aistage",
+]
