@@ -1,8 +1,8 @@
-abendsternprojdir=$(PREFIX)
-abendsternproj_PROGRAMS=abendstern
+bin_PROGRAMS=abendstern
 abendstern_CXXFLAGS=-Wall -I./config $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PNG_CFLAGS) -I/usr/include/tcl8.5
 abendstern_LDADD=$(SDL_LIBS) $(SDLIMG_LIBS) $(GL_LIBS) $(PNG_LIBS)
 abendstern_SOURCES= \
+./tcl_iface/bridge.cxx \
 ./audio/wavload.cxx \
 ./audio/ship_mixer.cxx \
 ./audio/synth.cxx \
@@ -169,7 +169,6 @@ abendstern_SOURCES= \
 ./graphics/vec.cxx \
 ./graphics/imgload.cxx \
 ./graphics/font.cxx \
-./tcl_iface/bridge.cxx \
 ./tcl_iface/slave_thread.cxx \
 ./tcl_iface/common_keyboard_client.cxx \
 ./tcl_iface/square_icon.cxx

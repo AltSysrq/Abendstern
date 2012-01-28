@@ -5,7 +5,8 @@ AC_PREREQ([2.50])
 AC_INIT([Abendstern], [0.0], [jasonlingle@yahoo.com])
 m4_include([m4/pkg.m4])
 AC_CONFIG_SRCDIR([src/globals.hxx])
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([1.11])
+AM_SILENT_RULES(yes)
 AM_CONFIG_HEADER([config.h])
 PKG_PROG_PKG_CONFIG()
 
