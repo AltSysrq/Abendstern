@@ -1,7 +1,23 @@
-bin_PROGRAMS=abendstern
-abendstern_CXXFLAGS=-Wall -I./config $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PNG_CFLAGS) -I/usr/include/tcl8.5
-abendstern_LDADD=$(SDL_LIBS) $(SDLIMG_LIBS) $(GL_LIBS) $(PNG_LIBS)
-abendstern_SOURCES= \
+if ENABLE_GL14
+GL14PROG=abendsternuxgl14
+else
+GL14PROG=
+endif
+if ENABLE_GL21
+GL21PROG=abendsternuxgl21
+else
+GL21PROG=
+endif
+if ENABLE_GL32
+GL32PROG=abendsternuxgl32
+else
+GL32PROG=
+endif
+
+bin_PROGRAMS=$(GL14PROG) $(GL21PROG) $(GL32PROG)
+COMMONCXXFLAGS=-Wall -I./config $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PNG_CFLAGS) -I/usr/include/tcl8.5
+COMMONLDADD=$(SDL_LIBS) $(SDLIMG_LIBS) $(GL_LIBS) $(PNG_LIBS)
+COMMONSOURCES= \
 ./tcl_iface/bridge.cxx \
 ./audio/wavload.cxx \
 ./audio/ship_mixer.cxx \
@@ -172,3 +188,13 @@ abendstern_SOURCES= \
 ./tcl_iface/slave_thread.cxx \
 ./tcl_iface/common_keyboard_client.cxx \
 ./tcl_iface/square_icon.cxx
+
+abendsternuxgl14_CXXFLAGS=$(COMMONCXXFLAGS) -DAB_OPENGL_14
+abendsternuxgl14_LDADD=$(COMMONLDADD)
+abendsternuxgl14_SOURCES=$(COMMONSOURCES)
+abendsternuxgl21_CXXFLAGS=$(COMMONCXXFLAGS) -DAB_OPENGL_21 $(GLEW_CFLAGS)
+abendsternuxgl21_LDADD=$(COMMONLDADD) $(GLEW_LIBS)
+abendsternuxgl21_SOURCES=$(COMMONSOURCES)
+abendsternuxgl32_CXXFLAGS=$(COMMONCXXFLAGS) $(GLEW_CFLAGS)
+abendsternuxgl32_LDADD=$(COMMONLDADD) $(GLEW_LIBS)
+abendsternuxgl32_SOURCES=$(COMMONSOURCES)

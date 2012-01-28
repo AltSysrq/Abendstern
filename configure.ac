@@ -12,8 +12,10 @@ PKG_PROG_PKG_CONFIG()
 
 AC_ARG_ENABLE([debug], AS_HELP_STRING([--enable-debug], [Enable debugging.]))
 AC_ARG_ENABLE([profile], AS_HELP_STRING([--enable-profile], [Enable profiling.]))
-AC_ARG_WITH([gl14], AS_HELP_STRING([--with-gl14], [Use OpenGL 1.4 build.]))
-AC_ARG_WITH([gl21], AS_HELP_STRING([--with-gl21], [Use OpenGL 2.1 build.]))
+AC_ARG_ENABLE([gl14], AS_HELP_STRING([--disable-gl14], [Don't build OpenGL 1.4 version.]))
+AC_ARG_ENABLE([gl21], AS_HELP_STRING([--disable-gl21], [Don't build OpenGL 2.1 version.]))
+AC_ARG_ENABLE([gl32], AS_HELP_STRING([--disable-gl32], [Don't build OpenGL 3.2 version.]))
+AC_ARG_WITH([glew], AS_HELP_STRING([--with-glew], [Use GLEW to access GL extensions.]))
 AS_IF([test "x$enable_debug" = "xyes"], [
   AB_DEBUG_FLAGS='-DDEBUG -O0 -g3'
 ], [
@@ -24,15 +26,29 @@ AS_IF([test "x$enable_profile" = "xyes"], [
 ], [
   AB_PROFILE_FLAGS=''
 ])
-AS_IF([test "x$with_gl14" = "xyes"],[
-  AB_GL_FLAGS='-DAB_OPENGL_14'
+AS_IF([test "x$with_glew" = "xyes"], [
+  PKG_CHECK_MODULES([GLEW], [glew])
 ], [
-  AS_IF([test "x$with_gl21" = "xyes"],[
-    AB_GL_FLAGS='-DAB_OPENGL_21 -DGL_GLEXT_PROTOTYPES'
-  ], [
-    AB_GL_FLAGS='-DGL_GLEXT_PROTOTYPES'
-  ])])
-CXXFLAGS="$CXXFLAGS $AB_DEBUG_FLAGS $AB_PROFILE_FLAGS $AB_GL_FLAGS -DTHREAD_LOCAL=__thread"
+  GLEW_CFLAGS=-DGL_GLEXT_PROTOTYPES
+  GLEW_LIBS=
+])
+AS_IF([test "x$enable_gl14" = "xno"], [
+  AM_CONDITIONAL(ENABLE_GL14, false)
+], [
+  AM_CONDITIONAL(ENABLE_GL14, true)
+])
+AS_IF([test "x$enable_gl21" = "xno"], [
+  AM_CONDITIONAL(ENABLE_GL21, false)
+], [
+  AM_CONDITIONAL(ENABLE_GL21, true)
+])
+AS_IF([test "x$enable_gl32" = "xno"], [
+  AM_CONDITIONAL(ENABLE_GL32, false)
+], [
+  AM_CONDITIONAL(ENABLE_GL32, true)
+])
+
+CXXFLAGS="$CXXFLAGS $AB_DEBUG_FLAGS $AB_PROFILE_FLAGS -DTHREAD_LOCAL=__thread"
 LDFLAGS="$LDFLAGS $AB_PROFILE_FLAGS"
 
 # Checks for programs.
