@@ -85,7 +85,7 @@ public:
                                unsigned char iaddr1,
                                unsigned char iaddr2,
                                unsigned char iaddr3,
-                               unsigned short iport);
+                               unsigned short iport) noth;
   /**
    * Sets the IPv6 Internet-facing information in the GlobalID with
    * the given information, assumed to have been received from the
@@ -102,35 +102,35 @@ public:
                                unsigned short iaddr5,
                                unsigned short iaddr6,
                                unsigned short iaddr7,
-                               unsigned short iport);
+                               unsigned short iport) noth;
 
   /**
    * Returns a pointer to the IPv4 GlobalID associated with this Antenna.
    */
-  GlobalID* getGlobalID4();
+  GlobalID* getGlobalID4() noth;
   /**
    * Returns a pointer to the IPv4 GlobalID associated with this Antenna.
    */
-  const GlobalID* getGlobalID4() const;
+  const GlobalID* getGlobalID4() const noth;
   /**
    * Returns a pointer to the IPv6 GlobalID associated with this Antenna.
    */
-  GlobalID* getGlobalID6();
+  GlobalID* getGlobalID6() noth;
   /**
    * Returns a pointer to the IPv6 GlobalID associated with this Antenna.
    */
-  const GlobalID* getGlobalID6() const;
+  const GlobalID* getGlobalID6() const noth;
 
   /**
    * Sends the given data to the given endpoint.
    * The input array is not deallocated.
    */
-  void send(const endpoint&, const byte* data, unsigned length);
+  void send(const endpoint&, const byte* data, unsigned length) noth;
 
   /**
    * Processes any incomming packets.
    */
-  void processIncomming();
+  void processIncomming() noth;
 };
 
 
