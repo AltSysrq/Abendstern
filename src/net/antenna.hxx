@@ -126,6 +126,11 @@ public:
    * The input array is not deallocated.
    */
   void send(const endpoint&, const byte* data, unsigned length);
+
+  /**
+   * Processes any incomming packets.
+   */
+  void processIncomming();
 };
 
 
