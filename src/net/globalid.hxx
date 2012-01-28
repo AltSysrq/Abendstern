@@ -58,7 +58,8 @@ class GlobalID: public AObject {
    *   %03d.%03d.%03d.%03d:%05d/%03d.%03d.%03d.%03d:%05d
    * and for v6
    *   %04x.%04x.%04x.%04x.%04x.%04x.%04x.%04x:%05d/%04x.%04x.%04x.%04x.%04x.%04x.%04x.%04x:%05d
-   * Note that the v6 format uses dots in the IPv6 address, since colons are used for ports.
+   * Note that the v6 format uses dots in the IPv6 address, since colons are
+   * used for ports.
    *
    * In both cases, the overall format is
    *   lan-address:lan-port/internet-address:internet-port

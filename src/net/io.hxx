@@ -61,7 +61,8 @@ namespace io {
     dst += 3;
   }
 
-  static inline void reads(const byte*& src, const byte*const end, std::string& dst) {
+  static inline void reads(const byte*& src, const byte*const end,
+                           std::string& dst) {
     unsigned len=0;
     for (const byte* i=src; i < end && *i; ++i) ++len;
     dst.assign(src, src+len);
@@ -69,7 +70,8 @@ namespace io {
     //Pass over terminating NUL if there was one
     if (src != end) ++src;
   }
-  static inline void writes(byte*& dst, byte*const end, const std::string& src) {
+  static inline void writes(byte*& dst, byte*const end,
+                            const std::string& src) {
     assert(end-dst > src.size());
     memcpy(dst, src.c_str(), src.size()+1);
     dst += src.size()+1;
