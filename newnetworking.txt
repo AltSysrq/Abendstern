@@ -209,7 +209,7 @@ Block structure:
   uint16        LAN port
   uint32        Client number (userid for Internet game, part of LAN IP address
                 for LAN game)
-  uint256       Authentication information (provided by Abendstern Network
+  byte[32]      Authentication information (provided by Abendstern Network
                 for Internet game, hash of game password for LAN game)
   byte          Flags
     0           IP version; 0=IPv4, 1=IPv6
