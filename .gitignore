@@ -45,3 +45,5 @@ Makefile.in
 passwords
 # Cannot include ttfs, it includes proprietary files
 ttfs/*
+*/abendstern
+lssinfo.rc
