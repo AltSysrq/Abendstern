@@ -27,7 +27,7 @@ AS_IF([test "x$with_gl14" = "xyes"],[
   AB_GL_FLAGS='-DAB_OPENGL_14'
 ], [
   AS_IF([test "x$with_gl21" = "xyes"],[
-    AB_GL_FLAGS='-DAB_OPENGL_21'
+    AB_GL_FLAGS='-DAB_OPENGL_21 -DGL_GLEXT_PROTOTYPES'
   ], [
     AB_GL_FLAGS='-DGL_GLEXT_PROTOTYPES'
   ])])
