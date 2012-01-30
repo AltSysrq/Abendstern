@@ -344,8 +344,6 @@ void Font::renderCharacter(unsigned ch) noth {
   const char* dirname = this->filename;
   char filename[256];
 
-  unsigned start = SDL_GetTicks();
-
   //Only doing one character now
   //for (; ch<0x10000 && SDL_GetTicks() < start+50; ++ch) {
     sprintf(filename, "%s/%04x.png", dirname, ch);
