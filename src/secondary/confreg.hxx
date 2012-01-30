@@ -96,6 +96,12 @@ class ConfReg: public AObject, private std::map<std::string, ConfigRegEntry> {
   /** Call revert() on all roots */
   void revertAll();
 
+  /**
+   * Changes the name of the backing file for the given
+   * root, and sets its "modified" status.
+   */
+  void renameFile(const std::string& root, const std::string& filename);
+
   /* The below functions are mainly intended for Tcl, but are usable by
    * other code.
    */

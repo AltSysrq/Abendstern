@@ -137,6 +137,16 @@ void ConfReg::revertAll() {
   }
 }
 
+void ConfReg::renameFile(const string& key, const string& filename) {
+  iterator it=find(key);
+  if (it == end()) {
+    throwSettingNotFoundException(key);
+  }
+  ConfigRegEntry& ent(it->second);
+  ent.filename = filename;
+  ent.modified=true;
+}
+
 Setting& ConfReg::lookup(const string& path, bool mod) {
   if (!path.size()) throw runtime_error("Null path specified");
   whitelistCheck(path);

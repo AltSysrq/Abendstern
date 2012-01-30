@@ -887,6 +887,7 @@ class final ConfReg {} {
     fun void removeFromWhitelist {} string
     fun void clearWhitelist
     fun void setWhitelistOnly {} bool
+    fun void renameFile {} string string
   }
   fun bool exists {} string
   fun bool {getBool bool} {} string
