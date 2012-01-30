@@ -99,3 +99,8 @@ Antenna::Antenna() : sock4(NULL), sock6(NULL) {
     }
   }
 }
+
+Antenna::~Antenna() {
+  if (sock4) delete sock4;
+  if (sock6) delete sock6;
+}
