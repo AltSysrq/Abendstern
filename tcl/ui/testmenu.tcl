@@ -182,14 +182,20 @@ class TestMode {
       $ add hangar.user.usr$i contents STList
       %s setMode [new gui::HangarEditor hangar.user.usr$i {
         %s setMode %s
-        # Update list
         global hangarList
-        set cts [$hangarList getItems]
-        lappend cts [$ str hangar.user.usr$i.name]
-        $hangarList setItems $cts
-        $hangarList setSelection [expr {[llength $cts]-1}]
-        makeHangarEffective [$hangarList getSelection]
-        $ sync hangar
+        # Update list
+        # Note that the hangar might not exist, in which case we do not change
+        # the effective hangar, and unselect everything in the list.
+        if {[$ exists hangar.user.usr$i]} {
+          set cts [$hangarList getItems]
+          lappend cts [$ str hangar.user.usr$i.name]
+          $hangarList setItems $cts
+          $hangarList setSelection [expr {[llength $cts]-1}]
+          makeHangarEffective [$hangarList getSelection]
+          $ sync hangar
+        } else {
+          $hangarList setSelection {}
+        }
       }]
     } $app $app $this]]
     $hangarButtons add [new gui::Button [_ T a edit_dots] [format {
