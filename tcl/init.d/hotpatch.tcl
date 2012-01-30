@@ -1,5 +1,10 @@
 # Performs any hotpatching necessary for backwards-compatibility
 
+# If the hangar doesn't exist, copy hangar.default to hangar
+if {![file exists hangar]} {
+  file copy hangar.default hangar
+}
+
 # Ensure that the patchlevel.rc file exists
 if {![file exists patchlevel.rc]} {
   set f [open patchlevel.rc w]
