@@ -1,5 +1,0 @@
-#! /bin/bash
-rm -Rf tmp/ais/common/{tcl,shaders,data,images,fonts,hangar,version}
-cp -R tcl shaders data images fonts hangar version tmp/ais/common/
-cp debug/abendstern tmp/ais/common/bin_debug
-cp gl14/abendstern tmp/ais/common/bin_release
