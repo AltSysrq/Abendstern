@@ -186,8 +186,9 @@ void Engine::update(Ship* ship, float time) noth {
       float cosine=cos(that.backT+rot),
             sine=sin(that.backT+rot);
       pair<float,float> coord=Ship::cellCoord(ship, that.container);
-      float vx=cellVelocity.first+cosine*speed;
-      float vy=cellVelocity.second+sine*speed;
+      //No longer used
+      //float vx=cellVelocity.first+cosine*speed;
+      //float vy=cellVelocity.second+sine*speed;
 
       if (!that.trail.ref) {
         that.trail.assign(new LightTrail(ship->getField(), that.expLife*2, 96,

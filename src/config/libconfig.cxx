@@ -1326,7 +1326,7 @@ namespace libconfig {
     }
 
     //Ensure properly terminated
-    return *k == ']' && *(k+1) == 0;
+    return ok && *k == ']' && *(k+1) == 0;
   }
   #define TYPEXCPT(ltype,s) \
     if (ltype != s->getType()) { \
