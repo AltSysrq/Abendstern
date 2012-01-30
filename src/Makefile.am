@@ -164,6 +164,7 @@ COMMONSOURCES= \
 ./sim/lazy_transform_collision_tree.cxx \
 ./net/crypto.cxx \
 ./net/globalid.cxx \
+./net/antenna.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \
 ./secondary/frame_recorder.cxx \

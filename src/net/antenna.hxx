@@ -31,19 +31,20 @@ class Tuner;
  * created, it will attempt to open each of them on one of the
  * "well-known" Abendstern ports (see Antenna::wellKnownPorts);
  * if none are available, it falls back on an ephemeral port. It
- * will attempt to connect each of them to abendstern.servegame.com
- * if appropriate DNS entries can be found; otherwise, it falls back
- * on 192.0.43.10 for IPv4 and ::FFFF::C000:2B0A (example.com) as a
- * generic Internet address. (The "connection" is done solely so that
- * we can get the local address of the port to use.) The sockets
- * always have broadcasting enabled.
+ * will attempt to connect each of them to 192.0.43.10 for IPv4
+ * and ::FFFF::C000:2B0A (example.com) as a generic Internet address.
+ * (The "connection" is done solely so that we can get the local address
+ * of the port to use.) The sockets always have broadcasting enabled.
  *
  * While primarily used as a singleton, there are no conflicts in
  * using multiple instances of this class.
+ *
+ * It is a good idea to instantiate this class before window creation,
+ * so that Windows Firewall prompts are not below the fullscreen window.
  */
 class Antenna: public AObject {
   //The sockets the Antenna operates on
-  asio::ip::udp::socket sock4, sock6;
+  asio::ip::udp::socket* sock4,* sock6;
   //The globalids
   GlobalID gid4, gid6;
 
@@ -131,7 +132,16 @@ public:
    * Processes any incomming packets.
    */
   void processIncomming() noth;
-};
+
+  /**
+   * Returns whether the system has a functioning IPv4 socket.
+   */
+  bool hasV4() const noth { return sock4; }
+  /**
+   * Returns whether the system has a functioning IPv6 socket.
+   */
+  bool hasV6() const noth { return sock6; }
+} extern antenna; ///< Primary instance of Antenna
 
 
 #endif /* ANTENNA_HXX_ */
