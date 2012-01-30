@@ -13,6 +13,8 @@
 #include "tuner.hxx"
 #include "src/globals.hxx"
 
+using namespace std;
+
 static asio::io_service iosvc;
 Antenna antenna;
 
@@ -71,7 +73,7 @@ Antenna::Antenna() : sock4(NULL), sock6(NULL) {
                                                    asio::ip::address_v6::any()),
                                                  wellKnownPorts[i]));
       gid6.lport = wellKnownPorts[i];
-    } catch (..) {}
+    } catch (...) {}
   }
 
   if (sock6) {
@@ -81,7 +83,7 @@ Antenna::Antenna() : sock4(NULL), sock6(NULL) {
                                     endpoint(asio::ip::address(
                                       asio::ip::address_v6::from_string(
                                         "::FFFF:C000:2B0A")),
-                                      wellKnownPorts[i]));
+                                      12544));
       const asio::ip::address_v6::bytes_type lip6 =
           tmpsock.local_endpoint().address().to_v6().to_bytes();
 

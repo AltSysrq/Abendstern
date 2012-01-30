@@ -7,7 +7,7 @@
 #ifndef PACKET_PROCESSOR_HXX_
 #define PACKET_PROCESSOR_HXX_
 
-#include "src/aobject.hxx"
+#include "src/core/aobject.hxx"
 #include "antenna.hxx"
 
 /**

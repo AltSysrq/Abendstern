@@ -22,6 +22,12 @@
 class Tuner;
 
 /**
+ * Type to store individual bytes.
+ * This is an unsigned type.
+ */
+typedef unsigned char byte;
+
+/**
  * The Antenna class abstracts away some of the immediate interface
  * for sending network packets. It also handles concerns like port
  * and IP version selection, as well as determining the local peer's

@@ -11,7 +11,7 @@
 #include <map>
 #include <vector>
 
-#include "src/aobject.hxx"
+#include "src/core/aobject.hxx"
 #include "antenna.hxx"
 
 class PacketProcessor;
