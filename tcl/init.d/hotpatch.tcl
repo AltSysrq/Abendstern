@@ -153,3 +153,10 @@ if {![file exists hangar/local]} {
   }
   $ close hangar
 }
+
+# Add missing conf.game.use_geneticai
+# (The rest of the code is OK with it missing, but this
+#  exposes its existence.)
+if {![$ exists conf.game.use_geneticai]} {
+  $ addb conf.game use_geneticai no
+}

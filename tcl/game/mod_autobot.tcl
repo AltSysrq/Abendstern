@@ -5,7 +5,12 @@
 # If there are more players than desired and we have AIs, remove
 # the first one.
 # This assumes that the extended connectVPeer method is available.
-set AUTOBOT_AI_STD_PROB 0.5
+if {[$ exists conf.game.use_geneticai]
+&&  [$ bool conf.game.use_geneticai]} {
+  set AUTOBOT_AI_STD_PROB 0.5
+} else {
+  set AUTOBOT_AI_STD_PROB 1.0
+}
 class MixinAutobot {
   variable desired
 

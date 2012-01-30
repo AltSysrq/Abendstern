@@ -4,7 +4,9 @@ if {![info exists aidownld_firstRun]} {
   set aidownld_firstRun yes
 }
 # On the first run, handle all cached data
-if {$aidownld_firstRun} {
+if {$aidownld_firstRun
+&&  [$ exists conf.game.use_geneticai]
+&&  [$ bool conf.game.use_geneticai]} {
   file mkdir dna
   if {[catch {
     $ open dna/ai_list.dat genai
@@ -96,7 +98,9 @@ proc aidownld_downloadingDNA {} {
   return [expr {$aidownld_index*100 / [$ length genai.species]}]
 }
 
-if {$::abnet::isConnected} {
+if {$::abnet::isConnected
+&&  [$ exists conf.game.use_geneticai]
+&&  [$ bool conf.game.use_geneticai]} {
   ::abnet::getfn CAI dna/ai_list.dat 0
   $state setCallback [_ A boot aidownld] aidownld_downloadingList
 }
