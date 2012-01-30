@@ -2,7 +2,7 @@
 
 BASEDIR=/oss/Abendstern_WGL32
 SRVDIR=/programmes/cpp/abendstern/srv/abendstern/package
-FILES="apply_update.bat Abendstern.exe abendstern.rc data fonts shaders images legal tcl library itcl3.4 tls1.6 tcllib bin"
+FILES="apply_update.bat Abendstern.exe abendstern.default.rc data fonts shaders images legal tcl library itcl3.4 tls1.6 tcllib bin"
 APP=Abendstern_WGL32
 
 ./validation.sh
@@ -17,7 +17,7 @@ rm -f $BASEDIR/bin/*.exp $BASEDIR/bin/*.lib
 cd $BASEDIR
 find -name '*~' | xargs rm -f
 
-for top in $FILES *.dll version; do
+for top in $FILES *.dll abendstern.rc version; do
   echo $top
   find $top -type f | grep -v tls16.dll | xargs md5sum >>$SRVDIR/manifest
   cp -R $top $SRVDIR/
