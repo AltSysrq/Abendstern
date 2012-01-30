@@ -49,20 +49,27 @@ Antenna::Antenna() : sock4(NULL), sock6(NULL) {
   if (sock4) {
     //Create an Internet-facing socket to get the local address
     try {
-      asio::ip::udp::socket tmpsock(iosvc,
-                                    endpoint(asio::ip::address(
-                                      asio::ip::address_v4(0xC0002B0A)),
-                                      12544));
+      asio::ip::udp::socket tmpsock(iosvc, asio::ip::udp::v4());
+      tmpsock.connect(endpoint(
+                        asio::ip::address(asio::ip::address_v4(0xC0002B0A)),
+                        12544));
       const asio::ip::address_v4 lip4 =
           tmpsock.local_endpoint().address().to_v4();
 
       for (unsigned i=0; i<4; ++i)
         gid4.la4[i] = lip4.to_bytes()[i];
-    } catch (...) {
-      cerr << "Could not determine address of local IPv4 endpoint!" << endl;
+
+      cout << "Our local IPv4 address is: "
+           << tmpsock.local_endpoint().address() << endl;
+    } catch (asio::system_error& err) {
+      cerr << "Could not determine address of local IPv4 endpoint: "
+           << err.what() << endl;
       delete sock4;
       sock4 = NULL;
     }
+  } else {
+    cerr << "Could not open IPv4 socket, IPv4 networking will be unavailable."
+         << endl;
   }
 
   //Now for IPv6
@@ -79,11 +86,11 @@ Antenna::Antenna() : sock4(NULL), sock6(NULL) {
   if (sock6) {
     //Create Internet-facing socket for the local address
     try {
-      asio::ip::udp::socket tmpsock(iosvc,
-                                    endpoint(asio::ip::address(
-                                      asio::ip::address_v6::from_string(
-                                        "::FFFF:C000:2B0A")),
-                                      12544));
+      asio::ip::udp::socket tmpsock(iosvc, asio::ip::udp::v6());
+      tmpsock.connect(endpoint(
+                        asio::ip::address(asio::ip::address_v6::from_string(
+                                            "::FFFF:C000:2B0A")),
+                        12544));
       const asio::ip::address_v6::bytes_type lip6 =
           tmpsock.local_endpoint().address().to_v6().to_bytes();
 
@@ -92,11 +99,17 @@ Antenna::Antenna() : sock4(NULL), sock6(NULL) {
         unsigned short lsb = lip6[i*2+1];
         gid6.la6[i] = (msb << 8) | lsb;
       }
-    } catch (...) {
-      cerr << "Could not determine address of local IPv6 endpoint!" << endl;
+      cout << "Our local IPv6 address is: "
+           << tmpsock.local_endpoint().address() << endl;
+    } catch (asio::system_error& err) {
+      cerr << "Could not determine address of local IPv6 endpoint: "
+           << err.what() << endl;
       delete sock6;
       sock6 = NULL;
     }
+  } else {
+    cerr << "Could not open IPv6 socket, IPv6 networking will be unavailable."
+         << endl;
   }
 }
 
