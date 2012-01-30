@@ -104,9 +104,9 @@ bool loadBackgroundObjects() {
     rc.readFile(IMAGE_RC);
     Setting& classList=rc.getRoot()["class_list"];
     backgroundObjectClassCount=classList.getLength();
-    for (int i=0; i<classList.getLength(); ++i) {
+    for (unsigned i=0; i<classList.getLength(); ++i) {
       Setting& conf=rc.getRoot()[(const char*)classList[i]];
-      for (int j=0; j<conf["list"].getLength(); ++j) {
+      for (unsigned j=0; j<conf["list"].getLength(); ++j) {
         char filename[256];
         const char* name=conf["list"][j];
         sprintf(filename, IMAGE_FORMAT, name);
