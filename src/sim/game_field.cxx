@@ -384,7 +384,8 @@ unsigned GameField::doAdd(GameObject* go) noth {
 }
 
 void GameField::doInject(GameObject* go, float subTime) noth {
-  unsigned ix = doAdd(go);
+  //unsigned ix = doAdd(go);
+  doAdd(go);
 
   /*
   if (!go->update(subTime)) {
