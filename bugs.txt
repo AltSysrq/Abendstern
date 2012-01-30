@@ -62,9 +62,9 @@
 14. Server sometimes tries to access graphics device (calls newVAO()).
     Cause: Unknown
     Reproduce: Unknown
-    Status: Open
+    Status: Closed some time before 2012.01.30
 
 15. Imported missiles do not learn about their target.
     Cause: Unknown
     Reproduce: Use missiles in network play
-    Status: Open
+    Status: Obsoleted 2012.01.30 (that network protocol no longer used)

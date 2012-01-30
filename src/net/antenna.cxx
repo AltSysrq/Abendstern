@@ -59,8 +59,9 @@ Antenna::Antenna() : sock4(NULL), sock6(NULL) {
       for (unsigned i=0; i<4; ++i)
         gid4.la4[i] = lip4.to_bytes()[i];
 
-      cout << "Our local IPv4 address is: "
-           << tmpsock.local_endpoint().address() << endl;
+      cout << "Our local IPv4 address/port is: "
+           << tmpsock.local_endpoint().address()
+           << ":" << gid4.lport << endl;
     } catch (asio::system_error& err) {
       cerr << "Could not determine address of local IPv4 endpoint: "
            << err.what() << endl;
@@ -99,8 +100,9 @@ Antenna::Antenna() : sock4(NULL), sock6(NULL) {
         unsigned short lsb = lip6[i*2+1];
         gid6.la6[i] = (msb << 8) | lsb;
       }
-      cout << "Our local IPv6 address is: "
-           << tmpsock.local_endpoint().address() << endl;
+      cout << "Our local IPv6 address/port is: "
+           << tmpsock.local_endpoint().address()
+           << " : " << gid6.lport << endl;
     } catch (asio::system_error& err) {
       cerr << "Could not determine address of local IPv6 endpoint: "
            << err.what() << endl;
