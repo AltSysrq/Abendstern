@@ -118,8 +118,7 @@ ExplosionPoolSegment::ExplosionPoolSegment() {
   for (unsigned int i=0; i<sizeof(usage)/sizeof(unsigned int); ++i)
     usage[i]=0;
   //Set everything in the time stripe to infinity
-  float a=0;
-  float infinity=INFINITY; //1.0f/a;
+  float infinity=INFINITY;
   for (unsigned i=0; i<lenof(timeStripe); i+=2) timeStripe[i]=infinity;
 }
 
