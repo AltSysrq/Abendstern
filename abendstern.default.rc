@@ -7,12 +7,13 @@ display	{
 }
 language	"en",
 game	{
- mode	"tdm",
+ mode	"xtdm",
  background	"StarField",
  size	32
  nai	31
  nteams	4
  dmgmul	1.0
+ use_geneticai	f
 }
 audio_enabled	t
 ship_colour	[1.0	1.0	1.0]
