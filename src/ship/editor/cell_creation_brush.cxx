@@ -193,14 +193,12 @@ void CellCreationBrush::exitActiveMode(Cell* cell) {
 
   //See if the cell represents any of the temporaries
   //If so, set modified and make that no longer a temporary
-  bool removeTemp=false;
   if (cell) {
     for (unsigned i=0; i<4; ++i) if (cell->cellName == temporaries[i]) {
       temporaries[i] = ""; //Mark as non-temporary
       //Set both modification flags
       modificationsDuringActivation=true;
       conf["edit"]["modified"]=true;
-      removeTemp=true;
       break;
     }
   }
