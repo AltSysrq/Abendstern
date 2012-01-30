@@ -186,7 +186,9 @@ void MagnetoBomb::draw() noth {
   gl32emu::setShaderEmulation(gl32emu::SE_simpleColour);
   float radius=CORE_RADIUS;
   float maxrad=SPIKE_MAX_RADIUS;
-  float speed=SPIKE_MOVE_SPEED;
+  //No longer used
+  //float speed=SPIKE_MOVE_SPEED;
+
   //Update effects first
   rotation+=ROTATION_SPEED*currentFrameTime;
   if (rotation>2*pi) rotation-=2*pi;
