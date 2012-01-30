@@ -549,7 +549,9 @@ void Nebula::run_impl() {
 void Nebula::runOnce() {
   SDL_SemWait(updateLock);
   //OK, clear to copy object information
+  #if !defined(AB_OPENGL_14) && !defined(AB_OPENGL_21)
   signed oldPointsBLX = pointsBLX, oldPointsBLY = pointsBLY;
+  #endif /* GL32 version */
   if (reference && headless) {
     pointsBLX = (signed)(reference->getX()*pointsPerScreen) - (signed)simSideSz/2;
     pointsBLY = (signed)(reference->getY()*pointsPerScreen) - (signed)simSideSz/2;
