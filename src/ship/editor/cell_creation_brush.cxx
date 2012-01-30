@@ -342,8 +342,8 @@ bool CellCreationBrush::detectInterconnections(Cell* cell) {
     if (cells[i]==cell) continue;
 
     //cn=cell neighbour, on=other neighbour
-    for (int cn=0; cn<cell    ->numNeighbours(); ++cn)
-    for (int on=0; on<cells[i]->numNeighbours(); ++on) {
+    for (unsigned cn=0; cn<cell    ->numNeighbours(); ++cn)
+    for (unsigned on=0; on<cells[i]->numNeighbours(); ++on) {
       if (cell->neighbours[cn]==cells[i]) goto nextCell;
       if (cells[i]->neighbours[on]==cell) goto nextCell;
       if (cell->neighbours[cn] || cells[i]->neighbours[on]) continue; //binding already exists
