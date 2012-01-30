@@ -50,13 +50,13 @@ void AIControl::init(const Setting& conf) {
     iaicInfoPrefix = "iaic." + conf.getPath();
 
   //Load the states
-  for (int i=0; i<conf.getLength(); ++i) {
+  for (unsigned i=0; i<conf.getLength(); ++i) {
     const Setting& state(conf[i]);
     const char* stateName = state.getName();
     State s;
     s.totalWeight=0;
 
-    for (int j=0; j<state.getLength(); ++j) {
+    for (unsigned j=0; j<state.getLength(); ++j) {
       const char* modname=state[j]["module"];
       int weight = state[j]["weight"];
       if (weight <= 0)
