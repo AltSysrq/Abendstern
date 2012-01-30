@@ -81,8 +81,10 @@ static unsigned fpsSum, fpsSampleCount;
   struct GraphicProfile {
     const char* name;
     float time;
-    GraphicProfile(pair<const char*, float> d) : name(d.first), time(d.second) {}
-    GraphicProfile(const GraphicProfile& o) : name(o.name), time(o.time) {}
+    GraphicProfile(pair<const char*, float> d)
+    : name(d.first), time(d.second) {}
+    GraphicProfile(const GraphicProfile& o)
+    : name(o.name), time(o.time) {}
     GraphicProfile& operator=(const GraphicProfile& o) {
       name=o.name;
       time=o.time;
@@ -92,7 +94,8 @@ static unsigned fpsSum, fpsSampleCount;
       return time>o.time;
     }
   };
-  void printProfileInfo(const char* title, map<const char*,float> gp_profile, float total) {
+  void printProfileInfo(const char* title, map<const char*,float> gp_profile,
+                        float total) {
     vector<GraphicProfile> data;
     for (map<const char*, float>::iterator it=gp_profile.begin();
          it != gp_profile.end(); ++it) {
@@ -393,9 +396,19 @@ bool init() {
   bool fullScreen;
   try {
     conf.open(CONFIG_FILE, "conf");
+  } catch (ConfigException& e) {
+    try {
+      conf.open(DEFAULT_CONFIG_FILE, "conf");
+      conf.renameFile("conf", CONFIG_FILE);
+    } catch (ConfigException& e) {
+      cerr << "Error reading configuration: " << e.what() << endl;
+      return false;
+    }
+  }
+  try {
     conf.open("shaders/stacks.rc", "shaders");
   } catch (ConfigException& e) {
-    cerr << "Error reading configuration: " << e.what() << endl;
+    cerr << "Error reading shader stack info: " << e.what() << endl;
     return false;
   }
   Setting& settings=conf["conf"];

@@ -96,7 +96,8 @@ extern bool
    */
   alphaBlendingEnabled,
   /** Determines whether GL_NEAREST or GL_LINEAR should be used.
-   * If true, OpenGL should be set to use GL_LINEAR for texture scaling when possible.
+   * If true, OpenGL should be set to use GL_LINEAR for texture scaling
+   * when possible.
    * If false, it should use GL_NEAREST when possible.
    */
   smoothScaling,
@@ -228,6 +229,8 @@ static inline float dbfmod(float x, float y) {
 
 /** Defines the filename of the primary configuration file. */
 #define CONFIG_FILE "abendstern.rc"
+/** Defines the filename of the default configuration file. */
+#define DEFAULT_CONFIG_FILE "abendstern.default.rc"
 /** Defines room temperature in Kelvin. */
 #define ROOM_TEMPERATURE 293.15f
 

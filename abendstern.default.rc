@@ -2,20 +2,20 @@ display	{
  headless	f
  width	0
  height	0
- bits	16
- fullscreen	f
+ bits	0
+ fullscreen	t
 }
 language	"en",
 game	{
- mode	"lxts",
+ mode	"tdm",
  background	"StarField",
  size	32
  nai	31
- nteams	6
+ nteams	4
  dmgmul	1.0
 }
 audio_enabled	t
-ship_colour	[0.0	1.0	0.0]
+ship_colour	[1.0	1.0	1.0]
 chat_message_time	10000.0
 max_chat_messages	5
 graphics	{
@@ -502,8 +502,4 @@ testing_numenemies	127
 vframe_granularity	10
 user_subscriptions	[]
 ship_subscriptions	[]
-auto_login	{
- name	"AltSysrq",
- pass	"2c50ac20a14542d853e6a1c18e622b8e96986b6ded92724167c8892fa1f3eae8",
-}
 default_share_ships	t
