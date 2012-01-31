@@ -54,7 +54,13 @@ class Antenna: public AObject {
   GlobalID gid4, gid6;
 
 public:
-  ///The Asio endpoint type used
+  /**
+   * The Asio endpoint type used.
+   * The endpoint::protocol field is important, as it is used to
+   * identify whether IPv4 or IPv6 is being used. It must be set
+   * in calls to send() and is guaranteed to be properly set when
+   * packets are passed to Tuner::receivePacket().
+   */
   typedef asio::ip::udp::endpoint endpoint;
 
   ///Default constructor
