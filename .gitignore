@@ -3,7 +3,6 @@ doc/*
 srv/*
 tmp/*
 swapfile.*
-config.*
 dna/*
 *.avi
 *.mpg
@@ -28,7 +27,6 @@ run.sh
 validation.sh
 *.log
 Makefile
-depcomp
 *.o
 abendstern
 .cdt*
@@ -47,7 +45,6 @@ passwords
 ttfs/*
 */abendstern
 lssinfo.rc
-configure
 abendsternuxgl*
 abendstern.rc
 hangar
