@@ -119,3 +119,36 @@ Antenna::~Antenna() {
   if (sock4) delete sock4;
   if (sock6) delete sock6;
 }
+
+void Antenna::setInternetInformation4(unsigned char a0,
+                                      unsigned char a1,
+                                      unsigned char a2,
+                                      unsigned char a3,
+                                      unsigned short port) noth {
+  gid4.ia4[0] = a0;
+  gid4.ia4[1] = a1;
+  gid4.ia4[2] = a2;
+  gid4.ia4[3] = a3;
+  gid4.iport = port;
+}
+
+void Antenna::setInternetInformation6(unsigned short a0,
+                                      unsigned short a1,
+                                      unsigned short a2,
+                                      unsigned short a3,
+                                      unsigned short a4,
+                                      unsigned short a5,
+                                      unsigned short a6,
+                                      unsigned short a7,
+                                      unsigned short port) noth {
+  gid6.ia6[0] = a0;
+  gid6.ia6[1] = a1;
+  gid6.ia6[2] = a2;
+  gid6.ia6[3] = a3;
+  gid6.ia6[4] = a4;
+  gid6.ia6[5] = a5;
+  gid6.ia6[6] = a6;
+  gid6.ia6[7] = a7;
+  gid6.iport = port;
+}
+

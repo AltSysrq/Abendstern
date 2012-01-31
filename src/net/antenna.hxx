@@ -114,19 +114,19 @@ public:
   /**
    * Returns a pointer to the IPv4 GlobalID associated with this Antenna.
    */
-  GlobalID* getGlobalID4() noth;
+  GlobalID* getGlobalID4() noth { return &gid4; }
   /**
    * Returns a pointer to the IPv4 GlobalID associated with this Antenna.
    */
-  const GlobalID* getGlobalID4() const noth;
+  const GlobalID* getGlobalID4() const noth { return &gid4; }
   /**
    * Returns a pointer to the IPv6 GlobalID associated with this Antenna.
    */
-  GlobalID* getGlobalID6() noth;
+  GlobalID* getGlobalID6() noth { return &gid6; }
   /**
    * Returns a pointer to the IPv6 GlobalID associated with this Antenna.
    */
-  const GlobalID* getGlobalID6() const noth;
+  const GlobalID* getGlobalID6() const noth { return &gid6; }
 
   /**
    * Sends the given data to the given endpoint.
