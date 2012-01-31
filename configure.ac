@@ -75,6 +75,7 @@ AC_CHECK_HEADER([itcl.h], [], [AC_MSG_ERROR([could not find itcl.h])])
 AC_CHECK_HEADER([GL/gl.h], [], [AC_MSG_ERROR([could not find gl.h])])
 AC_CHECK_HEADER([gmp.h], [], [AC_MSG_ERROR([could not find gmp.h])])
 AC_CHECK_HEADER([boost/shared_array.hpp], [], [AC_MSG_ERROR([could not find boost/shared_array.hpp])])
+AC_CHECK_HEADER([png++/png.hpp], [], [AC_MSG_ERROR([Could not find png++ header.])])
 
 # Checks for header files.
 AC_CHECK_HEADERS([arpa/inet.h inttypes.h malloc.h netinet/in.h stdint.h stdlib.h string.h sys/socket.h sys/time.h unistd.h])
