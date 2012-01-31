@@ -30,8 +30,7 @@ typedef unsigned char byte;
 /**
  * The Antenna class abstracts away some of the immediate interface
  * for sending network packets. It also handles concerns like port
- * and IP version selection, as well as determining the local peer's
- * global-unique id.
+ * selection, as well as determining the local peer's global-unique id.
  *
  * An Antenna is associated with an IPv4 and an IPv6 socket. When
  * created, it will attempt to open each of them on one of the
