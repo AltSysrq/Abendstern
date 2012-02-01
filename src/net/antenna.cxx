@@ -165,3 +165,23 @@ throw (asio::system_error) {
     sock6->send_to(asio::buffer(data, len), dst);
   }
 }
+
+void Antenna::processIncomming() throw (asio::system_error) {
+  static byte data[65536];
+  if (sock4) while (sock4->available()) {
+    endpoint source;
+    unsigned len = sock4->receive_from(asio::buffer(data, sizeof(data)),
+                                       source);
+    if (len && tuner)
+      tuner->receivePacket(source, data, len);
+  }
+
+  if (sock6) while (sock6->available()) {
+    endpoint source;
+    unsigned len = sock6->receive_from(asio::buffer(data, sizeof(data)),
+                                       source);
+
+    if (len && tuner)
+      tuner->receivePacket(source, data, len);
+  }
+}
