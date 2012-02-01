@@ -39,7 +39,6 @@ recorder
 hangar.bak
 autom4te.cache
 .deps
-Makefile.in
 passwords
 # Cannot include ttfs, it includes proprietary files
 ttfs/*
