@@ -18,7 +18,10 @@ public:
   /**
    * Processes a single incomming packet.
    * @param source the source of this packet
-   * @param data the payload of the packet
+   * @param data the payload of the packet. The memory backing this
+   * argument is managed by the caller, and no assumptions about it
+   * or its contents may be made after this function returns; if the
+   * data is needed later, it must be copied.
    * @param len the length of the data
    */
   virtual void process(const Antenna::endpoint& source,
