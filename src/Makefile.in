@@ -197,6 +197,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-globalid.$(OBJEXT) \
 	abendsternuxgl14-antenna.$(OBJEXT) \
 	abendsternuxgl14-tuner.$(OBJEXT) \
+	abendsternuxgl14-connection_listener.$(OBJEXT) \
 	abendsternuxgl14-namegen.$(OBJEXT) \
 	abendsternuxgl14-light_trail.$(OBJEXT) \
 	abendsternuxgl14-frame_recorder.$(OBJEXT) \
@@ -376,6 +377,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-globalid.$(OBJEXT) \
 	abendsternuxgl21-antenna.$(OBJEXT) \
 	abendsternuxgl21-tuner.$(OBJEXT) \
+	abendsternuxgl21-connection_listener.$(OBJEXT) \
 	abendsternuxgl21-namegen.$(OBJEXT) \
 	abendsternuxgl21-light_trail.$(OBJEXT) \
 	abendsternuxgl21-frame_recorder.$(OBJEXT) \
@@ -553,6 +555,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-globalid.$(OBJEXT) \
 	abendsternuxgl32-antenna.$(OBJEXT) \
 	abendsternuxgl32-tuner.$(OBJEXT) \
+	abendsternuxgl32-connection_listener.$(OBJEXT) \
 	abendsternuxgl32-namegen.$(OBJEXT) \
 	abendsternuxgl32-light_trail.$(OBJEXT) \
 	abendsternuxgl32-frame_recorder.$(OBJEXT) \
@@ -875,6 +878,7 @@ COMMONSOURCES = \
 ./net/globalid.cxx \
 ./net/antenna.cxx \
 ./net/tuner.cxx \
+./net/connection_listener.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \
 ./secondary/frame_recorder.cxx \
@@ -1064,6 +1068,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-collision.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-common_keyboard_client.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-confreg.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-connection_listener.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-cortex.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-crypto.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-dispersion_shield.Po@am__quote@
@@ -1236,6 +1241,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-collision.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-common_keyboard_client.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-confreg.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-connection_listener.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-cortex.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-crypto.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-dispersion_shield.Po@am__quote@
@@ -1408,6 +1414,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-collision.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-common_keyboard_client.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-confreg.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-connection_listener.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-cortex.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-crypto.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-dispersion_shield.Po@am__quote@
@@ -3598,6 +3605,20 @@ abendsternuxgl14-tuner.obj: ./net/tuner.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/tuner.cxx' object='abendsternuxgl14-tuner.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-tuner.obj `if test -f './net/tuner.cxx'; then $(CYGPATH_W) './net/tuner.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/tuner.cxx'; fi`
+
+abendsternuxgl14-connection_listener.o: ./net/connection_listener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-connection_listener.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-connection_listener.Tpo -c -o abendsternuxgl14-connection_listener.o `test -f './net/connection_listener.cxx' || echo '$(srcdir)/'`./net/connection_listener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-connection_listener.Tpo $(DEPDIR)/abendsternuxgl14-connection_listener.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/connection_listener.cxx' object='abendsternuxgl14-connection_listener.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-connection_listener.o `test -f './net/connection_listener.cxx' || echo '$(srcdir)/'`./net/connection_listener.cxx
+
+abendsternuxgl14-connection_listener.obj: ./net/connection_listener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-connection_listener.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-connection_listener.Tpo -c -o abendsternuxgl14-connection_listener.obj `if test -f './net/connection_listener.cxx'; then $(CYGPATH_W) './net/connection_listener.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/connection_listener.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-connection_listener.Tpo $(DEPDIR)/abendsternuxgl14-connection_listener.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/connection_listener.cxx' object='abendsternuxgl14-connection_listener.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-connection_listener.obj `if test -f './net/connection_listener.cxx'; then $(CYGPATH_W) './net/connection_listener.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/connection_listener.cxx'; fi`
 
 abendsternuxgl14-namegen.o: ./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-namegen.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-namegen.Tpo -c -o abendsternuxgl14-namegen.o `test -f './secondary/namegen.cxx' || echo '$(srcdir)/'`./secondary/namegen.cxx
@@ -6007,6 +6028,20 @@ abendsternuxgl21-tuner.obj: ./net/tuner.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-tuner.obj `if test -f './net/tuner.cxx'; then $(CYGPATH_W) './net/tuner.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/tuner.cxx'; fi`
 
+abendsternuxgl21-connection_listener.o: ./net/connection_listener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-connection_listener.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-connection_listener.Tpo -c -o abendsternuxgl21-connection_listener.o `test -f './net/connection_listener.cxx' || echo '$(srcdir)/'`./net/connection_listener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-connection_listener.Tpo $(DEPDIR)/abendsternuxgl21-connection_listener.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/connection_listener.cxx' object='abendsternuxgl21-connection_listener.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-connection_listener.o `test -f './net/connection_listener.cxx' || echo '$(srcdir)/'`./net/connection_listener.cxx
+
+abendsternuxgl21-connection_listener.obj: ./net/connection_listener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-connection_listener.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-connection_listener.Tpo -c -o abendsternuxgl21-connection_listener.obj `if test -f './net/connection_listener.cxx'; then $(CYGPATH_W) './net/connection_listener.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/connection_listener.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-connection_listener.Tpo $(DEPDIR)/abendsternuxgl21-connection_listener.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/connection_listener.cxx' object='abendsternuxgl21-connection_listener.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-connection_listener.obj `if test -f './net/connection_listener.cxx'; then $(CYGPATH_W) './net/connection_listener.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/connection_listener.cxx'; fi`
+
 abendsternuxgl21-namegen.o: ./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-namegen.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-namegen.Tpo -c -o abendsternuxgl21-namegen.o `test -f './secondary/namegen.cxx' || echo '$(srcdir)/'`./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-namegen.Tpo $(DEPDIR)/abendsternuxgl21-namegen.Po
@@ -8414,6 +8449,20 @@ abendsternuxgl32-tuner.obj: ./net/tuner.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/tuner.cxx' object='abendsternuxgl32-tuner.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-tuner.obj `if test -f './net/tuner.cxx'; then $(CYGPATH_W) './net/tuner.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/tuner.cxx'; fi`
+
+abendsternuxgl32-connection_listener.o: ./net/connection_listener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-connection_listener.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-connection_listener.Tpo -c -o abendsternuxgl32-connection_listener.o `test -f './net/connection_listener.cxx' || echo '$(srcdir)/'`./net/connection_listener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-connection_listener.Tpo $(DEPDIR)/abendsternuxgl32-connection_listener.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/connection_listener.cxx' object='abendsternuxgl32-connection_listener.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-connection_listener.o `test -f './net/connection_listener.cxx' || echo '$(srcdir)/'`./net/connection_listener.cxx
+
+abendsternuxgl32-connection_listener.obj: ./net/connection_listener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-connection_listener.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-connection_listener.Tpo -c -o abendsternuxgl32-connection_listener.obj `if test -f './net/connection_listener.cxx'; then $(CYGPATH_W) './net/connection_listener.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/connection_listener.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-connection_listener.Tpo $(DEPDIR)/abendsternuxgl32-connection_listener.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/connection_listener.cxx' object='abendsternuxgl32-connection_listener.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-connection_listener.obj `if test -f './net/connection_listener.cxx'; then $(CYGPATH_W) './net/connection_listener.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/connection_listener.cxx'; fi`
 
 abendsternuxgl32-namegen.o: ./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-namegen.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-namegen.Tpo -c -o abendsternuxgl32-namegen.o `test -f './secondary/namegen.cxx' || echo '$(srcdir)/'`./secondary/namegen.cxx

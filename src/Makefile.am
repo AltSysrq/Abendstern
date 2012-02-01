@@ -166,6 +166,7 @@ COMMONSOURCES= \
 ./net/globalid.cxx \
 ./net/antenna.cxx \
 ./net/tuner.cxx \
+./net/connection_listener.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \
 ./secondary/frame_recorder.cxx \
