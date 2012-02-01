@@ -7,6 +7,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <cassert>
 
 #include <asio.hpp>
 
@@ -153,3 +154,14 @@ void Antenna::setInternetInformation6(unsigned short a0,
   gid6.iport = port;
 }
 
+void Antenna::send(const endpoint& dst, const byte* data, unsigned len)
+throw (asio::system_error) {
+  if (dst.protocol() == asio::ip::udp::v4()) {
+    assert(sock4);
+    sock4->send_to(asio::buffer(data, len), dst);
+  } else {
+    assert(dst.protocol() == asio::ip::udp::v6());
+    assert(sock6);
+    sock6->send_to(asio::buffer(data, len), dst);
+  }
+}

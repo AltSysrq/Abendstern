@@ -136,13 +136,20 @@ public:
   /**
    * Sends the given data to the given endpoint.
    * The input array is not deallocated.
+   *
+   * The result is undefined if hasV4() or hasV6() (based on the
+   * protocol version indicated by the endpoint) return false.
+   *
+   * @throws asio::system_error if sending of the packet fails
    */
-  void send(const endpoint&, const byte* data, unsigned length) noth;
+  void send(const endpoint&, const byte* data, unsigned length)
+  throw (asio::system_error);
 
   /**
    * Processes any incomming packets.
+   * @throws asio::system_error if the network socket(s) cannot be read
    */
-  void processIncomming() noth;
+  void processIncomming() throw (asio::system_error);
 
   /**
    * Returns whether the system has a functioning IPv4 socket.
