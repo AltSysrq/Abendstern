@@ -32,9 +32,11 @@ class PacketProcessor;
  */
 class Tuner: public AObject {
   //Map of endpoints to PacketProcessors, for source-based demuxing
-  std::map<Antenna::endpoint, PacketProcessor*> connections;
+  typedef std::map<Antenna::endpoint, PacketProcessor*> connections_t;
+  connections_t connections;
   //Header->PacketProcessor mapping
-  std::list<std::pair<std::vector<byte>, PacketProcessor*> > headers;
+  typedef std::list<std::pair<std::vector<byte>, PacketProcessor*> > headers_t;
+  headers_t headers;
 
 public:
   /**
@@ -77,6 +79,9 @@ public:
   /**
    * Examines the given packet and its source, and may process it if
    * any PacketProcessor triggers for it.
+   *
+   * The memory pointed to by data is managed by the caller, and no
+   * assumptions are made about it after this function returns.
    */
   void receivePacket(const Antenna::endpoint& source,
                      const byte* data, unsigned len) const noth;

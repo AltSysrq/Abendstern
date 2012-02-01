@@ -12,10 +12,11 @@
 #include <cstring>
 #include <cassert>
 #include <cstdlib>
+#include <algorithm>
 
 #include "antenna.hxx"
 #include "tuner.hxx"
-#include "src/exit_conditions.hxx"
+#include "packet_processor.hxx"
 
 using namespace std;
 
@@ -28,8 +29,7 @@ noth {
 }
 
 PacketProcessor* Tuner::disconnect(const Antenna::endpoint& source) noth {
-  map<Antenna::endpoint, PacketProcessor*>::iterator it =
-      connections.find(source);
+  connections_t::iterator it = connections.find(source);
   assert(it != connections.end());
   PacketProcessor* pp = it->second;
   connections.erase(it);
@@ -41,8 +41,7 @@ noth {
   //Copy into a vector
   vector<byte> vdat(data, data+len);
   //Remove any matching one that exists
-  for (list<pair<vector<byte>,PacketProcessor*> >::iterator it =
-       headers.begin(); it != headers.end(); ++it) {
+  for (headers_t::iterator it = headers.begin(); it != headers.end(); ++it) {
     if (it->first == vdat) {
       headers.erase(it);
       break;
@@ -51,7 +50,7 @@ noth {
 
   //Insert before the first trigger that is shorter than or the same
   //length as it
-  list<pair<vector<byte>,PacketProcessor*> >::iterator it = headers.begin();
+  headers_t::iterator it = headers.begin();
   while (it != headers.end() && it->first.size() > len)
     ++it;
   //Found the position, now insert it
@@ -62,7 +61,7 @@ PacketProcessor* Tuner::untrigger(const byte* data, unsigned len) noth {
   vector<byte> vdat(data, data+len);
 
   //Search for it
-  list<pair<vector<byte>,PacketProcessor*> >::iterator it = headers.begin();
+  headers_t::iterator it = headers.begin();
   while (it->first != vdat) ++it;
 
   //Extract current processor
@@ -71,4 +70,28 @@ PacketProcessor* Tuner::untrigger(const byte* data, unsigned len) noth {
   //Remove and we're done
   headers.erase(it);
   return pp;
+}
+
+void Tuner::receivePacket(const Antenna::endpoint& source,
+                          const byte* data, unsigned datlen)
+const noth {
+  //First, check for a connection to this source
+  connections_t::const_iterator it = connections.find(source);
+  if (it != connections.end()) {
+    //Connected peer
+    it->second->process(source, data, datlen);
+  } else {
+    //Unknown peer, check for header recognition
+    for (headers_t::const_iterator it = headers.begin();
+         it != headers.end(); ++it) {
+      if (datlen >= it->first.size()
+      &&  equal(data, data+it->first.size(),
+                it->first.begin())) {
+        //Header matches
+        it->second->process(source, data, datlen);
+        break;
+      }
+    }
+    //Drop any unrecognised packets silently
+  }
 }
