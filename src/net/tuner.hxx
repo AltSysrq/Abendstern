@@ -10,6 +10,7 @@
 
 #include <map>
 #include <vector>
+#include <list>
 
 #include "src/core/aobject.hxx"
 #include "antenna.hxx"
@@ -33,7 +34,7 @@ class Tuner: public AObject {
   //Map of endpoints to PacketProcessors, for source-based demuxing
   std::map<Antenna::endpoint, PacketProcessor*> connections;
   //Header->PacketProcessor mapping
-  std::vector<std::pair<std::vector<byte>, PacketProcessor*> > headers;
+  std::list<std::pair<std::vector<byte>, PacketProcessor*> > headers;
 
 public:
   /**
