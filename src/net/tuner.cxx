@@ -80,7 +80,7 @@ noth {
   connections_t::const_iterator it = connections.find(source);
   if (it != connections.end()) {
     //Connected peer
-    it->second->process(source, data, datlen);
+    it->second->process(source, antenna, this, data, datlen);
   } else {
     //Unknown peer, check for header recognition
     for (headers_t::const_iterator it = headers.begin();
