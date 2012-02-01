@@ -84,7 +84,8 @@ public:
    * assumptions are made about it after this function returns.
    */
   void receivePacket(const Antenna::endpoint& source,
-                     const byte* data, unsigned len) const noth;
+                     Antenna* antenna,
+                     const byte* data, unsigned len) noth;
 };
 
 #endif /* TUNER_HXX_ */

@@ -73,8 +73,9 @@ PacketProcessor* Tuner::untrigger(const byte* data, unsigned len) noth {
 }
 
 void Tuner::receivePacket(const Antenna::endpoint& source,
+                          Antenna* antenna,
                           const byte* data, unsigned datlen)
-const noth {
+noth {
   //First, check for a connection to this source
   connections_t::const_iterator it = connections.find(source);
   if (it != connections.end()) {
@@ -88,7 +89,7 @@ const noth {
       &&  equal(data, data+it->first.size(),
                 it->first.begin())) {
         //Header matches
-        it->second->process(source, data, datlen);
+        it->second->process(source, antenna, this, data, datlen);
         break;
       }
     }
