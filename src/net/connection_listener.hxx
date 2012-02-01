@@ -33,6 +33,12 @@ public:
 
 protected:
   /**
+   * Constructs the ConnectionListener, attaching it as a trigger
+   * to the given Tuner.
+   */
+  ConnectionListener(Tuner*);
+
+  /**
    * Called when a valid, compatible connection request is received.
    * @param source the endpoint representing the remote peer
    * @param antenna the antenna performing the communications

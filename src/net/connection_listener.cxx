@@ -11,6 +11,7 @@
 
 #include "connection_listener.hxx"
 #include "antenna.hxx"
+#include "tuner.hxx"
 
 using namespace std;
 
@@ -23,6 +24,10 @@ static const byte header[] = {
   0, 0, //chan
   2, //STX
 };
+
+ConnectionListener::ConnectionListener(Tuner* tuner) {
+  tuner->trigger(header, sizeof(header), this);
+}
 
 void ConnectionListener::process(const Antenna::endpoint& source,
                                  Antenna* antenna,
