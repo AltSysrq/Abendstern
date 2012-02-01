@@ -173,7 +173,7 @@ void Antenna::processIncomming() throw (asio::system_error) {
     unsigned len = sock4->receive_from(asio::buffer(data, sizeof(data)),
                                        source);
     if (len && tuner)
-      tuner->receivePacket(source, data, len);
+      tuner->receivePacket(source, this, data, len);
   }
 
   if (sock6) while (sock6->available()) {
