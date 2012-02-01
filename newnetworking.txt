@@ -108,6 +108,7 @@ to talk to each other.
 
 Packet format for EOT:
   string        Disconnect reason
+  string        l10n entry for disconnect reason
 A connection is considered closed after transmission of an EOT. EOTs are not
 ACKed; rather, the EOT is sent several times to make delivery likely.
 
