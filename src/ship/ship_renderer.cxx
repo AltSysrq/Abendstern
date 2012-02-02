@@ -11,13 +11,14 @@
  *      Author: jason
  */
 
-//Only compile in non-2.1 mode
+//Only compile in non-1.4 mode
 #ifndef AB_OPENGL_14
 
 #include <map>
 #include <vector>
 #include <new>
 #include <cstring>
+#include <typeinfo>
 
 #include <GL/gl.h>
 
