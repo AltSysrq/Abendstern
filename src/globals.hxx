@@ -8,11 +8,6 @@
 #ifndef GLOBALS_HXX_
 #define GLOBALS_HXX_
 
-//Asio for some reason depends on boost regex, which at one point uses a value
-//named "pi"...
-//Include it before definition
-#include <asio.hpp>
-
 //Include time now so we don't collide below
 #include <ctime>
 #ifdef DEBUG
@@ -173,7 +168,7 @@ extern unsigned frameRate;
 extern float sparkCountMultiplier;
 
 /** Everybody's favourite constant. */
-#define pi 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679f
+static const float pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679f;
 
 /** Stores the number of milliseconds that have elapsed since the game loop started.
  * Functions should not be adversely affected by this warping around,
