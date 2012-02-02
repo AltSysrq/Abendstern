@@ -71,7 +71,7 @@ public:
    * The Tuner to use to examine incomming packets.
    * If this is non-NULL, all incomming packets will be passed through
    * the Tuner's receivePacket() function.
-   * The pointee is owned by the Antenna; it will be deleted when the
+   * The pointee is not owned by the Antenna; it will not be deleted when the
    * Antenna is destructed.
    */
   Tuner* tuner;
