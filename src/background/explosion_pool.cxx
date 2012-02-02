@@ -13,6 +13,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <cstring>
+#include <cassert>
 
 #include "explosion_pool.hxx"
 #include "explosion.hxx"
