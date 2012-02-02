@@ -80,6 +80,28 @@ The index-format is a byte specifing the format of the indices:
 The data that follow the indices are copied into the block at the given location.
 Out-of-bounds indices are ignored.
 
+CONNECTIONLESS PACKETS
+When a peer receives a packet from a host it is not connected to, it interprets
+the packet as a connectionless request, according to the first few bytes in the
+packet.
+
+00-00-00-00-02 Start Connection
+This is technically a STX packet to the Synchronous Control Gerät, but must be
+processed separately since no connection exists yet. See STX under the SCG for
+more information.
+
+"Abendsuch" Discover Game
+No contents.
+Requests a Game-Discovery packet as an answer. Peers participating in LAN games
+should answer appropriately.
+
+"Abendspiel" Game Discovery
+Contents:
+  uint32        Client number of overseer (see Peer Information Gerät)
+  byte          Peer count
+  byte          Zero if open, one if password-protected
+  char[4]       Game mode
+
 --- STANDARD GERÄTE ---
 The Geräte below are used by the protocol, and are not specific to Abendstern.
 
