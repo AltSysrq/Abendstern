@@ -14,9 +14,6 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-#if !defined(DEBUG) && !defined(NDEBUG)
-#define NDEBUG
-#endif
 #include <cassert>
 
 #include <GL/gl.h>

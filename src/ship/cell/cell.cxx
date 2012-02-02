@@ -11,9 +11,6 @@
 #include <stdexcept>
 #include <typeinfo>
 #include <cstring>
-#if !defined(NDEBUG) && !defined(DEBUG)
-#define NDEBUG
-#endif
 #include <cassert>
 
 #include "cell.hxx"

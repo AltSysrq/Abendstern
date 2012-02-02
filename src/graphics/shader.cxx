@@ -11,10 +11,6 @@
  *      Author: jason
  */
 
-#if !defined(DEBUG) && !defined(AB_OPENGL_14)
-#define NDEBUG
-#endif /* DEBUG */
-
 #include <vector>
 #include <fstream>
 #include <iostream>

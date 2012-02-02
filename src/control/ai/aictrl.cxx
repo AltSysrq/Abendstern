@@ -11,10 +11,6 @@
  *      Author: jason
  */
 
-#if !defined(DEBUG) && !defined(NDEBUG)
-#define NDEBUG
-#endif
-
 #include <algorithm>
 #include <map>
 #include <cmath>

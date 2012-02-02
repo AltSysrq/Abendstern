@@ -11,10 +11,6 @@
  *      Author: jason
  */
 
-#ifndef DEBUG
-#define NDEBUG
-#endif /* !DEBUG */
-
 #include <cmath>
 #include <string>
 #include <cstring>

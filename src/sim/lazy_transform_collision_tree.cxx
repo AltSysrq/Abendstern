@@ -19,9 +19,6 @@
 #include <iostream>
 #include <cstdio>
 
-#if !defined(DEBUG) && !defined(NDEBUG)
-#define NDEBUG
-#endif
 #include <cassert>
 
 #include "lazy_transform_collision_tree.hxx"

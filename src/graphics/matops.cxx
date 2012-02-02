@@ -11,10 +11,6 @@
  *      Author: jason
  */
 
-#ifndef DEBUG
-#define NDEBUG
-#endif
-
 #include <stack>
 #include <cmath>
 #include <cassert>
