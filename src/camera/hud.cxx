@@ -14,6 +14,7 @@
 #include <map>
 #include <string>
 #include <algorithm>
+#include <typeinfo>
 
 #include <GL/gl.h>
 #include <libconfig.h++>
