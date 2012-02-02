@@ -17,6 +17,7 @@
 #include <vector>
 #include <deque>
 #include <set>
+#include <cassert>
 
 #include <GL/gl.h>
 
