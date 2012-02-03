@@ -33,10 +33,22 @@ class NetworkAssembly: public AObject {
 
 public:
   /**
-   * Constructs a NetworkAssembly on the given Antenna.
-   * There are initially no connections or packet processors.
+   * The GameField used by the networking system.
    */
-  NetworkAssembly(Antenna*);
+  GameField*const field;
+  /**
+   * The Antenna used for communication.
+   */
+  Antenna*const antenna;
+
+  /**
+   * Constructs a NetworkAssembly on the given GameField and Antenna.
+   * There are initially no connections or packet processors.
+   *
+   * @param field the GameField the network operates on
+   * @param antenna the Antenna to use for sending and receiving of messages
+   */
+  NetworkAssembly(GameField* field, Antenna* antenna);
   virtual ~NetworkAssembly();
 
   /**
