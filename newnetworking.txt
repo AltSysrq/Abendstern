@@ -27,8 +27,8 @@ directed to a channel that is not open is silently ignored.
 
 Each channel can be bound to a "Gerät" (device best describes the concept, but
 "network device" generally refers to the physical object) which handles the
-actual payload of the packet. Initially, only channel 0 is open to the Synchronous
-Command Gerät.
+actual payload of the packet. Initially, only channel 0 is open to the
+Synchronous Command Gerät.
 
 BLOCK GERÄTE
 The majority of Geräte belong to a class called "block Geräte", which define a
@@ -77,8 +77,8 @@ The index-format is a byte specifing the format of the indices:
           6     24-24   (similar)
           7     8-4     (s=p[1], l=p[0]>>4)
   4-7   In format 7, the length
-The data that follow the indices are copied into the block at the given location.
-Out-of-bounds indices are ignored.
+The data that follow the indices are copied into the block at the given
+location. Out-of-bounds indices are ignored.
 
 CONNECTIONLESS PACKETS
 When a peer receives a packet from a host it is not connected to, it interprets
@@ -136,8 +136,8 @@ ACKed; rather, the EOT is sent several times to make delivery likely.
 
 Packet format for ACK:
   uint16        Sequence number of packet being acknowledged.
-An ACK indicates that the specified packet has been received successfully. An ACK
-is assumed to reach the destination unless the acknowledged packet is
+An ACK indicates that the specified packet has been received successfully. An
+ACK is assumed to reach the destination unless the acknowledged packet is
 retransmitted. Every reception of an ACK-needing packet is to be answered with
 exactly one ACK.
 
@@ -162,12 +162,12 @@ LATENCY DISCOVERY GERÄT
 Gerät number: 0
 Number per connection: 0 or 1
 Requires: none
-The LDG, when open by both peers, allows calculating round-trip delay of packets.
-It uses no acknowledgement system; packets which do not reach the destination can be
-simply considered dropped. The first byte of a packet identifies the type: 0 is
-PING and 1 is PONG. When a peer receives a PING, it should immediately respond
-with a PONG containing the same payload data. The payload data is implementation
-specific.
+The LDG, when open by both peers, allows calculating round-trip delay of
+packets. It uses no acknowledgement system; packets which do not reach the
+destination can be simply considered dropped. The first byte of a packet
+identifies the type: 0 is PING and 1 is PONG. When a peer receives a PING, it
+should immediately respond with a PONG containing the same payload data. The
+payload data is implementation-, platform-, and build-specific.
 
 ASYNCHRONOUS ACKNOWLEDGEMENT GERÄT
 Gerät number: 1
@@ -175,12 +175,12 @@ Number per connection: 0 or 1 (effectively 1, since everything uses it)
 This is a block Gerät. Structure:
   byte[256]     Bitset of acknowledgement of received packets
   byte[256]     Bitset of sent packts that must be acknowledged
-The AAD provides a layer that guarantees eventual delivery of packets, as well as
-the ability to determine whether a peer has received a certain packet.
+The AAD provides a layer that guarantees eventual delivery of packets, as well
+as the ability to determine whether a peer has received a certain packet.
 
 When a packet is sent through this Gerät, the bit in the sent bitset
-corresponding to that package will be set to 1. Once the remote peer has received
-that packet and the change of the bitset, it will set the bit in the
+corresponding to that package will be set to 1. Once the remote peer has
+received that packet and the change of the bitset, it will set the bit in the
 acknowledgement bitset corresponding to that packet to 1. When the local peer
 receives this acknowledgement, it clears that bit in the sent bitset, allowing
 the remote peer to do the same in the acknowledgement set.
@@ -215,8 +215,8 @@ Requires: AAG, acceptance (via PIG)
 Packets have the following structure:
   NTBS          payload
 
-This device passes user text messages, which do not need strong ordering (and are
-handled quite differently from sequential text in Abendstern).
+This device passes user text messages, which do not need strong ordering (and
+are handled quite differently from sequential text in Abendstern).
 
 PEER INFORMATION GERÄT
 Gerät number: 4
