@@ -153,7 +153,8 @@ extern float currentFrameTime,
    * If operating at decorative time, this value is undefined.
    */
   currentFrameTimeLeft;
-/** Set to true if the current virtual frame is the last in the current physical frame. */
+/** Set to true if the current virtual frame is the last in the current physical
+ * frame. */
 extern bool currentVFrameLast;
 
 /** The current frame rate, in frames/sec.
@@ -161,16 +162,17 @@ extern bool currentVFrameLast;
  */
 extern unsigned frameRate;
 
-/** This is the multiplier originally defined in ExplosionPool.hxx. It can be used
- * for other graphical adjustments as well. It is const to the rest of the world
- * other than ExplosionPool.
+/** This is the multiplier originally defined in ExplosionPool.hxx. It can be
+ * used for other graphical adjustments as well. It is const to the rest of the
+ * world other than ExplosionPool.
  */
 extern float sparkCountMultiplier;
 
 /** Everybody's favourite constant. */
 static const float pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679f;
 
-/** Stores the number of milliseconds that have elapsed since the game loop started.
+/** Stores the number of milliseconds that have elapsed since the game loop
+ * started.
  * Functions should not be adversely affected by this warping around,
  * even though that won't happen until after at least 49 days, even
  * on systems where long is only 32 bits.
@@ -179,11 +181,11 @@ extern unsigned long gameClock;
 
 /** Indicates whether fast-forward mode is enabled.
  *
- * In fast-forward mode, any frame whose elapsed time is less than 10 milliseconds
- * will be treated as if it were exactly 10 milliseconds.
+ * In fast-forward mode, any frame whose elapsed time is less than 10
+ * milliseconds will be treated as if it were exactly 10 milliseconds.
  *
- * As this is intended for headless, non-network-play modes, it also fixes the maximum
- * time for a frame to 10 ms (as it is useless in any other case).
+ * As this is intended for headless, non-network-play modes, it also fixes the
+ * maximum time for a frame to 10 ms (as it is useless in any other case).
  */
 extern bool fastForward;
 
@@ -208,9 +210,9 @@ static inline float dbfmod(float x, float y) {
 /** Convenience macro to find the length of an array. */
 #define lenof(x) (sizeof(x)/sizeof(x[0]))
 
-/** Evaluates to true if the given coordinate is "close enough" for special effects.
- * It is used as a general test to see whether the player will even see an effect;
- * if not, there is no point in creating it.
+/** Evaluates to true if the given coordinate is "close enough" for special
+ * effects. It is used as a general test to see whether the player will even see
+ * an effect; if not, there is no point in creating it.
  */
 #define EXPCLOSE(x,y) (x > cameraX1-2 && \
                        x < cameraX2+2 && \
