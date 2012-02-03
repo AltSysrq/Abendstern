@@ -1,0 +1,118 @@
+/**
+ * @file
+ * @author Jason Lingle
+ * @date 2012.02.03
+ * @brief Contains the NetworkConnection class
+ */
+#ifndef NETWORK_CONNECTION_HXX_
+#define NETWORK_CONNECTION_HXX_
+
+#include <map>
+
+#include "src/sim/game_field.hxx"
+#include "src/sim/game_object.hxx"
+#include "packet_processor.hxx"
+#include "antenna.hxx"
+
+class NetworkGeraet;
+class NetworkAssembly;
+class SynchronousControlGeraet;
+
+/**
+ * Encapsulates all information pertaining to a connection to another peer.
+ *
+ * It specifically maintains the following information:
+ * <ul>
+ *   <li>A map of open channels to their NetworkGeraete</li>
+ *   <li>A map of unique Geraet numbers to active NetworkGeraete</li>
+ *   <li>A separate GameField that mirrors what the remote peer sees, allowing
+ *       for more intelligent decisions regarding packet dispatch.</li>
+ *   <li>A map of exported GameObjects to those in said mirror</li>
+ *   <li>The average latency (maintained by the LatencyDiscoveryPeer).</li>
+ *   <li>The last time of receiving a packet, to disconnect if the connection
+ *       drops.</li>
+ * </ul>
+ */
+class NetworkConnection: public PacketProcessor {
+  friend class SynchronousControlGeraet;
+public:
+  ///Type to use to identify channels
+  typedef unsigned short channel;
+  ///Type to use to identify Gerät types
+  typedef unsigned short geraet_num;
+  ///Function pointer to construct NetworkGeraete
+  typedef NetworkGeraet* (*geraet_creator)(NetworkConnection*);
+
+  /**
+   * Defines the possible stati of a NetworkConnection.
+   */
+  enum Status {
+    Connecting, ///< Establishing outgoing connection, have not heard back yet
+    Established, ///< Two-way communication established, not yet set up
+    Ready, ///< Fully functional
+    Zombie ///< Connection closed
+  };
+
+private:
+  //Mirror field
+  GameField field;
+
+  //Local and remote channel mapping
+  typedef std::map<channel,NetworkGeraet*> chanmap_t;
+  channels_t locchan, remchan;
+  //Next sequence numbers
+  unsigned short nextOutSeq;
+
+  //Unique Gerät number mapping
+  typedef std::map<geraet_num,NetworkGeraet*> geraete_t;
+  geraete_t geraete;
+  //Local to mirror object mapping
+  typedef std::map<GameObject*,GameObject*> objmap_t;
+  objmap_t objects;
+
+  //Map Gerät numbers to their creators
+  typedef std::map<geraet_num, geraet_creator> geraetNumMap_t;
+  static geraetNumMap_t* geraetNumMap;
+
+  //Average latency, in milliseconds
+  unsigned latency;
+  //Last time (via SDL_GetTicks()) that we received a packet
+  unsigned lastIncommingTime;
+
+  Status status;
+
+public:
+  ///The parent NetworkAssembly
+  NetworkAssembly*const parent;
+  ///The incomming SCG used with this NetworkConnection
+  SynchronousControlGeraet*const scgin;
+  ///The outgoing SCG used with this NetworkConnection
+  SynchronousControlGeraet*const scgout;
+
+  /**
+   * Constructs a NetworkConnection within the given assembly.
+   * @param assembly the parent NetworkAssembly
+   * @param endpoint the remote endpoint
+   * @param incomming if true, assume we have received a 0-0-0-0-2 message
+   * already, so the next incomming seq should be 1 instead of 0, and no
+   * STX will be expected.
+   */
+  NetworkConnection(NetworkAssembly* assembly,
+                    const Antenna::endpoint& endpoint,
+                    bool incomming);
+  virtual ~NetworkConnection();
+
+  /**
+   * Performs time-based updates and sends outgoing packets.
+   *
+   * @param et elapsed time, in milliseconds, since the last call to update()
+   */
+  void update(unsigned et) noth;
+
+  /**
+   * Returns the current status of the connection.
+   */
+  Status getStatus() const noth { return status; }
+};
+
+#endif /* NETWORK_CONNECTION_HXX_ */
