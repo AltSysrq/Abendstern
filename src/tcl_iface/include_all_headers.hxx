@@ -87,18 +87,5 @@
 using namespace std;
 using namespace libconfig;
 
-/* No, this is not the right "class Peer".
- * But it /does/ allow us to get a typeid, which we track
- * statically, so it's ok to have the wrong thing.
- *
- * It seems that MSVC++ linker CAN tell the difference between
- * non-identical classes of the same name, despite not
- * being able to tell the difference between non-identical
- * anonymous classes... fortunately, it also allows
- * taking the typeid of a class the compiler can't see.
- */
-#ifndef WIN32
-struct Peer { int a; };
-#endif
 
 #endif /*INCLUDE_ALL_HEADERS_HXX_*/
