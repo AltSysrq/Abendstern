@@ -8,6 +8,8 @@
 #define NETWORK_CONNECTION_HXX_
 
 #include <map>
+#include <deque>
+#include <set>
 
 #include "src/sim/game_field.hxx"
 #include "src/sim/game_object.hxx"
@@ -31,6 +33,9 @@ class SynchronousControlGeraet;
  *   <li>The average latency (maintained by the LatencyDiscoveryPeer).</li>
  *   <li>The last time of receiving a packet, to disconnect if the connection
  *       drops.</li>
+ *   <li>A set of recently received sequence numbers</li>
+ *   <li>A queue of numbers to remove from above set</li>
+ *   <li>The greatest recently received sequence number</li>
  * </ul>
  */
 class NetworkConnection: public PacketProcessor {
@@ -40,6 +45,8 @@ public:
   typedef unsigned short channel;
   ///Type to use to identify Gerät types
   typedef unsigned short geraet_num;
+  ///Type for sequence numbers
+  typedef unsigned short seq_t;
   ///Function pointer to construct NetworkGeraete
   typedef NetworkGeraet* (*geraet_creator)(NetworkConnection*);
 
@@ -61,7 +68,7 @@ private:
   typedef std::map<channel,NetworkGeraet*> chanmap_t;
   channels_t locchan, remchan;
   //Next sequence numbers
-  unsigned short nextOutSeq;
+  seq nextOutSeq;
 
   //Unique Gerät number mapping
   typedef std::map<geraet_num,NetworkGeraet*> geraete_t;
@@ -73,6 +80,18 @@ private:
   //Map Gerät numbers to their creators
   typedef std::map<geraet_num, geraet_creator> geraetNumMap_t;
   static geraetNumMap_t* geraetNumMap;
+
+  //Set of up to 1024 recently received seqs, for duplicate removal
+  std::set<seq_t> recentlyReceived;
+  //Queue of recently received seqs, in order, to properly remove from
+  //the above set.
+  std::deque<seq_t> recentlyReceivedQueue;
+  /* The greatest recently received seq. Any new packets will be dropped if
+   * the following equation does not hold (taking integer wrapping into
+   * account):  (newSeq-greatestSeq < 1024 || greatestSeq-newSeq < 1024).
+   * This is updated to the new seq if: (newSeq-greatestSeq < 1024).
+   */
+  seq_t greatestSeq;
 
   //Average latency, in milliseconds
   unsigned latency;
