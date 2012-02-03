@@ -101,6 +101,8 @@ private:
   Status status;
 
 public:
+  ///The endpoint of the remote peer
+  const Antenna::endpoint endpoint;
   ///The parent NetworkAssembly
   NetworkAssembly*const parent;
   ///The incomming SCG used with this NetworkConnection
