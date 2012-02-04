@@ -40,11 +40,14 @@ void SystemRotator::press(float x, float y) {
     rotCount = 0;
   }
 
-  Setting& s(conf[(const char*)conf["edit"]["mountname"]]["cells"][target->cellName.c_str()]);
+  Setting& s(conf[(const char*)conf["edit"]["mountname"]]["cells"]
+                                   [target->cellName.c_str()]);
   Setting* s0 = NULL, *s1 = NULL;
-  if (s.exists("s0") && s["s0"].exists("orient") && ((int)s["s0"]["orient"]) != -1)
+  if (s.exists("s0") && s["s0"].exists("orient")
+  &&  ((int)s["s0"]["orient"]) != -1)
     s0 = &s["s0"]["orient"];
-  if (s.exists("s1") && s["s1"].exists("orient") && ((int)s["s1"]["orient"]) != -1)
+  if (s.exists("s1") && s["s1"].exists("orient")
+  &&  ((int)s["s1"]["orient"]) != -1)
     s1 = &s["s1"]["orient"];
 
   if (!s0 && !s1) return; //Nothing to rotate
@@ -58,10 +61,11 @@ void SystemRotator::press(float x, float y) {
 
   int s0o = *s0, s1o = *s1;
 
-  Setting* curr = (rotCount < 4? s0 : s1);
+  unsigned maxCount = target->numNeighbours();
+  Setting* curr = (rotCount < maxCount? s0 : s1);
   manip->pushUndo();
   while (true) {
-    (*curr) = (curr->operator int() + 1)%4;
+    (*curr) = (curr->operator int() + 1)%maxCount;
     ++rotCount;
     rotCount &= 0x7;
 
@@ -74,7 +78,7 @@ void SystemRotator::press(float x, float y) {
     //This rotation is invalid, try the next.
     //If we are changing systems, though, restore
     //original for this
-    if (rotCount == 0 || rotCount == 4)
+    if (rotCount == 0 || rotCount == maxCount)
       (*curr) = (rotCount == 0? s1o : s0o);
   }
 }
