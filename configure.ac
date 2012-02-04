@@ -8,6 +8,9 @@ AC_CONFIG_SRCDIR([src/globals.hxx])
 AM_INIT_AUTOMAKE([1.11])
 AM_SILENT_RULES(yes)
 AM_CONFIG_HEADER([config.h])
+# Disable Automake's braindead want to rerun ./configure if it thinks it
+# needs to regenerate the entire build system
+AM_MAINTAINER_MODE
 PKG_PROG_PKG_CONFIG()
 
 AC_ARG_ENABLE([debug], AS_HELP_STRING([--enable-debug], [Enable debugging.]))
