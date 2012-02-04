@@ -299,52 +299,54 @@ int main(int argc, char** argv) {
     exit(EXIT_SCRIPTING_BUG);
   }
   if (!init()) return EXIT_PLATFORM_ERROR;
-  cout << "OpenGL version: " << (const char*)glGetString(GL_VERSION)
-       << " by " << (const char*)glGetString(GL_VENDOR) << endl;
-  AbendsternGLType aglt = analyseGLVersion((const char*)glGetString(GL_VERSION));
-  if (aglt != THIS_GL_TYPE) {
-    cerr << "Warning: This is not the best build of Abendstern to use, given your "
-            "OpenGL version." << endl;
-    char* newexe = NULL;
-    if (argc != 1) {
-      cerr << "Cannot automatically switch due to command-line arguments." << endl;
-      cerr << "Assuming you know what you are doing." << endl;
-    #ifndef WIN32
-    } else {
-      cerr << "Automatic switching to appropriate type is only supported on Windows." << endl;
-    }
-    #else
-    } else {
-      switch (aglt) {
-        case AGLT14: newexe = "bin\\abw32gl14.exe"; break;
-        case AGLT21: newexe = "bin\\abw32gl21.exe"; break;
-        case AGLT32: newexe = "bin\\abw32gl32.exe"; break;
+  if (!headless) {
+    cout << "OpenGL version: " << (const char*)glGetString(GL_VERSION)
+        << " by " << (const char*)glGetString(GL_VENDOR) << endl;
+    AbendsternGLType aglt = analyseGLVersion((const char*)glGetString(GL_VERSION));
+    if (aglt != THIS_GL_TYPE) {
+      cerr << "Warning: This is not the best build of Abendstern to use, given your "
+              "OpenGL version." << endl;
+      char* newexe = NULL;
+      if (argc != 1) {
+        cerr << "Cannot automatically switch due to command-line arguments." << endl;
+        cerr << "Assuming you know what you are doing." << endl;
+      #ifndef WIN32
+      } else {
+        cerr << "Automatic switching to appropriate type is only supported on Windows." << endl;
+      }
+      #else
+      } else {
+        switch (aglt) {
+          case AGLT14: newexe = "bin\\abw32gl14.exe"; break;
+          case AGLT21: newexe = "bin\\abw32gl21.exe"; break;
+          case AGLT32: newexe = "bin\\abw32gl32.exe"; break;
+        }
+      }
+      #endif
+      if (newexe) {
+        cerr << "Automatically executing " << newexe << " instead." << endl;
+        #ifdef WIN32
+        //Need to close log outputs so the new process can open the files.
+        logout.close();
+        fclose(stdout);
+        fclose(stderr);
+        shutdown();
+        STARTUPINFOA sinfo = {
+          sizeof(STARTUPINFO),
+          0 //Init rest with zeros as well
+        };
+        PROCESS_INFORMATION info;
+        CreateProcessA(newexe, newexe, NULL, NULL, FALSE, CREATE_BREAKAWAY_FROM_JOB, NULL, NULL, &sinfo, &info);
+        CloseHandle(info.hProcess);
+        CloseHandle(info.hThread);
+        #endif /* WIN32 */
+        return 0;
       }
     }
+    #ifndef AB_OPENGL_14
+    cout << "GLSL version: " << (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION) << endl;
     #endif
-    if (newexe) {
-      cerr << "Automatically executing " << newexe << " instead." << endl;
-      #ifdef WIN32
-      //Need to close log outputs so the new process can open the files.
-      logout.close();
-      fclose(stdout);
-      fclose(stderr);
-      shutdown();
-      STARTUPINFOA sinfo = {
-        sizeof(STARTUPINFO),
-        0 //Init rest with zeros as well
-      };
-      PROCESS_INFORMATION info;
-      CreateProcessA(newexe, newexe, NULL, NULL, FALSE, CREATE_BREAKAWAY_FROM_JOB, NULL, NULL, &sinfo, &info);
-      CloseHandle(info.hProcess);
-      CloseHandle(info.hThread);
-      #endif /* WIN32 */
-      return 0;
-    }
   }
-  #ifndef AB_OPENGL_14
-  cout << "GLSL version: " << (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION) << endl;
-  #endif
   atexit(shutdown);
   run();
   #ifdef WIN32
