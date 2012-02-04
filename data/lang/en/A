@@ -553,6 +553,9 @@
 -output_blocked
 +Engine output blocked by neighbour cell
 
+-invalid_orientation
++Invalid orientation for engine
+
 
 @ship
 -invalid_cell_connection

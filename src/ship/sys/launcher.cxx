@@ -44,7 +44,8 @@ const char* Launcher::autoOrient() noth {
 
 const char* Launcher::setOrientation(int i) noth {
   if (i==-1) return autoOrient();
-  if (i < -1 || i > 3) RETL10N(launcher,invalid_orientation)
+  if (i < -1 || i >= (int)container->numNeighbours())
+    RETL10N(launcher,invalid_orientation)
 
   Cell* cell=container;
   if (container->neighbours[i]) RETL10N(launcher,selected_face_occupied)

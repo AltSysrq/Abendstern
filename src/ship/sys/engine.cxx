@@ -68,7 +68,8 @@ const char* Engine::autoOrient() noth {
 
 const char* Engine::setOrientation(int i) noth {
   if (i == -1) return autoOrient();
-  if (i < -2 || i >= 4) return "Invalid orientation";
+  if (i < -2 || i >= (int)container->numNeighbours())
+    RETL10N(engine,invalid_orientation);
 
   orientation=i;
 

@@ -484,6 +484,9 @@
 -output_blocked
 +Nachbarzelle blockiert Ausgang des Triebwerks.
 
+-invalid_orientation
++Ungültlige Orientierung des Triebwerks.
+
 @ship
 -invalid_cell_connection
 +Ungütlige Zelleverbindung
