@@ -113,6 +113,14 @@ The SCG, as its name suggests, only allows one outstanding packet at a time,
 using its own synchronous acknowledgement system, separate from the asynchronous
 acknowledgement Gerät.
 
+Communication works as follows: Whenever the local peer sends a packet needing
+acknowledgement, it will not send any further packets until that packet has been
+ACKed (ACK and EOT packets are exempt from this rule); if no ACK is received
+after a time somewhat greater than the estimated round-trip time, the packet is
+retransmitted. Whenever an ACK-needing packet is received, even if it is a
+duplicate, an ACK is immediately sent for it. If the SCG has sent nothing for
+one second, it sends a SYN packet to keep the connection open.
+
 Each packet it sends is prefixed with a byte indicating the packet's purpose:
   0x02  STX     Start of transmission
   0x04  EOT     End of transmission
@@ -135,8 +143,8 @@ A connection is considered closed after transmission of an EOT. EOTs are not
 ACKed; rather, the EOT is sent several times to make delivery likely.
 
 Packet format for ACK:
-  uint16        Sequence number of packet being acknowledged.
-An ACK indicates that the specified packet has been received successfully. An
+  uint16        Packet number being acknowledged
+ACK indicates that the specified packet has been received successfully. An
 ACK is assumed to reach the destination unless the acknowledged packet is
 retransmitted. Every reception of an ACK-needing packet is to be answered with
 exactly one ACK.
