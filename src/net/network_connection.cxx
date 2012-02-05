@@ -85,6 +85,9 @@ noth {
         recentlyReceivedQueue.pop_front();
       }
 
+      //Update time of most recent receive
+      lastIncommingTime = SDL_GetTicks();
+
       //Accept packet; does the channel exist?
       chanmap_t::const_iterator it = locchan.find(chan);
       if (it != locchan.end()) {
