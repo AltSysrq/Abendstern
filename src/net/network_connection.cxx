@@ -111,6 +111,10 @@ noth {
   }
 }
 
+NetworkGeraet* NetworkConnection::getGeraetByNum(geraet_num num) noth {
+  return geraete[num];
+}
+
 NetworkConnection::geraet_num
 NetworkConnection::registerGeraetCreator(geraet_creator fun,
                                          geraet_num preferred) {

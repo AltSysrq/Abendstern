@@ -139,6 +139,12 @@ public:
                        const byte* data, unsigned len) noth;
 
   /**
+   * Returns the most recently created Gerät with the given Gerät number.
+   * Returns NULL if there is no such Gerät.
+   */
+  NetworkGeraet* getGeraetByNum(geraet_num) noth;
+
+  /**
    * Registers the given Gerät creator, returning the Gerät number
    * associated with it.
    * @param fun the geraet_creator to register
