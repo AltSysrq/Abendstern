@@ -52,5 +52,12 @@ public:
    * @param et the time, in milliseconds, since the previous call to update()
    */
   virtual void update(unsigned et) throw() { }
+
+  /**
+   * Sets the channel the Gerät outputs to.
+   */
+  void setChannel(NetworkConnection::channel chan) throw() {
+    channel = chan;
+  }
 };
 #endif /* NETWORK_GERAET_HXX_ */
