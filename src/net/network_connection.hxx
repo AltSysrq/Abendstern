@@ -12,7 +12,6 @@
 #include <set>
 
 #include "src/sim/game_field.hxx"
-#include "src/sim/game_object.hxx"
 #include "packet_processor.hxx"
 #include "antenna.hxx"
 

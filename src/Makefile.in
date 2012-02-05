@@ -199,6 +199,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-tuner.$(OBJEXT) \
 	abendsternuxgl14-connection_listener.$(OBJEXT) \
 	abendsternuxgl14-network_assembly.$(OBJEXT) \
+	abendsternuxgl14-network_connection.$(OBJEXT) \
 	abendsternuxgl14-namegen.$(OBJEXT) \
 	abendsternuxgl14-light_trail.$(OBJEXT) \
 	abendsternuxgl14-frame_recorder.$(OBJEXT) \
@@ -380,6 +381,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-tuner.$(OBJEXT) \
 	abendsternuxgl21-connection_listener.$(OBJEXT) \
 	abendsternuxgl21-network_assembly.$(OBJEXT) \
+	abendsternuxgl21-network_connection.$(OBJEXT) \
 	abendsternuxgl21-namegen.$(OBJEXT) \
 	abendsternuxgl21-light_trail.$(OBJEXT) \
 	abendsternuxgl21-frame_recorder.$(OBJEXT) \
@@ -559,6 +561,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-tuner.$(OBJEXT) \
 	abendsternuxgl32-connection_listener.$(OBJEXT) \
 	abendsternuxgl32-network_assembly.$(OBJEXT) \
+	abendsternuxgl32-network_connection.$(OBJEXT) \
 	abendsternuxgl32-namegen.$(OBJEXT) \
 	abendsternuxgl32-light_trail.$(OBJEXT) \
 	abendsternuxgl32-frame_recorder.$(OBJEXT) \
@@ -884,6 +887,7 @@ COMMONSOURCES = \
 ./net/tuner.cxx \
 ./net/connection_listener.cxx \
 ./net/network_assembly.cxx \
+./net/network_connection.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \
 ./secondary/frame_recorder.cxx \
@@ -1132,6 +1136,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-namegen.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-nebula.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-network_assembly.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-network_connection.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-object_intref.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-old_style_explosion.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-particle_accelerator.Po@am__quote@
@@ -1306,6 +1311,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-namegen.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-nebula.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-network_assembly.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-network_connection.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-object_intref.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-old_style_explosion.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-particle_accelerator.Po@am__quote@
@@ -1480,6 +1486,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-namegen.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-nebula.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-network_assembly.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-network_connection.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-object_intref.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-old_style_explosion.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-particle_accelerator.Po@am__quote@
@@ -3641,6 +3648,20 @@ abendsternuxgl14-network_assembly.obj: ./net/network_assembly.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/network_assembly.cxx' object='abendsternuxgl14-network_assembly.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-network_assembly.obj `if test -f './net/network_assembly.cxx'; then $(CYGPATH_W) './net/network_assembly.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_assembly.cxx'; fi`
+
+abendsternuxgl14-network_connection.o: ./net/network_connection.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-network_connection.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-network_connection.Tpo -c -o abendsternuxgl14-network_connection.o `test -f './net/network_connection.cxx' || echo '$(srcdir)/'`./net/network_connection.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-network_connection.Tpo $(DEPDIR)/abendsternuxgl14-network_connection.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/network_connection.cxx' object='abendsternuxgl14-network_connection.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-network_connection.o `test -f './net/network_connection.cxx' || echo '$(srcdir)/'`./net/network_connection.cxx
+
+abendsternuxgl14-network_connection.obj: ./net/network_connection.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-network_connection.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-network_connection.Tpo -c -o abendsternuxgl14-network_connection.obj `if test -f './net/network_connection.cxx'; then $(CYGPATH_W) './net/network_connection.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_connection.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-network_connection.Tpo $(DEPDIR)/abendsternuxgl14-network_connection.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/network_connection.cxx' object='abendsternuxgl14-network_connection.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-network_connection.obj `if test -f './net/network_connection.cxx'; then $(CYGPATH_W) './net/network_connection.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_connection.cxx'; fi`
 
 abendsternuxgl14-namegen.o: ./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-namegen.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-namegen.Tpo -c -o abendsternuxgl14-namegen.o `test -f './secondary/namegen.cxx' || echo '$(srcdir)/'`./secondary/namegen.cxx
@@ -6078,6 +6099,20 @@ abendsternuxgl21-network_assembly.obj: ./net/network_assembly.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-network_assembly.obj `if test -f './net/network_assembly.cxx'; then $(CYGPATH_W) './net/network_assembly.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_assembly.cxx'; fi`
 
+abendsternuxgl21-network_connection.o: ./net/network_connection.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-network_connection.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-network_connection.Tpo -c -o abendsternuxgl21-network_connection.o `test -f './net/network_connection.cxx' || echo '$(srcdir)/'`./net/network_connection.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-network_connection.Tpo $(DEPDIR)/abendsternuxgl21-network_connection.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/network_connection.cxx' object='abendsternuxgl21-network_connection.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-network_connection.o `test -f './net/network_connection.cxx' || echo '$(srcdir)/'`./net/network_connection.cxx
+
+abendsternuxgl21-network_connection.obj: ./net/network_connection.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-network_connection.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-network_connection.Tpo -c -o abendsternuxgl21-network_connection.obj `if test -f './net/network_connection.cxx'; then $(CYGPATH_W) './net/network_connection.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_connection.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-network_connection.Tpo $(DEPDIR)/abendsternuxgl21-network_connection.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/network_connection.cxx' object='abendsternuxgl21-network_connection.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-network_connection.obj `if test -f './net/network_connection.cxx'; then $(CYGPATH_W) './net/network_connection.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_connection.cxx'; fi`
+
 abendsternuxgl21-namegen.o: ./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-namegen.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-namegen.Tpo -c -o abendsternuxgl21-namegen.o `test -f './secondary/namegen.cxx' || echo '$(srcdir)/'`./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-namegen.Tpo $(DEPDIR)/abendsternuxgl21-namegen.Po
@@ -8513,6 +8548,20 @@ abendsternuxgl32-network_assembly.obj: ./net/network_assembly.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/network_assembly.cxx' object='abendsternuxgl32-network_assembly.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-network_assembly.obj `if test -f './net/network_assembly.cxx'; then $(CYGPATH_W) './net/network_assembly.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_assembly.cxx'; fi`
+
+abendsternuxgl32-network_connection.o: ./net/network_connection.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-network_connection.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-network_connection.Tpo -c -o abendsternuxgl32-network_connection.o `test -f './net/network_connection.cxx' || echo '$(srcdir)/'`./net/network_connection.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-network_connection.Tpo $(DEPDIR)/abendsternuxgl32-network_connection.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/network_connection.cxx' object='abendsternuxgl32-network_connection.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-network_connection.o `test -f './net/network_connection.cxx' || echo '$(srcdir)/'`./net/network_connection.cxx
+
+abendsternuxgl32-network_connection.obj: ./net/network_connection.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-network_connection.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-network_connection.Tpo -c -o abendsternuxgl32-network_connection.obj `if test -f './net/network_connection.cxx'; then $(CYGPATH_W) './net/network_connection.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_connection.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-network_connection.Tpo $(DEPDIR)/abendsternuxgl32-network_connection.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/network_connection.cxx' object='abendsternuxgl32-network_connection.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-network_connection.obj `if test -f './net/network_connection.cxx'; then $(CYGPATH_W) './net/network_connection.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_connection.cxx'; fi`
 
 abendsternuxgl32-namegen.o: ./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-namegen.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-namegen.Tpo -c -o abendsternuxgl32-namegen.o `test -f './secondary/namegen.cxx' || echo '$(srcdir)/'`./secondary/namegen.cxx

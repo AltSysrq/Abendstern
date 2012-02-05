@@ -72,7 +72,7 @@ namespace io {
   }
   static inline void writes(byte*& dst, byte*const end,
                             const std::string& src) {
-    assert(end-dst > src.size());
+    assert(((unsigned)(end-dst)) > src.size());
     memcpy(dst, src.c_str(), src.size()+1);
     dst += src.size()+1;
   }

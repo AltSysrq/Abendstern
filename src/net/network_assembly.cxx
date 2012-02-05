@@ -47,5 +47,5 @@ void NetworkAssembly::addConnection(NetworkConnection* cxn) noth {
 
 void NetworkAssembly::update(unsigned et) {
   for (unsigned i=0; i<connections.size(); ++i)
-    /*connections[i]->update(et)*/;
+    connections[i]->update(et);
 }

@@ -168,6 +168,7 @@ COMMONSOURCES= \
 ./net/tuner.cxx \
 ./net/connection_listener.cxx \
 ./net/network_assembly.cxx \
+./net/network_connection.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \
 ./secondary/frame_recorder.cxx \
