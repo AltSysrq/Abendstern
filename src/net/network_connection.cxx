@@ -111,7 +111,7 @@ noth {
   }
 }
 
-NetworkGeraet* NetworkConnection::getGeraetByNum(geraet_num num) noth {
+InputNetworkGeraet* NetworkConnection::getGeraetByNum(geraet_num num) noth {
   return geraete[num];
 }
 

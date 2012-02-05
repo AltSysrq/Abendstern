@@ -15,7 +15,8 @@
 #include "packet_processor.hxx"
 #include "antenna.hxx"
 
-class NetworkGeraet;
+class InputNetworkGeraet;
+class OutputNetworkGeraet;
 class NetworkAssembly;
 class SynchronousControlGeraet;
 class LatencyDiscoveryGeraet;
@@ -48,8 +49,8 @@ public:
   typedef unsigned short geraet_num;
   ///Type for sequence numbers
   typedef unsigned short seq_t;
-  ///Function pointer to construct NetworkGeraete
-  typedef NetworkGeraet* (*geraet_creator)(NetworkConnection*);
+  ///Function pointer to construct InputNetworkGeraete by number
+  typedef InputNetworkGeraet* (*geraet_creator)(NetworkConnection*);
 
   /**
    * Defines the possible stati of a NetworkConnection.
@@ -66,13 +67,13 @@ private:
   GameField field;
 
   //Local and remote channel mapping
-  typedef std::map<channel,NetworkGeraet*> channels_t;
+  typedef std::map<channel,InputNetworkGeraet*> channels_t;
   channels_t channels;
   //Next sequence numbers
   seq_t nextOutSeq;
 
   //Unique Gerät number mapping
-  typedef std::map<geraet_num,NetworkGeraet*> geraete_t;
+  typedef std::map<geraet_num,InputNetworkGeraet*> geraete_t;
   geraete_t geraete;
   //Local to mirror object mapping
   typedef std::map<GameObject*,GameObject*> objmap_t;
@@ -139,10 +140,10 @@ public:
                        const byte* data, unsigned len) noth;
 
   /**
-   * Returns the most recently created Gerät with the given Gerät number.
+   * Returns the most recently created input Gerät with the given Gerät number.
    * Returns NULL if there is no such Gerät.
    */
-  NetworkGeraet* getGeraetByNum(geraet_num) noth;
+  InputNetworkGeraet* getGeraetByNum(geraet_num) noth;
 
   /**
    * Registers the given Gerät creator, returning the Gerät number

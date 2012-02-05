@@ -10,12 +10,12 @@
 #include "antenna.hxx"
 
 /**
- * Defines the interface common to all NetworkGeraete.
+ * Defines the interface common to all input network Geräte.
  */
-class NetworkGeraet: public AObject {
+class InputNetworkGeraet: public AObject {
 public:
   /**
-   * Notifies the NetworkGeraet that it has received a packet.
+   * Notifies the InputNetworkGeraet that it has received a packet.
    * @param seq the sequence number of the packet
    * @param data the payload of the packet, excluding sequence and channel
    * numbers
@@ -25,7 +25,7 @@ public:
   throw() = 0;
 
   /**
-   * Updates the NetworkGeraet based on elapsed time.
+   * Updates the InputNetworkGeraet based on elapsed time.
    *
    * The default does nothing.
    * @param et the time, in milliseconds, since the previous call to update()
@@ -33,4 +33,17 @@ public:
   virtual void update(unsigned et) throw() { }
 };
 
+/**
+ * Defines the interface common to all output network Geräte.
+ */
+class OutputNetworkGeraet: public AObject {
+public:
+  /**
+   * Updates the OutputNetworkGeraet based on elapsed time.
+   *
+   * The default does nothing.
+   * @param et the time, in milliseconds, since the previous call to update()
+   */
+  virtual void update(unsigned et) throw() { }
+};
 #endif /* NETWORK_GERAET_HXX_ */
