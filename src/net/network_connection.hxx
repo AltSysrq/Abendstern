@@ -105,10 +105,8 @@ public:
   const Antenna::endpoint endpoint;
   ///The parent NetworkAssembly
   NetworkAssembly*const parent;
-  ///The incomming SCG used with this NetworkConnection
-  SynchronousControlGeraet*const scgin;
-  ///The outgoing SCG used with this NetworkConnection
-  SynchronousControlGeraet*const scgout;
+  ///The SCG used with this NetworkConnection
+  SynchronousControlGeraet*const scg;
 
   /**
    * Constructs a NetworkConnection within the given assembly.
@@ -134,6 +132,10 @@ public:
    * Returns the current status of the connection.
    */
   Status getStatus() const noth { return status; }
+
+  virtual void process(const Antenna::endpoint& source,
+                       Antenna* antenna, Tuner* tuner,
+                       const byte* data, unsigned len) noth;
 };
 
 #endif /* NETWORK_CONNECTION_HXX_ */
