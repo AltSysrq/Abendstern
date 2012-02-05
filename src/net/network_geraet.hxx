@@ -23,6 +23,14 @@ public:
    */
   virtual void receive(unsigned short seq, const byte* data, unsigned len)
   throw() = 0;
+
+  /**
+   * Updates the NetworkGeraet based on elapsed time.
+   *
+   * The default does nothing.
+   * @param et the time, in milliseconds, since the previous call to update()
+   */
+  virtual void update(unsigned et) throw() { }
 };
 
 #endif /* NETWORK_GERAET_HXX_ */
