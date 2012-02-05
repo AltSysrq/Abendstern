@@ -20,6 +20,7 @@
 
 #include "src/sim/game_field.hxx"
 #include "src/sim/game_object.hxx"
+#include "src/core/lxn.hxx"
 #include "src/exit_conditions.hxx"
 
 using namespace std;
@@ -41,6 +42,9 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
 {
   inchannels[0] = scg;
   outchannels[0] = scg;
+
+  if (incomming)
+    scg->transmitAck(0);
 }
 
 NetworkConnection::~NetworkConnection() {
@@ -119,6 +123,20 @@ noth {
 
 InputNetworkGeraet* NetworkConnection::getGeraetByNum(geraet_num num) noth {
   return geraete[num];
+}
+
+NetworkConnection::seq_t NetworkConnection::seq() noth {
+  return nextOutSeq++;
+}
+
+void NetworkConnection::send(const byte* data, unsigned len) throw() {
+  try {
+    parent->antenna->send(endpoint, data, len);
+  } catch (asio::system_error e) {
+    cerr << "Network system error: " << e.what() << endl;
+    status = Zombie;
+    SL10N(disconnectReason, network, system_error);
+  }
 }
 
 NetworkConnection::geraet_num

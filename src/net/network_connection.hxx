@@ -10,6 +10,7 @@
 #include <map>
 #include <deque>
 #include <set>
+#include <string>
 
 #include "src/sim/game_field.hxx"
 #include "packet_processor.hxx"
@@ -104,6 +105,8 @@ private:
 
   Status status;
 
+  std::string disconnectReason;
+
 public:
   ///The endpoint of the remote peer
   const Antenna::endpoint endpoint;
@@ -164,6 +167,27 @@ public:
    * Gerät creator.
    */
   static geraet_creator getGeraetCreator(geraet_num);
+
+  /**
+   * Returns the sequence number for the next packet, and increments
+   * the internal counter.
+   */
+  seq_t seq() noth;
+
+  /**
+   * Sends the given data in a packet to the remote peer.
+   * This never throws an exception; if something goes wrong,
+   * the connection moves to the Zombie status, and sets
+   * its disconnectReason appropriately.
+   */
+  void send(const byte* data, unsigned len) noth throw();
+
+  /**
+   * Returns the reason for disconnection.
+   */
+  const std::string& getDisconnectReason() noth {
+    return disconnectReason;
+  }
 };
 
 #endif /* NETWORK_CONNECTION_HXX_ */

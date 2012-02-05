@@ -95,6 +95,12 @@ public:
   throw();
 
   virtual void update(unsigned et) throw();
+
+private:
+  void transmitStx() throw();
+  void transmitXon() throw();
+  void transmitXof() throw();
+  void transmitAck(NetworkConnection::seq_t) throw();
 };
 
 #endif /* SYNCHRONOUS_CONTROL_GERAET_HXX_ */
