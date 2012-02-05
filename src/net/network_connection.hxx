@@ -18,6 +18,7 @@
 class NetworkGeraet;
 class NetworkAssembly;
 class SynchronousControlGeraet;
+class LatencyDiscoveryGeraet;
 
 /**
  * Encapsulates all information pertaining to a connection to another peer.
@@ -29,7 +30,7 @@ class SynchronousControlGeraet;
  *   <li>A separate GameField that mirrors what the remote peer sees, allowing
  *       for more intelligent decisions regarding packet dispatch.</li>
  *   <li>A map of exported GameObjects to those in said mirror</li>
- *   <li>The average latency (maintained by the LatencyDiscoveryPeer).</li>
+ *   <li>The average latency (maintained by the LatencyDiscoveryGeraet).</li>
  *   <li>The last time of receiving a packet, to disconnect if the connection
  *       drops.</li>
  *   <li>A set of recently received sequence numbers</li>
@@ -39,6 +40,7 @@ class SynchronousControlGeraet;
  */
 class NetworkConnection: public PacketProcessor {
   friend class SynchronousControlGeraet;
+  friend class LatencyDiscoveryGeraet;
 public:
   ///Type to use to identify channels
   typedef unsigned short channel;
