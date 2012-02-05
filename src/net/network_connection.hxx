@@ -66,9 +66,9 @@ private:
 
   //Local and remote channel mapping
   typedef std::map<channel,NetworkGeraet*> chanmap_t;
-  channels_t locchan, remchan;
+  chanmap_t locchan, remchan;
   //Next sequence numbers
-  seq nextOutSeq;
+  seq_t nextOutSeq;
 
   //Unique Gerät number mapping
   typedef std::map<geraet_num,NetworkGeraet*> geraete_t;

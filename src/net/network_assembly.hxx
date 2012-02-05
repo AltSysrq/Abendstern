@@ -15,6 +15,7 @@ class Antenna;
 class Tuner;
 class NetworkConnection;
 class PacketProcessor;
+class GameField;
 
 /**
  * Manages the various objects that are used to provide a functional network
@@ -26,7 +27,7 @@ class PacketProcessor;
 class NetworkAssembly: public AObject {
   std::vector<NetworkConnection*> connections;
   std::vector<PacketProcessor*> packetProcessors;
-  Tuner tuner;
+  Tuner* tuner;
 
   ///Not implemented, do not use
   NetworkAssembly(const NetworkAssembly&);
@@ -54,16 +55,22 @@ public:
   /**
    * Returns the Tuner associated with this NetworkAssembly.
    */
-  Tuner* getTuner() noth;
+  Tuner* getTuner() const noth { return tuner; }
   /**
    * Returns the number of NetworkConnections contained in this
    * NetworkAssembly.
    */
-  unsigned numConnections() const noth;
+  unsigned numConnections() const noth { return connections.size(); }
   /**
    * Returns the NetworkConnection at the given index.
    */
-  NetworkConnection* getConnection(unsigned ix) const noth;
+  NetworkConnection* getConnection(unsigned ix) const noth {
+    return connections[ix];
+  }
+  /**
+   * Adds the given NetworkConnection to this assembly.
+   */
+  void addConnection(NetworkConnection*) noth;
   /**
    * Removes and deletes the NetworkConnection at the given index.
    */
