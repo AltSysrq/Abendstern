@@ -49,8 +49,17 @@ public OutputNetworkGeraet {
   //packet, or 0 if there is none.
   byte lastPackOutType;
 
+  //Currently unused channel numbers
+  std::deque<NetworkConnection::channel> freeChannels;
+
   NetworkConnection*const cxn;
 
+  /**
+   * Constructs a new SynchronousControlGeraet for the given connection.
+   * @param cxn the connection to operate on
+   * @param incomming whether this is an incomming connection or
+   * outgoing
+   */
   SynchronousControlGeraet(NetworkConnection* cxn, bool incomming);
 
 public:
