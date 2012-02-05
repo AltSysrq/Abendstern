@@ -8,6 +8,7 @@
 #define NETWORK_GERAET_HXX_
 
 #include "antenna.hxx"
+#include "network_connection.hxx"
 
 /**
  * Defines the interface common to all input network Geräte.
@@ -37,6 +38,11 @@ public:
  * Defines the interface common to all output network Geräte.
  */
 class OutputNetworkGeraet: public AObject {
+protected:
+  /**
+   * The output channel to write to.
+   */
+  NetworkConnection::channel channel;
 public:
   /**
    * Updates the OutputNetworkGeraet based on elapsed time.
