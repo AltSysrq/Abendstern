@@ -22,7 +22,8 @@ public:
    * numbers
    * @param len the length of the payload
    */
-  virtual void receive(unsigned short seq, const byte* data, unsigned len)
+  virtual void receive(NetworkConnection::seq_t seq,
+                       const byte* data, unsigned len)
   throw() = 0;
 
   /**
