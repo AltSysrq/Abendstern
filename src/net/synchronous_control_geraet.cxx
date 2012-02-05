@@ -33,7 +33,6 @@ SynchronousControlGeraet::SynchronousControlGeraet(NetworkConnection* cxn_,
   cxn(cxn_)
 {
   setChannel(0);
-  freeChannels.reserve(0xFFFF);
   for (NetworkConnection::channel chan=1; chan != 0; ++chan)
     freeChannels.push_back(chan);
 }
@@ -60,7 +59,7 @@ noth {
 void SynchronousControlGeraet::closeChannel(NetworkConnection::channel chan)
 noth {
   OutputNetworkGeraet* geraet = cxn->outchannels[chan];
-  cxn->erase(cxn->outchannels.find(chan));
+  cxn->outchannels.erase(cxn->outchannels.find(chan));
   delete geraet;
   xofsOut.push_back(chan);
 }

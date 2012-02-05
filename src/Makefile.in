@@ -200,6 +200,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-connection_listener.$(OBJEXT) \
 	abendsternuxgl14-network_assembly.$(OBJEXT) \
 	abendsternuxgl14-network_connection.$(OBJEXT) \
+	abendsternuxgl14-synchronous_control_geraet.$(OBJEXT) \
 	abendsternuxgl14-namegen.$(OBJEXT) \
 	abendsternuxgl14-light_trail.$(OBJEXT) \
 	abendsternuxgl14-frame_recorder.$(OBJEXT) \
@@ -382,6 +383,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-connection_listener.$(OBJEXT) \
 	abendsternuxgl21-network_assembly.$(OBJEXT) \
 	abendsternuxgl21-network_connection.$(OBJEXT) \
+	abendsternuxgl21-synchronous_control_geraet.$(OBJEXT) \
 	abendsternuxgl21-namegen.$(OBJEXT) \
 	abendsternuxgl21-light_trail.$(OBJEXT) \
 	abendsternuxgl21-frame_recorder.$(OBJEXT) \
@@ -562,6 +564,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-connection_listener.$(OBJEXT) \
 	abendsternuxgl32-network_assembly.$(OBJEXT) \
 	abendsternuxgl32-network_connection.$(OBJEXT) \
+	abendsternuxgl32-synchronous_control_geraet.$(OBJEXT) \
 	abendsternuxgl32-namegen.$(OBJEXT) \
 	abendsternuxgl32-light_trail.$(OBJEXT) \
 	abendsternuxgl32-frame_recorder.$(OBJEXT) \
@@ -888,6 +891,7 @@ COMMONSOURCES = \
 ./net/connection_listener.cxx \
 ./net/network_assembly.cxx \
 ./net/network_connection.cxx \
+./net/synchronous_control_geraet.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \
 ./secondary/frame_recorder.cxx \
@@ -1173,6 +1177,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-star.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-star_field.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-super_particle_accelerator.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-synchronous_control_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-synth.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-system_creation_brush.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-system_creation_rectangle.Po@am__quote@
@@ -1348,6 +1353,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-star.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-star_field.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-super_particle_accelerator.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-synchronous_control_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-synth.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-system_creation_brush.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-system_creation_rectangle.Po@am__quote@
@@ -1523,6 +1529,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-star.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-star_field.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-super_particle_accelerator.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-synchronous_control_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-synth.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-system_creation_brush.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-system_creation_rectangle.Po@am__quote@
@@ -3662,6 +3669,20 @@ abendsternuxgl14-network_connection.obj: ./net/network_connection.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/network_connection.cxx' object='abendsternuxgl14-network_connection.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-network_connection.obj `if test -f './net/network_connection.cxx'; then $(CYGPATH_W) './net/network_connection.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_connection.cxx'; fi`
+
+abendsternuxgl14-synchronous_control_geraet.o: ./net/synchronous_control_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-synchronous_control_geraet.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-synchronous_control_geraet.Tpo -c -o abendsternuxgl14-synchronous_control_geraet.o `test -f './net/synchronous_control_geraet.cxx' || echo '$(srcdir)/'`./net/synchronous_control_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-synchronous_control_geraet.Tpo $(DEPDIR)/abendsternuxgl14-synchronous_control_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/synchronous_control_geraet.cxx' object='abendsternuxgl14-synchronous_control_geraet.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-synchronous_control_geraet.o `test -f './net/synchronous_control_geraet.cxx' || echo '$(srcdir)/'`./net/synchronous_control_geraet.cxx
+
+abendsternuxgl14-synchronous_control_geraet.obj: ./net/synchronous_control_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-synchronous_control_geraet.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-synchronous_control_geraet.Tpo -c -o abendsternuxgl14-synchronous_control_geraet.obj `if test -f './net/synchronous_control_geraet.cxx'; then $(CYGPATH_W) './net/synchronous_control_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/synchronous_control_geraet.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-synchronous_control_geraet.Tpo $(DEPDIR)/abendsternuxgl14-synchronous_control_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/synchronous_control_geraet.cxx' object='abendsternuxgl14-synchronous_control_geraet.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-synchronous_control_geraet.obj `if test -f './net/synchronous_control_geraet.cxx'; then $(CYGPATH_W) './net/synchronous_control_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/synchronous_control_geraet.cxx'; fi`
 
 abendsternuxgl14-namegen.o: ./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-namegen.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-namegen.Tpo -c -o abendsternuxgl14-namegen.o `test -f './secondary/namegen.cxx' || echo '$(srcdir)/'`./secondary/namegen.cxx
@@ -6113,6 +6134,20 @@ abendsternuxgl21-network_connection.obj: ./net/network_connection.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-network_connection.obj `if test -f './net/network_connection.cxx'; then $(CYGPATH_W) './net/network_connection.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_connection.cxx'; fi`
 
+abendsternuxgl21-synchronous_control_geraet.o: ./net/synchronous_control_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-synchronous_control_geraet.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-synchronous_control_geraet.Tpo -c -o abendsternuxgl21-synchronous_control_geraet.o `test -f './net/synchronous_control_geraet.cxx' || echo '$(srcdir)/'`./net/synchronous_control_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-synchronous_control_geraet.Tpo $(DEPDIR)/abendsternuxgl21-synchronous_control_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/synchronous_control_geraet.cxx' object='abendsternuxgl21-synchronous_control_geraet.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-synchronous_control_geraet.o `test -f './net/synchronous_control_geraet.cxx' || echo '$(srcdir)/'`./net/synchronous_control_geraet.cxx
+
+abendsternuxgl21-synchronous_control_geraet.obj: ./net/synchronous_control_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-synchronous_control_geraet.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-synchronous_control_geraet.Tpo -c -o abendsternuxgl21-synchronous_control_geraet.obj `if test -f './net/synchronous_control_geraet.cxx'; then $(CYGPATH_W) './net/synchronous_control_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/synchronous_control_geraet.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-synchronous_control_geraet.Tpo $(DEPDIR)/abendsternuxgl21-synchronous_control_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/synchronous_control_geraet.cxx' object='abendsternuxgl21-synchronous_control_geraet.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-synchronous_control_geraet.obj `if test -f './net/synchronous_control_geraet.cxx'; then $(CYGPATH_W) './net/synchronous_control_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/synchronous_control_geraet.cxx'; fi`
+
 abendsternuxgl21-namegen.o: ./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-namegen.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-namegen.Tpo -c -o abendsternuxgl21-namegen.o `test -f './secondary/namegen.cxx' || echo '$(srcdir)/'`./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-namegen.Tpo $(DEPDIR)/abendsternuxgl21-namegen.Po
@@ -8562,6 +8597,20 @@ abendsternuxgl32-network_connection.obj: ./net/network_connection.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/network_connection.cxx' object='abendsternuxgl32-network_connection.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-network_connection.obj `if test -f './net/network_connection.cxx'; then $(CYGPATH_W) './net/network_connection.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_connection.cxx'; fi`
+
+abendsternuxgl32-synchronous_control_geraet.o: ./net/synchronous_control_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-synchronous_control_geraet.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-synchronous_control_geraet.Tpo -c -o abendsternuxgl32-synchronous_control_geraet.o `test -f './net/synchronous_control_geraet.cxx' || echo '$(srcdir)/'`./net/synchronous_control_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-synchronous_control_geraet.Tpo $(DEPDIR)/abendsternuxgl32-synchronous_control_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/synchronous_control_geraet.cxx' object='abendsternuxgl32-synchronous_control_geraet.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-synchronous_control_geraet.o `test -f './net/synchronous_control_geraet.cxx' || echo '$(srcdir)/'`./net/synchronous_control_geraet.cxx
+
+abendsternuxgl32-synchronous_control_geraet.obj: ./net/synchronous_control_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-synchronous_control_geraet.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-synchronous_control_geraet.Tpo -c -o abendsternuxgl32-synchronous_control_geraet.obj `if test -f './net/synchronous_control_geraet.cxx'; then $(CYGPATH_W) './net/synchronous_control_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/synchronous_control_geraet.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-synchronous_control_geraet.Tpo $(DEPDIR)/abendsternuxgl32-synchronous_control_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/synchronous_control_geraet.cxx' object='abendsternuxgl32-synchronous_control_geraet.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-synchronous_control_geraet.obj `if test -f './net/synchronous_control_geraet.cxx'; then $(CYGPATH_W) './net/synchronous_control_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/synchronous_control_geraet.cxx'; fi`
 
 abendsternuxgl32-namegen.o: ./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-namegen.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-namegen.Tpo -c -o abendsternuxgl32-namegen.o `test -f './secondary/namegen.cxx' || echo '$(srcdir)/'`./secondary/namegen.cxx
