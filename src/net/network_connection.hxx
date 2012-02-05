@@ -66,8 +66,8 @@ private:
   GameField field;
 
   //Local and remote channel mapping
-  typedef std::map<channel,NetworkGeraet*> chanmap_t;
-  chanmap_t locchan, remchan;
+  typedef std::map<channel,NetworkGeraet*> channels_t;
+  channels_t channels;
   //Next sequence numbers
   seq_t nextOutSeq;
 

@@ -44,8 +44,8 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
 NetworkConnection::~NetworkConnection() {
   //scg is stored within the channel map, so we don't have to explicitly
   //delete it.
-  for (geraete_t::const_iterator it = geraete.begin();
-       it != geraete.end(); ++it)
+  for (channels_t::const_iterator it = channels.begin();
+       it != channels.end(); ++it)
     delete it->second;
 }
 
@@ -92,8 +92,8 @@ noth {
       lastIncommingTime = SDL_GetTicks();
 
       //Accept packet; does the channel exist?
-      chanmap_t::const_iterator it = locchan.find(chan);
-      if (it != locchan.end()) {
+      channels_t::const_iterator it = channels.find(chan);
+      if (it != channels.end()) {
         it->second->receive(seq, data, datlen);
       } else {
         #ifdef DEBUG
