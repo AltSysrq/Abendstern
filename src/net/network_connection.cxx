@@ -16,6 +16,7 @@
 #include "network_geraet.hxx"
 #include "antenna.hxx"
 #include "io.hxx"
+#include "synchronous_control_geraet.hxx"
 
 #include "src/sim/game_field.hxx"
 #include "src/sim/game_object.hxx"
@@ -36,20 +37,22 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
   status(incomming? Established : Connecting),
   endpoint(endpoint_),
   parent(assembly_),
-  scg(NULL) //TODO: replace with actual object later
+  scg(new SynchronousControlGeraet(this, incomming))
 {
-  //TODO: put SCG in channel map
+  inchannels[0] = scg;
+  outchannels[0] = scg;
 }
 
 NetworkConnection::~NetworkConnection() {
-  //scg is stored within the channel map, so we don't have to explicitly
-  //delete it.
+  //Other Geräte depend on the SCG in deletion, so delete it
+  //at the end and ignore it within the loops
   for (inchannels_t::const_iterator it = inchannels.begin();
        it != inchannels.end(); ++it)
-    delete it->second;
+    if (it->second != scg) delete it->second;
   for (outchannels_t::const_iterator it = outchannels.begin();
        it != outchannels.end(); ++it)
-    delete it->second;
+    if (it->second != scg) delete it->second;
+  delete scg;
 }
 
 void NetworkConnection::update(unsigned et) noth {
