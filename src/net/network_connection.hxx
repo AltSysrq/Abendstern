@@ -137,6 +137,24 @@ public:
   virtual void process(const Antenna::endpoint& source,
                        Antenna* antenna, Tuner* tuner,
                        const byte* data, unsigned len) noth;
+
+  /**
+   * Registers the given Gerät creator, returning the Gerät number
+   * associated with it.
+   * @param fun the geraet_creator to register
+   * @param num the number to use for the Gerät; if equal to ~0 (the default),
+   * a number is chosen automatically. If not ~0, the number must not be in
+   * use already. Automatically-allocated numbers start at 32768.
+   * @return the Gerät number of the creator
+   */
+  static geraet_num registerGeraetCreator(geraet_creator fun,
+                                          geraet_num num=~0);
+  /**
+   * Returns the geraet_creator associated with the given Gerät number.
+   * The result is undefined if the number is not associated with any
+   * Gerät creator.
+   */
+  static geraet_creator getGeraetCreator(geraet_num);
 };
 
 #endif /* NETWORK_CONNECTION_HXX_ */

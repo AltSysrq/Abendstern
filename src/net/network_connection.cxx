@@ -6,6 +6,8 @@
  */
 
 #include <iostream>
+#include <cstdlib>
+#include <cassert>
 
 #include <SDL.h>
 
@@ -17,6 +19,7 @@
 
 #include "src/sim/game_field.hxx"
 #include "src/sim/game_object.hxx"
+#include "src/exit_conditions.hxx"
 
 using namespace std;
 
@@ -106,4 +109,35 @@ noth {
          << "; from source " << source << endl;
     #endif
   }
+}
+
+NetworkConnection::geraet_num
+NetworkConnection::registerGeraetCreator(geraet_creator fun,
+                                         geraet_num preferred) {
+  static bool hasInitialised = false;
+  static geraet_num nextAuto = 32768;
+  //Allocate map if not done yet
+  if (!hasInitialised) {
+    geraetNumMap = new geraetNumMap_t;
+    hasInitialised = true;
+  }
+
+  geraet_num number = preferred;
+
+  if (number == ~(geraet_num)0)
+    number = nextAuto++;
+
+  if (geraetNumMap->count(number)) {
+    cerr << "FATAL: Duplicate Geraet number: " << number << endl;
+    exit(EXIT_PROGRAM_BUG);
+  }
+
+  geraetNumMap->insert(make_pair(number, fun));
+  return number;
+}
+
+NetworkConnection::geraet_creator
+NetworkConnection::getGeraetCreator(geraet_num num) {
+  assert(geraetNumMap->count(num));
+  return (*geraetNumMap)[num];
 }
