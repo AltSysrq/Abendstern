@@ -170,6 +170,7 @@ COMMONSOURCES= \
 ./net/network_assembly.cxx \
 ./net/network_connection.cxx \
 ./net/synchronous_control_geraet.cxx \
+./net/game_advertiser.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \
 ./secondary/frame_recorder.cxx \
