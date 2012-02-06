@@ -11,7 +11,6 @@
 #include "game_advertiser.hxx"
 #include "antenna.hxx"
 #include "tuner.hxx"
-#include "io.hxx"
 
 using namespace std;
 
