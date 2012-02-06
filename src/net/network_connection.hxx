@@ -163,7 +163,7 @@ public:
                                           geraet_num num=~0);
   /**
    * Returns the geraet_creator associated with the given Gerät number.
-   * The result is undefined if the number is not associated with any
+   * The result is NULL if the number is not associated with any
    * Gerät creator.
    */
   static geraet_creator getGeraetCreator(geraet_num);
