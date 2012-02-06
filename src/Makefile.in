@@ -202,6 +202,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-network_connection.$(OBJEXT) \
 	abendsternuxgl14-synchronous_control_geraet.$(OBJEXT) \
 	abendsternuxgl14-game_advertiser.$(OBJEXT) \
+	abendsternuxgl14-game_discoverer.$(OBJEXT) \
 	abendsternuxgl14-namegen.$(OBJEXT) \
 	abendsternuxgl14-light_trail.$(OBJEXT) \
 	abendsternuxgl14-frame_recorder.$(OBJEXT) \
@@ -386,6 +387,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-network_connection.$(OBJEXT) \
 	abendsternuxgl21-synchronous_control_geraet.$(OBJEXT) \
 	abendsternuxgl21-game_advertiser.$(OBJEXT) \
+	abendsternuxgl21-game_discoverer.$(OBJEXT) \
 	abendsternuxgl21-namegen.$(OBJEXT) \
 	abendsternuxgl21-light_trail.$(OBJEXT) \
 	abendsternuxgl21-frame_recorder.$(OBJEXT) \
@@ -568,6 +570,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-network_connection.$(OBJEXT) \
 	abendsternuxgl32-synchronous_control_geraet.$(OBJEXT) \
 	abendsternuxgl32-game_advertiser.$(OBJEXT) \
+	abendsternuxgl32-game_discoverer.$(OBJEXT) \
 	abendsternuxgl32-namegen.$(OBJEXT) \
 	abendsternuxgl32-light_trail.$(OBJEXT) \
 	abendsternuxgl32-frame_recorder.$(OBJEXT) \
@@ -896,6 +899,7 @@ COMMONSOURCES = \
 ./net/network_connection.cxx \
 ./net/synchronous_control_geraet.cxx \
 ./net/game_advertiser.cxx \
+./net/game_discoverer.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \
 ./secondary/frame_recorder.cxx \
@@ -1106,6 +1110,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-frame_recorder.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-fusion_power.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-game_advertiser.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-game_discoverer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-game_env.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-game_field.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-game_object.Po@am__quote@
@@ -1283,6 +1288,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-frame_recorder.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-fusion_power.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-game_advertiser.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-game_discoverer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-game_env.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-game_field.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-game_object.Po@am__quote@
@@ -1460,6 +1466,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-frame_recorder.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-fusion_power.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-game_advertiser.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-game_discoverer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-game_env.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-game_field.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-game_object.Po@am__quote@
@@ -3704,6 +3711,20 @@ abendsternuxgl14-game_advertiser.obj: ./net/game_advertiser.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/game_advertiser.cxx' object='abendsternuxgl14-game_advertiser.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-game_advertiser.obj `if test -f './net/game_advertiser.cxx'; then $(CYGPATH_W) './net/game_advertiser.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/game_advertiser.cxx'; fi`
+
+abendsternuxgl14-game_discoverer.o: ./net/game_discoverer.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-game_discoverer.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-game_discoverer.Tpo -c -o abendsternuxgl14-game_discoverer.o `test -f './net/game_discoverer.cxx' || echo '$(srcdir)/'`./net/game_discoverer.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-game_discoverer.Tpo $(DEPDIR)/abendsternuxgl14-game_discoverer.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/game_discoverer.cxx' object='abendsternuxgl14-game_discoverer.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-game_discoverer.o `test -f './net/game_discoverer.cxx' || echo '$(srcdir)/'`./net/game_discoverer.cxx
+
+abendsternuxgl14-game_discoverer.obj: ./net/game_discoverer.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-game_discoverer.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-game_discoverer.Tpo -c -o abendsternuxgl14-game_discoverer.obj `if test -f './net/game_discoverer.cxx'; then $(CYGPATH_W) './net/game_discoverer.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/game_discoverer.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-game_discoverer.Tpo $(DEPDIR)/abendsternuxgl14-game_discoverer.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/game_discoverer.cxx' object='abendsternuxgl14-game_discoverer.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-game_discoverer.obj `if test -f './net/game_discoverer.cxx'; then $(CYGPATH_W) './net/game_discoverer.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/game_discoverer.cxx'; fi`
 
 abendsternuxgl14-namegen.o: ./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-namegen.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-namegen.Tpo -c -o abendsternuxgl14-namegen.o `test -f './secondary/namegen.cxx' || echo '$(srcdir)/'`./secondary/namegen.cxx
@@ -6183,6 +6204,20 @@ abendsternuxgl21-game_advertiser.obj: ./net/game_advertiser.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-game_advertiser.obj `if test -f './net/game_advertiser.cxx'; then $(CYGPATH_W) './net/game_advertiser.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/game_advertiser.cxx'; fi`
 
+abendsternuxgl21-game_discoverer.o: ./net/game_discoverer.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-game_discoverer.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-game_discoverer.Tpo -c -o abendsternuxgl21-game_discoverer.o `test -f './net/game_discoverer.cxx' || echo '$(srcdir)/'`./net/game_discoverer.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-game_discoverer.Tpo $(DEPDIR)/abendsternuxgl21-game_discoverer.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/game_discoverer.cxx' object='abendsternuxgl21-game_discoverer.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-game_discoverer.o `test -f './net/game_discoverer.cxx' || echo '$(srcdir)/'`./net/game_discoverer.cxx
+
+abendsternuxgl21-game_discoverer.obj: ./net/game_discoverer.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-game_discoverer.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-game_discoverer.Tpo -c -o abendsternuxgl21-game_discoverer.obj `if test -f './net/game_discoverer.cxx'; then $(CYGPATH_W) './net/game_discoverer.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/game_discoverer.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-game_discoverer.Tpo $(DEPDIR)/abendsternuxgl21-game_discoverer.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/game_discoverer.cxx' object='abendsternuxgl21-game_discoverer.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-game_discoverer.obj `if test -f './net/game_discoverer.cxx'; then $(CYGPATH_W) './net/game_discoverer.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/game_discoverer.cxx'; fi`
+
 abendsternuxgl21-namegen.o: ./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-namegen.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-namegen.Tpo -c -o abendsternuxgl21-namegen.o `test -f './secondary/namegen.cxx' || echo '$(srcdir)/'`./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-namegen.Tpo $(DEPDIR)/abendsternuxgl21-namegen.Po
@@ -8660,6 +8695,20 @@ abendsternuxgl32-game_advertiser.obj: ./net/game_advertiser.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/game_advertiser.cxx' object='abendsternuxgl32-game_advertiser.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-game_advertiser.obj `if test -f './net/game_advertiser.cxx'; then $(CYGPATH_W) './net/game_advertiser.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/game_advertiser.cxx'; fi`
+
+abendsternuxgl32-game_discoverer.o: ./net/game_discoverer.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-game_discoverer.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-game_discoverer.Tpo -c -o abendsternuxgl32-game_discoverer.o `test -f './net/game_discoverer.cxx' || echo '$(srcdir)/'`./net/game_discoverer.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-game_discoverer.Tpo $(DEPDIR)/abendsternuxgl32-game_discoverer.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/game_discoverer.cxx' object='abendsternuxgl32-game_discoverer.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-game_discoverer.o `test -f './net/game_discoverer.cxx' || echo '$(srcdir)/'`./net/game_discoverer.cxx
+
+abendsternuxgl32-game_discoverer.obj: ./net/game_discoverer.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-game_discoverer.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-game_discoverer.Tpo -c -o abendsternuxgl32-game_discoverer.obj `if test -f './net/game_discoverer.cxx'; then $(CYGPATH_W) './net/game_discoverer.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/game_discoverer.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-game_discoverer.Tpo $(DEPDIR)/abendsternuxgl32-game_discoverer.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/game_discoverer.cxx' object='abendsternuxgl32-game_discoverer.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-game_discoverer.obj `if test -f './net/game_discoverer.cxx'; then $(CYGPATH_W) './net/game_discoverer.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/game_discoverer.cxx'; fi`
 
 abendsternuxgl32-namegen.o: ./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-namegen.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-namegen.Tpo -c -o abendsternuxgl32-namegen.o `test -f './secondary/namegen.cxx' || echo '$(srcdir)/'`./secondary/namegen.cxx

@@ -171,6 +171,7 @@ COMMONSOURCES= \
 ./net/network_connection.cxx \
 ./net/synchronous_control_geraet.cxx \
 ./net/game_advertiser.cxx \
+./net/game_discoverer.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \
 ./secondary/frame_recorder.cxx \
