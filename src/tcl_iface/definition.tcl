@@ -866,6 +866,79 @@ unsafe {
   }
 }
 
+# Networking stuff
+unsafe {
+  class final Tuner {}
+  class final GlobalID {}
+  class final Antenna {} {
+    constructor default
+    var tuner Tuner*
+    fun void setInternetInformation4 {} Uint8 Uint8 Uint8 Uint8 Uint16
+    fun void setInternetInformation6 {} \
+      Uint16 Uint16 Uint16 Uint16 Uint16 Uint16 Uint16 Uint16 Uint16
+    fun GlobalID* getGlobalID4
+    fun GlobalID* getGlobalID6
+    fun bool hasV4
+    fun bool hasV6
+    fun void processIncomming
+  }
+  const antenna Antenna
+
+  class final Tuner {} {
+    constructor default
+  }
+
+  class final GlobalID {} {
+    constructor default
+    fun string toString
+  }
+
+  class final PacketProcessor {} {
+  }
+
+  class final NetworkConnection PacketProcessor
+  class final NetworkAssembly {} {
+    const field GameField*
+    const antenna Antenna*
+    constructor default GameField* Antenna*
+    fun Tuner* getTuner
+    fun unsigned numConnections
+    fun NetworkConnection* getConnection {} unsigned
+    fun void addConnection {} {NetworkConnection* steal}
+    fun void removeConnection {} unsigned
+    fun void addPacketProcessor {} {PacketProcessor* steal}
+    fun void update {} unsigned
+  }
+
+  enum NetworkConnection::Status {} \
+    {NetworkConnection::Connecting} {NetworkConnection::Established} \
+    {NetworkConnection::Ready} {NetworkConnection::Zombie}
+  class final NetworkConnection PacketProcessor {
+    const parent NetworkAssembly*
+    fun void update {} unsigned
+    fun NetworkConnection::Status getStatus
+    fun string getDisconnectReason
+  }
+
+  class final ConnectionListener PacketProcessor {
+  }
+
+  class final GameAdvertiser PacketProcessor {
+    constructor default Tuner* bool unsigned unsigned bool cstr
+    fun void setOverseerId {} unsigned
+    fun void setPeerCount {} unsigned
+    fun void setGameMode {} cstr
+  }
+
+  class final GameDiscoverer PacketProcessor {
+    constructor default Tuner*
+    fun void start
+    fun void poll {} Antenna*
+    fun float progress
+    fun void dumpResults
+  }
+}
+
 enum Setting::Type ST {Setting::TypeInt    Int   } {Setting::TypeInt64   Int64} \
                       {Setting::TypeFloat  Float } {Setting::TypeBoolean Bool} \
                       {Setting::TypeString String} \

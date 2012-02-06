@@ -185,7 +185,7 @@ public:
   /**
    * Returns the reason for disconnection.
    */
-  const std::string& getDisconnectReason() noth {
+  const std::string& getDisconnectReason() const noth {
     return disconnectReason;
   }
 };
