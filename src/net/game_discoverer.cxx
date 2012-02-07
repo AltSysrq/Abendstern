@@ -129,7 +129,7 @@ void GameDiscoverer::dumpResults() const noth {
     cout << i << '\t'
          << (res.passwordProtected? "yes" : "no") << '\t'
          << (unsigned)res.peerCount << '\t'
-         << res.gameMode << '\t'
+         << string(res.gameMode, res.gameMode+4) << '\t'
          << res.peer << endl;
   }
 }
