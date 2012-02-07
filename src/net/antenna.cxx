@@ -36,6 +36,7 @@ Antenna::Antenna() : sock4(NULL), sock6(NULL) {
    * to some Internet endpoint (not necessarily a valid one) in order
    * to get this information.
    */
+  asio::ip::udp::socket::broadcast enableBroadcast(true);
 
   //Try to open an IPv4 socket to ANY
   for (unsigned i=0; i<lenof(wellKnownPorts) && !sock4; ++i) {
@@ -44,6 +45,7 @@ Antenna::Antenna() : sock4(NULL), sock6(NULL) {
                                         endpoint(asio::ip::address(
                                                    asio::ip::address_v4::any()),
                                                  wellKnownPorts[i]));
+      sock4->set_option(enableBroadcast);
       gid4.lport = wellKnownPorts[i];
     } catch (...) {}
   }
@@ -82,6 +84,7 @@ Antenna::Antenna() : sock4(NULL), sock6(NULL) {
                                         endpoint(asio::ip::address(
                                                    asio::ip::address_v6::any()),
                                                  wellKnownPorts[i]));
+      sock6->set_option(enableBroadcast);
       gid6.lport = wellKnownPorts[i];
     } catch (...) {}
   }
