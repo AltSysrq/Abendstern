@@ -127,6 +127,7 @@ void GameDiscoverer::dumpResults() const noth {
   for (unsigned i=0; i<results.size(); ++i) {
     const Result& res(results[i]);
     cout << i << '\t'
+         << res.overseer << '\t'
          << (res.passwordProtected? "yes" : "no") << '\t'
          << (unsigned)res.peerCount << '\t'
          << string(res.gameMode, res.gameMode+4) << '\t'
