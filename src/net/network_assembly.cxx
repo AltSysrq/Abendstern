@@ -19,6 +19,7 @@ using namespace std;;
 NetworkAssembly::NetworkAssembly(GameField* field_, Antenna* antenna_)
 : tuner(new Tuner), field(field_), antenna(antenna_)
 {
+  antenna->tuner = tuner;
 }
 
 NetworkAssembly::~NetworkAssembly() {
