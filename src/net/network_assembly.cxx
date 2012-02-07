@@ -46,6 +46,7 @@ void NetworkAssembly::addConnection(NetworkConnection* cxn) noth {
 }
 
 void NetworkAssembly::update(unsigned et) {
+  antenna->processIncomming();
   for (unsigned i=0; i<connections.size(); ++i)
     connections[i]->update(et);
 }
