@@ -175,6 +175,16 @@ public:
   seq_t seq() noth;
 
   /**
+   * Writes the packet header to the given packet, advancing the pointer
+   * past the packet.
+   * @returns the seq of the packet
+   */
+  seq_t writeHeader(byte*& dst, channel chan) noth;
+
+  /** The size of the common packet header, in bytes. */
+  static const unsigned headerSize = 4;
+
+  /**
    * Sends the given data in a packet to the remote peer.
    * This never throws an exception; if something goes wrong,
    * the connection moves to the Zombie status, and sets

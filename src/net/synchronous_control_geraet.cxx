@@ -76,8 +76,7 @@ void SynchronousControlGeraet::closeConnection(const char* english,
 noth {
   vector<byte> pack(strlen(english)+strlen(l10n)+5+2);
   byte* data = &pack[0];
-  io::write(data, cxn->seq());
-  io::write(data, channel);
+  cxn->writeHeader(data, channel);
   io::write(data, EOT);
   io::writes(data, &pack[pack.size()], string(english));
   io::writes(data, &pack[pack.size()], string(l10n));
@@ -300,8 +299,7 @@ void SynchronousControlGeraet::update(unsigned et) throw() {
           //Send SYN
           byte syn[5];
           byte* synp = syn;
-          io::write(synp, cxn->seq());
-          io::write(synp, channel);
+          cxn->writeHeader(synp, channel);
           io::write(synp, SYN);
           cxn->send(syn, sizeof(syn));
           timeSinceTxn = 0;
@@ -345,9 +343,7 @@ void SynchronousControlGeraet::transmitXon() throw() {
   //so we have (256-5)/4 = 62 maximum elements
   byte xon[256];
   byte* xonp = xon;
-  NetworkConnection::seq_t seq = cxn->seq();
-  io::write(xonp, seq);
-  io::write(xonp, channel);
+  NetworkConnection::seq_t seq = cxn->writeHeader(xonp, channel);
   io::write(xonp, XON);
 
   unsigned i;
@@ -368,9 +364,7 @@ void SynchronousControlGeraet::transmitXof() throw() {
   //so we have (256-5)/2 = 125 maximum elements
   byte xof[256];
   byte* xofp = xof;
-  NetworkConnection::seq_t seq = cxn->seq();
-  io::write(xofp, seq);
-  io::write(xofp, channel);
+  NetworkConnection::seq_t seq = cxn->writeHeader(xofp, channel);
   io::write(xofp, XOF);
 
   unsigned i;
@@ -389,9 +383,7 @@ void SynchronousControlGeraet::transmitAck(NetworkConnection::seq_t aseq)
 throw() {
   byte ack[5+2];
   byte* ackp = ack;
-  NetworkConnection::seq_t seq = cxn->seq();
-  io::write(ackp, seq);
-  io::write(ackp, channel);
+  cxn->writeHeader(ackp, channel);
   io::write(ackp, ACK);
   io::write(ackp, aseq);
   cxn->send(ack, sizeof(ack));

@@ -48,8 +48,7 @@ public:
     if (timeUntilPing < 0) {
       byte pack[] = "xxxxHello, world!";
       byte* pptr = pack;
-      io::write(pptr, parent->seq());
-      io::write(pptr, channel);
+      parent->writeHeader(pptr, channel);
       parent->send(pack, sizeof(pack));
 
       timeUntilPing = 10;

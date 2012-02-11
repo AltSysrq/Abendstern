@@ -151,6 +151,15 @@ NetworkConnection::seq_t NetworkConnection::seq() noth {
   return nextOutSeq++;
 }
 
+NetworkConnection::seq_t NetworkConnection::writeHeader(byte*& dst,
+                                                        channel chan)
+noth {
+  seq_t s = seq();
+  io::write(dst, s);
+  io::write(dst, chan);
+  return s;
+}
+
 void NetworkConnection::send(const byte* data, unsigned len) throw() {
   try {
     parent->antenna->send(endpoint, data, len);
