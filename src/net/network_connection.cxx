@@ -15,6 +15,7 @@
 #include "network_assembly.hxx"
 #include "network_geraet.hxx"
 #include "antenna.hxx"
+#include "tuner.hxx"
 #include "io.hxx"
 #include "synchronous_control_geraet.hxx"
 
