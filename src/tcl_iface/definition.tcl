@@ -1034,6 +1034,9 @@ unsafe {
   fun int getValidationResultA
   fun int getValidationResultB
 
+  fun void networkTestListen
+  fun unsigned networkTestRun cstr unsigned
+
   fun void {audio::ShipMixer::init ship_mixer_init}
   fun void {audio::ShipMixer::end ship_mixer_end}
   fun void debugTclExports

@@ -5445,13 +5445,20 @@ proc {getValidationResultB} {  } {set retpi [uplevel 1 [list {c++ trampoline1293
 set ret $retpi
 return $ret
 }
-proc {ship_mixer_init} {  } {set retpi [uplevel 1 [list {c++ trampoline1295} ]]
+proc {networkTestListen} {  } {set retpi [uplevel 1 [list {c++ trampoline1295} ]]
 return $retpi
 }
-proc {ship_mixer_end} {  } {set retpi [uplevel 1 [list {c++ trampoline1297} ]]
+proc {networkTestRun} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1297} $a0 $a1 ]]
+set ret $retpi
+return $ret
+}
+proc {ship_mixer_init} {  } {set retpi [uplevel 1 [list {c++ trampoline1299} ]]
 return $retpi
 }
-proc {debugTclExports} {  } {set retpi [uplevel 1 [list {c++ trampoline1299} ]]
+proc {ship_mixer_end} {  } {set retpi [uplevel 1 [list {c++ trampoline1301} ]]
+return $retpi
+}
+proc {debugTclExports} {  } {set retpi [uplevel 1 [list {c++ trampoline1303} ]]
 return $retpi
 }
 
@@ -6239,6 +6246,8 @@ set glueClass(ConfReg) yes
 
 set globalConf {}
 trace add variable globalConf {read write unset} accessor1246
+
+
 
 
 

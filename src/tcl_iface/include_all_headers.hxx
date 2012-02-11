@@ -68,6 +68,7 @@
 #include "src/net/network_connection.hxx"
 #include "src/net/packet_processor.hxx"
 #include "src/net/tuner.hxx"
+#include "src/net/network_test.hxx"
 #include "src/secondary/global_chat.hxx"
 #include "src/secondary/light_trail.hxx"
 #include "src/secondary/namegen.hxx"
