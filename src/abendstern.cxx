@@ -196,10 +196,15 @@ static AbendsternGLType analyseGLVersion(const char* vers) {
  * @return The exit status of the program
  */
 int main(int argc, char** argv) {
+  {
+    ofstream out("launchlog.txt", ios::ate|ios::app);
+    out << argv[0] << endl;
+  }
+
   setlocale(LC_NUMERIC, "C");
   //On Windows, replace stdout and stderr with log.txt
   #ifdef WIN32
-  static ofstream logout("log.txt", ios::trunc);
+  static ofstream logout("log.txt", ios::ate|ios::app);
   if (logout) {
     cout.rdbuf(logout.rdbuf());
     cerr.rdbuf(logout.rdbuf());
