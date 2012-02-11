@@ -25,6 +25,11 @@
 
 using namespace std;
 
+/* How long to wait without hearing any response before
+ * killing the connection.
+ */
+#define DISCONNECT_TIME 2048
+
 NetworkConnection::geraetNumMap_t* NetworkConnection::geraetNumMap;
 
 NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
@@ -60,7 +65,17 @@ NetworkConnection::~NetworkConnection() {
 }
 
 void NetworkConnection::update(unsigned et) noth {
-  //TODO: do something
+  field.update(et);
+  for (inchannels_t::const_iterator it = inchannels.begin();
+       it != inchannels.end(); ++it)
+    it->second->update(et);
+  for (outchannels_t::const_iterator it = outchannels.begin();
+       it != outchannels.end(); ++it)
+    it->second->update(et);
+
+  if (lastIncommingTime + DISCONNECT_TIME < SDL_GetTicks()) {
+    scg->closeConnection("Timed out", "timed_out");
+  }
 }
 
 void NetworkConnection::process(const Antenna::endpoint& source,
