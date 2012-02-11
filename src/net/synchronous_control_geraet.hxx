@@ -68,7 +68,8 @@ public:
   /**
    * Opens an outgoing channel.
    *
-   * @param geraet the output Gerät to use with the channel
+   * @param geraet the output Gerät to use with the channel; the setChannel()
+   * function will be called to tell the Gerät of its new channel number.
    * @param number the Gerät number for the remote peer to use
    * @returns the number of the channel that will be opened
    */

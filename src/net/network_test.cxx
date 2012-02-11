@@ -39,7 +39,7 @@ class TestOutputGeraet: public OutputNetworkGeraet {
 
 public:
   TestOutputGeraet(NetworkConnection* par)
-  : parent(par), timeUntilPing(0), pingsLeft(10240)
+  : parent(par), timeUntilPing(0), pingsLeft(2048)
   { }
 
   virtual void update(unsigned et) throw() {

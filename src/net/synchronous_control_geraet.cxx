@@ -59,6 +59,7 @@ noth {
 
   XonDat dat = { chan, number, localGeraet };
   xonsOut.push_back(dat);
+  localGeraet->setChannel(chan);
   return chan;
 }
 
