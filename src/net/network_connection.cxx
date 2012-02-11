@@ -68,7 +68,7 @@ void NetworkConnection::update(unsigned et) noth {
   field.update(et);
   for (inchannels_t::const_iterator it = inchannels.begin();
        it != inchannels.end(); ++it)
-    it->second->update(et);
+    it->second->inputUpdate(et);
   for (outchannels_t::const_iterator it = outchannels.begin();
        it != outchannels.end(); ++it)
     it->second->update(et);

@@ -32,7 +32,7 @@ public:
    * The default does nothing.
    * @param et the time, in milliseconds, since the previous call to update()
    */
-  virtual void update(unsigned et) throw() { }
+  virtual void inputUpdate(unsigned et) throw() { }
 };
 
 /**
