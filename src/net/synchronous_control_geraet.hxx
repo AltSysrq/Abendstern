@@ -52,8 +52,6 @@ public OutputNetworkGeraet {
   //Currently unused channel numbers
   std::deque<NetworkConnection::channel> freeChannels;
 
-  NetworkConnection*const cxn;
-
   /**
    * Constructs a new SynchronousControlGeraet for the given connection.
    * @param cxn the connection to operate on

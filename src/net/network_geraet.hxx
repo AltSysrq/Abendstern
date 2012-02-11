@@ -44,7 +44,20 @@ protected:
    * The output channel to write to.
    */
   NetworkConnection::channel channel;
+
+  /**
+   * The NetworkConnection this Gerät runs under.
+   */
+  NetworkConnection*const cxn;
 public:
+  /**
+   * Constructs an OutputNetworkGeraet on the given NetworkConnection.
+   * The channel number is NOT initialised.
+   */
+  OutputNetworkGeraet(NetworkConnection* cxn_)
+  : cxn(cxn_)
+  { }
+
   /**
    * Updates the OutputNetworkGeraet based on elapsed time.
    *

@@ -29,14 +29,14 @@ static const byte protocolHash[16] = {0};
 
 SynchronousControlGeraet::SynchronousControlGeraet(NetworkConnection* cxn_,
                                                    bool incomming)
-: lastXonLen(0),
+: OutputNetworkGeraet(cxn_),
+  lastXonLen(0),
   lastXofLen(0),
 //If outgoing, set timeSinceTxn to a high value so we "retransmit"
 //the STX on the next call to update().
   timeSinceTxn(incomming? 0 : 99999),
   lastPackOutSeq(0),
-  lastPackOutType(STX),
-  cxn(cxn_)
+  lastPackOutType(STX)
 {
   setChannel(0);
   for (NetworkConnection::channel chan=1; chan != 0; ++chan)
