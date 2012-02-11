@@ -190,7 +190,7 @@ public:
    * the connection moves to the Zombie status, and sets
    * its disconnectReason appropriately.
    */
-  void send(const byte* data, unsigned len) noth throw();
+  void send(const byte* data, unsigned len) throw();
 
   /**
    * Returns the reason for disconnection.
