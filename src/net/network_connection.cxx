@@ -50,9 +50,13 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
 
   if (incomming)
     scg->transmitAck(0);
+
+  parent->getTuner()->connect(endpoint, this);
 }
 
 NetworkConnection::~NetworkConnection() {
+  parent->getTuner()->disconnect(endpoint);
+
   //Other Geräte depend on the SCG in deletion, so delete it
   //at the end and ignore it within the loops
   for (inchannels_t::const_iterator it = inchannels.begin();
@@ -96,6 +100,8 @@ noth {
   io::read(data, seq);
   io::read(data, chan);
   datlen -= 4;
+  cout << "Receive seq=" << seq << " on chan=" << chan
+       << " with length=" << datlen << " from " << source << endl;
 
   //Range check
   if (seq-greatestSeq < 1024 || greatestSeq-seq < 1024) {

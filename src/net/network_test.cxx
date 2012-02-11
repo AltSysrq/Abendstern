@@ -16,6 +16,7 @@
 #include "connection_listener.hxx"
 #include "synchronous_control_geraet.hxx"
 #include "io.hxx"
+#include "src/sim/game_field.hxx"
 
 unsigned globlcount;
 
@@ -79,7 +80,8 @@ public:
 };
 
 void networkTestListen() {
-  NetworkAssembly assembly(NULL, &antenna);
+  GameField field(1,1);
+  NetworkAssembly assembly(&field, &antenna);
   assembly.addPacketProcessor(new TestListener(&assembly, assembly.getTuner()));
 
   while (assembly.numConnections() == 0
@@ -91,7 +93,8 @@ void networkTestListen() {
 
 unsigned networkTestRun(const char* addrstr, unsigned portn) {
   globlcount = 0;
-  NetworkAssembly assembly(NULL, &antenna);
+  GameField field(1,1);
+  NetworkAssembly assembly(&field, &antenna);
   NetworkConnection::registerGeraetCreator(&TestInputGeraet::create, 999);
 
   asio::ip::udp::endpoint endpoint(asio::ip::address::from_string(addrstr),
