@@ -105,7 +105,7 @@ Contents:
 --- STANDARD GERÄTE ---
 The Geräte below are used by the protocol, and are not specific to Abendstern.
 
-SYNCHRONOUS COMMAND GERÄTE
+SYNCHRONOUS COMMAND GERÄT
 The SCG is used for controlling the protocol itself. The SCG does not have an
 assigned number, and it is an error to close the channel is open on.
 
