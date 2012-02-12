@@ -186,7 +186,10 @@ those Geräte that use it (called an AAG-client hereonout).
 
 Whenever a peer receives packets to be acknowledged, it stores the sequence
 numbers in ascending order until all current packets have been processed, then
-sends a packet with the following repeating structure:
+sends a packet with the following structure:
+  uint16        Greatest sequence number acknowledged in the most recent
+                acknowledgement sent.
+  Repeating for the rest of the packet:
   byte          MSB of sequence numbers being acknowledged
   byte[8]       Bitset of sequence number LSBs being acknowledged
 Each sequence number encoded is a positive acknowledgement of that packet; any
@@ -194,12 +197,17 @@ packets not listed that have a sequence number less than (modulo) the greatest
 sequence number are considered dropped, and must be ignored by the peer after
 the acknowledgement packet has been sent.
 
+The initial sequence number allows the receiving peer to know the first sequence
+number being negatively acknowledged, in case a prior acknowledgement packet was
+not delivered.
+
 It is not an error to acknowledge the same packet more than once; this will
 happen, for example, if an acknowledgement is not acknowledged before the next
 acknowledgement packet is sent.
 
 The AAG is itself an AAG-client so that it can know whether its acknowledgements
-reach the remote peer.
+reach the remote peer. It will retransmit its acknowledgement packets on
+negative acknowledgement, or after a sufficient delay.
 
 SEQUNTIAL TEXT GERÄT
 Gerät number: 2
