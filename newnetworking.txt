@@ -180,27 +180,26 @@ payload data is implementation-, platform-, and build-specific.
 ASYNCHRONOUS ACKNOWLEDGEMENT GERÄT
 Gerät number: 1
 Number per connection: 0 or 1 (effectively 1, since everything uses it)
-This is a block Gerät. Structure:
-  byte[256]     Bitset of acknowledgement of received packets
-  byte[256]     Bitset of sent packts that must be acknowledged
-The AAD provides a layer that guarantees eventual delivery of packets, as well
-as the ability to determine whether a peer has received a certain packet.
 
-When a packet is sent through this Gerät, the bit in the sent bitset
-corresponding to that package will be set to 1. Once the remote peer has
-received that packet and the change of the bitset, it will set the bit in the
-acknowledgement bitset corresponding to that packet to 1. When the local peer
-receives this acknowledgement, it clears that bit in the sent bitset, allowing
-the remote peer to do the same in the acknowledgement set.
+The Asynchronous Acknowledgement Gerät provides delivery status notification to
+those Geräte that use it (called an AAG-client hereonout).
 
-Since packets may be received before their corresponding request-for-
-acknowledgement, the Gerät will handle this by storing these packet numbers in
-anticipation of the request.
+Whenever a peer receives packets to be acknowledged, it stores the sequence
+numbers in ascending order until all current packets have been processed, then
+sends a packet with the following repeating structure:
+  byte          MSB of sequence numbers being acknowledged
+  byte[8]       Bitset of sequence number LSBs being acknowledged
+Each sequence number encoded is a positive acknowledgement of that packet; any
+packets not listed that have a sequence number less than (modulo) the greatest
+sequence number are considered dropped, and must be ignored by the peer after
+the acknowledgement packet has been sent.
 
-This Gerät is self-dependent; that is, it uses its own functionality to ensure
-delivery of its packets.
+It is not an error to acknowledge the same packet more than once; this will
+happen, for example, if an acknowledgement is not acknowledged before the next
+acknowledgement packet is sent.
 
-Packets that remain unacknowledged will be retransmitted a few times per second.
+The AAG is itself an AAG-client so that it can know whether its acknowledgements
+reach the remote peer.
 
 SEQUNTIAL TEXT GERÄT
 Gerät number: 2
