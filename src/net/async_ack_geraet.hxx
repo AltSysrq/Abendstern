@@ -8,7 +8,8 @@
 #define ASYNC_ACK_GERAET_HXX_
 
 #include <map>
-#include <utility>
+#include <set>
+#include <deque>
 
 #include "network_geraet.hxx"
 
@@ -47,6 +48,8 @@ protected:
   throw() = 0;
 
 public:
+  virtual ~AAGReceiver();
+
   /**
    * Performs class-specific operations, then calls receiveAccepted().
    * <strong>Do not override this function!</strong>
@@ -73,10 +76,14 @@ class AAGSender: public OutputNetworkGeraet {
 protected:
   /**
    * Constructs an AAGSender operating on the given AAG.
+   * If no NetworkConnection is specified, it defaults to
+   * the one associated with the AAG.
    */
-  AAGSender(AsyncAckGeraet* aag);
+  AAGSender(AsyncAckGeraet* aag, NetworkConnection* cxn = NULL);
+public:
   virtual ~AAGSender();
 
+protected:
   /**
    * Sends the given data to the remote peer, using the AAG
    * to track its status.
@@ -91,7 +98,7 @@ protected:
    * @param len the length of data
    * @returns the sequence number of the sent packet
    */
-  NetworkConnection::seq_t send(const byte* data, unsigned len) throw();
+  NetworkConnection::seq_t send(byte* data, unsigned len) throw();
 
   /**
    * Called when the packet of the given sequence number was positively
@@ -128,6 +135,10 @@ class AsyncAckGeraet: public AAGReceiver, public AAGSender {
   /* Map pending sequence numbers to their senders. */
   typedef std::map<seq_t,AAGSender*> pendingOut_t;
   pendingOut_t pendingOut;
+
+  /* Associated senders and receivers */
+  std::set<AAGSender*> senders;
+  std::set<AAGReceiver*> receivers;
 
   /* Recently negatively acknowledged packets, and a queue to quickly
    * remove them in the correct order.
@@ -173,12 +184,15 @@ private:
   void add(seq_t, AAGSender*) noth;
   /* Removes a packet by seq */
   void remove(seq_t) noth;
-  /* Removes all packets for the given seq */
-  void remove(AAGSender*) noth;
   /* Notifies the AAG of receiving the given packet seq;
    * returns whether it should actually be processed.
    */
   bool incomming(seq_t) noth;
+
+  void assocReceiver(AAGReceiver*) noth;
+  void disassocReceiver(AAGReceiver*) noth;
+  void assocSender(AAGSender*) noth;
+  void disassocSender(AAGSender*) noth;
 };
 
 #endif /* ASYNC_ACK_GERAET_HXX_ */

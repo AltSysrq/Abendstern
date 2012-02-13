@@ -170,6 +170,7 @@ COMMONSOURCES= \
 ./net/network_assembly.cxx \
 ./net/network_connection.cxx \
 ./net/synchronous_control_geraet.cxx \
+./net/async_ack_geraet.cxx \
 ./net/game_advertiser.cxx \
 ./net/game_discoverer.cxx \
 ./net/network_test.cxx \
