@@ -8,8 +8,11 @@
 #include <map>
 #include <set>
 #include <deque>
+#include <iostream>
+#include <cstring>
 
 #include "async_ack_geraet.hxx"
+#include "io.hxx"
 
 using namespace std;
 
@@ -73,7 +76,7 @@ void AAGSender::forget(NetworkConnection::seq_t seq) throw() {
 
 AsyncAckGeraet::AsyncAckGeraet(NetworkConnection* cxn)
 : AAGReceiver(this), AAGSender(this, cxn),
-  lastGreatestSeq(0), timeSinceReceive(0)
+  lastGreatestSeq(0)
 {
 }
 
@@ -88,20 +91,113 @@ AsyncAckGeraet::~AsyncAckGeraet() {
 }
 
 void AsyncAckGeraet::update(unsigned et) throw() {
-  //TODO
+  //Send acknowledgement packet if there is anything to acknowledge
+  if (!toAcknowledge.empty()) {
+    //Update recent queue
+    for (set<seq_t>::const_iterator it = toAcknowledge.begin();
+         it != toAcknowledge.end(); ++it)
+      recentQueue.push_back(*it);
+    //Remove stale entries
+    while (recentQueue.size() >= 1024) {
+      recentNak.erase(recentQueue.front());
+      recentQueue.pop_front();
+    }
+
+    sendAck(toAcknowledge, lastGreatestSeq);
+    //Record the packets we NAKed
+    seq_t ln = lastGreatestSeq;
+    for (set<seq_t>::const_iterator it = toAcknowledge.begin();
+         it != toAcknowledge.end(); ++it) {
+      seq_t curr = *it;
+      for (seq_t i = ln+1; i != curr; ++i) {
+        //Add this one
+        recentNak.insert(i);
+      }
+    }
+
+    //Clear current acks
+    lastGreatestSeq = 1 + *toAcknowledge.rbegin();
+    toAcknowledge.clear();
+  }
+}
+
+void AsyncAckGeraet::sendAck(const set<seq_t>& ack, seq_t base) noth {
+  //The length is <header>+<seq>+(7+lastAck)/8
+  //(The +7 to effect a round-up)
+  vector<byte> datavec(NetworkConnection::headerSize+sizeof(seq_t) +
+                        (7+*toAcknowledge.rbegin())/8, 0);
+  byte* data = &datavec[4];
+  io::write(data, base);
+
+  // Set all positive bits in the bitset
+  for (set<seq_t>::const_iterator it = ack.begin(); it != ack.end(); ++it) {
+    seq_t s = *it;
+    data[s >> 3] |= (1 << (s & 7));
+  }
+
+  //Transmit and store for later
+  seq_t outseq = send(&datavec[0], datavec.size());
+  pendingAcks[outseq] = make_pair(base, ack);
 }
 
 void AsyncAckGeraet::receiveAccepted(seq_t seq, const byte* data, unsigned len)
 throw() {
-  //TODO
+  //The length must be at least 3
+  if (len < 3) {
+    cerr << "Warning: Ignoring ack of invalid length " << len
+         << " from source " << cxn->endpoint << endl;
+    return;
+  }
+
+  seq_t base, lastAcked;
+  io::read(data, base);
+  len -= 2;
+
+  //Positive acknowledgements
+  for (seq_t suboff = 0; suboff < 8*len; ++suboff) {
+    if ((data[suboff>>3] >> (suboff&7)) & 1) {
+      //Positive acknowledgement
+      seq_t s = base+suboff;
+      lastAcked = s;
+
+      pendingOut_t::iterator it = pendingOut.find(s);
+      if (it != pendingOut.end()) {
+        //It is a packet we were waiting for status on.
+        //Copy the sender and ack it after removing to
+        //avoid the possibility of concurrent modification
+        AAGSender* sender = it->second;
+        pendingOut.erase(it);
+        sender->ack(s);
+      }
+    }
+  }
+
+  //Scan for negative acknowledgements.
+  for (seq_t suboff = 0; suboff+base != lastAcked; ++suboff) {
+    if (!((data[suboff>>3] >> (suboff&7)) & 1)) {
+      //Negative acknowledgement for relavent packet
+      seq_t s = base+suboff;
+
+      pendingOut_t::iterator it = pendingOut.find(s);
+      if (it != pendingOut.end()) {
+        //Packet waiting for status
+        AAGSender* sender = it->second;
+        pendingOut.erase(it);
+        sender->nak(s);
+      }
+    }
+  }
 }
 
 void AsyncAckGeraet::ack(seq_t seq) throw() {
-  //TODO
+  //ACK received successfully, remove it from storage
+  pendingAcks.erase(seq);
 }
 
 void AsyncAckGeraet::nak(seq_t seq) throw() {
-  //TODO
+  //ACK not received, retransmit
+  const pair<seq_t, set<seq_t> >& pack = pendingAcks[seq];
+  sendAck(pack.second, pack.first);
 }
 
 void AsyncAckGeraet::add(seq_t seq, AAGSender* sender) noth {
@@ -117,7 +213,7 @@ bool AsyncAckGeraet::incomming(seq_t seq) noth {
   if (recentNak.count(seq)) return false;
 
   // Accept it
-  toAcknowledge.insert(seq);
+  toAcknowledge.insert(seq+lastGreatestSeq);
   return true;
 }
 

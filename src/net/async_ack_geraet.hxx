@@ -142,23 +142,27 @@ class AsyncAckGeraet: public AAGReceiver, public AAGSender {
 
   /* Recently negatively acknowledged packets, and a queue to quickly
    * remove them in the correct order.
+   *
+   * All packets ACKed or NAKed are listed in the queue, so that the recentNak
+   * set does not have persistent entries on strong links.
    */
   std::set<seq_t> recentNak;
-  std::deque<seq_t> recentNakQueue;
+  std::deque<seq_t> recentQueue;
 
-  /* Current set of packets to acknowledge. */
+  /* Current set of packets to acknowledge.
+   * Sequence numbers are relative to lastGreatestSeq.
+   */
   std::set<seq_t> toAcknowledge;
   /* The greatest (relatively) seq acknowledged in the most recent packet */
   seq_t lastGreatestSeq;
 
   /* Map outgoing seqs to acknowledgement packet contents;
    * the first element in the pair is the lastGreatestSeq for the
-   * packet (not the seq it was sent with).
+   * packet (not the seq it was sent with), and is thus the value
+   * all other seqs are relative to.
    */
-  std::map<seq_t, std::pair<seq_t, std::set<seq_t> > > pendingAcks;
-
-  /* Time since an ack packet was received. */
-  unsigned timeSinceReceive;
+  typedef std::map<seq_t, std::pair<seq_t, std::set<seq_t> > > pendingAcks_t;
+  pendingAcks_t pendingAcks;
 
 public:
   /** The Gerät number for the AAG */
@@ -179,6 +183,11 @@ protected:
 
 
 private:
+  /* Encodes and transmits an acknowledgement for the given set of
+   * sequence numbers and the previous "greatest" sequence number.
+   */
+  void sendAck(const std::set<seq_t>&, seq_t prevGreatest) noth;
+
   /* Interface for AAGSender/AAGReceiver */
   /* Adds a packet requiring acknowledgement */
   void add(seq_t, AAGSender*) noth;
