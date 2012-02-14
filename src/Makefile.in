@@ -204,6 +204,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-async_ack_geraet.$(OBJEXT) \
 	abendsternuxgl14-game_advertiser.$(OBJEXT) \
 	abendsternuxgl14-game_discoverer.$(OBJEXT) \
+	abendsternuxgl14-seq_text_geraet.$(OBJEXT) \
 	abendsternuxgl14-network_test.$(OBJEXT) \
 	abendsternuxgl14-namegen.$(OBJEXT) \
 	abendsternuxgl14-light_trail.$(OBJEXT) \
@@ -391,6 +392,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-async_ack_geraet.$(OBJEXT) \
 	abendsternuxgl21-game_advertiser.$(OBJEXT) \
 	abendsternuxgl21-game_discoverer.$(OBJEXT) \
+	abendsternuxgl21-seq_text_geraet.$(OBJEXT) \
 	abendsternuxgl21-network_test.$(OBJEXT) \
 	abendsternuxgl21-namegen.$(OBJEXT) \
 	abendsternuxgl21-light_trail.$(OBJEXT) \
@@ -576,6 +578,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-async_ack_geraet.$(OBJEXT) \
 	abendsternuxgl32-game_advertiser.$(OBJEXT) \
 	abendsternuxgl32-game_discoverer.$(OBJEXT) \
+	abendsternuxgl32-seq_text_geraet.$(OBJEXT) \
 	abendsternuxgl32-network_test.$(OBJEXT) \
 	abendsternuxgl32-namegen.$(OBJEXT) \
 	abendsternuxgl32-light_trail.$(OBJEXT) \
@@ -907,6 +910,7 @@ COMMONSOURCES = \
 ./net/async_ack_geraet.cxx \
 ./net/game_advertiser.cxx \
 ./net/game_discoverer.cxx \
+./net/seq_text_geraet.cxx \
 ./net/network_test.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \
@@ -1180,6 +1184,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-self_destruct_charge.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-semiguided_bomb.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-semiguided_bomb_launcher.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-seq_text_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-shader.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-shield.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-shield_generator.Po@am__quote@
@@ -1360,6 +1365,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-self_destruct_charge.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-semiguided_bomb.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-semiguided_bomb_launcher.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-seq_text_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-shader.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-shield.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-shield_generator.Po@am__quote@
@@ -1540,6 +1546,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-self_destruct_charge.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-semiguided_bomb.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-semiguided_bomb_launcher.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-seq_text_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-shader.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-shield.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-shield_generator.Po@am__quote@
@@ -3753,6 +3760,20 @@ abendsternuxgl14-game_discoverer.obj: ./net/game_discoverer.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/game_discoverer.cxx' object='abendsternuxgl14-game_discoverer.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-game_discoverer.obj `if test -f './net/game_discoverer.cxx'; then $(CYGPATH_W) './net/game_discoverer.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/game_discoverer.cxx'; fi`
+
+abendsternuxgl14-seq_text_geraet.o: ./net/seq_text_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-seq_text_geraet.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-seq_text_geraet.Tpo -c -o abendsternuxgl14-seq_text_geraet.o `test -f './net/seq_text_geraet.cxx' || echo '$(srcdir)/'`./net/seq_text_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-seq_text_geraet.Tpo $(DEPDIR)/abendsternuxgl14-seq_text_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/seq_text_geraet.cxx' object='abendsternuxgl14-seq_text_geraet.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-seq_text_geraet.o `test -f './net/seq_text_geraet.cxx' || echo '$(srcdir)/'`./net/seq_text_geraet.cxx
+
+abendsternuxgl14-seq_text_geraet.obj: ./net/seq_text_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-seq_text_geraet.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-seq_text_geraet.Tpo -c -o abendsternuxgl14-seq_text_geraet.obj `if test -f './net/seq_text_geraet.cxx'; then $(CYGPATH_W) './net/seq_text_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/seq_text_geraet.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-seq_text_geraet.Tpo $(DEPDIR)/abendsternuxgl14-seq_text_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/seq_text_geraet.cxx' object='abendsternuxgl14-seq_text_geraet.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-seq_text_geraet.obj `if test -f './net/seq_text_geraet.cxx'; then $(CYGPATH_W) './net/seq_text_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/seq_text_geraet.cxx'; fi`
 
 abendsternuxgl14-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-network_test.Tpo -c -o abendsternuxgl14-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx
@@ -6274,6 +6295,20 @@ abendsternuxgl21-game_discoverer.obj: ./net/game_discoverer.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-game_discoverer.obj `if test -f './net/game_discoverer.cxx'; then $(CYGPATH_W) './net/game_discoverer.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/game_discoverer.cxx'; fi`
 
+abendsternuxgl21-seq_text_geraet.o: ./net/seq_text_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-seq_text_geraet.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-seq_text_geraet.Tpo -c -o abendsternuxgl21-seq_text_geraet.o `test -f './net/seq_text_geraet.cxx' || echo '$(srcdir)/'`./net/seq_text_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-seq_text_geraet.Tpo $(DEPDIR)/abendsternuxgl21-seq_text_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/seq_text_geraet.cxx' object='abendsternuxgl21-seq_text_geraet.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-seq_text_geraet.o `test -f './net/seq_text_geraet.cxx' || echo '$(srcdir)/'`./net/seq_text_geraet.cxx
+
+abendsternuxgl21-seq_text_geraet.obj: ./net/seq_text_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-seq_text_geraet.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-seq_text_geraet.Tpo -c -o abendsternuxgl21-seq_text_geraet.obj `if test -f './net/seq_text_geraet.cxx'; then $(CYGPATH_W) './net/seq_text_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/seq_text_geraet.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-seq_text_geraet.Tpo $(DEPDIR)/abendsternuxgl21-seq_text_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/seq_text_geraet.cxx' object='abendsternuxgl21-seq_text_geraet.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-seq_text_geraet.obj `if test -f './net/seq_text_geraet.cxx'; then $(CYGPATH_W) './net/seq_text_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/seq_text_geraet.cxx'; fi`
+
 abendsternuxgl21-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-network_test.Tpo -c -o abendsternuxgl21-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-network_test.Tpo $(DEPDIR)/abendsternuxgl21-network_test.Po
@@ -8793,6 +8828,20 @@ abendsternuxgl32-game_discoverer.obj: ./net/game_discoverer.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/game_discoverer.cxx' object='abendsternuxgl32-game_discoverer.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-game_discoverer.obj `if test -f './net/game_discoverer.cxx'; then $(CYGPATH_W) './net/game_discoverer.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/game_discoverer.cxx'; fi`
+
+abendsternuxgl32-seq_text_geraet.o: ./net/seq_text_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-seq_text_geraet.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-seq_text_geraet.Tpo -c -o abendsternuxgl32-seq_text_geraet.o `test -f './net/seq_text_geraet.cxx' || echo '$(srcdir)/'`./net/seq_text_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-seq_text_geraet.Tpo $(DEPDIR)/abendsternuxgl32-seq_text_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/seq_text_geraet.cxx' object='abendsternuxgl32-seq_text_geraet.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-seq_text_geraet.o `test -f './net/seq_text_geraet.cxx' || echo '$(srcdir)/'`./net/seq_text_geraet.cxx
+
+abendsternuxgl32-seq_text_geraet.obj: ./net/seq_text_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-seq_text_geraet.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-seq_text_geraet.Tpo -c -o abendsternuxgl32-seq_text_geraet.obj `if test -f './net/seq_text_geraet.cxx'; then $(CYGPATH_W) './net/seq_text_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/seq_text_geraet.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-seq_text_geraet.Tpo $(DEPDIR)/abendsternuxgl32-seq_text_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/seq_text_geraet.cxx' object='abendsternuxgl32-seq_text_geraet.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-seq_text_geraet.obj `if test -f './net/seq_text_geraet.cxx'; then $(CYGPATH_W) './net/seq_text_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/seq_text_geraet.cxx'; fi`
 
 abendsternuxgl32-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-network_test.Tpo -c -o abendsternuxgl32-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx

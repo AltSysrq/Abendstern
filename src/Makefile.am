@@ -173,6 +173,7 @@ COMMONSOURCES= \
 ./net/async_ack_geraet.cxx \
 ./net/game_advertiser.cxx \
 ./net/game_discoverer.cxx \
+./net/seq_text_geraet.cxx \
 ./net/network_test.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \
