@@ -68,6 +68,7 @@
 #include "src/net/network_connection.hxx"
 #include "src/net/network_geraet.hxx"
 #include "src/net/packet_processor.hxx"
+#include "src/net/seq_text_geraet.hxx"
 #include "src/net/tuner.hxx"
 #include "src/net/network_test.hxx"
 #include "src/secondary/global_chat.hxx"

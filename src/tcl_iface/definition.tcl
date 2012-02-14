@@ -942,6 +942,18 @@ unsafe {
   }
   class final OutputNetworkGeraet {} {
   }
+  class final AsyncAckGeraet {} {}
+  class final SeqTextOutputGeraet OutputNetworkGeraet {
+    constructor default AsyncAckGeraet*
+    fun void send {} string
+  }
+  # While this is technically a ReliableSender, Tcl doesn't need
+  # to know about that class.
+  class abstract-extendable SeqTextInputGeraet InputNetworkGeraet {
+    constructor default AsyncAckGeraet*
+    fun void receiveText {noth purevirtual} string
+  }
+
   newFunType InputNetworkGeraet* NetworkConnection*
 }
 

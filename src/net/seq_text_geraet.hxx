@@ -19,6 +19,8 @@
  * guaranteeing proper ordering of the messages.
  */
 class SeqTextInputGeraet: public AAGReceiver {
+  friend class TclSeqTextInputGeraet;
+
   Uint64 nextMessageSeq;
   typedef std::map<Uint64, std::string> pending_t;
   pending_t pending;
@@ -40,7 +42,7 @@ protected:
    * Called whenever a message is received and is ready to process
    * (ie, it is the immediate next message).
    */
-  virtual void receiveText(const std::string&) noth = 0;
+  virtual void receiveText(std::string) noth = 0;
 };
 
 /**
