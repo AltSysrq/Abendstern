@@ -182,6 +182,7 @@ throw() {
 
   seq_t base, lastAcked;
   io::read(data, base);
+  lastAcked = base;
   len -= 2;
 
   //Positive acknowledgements
