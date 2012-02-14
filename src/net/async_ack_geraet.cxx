@@ -77,6 +77,33 @@ void AAGSender::forget(NetworkConnection::seq_t seq) throw() {
 }
 
 
+ReliableSender::ReliableSender(AsyncAckGeraet* aag,
+                               DeletionStrategy ds)
+: AAGSender(aag, ds),
+  nextId(0)
+{ }
+
+unsigned ReliableSender::send(byte* data, unsigned len) throw() {
+  NetworkConnection::seq_t seq = AAGSender::send(data, len);
+  unsigned id = nextId++;
+  pending.insert(make_pair(seq, make_pair(id, vector<byte>(data, data+len))));
+  return id;
+}
+
+void ReliableSender::ack(NetworkConnection::seq_t seq) throw() {
+  delivered(pending[seq].first);
+  pending.erase(seq);
+}
+
+void ReliableSender::nak(NetworkConnection::seq_t seq) throw() {
+  pair<unsigned, vector<byte> >& item = pending[seq];
+  NetworkConnection::seq_t ns = AAGSender::send(&item.second[0],
+                                                item.second.size());
+  pending[ns] = item;
+  pending.erase(seq);
+}
+
+
 AsyncAckGeraet::AsyncAckGeraet(NetworkConnection* cxn)
 : AAGReceiver(this, InputNetworkGeraet::DSNormal),
   AAGSender(this, OutputNetworkGeraet::DSNormal, cxn),

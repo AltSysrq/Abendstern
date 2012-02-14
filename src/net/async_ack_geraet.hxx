@@ -10,6 +10,7 @@
 #include <map>
 #include <set>
 #include <deque>
+#include <vector>
 
 #include "network_geraet.hxx"
 
@@ -122,6 +123,47 @@ protected:
    * be called for this packet.
    */
   void forget(NetworkConnection::seq_t) throw();
+};
+
+/**
+ * Extends AAGSender to perform the rather common task of delivering
+ * packets reliably --- that is, packets which are not received by
+ * the destination are retransmitted as necessary.
+ *
+ * Note that, due to this behaviour, the subclass canNOT rely on using
+ * the sequence numbers of packets to identify them; if it needs
+ * identification, it must use its own sequence system.
+ */
+class ReliableSender: public AAGSender {
+  std::map<NetworkConnection::seq_t,
+           std::pair<unsigned, std::vector<byte> > > pending;
+  unsigned nextId;
+
+public:
+  /**
+   * Constructs a ReliableSender with the given AAG
+   * and DeletionStrategy, which defaults to DSNormal.
+   */
+  ReliableSender(AsyncAckGeraet*,
+                 OutputNetworkGeraet::DeletionStrategy ds = DSNormal);
+
+  /**
+   * Sends the given packet data, ensuring that the packet is
+   * eventually delivered.
+   * @returns a (mostly) unique ID identifying this packet internally.
+   * The id number will be unique until integer wraparound takes effect.
+   */
+  unsigned send(byte*, unsigned len) throw();
+  /**
+   * Notifies the subclass that the packet of the given id has been
+   * confirmed delivered.
+   *
+   * Default does nothing.
+   */
+  virtual void delivered(unsigned) noth { }
+
+  virtual void ack(NetworkConnection::seq_t) throw();
+  virtual void nak(NetworkConnection::seq_t) throw();
 };
 
 /**
