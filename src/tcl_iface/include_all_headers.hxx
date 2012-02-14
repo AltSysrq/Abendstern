@@ -66,6 +66,7 @@
 #include "src/net/globalid.hxx"
 #include "src/net/network_assembly.hxx"
 #include "src/net/network_connection.hxx"
+#include "src/net/network_geraet.hxx"
 #include "src/net/packet_processor.hxx"
 #include "src/net/tuner.hxx"
 #include "src/net/network_test.hxx"

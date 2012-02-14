@@ -937,6 +937,12 @@ unsafe {
     fun float progress
     fun void dumpResults
   }
+
+  class final InputNetworkGeraet {} {
+  }
+  class final OutputNetworkGeraet {} {
+  }
+  newFunType InputNetworkGeraet* NetworkConnection*
 }
 
 enum Setting::Type ST {Setting::TypeInt    Int   } {Setting::TypeInt64   Int64} \
