@@ -21,6 +21,7 @@ class OutputNetworkGeraet;
 class NetworkAssembly;
 class SynchronousControlGeraet;
 class LatencyDiscoveryGeraet;
+class AsyncAckGeraet;
 
 /**
  * Encapsulates all information pertaining to a connection to another peer.
@@ -114,6 +115,8 @@ public:
   NetworkAssembly*const parent;
   ///The SCG used with this NetworkConnection
   SynchronousControlGeraet*const scg;
+  ///The AAG used with this NetworkConnection
+  AsyncAckGeraet*const aag;
 
   /**
    * Constructs a NetworkConnection within the given assembly.

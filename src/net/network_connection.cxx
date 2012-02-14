@@ -18,6 +18,7 @@
 #include "tuner.hxx"
 #include "io.hxx"
 #include "synchronous_control_geraet.hxx"
+#include "async_ack_geraet.hxx"
 
 #include "src/sim/game_field.hxx"
 #include "src/sim/game_object.hxx"
@@ -44,7 +45,8 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
   status(incomming? Established : Connecting),
   endpoint(endpoint_),
   parent(assembly_),
-  scg(new SynchronousControlGeraet(this, incomming))
+  scg(new SynchronousControlGeraet(this, incomming)),
+  aag(new AsyncAckGeraet(this))
 {
   inchannels[0] = scg;
   outchannels[0] = scg;
@@ -66,6 +68,8 @@ NetworkConnection::~NetworkConnection() {
        it != outchannels.end(); ++it)
     if (it->second->deletionStrategy == OutputNetworkGeraet::DSNormal)
       delete it->second;
+
+  delete aag;
   delete scg;
 }
 
