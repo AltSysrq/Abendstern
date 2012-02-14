@@ -29,7 +29,8 @@ static const byte protocolHash[16] = {0};
 
 SynchronousControlGeraet::SynchronousControlGeraet(NetworkConnection* cxn_,
                                                    bool incomming)
-: OutputNetworkGeraet(cxn_),
+: InputNetworkGeraet(InputNetworkGeraet::DSIntrinsic),
+  OutputNetworkGeraet(cxn_, OutputNetworkGeraet::DSIntrinsic),
   lastXonLen(0),
   lastXofLen(0),
 //If outgoing, set timeSinceTxn to a high value so we "retransmit"
@@ -66,6 +67,7 @@ noth {
 void SynchronousControlGeraet::closeChannel(NetworkConnection::channel chan)
 noth {
   OutputNetworkGeraet* geraet = cxn->outchannels[chan];
+  assert(geraet->deletionStrategy == OutputNetworkGeraet::DSNormal);
   cxn->outchannels.erase(cxn->outchannels.find(chan));
   delete geraet;
   xofsOut.push_back(chan);
@@ -253,10 +255,16 @@ throw() {
         //Search for the open channel
         NetworkConnection::inchannels_t::iterator it =
             cxn->inchannels.find(chan);
-        //Remove if exists; silently ignore if not exists
+        //Remove if exists; silently ignore if not exists or if
+        //it is marked Intrinsic or Eternal
         if (it != cxn->inchannels.end()) {
-          delete it->second;
-          cxn->inchannels.erase(it);
+          if (it->second->deletionStrategy != InputNetworkGeraet::DSNormal) {
+            delete it->second;
+            cxn->inchannels.erase(it);
+          } else {
+            cerr << "Warning: Ignoring attempt to close intrinsic or eternal "
+                    "Geraet from " << cxn->endpoint << endl;
+          }
         }
       }
 

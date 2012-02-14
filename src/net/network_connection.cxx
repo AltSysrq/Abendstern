@@ -58,14 +58,14 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
 NetworkConnection::~NetworkConnection() {
   parent->getTuner()->disconnect(endpoint);
 
-  //Other Geräte depend on the SCG in deletion, so delete it
-  //at the end and ignore it within the loops
   for (inchannels_t::const_iterator it = inchannels.begin();
        it != inchannels.end(); ++it)
-    if (it->second != scg) delete it->second;
+    if (it->second->deletionStrategy != InputNetworkGeraet::DSIntrinsic)
+      delete it->second;
   for (outchannels_t::const_iterator it = outchannels.begin();
        it != outchannels.end(); ++it)
-    if (it->second != scg) delete it->second;
+    if (it->second->deletionStrategy == OutputNetworkGeraet::DSNormal)
+      delete it->second;
   delete scg;
 }
 

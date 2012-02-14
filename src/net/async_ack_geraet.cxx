@@ -21,8 +21,9 @@ using namespace std;
  * handle this condition.
  */
 
-AAGReceiver::AAGReceiver(AsyncAckGeraet* aag_)
-: aag(aag_)
+AAGReceiver::AAGReceiver(AsyncAckGeraet* aag_, DeletionStrategy ds)
+: InputNetworkGeraet(ds),
+  aag(aag_)
 {
   aag->assocReceiver(this);
 }
@@ -40,8 +41,10 @@ throw() {
 }
 
 
-AAGSender::AAGSender(AsyncAckGeraet* aag_, NetworkConnection* cxn_)
-: OutputNetworkGeraet(cxn_? cxn_ : aag_->cxn),
+AAGSender::AAGSender(AsyncAckGeraet* aag_,
+                     DeletionStrategy ds,
+                     NetworkConnection* cxn_)
+: OutputNetworkGeraet(cxn_? cxn_ : aag_->cxn, ds),
   aag(aag_)
 {
   aag->assocSender(this);
@@ -75,7 +78,8 @@ void AAGSender::forget(NetworkConnection::seq_t seq) throw() {
 
 
 AsyncAckGeraet::AsyncAckGeraet(NetworkConnection* cxn)
-: AAGReceiver(this), AAGSender(this, cxn),
+: AAGReceiver(this, InputNetworkGeraet::DSNormal),
+  AAGSender(this, OutputNetworkGeraet::DSNormal, cxn),
   lastGreatestSeq(0)
 {
 }

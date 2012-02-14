@@ -16,6 +16,40 @@
 class InputNetworkGeraet: public AObject {
 public:
   /**
+   * DeletionStrategies inform NetworkConnection and the
+   * SynchronousControlGerät how to manage the memory associated
+   * with this input Gerät.
+   */
+  enum DeletionStrategy {
+    /**
+     * The InputNetworkGeraet is input only, and may be externally
+     * closed, is deleted when closed, and is deleted when the NetworkConnection
+     * frees its input Geräte.
+     */
+    DSNormal,
+    /**
+     * The InputNetworkGeraet is bidirectional, and cannot be closed after
+     * being opened. It is deleted when the NetworkConnection frees its
+     * input Geräte.
+     */
+    DSEternal,
+    /**
+     * The InputNetworkGeraet is an intrinsic component of its parent
+     * NetworkConnection. It cannot be closed once opened, and is not freed
+     * along with the other input Geräte.
+     */
+    DSIntrinsic
+  } const deletionStrategy; ///< The DeletionStrategy for this Gerät
+
+  /**
+   * Constructs an InputNetworkGeraet with the given DeletionStrategy,
+   * which defaults to DSNormal.
+   */
+  InputNetworkGeraet(DeletionStrategy ds = DSNormal)
+  : deletionStrategy(ds)
+  { }
+
+  /**
    * Notifies the InputNetworkGeraet that it has received a packet.
    * @param seq the sequence number of the packet
    * @param data the payload of the packet, excluding sequence and channel
@@ -51,11 +85,36 @@ protected:
   NetworkConnection*const cxn;
 public:
   /**
-   * Constructs an OutputNetworkGeraet on the given NetworkConnection.
+   * DeletionStrategies inform the NetworkConnection and the
+   * SynchronousControlGeraet how to manage the memory associated with this
+   * OutputNetworkGeraet.
+   */
+  enum DeletionStrategy {
+    /**
+     * The OutputNetworkGeraet is output only. It will be deleted on closing
+     * and when the parent NetworkConnection frees its output Geräte.
+     */
+    DSNormal,
+    /**
+     * The OutputNetworkGeraet is also an input Gerät. It will not be deleted
+     * when the parent NetworkConnection frees its output Geräte, as this is
+     * assumed to happen when the input Geräte are freed.
+     */
+    DSBidir,
+    /**
+     * The OutputNetworkGeraet is a fundamental part of the parent
+     * NetworkConnection, and is not freed with the other output Geräte.
+     */
+    DSIntrinsic
+  } const deletionStrategy; ///< The DeletionStrategy for this output Gerät
+
+  /**
+   * Constructs an OutputNetworkGeraet on the given NetworkConnection and with
+   * the given DeletionStrategy, which defaults to DSNormal.
    * The channel number is NOT initialised.
    */
-  OutputNetworkGeraet(NetworkConnection* cxn_)
-  : cxn(cxn_)
+  OutputNetworkGeraet(NetworkConnection* cxn_, DeletionStrategy ds = DSNormal)
+  : cxn(cxn_), deletionStrategy(ds)
   { }
 
   /**

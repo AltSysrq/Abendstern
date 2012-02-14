@@ -34,7 +34,8 @@ protected:
   /**
    * Constructs the AAGReceiver to operate on the given AAG.
    */
-  AAGReceiver(AsyncAckGeraet* aag);
+  AAGReceiver(AsyncAckGeraet* aag,
+              InputNetworkGeraet::DeletionStrategy ds = DSNormal);
 
   /**
    * Called whenever a packet is received and is not being dropped
@@ -79,7 +80,9 @@ protected:
    * If no NetworkConnection is specified, it defaults to
    * the one associated with the AAG.
    */
-  AAGSender(AsyncAckGeraet* aag, NetworkConnection* cxn = NULL);
+  AAGSender(AsyncAckGeraet* aag,
+            OutputNetworkGeraet::DeletionStrategy ds = DSNormal,
+            NetworkConnection* cxn = NULL);
 public:
   virtual ~AAGSender();
 
