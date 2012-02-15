@@ -58,7 +58,7 @@ public:
   virtual void update(unsigned et) throw() {
     if (input) {
       string line;
-      for (unsigned i=0; i < 1 && getline(input, line); ++i) {
+      for (unsigned i=0; i < 8 && getline(input, line); ++i) {
         send(line);
       }
     } else {
