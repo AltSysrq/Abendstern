@@ -5,6 +5,11 @@
  * @brief Implements the network testing functions
  */
 
+#include <string>
+#include <vector>
+#include <iostream>
+#include <fstream>
+
 #include <SDL.h>
 #include <asio.hpp>
 
@@ -15,46 +20,50 @@
 #include "network_geraet.hxx"
 #include "connection_listener.hxx"
 #include "synchronous_control_geraet.hxx"
+#include "seq_text_geraet.hxx"
 #include "io.hxx"
 #include "src/sim/game_field.hxx"
 
-unsigned globlcount;
+using namespace std;
 
-class TestInputGeraet: public InputNetworkGeraet {
+static unsigned globlcount;
+static vector<string> textin;
+
+class TestInputGeraet: public SeqTextInputGeraet {
 public:
-  virtual void receive(NetworkConnection::seq_t,
-                       const byte* data, unsigned) throw() {
+  TestInputGeraet(AsyncAckGeraet* aag)
+  : SeqTextInputGeraet(aag)
+  { }
+
+  virtual void receiveText(string str) noth {
+    textin.push_back(str);
     ++globlcount;
   }
 
-  static InputNetworkGeraet* create(NetworkConnection*) {
-    return new TestInputGeraet;
+  static InputNetworkGeraet* create(NetworkConnection* cxn) {
+    return new TestInputGeraet(cxn->aag);
   }
 };
 
-class TestOutputGeraet: public OutputNetworkGeraet {
-  NetworkConnection* parent;
-  signed timeUntilPing;
-  unsigned pingsLeft;
+class TestOutputGeraet: public SeqTextOutputGeraet {
+  ifstream input;
+  signed timeUntilClose;
 
 public:
   TestOutputGeraet(NetworkConnection* par)
-  : OutputNetworkGeraet(par),
-    parent(par), timeUntilPing(0), pingsLeft(2048)
+  : SeqTextOutputGeraet(par->aag),
+    input("tcl/bridge.tcl"), timeUntilClose(1024)
   { }
 
   virtual void update(unsigned et) throw() {
-    timeUntilPing -= et;
-    if (timeUntilPing < 0) {
-      byte pack[] = "xxxxHello, world!";
-      byte* pptr = pack;
-      parent->writeHeader(pptr, channel);
-      parent->send(pack, sizeof(pack));
-
-      timeUntilPing = 10;
-      --pingsLeft;
-      if (!pingsLeft) {
-        parent->scg->closeConnection();
+    if (input) {
+      string line;
+      for (unsigned i=0; i < 8 && getline(input, line); ++i) {
+        send(line);
+      }
+    } else {
+      if ((timeUntilClose -= et) < 0) {
+        cxn->scg->closeConnection();
       }
     }
   }
@@ -74,6 +83,7 @@ public:
   noth {
     NetworkConnection* cxn = new NetworkConnection(nasm, source, true);
     nasm->addConnection(cxn);
+    cxn->scg->openChannel(cxn->aag, cxn->aag->num);
     cxn->scg->openChannel(new TestOutputGeraet(cxn), 999);
     return true;
   }
@@ -99,10 +109,18 @@ unsigned networkTestRun(const char* addrstr, unsigned portn) {
 
   asio::ip::udp::endpoint endpoint(asio::ip::address::from_string(addrstr),
                                    portn);
-  assembly.addConnection(new NetworkConnection(&assembly, endpoint, false));
-  while (assembly.getConnection(0)->getStatus() != NetworkConnection::Zombie) {
+  NetworkConnection* cxn = new NetworkConnection(&assembly, endpoint, false);
+  assembly.addConnection(cxn);
+  cxn->scg->openChannel(cxn->aag, cxn->aag->num);
+  while (cxn->getStatus() != NetworkConnection::Zombie) {
     assembly.update(5);
     SDL_Delay(5);
   }
+
+  //Write text received to file
+  ofstream out("received.txt");
+  for (unsigned i=0; i<textin.size(); ++i)
+    out << textin[i] << endl;
+
   return globlcount;
 }
