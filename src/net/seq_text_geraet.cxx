@@ -47,9 +47,9 @@ throw() {
   pending.insert(make_pair(seq, str));
 
   //Don't let the remote peer make us use lots of memory --- violate
-  //protocol if more than 1024 message accumulate (as this almost
+  //protocol if more than 8192 message accumulate (as this almost
   //certainly indicates malicious intent and not network reordering).
-  if (pending.size() >= 1024) {
+  if (pending.size() >= 8192) {
     nextMessageSeq = pending.begin()->first;
     cerr << "Warning: Sequential Text Geraet violating protocol due to "
             "accumulation of improperly sequenced messages." << endl;
