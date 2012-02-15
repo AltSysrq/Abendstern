@@ -52,7 +52,7 @@ class TestOutputGeraet: public SeqTextOutputGeraet {
 public:
   TestOutputGeraet(NetworkConnection* par)
   : SeqTextOutputGeraet(par->aag),
-    input("tcl/bridge.tcl"), timeUntilClose(1024)
+    input("tcl/bridge.tcl"), timeUntilClose(16384)
   { }
 
   virtual void update(unsigned et) throw() {

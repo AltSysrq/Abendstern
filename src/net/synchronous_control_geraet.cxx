@@ -47,7 +47,9 @@ SynchronousControlGeraet::SynchronousControlGeraet(NetworkConnection* cxn_,
 SynchronousControlGeraet::~SynchronousControlGeraet() {
   //Free OutputNetworkGeraete that were pending opening
   for (unsigned i=0; i<xonsOut.size(); ++i)
-    delete xonsOut[i].localGeraet;
+    if (xonsOut[i].localGeraet->deletionStrategy ==
+        OutputNetworkGeraet::DSNormal)
+      delete xonsOut[i].localGeraet;
 }
 
 NetworkConnection::channel
