@@ -883,6 +883,7 @@ unsafe {
     fun void processIncomming
   }
   const antenna Antenna
+  var packetDropMask unsigned
 
   class final Tuner {} {
     constructor default

@@ -19,6 +19,7 @@ using namespace std;
 
 static asio::io_service iosvc;
 Antenna antenna;
+unsigned packetDropMask = 0;
 
 const unsigned short Antenna::wellKnownPorts[4] = {
 //ABEND, BENDS, ENDST, NDSTE
@@ -175,6 +176,7 @@ void Antenna::processIncomming() throw (asio::system_error) {
     endpoint source;
     unsigned len = sock4->receive_from(asio::buffer(data, sizeof(data)),
                                        source);
+    if (rand() & packetDropMask) continue;
     if (len && tuner)
       tuner->receivePacket(source, this, data, len);
   }
@@ -184,6 +186,7 @@ void Antenna::processIncomming() throw (asio::system_error) {
     unsigned len = sock6->receive_from(asio::buffer(data, sizeof(data)),
                                        source);
 
+    if (rand() & packetDropMask) continue;
     if (len && tuner)
       tuner->receivePacket(source, this, data, len);
   }

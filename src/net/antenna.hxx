@@ -28,6 +28,15 @@ class Tuner;
 typedef unsigned char byte;
 
 /**
+ * In order to aide debugging, any packet where (std::rand() & mask) != 0
+ * happens to be true (mask being this value) will be silently dropped.
+ * This gives a rough simulation of a low-quality link.
+ *
+ * Defaults to zero.
+ */
+extern unsigned packetDropMask;
+
+/**
  * The Antenna class abstracts away some of the immediate interface
  * for sending network packets. It also handles concerns like port
  * selection, as well as determining the local peer's global-unique id.
