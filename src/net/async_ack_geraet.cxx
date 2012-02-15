@@ -164,7 +164,7 @@ void AsyncAckGeraet::sendAck(const set<seq_t>& ack, seq_t base) noth {
   //The length is <header>+<seq>+(7+lastAck)/8
   //(The +7 to effect a round-up)
   vector<byte> datavec(NetworkConnection::headerSize+sizeof(seq_t) +
-                        (7+*toAcknowledge.rbegin()-base)/8, 0);
+                        (7+(*ack.rbegin()-base))/8, 0);
   byte* data = &datavec[NetworkConnection::headerSize];
   io::write(data, base);
 
