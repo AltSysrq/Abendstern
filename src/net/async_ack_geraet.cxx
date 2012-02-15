@@ -153,17 +153,16 @@ void AsyncAckGeraet::update(unsigned et) throw() {
 }
 
 void AsyncAckGeraet::sendAck(const set<seq_t>& ack, seq_t base) noth {
-  //The length is <header>+<seq>+(7+lastAck)/8
-  //(The +7 to effect a round-up)
+  //The length is <header>+<seq>+lastAck/8+1
+  //(The +1 since bits 0..7 require a byte too)
   vector<byte> datavec(NetworkConnection::headerSize+sizeof(seq_t) +
-                        (7+*ack.rbegin())/8, 0);
+                        *ack.rbegin()/8+1, 0);
   byte* data = &datavec[NetworkConnection::headerSize];
   io::write(data, base);
 
   // Set all positive bits in the bitset
   for (set<seq_t>::const_iterator it = ack.begin(); it != ack.end(); ++it) {
     seq_t s = *it;
-    cerr << "Acking " << (s+base) << " (from " << s << "+" << base << ")"<<endl;
     data[s >> 3] |= (1 << (s & 7));
   }
 
@@ -198,7 +197,6 @@ throw() {
         //It is a packet we were waiting for status on.
         //Copy the sender and ack it after removing to
         //avoid the possibility of concurrent modification
-        cerr << "Receive ACK: " << s << endl;
         AAGSender* sender = it->second;
         pendingOut.erase(it);
         sender->ack(s);
@@ -215,7 +213,6 @@ throw() {
       pendingOut_t::iterator it = pendingOut.find(s);
       if (it != pendingOut.end()) {
         //Packet waiting for status
-        cerr << "Receive NAK: " << s << endl;
         AAGSender* sender = it->second;
         pendingOut.erase(it);
         sender->nak(s);
@@ -244,8 +241,6 @@ void AsyncAckGeraet::remove(seq_t seq) noth {
 }
 
 bool AsyncAckGeraet::incomming(seq_t seq) noth {
-  cerr << "AsyncAckGeraet::incomming(" << seq << "): count="
-       << recentNak.count(seq) << endl;
   // Make sure we didn't send a NAK for this packet
   if (recentNak.count(seq)) return false;
 
