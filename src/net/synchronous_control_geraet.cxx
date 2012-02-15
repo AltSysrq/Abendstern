@@ -346,6 +346,7 @@ void SynchronousControlGeraet::transmitStx() throw() {
   cxn->send(stx, sizeof(stx));
   lastPackOutType = STX;
   lastPackOutSeq = 0;
+  timeSinceTxn = 0;
 }
 
 void SynchronousControlGeraet::transmitXon() throw() {
