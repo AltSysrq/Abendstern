@@ -104,6 +104,13 @@ void ReliableSender::nak(NetworkConnection::seq_t seq) throw() {
 }
 
 
+const NetworkConnection::geraet_num AsyncAckGeraet::num =
+  NetworkConnection::registerGeraetCreator(&creator, 1);
+
+InputNetworkGeraet* AsyncAckGeraet::creator(NetworkConnection* cxn) {
+  return cxn->aag;
+}
+
 AsyncAckGeraet::AsyncAckGeraet(NetworkConnection* cxn)
 : AAGReceiver(this, InputNetworkGeraet::DSNormal),
   AAGSender(this, OutputNetworkGeraet::DSNormal, cxn),

@@ -211,7 +211,7 @@ class AsyncAckGeraet: public AAGReceiver, public AAGSender {
 
 public:
   /** The Gerät number for the AAG */
-  static const NetworkConnection::geraet_num num = 1;
+  static const NetworkConnection::geraet_num num;
 
   /**
    * Constructs an AAG for the given NetworkConnection.
@@ -220,6 +220,11 @@ public:
   virtual ~AsyncAckGeraet();
 
   virtual void update(unsigned) throw();
+
+  /**
+   * "Creator" for the AAG.
+   */
+  static InputNetworkGeraet* creator(NetworkConnection*);
 
 protected:
   virtual void receiveAccepted(seq_t, const byte*, unsigned) throw();
