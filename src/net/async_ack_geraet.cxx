@@ -115,7 +115,7 @@ InputNetworkGeraet* AsyncAckGeraet::creator(NetworkConnection* cxn) {
 AsyncAckGeraet::AsyncAckGeraet(NetworkConnection* cxn)
 : AAGReceiver(this, InputNetworkGeraet::DSIntrinsic),
   AAGSender(this, OutputNetworkGeraet::DSIntrinsic, cxn),
-  lastGreatestSeq(0)
+  lastGreatestSeq(0), timeSinceTxn(0)
 {
 }
 
@@ -150,6 +150,27 @@ void AsyncAckGeraet::update(unsigned et) throw() {
     lastGreatestSeq += 1+*toAcknowledge.rbegin();
     toAcknowledge.clear();
   }
+
+  //Check for long-term unacknowledged acks
+  list<seq_t> toNak;
+  Uint32 thresh = SDL_GetTicks() - 2*cxn->getLatency();
+  for (pendingAcks_t::const_iterator it = pendingAcks.begin();
+       it != pendingAcks.end(); ++it)
+    if (it->second.first.second < thresh)
+      toNak.push_back(it->first);
+  //Forget about any packets to fake-NAK, then NAK them
+  for (list<seq_t>::const_iterator it = toNak.begin(); it!=toNak.end(); ++it) {
+    forget(*it);
+    nak(*it);
+  }
+
+  //Check for period of silence
+  timeSinceTxn += et;
+  if (timeSinceTxn > 2*cxn->getLatency()) {
+    //Send empty packet, forget about it
+    byte data[NetworkConnection::headerSize];
+    forget(send(data, sizeof(data)));
+  }
 }
 
 void AsyncAckGeraet::sendAck(const set<seq_t>& ack, seq_t base) noth {
@@ -168,11 +189,14 @@ void AsyncAckGeraet::sendAck(const set<seq_t>& ack, seq_t base) noth {
 
   //Transmit and store for later
   seq_t outseq = send(&datavec[0], datavec.size());
-  pendingAcks[outseq] = make_pair(base, ack);
+  pendingAcks[outseq] = make_pair(make_pair(base, SDL_GetTicks()), ack);
 }
 
 void AsyncAckGeraet::receiveAccepted(seq_t seq, const byte* data, unsigned len)
 throw() {
+  //Ignore dummy packets; they have served their purpose by this point
+  if (!len) return;
+
   //The length must be at least 3
   if (len < 3) {
     cerr << "Warning: Ignoring ack of invalid length " << len
@@ -228,11 +252,13 @@ void AsyncAckGeraet::ack(seq_t seq) throw() {
 
 void AsyncAckGeraet::nak(seq_t seq) throw() {
   //ACK not received, retransmit
-  const pair<seq_t, set<seq_t> >& pack = pendingAcks[seq];
-  sendAck(pack.second, pack.first);
+  const pair<pair<seq_t,Uint32>, set<seq_t> >& pack = pendingAcks[seq];
+  sendAck(pack.second, pack.first.first);
+  pendingAcks.erase(seq);
 }
 
 void AsyncAckGeraet::add(seq_t seq, AAGSender* sender) noth {
+  timeSinceTxn = 0;
   pendingOut.insert(make_pair(seq, sender));
 }
 

@@ -206,8 +206,15 @@ class AsyncAckGeraet: public AAGReceiver, public AAGSender {
    * packet (not the seq it was sent with), and is thus the value
    * all other seqs are relative to.
    */
-  typedef std::map<seq_t, std::pair<seq_t, std::set<seq_t> > > pendingAcks_t;
+  typedef std::map<seq_t, std::pair<std::pair<seq_t,Uint32>,
+                                    std::set<seq_t> > > pendingAcks_t;
   pendingAcks_t pendingAcks;
+
+  /* Time since the most recent sending of a packet from the AAG or any
+   * AAGSender. If this exceeds a certain value, send an empty packet to the
+   * remote AAG to restart the acknowledgement exchanges.
+   */
+  unsigned timeSinceTxn;
 
 public:
   /** The Gerät number for the AAG */

@@ -202,6 +202,14 @@ The AAG is itself an AAG-client so that it can know whether its acknowledgements
 reach the remote peer. It will retransmit its acknowledgement packets on
 negative acknowledgement, or after a sufficient delay.
 
+Since the AAG normally requires the receiving of a packet to trigger the sending
+of an acknowledgement, the AAG will transmit an empty packet every so often if
+it has not sent anything else in that interval.
+
+Since lost acknowledgement packets require a chain of successful retransmissions
+in reverse order to be retransmitted the normal way, any of these packets that
+ages too much will be spontaneously retransmitted and its age reset.
+
 SEQUNTIAL TEXT GERÄT
 Gerät number: 2
 Number per connection: 0 or 1

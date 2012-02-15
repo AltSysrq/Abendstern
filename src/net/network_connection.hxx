@@ -201,6 +201,13 @@ public:
   const std::string& getDisconnectReason() const noth {
     return disconnectReason;
   }
+
+  /**
+   * Returns the latency (round-trip time) of the connection, in ms.
+   */
+  unsigned getLatency() const noth {
+    return latency;
+  }
 };
 
 #endif /* NETWORK_CONNECTION_HXX_ */
