@@ -36,6 +36,7 @@ throw() {
   Uint64 seq;
   const byte* end = data+len;
   io::read(data, seq);
+  cerr << "Seq text: " << seq << endl;
   string str((const char*)data, (const char*)end);
 
   if (pending.count(seq)) {

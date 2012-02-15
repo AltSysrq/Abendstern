@@ -29,7 +29,8 @@ AAGReceiver::AAGReceiver(AsyncAckGeraet* aag_, DeletionStrategy ds)
 }
 
 AAGReceiver::~AAGReceiver() {
-  aag->disassocReceiver(this);
+  if (aag)
+    aag->disassocReceiver(this);
 }
 
 void AAGReceiver::receive(NetworkConnection::seq_t seq,
@@ -112,8 +113,8 @@ InputNetworkGeraet* AsyncAckGeraet::creator(NetworkConnection* cxn) {
 }
 
 AsyncAckGeraet::AsyncAckGeraet(NetworkConnection* cxn)
-: AAGReceiver(this, InputNetworkGeraet::DSNormal),
-  AAGSender(this, OutputNetworkGeraet::DSNormal, cxn),
+: AAGReceiver(this, InputNetworkGeraet::DSIntrinsic),
+  AAGSender(this, OutputNetworkGeraet::DSIntrinsic, cxn),
   lastGreatestSeq(0)
 {
 }
@@ -204,6 +205,7 @@ throw() {
         //It is a packet we were waiting for status on.
         //Copy the sender and ack it after removing to
         //avoid the possibility of concurrent modification
+        cerr << "Receive ACK: " << s << endl;
         AAGSender* sender = it->second;
         pendingOut.erase(it);
         sender->ack(s);
@@ -220,6 +222,7 @@ throw() {
       pendingOut_t::iterator it = pendingOut.find(s);
       if (it != pendingOut.end()) {
         //Packet waiting for status
+        cerr << "Receive NAK: " << s << endl;
         AAGSender* sender = it->second;
         pendingOut.erase(it);
         sender->nak(s);
