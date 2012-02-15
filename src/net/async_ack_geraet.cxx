@@ -133,9 +133,8 @@ void AsyncAckGeraet::update(unsigned et) throw() {
   //Send acknowledgement packet if there is anything to acknowledge
   if (!toAcknowledge.empty()) {
     //Update recent queue
-    for (set<seq_t>::const_iterator it = toAcknowledge.begin();
-         it != toAcknowledge.end(); ++it)
-      recentQueue.push_back(*it);
+    for (seq_t i = 0; i != (*toAcknowledge.rbegin())+1; ++i)
+      recentQueue.push_back(i+lastGreatestSeq);
     //Remove stale entries
     while (recentQueue.size() >= 1024) {
       recentNak.erase(recentQueue.front());
@@ -144,18 +143,11 @@ void AsyncAckGeraet::update(unsigned et) throw() {
 
     sendAck(toAcknowledge, lastGreatestSeq);
     //Record the packets we NAKed
-    seq_t ln = lastGreatestSeq;
-    for (set<seq_t>::const_iterator it = toAcknowledge.begin();
-         it != toAcknowledge.end(); ++it) {
-      seq_t curr = *it;
-      for (seq_t i = ln+1; i != curr; ++i) {
-        //Add this one
-        recentNak.insert(i);
-      }
-    }
+    for (seq_t i = 0; i != *toAcknowledge.rbegin(); ++i)
+      recentNak.insert(i+lastGreatestSeq);
 
     //Clear current acks
-    lastGreatestSeq = 1 + *toAcknowledge.rbegin();
+    lastGreatestSeq += 1+*toAcknowledge.rbegin();
     toAcknowledge.clear();
   }
 }
@@ -164,13 +156,14 @@ void AsyncAckGeraet::sendAck(const set<seq_t>& ack, seq_t base) noth {
   //The length is <header>+<seq>+(7+lastAck)/8
   //(The +7 to effect a round-up)
   vector<byte> datavec(NetworkConnection::headerSize+sizeof(seq_t) +
-                        (7+(*ack.rbegin()-base))/8, 0);
+                        (7+*ack.rbegin())/8, 0);
   byte* data = &datavec[NetworkConnection::headerSize];
   io::write(data, base);
 
   // Set all positive bits in the bitset
   for (set<seq_t>::const_iterator it = ack.begin(); it != ack.end(); ++it) {
     seq_t s = *it;
+    cerr << "Acking " << (s+base) << " (from " << s << "+" << base << ")"<<endl;
     data[s >> 3] |= (1 << (s & 7));
   }
 
@@ -251,11 +244,13 @@ void AsyncAckGeraet::remove(seq_t seq) noth {
 }
 
 bool AsyncAckGeraet::incomming(seq_t seq) noth {
+  cerr << "AsyncAckGeraet::incomming(" << seq << "): count="
+       << recentNak.count(seq) << endl;
   // Make sure we didn't send a NAK for this packet
   if (recentNak.count(seq)) return false;
 
   // Accept it
-  toAcknowledge.insert(seq+lastGreatestSeq);
+  toAcknowledge.insert(seq-lastGreatestSeq);
   return true;
 }
 
