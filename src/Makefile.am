@@ -14,17 +14,18 @@ else
 GL32PROG=
 endif
 
+COMMONCXXFLAGS=-Wall -I./config $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PNG_CFLAGS) -I/usr/include/tcl8.5
+
 ./tcl_iface/bridge.cxx: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 	./tcl_iface/generate.tcl tcl_iface/definition.tcl
 
 if ENABLE_PCH
 ./common.hxx: abpch.hxx.pch
 ./abpch.hxx.gch: abpch.hxx
-	$(CXX) abpch.hxx $(CXXFLAGS) $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PNG_CFLAGS) -I/usr/include/tcl8.5 -oabpch.hxx.gch
+	$(CXX) abpch.hxx $(CXXFLAGS) $(COMMONCXXFLAGS) -oabpch.hxx.gch
 endif
 
 bin_PROGRAMS=$(GL14PROG) $(GL21PROG) $(GL32PROG)
-COMMONCXXFLAGS=-Wall -I./config $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PNG_CFLAGS) -I/usr/include/tcl8.5
 COMMONLDADD=$(SDL_LIBS) $(SDLIMG_LIBS) $(GL_LIBS) $(PNG_LIBS)
 COMMONSOURCES= \
 ./tcl_iface/bridge.cxx \
