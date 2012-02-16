@@ -641,6 +641,8 @@ CPPFLAGS
 LDFLAGS
 CXXFLAGS
 CXX
+ENABLE_PCH_FALSE
+ENABLE_PCH_TRUE
 ENABLE_GL32_FALSE
 ENABLE_GL32_TRUE
 ENABLE_GL21_FALSE
@@ -728,6 +730,7 @@ enable_profile
 enable_gl14
 enable_gl21
 enable_gl32
+enable_pch
 with_glew
 enable_dependency_tracking
 '
@@ -1382,6 +1385,7 @@ Optional Features:
   --disable-gl14          Don't build OpenGL 1.4 version.
   --disable-gl21          Don't build OpenGL 2.1 version.
   --disable-gl32          Don't build OpenGL 3.2 version.
+  --enable-pch            Enable use of precompiled headers.
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
 
@@ -3077,6 +3081,11 @@ if test "${enable_gl32+set}" = set; then :
   enableval=$enable_gl32;
 fi
 
+# Check whether --enable-pch was given.
+if test "${enable_pch+set}" = set; then :
+  enableval=$enable_pch;
+fi
+
 
 # Check whether --with-glew was given.
 if test "${with_glew+set}" = set; then :
@@ -3266,6 +3275,29 @@ else
 else
   ENABLE_GL32_TRUE='#'
   ENABLE_GL32_FALSE=
+fi
+
+
+fi
+if test "x$enable_pch" = "xyes"; then :
+
+   if true; then
+  ENABLE_PCH_TRUE=
+  ENABLE_PCH_FALSE='#'
+else
+  ENABLE_PCH_TRUE='#'
+  ENABLE_PCH_FALSE=
+fi
+
+
+else
+
+   if false; then
+  ENABLE_PCH_TRUE=
+  ENABLE_PCH_FALSE='#'
+else
+  ENABLE_PCH_TRUE='#'
+  ENABLE_PCH_FALSE=
 fi
 
 
@@ -6185,6 +6217,14 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${ENABLE_GL32_TRUE}" && test -z "${ENABLE_GL32_FALSE}"; then
   as_fn_error $? "conditional \"ENABLE_GL32\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${ENABLE_PCH_TRUE}" && test -z "${ENABLE_PCH_FALSE}"; then
+  as_fn_error $? "conditional \"ENABLE_PCH\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${ENABLE_PCH_TRUE}" && test -z "${ENABLE_PCH_FALSE}"; then
+  as_fn_error $? "conditional \"ENABLE_PCH\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${AMDEP_TRUE}" && test -z "${AMDEP_FALSE}"; then

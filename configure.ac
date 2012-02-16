@@ -17,6 +17,7 @@ AC_ARG_ENABLE([profile], AS_HELP_STRING([--enable-profile], [Enable profiling.])
 AC_ARG_ENABLE([gl14], AS_HELP_STRING([--disable-gl14], [Don't build OpenGL 1.4 version.]))
 AC_ARG_ENABLE([gl21], AS_HELP_STRING([--disable-gl21], [Don't build OpenGL 2.1 version.]))
 AC_ARG_ENABLE([gl32], AS_HELP_STRING([--disable-gl32], [Don't build OpenGL 3.2 version.]))
+AC_ARG_ENABLE([pch], AS_HELP_STRING([--enable-pch], [Enable use of precompiled headers.]))
 AC_ARG_WITH([glew], AS_HELP_STRING([--with-glew], [Use GLEW to access GL extensions.]))
 AS_IF([test "x$enable_debug" = "xyes"], [
   AB_DEBUG_FLAGS='-DDEBUG -O0 -g3'
@@ -48,6 +49,11 @@ AS_IF([test "x$enable_gl32" = "xno"], [
   AM_CONDITIONAL(ENABLE_GL32, false)
 ], [
   AM_CONDITIONAL(ENABLE_GL32, true)
+])
+AS_IF([test "x$enable_pch" = "xyes"], [
+  AM_CONDITIONAL(ENABLE_PCH, true)
+], [
+  AM_CONDITIONAL(ENABLE_PCH, false)
 ])
 
 CXXFLAGS="$CXXFLAGS $AB_DEBUG_FLAGS $AB_PROFILE_FLAGS -DTHREAD_LOCAL=__thread"

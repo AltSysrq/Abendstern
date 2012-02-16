@@ -49,3 +49,5 @@ abendstern.rc
 hangar
 config.status
 launchlog.txt
+*.gch
+

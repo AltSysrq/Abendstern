@@ -9399,6 +9399,10 @@ uninstall-am: uninstall-binPROGRAMS
 ./tcl_iface/bridge.cxx: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 	./tcl_iface/generate.tcl tcl_iface/definition.tcl
 
+@ENABLE_PCH_TRUE@./common.hxx: abpch.hxx.pch
+@ENABLE_PCH_TRUE@./abpch.hxx.gch: abpch.hxx
+@ENABLE_PCH_TRUE@	$(CXX) abpch.hxx $(CXXFLAGS) $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PNG_CFLAGS) -I/usr/include/tcl8.5 -oabpch.hxx.gch
+
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
