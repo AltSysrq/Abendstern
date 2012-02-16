@@ -14,6 +14,9 @@ else
 GL32PROG=
 endif
 
+./tcl_iface/bridge.cxx: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+	./tcl_iface/generate.tcl tcl_iface/definition.tcl
+
 bin_PROGRAMS=$(GL14PROG) $(GL21PROG) $(GL32PROG)
 COMMONCXXFLAGS=-Wall -I./config $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PNG_CFLAGS) -I/usr/include/tcl8.5
 COMMONLDADD=$(SDL_LIBS) $(SDLIMG_LIBS) $(GL_LIBS) $(PNG_LIBS)
