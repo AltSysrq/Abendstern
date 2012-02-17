@@ -53,7 +53,7 @@ tls1.6/
 *.dll
 *Debug*
 *Release*
-Abendstern_WGL32.aps
+*.aps
 log.txt
 external
 bin
@@ -64,3 +64,4 @@ bin
 *.sdf
 *.opensdf
 ipch
+Abendstern.exe

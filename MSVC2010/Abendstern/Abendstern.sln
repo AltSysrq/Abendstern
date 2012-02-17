@@ -3,9 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Abendstern", "Abendstern\Abendstern.vcxproj", "{4B855DFF-F847-4EC9-996C-F26BB939AE4F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Launcher", "Launcher\Launcher.vcxproj", "{218BB295-8BFE-43F9-9DB6-630EB4260BF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
 		ReleaseGL14|Win32 = ReleaseGL14|Win32
 		ReleaseGL21|Win32 = ReleaseGL21|Win32
 		ReleaseGL32|Win32 = ReleaseGL32|Win32
@@ -13,12 +16,24 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.Debug|Win32.ActiveCfg = Debug|Win32
 		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.Debug|Win32.Build.0 = Debug|Win32
+		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.Release|Win32.ActiveCfg = ReleaseGL14|Win32
+		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.Release|Win32.Build.0 = ReleaseGL14|Win32
 		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.ReleaseGL14|Win32.ActiveCfg = ReleaseGL14|Win32
 		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.ReleaseGL14|Win32.Build.0 = ReleaseGL14|Win32
 		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.ReleaseGL21|Win32.ActiveCfg = ReleaseGL21|Win32
 		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.ReleaseGL21|Win32.Build.0 = ReleaseGL21|Win32
 		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.ReleaseGL32|Win32.ActiveCfg = ReleaseGL32|Win32
 		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.ReleaseGL32|Win32.Build.0 = ReleaseGL32|Win32
+		{218BB295-8BFE-43F9-9DB6-630EB4260BF5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{218BB295-8BFE-43F9-9DB6-630EB4260BF5}.Debug|Win32.Build.0 = Debug|Win32
+		{218BB295-8BFE-43F9-9DB6-630EB4260BF5}.Release|Win32.ActiveCfg = Release|Win32
+		{218BB295-8BFE-43F9-9DB6-630EB4260BF5}.Release|Win32.Build.0 = Release|Win32
+		{218BB295-8BFE-43F9-9DB6-630EB4260BF5}.ReleaseGL14|Win32.ActiveCfg = Release|Win32
+		{218BB295-8BFE-43F9-9DB6-630EB4260BF5}.ReleaseGL14|Win32.Build.0 = Release|Win32
+		{218BB295-8BFE-43F9-9DB6-630EB4260BF5}.ReleaseGL21|Win32.ActiveCfg = Release|Win32
+		{218BB295-8BFE-43F9-9DB6-630EB4260BF5}.ReleaseGL21|Win32.Build.0 = Release|Win32
+		{218BB295-8BFE-43F9-9DB6-630EB4260BF5}.ReleaseGL32|Win32.ActiveCfg = Release|Win32
+		{218BB295-8BFE-43F9-9DB6-630EB4260BF5}.ReleaseGL32|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
