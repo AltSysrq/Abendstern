@@ -49,3 +49,9 @@ abendstern.rc
 hangar
 config.status
 launchlog.txt
+library/
+tcllib/
+tls1.6/
+*.dll
+*Debug*
+*Release*
