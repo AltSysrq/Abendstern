@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseGL14|Win32">
+      <Configuration>ReleaseGL14</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseGL21|Win32">
+      <Configuration>ReleaseGL21</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseGL32|Win32">
+      <Configuration>ReleaseGL32</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4B855DFF-F847-4EC9-996C-F26BB939AE4F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Abendstern</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseGL32|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseGL14|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseGL21|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseGL32|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseGL14|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseGL21|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\..\..\bin\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseGL32|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\..\..\bin\</OutDir>
+    <TargetName>abw32gl32</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseGL14|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\..\..\bin\</OutDir>
+    <TargetName>abw32gl14</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseGL21|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\..\..\bin\</OutDir>
+    <TargetName>abw32gl21</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>STATIC_BUILD;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\itcl3.4\generic;$(SolutionDir)\..\..\src\config;$(SolutionDir)\..\..;$(SolutionDir)\..\external\asio-1.5.3\include;$(SolutionDir)\..\external\boost_1_41_0;$(SolutionDir)\..\external\glew-1.5.8\include;$(SolutionDir)\..\external\lpng151;$(SolutionDir)\..\external;$(SolutionDir)\..\external\png++;$(SolutionDir)\..\external\SDL\include;$(SolutionDir)\..\external\SDL_image\include;$(SolutionDir)\..\external\tcl8.5.8\win;$(SolutionDir)\..\external\tcl8.5.8\generic;$(SolutionDir)\..\external\mpir-2.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ForcedIncludeFiles>$(SolutionDir)\..\..\w32.h;$(SolutionDir)\..\external\glew-1.5.8\include\GL\glew.h</ForcedIncludeFiles>
+      <DisableSpecificWarnings>4244;4355</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\external\glew-1.5.8\lib;$(SolutionDir)\..\external\lpng151\projects\vstudio\Release;$(SolutionDir)\..\external\mpir-2.4.9\build.vc10\Win32\Release;$(SolutionDir)\..\external\SDL\lib;$(SolutionDir)\..\external\SDL_image\lib;$(SolutionDir)\..\external\tcl8.5.8\win\Release_VC9;$(SolutionDir)\..\external\boost_1_41_0\stage\lib;$(SolutionDir)\..\external\mpir-2.4.0\build.vc10\dll\Win32\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>tclstub85.lib;mpir.lib;SDL.lib;SDLmain.lib;SDL_image.lib;glew32.lib;opengl32.lib;tcl85t.lib;libpng15.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseGL32|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level2</WarningLevel>
+      <Optimization>Full</Optimization>
+      <PreprocessorDefinitions>STATIC_BUILD;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\itcl3.4\generic;$(SolutionDir)\..\..\src\config;$(SolutionDir)\..\..;$(SolutionDir)\..\external\asio-1.5.3\include;$(SolutionDir)\..\external\boost_1_41_0;$(SolutionDir)\..\external\glew-1.5.8\include;$(SolutionDir)\..\external\lpng151;$(SolutionDir)\..\external;$(SolutionDir)\..\external\png++;$(SolutionDir)\..\external\SDL\include;$(SolutionDir)\..\external\SDL_image\include;$(SolutionDir)\..\external\tcl8.5.8\win;$(SolutionDir)\..\external\tcl8.5.8\generic;$(SolutionDir)\..\external\mpir-2.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ForcedIncludeFiles>$(SolutionDir)\..\..\w32.h;$(SolutionDir)\..\external\glew-1.5.8\include\GL\glew.h</ForcedIncludeFiles>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4355</DisableSpecificWarnings>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\external\glew-1.5.8\lib;$(SolutionDir)\..\external\lpng151\projects\vstudio\Release;$(SolutionDir)\..\external\mpir-2.4.9\build.vc10\Win32\Release;$(SolutionDir)\..\external\SDL\lib;$(SolutionDir)\..\external\SDL_image\lib;$(SolutionDir)\..\external\tcl8.5.8\win\Release_VC9;$(SolutionDir)\..\external\boost_1_41_0\stage\lib;$(SolutionDir)\..\external\mpir-2.4.0\build.vc10\dll\Win32\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>tclstub85.lib;mpir.lib;SDL.lib;SDLmain.lib;SDL_image.lib;glew32.lib;opengl32.lib;tcl85t.lib;libpng15.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <LargeAddressAware>true</LargeAddressAware>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <LinkErrorReporting>NoErrorReport</LinkErrorReporting>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseGL14|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level2</WarningLevel>
+      <Optimization>Full</Optimization>
+      <PreprocessorDefinitions>AB_OPENGL_14;STATIC_BUILD;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\itcl3.4\generic;$(SolutionDir)\..\..\src\config;$(SolutionDir)\..\..;$(SolutionDir)\..\external\asio-1.5.3\include;$(SolutionDir)\..\external\boost_1_41_0;$(SolutionDir)\..\external\glew-1.5.8\include;$(SolutionDir)\..\external\lpng151;$(SolutionDir)\..\external;$(SolutionDir)\..\external\png++;$(SolutionDir)\..\external\SDL\include;$(SolutionDir)\..\external\SDL_image\include;$(SolutionDir)\..\external\tcl8.5.8\win;$(SolutionDir)\..\external\tcl8.5.8\generic;$(SolutionDir)\..\external\mpir-2.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ForcedIncludeFiles>$(SolutionDir)\..\..\w32.h;$(SolutionDir)\..\external\glew-1.5.8\include\GL\glew.h</ForcedIncludeFiles>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4355</DisableSpecificWarnings>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\external\glew-1.5.8\lib;$(SolutionDir)\..\external\lpng151\projects\vstudio\Release;$(SolutionDir)\..\external\mpir-2.4.9\build.vc10\Win32\Release;$(SolutionDir)\..\external\SDL\lib;$(SolutionDir)\..\external\SDL_image\lib;$(SolutionDir)\..\external\tcl8.5.8\win\Release_VC9;$(SolutionDir)\..\external\boost_1_41_0\stage\lib;$(SolutionDir)\..\external\mpir-2.4.0\build.vc10\dll\Win32\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>tclstub85.lib;mpir.lib;SDL.lib;SDLmain.lib;SDL_image.lib;glew32.lib;opengl32.lib;tcl85t.lib;libpng15.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <LargeAddressAware>true</LargeAddressAware>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <LinkErrorReporting>NoErrorReport</LinkErrorReporting>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseGL21|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level2</WarningLevel>
+      <Optimization>Full</Optimization>
+      <PreprocessorDefinitions>AB_OPENGL_21;STATIC_BUILD;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\itcl3.4\generic;$(SolutionDir)\..\..\src\config;$(SolutionDir)\..\..;$(SolutionDir)\..\external\asio-1.5.3\include;$(SolutionDir)\..\external\boost_1_41_0;$(SolutionDir)\..\external\glew-1.5.8\include;$(SolutionDir)\..\external\lpng151;$(SolutionDir)\..\external;$(SolutionDir)\..\external\png++;$(SolutionDir)\..\external\SDL\include;$(SolutionDir)\..\external\SDL_image\include;$(SolutionDir)\..\external\tcl8.5.8\win;$(SolutionDir)\..\external\tcl8.5.8\generic;$(SolutionDir)\..\external\mpir-2.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ForcedIncludeFiles>$(SolutionDir)\..\..\w32.h;$(SolutionDir)\..\external\glew-1.5.8\include\GL\glew.h</ForcedIncludeFiles>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4355</DisableSpecificWarnings>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)\..\external\glew-1.5.8\lib;$(SolutionDir)\..\external\lpng151\projects\vstudio\Release;$(SolutionDir)\..\external\mpir-2.4.9\build.vc10\Win32\Release;$(SolutionDir)\..\external\SDL\lib;$(SolutionDir)\..\external\SDL_image\lib;$(SolutionDir)\..\external\tcl8.5.8\win\Release_VC9;$(SolutionDir)\..\external\boost_1_41_0\stage\lib;$(SolutionDir)\..\external\mpir-2.4.0\build.vc10\dll\Win32\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>tclstub85.lib;mpir.lib;SDL.lib;SDLmain.lib;SDL_image.lib;glew32.lib;opengl32.lib;tcl85t.lib;libpng15.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <LargeAddressAware>true</LargeAddressAware>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <LinkErrorReporting>NoErrorReport</LinkErrorReporting>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\..\..\abendstern.ico" />
+    <None Include="..\..\..\src\config\libconfig.h++" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\..\Abendstern_WGL32.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\resource.h" />
+    <ClInclude Include="..\..\..\src\audio\audio.hxx" />
+    <ClInclude Include="..\..\..\src\audio\ship_effects.hxx" />
+    <ClInclude Include="..\..\..\src\audio\ship_effects_common.hxx" />
+    <ClInclude Include="..\..\..\src\audio\ship_mixer.hxx" />
+    <ClInclude Include="..\..\..\src\audio\synth.hxx" />
+    <ClInclude Include="..\..\..\src\audio\ui_sounds.hxx" />
+    <ClInclude Include="..\..\..\src\audio\wavload.hxx" />
+    <ClInclude Include="..\..\..\src\background\background.hxx" />
+    <ClInclude Include="..\..\..\src\background\background_object.hxx" />
+    <ClInclude Include="..\..\..\src\background\explosion.hxx" />
+    <ClInclude Include="..\..\..\src\background\explosion_pool.hxx" />
+    <ClInclude Include="..\..\..\src\background\nebula.hxx" />
+    <ClInclude Include="..\..\..\src\background\old_style_explosion.hxx" />
+    <ClInclude Include="..\..\..\src\background\planet.hxx" />
+    <ClInclude Include="..\..\..\src\background\star.hxx" />
+    <ClInclude Include="..\..\..\src\background\star_field.hxx" />
+    <ClInclude Include="..\..\..\src\camera\camera.hxx" />
+    <ClInclude Include="..\..\..\src\camera\dynamic_camera.hxx" />
+    <ClInclude Include="..\..\..\src\camera\effects_handler.hxx" />
+    <ClInclude Include="..\..\..\src\camera\fixed_camera.hxx" />
+    <ClInclude Include="..\..\..\src\camera\forwarding_effects_handler.hxx" />
+    <ClInclude Include="..\..\..\src\camera\hud.hxx" />
+    <ClInclude Include="..\..\..\src\camera\spectator.hxx" />
+    <ClInclude Include="..\..\..\src\config\libconfig.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\aictrl.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\aimod.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_attack\aim_basic_aim.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_attack\aim_fire_weapon.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_attack\aim_select_weapon.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_attack\aim_weapon_level.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_core\aim_idle.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_core\aim_procedure.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_core\aim_varset.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_introspection\aim_intro_engines.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_introspection\aim_intro_throttle.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_introspection\aim_intro_weapon.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_misc\aim_self_destruct.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_navigation\aim_avoid_edge.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_navigation\aim_nav_to_target.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_navigation\aim_park.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_navigation\aim_run_away_simple.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_state\aim_detect_overlap.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_state\aim_edge_detect.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_state\aim_goto.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_state\aim_indgoto.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_state\aim_state_by_target_dist.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_target\aim_target_nearest.hxx" />
+    <ClInclude Include="..\..\..\src\control\controller.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\ci_cellex.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\ci_cellt.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\ci_emotion.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\ci_field.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\ci_nil.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\ci_objective.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\ci_self.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\ci_weapon.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\cortex.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\c_aiming.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\c_avoid_edge.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\c_dodge.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\c_frontal.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\c_navigation.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\c_opp_weapon.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\c_reflex.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\c_run_away.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\c_strat_weapon.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\c_target_analysis.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\c_weapon.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\c_weapon_level.hxx" />
+    <ClInclude Include="..\..\..\src\control\genai\genai.hxx" />
+    <ClInclude Include="..\..\..\src\control\genetic_ai.hxx" />
+    <ClInclude Include="..\..\..\src\control\hc_conf.hxx" />
+    <ClInclude Include="..\..\..\src\control\human_controller.hxx" />
+    <ClInclude Include="..\..\..\src\core\aobject.hxx" />
+    <ClInclude Include="..\..\..\src\core\game_state.hxx" />
+    <ClInclude Include="..\..\..\src\core\init_state.hxx" />
+    <ClInclude Include="..\..\..\src\core\lxn.hxx" />
+    <ClInclude Include="..\..\..\src\exit_conditions.hxx" />
+    <ClInclude Include="..\..\..\src\fasttrig.hxx" />
+    <ClInclude Include="..\..\..\src\globals.hxx" />
+    <ClInclude Include="..\..\..\src\graphics\acsgi.hxx" />
+    <ClInclude Include="..\..\..\src\graphics\asgi.hxx" />
+    <ClInclude Include="..\..\..\src\graphics\cmn_shaders.hxx" />
+    <ClInclude Include="..\..\..\src\graphics\font.hxx" />
+    <ClInclude Include="..\..\..\src\graphics\gl32emu.hxx" />
+    <ClInclude Include="..\..\..\src\graphics\glhelp.hxx" />
+    <ClInclude Include="..\..\..\src\graphics\imgload.hxx" />
+    <ClInclude Include="..\..\..\src\graphics\index_texture.hxx" />
+    <ClInclude Include="..\..\..\src\graphics\mat.hxx" />
+    <ClInclude Include="..\..\..\src\graphics\matops.hxx" />
+    <ClInclude Include="..\..\..\src\graphics\shader.hxx" />
+    <ClInclude Include="..\..\..\src\graphics\shader_loader.hxx" />
+    <ClInclude Include="..\..\..\src\graphics\square.hxx" />
+    <ClInclude Include="..\..\..\src\graphics\vaoemu.hxx" />
+    <ClInclude Include="..\..\..\src\graphics\vec.hxx" />
+    <ClInclude Include="..\..\..\src\net\antenna.hxx" />
+    <ClInclude Include="..\..\..\src\net\async_ack_geraet.hxx" />
+    <ClInclude Include="..\..\..\src\net\connection_listener.hxx" />
+    <ClInclude Include="..\..\..\src\net\crypto.hxx" />
+    <ClInclude Include="..\..\..\src\net\game_advertiser.hxx" />
+    <ClInclude Include="..\..\..\src\net\game_discoverer.hxx" />
+    <ClInclude Include="..\..\..\src\net\globalid.hxx" />
+    <ClInclude Include="..\..\..\src\net\io.hxx" />
+    <ClInclude Include="..\..\..\src\net\network_assembly.hxx" />
+    <ClInclude Include="..\..\..\src\net\network_connection.hxx" />
+    <ClInclude Include="..\..\..\src\net\network_geraet.hxx" />
+    <ClInclude Include="..\..\..\src\net\network_test.hxx" />
+    <ClInclude Include="..\..\..\src\net\packet_processor.hxx" />
+    <ClInclude Include="..\..\..\src\net\seq_text_geraet.hxx" />
+    <ClInclude Include="..\..\..\src\net\synchronous_control_geraet.hxx" />
+    <ClInclude Include="..\..\..\src\net\tuner.hxx" />
+    <ClInclude Include="..\..\..\src\opto_flags.hxx" />
+    <ClInclude Include="..\..\..\src\secondary\aggregate_set.hxx" />
+    <ClInclude Include="..\..\..\src\secondary\confreg.hxx" />
+    <ClInclude Include="..\..\..\src\secondary\frame_recorder.hxx" />
+    <ClInclude Include="..\..\..\src\secondary\global_chat.hxx" />
+    <ClInclude Include="..\..\..\src\secondary\light_trail.hxx" />
+    <ClInclude Include="..\..\..\src\secondary\namegen.hxx" />
+    <ClInclude Include="..\..\..\src\secondary\planet_generator.hxx" />
+    <ClInclude Include="..\..\..\src\secondary\validation.hxx" />
+    <ClInclude Include="..\..\..\src\ship\auxobj\cell_fragment.hxx" />
+    <ClInclude Include="..\..\..\src\ship\auxobj\plasma_fire.hxx" />
+    <ClInclude Include="..\..\..\src\ship\auxobj\shield.hxx" />
+    <ClInclude Include="..\..\..\src\ship\cell\cell.hxx" />
+    <ClInclude Include="..\..\..\src\ship\cell\circle_cell.hxx" />
+    <ClInclude Include="..\..\..\src\ship\cell\empty_cell.hxx" />
+    <ClInclude Include="..\..\..\src\ship\cell\equt_cell.hxx" />
+    <ClInclude Include="..\..\..\src\ship\cell\rightt_cell.hxx" />
+    <ClInclude Include="..\..\..\src\ship\cell\square_cell.hxx" />
+    <ClInclude Include="..\..\..\src\ship\editor\abstract_system_painter.hxx" />
+    <ClInclude Include="..\..\..\src\ship\editor\bridge_relocator.hxx" />
+    <ClInclude Include="..\..\..\src\ship\editor\cell_creation_brush.hxx" />
+    <ClInclude Include="..\..\..\src\ship\editor\cell_deletion_brush.hxx" />
+    <ClInclude Include="..\..\..\src\ship\editor\cell_rotator.hxx" />
+    <ClInclude Include="..\..\..\src\ship\editor\manipulator.hxx" />
+    <ClInclude Include="..\..\..\src\ship\editor\manipulator_mode.hxx" />
+    <ClInclude Include="..\..\..\src\ship\editor\system_creation_brush.hxx" />
+    <ClInclude Include="..\..\..\src\ship\editor\system_creation_rectangle.hxx" />
+    <ClInclude Include="..\..\..\src\ship\editor\system_info_copier.hxx" />
+    <ClInclude Include="..\..\..\src\ship\editor\system_rotator.hxx" />
+    <ClInclude Include="..\..\..\src\ship\everything.hxx" />
+    <ClInclude Include="..\..\..\src\ship\insignia.hxx" />
+    <ClInclude Include="..\..\..\src\ship\physics_bits.hxx" />
+    <ClInclude Include="..\..\..\src\ship\render_quad.hxx" />
+    <ClInclude Include="..\..\..\src\ship\ship.hxx" />
+    <ClInclude Include="..\..\..\src\ship\shipio.hxx" />
+    <ClInclude Include="..\..\..\src\ship\ship_pallet.hxx" />
+    <ClInclude Include="..\..\..\src\ship\ship_renderer.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\a\antimatter_power.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\a\cloaking_device.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\a\dispersion_shield.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\a\gatling_plasma_burst_launcher.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\a\missile_launcher.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\a\monophasic_energy_emitter.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\a\particle_beam_launcher.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\a\rel_ion_accelerator.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\b\bussard_ramjet.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\b\fusion_power.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\b\heatsink.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\b\mini_gravwave_drive_mkii.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\b\plasma_burst_launcher.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\b\semiguided_bomb_launcher.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\b\shield_generator.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\b\super_particle_accelerator.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\c\capacitor.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\c\energy_charge_launcher.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\c\fission_power.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\c\magneto_bomb_launcher.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\c\mini_gravwave_drive.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\c\particle_accelerator.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\c\power_cell.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\c\reinforcement_bulkhead.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\c\self_destruct_charge.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\engine.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\launcher.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\power_plant.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\ship_system.hxx" />
+    <ClInclude Include="..\..\..\src\ship\sys\system_textures.hxx" />
+    <ClInclude Include="..\..\..\src\sim\blast.hxx" />
+    <ClInclude Include="..\..\..\src\sim\collision.hxx" />
+    <ClInclude Include="..\..\..\src\sim\game_env.hxx" />
+    <ClInclude Include="..\..\..\src\sim\game_field.hxx" />
+    <ClInclude Include="..\..\..\src\sim\game_object.hxx" />
+    <ClInclude Include="..\..\..\src\sim\lazy_transform_collision_tree.hxx" />
+    <ClInclude Include="..\..\..\src\sim\objdl.hxx" />
+    <ClInclude Include="..\..\..\src\sim\object_intref.hxx" />
+    <ClInclude Include="..\..\..\src\tcl_iface\array.hxx" />
+    <ClInclude Include="..\..\..\src\tcl_iface\bridge.hxx" />
+    <ClInclude Include="..\..\..\src\tcl_iface\common_keyboard_client.hxx" />
+    <ClInclude Include="..\..\..\src\tcl_iface\dynfun.hxx" />
+    <ClInclude Include="..\..\..\src\tcl_iface\dynfun_create_trampolines.hxx" />
+    <ClInclude Include="..\..\..\src\tcl_iface\dynfun_list_trampolines.hxx" />
+    <ClInclude Include="..\..\..\src\tcl_iface\implementation.hxx" />
+    <ClInclude Include="..\..\..\src\tcl_iface\include_all_headers.hxx" />
+    <ClInclude Include="..\..\..\src\tcl_iface\slave_thread.hxx" />
+    <ClInclude Include="..\..\..\src\tcl_iface\square_icon.hxx" />
+    <ClInclude Include="..\..\..\src\test_state.hxx" />
+    <ClInclude Include="..\..\..\src\weapon\energy_charge.hxx" />
+    <ClInclude Include="..\..\..\src\weapon\magneto_bomb.hxx" />
+    <ClInclude Include="..\..\..\src\weapon\missile.hxx" />
+    <ClInclude Include="..\..\..\src\weapon\monophasic_energy_pulse.hxx" />
+    <ClInclude Include="..\..\..\src\weapon\particle_beam.hxx" />
+    <ClInclude Include="..\..\..\src\weapon\plasma_burst.hxx" />
+    <ClInclude Include="..\..\..\src\weapon\semiguided_bomb.hxx" />
+    <ClInclude Include="..\..\..\w32.h" />
+    <ClInclude Include="..\itcl3.4\generic\itcl.h" />
+    <ClInclude Include="..\itcl3.4\generic\itclDecls.h" />
+    <ClInclude Include="..\itcl3.4\generic\itclInt.h" />
+    <ClInclude Include="..\itcl3.4\generic\itclIntDecls.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\abendstern.cxx" />
+    <ClCompile Include="..\..\..\src\audio\audio.cxx" />
+    <ClCompile Include="..\..\..\src\audio\ship_effects.cxx" />
+    <ClCompile Include="..\..\..\src\audio\ship_mixer.cxx" />
+    <ClCompile Include="..\..\..\src\audio\synth.cxx" />
+    <ClCompile Include="..\..\..\src\audio\wavload.cxx" />
+    <ClCompile Include="..\..\..\src\background\background_object.cxx" />
+    <ClCompile Include="..\..\..\src\background\explosion.cxx" />
+    <ClCompile Include="..\..\..\src\background\explosion_pool.cxx" />
+    <ClCompile Include="..\..\..\src\background\nebula.cxx" />
+    <ClCompile Include="..\..\..\src\background\old_style_explosion.cxx" />
+    <ClCompile Include="..\..\..\src\background\planet.cxx" />
+    <ClCompile Include="..\..\..\src\background\star.cxx" />
+    <ClCompile Include="..\..\..\src\background\star_field.cxx" />
+    <ClCompile Include="..\..\..\src\camera\camera.cxx" />
+    <ClCompile Include="..\..\..\src\camera\dynamic_camera.cxx" />
+    <ClCompile Include="..\..\..\src\camera\effects_handler.cxx" />
+    <ClCompile Include="..\..\..\src\camera\fixed_camera.cxx" />
+    <ClCompile Include="..\..\..\src\camera\forwarding_effects_handler.cxx" />
+    <ClCompile Include="..\..\..\src\camera\hud.cxx" />
+    <ClCompile Include="..\..\..\src\camera\spectator.cxx" />
+    <ClCompile Include="..\..\..\src\config\libconfig.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\aictrl.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\aimod.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_attack\aim_basic_aim.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_attack\aim_fire_weapon.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_attack\aim_select_weapon.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_attack\aim_weapon_level.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_core\aim_idle.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_core\aim_procedure.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_core\aim_varset.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_introspection\aim_intro_engines.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_introspection\aim_intro_throttle.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_introspection\aim_intro_weapon.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_misc\aim_self_destruct.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_navigation\aim_avoid_edge.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_navigation\aim_nav_to_target.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_navigation\aim_park.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_navigation\aim_run_away_simple.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_state\aim_detect_overlap.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_state\aim_edge_detect.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_state\aim_goto.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_state\aim_indgoto.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_state\aim_state_by_target_dist.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_target\aim_target_nearest.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\ci_cellex.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\ci_cellt.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\ci_emotion.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\ci_field.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\ci_objective.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\ci_self.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\ci_weapon.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\cortex.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\c_aiming.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\c_avoid_edge.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\c_dodge.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\c_frontal.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\c_navigation.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\c_opp_weapon.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\c_reflex.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\c_run_away.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\c_strat_weapon.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\c_target_analysis.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\c_weapon.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\c_weapon_level.cxx" />
+    <ClCompile Include="..\..\..\src\control\genai\genai.cxx" />
+    <ClCompile Include="..\..\..\src\control\genetic_ai.cxx" />
+    <ClCompile Include="..\..\..\src\control\hc_conf.cxx" />
+    <ClCompile Include="..\..\..\src\control\human_controller.cxx" />
+    <ClCompile Include="..\..\..\src\core\aobject.cxx" />
+    <ClCompile Include="..\..\..\src\core\game_state.cxx" />
+    <ClCompile Include="..\..\..\src\core\init_state.cxx" />
+    <ClCompile Include="..\..\..\src\core\lxn.cxx" />
+    <ClCompile Include="..\..\..\src\fasttrig.cxx" />
+    <ClCompile Include="..\..\..\src\globals.cxx" />
+    <ClCompile Include="..\..\..\src\graphics\acsgi.cxx" />
+    <ClCompile Include="..\..\..\src\graphics\asgi.cxx" />
+    <ClCompile Include="..\..\..\src\graphics\cmn_shaders.cxx" />
+    <ClCompile Include="..\..\..\src\graphics\font.cxx" />
+    <ClCompile Include="..\..\..\src\graphics\gl32emu.cxx" />
+    <ClCompile Include="..\..\..\src\graphics\glhelp.cxx" />
+    <ClCompile Include="..\..\..\src\graphics\imgload.cxx" />
+    <ClCompile Include="..\..\..\src\graphics\index_texture.cxx" />
+    <ClCompile Include="..\..\..\src\graphics\mat.cxx" />
+    <ClCompile Include="..\..\..\src\graphics\matops.cxx" />
+    <ClCompile Include="..\..\..\src\graphics\shader.cxx" />
+    <ClCompile Include="..\..\..\src\graphics\square.cxx" />
+    <ClCompile Include="..\..\..\src\graphics\vaoemu.cxx" />
+    <ClCompile Include="..\..\..\src\graphics\vec.cxx" />
+    <ClCompile Include="..\..\..\src\net\antenna.cxx" />
+    <ClCompile Include="..\..\..\src\net\async_ack_geraet.cxx" />
+    <ClCompile Include="..\..\..\src\net\connection_listener.cxx" />
+    <ClCompile Include="..\..\..\src\net\crypto.cxx">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='ReleaseGL32|Win32'">CRYPTO_CXX_;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='ReleaseGL14|Win32'">CRYPTO_CXX_;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='ReleaseGL21|Win32'">CRYPTO_CXX_;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\net\game_advertiser.cxx" />
+    <ClCompile Include="..\..\..\src\net\game_discoverer.cxx" />
+    <ClCompile Include="..\..\..\src\net\globalid.cxx" />
+    <ClCompile Include="..\..\..\src\net\network_assembly.cxx" />
+    <ClCompile Include="..\..\..\src\net\network_connection.cxx" />
+    <ClCompile Include="..\..\..\src\net\network_test.cxx" />
+    <ClCompile Include="..\..\..\src\net\seq_text_geraet.cxx" />
+    <ClCompile Include="..\..\..\src\net\synchronous_control_geraet.cxx" />
+    <ClCompile Include="..\..\..\src\net\tuner.cxx" />
+    <ClCompile Include="..\..\..\src\secondary\confreg.cxx" />
+    <ClCompile Include="..\..\..\src\secondary\frame_recorder.cxx" />
+    <ClCompile Include="..\..\..\src\secondary\global_chat.cxx" />
+    <ClCompile Include="..\..\..\src\secondary\light_trail.cxx" />
+    <ClCompile Include="..\..\..\src\secondary\namegen.cxx" />
+    <ClCompile Include="..\..\..\src\secondary\planet_generator.cxx" />
+    <ClCompile Include="..\..\..\src\ship\auxobj\cell_fragment.cxx" />
+    <ClCompile Include="..\..\..\src\ship\auxobj\plasma_fire.cxx" />
+    <ClCompile Include="..\..\..\src\ship\auxobj\shield.cxx" />
+    <ClCompile Include="..\..\..\src\ship\cell\cell.cxx" />
+    <ClCompile Include="..\..\..\src\ship\cell\circle_cell.cxx" />
+    <ClCompile Include="..\..\..\src\ship\cell\empty_cell.cxx" />
+    <ClCompile Include="..\..\..\src\ship\cell\equt_cell.cxx" />
+    <ClCompile Include="..\..\..\src\ship\cell\rightt_cell.cxx" />
+    <ClCompile Include="..\..\..\src\ship\cell\square_cell.cxx" />
+    <ClCompile Include="..\..\..\src\ship\editor\abstract_system_painter.cxx" />
+    <ClCompile Include="..\..\..\src\ship\editor\bridge_relocator.cxx" />
+    <ClCompile Include="..\..\..\src\ship\editor\cell_creation_brush.cxx" />
+    <ClCompile Include="..\..\..\src\ship\editor\cell_deletion_brush.cxx" />
+    <ClCompile Include="..\..\..\src\ship\editor\cell_rotator.cxx" />
+    <ClCompile Include="..\..\..\src\ship\editor\manipulator.cxx" />
+    <ClCompile Include="..\..\..\src\ship\editor\system_creation_brush.cxx" />
+    <ClCompile Include="..\..\..\src\ship\editor\system_creation_rectangle.cxx" />
+    <ClCompile Include="..\..\..\src\ship\editor\system_info_copier.cxx" />
+    <ClCompile Include="..\..\..\src\ship\editor\system_rotator.cxx" />
+    <ClCompile Include="..\..\..\src\ship\insignia.cxx" />
+    <ClCompile Include="..\..\..\src\ship\render_quad.cxx" />
+    <ClCompile Include="..\..\..\src\ship\ship.cxx" />
+    <ClCompile Include="..\..\..\src\ship\shipio.cxx" />
+    <ClCompile Include="..\..\..\src\ship\ship_renderer.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\a\antimatter_power.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\a\cloaking_device.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\a\dispersion_shield.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\a\gatling_plasma_burst_launcher.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\a\missile_launcher.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\a\monophasic_energy_emitter.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\a\particle_beam_launcher.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\a\rel_ion_accelerator.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\b\bussard_ramjet.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\b\fusion_power.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\b\heatsink.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\b\mini_gravewave_drive_mkii.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\b\plasma_burst_launcher.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\b\semiguided_bomb_launcher.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\b\shield_generator.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\b\super_particle_accelerator.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\c\capacitor.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\c\energy_charge_launcher.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\c\fission_power.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\c\magneto_bomb_launcher.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\c\mini_gravwave_drive.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\c\particle_accelerator.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\c\power_cell.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\c\reinforcement_bulkhead.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\c\self_destruct_charge.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\engine.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\launcher.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\power_plant.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\ship_system.cxx" />
+    <ClCompile Include="..\..\..\src\ship\sys\system_textures.cxx" />
+    <ClCompile Include="..\..\..\src\sim\blast.cxx" />
+    <ClCompile Include="..\..\..\src\sim\collision.cxx" />
+    <ClCompile Include="..\..\..\src\sim\game_env.cxx" />
+    <ClCompile Include="..\..\..\src\sim\game_field.cxx" />
+    <ClCompile Include="..\..\..\src\sim\game_object.cxx" />
+    <ClCompile Include="..\..\..\src\sim\lazy_transform_collision_tree.cxx" />
+    <ClCompile Include="..\..\..\src\sim\object_intref.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\bridge.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\common_keyboard_client.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\slave_thread.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\square_icon.cxx" />
+    <ClCompile Include="..\..\..\src\test_state.cxx" />
+    <ClCompile Include="..\..\..\src\weapon\energy_charge.cxx" />
+    <ClCompile Include="..\..\..\src\weapon\magneto_bomb.cxx" />
+    <ClCompile Include="..\..\..\src\weapon\missile.cxx" />
+    <ClCompile Include="..\..\..\src\weapon\monophasic_energy_pulse.cxx" />
+    <ClCompile Include="..\..\..\src\weapon\particle_beam.cxx" />
+    <ClCompile Include="..\..\..\src\weapon\plasma_burst.cxx" />
+    <ClCompile Include="..\..\..\src\weapon\semiguided_bomb.cxx" />
+    <ClCompile Include="..\itcl3.4\generic\itclStubInit.c" />
+    <ClCompile Include="..\itcl3.4\generic\itclStubLib.c" />
+    <ClCompile Include="..\itcl3.4\generic\itcl_bicmds.c" />
+    <ClCompile Include="..\itcl3.4\generic\itcl_class.c" />
+    <ClCompile Include="..\itcl3.4\generic\itcl_cmds.c" />
+    <ClCompile Include="..\itcl3.4\generic\itcl_ensemble.c" />
+    <ClCompile Include="..\itcl3.4\generic\itcl_linkage.c" />
+    <ClCompile Include="..\itcl3.4\generic\itcl_methods.c" />
+    <ClCompile Include="..\itcl3.4\generic\itcl_migrate.c" />
+    <ClCompile Include="..\itcl3.4\generic\itcl_objects.c" />
+    <ClCompile Include="..\itcl3.4\generic\itcl_parse.c" />
+    <ClCompile Include="..\itcl3.4\generic\itcl_util.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

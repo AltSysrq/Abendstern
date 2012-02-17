@@ -28,7 +28,6 @@ validation.sh
 *.log
 Makefile
 *.o
-abendstern
 .cdt*
 .settings
 .project
@@ -42,7 +41,6 @@ autom4te.cache
 passwords
 # Cannot include ttfs, it includes proprietary files
 ttfs/*
-*/abendstern
 lssinfo.rc
 abendsternuxgl*
 abendstern.rc
@@ -55,3 +53,14 @@ tls1.6/
 *.dll
 *Debug*
 *Release*
+Abendstern_WGL32.aps
+log.txt
+external
+bin
+*.obj
+*.pdb
+*.vcxproj.*
+*.suo
+*.sdf
+*.opensdf
+ipch

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Abendstern", "Abendstern\Abendstern.vcxproj", "{4B855DFF-F847-4EC9-996C-F26BB939AE4F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		ReleaseGL14|Win32 = ReleaseGL14|Win32
+		ReleaseGL21|Win32 = ReleaseGL21|Win32
+		ReleaseGL32|Win32 = ReleaseGL32|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.Debug|Win32.Build.0 = Debug|Win32
+		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.ReleaseGL14|Win32.ActiveCfg = ReleaseGL14|Win32
+		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.ReleaseGL14|Win32.Build.0 = ReleaseGL14|Win32
+		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.ReleaseGL21|Win32.ActiveCfg = ReleaseGL21|Win32
+		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.ReleaseGL21|Win32.Build.0 = ReleaseGL21|Win32
+		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.ReleaseGL32|Win32.ActiveCfg = ReleaseGL32|Win32
+		{4B855DFF-F847-4EC9-996C-F26BB939AE4F}.ReleaseGL32|Win32.Build.0 = ReleaseGL32|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

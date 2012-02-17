@@ -34,7 +34,7 @@ using std::vector;
   else if (y>=field->height) y=field->height-0.0001f
 
 class GameField;
-class ObjDL;
+struct ObjDL;
 
 struct NebulaResistanceElement;
 
