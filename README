@@ -1,4 +1,5 @@
 COMPILATION
+*NIX:
 To compile on *NIX, you need the following libraries, including their headers:
 o asio
 o boost
@@ -22,15 +23,30 @@ If your OpenGL headers do not supply GL extension functions, instead use
 You may also need the --disable-gl32 and possible --disable-gl21 if your
 OpenGL library does not have the necessary functions.
 
+Windows:
+To compile on Windows, you must have Visual Studio 2010 or newer. All
+dependencies must be placed within a directory named "external" under the
+MSVC2010 directory; refer to the project properties for the subdirectory
+structure.
+
+You will also need to provide the runtime dependencies, in the form of DLLs
+and the Tcl libraries. These are most easily obtained from the official Windows
+distribution of Abendstern found at
+  http://abendstern.servegame.com/download.shtml
+
 INSTALLING
 Abendstern cannot currently be installed.
 
 RUNNING
+*NIX:
 Within the Abendstern directory, run one of the following, based on your
 OpenGL version (if in doubt, try the higher version first):
   src/abendsternuxgl32
   src/abendsternuxgl21
   src/abendsternuxgl14
+
+Windows:
+Just run Abendstern.exe in the project root.
 
 The executables understand the following options:
   -H, -Headless		Run without graphics
