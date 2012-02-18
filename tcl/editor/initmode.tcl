@@ -48,7 +48,8 @@ class ShipEditorInitMode {
     $ sets edit.mountname ship:[$ str hangar.all_ships.\[$::shipEditorSelected\]]
     $ setb edit.modified no
     if {[string length [$editor manip reloadShip]]} {
-      $editor setMode [new ShipEditorError [_ A editor couldnt_load_ship]]
+      $editor setMode [new ShipEditorError $editor \
+                                          [_ A editor couldnt_load_ship]]
       return
     }
     $editor setMode [new ShipEditorMain $editor]
@@ -58,5 +59,29 @@ class ShipEditorInitMode {
     $editor setMode [new ShipEditorDeletor $editor \
                      [$ str hangar.all_ships.\[$::shipEditorSelected\]] \
                      $::shipEditorSelected]
+  }
+}
+
+class ShipEditorError {
+  inherit ::gui::Mode
+
+  variable editor
+
+  constructor {edr msg} {::gui::Mode::constructor} {
+    set editor $edr
+
+    set root [new ::gui::VerticalContainer 0.01 centre]
+    $root add [new ::gui::Label $msg centre]
+    set ok [new ::gui::Button [_ A gui ok] "$this close"]
+    $ok setDefault
+    $ok setCancel
+    $root add $ok
+
+    refreshAccelerators
+    $root setSize 0 1 $::vheight 0
+  }
+
+  method close {} {
+    $editor setMode [new ShipEditorInitMode $editor]
   }
 }

@@ -1,6 +1,6 @@
 #! /bin/bash
 
-BASEDIR=/oss/Abendstern_WGL32
+BASEDIR=/oss/Abendstern
 SRVDIR=/programmes/cpp/abendstern/srv/abendstern/package
 FILES="apply_update.bat Abendstern.exe abendstern.default.rc data fonts shaders images legal tcl library itcl3.4 tls1.6 tcllib bin"
 APP=Abendstern_WGL32
@@ -8,7 +8,7 @@ APP=Abendstern_WGL32
 ./validation.sh
 date -u +%Y%m%d%H%M%S >version
 cp version $BASEDIR/version
-cp tcl/validation $BASEDIR/validation
+cp tcl/validation $BASEDIR/tcl/validation
 
 rm -f $SRVDIR/manifest
 rm -f $SRVDIR/$APP.zip

@@ -37,7 +37,8 @@ static vector<string> cellNames;
 static map<string,unsigned> nameMap;
 
 static void saveCell(Setting& cellRoot, Ship* ship, Cell* cell, char& clazz);
-static void saveSystem(Setting& systemRoot, Ship* ship, Cell* cell, ShipSystem* sys, char& clazz);
+static void saveSystem(Setting& systemRoot, Ship* ship, Cell* cell,
+                       ShipSystem* sys, char& clazz);
 void saveShip(Ship* ship, const char* mount) {
   Setting& root(conf[mount]);
   conf.modify(mount);
@@ -75,13 +76,16 @@ void saveShip(Ship* ship, const char* mount) {
   //they are already set)
   try {
     root["info"].add("name", Setting::TypeString)=mount;
-    root["info"].add("alliance", Setting::TypeArray).add(Setting::TypeString)=mount;
+    root["info"].add("alliance", Setting::TypeArray).add(Setting::TypeString)=
+        mount;
   } catch (...) {}
   root["info"].add("version", Setting::TypeInt)=SHIPIO_VERSION;
   root["info"].add("bridge", Setting::TypeString)="AAAA";
-  root["info"].add("reinforcement", Setting::TypeFloat)=ship->getReinforcement();
+  root["info"].add("reinforcement", Setting::TypeFloat)=
+      ship->getReinforcement();
   for (unsigned i=0; i<ship->cells.size(); ++i) {
-    saveCell(root["cells"].add(cellNames[i].c_str(), Setting::TypeGroup), ship, ship->cells[i], clazz[0]);
+    saveCell(root["cells"].add(cellNames[i].c_str(), Setting::TypeGroup),
+             ship, ship->cells[i], clazz[0]);
   }
   root["info"].add("class", Setting::TypeString)=clazz;
 }
@@ -107,11 +111,16 @@ static void saveCell(Setting& root, Ship* ship, Cell* cell, char& clazz) {
     }
     ns.add(Setting::TypeString)=(cell->neighbours[i]? name : "");
   }
-  if (cell->systems[0]) saveSystem(root.add("s0", Setting::TypeGroup), ship, cell, cell->systems[0], clazz);
-  if (cell->systems[1]) saveSystem(root.add("s1", Setting::TypeGroup), ship, cell, cell->systems[1], clazz);
+  if (cell->systems[0])
+    saveSystem(root.add("s0", Setting::TypeGroup), ship, cell,
+               cell->systems[0], clazz);
+  if (cell->systems[1])
+    saveSystem(root.add("s1", Setting::TypeGroup), ship, cell,
+               cell->systems[1], clazz);
 }
 
-static void saveSystem(Setting& root, Ship* ship, Cell* cell, ShipSystem* sys, char& clazz) {
+static void saveSystem(Setting& root, Ship* ship, Cell* cell, ShipSystem* sys,
+                       char& clazz) {
   const type_info& type=typeid(*sys);
   #define SYS(typ, cls) if (type==typeid(typ)) { \
     root.add("type", Setting::TypeString)=#typ; \
@@ -155,9 +164,11 @@ static void saveSystem(Setting& root, Ship* ship, Cell* cell, ShipSystem* sys, c
     root.add("strength", Setting::TypeFloat)=g->getStrength();
   } else if (type==typeid(GatlingPlasmaBurstLauncher)) {
     root.add("type", Setting::TypeString)="GatlingPlasmaBurstLauncher";
-    root.add("turbo", Setting::TypeBoolean)=((GatlingPlasmaBurstLauncher*)sys)->getTurbo();
+    root.add("turbo", Setting::TypeBoolean)=
+        ((GatlingPlasmaBurstLauncher*)sys)->getTurbo();
   } else {
-    cerr << "FATAL: Unknown ShipSystem type passed into saveSystem: " << type.name() << endl;
+    cerr << "FATAL: Unknown ShipSystem type passed into saveSystem: "
+         << type.name() << endl;
     throw runtime_error("Unknown system type");
   }
 
@@ -201,7 +212,8 @@ Ship* loadShip(GameField* field, const char* mount) {
 
     ship->cells.resize(cellNames.size());
 
-    const char* clazz = conf[mount]["info"]["class"];
+    const char* clazzstr = conf[mount]["info"]["class"];
+    char clazz[2] = { *clazzstr, 0 };
     if (strcmp(clazz, "C") && strcmp(clazz, "B") && strcmp(clazz, "A"))
       throw runtime_error("Unknown class");
 
@@ -219,7 +231,8 @@ Ship* loadShip(GameField* field, const char* mount) {
     ship->cells[0]->orient();
     //Load systems
     for (unsigned i=0; i<ship->cells.size(); ++i)
-      loadCellSystems(cellRoot[cellNames[i].c_str()], ship, ship->cells[i], clazz);
+      loadCellSystems(cellRoot[cellNames[i].c_str()], ship, ship->cells[i],
+                      clazz);
 
     //Set default colour, if set
     try {
@@ -257,7 +270,8 @@ Ship* loadShip(GameField* field, const char* mount) {
     static unsigned verificationSignature=rand();
     bool skipVerification=false;
     try {
-      unsigned curr = (unsigned)conf[mount]["info"]["verification_signature"].operator int();
+      unsigned curr =
+        (unsigned)conf[mount]["info"]["verification_signature"].operator int();
       skipVerification = curr == verificationSignature;
     } catch (...) { /* Ignore */ }
 
@@ -272,7 +286,8 @@ Ship* loadShip(GameField* field, const char* mount) {
     //Delete current signature first, though
     if (conf[mount]["info"].exists("verification_signature"))
       conf[mount]["info"].remove("verification_signature");
-    conf[mount]["info"].add("verification_signature", Setting::TypeInt) = (int)verificationSignature;
+    conf[mount]["info"].add("verification_signature", Setting::TypeInt) =
+        (int)verificationSignature;
 
     //OK
     //Set mass. We don't have to set modified, because it doesn't
@@ -310,7 +325,8 @@ static void loadCellLink(Setting& root, Ship* ship, Cell* cell, const char*) {
       //If i==3 and triangle, reject
       //We need to check this BEFORE orienting, since the generic code may try
       //to handle an invalid fourth neighbour
-      if (i==3 && (0==strcmp("equil", root["type"]) || 0==strcmp("right", root["type"])))
+      if (i==3 && (0==strcmp("equil", root["type"])
+      ||  0==strcmp("right", root["type"])))
         throw runtime_error(_(ship,triangular_4_neighbours));
 
       map<string,unsigned>::const_iterator it=nameMap.find(string(name));
@@ -321,12 +337,16 @@ static void loadCellLink(Setting& root, Ship* ship, Cell* cell, const char*) {
   }
 }
 
-static void loadCellSystems(Setting& root, Ship* ship, Cell* cell, const char* clazz) {
-  if (root.exists("s0")) cell->systems[0]=loadSystem(root["s0"], ship, cell, clazz);
-  if (root.exists("s1")) cell->systems[1]=loadSystem(root["s1"], ship, cell, clazz);
+static void loadCellSystems(Setting& root, Ship* ship, Cell* cell,
+                            const char* clazz) {
+  if (root.exists("s0"))
+    cell->systems[0]=loadSystem(root["s0"], ship, cell, clazz);
+  if (root.exists("s1"))
+    cell->systems[1]=loadSystem(root["s1"], ship, cell, clazz);
 }
 
-static ShipSystem* loadSystem(Setting& root, Ship* ship, Cell* cell, const char* clazz) {
+static ShipSystem* loadSystem(Setting& root, Ship* ship, Cell* cell,
+                              const char* clazz) {
   const char* type=root["type"];
   ShipSystem* sys;
   #define SYS(typ,cls) if (0==strcmp(type,#typ)) { \
@@ -372,7 +392,9 @@ static ShipSystem* loadSystem(Setting& root, Ship* ship, Cell* cell, const char*
   } else throw runtime_error(_(ship,system_too_advanced));
   sys->container=cell;
 
-  if (const char* error = (root.exists("orient")? sys->setOrientation(root["orient"]) : sys->autoOrient()))
+  if (const char* error = (root.exists("orient")?
+                           sys->setOrientation(root["orient"]) :
+                           sys->autoOrient()))
     throw runtime_error(error);
   return sys;
   #undef WEA

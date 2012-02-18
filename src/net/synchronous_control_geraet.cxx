@@ -37,7 +37,7 @@ SynchronousControlGeraet::SynchronousControlGeraet(NetworkConnection* cxn_,
 //the STX on the next call to update().
   timeSinceTxn(incomming? 0 : 99999),
   lastPackOutSeq(0),
-  lastPackOutType(STX)
+  lastPackOutType(incomming? 0 : STX)
 {
   setChannel(0);
   for (NetworkConnection::channel chan=1; chan != 0; ++chan)
@@ -329,10 +329,10 @@ void SynchronousControlGeraet::update(unsigned et) throw() {
         break;
     }
   //If not waiting for ACK or idle, send any XOFs needed
-  } else if (!xofsOut.empty()) {
+  } else if (!xofsOut.empty() && !lastPackOutType) {
     transmitXof();
   //If no XOFs, send any XONs needed
-  } else if (!xonsOut.empty()) {
+  } else if (!xonsOut.empty() && !lastPackOutType) {
     transmitXon();
   }
 }

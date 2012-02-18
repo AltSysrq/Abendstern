@@ -261,11 +261,11 @@ const char* Manipulator::reloadShip() {
   ship=NULL; //In case the below fails
   try {
     //Delete signature if it exists
-    const char* mount = conf["edit"]["mountname"];
+    string mount((const char*)conf["edit"]["mountname"]);
     if (conf[mount]["info"].exists("verification_signature"))
       conf[mount]["info"].remove("verification_signature");
 
-    ship = loadShip(field, mount);
+    ship = loadShip(field, mount.c_str());
   } catch (NoSuchSettingException& nsse) {
     return nsse.what();
   } catch (runtime_error& err) {
@@ -280,7 +280,7 @@ const char* Manipulator::reloadShip() {
   ship->teleport(0.5f,vheight/2,0);
 
   //Determine ship properties
-  const char* mountname = conf["edit"]["mountname"];
+  string mountname((const char*)conf["edit"]["mountname"]);
   conf["edit"]["ship_mass"]=ship->getMass();
   conf["edit"]["ship_reinforcement"] = ship->getReinforcement();
   conf["edit"]["ship_name"] = (const char*)conf[mountname]["info"]["name"];

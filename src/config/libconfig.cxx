@@ -25,8 +25,17 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <algorithm>
+#include <set>
 
 #include "libconfig.hxx"
+
+#define EXIT_THE_SKY_IS_FALLING 255
+
+//Debugging options
+//#define CHECK_RU_UNIQUENESS
+//#define CHECK_ACTUAL_RUSE_MATCHES_RECORDED
+//#define CHECK_NO_DOUBLE_BFREE
 
 using namespace std;
 
@@ -43,8 +52,8 @@ using namespace std;
  * hit of using normal FILE*s should not be big.
  *
  * Each Setting* encodes data as follows:
- * Bits 0--2 encode the type; bits 3--15 encode the lower index, and the rest are
- * the upper index plus one.
+ * Bits 0--2 encode the type; bits 3--15 encode the lower index, and the rest
+ * are the upper index plus one.
  *
  * The indices are used to locate the actual data for the setting.
  * The upper index is a table of pointers to lower tables; bit 0 of
@@ -70,39 +79,40 @@ using namespace std;
  * A secondary upper/lower index pair exists for tracking parenthood; the
  * lower index in this case holds Setting*s.
  *
- * All in-memory out-of-index structures are subtypes of the Swappable structure.
- * This structure tracks the size of the contained data (including the structure
- * itself), the one SwapPointer or Setting* that tracks it (there may never be
- * more than one), as well as next/previous links for a most-recently-used list.
- * Whenever a Swappable is accessed, it is unlinked from this list and reinserted
- * to the beginning. When the total memory used exceeds the requested amount and
- * a new Swappable is to be allocated, Swappables from the tail of this list are
- * moved to swap, their SwapPointer updated, and then deallocated.
+ * All in-memory out-of-index structures are subtypes of the Swappable
+ * structure. This structure tracks the size of the contained data (including
+ * the structure itself), the one SwapPointer or Setting* that tracks it (there
+ * may never be more than one), as well as next/previous links for a
+ * most-recently-used list. Whenever a Swappable is accessed, it is unlinked
+ * from this list and reinserted to the beginning. When the total memory used
+ * exceeds the requested amount and a new Swappable is to be allocated,
+ * Swappables from the tail of this list are moved to swap, their SwapPointer
+ * updated, and then deallocated.
  *
- * In order to prevent a lower index to be swapped out before a Setting it contains,
- * each lower index object is retraversed after an access to a Setting so it will
- * be earlier in the recently-used list.
+ * In order to prevent a lower index to be swapped out before a Setting it
+ * contains, each lower index object is retraversed after an access to a Setting
+ * so it will be earlier in the recently-used list.
  *
- * In-file structures are stored naked in whatever format is necessary; since the
- * type is already known when they must be loaded back, the appropriate decoder
- * can run which can deallocate appropriately.
+ * In-file structures are stored naked in whatever format is necessary; since
+ * the type is already known when they must be loaded back, the appropriate
+ * decoder can run which can deallocate appropriately.
  *
  * Space in the file is allocated in 32-byte blocks, enough for four pointers.
  * Block 0 is never used, so that a NULL pointer is never valid. Free blocks
  * begin with a pointer to the next free block, or 0 for end. The address of
  * the first free block is held in RAM.
  * The following steps are taken to allocate a block:
- * 1. If the head pointer to free segments is NULL, append new segments to the file
- *    and adjust head accordingly
+ * 1. If the head pointer to free segments is NULL, append new segments to the
+ *    file and adjust head accordingly
  * 2. Use the block the head points to as the return value
  * 3. Copy the block's next into the head
  * To deallocate a block:
  * 1. Copy head into the block's next
  * 2. Set head to the block
  *
- * Since file offsets are signed integers in cstdio, and since the logical offsets
- * are multiplied by block size over two, data is split into up to 16 files, each
- * limited in size to (1<<(8*sizeof(long)-1))-BLOCK_SZ bytes.
+ * Since file offsets are signed integers in cstdio, and since the logical
+ * offsets are multiplied by block size over two, data is split into up to 16
+ * files, each limited in size to (1<<(8*sizeof(long)-1))-BLOCK_SZ bytes.
  */
 
 namespace libconfig {
@@ -127,7 +137,9 @@ namespace libconfig {
   //Evaluate Or Die
   //Evaluates the given condition; if it is false, print
   //a diagnosis and exit
-  static inline void eod(bool cond, const char* msg) { if (!cond) perror(msg), exit(254); }
+  static inline void eod(bool cond, const char* msg) {
+    if (!cond) perror(msg), exit(254);
+  }
 
   //Returns whether the given character is an identifier character
   static inline bool isIDChar(char ch) {
@@ -172,7 +184,8 @@ namespace libconfig {
       //assumptions this encoder makes are invalid
       switch(true) {
         case (sizeof(void*) != 4):
-        case (sizeof(float)==sizeof(unsigned) && sizeof(unsigned)==sizeof(iptr)):;
+        case (sizeof(float)==sizeof(unsigned)
+           && sizeof(unsigned)==sizeof(iptr)):;
       }
     }
 
@@ -218,7 +231,8 @@ namespace libconfig {
       //if any assumption we make is invalid
       switch(true) {
         case (sizeof(void*)!=8):
-        case (sizeof(float)==sizeof(unsigned) && sizeof(unsigned) < sizeof(iptr)):;
+        case (sizeof(float)==sizeof(unsigned)
+              && sizeof(unsigned) < sizeof(iptr)):;
       }
     }
 
@@ -267,13 +281,17 @@ namespace libconfig {
     //It is to return the index within the file that the structure
     //is rooted in.
     iptr (*swapout)(Swappable*);
-  } ruhead = { NULL, &rutail, NULL }, rutail = { NULL, NULL, &ruhead }; //Recently-used list
+  } ruhead = { NULL, &rutail, NULL },
+    rutail = { NULL, NULL, &ruhead }; //Recently-used list
 
   static iptr primaryUsed=0, maxPrimary=1024*1024;
-  static iptr secondaryUsed=1, secondarySize=1; //Number of blocks (block 0 is always "used")
+  //Number of blocks (block 0 is always "used")
+  static iptr secondaryUsed=1, secondarySize=1;
   static FILE* swapfile[16] = {0};
-  static iptr nextFreeBlock=0; //Index of next free block in the swapfile, or zero for none
-  static Setting* nextFreeSetting=0; //Location of next free Setting, or NULL for none
+  //Index of next free block in the swapfile, or zero for none
+  static iptr nextFreeBlock=0;
+  //Location of next free Setting, or NULL for none
+  static Setting* nextFreeSetting=0;
   /* The upper index.
    * This has an extra pointer so that any SwapPointer* will survive
    * resizing of the vector.
@@ -312,7 +330,10 @@ namespace libconfig {
    * dat[0]: Hash of string
    * dat[1]: Length of string
    */
-  union BGroup { char pad[BLOCK_SZ]; struct { iptr nxt, name; Setting* value; unsigned dat[2]; }; };
+  union BGroup {
+    char pad[BLOCK_SZ];
+    struct { iptr nxt, name; Setting* value; unsigned dat[2]; };
+  };
   /* Array and list storage.
    * nxt: Next block of the composite, or 0 for end
    * dat[0..n-1]: Contents (NULL for end of contents)
@@ -484,6 +505,10 @@ namespace libconfig {
     eod(1 == fread(dat, BLOCK_SZ, 1, swapfile[fix]), "fread");
   }
 
+  #ifdef CHECK_NO_DOUBLE_BFREE
+  static set<iptr> freeBlockSet;
+  #endif
+
   /* Extends the last file with 64k blocks and adds them to the
    * free list.
    */
@@ -495,6 +520,9 @@ namespace libconfig {
       if (i < 65535) blk.nxt = base + i*2 + 2;
       else           blk.nxt = 0;
       bwrite(base+i*2, &blk);
+      #ifdef CHECK_NO_DOUBLE_BFREE
+      freeBlockSet.insert(base+i*2);
+      #endif
     }
   }
 
@@ -506,11 +534,19 @@ namespace libconfig {
     bread(ret, &blk);
     nextFreeBlock = blk.nxt;
     ++secondaryUsed;
+    #ifdef CHECK_NO_DOUBLE_BFREE
+    assert(freeBlockSet.count(ret));
+    freeBlockSet.erase(ret);
+    #endif
     return ret;
   }
 
   /* Frees a block. */
   static void bfree(iptr i) {
+    #ifdef CHECK_NO_DOUBLE_BFREE
+    if (freeBlockSet.count(i)) ++*(int*)NULL;
+    freeBlockSet.insert(i);
+    #endif
     BFree blk;
     blk.nxt = nextFreeBlock;
     nextFreeBlock=i;
@@ -520,7 +556,9 @@ namespace libconfig {
 
   //This will be used quite frequently below, so put it above so the compiler
   //can inline it
-  Setting::Type Setting::getType() const { return SettingEncoder::type(RS(this)); }
+  Setting::Type Setting::getType() const {
+    return SettingEncoder::type(RS(this));
+  }
 
   /* BEGIN: Data management functions.
    * There are four for each type:
@@ -576,7 +614,8 @@ namespace libconfig {
     do {
       for (unsigned i=sizeof(iptr); i<BLOCK_SZ; ++i, ++str) {
         blk.dat[i] = *str;
-        if (!*str) break; //End of string (after the copy since we do want to copy the NUL)
+        //End of string (after the copy since we do want to copy the NUL)
+        if (!*str) break;
       }
 
       blk.nxt = (*str? balloc() : 0);
@@ -625,7 +664,7 @@ namespace libconfig {
   }
 
   static void ramfree_lindex(Swappable* swp) { }
-  static void diskfree_lindex(iptr i) {
+  static inline void diskfree_lindex(iptr i) {
     BLIndex blk;
     do {
       bread(i, &blk);
@@ -693,7 +732,8 @@ namespace libconfig {
     iptr base = balloc();
     for (iptr curr = base; curr; curr = blk.nxt) {
       //Test ix <= arr->length so we insert a final NULL if needed
-      for (unsigned i=0; i<sizeof(blk.dat)/sizeof(Setting*) && ix <= arr->length; ++i, ++ix)
+      for (unsigned i=0; i<sizeof(blk.dat)/sizeof(Setting*)
+                      && ix <= arr->length; ++i, ++ix)
         blk.dat[i] = (ix < arr->length? arr->dat[ix] : NULL);
       blk.nxt = (ix < arr->length? balloc() : 0);
       bwrite(curr, &blk);
@@ -734,21 +774,25 @@ namespace libconfig {
    * This will NOT resize the table -- the caller must ensure that it
    * is appropriate for the current load.
    */
-  static void hash_insertTrippleDirect(RGroup*, unsigned hash, const char* name, Setting* value);
+  static void hash_insertTrippleDirect(RGroup*, unsigned hash,
+                                       const char* name, Setting* value);
   //Since the deallocation without group deletion is a bit complex and shares
   //almost all of its code with recursive deletion, this function supports
   //both (setting deletion is optional)
-  static void ramfree_group_common(Swappable* swp, bool deleteSettingsAndStrings) {
+  static void ramfree_group_common(Swappable* swp,
+                                   bool deleteSettingsAndStrings) {
     RGroup* grp = (RGroup*)swp;
     for (unsigned i=0; i<grp->tableSize; ++i) {
       if (grp->table[i].dat) {
         //Queue Settings and dealloc strings
-        for (RGroup::HashEntry* e = &grp->table[i]; e && deleteSettingsAndStrings; e = e->nxt) {
+        for (RGroup::HashEntry* e = &grp->table[i];
+             e && deleteSettingsAndStrings; e = e->nxt) {
           toDelete.push(e->dat);
           delete[] e->name;
         }
         //Deallocate links
-        for (RGroup::HashEntry* e = grp->table[i].nxt; e; /* updated in function */) {
+        for (RGroup::HashEntry* e = grp->table[i].nxt; e;
+             /* updated in body */) {
           RGroup::HashEntry* nxt = e->nxt;
           delete e;
           e = nxt;
@@ -847,7 +891,8 @@ namespace libconfig {
         grp->size += blk.dat[1];
 
         //Add to hashtable
-        hash_insertTrippleDirect(grp, blk.dat[0], grp->entries[ix].name, blk.value);
+        hash_insertTrippleDirect(grp, blk.dat[0], grp->entries[ix].name,
+                                 blk.value);
 
         ++ix;
       }
@@ -933,10 +978,48 @@ namespace libconfig {
     }
   }
 
+  /* Performs a sanity check on the memory accounting system.
+   * It may perform the following checks, if the given preprocessor
+   * macros are defined:
+   *
+   * CHECK_RU_UNIQUENESS:
+   *   Ensure all elements in the RU list are unique.
+   * CHECK_ACTUAL_RUSE_MATCHES_RECORDED
+   *   Ensure the sum of the sizes of the elements in the RU list matches the
+   *   recorded total memory usage.
+   * If a test fails, a segfault is triggered; otherwise, the function returns
+   * immediately.
+   */
+  static inline void rsanity() {
+    #ifdef CHECK_RU_UNIQUENESS
+    {
+      vector<Swappable*> ruContents;
+      for (Swappable* curr = ruhead.nxt; curr != &rutail; curr = curr->nxt)
+        ruContents.push_back(curr);
+      sort(ruContents.begin(), ruContents.end());
+      for (unsigned i=1; i<ruContents.size(); ++i)
+        if (ruContents[i-1] == ruContents[i])
+          ++*(int*)NULL;
+    }
+    #endif
+
+    #ifdef CHECK_ACTUAL_RUSE_MATCHES_RECORDED
+    {
+      iptr total = 0;
+      for (Swappable* curr = ruhead.nxt; curr != &rutail; curr = curr->nxt)
+        total += curr->size;
+
+      if (total != primaryUsed)
+        ++*(int*)NULL;
+    }
+    #endif
+  }
+
   /* Decodes the given Setting* and returns a SettingEncoder::LowerIndex*
    * that the Setting* points to.
    */
-  static SettingEncoder::LowerIndex* sgetli(const Setting* s, const vector<SwapPointer*> uIndex = upperIndex) {
+  static SettingEncoder::LowerIndex*
+  sgetli(const Setting* s, const vector<SwapPointer*>& uIndex = upperIndex) {
     unsigned uix, lix;
     SettingEncoder::indices(RS(s), uix, lix);
     SwapPointer* uptr = uIndex[uix];
@@ -952,15 +1035,18 @@ namespace libconfig {
     RLIndex* rpli = new RLIndex;
     for (unsigned i=0; i<LOWER_INDEX_SZ; ++i)
       rli->dat[i].nxt = (i < LOWER_INDEX_SZ-1?
-                         SR(SettingEncoder::create((Setting::Type)0, upperIndex.size(), i+1))
+                         SR(SettingEncoder::create((Setting::Type)0,
+                                                   upperIndex.size(), i+1))
                          : nextFreeSetting);
-    nextFreeSetting = SR(SettingEncoder::create((Setting::Type)0, upperIndex.size(), 0));
+    nextFreeSetting = SR(SettingEncoder::create((Setting::Type)0,
+                                                upperIndex.size(), 0));
     rli->size = sizeof(RLIndex);
     rpli->size = sizeof(RLIndex);
     rli->swapout = swapout_lindex;
     rpli->swapout = swapout_lindex;
 
-    //Besides this, rpli can be left uninitialised (and besides the parent, below)
+    //Besides this, rpli can be left uninitialised (and besides the parent,
+    //below)
 
     SwapPointer* rliptr = new SwapPointer, * rpliptr = new SwapPointer;
     rliptr->ptr = rli;
@@ -999,8 +1085,8 @@ namespace libconfig {
     return SR(SettingEncoder::create(t, uix, lix));
   }
 
-  /* Immediately frees a Setting. This should only be used from garbageCollection() and
-   * parsing functions;
+  /* Immediately frees a Setting. This should only be used from
+   * garbageCollection() and parsing functions;
    * normally, one should add the Setting* to toDelete.
    */
   static void sfree(Setting* s) {
@@ -1172,7 +1258,8 @@ namespace libconfig {
    * This will NOT resize the table -- the caller must ensure that it
    * is appropriate for the current load.
    */
-  void hash_insertTrippleDirect(RGroup* grp, unsigned hash, const char* name, Setting* value) {
+  void hash_insertTrippleDirect(RGroup* grp, unsigned hash, const char* name,
+                                Setting* value) {
     hash &= (grp->tableSize - 1);
     if (!grp->table[hash].dat) {
       //Can be directly inserted into the table
@@ -1200,7 +1287,7 @@ namespace libconfig {
       //Deallocate current memory
       //First, find and free dupe links
       for (unsigned i=0; i<grp->tableSize; ++i) {
-        for (RGroup::HashEntry* e = grp->table[i].nxt; e; /* e updated within */) {
+        for (RGroup::HashEntry* e = grp->table[i].nxt; e; /*updated within*/) {
           RGroup::HashEntry* nxt = e->nxt;
           delete e;
           e = nxt;
@@ -1217,7 +1304,8 @@ namespace libconfig {
 
       //Rebuild
       for (unsigned i=0; i<grp->numEntries; ++i)
-        hash_insertTrippleDirect(grp, grp->entries[i].hash, grp->entries[i].name, grp->entries[i].dat);
+        hash_insertTrippleDirect(grp, grp->entries[i].hash,
+                                 grp->entries[i].name, grp->entries[i].dat);
     }
   }
 
@@ -1225,7 +1313,8 @@ namespace libconfig {
    * exists.
    * Automatically resizes the table if needed.
    */
-  void hash_insert(RGroup* grp, unsigned hash, const char* name, Setting* value) {
+  void hash_insert(RGroup* grp, unsigned hash, const char* name,
+                   Setting* value) {
     hash_ensureLargeEnough(grp);
     hash_insertTrippleDirect(grp, hash, name, value);
   }
@@ -1297,6 +1386,7 @@ namespace libconfig {
       case Setting::TypeList:   return "TypeList";
       case Setting::TypeGroup:  return "TypeGroup";
     }
+    exit(EXIT_THE_SKY_IS_FALLING);
   }
   /* Swaps a setting's external data in and returns it after
    * retraversing the lower index.
@@ -1444,7 +1534,8 @@ namespace libconfig {
         if (ix >= arr->length) {
           ostringstream elt;
           elt << "[" << ix << "]";
-          throw SettingNotFoundException("Index out of range", getPath() + "." + elt.str());
+          throw SettingNotFoundException("Index out of range",
+                                         getPath() + "." + elt.str());
         }
         return *arr->dat[ix];
       } break;
@@ -1453,7 +1544,8 @@ namespace libconfig {
         if (ix >= grp->numEntries) {
           ostringstream elt;
           elt << "[" << ix << "]";
-          throw SettingNotFoundException("Index out of range", getPath() + "." + elt.str());
+          throw SettingNotFoundException("Index out of range",
+                                         getPath() + "." + elt.str());
         }
         return *grp->entries[ix].dat;
       } break;
@@ -1467,7 +1559,8 @@ namespace libconfig {
     return const_cast<Setting*>(this)->operator[](ix);
   }
   Setting& Setting::operator[](const char* key) {
-    //If key begins and ends with [ and ], parse and use operator[](unsigned) instead
+    //If key begins and ends with [ and ], parse and use
+    //operator[](unsigned) instead
     unsigned tix;
     if (parseBracketIndex(key, tix)) return operator[](tix);
 
@@ -1492,7 +1585,8 @@ namespace libconfig {
   #define LVFUN(ctype,ltype,access) \
     bool Setting::lookupValue(const char* key, ctype& dst) const { \
       if (getType() != TypeGroup) return false; \
-      Setting* s = hash_lookup(sgetext<RGroup>(this,swapin_group), hash_calc(key), key); \
+      Setting* s = hash_lookup(sgetext<RGroup>(this,swapin_group), \
+                               hash_calc(key), key); \
       if (!s) return false; \
       if (s->getType() != ltype) return false; \
       dst = access; \
@@ -1504,8 +1598,14 @@ namespace libconfig {
   LVFUN(unsigned,TypeInt,sgetli(s)->ui)
   LVFUN(signed,TypeInt,sgetli(s)->si)
   LVFUN(float,TypeFloat,sgetli(s)->f)
-  LVFUN(unsigned long long,TypeInt64,(SettingEncoder::canEmbedInt64()? sgetli(s)->ui:sgetext<RInt64>(s,swapin_int64)->ul))
-  LVFUN(signed long long,TypeInt64,(SettingEncoder::canEmbedInt64()?sgetli(s)->si:sgetext<RInt64>(s,swapin_int64)->sl))
+  LVFUN(unsigned long long,TypeInt64,
+        (SettingEncoder::canEmbedInt64()?
+         sgetli(s)->ui :
+         sgetext<RInt64>(s,swapin_int64)->ul))
+  LVFUN(signed long long,TypeInt64,
+        (SettingEncoder::canEmbedInt64()?
+        sgetli(s)->si :
+        sgetext<RInt64>(s,swapin_int64)->sl))
   LVFUN(const char*,TypeString,sgetext<RString>(s,swapin_string)->str)
   LVFUN(string,TypeString,sgetext<RString>(s,swapin_string)->str)
   #undef LVFUN
@@ -1519,7 +1619,8 @@ namespace libconfig {
     RGroup* grp = sgetext<RGroup>(this, swapin_group);
     unsigned hash = hash_calc(key);
     if (hash_lookup(grp, hash, key))
-      throw SettingNameException("Given name already in use", getPath() + "." + key);
+      throw SettingNameException("Given name already in use",
+                                 getPath() + "." + key);
 
     //OK
     Setting* s = salloc(type, this);
@@ -1540,8 +1641,10 @@ namespace libconfig {
       //Need to resize
       grp->size += grp->entriesCap*sizeof(RGroup::OrderedEntry);
       grp->entriesCap *= 2;
-      RGroup::OrderedEntry* newentries = new RGroup::OrderedEntry[grp->entriesCap];
-      memcpy(newentries, grp->entries, sizeof(RGroup::OrderedEntry)*grp->numEntries);
+      RGroup::OrderedEntry* newentries =
+          new RGroup::OrderedEntry[grp->entriesCap];
+      memcpy(newentries, grp->entries,
+             sizeof(RGroup::OrderedEntry)*grp->numEntries);
       delete[] grp->entries;
       grp->entries = newentries;
     }
@@ -1580,7 +1683,8 @@ namespace libconfig {
       }
 
       if (type == TypeArray || type == TypeList || type == TypeGroup)
-        throw SettingTypeException("Attempt to insert composite into array", getPath());
+        throw SettingTypeException("Attempt to insert composite into array",
+                                   getPath());
     }
 
     //OK
@@ -1613,7 +1717,8 @@ namespace libconfig {
       if (ix >= grp->numEntries) {
         ostringstream subname;
         subname << "[" << ix << "]";
-        throw SettingNotFoundException("Index out of range", getPath() + "." + subname.str());
+        throw SettingNotFoundException("Index out of range",
+                                       getPath() + "." + subname.str());
       }
 
       //We'll be altering the size, so remove first
@@ -1627,7 +1732,8 @@ namespace libconfig {
       toDelete.push(grp->entries[ix].dat);
       //Remove from ordered list
       --grp->numEntries;
-      memmove(grp->entries+ix, grp->entries+ix+1, (grp->numEntries-ix)*sizeof(RGroup::OrderedEntry));
+      memmove(grp->entries+ix, grp->entries+ix+1,
+              (grp->numEntries-ix)*sizeof(RGroup::OrderedEntry));
 
       radd(grp);
       //Retraverse containing lower index
@@ -1638,7 +1744,8 @@ namespace libconfig {
       if (ix >= arr->length) {
         ostringstream subname;
         subname << "[" << ix << "]";
-        throw SettingNotFoundException("Index out of range", getPath() + "." + subname.str());
+        throw SettingNotFoundException("Index out of range",
+                                       getPath() + "." + subname.str());
       }
 
       toDelete.push(arr->dat[ix]);
@@ -1738,7 +1845,8 @@ namespace libconfig {
 
   bool Setting::exists(const char* key) const {
     if (TypeGroup != getType()) return false;
-    return NULL != hash_lookup(sgetext<RGroup>(this, swapin_group), hash_calc(key), key);
+    return NULL != hash_lookup(sgetext<RGroup>(this, swapin_group),
+                               hash_calc(key), key);
   }
   bool Setting::exists(const string& key) const {
     return exists(key.c_str());
@@ -1775,7 +1883,8 @@ namespace libconfig {
    * false for the pointee. Also updates line as necessary.
    * Also handles comments.
    */
-  static void parser_skipWhitespace(const char*& s, unsigned& line, bool includeComma=true) {
+  static void parser_skipWhitespace(const char*& s, unsigned& line,
+                                    bool includeComma=true) {
     normalWhitespace:
     while (isWhite(*s, includeComma)) {
       if (*s == '\n') ++line;
@@ -1824,14 +1933,17 @@ namespace libconfig {
    * character encountered.
    * If an empty identifier is read, a ParseException is thrown.
    */
-  static string parser_readIdentifier(const char*& s, const string& file, unsigned line, const char* altEndChars = "([{}])") {
+  static string parser_readIdentifier(const char*& s, const string& file,
+                                      unsigned line,
+                                      const char* altEndChars = "([{}])") {
     string id;
     while (isIDChar(*s)) id += *s++;
     if (id.empty())
       throw ParseException("Expected identifier", file, line);
     if (isWhite(*s) || *s == 0 || strchr(altEndChars, *s))
       return id;
-    throw ParseException(string("Invalid identifier; encountered character ") + *s, file, line);
+    throw ParseException(string("Invalid identifier; encountered character ") +
+                                *s, file, line);
   }
   /* Reads in a string of characters until whitespace or an alternate
    * terminater is encountered.
@@ -1847,7 +1959,8 @@ namespace libconfig {
    * Assumes that whitespace has been skipped to this point.
    * Throws ParseException if the type cannot be determined.
    */
-  static Setting::Type parser_classify(const char* s, const string& file, unsigned line) {
+  static Setting::Type parser_classify(const char* s, const string& file,
+                                       unsigned line) {
     switch (*s) {
       case '{': return Setting::TypeGroup;
       case '[': return Setting::TypeArray;
@@ -1871,7 +1984,7 @@ namespace libconfig {
       case '+':
       case '-':
       case '.': {
-        string str = parser_readChunk(s, "]})"); //Doesn't destroy the parent's s
+        string str = parser_readChunk(s, "]})"); //Doesn't destroy parent's s
         const char* cs = str.c_str();
         if (strchr(cs, '.')) return Setting::TypeFloat;
         if (strchr(cs, 'l') || strchr(cs, 'L')) return Setting::TypeInt64;
@@ -1882,20 +1995,27 @@ namespace libconfig {
     }
   }
 
-  static Setting* parser_readNumber(Setting* parent, const char*& s, const char* altEndChars,
+  static Setting* parser_readNumber(Setting* parent, const char*& s,
+                                    const char* altEndChars,
                                     const string& file, unsigned& line);
-  static Setting* parser_readBool(Setting* parent, const char*& s, const char* altEndChars,
+  static Setting* parser_readBool(Setting* parent, const char*& s,
+                                  const char* altEndChars,
                                   const string& file, unsigned& line);
-  static Setting* parser_readString(Setting* parent, const char*& s, const char* altEndChars,
+  static Setting* parser_readString(Setting* parent, const char*& s,
+                                    const char* altEndChars,
                                     const string& file, unsigned& line);
-  static Setting* parser_readArray(Setting* parent, Setting::Type type, const char*& s,
+  static Setting* parser_readArray(Setting* parent, Setting::Type type,
+                                   const char*& s,
                                    const string& file, unsigned& line);
-  static Setting* parser_readGroup(Setting* parent, const char*& s, const string& file, unsigned& line);
+  static Setting* parser_readGroup(Setting* parent, const char*& s,
+                                   const string& file, unsigned& line);
   /* Reads a Setting of the given type in and returns it.
-   * s is updated to the first non-whitespace character after the end of the setting.
+   * s is updated to the first non-whitespace character after the end of the
+   * setting.
    * line is updated as necessary.
    */
-  static Setting* parser_read(Setting::Type type, Setting* parent, const char*& s, const char* altEndChars,
+  static Setting* parser_read(Setting::Type type, Setting* parent,
+                              const char*& s, const char* altEndChars,
                               const string& file, unsigned& line) {
     switch (type) {
       case Setting::TypeInt:
@@ -1912,9 +2032,12 @@ namespace libconfig {
       case Setting::TypeGroup:
         return parser_readGroup(parent, s, file, line);
     }
+
+    exit(EXIT_THE_SKY_IS_FALLING);
   }
 
-  static Setting* parser_readNumber(Setting* parent, const char*& s, const char* altEndChars,
+  static Setting* parser_readNumber(Setting* parent, const char*& s,
+                                    const char* altEndChars,
                                     const string& file, unsigned& line) {
     string str = parser_readChunk(s, altEndChars);
     parser_skipWhitespace(s, line);
@@ -1989,7 +2112,8 @@ namespace libconfig {
     if (!in || EOF != in.peek()) {
       //Error reading or not everything read
       sfree(ret);
-      throw ParseException(string("Invalid numeric syntax: ") + str, file, line);
+      throw ParseException(string("Invalid numeric syntax: ") + str,
+                           file, line);
     }
 
     parser_skipWhitespace(s, line);
@@ -1997,7 +2121,8 @@ namespace libconfig {
     return ret;
   }
 
-  static Setting* parser_readBool(Setting* parent, const char*& s, const char* altEndChars,
+  static Setting* parser_readBool(Setting* parent, const char*& s,
+                                  const char* altEndChars,
                                   const string& file, unsigned& line) {
     string id = parser_readIdentifier(s, file, line, altEndChars);
     parser_skipWhitespace(s, line);
@@ -2010,7 +2135,8 @@ namespace libconfig {
     return ret;
   }
 
-  static Setting* parser_readString(Setting* parent, const char*& s, const char* altEndChars,
+  static Setting* parser_readString(Setting* parent, const char*& s,
+                                    const char* altEndChars,
                                     const string& file, unsigned& line) {
     Setting* ret = salloc(Setting::TypeString, parent);
     sinit(ret);
@@ -2022,10 +2148,13 @@ namespace libconfig {
 
     //When reading a string, we have the following states:
     //  outside string  Switch to inside string on ", terminate otherwise
-    //  inside string   Switch to outside and skip whitespace on ", switch to escape on \, stay otherwise
-    //  escape          Switch to inside string on valid sequence, to escapex0 on x, fail on invalid
+    //  inside string   Switch to outside and skip whitespace on ",
+    //                  switch to escape on \, stay otherwise
+    //  escape          Switch to inside string on valid sequence, to escapex0
+    //                  on x, fail on invalid
     //  escapex0        Validate first hex digit and move to escapex1 or fail
-    //  escapex1        Validate second hex digit and move to inside string or fail
+    //  escapex1        Validate second hex digit and move to inside string or
+    //                  fail
     outsideString:
     if (*s == '"') {
       ++s;
@@ -2107,7 +2236,8 @@ namespace libconfig {
     throw ParseException(errorMessage, file, line);
   }
 
-  static Setting* parser_readArray(Setting* parent, Setting::Type type, const char*& s,
+  static Setting* parser_readArray(Setting* parent, Setting::Type type,
+                                   const char*& s,
                                    const string& file, unsigned& line) {
     Setting* ret = salloc(type, parent);
     sinit(ret);
@@ -2120,11 +2250,13 @@ namespace libconfig {
 
     try {
       while (*s != terminator[0]) {
-        if (*s == 0) throw ParseException("EOF while reading array or list", file, line);
+        if (*s == 0) throw ParseException("EOF while reading array or list",
+                                          file, line);
 
         Setting::Type subt = parser_classify(s, file, line);
         Setting* nxt = &ret->add(subt);
-        //Immediately free the setting so that the lower parser will use the same pointer
+        //Immediately free the setting so that the lower parser will use the
+        //same pointer
         sfree(nxt);
         Setting* sub = parser_read(subt, ret, s, terminator, file, line);
         assert(nxt == sub);
@@ -2140,7 +2272,8 @@ namespace libconfig {
     return ret;
   }
 
-  static Setting* parser_readGroup(Setting* parent, const char*& s, const string& file, unsigned& line) {
+  static Setting* parser_readGroup(Setting* parent, const char*& s,
+                                   const string& file, unsigned& line) {
     char terminator;
     if (parent) {
       terminator = '}';
@@ -2163,9 +2296,11 @@ namespace libconfig {
 
         Setting::Type subt = parser_classify(s, file, line);
         Setting* nxt = &ret->add(name, subt);
-        //Immediately_free the setting so that the lower parser will use the same pointer
+        //Immediately_free the setting so that the lower parser will use
+        //the same pointer
         sfree(nxt);
-        Setting* sub = parser_read(subt, ret, s, (parent? "}" : ""), file, line);
+        Setting* sub = parser_read(subt, ret, s, (parent? "}" : ""), file,
+                                   line);
         assert(nxt == sub);
       }
 
@@ -2200,19 +2335,27 @@ namespace libconfig {
    *     @ = indentation level (spaces)
    *     # = setting format
    */
-  static void writer_bool       (Setting*, ostream&, unsigned& col, unsigned indent);
-  static void writer_int        (Setting*, ostream&, unsigned& col, unsigned indent);
-  static void writer_int64      (Setting*, ostream&, unsigned& col, unsigned indent);
-  static void writer_float      (Setting*, ostream&, unsigned& col, unsigned indent);
-  static void writer_string     (Setting*, ostream&, unsigned& col, unsigned indent);
-  static void writer_array      (Setting*, ostream&, unsigned& col, unsigned indent);
-  static void writer_group      (Setting*, ostream&, unsigned& col, unsigned indent);
+  static void writer_bool       (Setting*, ostream&, unsigned& col,
+                                 unsigned indent);
+  static void writer_int        (Setting*, ostream&, unsigned& col,
+                                 unsigned indent);
+  static void writer_int64      (Setting*, ostream&, unsigned& col,
+                                 unsigned indent);
+  static void writer_float      (Setting*, ostream&, unsigned& col,
+                                 unsigned indent);
+  static void writer_string     (Setting*, ostream&, unsigned& col,
+                                 unsigned indent);
+  static void writer_array      (Setting*, ostream&, unsigned& col,
+                                 unsigned indent);
+  static void writer_group      (Setting*, ostream&, unsigned& col,
+                                 unsigned indent);
   static void addTab(unsigned& col) {
     col &= ~(8-1);
     col += 8;
   }
 
-  static void writer_any(Setting* s, ostream& out, unsigned& col, unsigned indent) {
+  static void writer_any(Setting* s, ostream& out, unsigned& col,
+                         unsigned indent) {
     switch (s->getType()) {
       case Setting::TypeBoolean:writer_bool     (s,out,col,indent); break;
       case Setting::TypeInt:    writer_int      (s,out,col,indent); break;
@@ -2225,26 +2368,31 @@ namespace libconfig {
     }
   }
 
-  static void writer_bool(Setting* s, ostream& out, unsigned& col, unsigned indent) {
+  static void writer_bool(Setting* s, ostream& out, unsigned& col,
+                          unsigned indent) {
     if (s->operator bool())
       out << "t";
     else
       out << "f";
     ++col;
   }
-  static void writer_int(Setting* s, ostream& out, unsigned& col, unsigned indent) {
+  static void writer_int(Setting* s, ostream& out, unsigned& col,
+                         unsigned indent) {
     streampos init = out.tellp();
     out << s->operator signed();
     col += out.tellp() - init;
   }
-  static void writer_int64(Setting* s, ostream& out, unsigned& col, unsigned indent) {
+  static void writer_int64(Setting* s, ostream& out, unsigned& col,
+                           unsigned indent) {
     streampos init = out.tellp();
     out << s->operator signed long long() << 'L';
     col += out.tellp() - init;
   }
-  static void writer_float(Setting* s, ostream& out, unsigned& col, unsigned indent) {
-    //Unfortunately, there is no option to force at least one digit after the decimal
-    //point to be printed (showpoint only appends a lone . if needed).
+  static void writer_float(Setting* s, ostream& out, unsigned& col,
+                           unsigned indent) {
+    //Unfortunately, there is no option to force at least one digit after
+    //the decimal point to be printed (showpoint only appends a lone . if
+    //needed).
     //To work around this, write to a separate string first, then, if it has no
     //decimal point, add ".0" to it
     ostringstream os;
@@ -2254,7 +2402,8 @@ namespace libconfig {
     out << os.str();
     col += os.str().size();
   }
-  static void writer_string(Setting* s, ostream& out, unsigned& col, unsigned indent) {
+  static void writer_string(Setting* s, ostream& out, unsigned& col,
+                            unsigned indent) {
     unsigned baseCol = (col < 32? col : 32);
     char sout[5]; //Maximum is \x## plus NUL
     unsigned slen;
@@ -2331,7 +2480,8 @@ namespace libconfig {
     out << "\",";
     col += 2;
   }
-  static void writer_array(Setting* s, ostream& out, unsigned& col, unsigned indent) {
+  static void writer_array(Setting* s, ostream& out, unsigned& col,
+                           unsigned indent) {
     unsigned baseCol = (col < 64? col : 64);
     out << (s->getType() == Setting::TypeArray? '[' : '(');
     unsigned len = s->getLength();
@@ -2354,9 +2504,10 @@ namespace libconfig {
     out << (s->getType() == Setting::TypeArray? ']' : ')');
     ++col;
   }
-  static void writer_group(Setting* s, ostream& out, unsigned& col, unsigned indent) {
-    //Since getName() is an O(n) operation, we'll run through the raw group to avoid
-    //making this O(nn).
+  static void writer_group(Setting* s, ostream& out, unsigned& col,
+                           unsigned indent) {
+    //Since getName() is an O(n) operation, we'll run through the raw group
+    //to avoid making this O(nn).
 
     if (!s->isRoot())
       out << "{\n";
@@ -2538,10 +2689,7 @@ namespace libconfig {
     return sz;
   }
   void garbageCollection() {
-    //Print memory usage info
-//    printf("%08d/%08dkB  %08d/%08dkB\n",
-//           (unsigned)(getCurrPriStorage()/1024), (unsigned)(getMaxPriStorage()/1024),
-//           (unsigned)(getCurrSecStorage()/1024), (unsigned)(getSwapFileSize()/1024));
+    rsanity();
     for (unsigned i=0; i<1024 && !toDelete.empty(); ++i) {
       sfree(toDelete.front());
       toDelete.pop();
