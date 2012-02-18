@@ -87,7 +87,7 @@ struct HungryExplosion {
  * @see Long description of src/background/explosion_pool.hxx
  */
 class ExplosionPool {
-  friend class ExplosionPoolSegment;
+  friend struct ExplosionPoolSegment;
 
   std::vector<ExplosionPoolSegment*> segments;
 
