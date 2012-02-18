@@ -21,7 +21,7 @@ TextMessageOutputGeraet::TextMessageOutputGeraet(AsyncAckGeraet* aag)
 : ReliableSender(aag)
 { }
 
-void TextMessageOutputGeraet::put(const char* str) {
+void TextMessageOutputGeraet::put(const char* str) noth {
   static byte buff[1024] = {0};
   strncpy((char*)(buff+NetworkConnection::headerSize), str,
           sizeof(buff)-1-NetworkConnection::headerSize);
