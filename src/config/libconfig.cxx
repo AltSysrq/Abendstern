@@ -25,10 +25,15 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <algorithm>
 
 #include "libconfig.hxx"
 
 #define EXIT_THE_SKY_IS_FALLING 255
+
+//Debugging options
+//#define CHECK_RU_UNIQUENESS
+//#define CHECK_ACTUAL_RUSE_MATCHES_RECORDED
 
 using namespace std;
 
@@ -954,6 +959,43 @@ namespace libconfig {
       rtraverse((Swappable*)ptr.ptr);
       return (Swappable*)ptr.ptr;
     }
+  }
+
+  /* Performs a sanity check on the memory accounting system.
+   * It may perform the following checks, if the given preprocessor
+   * macros are defined:
+   *
+   * CHECK_RU_UNIQUENESS:
+   *   Ensure all elements in the RU list are unique.
+   * CHECK_ACTUAL_RUSE_MATCHES_RECORDED
+   *   Ensure the sum of the sizes of the elements in the RU list matches the
+   *   recorded total memory usage.
+   * If a test fails, a segfault is triggered; otherwise, the function returns
+   * immediately.
+   */
+  static inline void rsanity() {
+    #ifdef CHECK_RU_UNIQUENESS
+    {
+      vector<Swappable*> ruContents;
+      for (Swappable* curr = ruhead.nxt; curr != &rutail; curr = curr->nxt)
+        ruContents.push_back(curr);
+      sort(ruContents.begin(), ruContents.end());
+      for (unsigned i=1; i<ruContents.size(); ++i)
+        if (ruContents[i-1] == ruContents[i])
+          ++*(int*)NULL;
+    }
+    #endif
+
+    #ifdef CHECK_ACTUAL_RUSE_MATCHES_RECORDED
+    {
+      iptr total = 0;
+      for (Swappable* curr = ruhead.nxt; curr != &rutail; curr = curr->nxt)
+        total += curr->size;
+
+      if (total != primaryUsed)
+        ++*(int*)NULL;
+    }
+    #endif
   }
 
   /* Decodes the given Setting* and returns a SettingEncoder::LowerIndex*
@@ -2630,6 +2672,7 @@ namespace libconfig {
     return sz;
   }
   void garbageCollection() {
+    rsanity();
     for (unsigned i=0; i<1024 && !toDelete.empty(); ++i) {
       sfree(toDelete.front());
       toDelete.pop();
