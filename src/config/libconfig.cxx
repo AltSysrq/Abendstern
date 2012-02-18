@@ -28,6 +28,8 @@
 
 #include "libconfig.hxx"
 
+#define EXIT_THE_SKY_IS_FALLING 255
+
 using namespace std;
 
 /* GENERAL DESIGN
@@ -1325,7 +1327,7 @@ namespace libconfig {
       case Setting::TypeList:   return "TypeList";
       case Setting::TypeGroup:  return "TypeGroup";
     }
-    return reinterpret_cast<const char*>(0xDeadBeef);
+    exit(EXIT_THE_SKY_IS_FALLING);
   }
   /* Swaps a setting's external data in and returns it after
    * retraversing the lower index.
@@ -1972,7 +1974,7 @@ namespace libconfig {
         return parser_readGroup(parent, s, file, line);
     }
 
-    return reinterpret_cast<Setting*>(0xDeadBeef);
+    exit(EXIT_THE_SKY_IS_FALLING);
   }
 
   static Setting* parser_readNumber(Setting* parent, const char*& s,
