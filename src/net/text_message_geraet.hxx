@@ -42,6 +42,9 @@ public:
 protected:
   virtual void receiveAccepted(NetworkConnection::seq_t, const byte*, unsigned)
   throw();
+
+private:
+  static InputNetworkGeraet* creator(NetworkConnection*);
 };
 
 #endif /* TEXT_MESSAGE_GERAET_HXX_ */

@@ -11,6 +11,12 @@
 
 using namespace std;
 
+const NetworkConnection::geraet_num TextMessageInputGeraet::num =
+    NetworkConnection::registerGeraetCreator(&creator, 3);
+InputNetworkGeraet* TextMessageInputGeraet::creator(NetworkConnection* cxn) {
+  return new TextMessageInputGeraet(cxn->aag);
+}
+
 TextMessageOutputGeraet::TextMessageOutputGeraet(AsyncAckGeraet* aag)
 : ReliableSender(aag)
 { }
