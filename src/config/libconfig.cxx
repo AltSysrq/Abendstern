@@ -960,7 +960,7 @@ namespace libconfig {
    * that the Setting* points to.
    */
   static SettingEncoder::LowerIndex*
-  sgetli(const Setting* s, const vector<SwapPointer*> uIndex = upperIndex) {
+  sgetli(const Setting* s, const vector<SwapPointer*>& uIndex = upperIndex) {
     unsigned uix, lix;
     SettingEncoder::indices(RS(s), uix, lix);
     SwapPointer* uptr = uIndex[uix];
