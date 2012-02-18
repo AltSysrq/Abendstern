@@ -26,6 +26,7 @@
 #include <vector>
 #include <queue>
 #include <algorithm>
+#include <set>
 
 #include "libconfig.hxx"
 
@@ -34,6 +35,7 @@
 //Debugging options
 //#define CHECK_RU_UNIQUENESS
 //#define CHECK_ACTUAL_RUSE_MATCHES_RECORDED
+//#define CHECK_NO_DOUBLE_BFREE
 
 using namespace std;
 
@@ -503,6 +505,10 @@ namespace libconfig {
     eod(1 == fread(dat, BLOCK_SZ, 1, swapfile[fix]), "fread");
   }
 
+  #ifdef CHECK_NO_DOUBLE_BFREE
+  static set<iptr> freeBlockSet;
+  #endif
+
   /* Extends the last file with 64k blocks and adds them to the
    * free list.
    */
@@ -514,6 +520,9 @@ namespace libconfig {
       if (i < 65535) blk.nxt = base + i*2 + 2;
       else           blk.nxt = 0;
       bwrite(base+i*2, &blk);
+      #ifdef CHECK_NO_DOUBLE_BFREE
+      freeBlockSet.insert(base+i*2);
+      #endif
     }
   }
 
@@ -525,11 +534,19 @@ namespace libconfig {
     bread(ret, &blk);
     nextFreeBlock = blk.nxt;
     ++secondaryUsed;
+    #ifdef CHECK_NO_DOUBLE_BFREE
+    assert(freeBlockSet.count(ret));
+    freeBlockSet.erase(ret);
+    #endif
     return ret;
   }
 
   /* Frees a block. */
   static void bfree(iptr i) {
+    #ifdef CHECK_NO_DOUBLE_BFREE
+    if (freeBlockSet.count(i)) ++*(int*)NULL;
+    freeBlockSet.insert(i);
+    #endif
     BFree blk;
     blk.nxt = nextFreeBlock;
     nextFreeBlock=i;
