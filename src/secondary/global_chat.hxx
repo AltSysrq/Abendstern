@@ -19,19 +19,6 @@
 
 #include "src/opto_flags.hxx"
 
-/* Somehow, the MSVC++ linker can tell the difference between
- * class Peer; declared here and class Peer; declared in
- * net/peer.hxx, and refuses to acknowledge that they are
- * the same type...
- */
-#if 0
-#ifndef WIN32
-class Peer;
-#else
-#include "../net/peer.hxx"
-#endif
-#endif
-
 /** The global_chat namespace contains functions that manage
  * the global deque of chat messages.
  */
@@ -60,9 +47,8 @@ namespace global_chat {
    * Does nothing if the network is not running.
    * If no Peer is specified, it defaults to NULL,
    * which indicates to send to all Peers.
-   * Implemented in net/peer.hxx.
    */
-  //void postRemote(const char*, Peer* = NULL) noth;
+  void postRemote(const char*) noth;
 
   /** Update the deque. The elapsed time is subtracted
    * from the first message's timeLeft; if that results
@@ -72,6 +58,28 @@ namespace global_chat {
 
   /** Clears the local messages. */
   void clear() noth;
+
+  /**
+   * Defines an object that can transmit messages to remote peers.
+   * It is implicitly added to the list of Remotes on construction and
+   * removed on destruction.
+   */
+  class Remote {
+    friend void postRemote(const char*) noth;
+    Remote(const Remote&); ///< Not implemented
+
+  protected:
+    ///Default contsructor
+    Remote();
+
+    /**
+     * Called when the given message is to be transmitted to remote peers.
+     */
+    virtual void put(const char*) noth = 0;
+
+  public:
+    virtual ~Remote();
+  };
 }
 
 #endif /* GLOBAL_CHAT_HXX_ */

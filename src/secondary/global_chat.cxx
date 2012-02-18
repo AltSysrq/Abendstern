@@ -13,6 +13,7 @@
 
 #include <string>
 #include <deque>
+#include <set>
 
 #include "global_chat.hxx"
 #include "confreg.hxx"
@@ -21,6 +22,8 @@
 using namespace std;
 
 namespace global_chat {
+  set<Remote*> remotes;
+
   deque<message> messages;
   //Start at a number near wrap-around to make sure
   //all code that uses the seqs does so correctly
@@ -28,7 +31,7 @@ namespace global_chat {
 
   void post(const char* str) noth {
     postLocal(str);
-    //postRemote(str);
+    postRemote(str);
   }
 
   void postLocal(const char* str) noth {
@@ -41,7 +44,11 @@ namespace global_chat {
       messages.pop_front();
   }
 
-  //postRemote in net/peer.cxx
+  void postRemote(const char* str) noth {
+    for (set<Remote*>::const_iterator it = remotes.begin();
+         it != remotes.end(); ++it)
+      (*it)->put(str);
+  }
 
   void update(float et) noth {
     if (messages.empty()) return;
@@ -52,5 +59,13 @@ namespace global_chat {
 
   void clear() noth {
     messages.clear();
+  }
+
+  Remote::Remote() {
+    remotes.insert(this);
+  }
+
+  Remote::~Remote() {
+    remotes.erase(this);
   }
 }
