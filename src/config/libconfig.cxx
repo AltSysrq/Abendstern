@@ -640,7 +640,7 @@ namespace libconfig {
   }
 
   static void ramfree_lindex(Swappable* swp) { }
-  static void diskfree_lindex(iptr i) {
+  static inline void diskfree_lindex(iptr i) {
     BLIndex blk;
     do {
       bread(i, &blk);
@@ -1325,6 +1325,7 @@ namespace libconfig {
       case Setting::TypeList:   return "TypeList";
       case Setting::TypeGroup:  return "TypeGroup";
     }
+    return reinterpret_cast<const char*>(0xDeadBeef);
   }
   /* Swaps a setting's external data in and returns it after
    * retraversing the lower index.
@@ -1970,6 +1971,8 @@ namespace libconfig {
       case Setting::TypeGroup:
         return parser_readGroup(parent, s, file, line);
     }
+
+    return reinterpret_cast<Setting*>(0xDeadBeef);
   }
 
   static Setting* parser_readNumber(Setting* parent, const char*& s,
