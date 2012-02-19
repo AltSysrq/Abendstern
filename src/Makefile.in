@@ -207,6 +207,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-seq_text_geraet.$(OBJEXT) \
 	abendsternuxgl14-text_message_geraet.$(OBJEXT) \
 	abendsternuxgl14-lat_disc_geraet.$(OBJEXT) \
+	abendsternuxgl14-block_geraet.$(OBJEXT) \
 	abendsternuxgl14-network_test.$(OBJEXT) \
 	abendsternuxgl14-namegen.$(OBJEXT) \
 	abendsternuxgl14-light_trail.$(OBJEXT) \
@@ -397,6 +398,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-seq_text_geraet.$(OBJEXT) \
 	abendsternuxgl21-text_message_geraet.$(OBJEXT) \
 	abendsternuxgl21-lat_disc_geraet.$(OBJEXT) \
+	abendsternuxgl21-block_geraet.$(OBJEXT) \
 	abendsternuxgl21-network_test.$(OBJEXT) \
 	abendsternuxgl21-namegen.$(OBJEXT) \
 	abendsternuxgl21-light_trail.$(OBJEXT) \
@@ -585,6 +587,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-seq_text_geraet.$(OBJEXT) \
 	abendsternuxgl32-text_message_geraet.$(OBJEXT) \
 	abendsternuxgl32-lat_disc_geraet.$(OBJEXT) \
+	abendsternuxgl32-block_geraet.$(OBJEXT) \
 	abendsternuxgl32-network_test.$(OBJEXT) \
 	abendsternuxgl32-namegen.$(OBJEXT) \
 	abendsternuxgl32-light_trail.$(OBJEXT) \
@@ -919,6 +922,7 @@ COMMONSOURCES = \
 ./net/seq_text_geraet.cxx \
 ./net/text_message_geraet.cxx \
 ./net/lat_disc_geraet.cxx \
+./net/block_geraet.cxx \
 ./net/network_test.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \
@@ -1075,6 +1079,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-audio.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-background_object.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-blast.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-block_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-bridge.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-bridge_relocator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-bussard_ramjet.Po@am__quote@
@@ -1258,6 +1263,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-audio.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-background_object.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-blast.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-block_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-bridge.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-bridge_relocator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-bussard_ramjet.Po@am__quote@
@@ -1441,6 +1447,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-audio.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-background_object.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-blast.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-block_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-bridge.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-bridge_relocator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-bussard_ramjet.Po@am__quote@
@@ -3816,6 +3823,20 @@ abendsternuxgl14-lat_disc_geraet.obj: ./net/lat_disc_geraet.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/lat_disc_geraet.cxx' object='abendsternuxgl14-lat_disc_geraet.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-lat_disc_geraet.obj `if test -f './net/lat_disc_geraet.cxx'; then $(CYGPATH_W) './net/lat_disc_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/lat_disc_geraet.cxx'; fi`
+
+abendsternuxgl14-block_geraet.o: ./net/block_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-block_geraet.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-block_geraet.Tpo -c -o abendsternuxgl14-block_geraet.o `test -f './net/block_geraet.cxx' || echo '$(srcdir)/'`./net/block_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-block_geraet.Tpo $(DEPDIR)/abendsternuxgl14-block_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/block_geraet.cxx' object='abendsternuxgl14-block_geraet.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-block_geraet.o `test -f './net/block_geraet.cxx' || echo '$(srcdir)/'`./net/block_geraet.cxx
+
+abendsternuxgl14-block_geraet.obj: ./net/block_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-block_geraet.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-block_geraet.Tpo -c -o abendsternuxgl14-block_geraet.obj `if test -f './net/block_geraet.cxx'; then $(CYGPATH_W) './net/block_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/block_geraet.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-block_geraet.Tpo $(DEPDIR)/abendsternuxgl14-block_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/block_geraet.cxx' object='abendsternuxgl14-block_geraet.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-block_geraet.obj `if test -f './net/block_geraet.cxx'; then $(CYGPATH_W) './net/block_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/block_geraet.cxx'; fi`
 
 abendsternuxgl14-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-network_test.Tpo -c -o abendsternuxgl14-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx
@@ -6379,6 +6400,20 @@ abendsternuxgl21-lat_disc_geraet.obj: ./net/lat_disc_geraet.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-lat_disc_geraet.obj `if test -f './net/lat_disc_geraet.cxx'; then $(CYGPATH_W) './net/lat_disc_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/lat_disc_geraet.cxx'; fi`
 
+abendsternuxgl21-block_geraet.o: ./net/block_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-block_geraet.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-block_geraet.Tpo -c -o abendsternuxgl21-block_geraet.o `test -f './net/block_geraet.cxx' || echo '$(srcdir)/'`./net/block_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-block_geraet.Tpo $(DEPDIR)/abendsternuxgl21-block_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/block_geraet.cxx' object='abendsternuxgl21-block_geraet.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-block_geraet.o `test -f './net/block_geraet.cxx' || echo '$(srcdir)/'`./net/block_geraet.cxx
+
+abendsternuxgl21-block_geraet.obj: ./net/block_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-block_geraet.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-block_geraet.Tpo -c -o abendsternuxgl21-block_geraet.obj `if test -f './net/block_geraet.cxx'; then $(CYGPATH_W) './net/block_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/block_geraet.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-block_geraet.Tpo $(DEPDIR)/abendsternuxgl21-block_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/block_geraet.cxx' object='abendsternuxgl21-block_geraet.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-block_geraet.obj `if test -f './net/block_geraet.cxx'; then $(CYGPATH_W) './net/block_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/block_geraet.cxx'; fi`
+
 abendsternuxgl21-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-network_test.Tpo -c -o abendsternuxgl21-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-network_test.Tpo $(DEPDIR)/abendsternuxgl21-network_test.Po
@@ -8940,6 +8975,20 @@ abendsternuxgl32-lat_disc_geraet.obj: ./net/lat_disc_geraet.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/lat_disc_geraet.cxx' object='abendsternuxgl32-lat_disc_geraet.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-lat_disc_geraet.obj `if test -f './net/lat_disc_geraet.cxx'; then $(CYGPATH_W) './net/lat_disc_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/lat_disc_geraet.cxx'; fi`
+
+abendsternuxgl32-block_geraet.o: ./net/block_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-block_geraet.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-block_geraet.Tpo -c -o abendsternuxgl32-block_geraet.o `test -f './net/block_geraet.cxx' || echo '$(srcdir)/'`./net/block_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-block_geraet.Tpo $(DEPDIR)/abendsternuxgl32-block_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/block_geraet.cxx' object='abendsternuxgl32-block_geraet.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-block_geraet.o `test -f './net/block_geraet.cxx' || echo '$(srcdir)/'`./net/block_geraet.cxx
+
+abendsternuxgl32-block_geraet.obj: ./net/block_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-block_geraet.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-block_geraet.Tpo -c -o abendsternuxgl32-block_geraet.obj `if test -f './net/block_geraet.cxx'; then $(CYGPATH_W) './net/block_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/block_geraet.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-block_geraet.Tpo $(DEPDIR)/abendsternuxgl32-block_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/block_geraet.cxx' object='abendsternuxgl32-block_geraet.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-block_geraet.obj `if test -f './net/block_geraet.cxx'; then $(CYGPATH_W) './net/block_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/block_geraet.cxx'; fi`
 
 abendsternuxgl32-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-network_test.Tpo -c -o abendsternuxgl32-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx
