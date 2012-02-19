@@ -409,4 +409,6 @@ void initBridgeTLS() {
   //#define longjmp commitSuicideInsteadOfLongJump
 #endif
 
+#pragma GCC diagnostic ignored "-Waddress"
+
 #endif /*IMPLEMENTATION_HXX_*/
