@@ -175,6 +175,7 @@ COMMONSOURCES= \
 ./net/game_discoverer.cxx \
 ./net/seq_text_geraet.cxx \
 ./net/text_message_geraet.cxx \
+./net/lat_disc_geraet.cxx \
 ./net/network_test.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \
