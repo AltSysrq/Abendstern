@@ -52,7 +52,7 @@ namespace io {
     dst += sizeof(src);
   }
 
-  static inline void read24(const byte*& src, Uint32 dst) {
+  static inline void read24(const byte*& src, Uint32& dst) {
     bcpy(&dst, src, 3);
     src += 3;
   }

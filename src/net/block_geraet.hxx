@@ -51,7 +51,9 @@ protected:
   InputBlockGeraet(unsigned, AsyncAckGeraet*);
 
 public:
-  virtual void receive(NetworkConnection::seq_t, const byte*, unsigned) throw();
+  virtual void receiveAccepted(NetworkConnection::seq_t,
+                               const byte*, unsigned)
+  throw();
 
 protected:
   /**
