@@ -15,6 +15,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <cstring>
+#include <iostream>
 
 #include <GL/gl.h>
 
@@ -32,6 +33,8 @@
 #include "src/graphics/shader_loader.hxx"
 #include "src/graphics/cmn_shaders.hxx"
 #include "src/graphics/glhelp.hxx"
+
+#include "src/exit_conditions.hxx"
 
 #define RADIUS (STD_CELL_SZ/4)
 #define PARTICLE_SPEED 0.001f //1 screen/sec
@@ -220,6 +223,10 @@ void ParticleBurst::draw() noth {
       g=0.2f;
       b=1.0f;
       break;
+
+    default:
+      cerr << __FILE__ <<':'<< __LINE__ << ": bad ParticleBurst type!" << endl;
+      exit(EXIT_THE_SKY_IS_FALLING);
   }
   if (timeLeft > 0) a=1.0f;
   else a = 1.0f+timeLeft/PARTICLE_LIFE;

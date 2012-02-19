@@ -57,10 +57,14 @@ void FrontalCortex::unmap() {
   if (insertedInsignia) {
     pair<fcmap_t::iterator,fcmap_t::iterator> it =
         fcmap.equal_range(make_pair(insertedInsignia, insertedObjective));
+    #ifndef NDEBUG
     bool found = false;
+    #endif
     for (; it.first != it.second; ++it.first) {
       if (it.first->second == this) {
+        #ifndef NDEBUG
         found = true;
+        #endif
         fcmap.erase(it.first);
         break;
       }
@@ -89,7 +93,7 @@ FrontalCortex::Directive FrontalCortex::evaluate(float et) {
     timeUntilRescan = rand()*1024+1024;
 
     //Search objectives
-    float max;
+    float max = 0; //Initialise to supress compiler warning
     GameObject* obj = NULL;
 
     //First, refresh basic inputs

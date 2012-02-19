@@ -91,10 +91,13 @@ namespace audio {
   };
 
   typedef
+      //The 0x8000 arg used to read 0x38000 by accident, but it seems
+      //to give the desired effect, so hand-truncating it to 0x8000
+      //so the line is no longer suspicious.
       Add<VolumeDown<Add<VolumeDown<Playtab<sinetab,880>,0x4000>,
-                         VolumeDown<Playtab<sawtab,1180>,0x38000> >, 0x4000>,
+                         VolumeDown<Playtab<sawtab,1180>,0x8000> >, 0x4000>,
           VolumeDown<Add<VolumeDown<Playtab<sinetab,881>,0x4000>,
-                         VolumeDown<Playtab<sawtab,1184>,0x38000> >, 0x4000> >
+                         VolumeDown<Playtab<sawtab,1184>,0x8000> >, 0x4000> >
     miniGravwaveDrive_inner_t;
   ShipAmbient miniGravwaveDrive(new Virtual<
       Mult<NSeq<Playtab<buildtab,2>, AUDIO_FRQ/2,
@@ -105,9 +108,9 @@ namespace audio {
 
   typedef
       Add<VolumeDown<Add<VolumeDown<Playtab<sinetab,990>,0x4000>,
-                         VolumeDown<Playtab<sawtab,1280>,0x38000> >, 0x4000>,
+                         VolumeDown<Playtab<sawtab,1280>,0x8000> >, 0x4000>,
           VolumeDown<Add<VolumeDown<Playtab<sinetab,991>,0x4000>,
-                         VolumeDown<Playtab<sawtab,1284>,0x38000> >, 0x4000> >
+                         VolumeDown<Playtab<sawtab,1284>,0x8000> >, 0x4000> >
     miniGravwaveDriveII_inner_t;
   ShipAmbient miniGravwaveDriveII(new Virtual<
       Mult<NSeq<Playtab<buildtab,2>, AUDIO_FRQ/2,

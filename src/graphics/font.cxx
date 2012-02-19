@@ -56,7 +56,7 @@ float Font::width(char ch) const noth {
 float Font::width(const char* str) const noth {
   int total=0;
   bool forceWidthNext = false;
-  unsigned forceWidth;
+  unsigned forceWidth=0; //Initialise to suppress compiler warning
   while (*str) {
     if (*str == '\a') {
       //Special sequence
@@ -164,7 +164,7 @@ void Font::draw(const char* str, float x, float y, float maxw, bool dontClear, c
   float sheight = toScreen(powerHeight)*mult;
   unsigned pushLevel=0;
   bool forceWidthNext = false;
-  float forceWidth;
+  float forceWidth = 0; //Initialise to suppress compiler warning
   bool blink = false;
   while (*str && x<maxw) {
     if (*str == '\a') {

@@ -47,7 +47,7 @@ bool isLSDModeForced() {
 
 Shader::Shader(const char* name, void (*prelink)(GLuint), size_t vertexSize, ...) {
   string vertexShaderSource, fragShaderSource, geoShaderSource;
-  GLuint vertexShader, fragShader, geoShader=0;
+  GLuint vertexShader=0, fragShader=0, geoShader=0;
   bool hasFragShader, hasGeoShader;
   #ifndef AB_OPENGL_21
   const char* profile = (forceLSDMode? "lsd" : conf["conf"]["graphics"]["shader_profile"]);
@@ -342,7 +342,10 @@ Shader::Shader(gl32emu::ShaderEmulation emul, void(*)(GLuint), unsigned vsz, ...
     }
   }
 
-  bool b = va_arg(args, int);
+  #ifndef NDEBUG
+  bool b =
+  #endif
+  va_arg(args, int);
   assert(b);
 
   unsigned uniType;

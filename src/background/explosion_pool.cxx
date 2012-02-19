@@ -41,9 +41,11 @@ using namespace std;
 
 #define MAX_EXPLOSIONS_DRAWN 3000
 
+#ifndef AB_OPENGL_14
 static int numExDrawn;
 
 static GLuint vao, vbo;
+#endif
 
 struct ExplosionUniform {
   float ex, ey;
@@ -178,8 +180,8 @@ inline void ExplosionPoolSegment::update(float et) noth {
 
 ExplosionPool::ExplosionPool()
 {
-  static bool hasVAO=false;
 #ifndef AB_OPENGL_14
+  static bool hasVAO=false;
   if (!hasVAO && !headless) {
     static const shader::Vert2 vertices[4] = {
       {{{-1,+1}}},

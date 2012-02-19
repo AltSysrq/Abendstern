@@ -39,7 +39,7 @@
     #ifndef PROFILE
     #define FLAT __attribute__((flatten))
     #endif
-    #define FAST __attribute__((fastcall))
+    #define FAST
     #define HOT __attribute__((hot))
     #define HOTFLAT __attribute__((hot,flatten))
   #else
