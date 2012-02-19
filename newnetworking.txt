@@ -41,8 +41,7 @@ Communicatino with a block Gerät is done via mutation operations. Since these
 operations may be larger than 256 bytes, they are often split into multiple
 packets. Therefore, this sub-protocol comes in two layers. The upper layer
 prefixes fragments with the following structure:
-  uint16        Operation sequence number
-  uint16        Previous mutation this operation applies to
+  uint32        Operation sequence number
   uint16        Fragment index
   uint16        Number of fragments
   <payload>
@@ -51,10 +50,13 @@ initialisation of the block to zero. The second field allows proper sequencing
 (and ignoring) of operations such that a consistent state is preserved.
 
 An operation is not applied until all fragments have been received. When all
-fragments are received, and if the operation is still applicable (has not been
-obsoleted by another operation that depended on a mutation that came before the
-one we are concerned with), the payloads are concatenated by order of fragment
-index, and the result is interpreted as described below.
+fragments are received, it is applied to the current state. It is up to the
+remote peer to ensure that the operations maintain consistency regardless of the
+conditions in which the packets arrive (ie, it cannot make assumptions about the
+stati of un-NAKed, un-ACKed packets).
+
+Any operations with a sequence number less than or equal to the most recently
+processed operation are ignored.
 
 An operation is composed of a series of deltata; each delta has the following
 high-level format:
@@ -73,12 +75,32 @@ The index-format is a byte specifing the format of the indices:
           2     8-8     (s=p[1],                        l=p[2])
           3     12-4    (s=p[1]|((p[2]&0xF) << 8),      l=(p[2]>>4)&0xF)
           4     16-8    (s=p[1]|(p[2]<<8),              l=p[3])
-          5     16-16   (s=p[1]|(p[2]<<8),              l=p[3]|(p[4]<<8))
-          6     24-24   (similar)
+          5     20-4    (s=p[1]||(p[2]<<8)|((p[3]&0xF)<<16), l=p[3]>>4)
+          6     24-8    (similar)
           7     8-4     (s=p[1], l=p[0]>>4)
   4-7   In format 7, the length
 The data that follow the indices are copied into the block at the given
 location. Out-of-bounds indices are ignored.
+
+The strategy for the transmitter may be as follows:
+o Maintain a series of states the remote peer may have, corresponding to as yet
+  unacknowledged operations.
+o Always transmit deltata against the earliest possible state
+o Two modes of operation: "high-speed" and "synchronous"
+  - Use synchronous mode when a fragmented delta is sent, or when 8 or more
+    states are pending
+  - Use high-speed mode otherwise
+o In high-speed mode, transmit new delta whenever changes are made
+o In high-speed mode, a NAK merely removes that state from the possibilities,
+  and triggers transmission of a new delta on the next update even if no changes
+  are made (this only if it was a NAK for the latest delta)
+o In synchronous mode, no new deltata are created ever (until the Gerät
+  transitions back into high-speed mode)
+o In synchronous mode, NAKs for delta fragemnts cause the fragments to be
+  retransmitted if it is for the most recent operation
+o Synchronous mode persists until it is known that the remote peer is
+  up-to-date.
+
 
 CONNECTIONLESS PACKETS
 When a peer receives a packet from a host it is not connected to, it interprets
@@ -251,6 +273,8 @@ Block structure:
   byte[32]      Authentication information (provided by Abendstern Network
                 for Internet game, hash of game password for LAN game)
   char[4]       Expected game mode
+  byte          Expected field width
+  byte          Expected field height
   byte          Flags
     0           IP version; 0=IPv4, 1=IPv6
     1           Game type; 0=Internet, 1=LAN
