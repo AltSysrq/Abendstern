@@ -20,7 +20,7 @@ class InputNetworkGeraet;
 class OutputNetworkGeraet;
 class NetworkAssembly;
 class SynchronousControlGeraet;
-class LatencyDiscoveryGeraet;
+class LatDiscGeraet;
 class AsyncAckGeraet;
 
 /**
@@ -43,7 +43,7 @@ class AsyncAckGeraet;
  */
 class NetworkConnection: public PacketProcessor {
   friend class SynchronousControlGeraet;
-  friend class LatencyDiscoveryGeraet;
+  friend class LatDiscGeraet;
 public:
   ///Type to use to identify channels
   typedef unsigned short channel;
@@ -117,6 +117,8 @@ public:
   SynchronousControlGeraet*const scg;
   ///The AAG used with this NetworkConnection
   AsyncAckGeraet*const aag;
+  ///The LDG used with this NetworkConnection
+  LatDiscGeraet* const ldg;
 
   /**
    * Constructs a NetworkConnection within the given assembly.

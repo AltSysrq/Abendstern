@@ -23,6 +23,7 @@
 #include "src/ship/ship.hxx"
 #include "src/ship/sys/ship_system.hxx"
 #include "src/globals.hxx"
+#include "src/exit_conditions.hxx"
 
 using namespace std;
 using namespace libconfig;
@@ -84,6 +85,9 @@ GenAI* GenAI::makeGenAI(Ship* ship) throw() {
     //Assumptions of config failed
     return NULL;
   }
+  cerr << __FILE__ << ':' << __LINE__ << ": Reached end of GenAI::makeGenAI()"
+       << endl;
+  exit(EXIT_THE_SKY_IS_FALLING);
 }
 
 void GenAI::update(float et) noth {

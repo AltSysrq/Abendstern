@@ -19,6 +19,7 @@
 #include "io.hxx"
 #include "synchronous_control_geraet.hxx"
 #include "async_ack_geraet.hxx"
+#include "lat_disc_geraet.hxx"
 
 #include "src/sim/game_field.hxx"
 #include "src/sim/game_object.hxx"
@@ -46,7 +47,8 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
   endpoint(endpoint_),
   parent(assembly_),
   scg(new SynchronousControlGeraet(this, incomming)),
-  aag(new AsyncAckGeraet(this))
+  aag(new AsyncAckGeraet(this)),
+  ldg(new LatDiscGeraet(this))
 {
   inchannels[0] = scg;
   outchannels[0] = scg;

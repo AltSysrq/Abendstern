@@ -57,7 +57,6 @@ DELAY_SHADER(planet)
   UNIFLOAT(dayNightLeft), UNIFLOAT(dayNightRight),
   NULL
 END_DELAY_SHADER(static planetShader);
-#endif /* AB_OPENGL_14 */
 
 //Places tile (x,y) into the given texture
 static void planet_cutTile(SDL_Surface* source, int x, int y, GLuint tex) {
@@ -85,6 +84,7 @@ static void planet_cutTile(SDL_Surface* source, int x, int y, GLuint tex) {
   glBindTexture(GL_TEXTURE_2D, 0);
   SDL_FreeSurface(slice);
 }
+#endif /* AB_OPENGL_14 */
 
 Planet::Planet(GameObject* ref, GameField* _field,
                const char* day, const char* night, float revolutionTime, float orbitTime,

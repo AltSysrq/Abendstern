@@ -21,6 +21,7 @@
 #include "src/control/ai/aictrl.hxx"
 #include "src/ship/ship.hxx"
 #include "src/ship/sys/ship_system.hxx"
+#include "src/exit_conditions.hxx"
 
 using namespace std;
 
@@ -101,6 +102,10 @@ void AIM_WeaponLevel::action() {
       numSegments = 5;
       break;
     case Weapon_ParticleBeam: return; //We don't know to handle this
+    default:
+      cerr << __FILE__ << ':' << __LINE__
+           << ": AIM_WeaponLevel::action(): unknown weapon" << endl;
+      exit(EXIT_THE_SKY_IS_FALLING);
   }
 
   float bestScore=-1;
@@ -166,6 +171,11 @@ float AIM_WeaponLevel::evalSuitability(unsigned lvl, float timeUntilReachTarget)
     case Weapon_ParticleBeam:
       timeBetweenShots = 2500.0f;
       break;
+
+    default:
+      cerr << __FILE__ << ':' << __LINE__
+           << ": Unexpected weapon in AIM_WeaponLevel::evalSuitability()"<<endl;
+      exit(EXIT_THE_SKY_IS_FALLING);
   }
 
   float freePower = ship->getPowerSupply() - ship->getPowerDrain();
@@ -178,7 +188,8 @@ float AIM_WeaponLevel::evalSuitability(unsigned lvl, float timeUntilReachTarget)
   if (numShotsByCapacitance < 1.0f)
     numShots = numShotsByCapacitance;
   else if (freePower < powerReqPerShot/timeBetweenShots)
-    numShots = numShotsByCapacitance + freePower*timeBetweenShots/powerReqPerShot;
+    numShots = numShotsByCapacitance +
+               freePower*timeBetweenShots/powerReqPerShot;
   else {
     //float a =1.0f, b=0.0f;
     //numShots = a/b; //+Infinity, MSVC-friendly way

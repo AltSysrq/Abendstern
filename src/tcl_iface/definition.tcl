@@ -331,7 +331,7 @@ class final GameField {} {
   constructor default float float
   fun void update {} float
   fun void draw
-  fun GameObject* {operator[] at} const {int {check ok=val>=0 && val < parent->size();}}
+  fun GameObject* {operator[] at} const {unsigned {check ok=(val < parent->size());}}
   fun unsigned size const
   fun void add {} {GameObject* steal {check ok=val;}}
   fun void addBegin {} {GameObject* steal {check ok=val;}}

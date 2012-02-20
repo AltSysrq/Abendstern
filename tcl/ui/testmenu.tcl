@@ -92,7 +92,9 @@ class TestMode {
     $quit setCancel
     $main add $quit
     global commandBox commandResult
-    set commandBox [new gui::TextField Tcl "\$commandBox getText" {} {} runCmd]
+    set commandBox [new gui::TextField Tcl \
+                    "set packetDropMask 0; networkTestRun 192.168.10.199 12544" \
+                    {} {} runCmd]
     set commandResult [new gui::MultiLineLabel]
     $main add $commandBox
     $supermain setElt top $main

@@ -15098,7 +15098,7 @@ static int
        }
        invokingInterpreter=interp;
        GameField* parent=NULL;
-int arg0; bool arg0Init=false;
+unsigned arg0; bool arg0Init=false;
 GameObject* ret; Tcl_Obj* retTcl=NULL;
 PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
 {
@@ -15135,11 +15135,11 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
             int err = Tcl_GetIntFromObj(interp, objv[1], &tmp);
             if (err == TCL_ERROR)
               scriptError(Tcl_GetStringResult(interp));
-            arg0 = (int)tmp;};
+            arg0 = (unsigned)tmp;};
 arg0Init=true;
 {bool ok=true;
           #define val arg0
-          ok=val>=0 && val < parent->size();
+          ok=(val < parent->size());
           #undef val
           if (!ok) {
             scriptingErrorMessage = "Unacceptable value to argument 0";

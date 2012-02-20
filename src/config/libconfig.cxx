@@ -2258,7 +2258,10 @@ namespace libconfig {
         //Immediately free the setting so that the lower parser will use the
         //same pointer
         sfree(nxt);
-        Setting* sub = parser_read(subt, ret, s, terminator, file, line);
+        #ifndef NDEBUG
+        Setting* sub =
+        #endif
+        parser_read(subt, ret, s, terminator, file, line);
         assert(nxt == sub);
       }
     } catch (...) {
@@ -2299,7 +2302,10 @@ namespace libconfig {
         //Immediately_free the setting so that the lower parser will use
         //the same pointer
         sfree(nxt);
-        Setting* sub = parser_read(subt, ret, s, (parent? "}" : ""), file,
+        #ifndef NDEBUG
+        Setting* sub =
+        #endif
+        parser_read(subt, ret, s, (parent? "}" : ""), file,
                                    line);
         assert(nxt == sub);
       }

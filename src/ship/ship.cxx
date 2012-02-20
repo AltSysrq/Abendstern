@@ -905,7 +905,7 @@ void Ship::decel(float time) noth {
   //the given amount
   float speed=sqrt(vx*vx + vy*vy);
   float accelTime=speed*mass/thrustMag;
-  float factor;
+  float factor=1;
   if (accelTime >= 1)
     factor=(accelTime-time)/accelTime;
 

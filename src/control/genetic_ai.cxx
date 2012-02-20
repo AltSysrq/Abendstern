@@ -767,12 +767,16 @@ GeneticAI::~GeneticAI() {
       linkedFriends[i]->disconnectTepepathy(this);
   //Remove self from multiset (we don't care about the ship's insignia,
   //but whatever we last used)
+  #ifndef NDEBUG
   bool found=false;
+  #endif
   pair<gbit,gbit> it = genaiByInsignia.equal_range(lastInsignia);
   for (; it.first != it.second; ++it.first)
     if (it.first->second == this) {
       genaiByInsignia.erase(it.first);
+      #ifndef NDEBUG
       found=true;
+      #endif
       break;
     }
   assert(found);
@@ -1010,11 +1014,15 @@ void GeneticAI::update(float et) noth {
   if (ship->insignia != lastInsignia) {
     //Remove
     pair<gbit,gbit> it = genaiByInsignia.equal_range(lastInsignia);
+    #ifndef NDEBUG
     bool found = false;
+    #endif
     for (; it.first != it.second; ++it.first) {
       if (this == it.first->second) {
         genaiByInsignia.erase(it.first);
+        #ifndef NDEBUG
         found = true;
+        #endif
         break;
       }
     }
@@ -1332,7 +1340,7 @@ void GeneticAI::update(float et) noth {
           float miny = focusy-1, maxy = focusy+1;
 
           GameObject* focussed = NULL;
-          float maxConcern;
+          float maxConcern = 0; //Initialise to suppress compiler warning
           GameField::iterator base, begin, end;
           begin = ship->getField()->begin();
           end = ship->getField()->end();
