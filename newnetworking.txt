@@ -62,7 +62,7 @@ An operation is composed of a series of deltata; each delta has the following
 high-level format:
   index-format
   offset (also called "start" below) from end of previous segment
-  length
+  length minus one
   byte[length] data
 
 The index-format is a byte specifing the format of the indices:

@@ -72,7 +72,8 @@ class OutputBlockGeraet: public AAGSender {
   /* Possible states that the remote peer may know about; the earliest in
    * this map is guaranteed to be known by the peer.
    */
-  std::map<block_geraet_seq, std::vector<byte> > remoteStates;
+  typedef std::map<block_geraet_seq, std::vector<byte> > remoteStates_t;
+  remoteStates_t remoteStates;
 
   /* If waiting on synchronous mode, this contains packets (including the to-be-
    * written headers) that are pending acknowledgement.
@@ -84,6 +85,9 @@ class OutputBlockGeraet: public AAGSender {
   /* Maps network seqs to the block seq they contain. */
   typedef std::map<NetworkConnection::seq_t, block_geraet_seq> pending_t;
   pending_t pending;
+
+  /* The latest state the remote peer is guaranteed to have. */
+  std::vector<byte> old;
 
 protected:
   /**

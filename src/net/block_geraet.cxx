@@ -191,6 +191,7 @@ throw () {
     }
 
     ix += off;
+    ++len; //Length is stored as one less than it actually is
     STOPLEN(len);
     if (ix+len > state.size()) break; //No longer in valid bounds
 
@@ -206,4 +207,209 @@ throw () {
   endloop:
   //Notify subclass of modification
   modified();
+}
+
+
+OutputBlockGeraet::OutputBlockGeraet(unsigned sz, AsyncAckGeraet* aag)
+: AAGSender(aag),
+  nextSeq(1),
+  old(sz, 0), state(sz, 0),
+  dirty(false)
+{
+}
+
+void OutputBlockGeraet::update(unsigned) throw() {
+  //Send new packet if dirty and not waiting in synchronous mode
+  if (dirty && syncPending.empty()) {
+    vector<byte> packet;
+    block_geraet_seq seq = nextSeq++;
+    packet.reserve(64);
+
+    //Scan for changes between states
+    unsigned index = 0;
+    for (unsigned i=0; i < state.size(); ++i) {
+      if (old[i] != state[i]) {
+        //Found change.
+        //Search for continguous changes; only stop if more than one consecutive
+        //non-changed byte is encountered.
+        //Additionally, note that we cannot encode more than 255 bytes in
+        //one chunk.
+        unsigned begin = i;
+        while (i < state.size() && i-begin < 255
+        &&     (old[i] != state[i]
+            ||  (i+1 < state.size() && old[i+1] != state[i+1])))
+          ++i;
+
+        //i is now one past the last changed byte, or at the maximum length
+        unsigned len = i-begin;
+        unsigned elen = len-1;
+
+        //Move back one byte since the outer loop will increment i again
+        --i;
+
+        //Pick the most compact encoding for offset and length
+        unsigned off = begin - index;
+        byte head[5];
+        unsigned headlen;
+        //See newnetworking.txt for the significance of the numbers below.
+        if (off < 16 && elen < 8) {
+          //Embedded
+          head[0] = 1 | (off << 1) | (elen << 5);
+          headlen = 1;
+        } else if (off < 16 && elen < 16) {
+          //4-4
+          head[0] = 0;
+          head[1] = off | (elen << 4);
+          headlen = 2;
+        } else if (off < 64 && elen < 4) {
+          //6-2
+          head[0] = 2;
+          head[1] = off | (elen << 6);
+          headlen = 2;
+        } else if (off < 256 && elen < 16) {
+          //8-4 embedded
+          head[0] = 14 | (elen << 4);
+          head[1] = off;
+          headlen = 2;
+        } else if (off < 256 && elen < 256) {
+          //8-8
+          head[0] = 4;
+          head[1] = off;
+          head[2] = elen;
+          headlen = 3;
+        } else if (off < 2048 && elen < 16) {
+          //12-4
+          head[0] = 6;
+          head[1] = (off & 0xFF);
+          head[2] = (off >> 8) | (elen << 4);
+          headlen = 3;
+        } else if (off < 65536 && elen < 256) {
+          //16-8
+          head[0] = 8;
+          head[1] = (off & 0xFF);
+          head[2] = (off >> 8);
+          head[3] = elen;
+          headlen = 4;
+        } else if (off < (1 << 20) && elen < 16) {
+          //20-4
+          head[0] = 10;
+          head[1] = (off & 0xFF);
+          head[2] = ((off >> 8) & 0xFF);
+          head[3] = ((off >> 16) | (elen << 4));
+          headlen = 4;
+        } else {
+          //24-8
+          head[0] = 12;
+          head[1] = (off & 0xFF);
+          head[2] = ((off >> 8) & 0xFF);
+          head[3] = (off >> 16);
+          head[4] = elen;
+          headlen = 5;
+        }
+
+        //Copy header then data
+        packet.insert(packet.end(), head, head+headlen);
+        packet.insert(packet.end(),
+                      state.begin()+begin, state.begin()+begin+len);
+      }
+    }
+
+    //If nothing changed, unset dirty and finish
+    if (packet.empty()) {
+      dirty = false;
+      return;
+    }
+
+    //The maximum amount of data that each packet can hold
+    static const unsigned capacity =
+        256-NetworkConnection::headerSize -
+        sizeof(block_geraet_seq)-2*sizeof(Uint16);
+    Uint16 nfrags = (packet.size()+capacity-1)/capacity;
+    //Enter synchronous mode if this will push the size of
+    //remoteStates to 8, or if nfrags != 1
+    bool enterSync = (nfrags != 1 || remoteStates.size() >= 7);
+
+    //Transmit fragments
+    for (Uint16 i=0; i < nfrags; ++i) {
+      static byte pack[256];
+      byte* dat = pack;
+      dat += NetworkConnection::headerSize;
+      io::write(dat, seq);
+      io::write(dat, i);
+      io::write(dat, nfrags);
+      //Copy data
+      dat = (byte*)memcpy(dat, &packet[i*capacity],
+                          (i+1==nfrags? packet.size()-i*capacity : capacity));
+      //Send and record
+      NetworkConnection::seq_t netseq = send(pack, dat-pack);
+      pending.insert(make_pair(netseq, seq));
+      if (enterSync)
+        syncPending.insert(make_pair(netseq, vector<byte>(pack, dat)));
+    }
+
+    //Record current state
+    remoteStates.insert(make_pair(seq, state));
+
+    //Mark clean
+    dirty = false;
+  }
+}
+
+void OutputBlockGeraet::ack(NetworkConnection::seq_t seq) throw() {
+  //Remove synchronous entry if exists
+  syncPending.erase(seq);
+  //Get the mutation sequence number
+  block_geraet_seq mseq;
+  pending_t::iterator it = pending.find(seq);
+  //This must ALWAYS exist
+  assert(it != pending.end());
+  mseq = it->second;
+  pending.erase(it);
+  //Do nothing else unless we are no longer in synchronous mode (due to the
+  //above syncPending operation)
+  if (syncPending.empty()) {
+    //See if this is a non-obsolete state
+    remoteStates_t::iterator sit = remoteStates.find(mseq);
+    if (sit != remoteStates.end()) {
+      //Update to remote state
+      old = sit->second;
+      //Remove all states before and including this one
+      while (remoteStates.begin()->first <= mseq)
+        remoteStates.erase(remoteStates.begin());
+    }
+  }
+}
+
+void OutputBlockGeraet::nak(NetworkConnection::seq_t seq) throw() {
+  //Get the mutation sequence number
+  pending_t::iterator it = pending.find(seq);
+  assert(it != pending.end());
+  block_geraet_seq mseq = it->second;
+  pending.erase(it);
+
+  /* If in synchronous mode, we only care about fragments of the
+   * last state; the NAK can be ignored otherwise (the old states
+   * will be cleared when the last packet is confirmed received).
+   * If it is one of the synchronous packet fragments, retransmit
+   * it and move it to its new location in the map.
+   *
+   * In high-speed mode, delete the remoteState corresponding to
+   * the mseq; if this leaves remoteStates empty, set dirty to
+   * true to retransmit the changes on the next update.
+   */
+  if (syncPending.empty()) {
+    remoteStates.erase(mseq);
+    if (remoteStates.empty())
+      dirty = true;
+  } else {
+    syncPending_t::iterator sit = syncPending.find(mseq);
+    if (sit != syncPending.end()) {
+      //Retransmit and move to new location in map
+      vector<byte> packet(sit->second);
+      syncPending.erase(sit);
+      NetworkConnection::seq_t netseq = send(&packet[0], packet.size());
+      syncPending.insert(make_pair(netseq, packet));
+      pending.insert(make_pair(netseq, mseq));
+    }
+  }
 }
