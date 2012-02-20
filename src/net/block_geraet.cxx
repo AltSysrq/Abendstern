@@ -80,8 +80,6 @@ throw () {
   }
 
   //OK
-  cerr << "Receive block: " << seq << " " << fragix << "/" << nfrags << endl;
-
   frg[fragix].assign(data, end);
 
   //See if this mutation is complete, and accumulate total size.
@@ -92,8 +90,6 @@ throw () {
       return;
     else
       size += frg[i].size();
-
-  cerr << "Assembling." << endl;
 
   //Ready to reassemble
   vector<byte> assembled;
@@ -199,7 +195,6 @@ throw () {
 
     ix += off;
     ++len; //Length is stored as one less than it actually is
-    cerr << "Apply " << ix << "..+" << len << ": " << (unsigned)head << endl;
     STOPLEN(len);
     if (ix+len > state.size()) break; //No longer in valid bounds
 
@@ -315,9 +310,6 @@ void OutputBlockGeraet::update(unsigned) throw() {
           head[4] = elen;
           headlen = 5;
         }
-
-        cerr << "Diff " << begin << "..+" << len << ": "
-             << (unsigned)head[0] << endl;
 
         //Copy header then data
         packet.insert(packet.end(), head, head+headlen);
