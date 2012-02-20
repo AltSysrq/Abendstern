@@ -22,8 +22,9 @@
 
 using namespace std;
 
-InputBlockGeraet::InputBlockGeraet(unsigned sz, AsyncAckGeraet* aag)
-: AAGReceiver(aag),
+InputBlockGeraet::InputBlockGeraet(unsigned sz, AsyncAckGeraet* aag,
+                                   DeletionStrategy ds)
+: AAGReceiver(aag, ds),
   lastSeq(0), state(sz, 0), dirty(sz, true)
 {
 }
@@ -210,8 +211,9 @@ throw () {
 }
 
 
-OutputBlockGeraet::OutputBlockGeraet(unsigned sz, AsyncAckGeraet* aag)
-: AAGSender(aag),
+OutputBlockGeraet::OutputBlockGeraet(unsigned sz, AsyncAckGeraet* aag,
+                                     DeletionStrategy ds)
+: AAGSender(aag, ds),
   nextSeq(1),
   old(sz, 0), state(sz, 0),
   dirty(false)

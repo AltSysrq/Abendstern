@@ -48,7 +48,8 @@ protected:
   /**
    * Constructs an InputBlockGeraet of the given size and on the given AAG.
    */
-  InputBlockGeraet(unsigned, AsyncAckGeraet*);
+  InputBlockGeraet(unsigned, AsyncAckGeraet*,
+                   InputNetworkGeraet::DeletionStrategy ds = DSNormal);
 
 public:
   virtual void receiveAccepted(NetworkConnection::seq_t,
@@ -59,7 +60,7 @@ protected:
   /**
    * Called whenever the remote peer alters the state.
    */
-  virtual void modified() throw() = 0;
+  virtual void modified() throw() {};
 };
 
 /**
@@ -114,7 +115,8 @@ protected:
    *
    * The state is initialised to zero.
    */
-  OutputBlockGeraet(unsigned, AsyncAckGeraet*);
+  OutputBlockGeraet(unsigned, AsyncAckGeraet*,
+                    OutputNetworkGeraet::DeletionStrategy ds = DSNormal);
 
 public:
   virtual void update(unsigned) throw();

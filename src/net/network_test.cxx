@@ -9,6 +9,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 
 #include <SDL.h>
 #include <asio.hpp>
@@ -20,52 +21,154 @@
 #include "network_geraet.hxx"
 #include "connection_listener.hxx"
 #include "synchronous_control_geraet.hxx"
-#include "seq_text_geraet.hxx"
-#include "io.hxx"
+#include "block_geraet.hxx"
 #include "src/sim/game_field.hxx"
+#include "src/core/game_state.hxx"
+#include "src/graphics/asgi.hxx"
+#include "src/globals.hxx"
 
 using namespace std;
 
-static unsigned globlcount;
-static vector<string> textin;
-
-class TestInputGeraet: public SeqTextInputGeraet {
+class NetworkTestBase {
 public:
-  TestInputGeraet(AsyncAckGeraet* aag)
-  : SeqTextInputGeraet(aag)
-  { }
-
-  virtual void receiveText(string str) noth {
-    textin.push_back(str);
-    ++globlcount;
+  virtual ~NetworkTestBase() {}
+  void draw() {
+    const vector<byte>& data = getData();
+    asgi::begin(asgi::Points);
+    for (unsigned x = 0; x < 1000; ++x) {
+      for (unsigned y = 0; y < 1000; ++y) {
+        float c = data[y*1000+x]/1000.0f;
+        asgi::colour(c,c,c,1);
+        asgi::vertex(x/1000.0f, y*vheight/1000.0f);
+      }
+    }
+    asgi::end();
   }
 
-  static InputNetworkGeraet* create(NetworkConnection* cxn) {
-    return new TestInputGeraet(cxn->aag);
+protected:
+  virtual const vector<byte>& getData() const = 0;
+};
+
+class NetworkTestListen:
+public GameState,
+public OutputBlockGeraet,
+private NetworkTestBase {
+public:
+  bool randomising;
+  NetworkAssembly* assembly;
+  GameState* ret;
+
+  NetworkTestListen(NetworkAssembly* na, AsyncAckGeraet* aag)
+  : OutputBlockGeraet(1000000, aag, DSIntrinsic),
+    randomising(false), assembly(na), ret(NULL)
+  {
+  }
+
+  virtual const vector<byte>& getData() const {
+    return state;
+  }
+
+  virtual GameState* update(float et) noth {
+    //GameState::update
+    assembly->update((unsigned)et);
+    if (randomising) {
+      for (unsigned i=0; i<et; ++i)
+        state[rand()%state.size()] = rand();
+      dirty = true;
+    }
+
+    return ret;
+  }
+
+  virtual void draw() noth {
+    NetworkTestBase::draw();
+  }
+
+  virtual void keyboard(SDL_KeyboardEvent* e) {
+    if (e->type == SDL_KEYDOWN) {
+      switch (e->keysym.sym) {
+        case SDLK_q:
+          ret = this;
+          break;
+
+        case SDLK_s: {
+          //Sierpinski triangle
+          memset(&state[0], 0, state.size());
+          unsigned x = rand()%1000, y = rand()%1000;
+          for (unsigned i=0; i<1000000; ++i) {
+            unsigned vx, vy;
+            switch (rand()%3) {
+              case 0: vx = 0; vy = 0; break;
+              case 1: vx = 1000; vy = 0; break;
+              case 2: vx = 500; vy = 1000; break;
+            }
+
+            x += (vx-x)/2;
+            y += (vy-y)/2;
+            state[y*1000+x] = 255;
+          }
+          dirty = true;
+        } break;
+
+        case SDLK_r: {
+          randomising ^= true;
+        } break;
+
+        case SDLK_w: {
+          memset(&state[0], 255, state.size());
+          dirty = true;
+        } break;
+
+        case SDLK_b: {
+          memset(&state[0], 0, state.size());
+          dirty = true;
+        } break;
+
+        case SDLK_g: {
+          for (unsigned y=0; y<1000; ++y)
+            for (unsigned x=0; x<1000; ++x)
+              state[y*1000+x] = y/4;
+          dirty = true;
+        } break;
+
+        default: break;
+      }
+    }
   }
 };
 
-class TestOutputGeraet: public SeqTextOutputGeraet {
-  ifstream input;
-  signed timeUntilClose;
-
+static NetworkAssembly* ntr_assembly;
+class NetworkTestRun:
+public GameState,
+public NetworkTestBase,
+public InputBlockGeraet {
+  NetworkAssembly* assembly;
 public:
-  TestOutputGeraet(NetworkConnection* par)
-  : SeqTextOutputGeraet(par->aag),
-    input("tcl/bridge.tcl"), timeUntilClose(16384)
-  { }
+  NetworkTestRun(AsyncAckGeraet* aag, NetworkAssembly* na)
+  : InputBlockGeraet(1000000, aag, DSIntrinsic),
+    assembly(na)
+  {
+    ::state = this;
+  }
 
-  virtual void update(unsigned et) throw() {
-    if (input) {
-      string line;
-      for (unsigned i=0; i < 8 && getline(input, line); ++i) {
-        send(line);
-      }
-    } else {
-      if ((timeUntilClose -= et) < 0) {
-        cxn->scg->closeConnection();
-      }
-    }
+  virtual GameState* update(float et) {
+    assembly->update(et);
+    if (assembly->getConnection(0)->getStatus() == NetworkConnection::Zombie)
+      return this;
+    else
+      return NULL;
+  }
+
+  virtual void draw() {
+    NetworkTestBase::draw();
+  }
+
+  virtual const vector<byte>& getData() const {
+    return state;
+  }
+
+  static InputNetworkGeraet* create(NetworkConnection* cxn) {
+    return new NetworkTestRun(cxn->aag, ntr_assembly);
   }
 };
 
@@ -84,43 +187,48 @@ public:
     NetworkConnection* cxn = new NetworkConnection(nasm, source, true);
     nasm->addConnection(cxn);
     cxn->scg->openChannel(cxn->aag, cxn->aag->num);
-    cxn->scg->openChannel(new TestOutputGeraet(cxn), 999);
+    NetworkTestListen* that = new NetworkTestListen(nasm, cxn->aag);
+    cxn->scg->openChannel(that, 999);
+    state = that;
     return true;
   }
 };
 
 void networkTestListen() {
-  GameField field(1,1);
-  NetworkAssembly assembly(&field, &antenna);
-  assembly.addPacketProcessor(new TestListener(&assembly, assembly.getTuner()));
+  static GameField field(1,1);
+  static NetworkAssembly assembly(&field, &antenna);
+  static bool init = false;
+  if (!init) {
+    assembly.addPacketProcessor(
+      new TestListener(&assembly, assembly.getTuner()));
+    init = true;
+  }
 
-  while (assembly.numConnections() == 0
-  ||     assembly.getConnection(0)->getStatus() != NetworkConnection::Zombie) {
+  while (assembly.numConnections() == 0) {
     assembly.update(5);
     SDL_Delay(5);
   }
 }
 
 unsigned networkTestRun(const char* addrstr, unsigned portn) {
-  globlcount = 0;
-  GameField field(1,1);
-  NetworkAssembly assembly(&field, &antenna);
-  NetworkConnection::registerGeraetCreator(&TestInputGeraet::create, 999);
+  static GameField field(1,1);
+  static NetworkAssembly assembly(&field, &antenna);
+  ntr_assembly = &assembly;
+  static unsigned num = 0;
+  if (!num)
+    num =
+        NetworkConnection::registerGeraetCreator(&NetworkTestRun::create, 999);
 
   asio::ip::udp::endpoint endpoint(asio::ip::address::from_string(addrstr),
                                    portn);
   NetworkConnection* cxn = new NetworkConnection(&assembly, endpoint, false);
   assembly.addConnection(cxn);
   cxn->scg->openChannel(cxn->aag, cxn->aag->num);
-  while (cxn->getStatus() != NetworkConnection::Zombie) {
+
+  state = NULL;
+  while (!state) {
     assembly.update(5);
     SDL_Delay(5);
   }
-
-  //Write text received to file
-  ofstream out("received.txt");
-  for (unsigned i=0; i<textin.size(); ++i)
-    out << textin[i] << endl;
-
-  return globlcount;
+  return 0;
 }
