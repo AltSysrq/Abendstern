@@ -133,8 +133,10 @@ void AsyncAckGeraet::update(unsigned et) throw() {
   //Send acknowledgement packet if there is anything to acknowledge
   if (!toAcknowledge.empty()) {
     //Update recent queue
-    for (seq_t i = 0; i != (*toAcknowledge.rbegin())+1; ++i)
+    for (seq_t i = 0; i != ((seq_t)((*toAcknowledge.rbegin())+1)); ++i) {
+      recentNak.insert(i+lastGreatestSeq);
       recentQueue.push_back(i+lastGreatestSeq);
+    }
     //Remove stale entries
     while (recentQueue.size() >= 1024) {
       recentNak.erase(recentQueue.front());
@@ -142,9 +144,6 @@ void AsyncAckGeraet::update(unsigned et) throw() {
     }
 
     sendAck(toAcknowledge, lastGreatestSeq);
-    //Record the packets we NAKed
-    for (seq_t i = 0; i != *toAcknowledge.rbegin(); ++i)
-      recentNak.insert(i+lastGreatestSeq);
 
     //Clear current acks
     lastGreatestSeq += 1+*toAcknowledge.rbegin();
