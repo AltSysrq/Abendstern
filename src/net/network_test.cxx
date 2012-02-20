@@ -132,6 +132,13 @@ public:
           dirty = true;
         } break;
 
+        case SDLK_i: {
+          for (unsigned y=0; y<100; ++y)
+            for (unsigned x=0; x<1000; ++x)
+              state[y*1000+x] += 32;
+          dirty = true;
+        } break;
+
         default: break;
       }
     }
