@@ -229,7 +229,7 @@ throw() {
   }
 
   //Scan for negative acknowledgements.
-  for (seq_t suboff = 0; suboff+base != lastAcked; ++suboff) {
+  for (seq_t suboff = 0; ((seq_t)(suboff+base)) != lastAcked; ++suboff) {
     if (!((data[suboff>>3] >> (suboff&7)) & 1)) {
       //Negative acknowledgement for relavent packet
       seq_t s = base+suboff;
