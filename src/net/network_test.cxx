@@ -34,15 +34,15 @@ public:
   virtual ~NetworkTestBase() {}
   void draw() {
     const vector<byte>& data = getData();
-    asgi::begin(asgi::Points);
     for (unsigned x = 0; x < 1000; ++x) {
+      asgi::begin(asgi::Points);
       for (unsigned y = 0; y < 1000; ++y) {
         float c = data[y*1000+x]/1000.0f;
         asgi::colour(c,c,c,1);
         asgi::vertex(x/1000.0f, y*vheight/1000.0f);
       }
+      asgi::end();
     }
-    asgi::end();
   }
 
 protected:
@@ -72,7 +72,7 @@ public:
     //GameState::update
     assembly->update((unsigned)et);
     if (randomising) {
-      for (unsigned i=0; i<et; ++i)
+      for (unsigned i=0; i<16; ++i)
         state[rand()%state.size()] = rand();
       dirty = true;
     }
@@ -94,9 +94,9 @@ public:
         case SDLK_s: {
           //Sierpinski triangle
           memset(&state[0], 0, state.size());
-          unsigned x = rand()%1000, y = rand()%1000;
+          signed x = rand()%1000, y = rand()%1000;
           for (unsigned i=0; i<1000000; ++i) {
-            unsigned vx, vy;
+            signed vx, vy;
             switch (rand()%3) {
               case 0: vx = 0; vy = 0; break;
               case 1: vx = 1000; vy = 0; break;
@@ -105,7 +105,8 @@ public:
 
             x += (vx-x)/2;
             y += (vy-y)/2;
-            state[y*1000+x] = 255;
+            if (x >= 0 && x < 1000 && y >= 0 && y < 1000)
+              state[y*1000+x] = 255;
           }
           dirty = true;
         } break;

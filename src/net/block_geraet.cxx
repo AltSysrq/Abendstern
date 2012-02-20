@@ -79,6 +79,9 @@ throw () {
     return;
   }
 
+  //OK
+  cerr << "Receive block: " << seq << " " << fragix << "/" << nfrags << endl;
+
   frg[fragix].assign(data, end);
 
   //See if this mutation is complete, and accumulate total size.
@@ -90,8 +93,11 @@ throw () {
     else
       size += frg[i].size();
 
+  cerr << "Assembling." << endl;
+
   //Ready to reassemble
-  vector<byte> assembled(size);
+  vector<byte> assembled;
+  assembled.reserve(size);
   for (unsigned i=0; i<nfrags; ++i)
     assembled.insert(assembled.end(),
                      frg[i].begin(), frg[i].end());
@@ -102,11 +108,11 @@ throw () {
   //Set seq information
   lastSeq = seq;
   //Remove any obsoleted mutations, including this one
-  while (frags.begin()->first <= seq)
+  while (!frags.empty() && frags.begin()->first <= seq)
     frags.erase(frags.begin());
 
   //Parse data
-  unsigned ix;
+  unsigned ix=0;
   while (data < end) {
     byte head = *data++;
     unsigned off, len;
@@ -181,8 +187,8 @@ throw () {
         case 7:
           //8-4 embedded
           STOPLEN(1);
-          len = *data++;
-          off = ((head >> 4) & 0xF);
+          off = *data++;
+          len = ((head >> 4) & 0xF);
           break;
 
         default:
@@ -193,6 +199,7 @@ throw () {
 
     ix += off;
     ++len; //Length is stored as one less than it actually is
+    cerr << "Apply " << ix << "..+" << len << ": " << (unsigned)head << endl;
     STOPLEN(len);
     if (ix+len > state.size()) break; //No longer in valid bounds
 
@@ -234,10 +241,10 @@ void OutputBlockGeraet::update(unsigned) throw() {
         //Found change.
         //Search for continguous changes; only stop if more than one consecutive
         //non-changed byte is encountered.
-        //Additionally, note that we cannot encode more than 255 bytes in
+        //Additionally, note that we cannot encode more than 256 bytes in
         //one chunk.
         unsigned begin = i;
-        while (i < state.size() && i-begin < 255
+        while (i < state.size() && i-begin < 256
         &&     (old[i] != state[i]
             ||  (i+1 < state.size() && old[i+1] != state[i+1])))
           ++i;
@@ -279,7 +286,7 @@ void OutputBlockGeraet::update(unsigned) throw() {
           head[1] = off;
           head[2] = elen;
           headlen = 3;
-        } else if (off < 2048 && elen < 16) {
+        } else if (off < 4096 && elen < 16) {
           //12-4
           head[0] = 6;
           head[1] = (off & 0xFF);
@@ -309,10 +316,16 @@ void OutputBlockGeraet::update(unsigned) throw() {
           headlen = 5;
         }
 
+        cerr << "Diff " << begin << "..+" << len << ": "
+             << (unsigned)head[0] << endl;
+
         //Copy header then data
         packet.insert(packet.end(), head, head+headlen);
         packet.insert(packet.end(),
                       state.begin()+begin, state.begin()+begin+len);
+
+        //Advance index
+        index = begin+len;
       }
     }
 
@@ -340,8 +353,9 @@ void OutputBlockGeraet::update(unsigned) throw() {
       io::write(dat, i);
       io::write(dat, nfrags);
       //Copy data
-      dat = (byte*)memcpy(dat, &packet[i*capacity],
-                          (i+1==nfrags? packet.size()-i*capacity : capacity));
+      unsigned datlen = (i+1==nfrags? packet.size()-i*capacity : capacity);
+      memcpy(dat, &packet[i*capacity], datlen);
+      dat += datlen;
       //Send and record
       NetworkConnection::seq_t netseq = send(pack, dat-pack);
       pending.insert(make_pair(netseq, seq));
@@ -376,7 +390,7 @@ void OutputBlockGeraet::ack(NetworkConnection::seq_t seq) throw() {
       //Update to remote state
       old = sit->second;
       //Remove all states before and including this one
-      while (remoteStates.begin()->first <= mseq)
+      while (!remoteStates.empty() && remoteStates.begin()->first <= mseq)
         remoteStates.erase(remoteStates.begin());
     }
   }
@@ -404,7 +418,7 @@ void OutputBlockGeraet::nak(NetworkConnection::seq_t seq) throw() {
     if (remoteStates.empty())
       dirty = true;
   } else {
-    syncPending_t::iterator sit = syncPending.find(mseq);
+    syncPending_t::iterator sit = syncPending.find(seq);
     if (sit != syncPending.end()) {
       //Retransmit and move to new location in map
       vector<byte> packet(sit->second);
