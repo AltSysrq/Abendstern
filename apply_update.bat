@@ -1,8 +1,7 @@
 @ECHO OFF
 
-ECHO Please continue when Abendstern has closed
-ECHO in order to complete the update.
-PAUSE
+ECHO Waiting fo Abendstern to exit...
+PING -n 10 localhost
 
 IF NOT EXIST bin\NUL MD bin
 
