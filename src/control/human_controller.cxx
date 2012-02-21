@@ -68,6 +68,8 @@ namespace action {
     if (spunThisFrame) return;
     spunThisFrame=true;
     if (s) s->spin(datum.amt*lastFrameTime);
+    //Prevent usage of the mouse to increase turn rate
+    analogueRotationLastDSec = fabs(100*datum.amt);
   }
 
   void throttle_on(Ship* s, ActionDatum& datum) {
@@ -196,6 +198,8 @@ namespace action {
       }
       analogueRotationLastDSec += fabs(amt);
     } else {
+      //Make joystick mode less sensitive
+      amt *= 2*STD_ROT_RATE;
       //Input freq has no effect in static mode
       if (fabs(amt) > STD_ROT_RATE) amt = (amt>0? STD_ROT_RATE : -STD_ROT_RATE);
       amt *= lastFrameTime;
