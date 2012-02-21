@@ -11,6 +11,7 @@
 #include <deque>
 #include <set>
 #include <string>
+#include <bitset>
 
 #include "src/sim/game_field.hxx"
 #include "packet_processor.hxx"
@@ -107,6 +108,10 @@ private:
   Status status;
 
   std::string disconnectReason;
+
+  //Sequence numbers which are marked as "locked"
+  //(see lock() and release())
+  std::bitset<65536> locked;
 
 public:
   ///The endpoint of the remote peer
@@ -210,6 +215,28 @@ public:
   unsigned getLatency() const noth {
     return latency;
   }
+
+  /**
+   * Marks the given sequence number as "locked".
+   *
+   * This status indicates that the caller attaches other information to that
+   * number, and that network collapse has occurred if it is reused.
+   *
+   * This does not prevent the reuse of this number --- rather, it will trigger
+   * a disconnect on detecting reuse (which subsequently results in a reuse
+   * of the packet number anyway). This is merely an error detector.
+   *
+   * Calls to lock() must be complemented by a later call to release().
+   *
+   * @see release()
+   */
+  void lock(seq_t seq) throw() { locked.set(seq); }
+  /**
+   * Marks the given sequence number as "unlocked".
+   *
+   * @see lock()
+   */
+  void release(seq_t seq) throw() { locked.reset(seq); }
 };
 
 #endif /* NETWORK_CONNECTION_HXX_ */

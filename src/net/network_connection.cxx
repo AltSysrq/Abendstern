@@ -154,6 +154,13 @@ InputNetworkGeraet* NetworkConnection::getGeraetByNum(geraet_num num) noth {
 }
 
 NetworkConnection::seq_t NetworkConnection::seq() noth {
+  //Check for network collapse
+  if (locked[nextOutSeq]) {
+    //Kill the connection
+    //First, unlock everything so infinite recursion does not result
+    locked.reset();
+    scg->closeConnection("Network collapse", "network_collapse");
+  }
   return nextOutSeq++;
 }
 
