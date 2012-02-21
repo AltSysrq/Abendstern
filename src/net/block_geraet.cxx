@@ -22,6 +22,10 @@
 
 using namespace std;
 
+//Don't have more than this many outstanding synchronous packets
+//at one time.
+#define MAX_SYNC_OUTPACK 32
+
 InputBlockGeraet::InputBlockGeraet(unsigned sz, AsyncAckGeraet* aag,
                                    DeletionStrategy ds)
 : AAGReceiver(aag, ds),
@@ -349,10 +353,15 @@ void OutputBlockGeraet::update(unsigned) throw() {
       memcpy(dat, &packet[i*capacity], datlen);
       dat += datlen;
       //Send and record
-      NetworkConnection::seq_t netseq = send(pack, dat-pack);
-      pending.insert(make_pair(netseq, seq));
-      if (enterSync)
-        syncPending.insert(make_pair(netseq, vector<byte>(pack, dat)));
+      if (i < MAX_SYNC_OUTPACK) {
+        NetworkConnection::seq_t netseq = send(pack, dat-pack);
+        pending.insert(make_pair(netseq, seq));
+        if (enterSync)
+          syncPending.insert(make_pair(netseq, vector<byte>(pack, dat)));
+      } else {
+        //Maximum transmission rate exceeded, queue for later
+        syncQueue.push_back(vector<byte>(pack, dat));
+      }
     }
 
     //Record current state
@@ -373,6 +382,16 @@ void OutputBlockGeraet::ack(NetworkConnection::seq_t seq) throw() {
   assert(it != pending.end());
   mseq = it->second;
   pending.erase(it);
+
+  //If there is a queued synchronous packet, send it now
+  if (!syncQueue.empty()) {
+    vector<byte>& packet = syncQueue.front();
+    NetworkConnection::seq_t netseq = send(&packet[0], packet.size());
+    syncPending.insert(make_pair(netseq, packet));
+    pending.insert(make_pair(netseq, mseq));
+    syncQueue.pop_front();
+  }
+
   //Do nothing else unless we are no longer in synchronous mode (due to the
   //above syncPending operation)
   if (syncPending.empty()) {

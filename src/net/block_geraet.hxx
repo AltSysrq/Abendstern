@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <map>
+#include <list>
 
 #include <SDL.h>
 
@@ -82,6 +83,11 @@ class OutputBlockGeraet: public AAGSender {
    */
   typedef std::map<NetworkConnection::seq_t, std::vector<byte> > syncPending_t;
   syncPending_t syncPending;
+
+  /* To prevent collapse due to very large updates, limit the number of
+   * outstanding synchronous packets and store the rest here.
+   */
+  std::list<vector<byte> > syncQueue;
 
   /* Maps network seqs to the block seq they contain. */
   typedef std::map<NetworkConnection::seq_t, block_geraet_seq> pending_t;
