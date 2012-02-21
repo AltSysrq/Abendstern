@@ -117,7 +117,7 @@ throw () {
     byte head = *data++;
     unsigned off, len;
 
-    #define STOPLEN(l) if (data+(l) >= end) goto endloop
+    #define STOPLEN(l) if (data+(l) > end) goto endloop
 
     //Interpret offset/size information
     if (head & 1) {
@@ -214,6 +214,7 @@ throw () {
   endloop:
   //Notify subclass of modification
   modified();
+  #undef STOPLEN
 }
 
 
