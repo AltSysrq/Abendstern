@@ -29,17 +29,19 @@
 
 using namespace std;
 
+#define DIM 1024
+
 class NetworkTestBase {
 public:
   virtual ~NetworkTestBase() {}
   void draw() {
     const vector<byte>& data = getData();
-    for (unsigned x = 0; x < 1000; ++x) {
+    for (unsigned y = 0; y < DIM; ++y) {
       asgi::begin(asgi::Points);
-      for (unsigned y = 0; y < 1000; ++y) {
-        float c = data[y*1000+x]/1000.0f;
-        asgi::colour(c,c,c,1);
-        asgi::vertex(x/1000.0f, y*vheight/1000.0f);
+      for (unsigned x = 0; x < DIM; ++x) {
+        float c = ((unsigned int)data[y*DIM+x])/255.0f;
+        asgi::colour(1,c,c,1);
+        asgi::vertex(x/(float)DIM, y*vheight/(float)DIM);
       }
       asgi::end();
     }
@@ -59,7 +61,7 @@ public:
   GameState* ret;
 
   NetworkTestListen(NetworkAssembly* na, AsyncAckGeraet* aag)
-  : OutputBlockGeraet(1000000, aag, DSIntrinsic),
+  : OutputBlockGeraet(DIM*DIM, aag, DSIntrinsic),
     randomising(false), assembly(na), ret(NULL)
   {
   }
@@ -94,19 +96,19 @@ public:
         case SDLK_s: {
           //Sierpinski triangle
           memset(&state[0], 0, state.size());
-          signed x = rand()%1000, y = rand()%1000;
-          for (unsigned i=0; i<1000000; ++i) {
+          signed x = rand()%DIM, y = rand()%DIM;
+          for (unsigned i=0; i<DIM*DIM; ++i) {
             signed vx, vy;
             switch (rand()%3) {
               case 0: vx = 0; vy = 0; break;
-              case 1: vx = 1000; vy = 0; break;
-              case 2: vx = 500; vy = 1000; break;
+              case 1: vx = DIM; vy = 0; break;
+              case 2: vx = DIM/2; vy = DIM; break;
             }
 
             x += (vx-x)/2;
             y += (vy-y)/2;
-            if (x >= 0 && x < 1000 && y >= 0 && y < 1000)
-              state[y*1000+x] = 255;
+            if (x >= 0 && x < DIM && y >= 0 && y < DIM)
+              state[y*DIM+x] = 164;
           }
           dirty = true;
         } break;
@@ -126,16 +128,16 @@ public:
         } break;
 
         case SDLK_g: {
-          for (unsigned y=0; y<1000; ++y)
-            for (unsigned x=0; x<1000; ++x)
-              state[y*1000+x] = y/4;
+          for (unsigned y=0; y<DIM; ++y)
+            for (unsigned x=0; x<DIM; ++x)
+              state[y*DIM+x] = y/4;
           dirty = true;
         } break;
 
         case SDLK_i: {
-          for (unsigned y=0; y<100; ++y)
-            for (unsigned x=0; x<1000; ++x)
-              state[y*1000+x] += 32;
+          for (unsigned y=0; y<DIM/10; ++y)
+            for (unsigned x=0; x<DIM; ++x)
+              state[y*DIM+x] += 32;
           dirty = true;
         } break;
 
@@ -153,7 +155,7 @@ public InputBlockGeraet {
   NetworkAssembly* assembly;
 public:
   NetworkTestRun(AsyncAckGeraet* aag, NetworkAssembly* na)
-  : InputBlockGeraet(1000000, aag, DSIntrinsic),
+  : InputBlockGeraet(DIM*DIM, aag, DSIntrinsic),
     assembly(na)
   {
     ::state = this;

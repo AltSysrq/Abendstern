@@ -222,6 +222,7 @@ throw() {
         //avoid the possibility of concurrent modification
         AAGSender* sender = it->second;
         pendingOut.erase(it);
+        cxn->release(s);
         sender->ack(s);
       }
     }
@@ -238,6 +239,7 @@ throw() {
         //Packet waiting for status
         AAGSender* sender = it->second;
         pendingOut.erase(it);
+        cxn->release(s);
         sender->nak(s);
       }
     }
@@ -259,6 +261,10 @@ void AsyncAckGeraet::nak(seq_t seq) throw() {
 void AsyncAckGeraet::add(seq_t seq, AAGSender* sender) noth {
   timeSinceTxn = 0;
   pendingOut.insert(make_pair(seq, sender));
+  //If anything reuses this seq, the AAG will break (not as in
+  //crash, but rather just stop functioning correctly in that
+  //it can no longer guarantee service).
+  cxn->lock(seq);
 }
 
 void AsyncAckGeraet::remove(seq_t seq) noth {
