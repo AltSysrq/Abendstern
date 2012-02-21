@@ -308,12 +308,14 @@
     <ClInclude Include="..\..\..\src\graphics\vec.hxx" />
     <ClInclude Include="..\..\..\src\net\antenna.hxx" />
     <ClInclude Include="..\..\..\src\net\async_ack_geraet.hxx" />
+    <ClInclude Include="..\..\..\src\net\block_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\connection_listener.hxx" />
     <ClInclude Include="..\..\..\src\net\crypto.hxx" />
     <ClInclude Include="..\..\..\src\net\game_advertiser.hxx" />
     <ClInclude Include="..\..\..\src\net\game_discoverer.hxx" />
     <ClInclude Include="..\..\..\src\net\globalid.hxx" />
     <ClInclude Include="..\..\..\src\net\io.hxx" />
+    <ClInclude Include="..\..\..\src\net\lat_disc_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\network_assembly.hxx" />
     <ClInclude Include="..\..\..\src\net\network_connection.hxx" />
     <ClInclude Include="..\..\..\src\net\network_geraet.hxx" />
@@ -321,6 +323,7 @@
     <ClInclude Include="..\..\..\src\net\packet_processor.hxx" />
     <ClInclude Include="..\..\..\src\net\seq_text_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\synchronous_control_geraet.hxx" />
+    <ClInclude Include="..\..\..\src\net\text_message_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\tuner.hxx" />
     <ClInclude Include="..\..\..\src\opto_flags.hxx" />
     <ClInclude Include="..\..\..\src\secondary\aggregate_set.hxx" />
@@ -513,6 +516,7 @@
     <ClCompile Include="..\..\..\src\graphics\vec.cxx" />
     <ClCompile Include="..\..\..\src\net\antenna.cxx" />
     <ClCompile Include="..\..\..\src\net\async_ack_geraet.cxx" />
+    <ClCompile Include="..\..\..\src\net\block_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\connection_listener.cxx" />
     <ClCompile Include="..\..\..\src\net\crypto.cxx">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='ReleaseGL32|Win32'">CRYPTO_CXX_;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -522,11 +526,13 @@
     <ClCompile Include="..\..\..\src\net\game_advertiser.cxx" />
     <ClCompile Include="..\..\..\src\net\game_discoverer.cxx" />
     <ClCompile Include="..\..\..\src\net\globalid.cxx" />
+    <ClCompile Include="..\..\..\src\net\lat_disc_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\network_assembly.cxx" />
     <ClCompile Include="..\..\..\src\net\network_connection.cxx" />
     <ClCompile Include="..\..\..\src\net\network_test.cxx" />
     <ClCompile Include="..\..\..\src\net\seq_text_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\synchronous_control_geraet.cxx" />
+    <ClCompile Include="..\..\..\src\net\text_message_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\tuner.cxx" />
     <ClCompile Include="..\..\..\src\secondary\confreg.cxx" />
     <ClCompile Include="..\..\..\src\secondary\frame_recorder.cxx" />
