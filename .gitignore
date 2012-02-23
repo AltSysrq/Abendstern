@@ -49,3 +49,6 @@ abendstern.rc
 hangar
 config.status
 launchlog.txt
+*.gch
+bridge.cxx
+bridge.tcl

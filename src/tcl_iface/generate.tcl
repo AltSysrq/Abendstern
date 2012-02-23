@@ -2083,11 +2083,11 @@ proc newFunType {ret args} {
 }
 
 # Process definitions
-source "src/tcl_iface/definition.tcl"
+source "tcl_iface/definition.tcl"
 
 # Open our output files
-set cppout [open "src/tcl_iface/bridge.cxx" w]
-set tclout [open "tcl/bridge.tcl" w]
+set cppout [open "tcl_iface/bridge.cxx" w]
+set tclout [open "../tcl/bridge.tcl" w]
 
 # Write topmatter for bridge.cxx
 puts $cppout {
