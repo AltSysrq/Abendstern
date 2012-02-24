@@ -272,9 +272,6 @@ Block structure:
                 for LAN game)
   byte[32]      Authentication information (provided by Abendstern Network
                 for Internet game, hash of game password for LAN game)
-  char[4]       Expected game mode
-  byte          Expected field width
-  byte          Expected field height
   byte          Flags
     0           IP version; 0=IPv4, 1=IPv6
     1           Game type; 0=Internet, 1=LAN
