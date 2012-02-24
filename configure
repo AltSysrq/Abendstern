@@ -641,8 +641,6 @@ CPPFLAGS
 LDFLAGS
 CXXFLAGS
 CXX
-ENABLE_PCH_FALSE
-ENABLE_PCH_TRUE
 ENABLE_GL32_FALSE
 ENABLE_GL32_TRUE
 ENABLE_GL21_FALSE
@@ -659,6 +657,8 @@ MAINTAINER_MODE_FALSE
 MAINTAINER_MODE_TRUE
 AM_BACKSLASH
 AM_DEFAULT_VERBOSITY
+AM_DEFAULT_V
+AM_V
 am__untar
 am__tar
 AMTAR
@@ -730,7 +730,6 @@ enable_profile
 enable_gl14
 enable_gl21
 enable_gl32
-enable_pch
 with_glew
 enable_dependency_tracking
 '
@@ -1385,7 +1384,6 @@ Optional Features:
   --disable-gl14          Don't build OpenGL 1.4 version.
   --disable-gl21          Don't build OpenGL 2.1 version.
   --disable-gl32          Don't build OpenGL 3.2 version.
-  --enable-pch            Enable use of precompiled headers.
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
 
@@ -2886,11 +2884,11 @@ MAKEINFO=${MAKEINFO-"${am_missing_run}makeinfo"}
 
 # We need awk for the "check" target.  The system "awk" is bad on
 # some platforms.
-# Always define AMTAR for backward compatibility.
+# Always define AMTAR for backward compatibility.  Yes, it's still used
+# in the wild :-(  We should find a proper way to deprecate it ...
+AMTAR='$${TAR-tar}'
 
-AMTAR=${AMTAR-"${am_missing_run}tar"}
-
-am__tar='${AMTAR} chof - "$$tardir"'; am__untar='${AMTAR} xf -'
+am__tar='$${TAR-tar} chof - "$$tardir"' am__untar='$${TAR-tar} xf -'
 
 
 
@@ -2906,6 +2904,33 @@ yes) AM_DEFAULT_VERBOSITY=0;;
 no)  AM_DEFAULT_VERBOSITY=1;;
 *)   AM_DEFAULT_VERBOSITY=0;;
 esac
+am_make=${MAKE-make}
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether $am_make supports nested variables" >&5
+$as_echo_n "checking whether $am_make supports nested variables... " >&6; }
+if ${am_cv_make_support_nested_variables+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if $as_echo 'TRUE=$(BAR$(V))
+BAR0=false
+BAR1=true
+V=1
+am__doit:
+	@$(TRUE)
+.PHONY: am__doit' | $am_make -f - >/dev/null 2>&1; then
+  am_cv_make_support_nested_variables=yes
+else
+  am_cv_make_support_nested_variables=no
+fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $am_cv_make_support_nested_variables" >&5
+$as_echo "$am_cv_make_support_nested_variables" >&6; }
+if test $am_cv_make_support_nested_variables = yes; then
+    AM_V='$(V)'
+  AM_DEFAULT_V='$(AM_DEFAULT_VERBOSITY)'
+else
+  AM_V=$AM_DEFAULT_VERBOSITY
+  AM_DEFAULT_V=$AM_DEFAULT_VERBOSITY
+fi
 AM_BACKSLASH='\'
 
 ac_config_headers="$ac_config_headers config.h"
@@ -3079,11 +3104,6 @@ fi
 # Check whether --enable-gl32 was given.
 if test "${enable_gl32+set}" = set; then :
   enableval=$enable_gl32;
-fi
-
-# Check whether --enable-pch was given.
-if test "${enable_pch+set}" = set; then :
-  enableval=$enable_pch;
 fi
 
 
@@ -3275,29 +3295,6 @@ else
 else
   ENABLE_GL32_TRUE='#'
   ENABLE_GL32_FALSE=
-fi
-
-
-fi
-if test "x$enable_pch" = "xyes"; then :
-
-   if true; then
-  ENABLE_PCH_TRUE=
-  ENABLE_PCH_FALSE='#'
-else
-  ENABLE_PCH_TRUE='#'
-  ENABLE_PCH_FALSE=
-fi
-
-
-else
-
-   if false; then
-  ENABLE_PCH_TRUE=
-  ENABLE_PCH_FALSE='#'
-else
-  ENABLE_PCH_TRUE='#'
-  ENABLE_PCH_FALSE=
 fi
 
 
@@ -6217,14 +6214,6 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${ENABLE_GL32_TRUE}" && test -z "${ENABLE_GL32_FALSE}"; then
   as_fn_error $? "conditional \"ENABLE_GL32\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5
-fi
-if test -z "${ENABLE_PCH_TRUE}" && test -z "${ENABLE_PCH_FALSE}"; then
-  as_fn_error $? "conditional \"ENABLE_PCH\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5
-fi
-if test -z "${ENABLE_PCH_TRUE}" && test -z "${ENABLE_PCH_FALSE}"; then
-  as_fn_error $? "conditional \"ENABLE_PCH\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${AMDEP_TRUE}" && test -z "${AMDEP_FALSE}"; then
