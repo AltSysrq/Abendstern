@@ -58,6 +58,28 @@ AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_CPP
 
+# Check tclsh version.
+# Debian does (or at least used to) default to tclsh 8.4 even if 8.5 was installed
+# (this when Tcl 8.5 was already stable), so check for that condition to tell
+# the user how to handle the situation.
+echo -n 'checking for tclsh (8.5)... '
+if echo ['exit [catch {package require Tcl 8.5}]'] | tclsh; then
+  echo 'yes'
+else
+  echo 'no'
+  echo 'Your either have an obsolete version of Tcl or do not have it at all.'
+  echo 'Make sure that Tcl 8.5 is installed.'
+  if echo ['exit [catch {package require Tcl 8.4}]'] | tclsh \
+  && echo ['exit [catch {package require Tcl 8.5}]'] | tclsh8.5; then
+    echo 'It appears that you do have Tcl 8.5 installed, but tclsh still links to Tcl 8.4.'
+    echo 'Most likely, you are on Debian, or a derivitave such as Ubuntu.'
+    echo 'Try running'
+    echo '  sudo update-alternatives --config tclsh'
+    echo 'and select tclsh8.5.'
+  fi
+  exit 1
+fi
+
 # Checks for libraries.
 AC_LANG_PUSH([C++])
 CPPFLAGS="$CPPFLAGS -I/usr/include/tcl8.5"
