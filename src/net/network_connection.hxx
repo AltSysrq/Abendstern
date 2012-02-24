@@ -237,6 +237,17 @@ public:
    * @see lock()
    */
   void release(seq_t seq) throw() { locked.reset(seq); }
+
+  /**
+   * Alters the size of the internal game field to the specified
+   * dimenions.
+   * @see GameField::width
+   * @see GameField::height
+   */
+  void setFieldSize(float w, float h) throw() {
+    field.width = w;
+    field.height = h;
+  }
 };
 
 #endif /* NETWORK_CONNECTION_HXX_ */

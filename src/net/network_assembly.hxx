@@ -91,6 +91,15 @@ public:
    * call to update()
    */
   void update(unsigned et) noth;
+
+  /**
+   * Resizes the internal fields of all NetworkConnections to the given
+   * dimensions.
+   * @see NetworkConnection::setFieldSize()
+   * @see GameField::width
+   * @see GameField::height
+   */
+  void setFieldSize(float,float) throw();
 };
 
 #endif /* NETWORK_ASSEMBLY_HXX_ */

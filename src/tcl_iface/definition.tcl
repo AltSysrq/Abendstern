@@ -346,8 +346,8 @@ class extendable EffectsHandler {}
 cxx src/sim/game_field.hxx src/camera/effects_handler.hxx
 class final GameField {} {
   const fieldClock Uint32
-  const width float
-  const height float
+  var width float
+  var height float
   var effects EffectsHandler* steal
   var perfectRadar bool
   constructor default float float
@@ -1029,6 +1029,7 @@ unsafe {
     fun void removeConnection {} unsigned
     fun void addPacketProcessor {} {PacketProcessor* steal}
     fun void update {} unsigned
+    fun void setFieldSize {} float float
   }
 }
 
@@ -1042,6 +1043,7 @@ unsafe {
     fun void update {} unsigned
     fun NetworkConnection::Status getStatus
     fun string getDisconnectReason
+    fun void setFieldSize {} float float
   }
 }
 
