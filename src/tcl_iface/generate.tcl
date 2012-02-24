@@ -2102,10 +2102,12 @@ puts $cppout {
 
   #include "bridge.hxx"
   #include "include_all_headers.hxx"
-  #define BRIDGE_CXX_
   #include "implementation.hxx"
 
   #pragma GCC diagnostic ignored "-Wunused-label"
+  #pragma GCC diagnostic ignored "-Waddress"
+  using namespace tcl_glue_implementation;
+  
   //Commands get their zeroth argument as their own name;
   //code generation is simpler if we drop this
   #define SHIFT ++objv, --objc

@@ -205,7 +205,8 @@ COMMONSOURCES= \
 ./graphics/font.cxx \
 ./tcl_iface/slave_thread.cxx \
 ./tcl_iface/common_keyboard_client.cxx \
-./tcl_iface/square_icon.cxx
+./tcl_iface/square_icon.cxx \
+./tcl_iface/implementation.cxx
 
 abendsternuxgl14_CXXFLAGS=$(COMMONCXXFLAGS) -DAB_OPENGL_14
 abendsternuxgl14_LDADD=$(COMMONLDADD)
