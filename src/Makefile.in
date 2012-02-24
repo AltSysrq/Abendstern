@@ -49,6 +49,14 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
+	abendsternuxgl14-x0.$(OBJEXT) abendsternuxgl14-x1.$(OBJEXT) \
+	abendsternuxgl14-x2.$(OBJEXT) abendsternuxgl14-x3.$(OBJEXT) \
+	abendsternuxgl14-x4.$(OBJEXT) abendsternuxgl14-x5.$(OBJEXT) \
+	abendsternuxgl14-x6.$(OBJEXT) abendsternuxgl14-x7.$(OBJEXT) \
+	abendsternuxgl14-x8.$(OBJEXT) abendsternuxgl14-x9.$(OBJEXT) \
+	abendsternuxgl14-xa.$(OBJEXT) abendsternuxgl14-xb.$(OBJEXT) \
+	abendsternuxgl14-xc.$(OBJEXT) abendsternuxgl14-xd.$(OBJEXT) \
+	abendsternuxgl14-xe.$(OBJEXT) abendsternuxgl14-xf.$(OBJEXT) \
 	abendsternuxgl14-wavload.$(OBJEXT) \
 	abendsternuxgl14-ship_mixer.$(OBJEXT) \
 	abendsternuxgl14-synth.$(OBJEXT) \
@@ -241,6 +249,14 @@ abendsternuxgl14_DEPENDENCIES = $(am__DEPENDENCIES_2)
 abendsternuxgl14_LINK = $(CXXLD) $(abendsternuxgl14_CXXFLAGS) \
 	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
+	abendsternuxgl21-x0.$(OBJEXT) abendsternuxgl21-x1.$(OBJEXT) \
+	abendsternuxgl21-x2.$(OBJEXT) abendsternuxgl21-x3.$(OBJEXT) \
+	abendsternuxgl21-x4.$(OBJEXT) abendsternuxgl21-x5.$(OBJEXT) \
+	abendsternuxgl21-x6.$(OBJEXT) abendsternuxgl21-x7.$(OBJEXT) \
+	abendsternuxgl21-x8.$(OBJEXT) abendsternuxgl21-x9.$(OBJEXT) \
+	abendsternuxgl21-xa.$(OBJEXT) abendsternuxgl21-xb.$(OBJEXT) \
+	abendsternuxgl21-xc.$(OBJEXT) abendsternuxgl21-xd.$(OBJEXT) \
+	abendsternuxgl21-xe.$(OBJEXT) abendsternuxgl21-xf.$(OBJEXT) \
 	abendsternuxgl21-wavload.$(OBJEXT) \
 	abendsternuxgl21-ship_mixer.$(OBJEXT) \
 	abendsternuxgl21-synth.$(OBJEXT) \
@@ -431,6 +447,14 @@ abendsternuxgl21_DEPENDENCIES = $(am__DEPENDENCIES_2) \
 abendsternuxgl21_LINK = $(CXXLD) $(abendsternuxgl21_CXXFLAGS) \
 	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
+	abendsternuxgl32-x0.$(OBJEXT) abendsternuxgl32-x1.$(OBJEXT) \
+	abendsternuxgl32-x2.$(OBJEXT) abendsternuxgl32-x3.$(OBJEXT) \
+	abendsternuxgl32-x4.$(OBJEXT) abendsternuxgl32-x5.$(OBJEXT) \
+	abendsternuxgl32-x6.$(OBJEXT) abendsternuxgl32-x7.$(OBJEXT) \
+	abendsternuxgl32-x8.$(OBJEXT) abendsternuxgl32-x9.$(OBJEXT) \
+	abendsternuxgl32-xa.$(OBJEXT) abendsternuxgl32-xb.$(OBJEXT) \
+	abendsternuxgl32-xc.$(OBJEXT) abendsternuxgl32-xd.$(OBJEXT) \
+	abendsternuxgl32-xe.$(OBJEXT) abendsternuxgl32-xf.$(OBJEXT) \
 	abendsternuxgl32-wavload.$(OBJEXT) \
 	abendsternuxgl32-ship_mixer.$(OBJEXT) \
 	abendsternuxgl32-synth.$(OBJEXT) \
@@ -767,6 +791,22 @@ COMMONCXXFLAGS = -Wall -I./config $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(
 COMMONLDADD = $(SDL_LIBS) $(SDLIMG_LIBS) $(GL_LIBS) $(PNG_LIBS)
 COMMONSOURCES = \
 ./tcl_iface/bridge.cxx \
+./tcl_iface/xxx/x0.cxx \
+./tcl_iface/xxx/x1.cxx \
+./tcl_iface/xxx/x2.cxx \
+./tcl_iface/xxx/x3.cxx \
+./tcl_iface/xxx/x4.cxx \
+./tcl_iface/xxx/x5.cxx \
+./tcl_iface/xxx/x6.cxx \
+./tcl_iface/xxx/x7.cxx \
+./tcl_iface/xxx/x8.cxx \
+./tcl_iface/xxx/x9.cxx \
+./tcl_iface/xxx/xa.cxx \
+./tcl_iface/xxx/xb.cxx \
+./tcl_iface/xxx/xc.cxx \
+./tcl_iface/xxx/xd.cxx \
+./tcl_iface/xxx/xe.cxx \
+./tcl_iface/xxx/xf.cxx \
 ./audio/wavload.cxx \
 ./audio/ship_mixer.cxx \
 ./audio/synth.cxx \
@@ -1233,6 +1273,22 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-vaoemu.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-vec.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-wavload.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-x0.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-x1.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-x2.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-x3.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-x4.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-x5.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-x6.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-x7.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-x8.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-x9.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-xa.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-xb.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-xc.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-xd.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-xe.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-xf.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-abendstern.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-abstract_system_painter.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-acsgi.Po@am__quote@
@@ -1418,6 +1474,22 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-vaoemu.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-vec.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-wavload.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-x0.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-x1.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-x2.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-x3.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-x4.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-x5.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-x6.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-x7.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-x8.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-x9.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-xa.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-xb.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-xc.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-xd.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-xe.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-xf.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-abendstern.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-abstract_system_painter.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-acsgi.Po@am__quote@
@@ -1603,6 +1675,22 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-vaoemu.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-vec.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-wavload.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-x0.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-x1.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-x2.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-x3.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-x4.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-x5.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-x6.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-x7.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-x8.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-x9.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-xa.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-xb.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-xc.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-xd.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-xe.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-xf.Po@am__quote@
 
 .cxx.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -1631,6 +1719,230 @@ abendsternuxgl14-bridge.obj: ./tcl_iface/bridge.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/bridge.cxx' object='abendsternuxgl14-bridge.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-bridge.obj `if test -f './tcl_iface/bridge.cxx'; then $(CYGPATH_W) './tcl_iface/bridge.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/bridge.cxx'; fi`
+
+abendsternuxgl14-x0.o: ./tcl_iface/xxx/x0.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x0.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x0.Tpo -c -o abendsternuxgl14-x0.o `test -f './tcl_iface/xxx/x0.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x0.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x0.Tpo $(DEPDIR)/abendsternuxgl14-x0.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x0.cxx' object='abendsternuxgl14-x0.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x0.o `test -f './tcl_iface/xxx/x0.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x0.cxx
+
+abendsternuxgl14-x0.obj: ./tcl_iface/xxx/x0.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x0.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x0.Tpo -c -o abendsternuxgl14-x0.obj `if test -f './tcl_iface/xxx/x0.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x0.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x0.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x0.Tpo $(DEPDIR)/abendsternuxgl14-x0.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x0.cxx' object='abendsternuxgl14-x0.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x0.obj `if test -f './tcl_iface/xxx/x0.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x0.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x0.cxx'; fi`
+
+abendsternuxgl14-x1.o: ./tcl_iface/xxx/x1.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x1.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x1.Tpo -c -o abendsternuxgl14-x1.o `test -f './tcl_iface/xxx/x1.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x1.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x1.Tpo $(DEPDIR)/abendsternuxgl14-x1.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x1.cxx' object='abendsternuxgl14-x1.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x1.o `test -f './tcl_iface/xxx/x1.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x1.cxx
+
+abendsternuxgl14-x1.obj: ./tcl_iface/xxx/x1.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x1.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x1.Tpo -c -o abendsternuxgl14-x1.obj `if test -f './tcl_iface/xxx/x1.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x1.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x1.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x1.Tpo $(DEPDIR)/abendsternuxgl14-x1.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x1.cxx' object='abendsternuxgl14-x1.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x1.obj `if test -f './tcl_iface/xxx/x1.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x1.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x1.cxx'; fi`
+
+abendsternuxgl14-x2.o: ./tcl_iface/xxx/x2.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x2.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x2.Tpo -c -o abendsternuxgl14-x2.o `test -f './tcl_iface/xxx/x2.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x2.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x2.Tpo $(DEPDIR)/abendsternuxgl14-x2.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x2.cxx' object='abendsternuxgl14-x2.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x2.o `test -f './tcl_iface/xxx/x2.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x2.cxx
+
+abendsternuxgl14-x2.obj: ./tcl_iface/xxx/x2.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x2.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x2.Tpo -c -o abendsternuxgl14-x2.obj `if test -f './tcl_iface/xxx/x2.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x2.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x2.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x2.Tpo $(DEPDIR)/abendsternuxgl14-x2.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x2.cxx' object='abendsternuxgl14-x2.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x2.obj `if test -f './tcl_iface/xxx/x2.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x2.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x2.cxx'; fi`
+
+abendsternuxgl14-x3.o: ./tcl_iface/xxx/x3.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x3.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x3.Tpo -c -o abendsternuxgl14-x3.o `test -f './tcl_iface/xxx/x3.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x3.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x3.Tpo $(DEPDIR)/abendsternuxgl14-x3.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x3.cxx' object='abendsternuxgl14-x3.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x3.o `test -f './tcl_iface/xxx/x3.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x3.cxx
+
+abendsternuxgl14-x3.obj: ./tcl_iface/xxx/x3.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x3.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x3.Tpo -c -o abendsternuxgl14-x3.obj `if test -f './tcl_iface/xxx/x3.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x3.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x3.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x3.Tpo $(DEPDIR)/abendsternuxgl14-x3.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x3.cxx' object='abendsternuxgl14-x3.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x3.obj `if test -f './tcl_iface/xxx/x3.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x3.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x3.cxx'; fi`
+
+abendsternuxgl14-x4.o: ./tcl_iface/xxx/x4.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x4.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x4.Tpo -c -o abendsternuxgl14-x4.o `test -f './tcl_iface/xxx/x4.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x4.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x4.Tpo $(DEPDIR)/abendsternuxgl14-x4.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x4.cxx' object='abendsternuxgl14-x4.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x4.o `test -f './tcl_iface/xxx/x4.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x4.cxx
+
+abendsternuxgl14-x4.obj: ./tcl_iface/xxx/x4.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x4.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x4.Tpo -c -o abendsternuxgl14-x4.obj `if test -f './tcl_iface/xxx/x4.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x4.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x4.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x4.Tpo $(DEPDIR)/abendsternuxgl14-x4.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x4.cxx' object='abendsternuxgl14-x4.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x4.obj `if test -f './tcl_iface/xxx/x4.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x4.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x4.cxx'; fi`
+
+abendsternuxgl14-x5.o: ./tcl_iface/xxx/x5.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x5.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x5.Tpo -c -o abendsternuxgl14-x5.o `test -f './tcl_iface/xxx/x5.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x5.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x5.Tpo $(DEPDIR)/abendsternuxgl14-x5.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x5.cxx' object='abendsternuxgl14-x5.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x5.o `test -f './tcl_iface/xxx/x5.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x5.cxx
+
+abendsternuxgl14-x5.obj: ./tcl_iface/xxx/x5.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x5.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x5.Tpo -c -o abendsternuxgl14-x5.obj `if test -f './tcl_iface/xxx/x5.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x5.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x5.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x5.Tpo $(DEPDIR)/abendsternuxgl14-x5.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x5.cxx' object='abendsternuxgl14-x5.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x5.obj `if test -f './tcl_iface/xxx/x5.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x5.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x5.cxx'; fi`
+
+abendsternuxgl14-x6.o: ./tcl_iface/xxx/x6.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x6.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x6.Tpo -c -o abendsternuxgl14-x6.o `test -f './tcl_iface/xxx/x6.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x6.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x6.Tpo $(DEPDIR)/abendsternuxgl14-x6.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x6.cxx' object='abendsternuxgl14-x6.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x6.o `test -f './tcl_iface/xxx/x6.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x6.cxx
+
+abendsternuxgl14-x6.obj: ./tcl_iface/xxx/x6.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x6.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x6.Tpo -c -o abendsternuxgl14-x6.obj `if test -f './tcl_iface/xxx/x6.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x6.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x6.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x6.Tpo $(DEPDIR)/abendsternuxgl14-x6.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x6.cxx' object='abendsternuxgl14-x6.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x6.obj `if test -f './tcl_iface/xxx/x6.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x6.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x6.cxx'; fi`
+
+abendsternuxgl14-x7.o: ./tcl_iface/xxx/x7.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x7.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x7.Tpo -c -o abendsternuxgl14-x7.o `test -f './tcl_iface/xxx/x7.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x7.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x7.Tpo $(DEPDIR)/abendsternuxgl14-x7.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x7.cxx' object='abendsternuxgl14-x7.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x7.o `test -f './tcl_iface/xxx/x7.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x7.cxx
+
+abendsternuxgl14-x7.obj: ./tcl_iface/xxx/x7.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x7.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x7.Tpo -c -o abendsternuxgl14-x7.obj `if test -f './tcl_iface/xxx/x7.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x7.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x7.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x7.Tpo $(DEPDIR)/abendsternuxgl14-x7.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x7.cxx' object='abendsternuxgl14-x7.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x7.obj `if test -f './tcl_iface/xxx/x7.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x7.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x7.cxx'; fi`
+
+abendsternuxgl14-x8.o: ./tcl_iface/xxx/x8.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x8.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x8.Tpo -c -o abendsternuxgl14-x8.o `test -f './tcl_iface/xxx/x8.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x8.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x8.Tpo $(DEPDIR)/abendsternuxgl14-x8.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x8.cxx' object='abendsternuxgl14-x8.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x8.o `test -f './tcl_iface/xxx/x8.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x8.cxx
+
+abendsternuxgl14-x8.obj: ./tcl_iface/xxx/x8.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x8.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x8.Tpo -c -o abendsternuxgl14-x8.obj `if test -f './tcl_iface/xxx/x8.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x8.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x8.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x8.Tpo $(DEPDIR)/abendsternuxgl14-x8.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x8.cxx' object='abendsternuxgl14-x8.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x8.obj `if test -f './tcl_iface/xxx/x8.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x8.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x8.cxx'; fi`
+
+abendsternuxgl14-x9.o: ./tcl_iface/xxx/x9.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x9.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x9.Tpo -c -o abendsternuxgl14-x9.o `test -f './tcl_iface/xxx/x9.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x9.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x9.Tpo $(DEPDIR)/abendsternuxgl14-x9.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x9.cxx' object='abendsternuxgl14-x9.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x9.o `test -f './tcl_iface/xxx/x9.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x9.cxx
+
+abendsternuxgl14-x9.obj: ./tcl_iface/xxx/x9.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-x9.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-x9.Tpo -c -o abendsternuxgl14-x9.obj `if test -f './tcl_iface/xxx/x9.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x9.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x9.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-x9.Tpo $(DEPDIR)/abendsternuxgl14-x9.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x9.cxx' object='abendsternuxgl14-x9.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-x9.obj `if test -f './tcl_iface/xxx/x9.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x9.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x9.cxx'; fi`
+
+abendsternuxgl14-xa.o: ./tcl_iface/xxx/xa.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-xa.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-xa.Tpo -c -o abendsternuxgl14-xa.o `test -f './tcl_iface/xxx/xa.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xa.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-xa.Tpo $(DEPDIR)/abendsternuxgl14-xa.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xa.cxx' object='abendsternuxgl14-xa.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-xa.o `test -f './tcl_iface/xxx/xa.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xa.cxx
+
+abendsternuxgl14-xa.obj: ./tcl_iface/xxx/xa.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-xa.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-xa.Tpo -c -o abendsternuxgl14-xa.obj `if test -f './tcl_iface/xxx/xa.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xa.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xa.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-xa.Tpo $(DEPDIR)/abendsternuxgl14-xa.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xa.cxx' object='abendsternuxgl14-xa.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-xa.obj `if test -f './tcl_iface/xxx/xa.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xa.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xa.cxx'; fi`
+
+abendsternuxgl14-xb.o: ./tcl_iface/xxx/xb.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-xb.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-xb.Tpo -c -o abendsternuxgl14-xb.o `test -f './tcl_iface/xxx/xb.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xb.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-xb.Tpo $(DEPDIR)/abendsternuxgl14-xb.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xb.cxx' object='abendsternuxgl14-xb.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-xb.o `test -f './tcl_iface/xxx/xb.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xb.cxx
+
+abendsternuxgl14-xb.obj: ./tcl_iface/xxx/xb.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-xb.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-xb.Tpo -c -o abendsternuxgl14-xb.obj `if test -f './tcl_iface/xxx/xb.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xb.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xb.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-xb.Tpo $(DEPDIR)/abendsternuxgl14-xb.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xb.cxx' object='abendsternuxgl14-xb.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-xb.obj `if test -f './tcl_iface/xxx/xb.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xb.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xb.cxx'; fi`
+
+abendsternuxgl14-xc.o: ./tcl_iface/xxx/xc.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-xc.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-xc.Tpo -c -o abendsternuxgl14-xc.o `test -f './tcl_iface/xxx/xc.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xc.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-xc.Tpo $(DEPDIR)/abendsternuxgl14-xc.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xc.cxx' object='abendsternuxgl14-xc.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-xc.o `test -f './tcl_iface/xxx/xc.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xc.cxx
+
+abendsternuxgl14-xc.obj: ./tcl_iface/xxx/xc.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-xc.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-xc.Tpo -c -o abendsternuxgl14-xc.obj `if test -f './tcl_iface/xxx/xc.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xc.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xc.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-xc.Tpo $(DEPDIR)/abendsternuxgl14-xc.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xc.cxx' object='abendsternuxgl14-xc.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-xc.obj `if test -f './tcl_iface/xxx/xc.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xc.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xc.cxx'; fi`
+
+abendsternuxgl14-xd.o: ./tcl_iface/xxx/xd.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-xd.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-xd.Tpo -c -o abendsternuxgl14-xd.o `test -f './tcl_iface/xxx/xd.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xd.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-xd.Tpo $(DEPDIR)/abendsternuxgl14-xd.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xd.cxx' object='abendsternuxgl14-xd.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-xd.o `test -f './tcl_iface/xxx/xd.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xd.cxx
+
+abendsternuxgl14-xd.obj: ./tcl_iface/xxx/xd.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-xd.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-xd.Tpo -c -o abendsternuxgl14-xd.obj `if test -f './tcl_iface/xxx/xd.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xd.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xd.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-xd.Tpo $(DEPDIR)/abendsternuxgl14-xd.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xd.cxx' object='abendsternuxgl14-xd.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-xd.obj `if test -f './tcl_iface/xxx/xd.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xd.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xd.cxx'; fi`
+
+abendsternuxgl14-xe.o: ./tcl_iface/xxx/xe.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-xe.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-xe.Tpo -c -o abendsternuxgl14-xe.o `test -f './tcl_iface/xxx/xe.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xe.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-xe.Tpo $(DEPDIR)/abendsternuxgl14-xe.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xe.cxx' object='abendsternuxgl14-xe.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-xe.o `test -f './tcl_iface/xxx/xe.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xe.cxx
+
+abendsternuxgl14-xe.obj: ./tcl_iface/xxx/xe.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-xe.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-xe.Tpo -c -o abendsternuxgl14-xe.obj `if test -f './tcl_iface/xxx/xe.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xe.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xe.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-xe.Tpo $(DEPDIR)/abendsternuxgl14-xe.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xe.cxx' object='abendsternuxgl14-xe.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-xe.obj `if test -f './tcl_iface/xxx/xe.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xe.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xe.cxx'; fi`
+
+abendsternuxgl14-xf.o: ./tcl_iface/xxx/xf.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-xf.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-xf.Tpo -c -o abendsternuxgl14-xf.o `test -f './tcl_iface/xxx/xf.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xf.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-xf.Tpo $(DEPDIR)/abendsternuxgl14-xf.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xf.cxx' object='abendsternuxgl14-xf.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-xf.o `test -f './tcl_iface/xxx/xf.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xf.cxx
+
+abendsternuxgl14-xf.obj: ./tcl_iface/xxx/xf.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-xf.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-xf.Tpo -c -o abendsternuxgl14-xf.obj `if test -f './tcl_iface/xxx/xf.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xf.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xf.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-xf.Tpo $(DEPDIR)/abendsternuxgl14-xf.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xf.cxx' object='abendsternuxgl14-xf.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-xf.obj `if test -f './tcl_iface/xxx/xf.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xf.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xf.cxx'; fi`
 
 abendsternuxgl14-wavload.o: ./audio/wavload.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-wavload.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-wavload.Tpo -c -o abendsternuxgl14-wavload.o `test -f './audio/wavload.cxx' || echo '$(srcdir)/'`./audio/wavload.cxx
@@ -4222,6 +4534,230 @@ abendsternuxgl21-bridge.obj: ./tcl_iface/bridge.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-bridge.obj `if test -f './tcl_iface/bridge.cxx'; then $(CYGPATH_W) './tcl_iface/bridge.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/bridge.cxx'; fi`
 
+abendsternuxgl21-x0.o: ./tcl_iface/xxx/x0.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x0.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x0.Tpo -c -o abendsternuxgl21-x0.o `test -f './tcl_iface/xxx/x0.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x0.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x0.Tpo $(DEPDIR)/abendsternuxgl21-x0.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x0.cxx' object='abendsternuxgl21-x0.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x0.o `test -f './tcl_iface/xxx/x0.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x0.cxx
+
+abendsternuxgl21-x0.obj: ./tcl_iface/xxx/x0.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x0.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x0.Tpo -c -o abendsternuxgl21-x0.obj `if test -f './tcl_iface/xxx/x0.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x0.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x0.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x0.Tpo $(DEPDIR)/abendsternuxgl21-x0.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x0.cxx' object='abendsternuxgl21-x0.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x0.obj `if test -f './tcl_iface/xxx/x0.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x0.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x0.cxx'; fi`
+
+abendsternuxgl21-x1.o: ./tcl_iface/xxx/x1.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x1.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x1.Tpo -c -o abendsternuxgl21-x1.o `test -f './tcl_iface/xxx/x1.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x1.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x1.Tpo $(DEPDIR)/abendsternuxgl21-x1.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x1.cxx' object='abendsternuxgl21-x1.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x1.o `test -f './tcl_iface/xxx/x1.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x1.cxx
+
+abendsternuxgl21-x1.obj: ./tcl_iface/xxx/x1.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x1.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x1.Tpo -c -o abendsternuxgl21-x1.obj `if test -f './tcl_iface/xxx/x1.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x1.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x1.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x1.Tpo $(DEPDIR)/abendsternuxgl21-x1.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x1.cxx' object='abendsternuxgl21-x1.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x1.obj `if test -f './tcl_iface/xxx/x1.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x1.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x1.cxx'; fi`
+
+abendsternuxgl21-x2.o: ./tcl_iface/xxx/x2.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x2.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x2.Tpo -c -o abendsternuxgl21-x2.o `test -f './tcl_iface/xxx/x2.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x2.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x2.Tpo $(DEPDIR)/abendsternuxgl21-x2.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x2.cxx' object='abendsternuxgl21-x2.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x2.o `test -f './tcl_iface/xxx/x2.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x2.cxx
+
+abendsternuxgl21-x2.obj: ./tcl_iface/xxx/x2.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x2.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x2.Tpo -c -o abendsternuxgl21-x2.obj `if test -f './tcl_iface/xxx/x2.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x2.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x2.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x2.Tpo $(DEPDIR)/abendsternuxgl21-x2.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x2.cxx' object='abendsternuxgl21-x2.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x2.obj `if test -f './tcl_iface/xxx/x2.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x2.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x2.cxx'; fi`
+
+abendsternuxgl21-x3.o: ./tcl_iface/xxx/x3.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x3.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x3.Tpo -c -o abendsternuxgl21-x3.o `test -f './tcl_iface/xxx/x3.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x3.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x3.Tpo $(DEPDIR)/abendsternuxgl21-x3.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x3.cxx' object='abendsternuxgl21-x3.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x3.o `test -f './tcl_iface/xxx/x3.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x3.cxx
+
+abendsternuxgl21-x3.obj: ./tcl_iface/xxx/x3.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x3.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x3.Tpo -c -o abendsternuxgl21-x3.obj `if test -f './tcl_iface/xxx/x3.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x3.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x3.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x3.Tpo $(DEPDIR)/abendsternuxgl21-x3.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x3.cxx' object='abendsternuxgl21-x3.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x3.obj `if test -f './tcl_iface/xxx/x3.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x3.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x3.cxx'; fi`
+
+abendsternuxgl21-x4.o: ./tcl_iface/xxx/x4.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x4.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x4.Tpo -c -o abendsternuxgl21-x4.o `test -f './tcl_iface/xxx/x4.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x4.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x4.Tpo $(DEPDIR)/abendsternuxgl21-x4.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x4.cxx' object='abendsternuxgl21-x4.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x4.o `test -f './tcl_iface/xxx/x4.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x4.cxx
+
+abendsternuxgl21-x4.obj: ./tcl_iface/xxx/x4.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x4.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x4.Tpo -c -o abendsternuxgl21-x4.obj `if test -f './tcl_iface/xxx/x4.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x4.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x4.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x4.Tpo $(DEPDIR)/abendsternuxgl21-x4.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x4.cxx' object='abendsternuxgl21-x4.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x4.obj `if test -f './tcl_iface/xxx/x4.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x4.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x4.cxx'; fi`
+
+abendsternuxgl21-x5.o: ./tcl_iface/xxx/x5.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x5.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x5.Tpo -c -o abendsternuxgl21-x5.o `test -f './tcl_iface/xxx/x5.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x5.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x5.Tpo $(DEPDIR)/abendsternuxgl21-x5.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x5.cxx' object='abendsternuxgl21-x5.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x5.o `test -f './tcl_iface/xxx/x5.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x5.cxx
+
+abendsternuxgl21-x5.obj: ./tcl_iface/xxx/x5.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x5.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x5.Tpo -c -o abendsternuxgl21-x5.obj `if test -f './tcl_iface/xxx/x5.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x5.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x5.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x5.Tpo $(DEPDIR)/abendsternuxgl21-x5.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x5.cxx' object='abendsternuxgl21-x5.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x5.obj `if test -f './tcl_iface/xxx/x5.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x5.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x5.cxx'; fi`
+
+abendsternuxgl21-x6.o: ./tcl_iface/xxx/x6.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x6.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x6.Tpo -c -o abendsternuxgl21-x6.o `test -f './tcl_iface/xxx/x6.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x6.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x6.Tpo $(DEPDIR)/abendsternuxgl21-x6.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x6.cxx' object='abendsternuxgl21-x6.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x6.o `test -f './tcl_iface/xxx/x6.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x6.cxx
+
+abendsternuxgl21-x6.obj: ./tcl_iface/xxx/x6.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x6.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x6.Tpo -c -o abendsternuxgl21-x6.obj `if test -f './tcl_iface/xxx/x6.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x6.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x6.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x6.Tpo $(DEPDIR)/abendsternuxgl21-x6.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x6.cxx' object='abendsternuxgl21-x6.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x6.obj `if test -f './tcl_iface/xxx/x6.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x6.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x6.cxx'; fi`
+
+abendsternuxgl21-x7.o: ./tcl_iface/xxx/x7.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x7.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x7.Tpo -c -o abendsternuxgl21-x7.o `test -f './tcl_iface/xxx/x7.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x7.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x7.Tpo $(DEPDIR)/abendsternuxgl21-x7.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x7.cxx' object='abendsternuxgl21-x7.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x7.o `test -f './tcl_iface/xxx/x7.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x7.cxx
+
+abendsternuxgl21-x7.obj: ./tcl_iface/xxx/x7.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x7.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x7.Tpo -c -o abendsternuxgl21-x7.obj `if test -f './tcl_iface/xxx/x7.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x7.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x7.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x7.Tpo $(DEPDIR)/abendsternuxgl21-x7.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x7.cxx' object='abendsternuxgl21-x7.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x7.obj `if test -f './tcl_iface/xxx/x7.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x7.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x7.cxx'; fi`
+
+abendsternuxgl21-x8.o: ./tcl_iface/xxx/x8.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x8.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x8.Tpo -c -o abendsternuxgl21-x8.o `test -f './tcl_iface/xxx/x8.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x8.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x8.Tpo $(DEPDIR)/abendsternuxgl21-x8.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x8.cxx' object='abendsternuxgl21-x8.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x8.o `test -f './tcl_iface/xxx/x8.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x8.cxx
+
+abendsternuxgl21-x8.obj: ./tcl_iface/xxx/x8.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x8.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x8.Tpo -c -o abendsternuxgl21-x8.obj `if test -f './tcl_iface/xxx/x8.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x8.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x8.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x8.Tpo $(DEPDIR)/abendsternuxgl21-x8.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x8.cxx' object='abendsternuxgl21-x8.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x8.obj `if test -f './tcl_iface/xxx/x8.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x8.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x8.cxx'; fi`
+
+abendsternuxgl21-x9.o: ./tcl_iface/xxx/x9.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x9.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x9.Tpo -c -o abendsternuxgl21-x9.o `test -f './tcl_iface/xxx/x9.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x9.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x9.Tpo $(DEPDIR)/abendsternuxgl21-x9.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x9.cxx' object='abendsternuxgl21-x9.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x9.o `test -f './tcl_iface/xxx/x9.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x9.cxx
+
+abendsternuxgl21-x9.obj: ./tcl_iface/xxx/x9.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-x9.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-x9.Tpo -c -o abendsternuxgl21-x9.obj `if test -f './tcl_iface/xxx/x9.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x9.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x9.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-x9.Tpo $(DEPDIR)/abendsternuxgl21-x9.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x9.cxx' object='abendsternuxgl21-x9.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-x9.obj `if test -f './tcl_iface/xxx/x9.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x9.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x9.cxx'; fi`
+
+abendsternuxgl21-xa.o: ./tcl_iface/xxx/xa.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-xa.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-xa.Tpo -c -o abendsternuxgl21-xa.o `test -f './tcl_iface/xxx/xa.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xa.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-xa.Tpo $(DEPDIR)/abendsternuxgl21-xa.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xa.cxx' object='abendsternuxgl21-xa.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-xa.o `test -f './tcl_iface/xxx/xa.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xa.cxx
+
+abendsternuxgl21-xa.obj: ./tcl_iface/xxx/xa.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-xa.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-xa.Tpo -c -o abendsternuxgl21-xa.obj `if test -f './tcl_iface/xxx/xa.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xa.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xa.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-xa.Tpo $(DEPDIR)/abendsternuxgl21-xa.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xa.cxx' object='abendsternuxgl21-xa.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-xa.obj `if test -f './tcl_iface/xxx/xa.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xa.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xa.cxx'; fi`
+
+abendsternuxgl21-xb.o: ./tcl_iface/xxx/xb.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-xb.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-xb.Tpo -c -o abendsternuxgl21-xb.o `test -f './tcl_iface/xxx/xb.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xb.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-xb.Tpo $(DEPDIR)/abendsternuxgl21-xb.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xb.cxx' object='abendsternuxgl21-xb.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-xb.o `test -f './tcl_iface/xxx/xb.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xb.cxx
+
+abendsternuxgl21-xb.obj: ./tcl_iface/xxx/xb.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-xb.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-xb.Tpo -c -o abendsternuxgl21-xb.obj `if test -f './tcl_iface/xxx/xb.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xb.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xb.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-xb.Tpo $(DEPDIR)/abendsternuxgl21-xb.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xb.cxx' object='abendsternuxgl21-xb.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-xb.obj `if test -f './tcl_iface/xxx/xb.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xb.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xb.cxx'; fi`
+
+abendsternuxgl21-xc.o: ./tcl_iface/xxx/xc.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-xc.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-xc.Tpo -c -o abendsternuxgl21-xc.o `test -f './tcl_iface/xxx/xc.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xc.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-xc.Tpo $(DEPDIR)/abendsternuxgl21-xc.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xc.cxx' object='abendsternuxgl21-xc.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-xc.o `test -f './tcl_iface/xxx/xc.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xc.cxx
+
+abendsternuxgl21-xc.obj: ./tcl_iface/xxx/xc.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-xc.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-xc.Tpo -c -o abendsternuxgl21-xc.obj `if test -f './tcl_iface/xxx/xc.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xc.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xc.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-xc.Tpo $(DEPDIR)/abendsternuxgl21-xc.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xc.cxx' object='abendsternuxgl21-xc.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-xc.obj `if test -f './tcl_iface/xxx/xc.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xc.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xc.cxx'; fi`
+
+abendsternuxgl21-xd.o: ./tcl_iface/xxx/xd.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-xd.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-xd.Tpo -c -o abendsternuxgl21-xd.o `test -f './tcl_iface/xxx/xd.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xd.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-xd.Tpo $(DEPDIR)/abendsternuxgl21-xd.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xd.cxx' object='abendsternuxgl21-xd.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-xd.o `test -f './tcl_iface/xxx/xd.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xd.cxx
+
+abendsternuxgl21-xd.obj: ./tcl_iface/xxx/xd.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-xd.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-xd.Tpo -c -o abendsternuxgl21-xd.obj `if test -f './tcl_iface/xxx/xd.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xd.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xd.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-xd.Tpo $(DEPDIR)/abendsternuxgl21-xd.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xd.cxx' object='abendsternuxgl21-xd.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-xd.obj `if test -f './tcl_iface/xxx/xd.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xd.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xd.cxx'; fi`
+
+abendsternuxgl21-xe.o: ./tcl_iface/xxx/xe.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-xe.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-xe.Tpo -c -o abendsternuxgl21-xe.o `test -f './tcl_iface/xxx/xe.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xe.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-xe.Tpo $(DEPDIR)/abendsternuxgl21-xe.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xe.cxx' object='abendsternuxgl21-xe.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-xe.o `test -f './tcl_iface/xxx/xe.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xe.cxx
+
+abendsternuxgl21-xe.obj: ./tcl_iface/xxx/xe.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-xe.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-xe.Tpo -c -o abendsternuxgl21-xe.obj `if test -f './tcl_iface/xxx/xe.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xe.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xe.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-xe.Tpo $(DEPDIR)/abendsternuxgl21-xe.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xe.cxx' object='abendsternuxgl21-xe.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-xe.obj `if test -f './tcl_iface/xxx/xe.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xe.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xe.cxx'; fi`
+
+abendsternuxgl21-xf.o: ./tcl_iface/xxx/xf.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-xf.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-xf.Tpo -c -o abendsternuxgl21-xf.o `test -f './tcl_iface/xxx/xf.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xf.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-xf.Tpo $(DEPDIR)/abendsternuxgl21-xf.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xf.cxx' object='abendsternuxgl21-xf.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-xf.o `test -f './tcl_iface/xxx/xf.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xf.cxx
+
+abendsternuxgl21-xf.obj: ./tcl_iface/xxx/xf.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-xf.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-xf.Tpo -c -o abendsternuxgl21-xf.obj `if test -f './tcl_iface/xxx/xf.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xf.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xf.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-xf.Tpo $(DEPDIR)/abendsternuxgl21-xf.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xf.cxx' object='abendsternuxgl21-xf.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-xf.obj `if test -f './tcl_iface/xxx/xf.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xf.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xf.cxx'; fi`
+
 abendsternuxgl21-wavload.o: ./audio/wavload.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-wavload.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-wavload.Tpo -c -o abendsternuxgl21-wavload.o `test -f './audio/wavload.cxx' || echo '$(srcdir)/'`./audio/wavload.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-wavload.Tpo $(DEPDIR)/abendsternuxgl21-wavload.Po
@@ -6811,6 +7347,230 @@ abendsternuxgl32-bridge.obj: ./tcl_iface/bridge.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/bridge.cxx' object='abendsternuxgl32-bridge.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-bridge.obj `if test -f './tcl_iface/bridge.cxx'; then $(CYGPATH_W) './tcl_iface/bridge.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/bridge.cxx'; fi`
+
+abendsternuxgl32-x0.o: ./tcl_iface/xxx/x0.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x0.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x0.Tpo -c -o abendsternuxgl32-x0.o `test -f './tcl_iface/xxx/x0.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x0.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x0.Tpo $(DEPDIR)/abendsternuxgl32-x0.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x0.cxx' object='abendsternuxgl32-x0.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x0.o `test -f './tcl_iface/xxx/x0.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x0.cxx
+
+abendsternuxgl32-x0.obj: ./tcl_iface/xxx/x0.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x0.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x0.Tpo -c -o abendsternuxgl32-x0.obj `if test -f './tcl_iface/xxx/x0.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x0.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x0.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x0.Tpo $(DEPDIR)/abendsternuxgl32-x0.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x0.cxx' object='abendsternuxgl32-x0.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x0.obj `if test -f './tcl_iface/xxx/x0.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x0.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x0.cxx'; fi`
+
+abendsternuxgl32-x1.o: ./tcl_iface/xxx/x1.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x1.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x1.Tpo -c -o abendsternuxgl32-x1.o `test -f './tcl_iface/xxx/x1.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x1.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x1.Tpo $(DEPDIR)/abendsternuxgl32-x1.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x1.cxx' object='abendsternuxgl32-x1.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x1.o `test -f './tcl_iface/xxx/x1.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x1.cxx
+
+abendsternuxgl32-x1.obj: ./tcl_iface/xxx/x1.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x1.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x1.Tpo -c -o abendsternuxgl32-x1.obj `if test -f './tcl_iface/xxx/x1.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x1.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x1.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x1.Tpo $(DEPDIR)/abendsternuxgl32-x1.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x1.cxx' object='abendsternuxgl32-x1.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x1.obj `if test -f './tcl_iface/xxx/x1.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x1.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x1.cxx'; fi`
+
+abendsternuxgl32-x2.o: ./tcl_iface/xxx/x2.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x2.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x2.Tpo -c -o abendsternuxgl32-x2.o `test -f './tcl_iface/xxx/x2.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x2.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x2.Tpo $(DEPDIR)/abendsternuxgl32-x2.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x2.cxx' object='abendsternuxgl32-x2.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x2.o `test -f './tcl_iface/xxx/x2.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x2.cxx
+
+abendsternuxgl32-x2.obj: ./tcl_iface/xxx/x2.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x2.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x2.Tpo -c -o abendsternuxgl32-x2.obj `if test -f './tcl_iface/xxx/x2.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x2.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x2.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x2.Tpo $(DEPDIR)/abendsternuxgl32-x2.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x2.cxx' object='abendsternuxgl32-x2.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x2.obj `if test -f './tcl_iface/xxx/x2.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x2.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x2.cxx'; fi`
+
+abendsternuxgl32-x3.o: ./tcl_iface/xxx/x3.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x3.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x3.Tpo -c -o abendsternuxgl32-x3.o `test -f './tcl_iface/xxx/x3.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x3.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x3.Tpo $(DEPDIR)/abendsternuxgl32-x3.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x3.cxx' object='abendsternuxgl32-x3.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x3.o `test -f './tcl_iface/xxx/x3.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x3.cxx
+
+abendsternuxgl32-x3.obj: ./tcl_iface/xxx/x3.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x3.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x3.Tpo -c -o abendsternuxgl32-x3.obj `if test -f './tcl_iface/xxx/x3.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x3.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x3.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x3.Tpo $(DEPDIR)/abendsternuxgl32-x3.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x3.cxx' object='abendsternuxgl32-x3.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x3.obj `if test -f './tcl_iface/xxx/x3.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x3.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x3.cxx'; fi`
+
+abendsternuxgl32-x4.o: ./tcl_iface/xxx/x4.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x4.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x4.Tpo -c -o abendsternuxgl32-x4.o `test -f './tcl_iface/xxx/x4.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x4.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x4.Tpo $(DEPDIR)/abendsternuxgl32-x4.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x4.cxx' object='abendsternuxgl32-x4.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x4.o `test -f './tcl_iface/xxx/x4.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x4.cxx
+
+abendsternuxgl32-x4.obj: ./tcl_iface/xxx/x4.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x4.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x4.Tpo -c -o abendsternuxgl32-x4.obj `if test -f './tcl_iface/xxx/x4.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x4.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x4.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x4.Tpo $(DEPDIR)/abendsternuxgl32-x4.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x4.cxx' object='abendsternuxgl32-x4.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x4.obj `if test -f './tcl_iface/xxx/x4.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x4.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x4.cxx'; fi`
+
+abendsternuxgl32-x5.o: ./tcl_iface/xxx/x5.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x5.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x5.Tpo -c -o abendsternuxgl32-x5.o `test -f './tcl_iface/xxx/x5.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x5.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x5.Tpo $(DEPDIR)/abendsternuxgl32-x5.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x5.cxx' object='abendsternuxgl32-x5.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x5.o `test -f './tcl_iface/xxx/x5.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x5.cxx
+
+abendsternuxgl32-x5.obj: ./tcl_iface/xxx/x5.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x5.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x5.Tpo -c -o abendsternuxgl32-x5.obj `if test -f './tcl_iface/xxx/x5.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x5.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x5.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x5.Tpo $(DEPDIR)/abendsternuxgl32-x5.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x5.cxx' object='abendsternuxgl32-x5.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x5.obj `if test -f './tcl_iface/xxx/x5.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x5.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x5.cxx'; fi`
+
+abendsternuxgl32-x6.o: ./tcl_iface/xxx/x6.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x6.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x6.Tpo -c -o abendsternuxgl32-x6.o `test -f './tcl_iface/xxx/x6.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x6.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x6.Tpo $(DEPDIR)/abendsternuxgl32-x6.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x6.cxx' object='abendsternuxgl32-x6.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x6.o `test -f './tcl_iface/xxx/x6.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x6.cxx
+
+abendsternuxgl32-x6.obj: ./tcl_iface/xxx/x6.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x6.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x6.Tpo -c -o abendsternuxgl32-x6.obj `if test -f './tcl_iface/xxx/x6.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x6.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x6.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x6.Tpo $(DEPDIR)/abendsternuxgl32-x6.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x6.cxx' object='abendsternuxgl32-x6.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x6.obj `if test -f './tcl_iface/xxx/x6.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x6.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x6.cxx'; fi`
+
+abendsternuxgl32-x7.o: ./tcl_iface/xxx/x7.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x7.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x7.Tpo -c -o abendsternuxgl32-x7.o `test -f './tcl_iface/xxx/x7.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x7.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x7.Tpo $(DEPDIR)/abendsternuxgl32-x7.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x7.cxx' object='abendsternuxgl32-x7.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x7.o `test -f './tcl_iface/xxx/x7.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x7.cxx
+
+abendsternuxgl32-x7.obj: ./tcl_iface/xxx/x7.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x7.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x7.Tpo -c -o abendsternuxgl32-x7.obj `if test -f './tcl_iface/xxx/x7.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x7.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x7.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x7.Tpo $(DEPDIR)/abendsternuxgl32-x7.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x7.cxx' object='abendsternuxgl32-x7.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x7.obj `if test -f './tcl_iface/xxx/x7.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x7.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x7.cxx'; fi`
+
+abendsternuxgl32-x8.o: ./tcl_iface/xxx/x8.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x8.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x8.Tpo -c -o abendsternuxgl32-x8.o `test -f './tcl_iface/xxx/x8.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x8.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x8.Tpo $(DEPDIR)/abendsternuxgl32-x8.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x8.cxx' object='abendsternuxgl32-x8.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x8.o `test -f './tcl_iface/xxx/x8.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x8.cxx
+
+abendsternuxgl32-x8.obj: ./tcl_iface/xxx/x8.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x8.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x8.Tpo -c -o abendsternuxgl32-x8.obj `if test -f './tcl_iface/xxx/x8.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x8.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x8.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x8.Tpo $(DEPDIR)/abendsternuxgl32-x8.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x8.cxx' object='abendsternuxgl32-x8.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x8.obj `if test -f './tcl_iface/xxx/x8.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x8.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x8.cxx'; fi`
+
+abendsternuxgl32-x9.o: ./tcl_iface/xxx/x9.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x9.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x9.Tpo -c -o abendsternuxgl32-x9.o `test -f './tcl_iface/xxx/x9.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x9.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x9.Tpo $(DEPDIR)/abendsternuxgl32-x9.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x9.cxx' object='abendsternuxgl32-x9.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x9.o `test -f './tcl_iface/xxx/x9.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/x9.cxx
+
+abendsternuxgl32-x9.obj: ./tcl_iface/xxx/x9.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-x9.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-x9.Tpo -c -o abendsternuxgl32-x9.obj `if test -f './tcl_iface/xxx/x9.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x9.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x9.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-x9.Tpo $(DEPDIR)/abendsternuxgl32-x9.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/x9.cxx' object='abendsternuxgl32-x9.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-x9.obj `if test -f './tcl_iface/xxx/x9.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/x9.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/x9.cxx'; fi`
+
+abendsternuxgl32-xa.o: ./tcl_iface/xxx/xa.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-xa.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-xa.Tpo -c -o abendsternuxgl32-xa.o `test -f './tcl_iface/xxx/xa.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xa.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-xa.Tpo $(DEPDIR)/abendsternuxgl32-xa.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xa.cxx' object='abendsternuxgl32-xa.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-xa.o `test -f './tcl_iface/xxx/xa.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xa.cxx
+
+abendsternuxgl32-xa.obj: ./tcl_iface/xxx/xa.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-xa.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-xa.Tpo -c -o abendsternuxgl32-xa.obj `if test -f './tcl_iface/xxx/xa.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xa.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xa.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-xa.Tpo $(DEPDIR)/abendsternuxgl32-xa.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xa.cxx' object='abendsternuxgl32-xa.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-xa.obj `if test -f './tcl_iface/xxx/xa.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xa.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xa.cxx'; fi`
+
+abendsternuxgl32-xb.o: ./tcl_iface/xxx/xb.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-xb.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-xb.Tpo -c -o abendsternuxgl32-xb.o `test -f './tcl_iface/xxx/xb.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xb.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-xb.Tpo $(DEPDIR)/abendsternuxgl32-xb.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xb.cxx' object='abendsternuxgl32-xb.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-xb.o `test -f './tcl_iface/xxx/xb.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xb.cxx
+
+abendsternuxgl32-xb.obj: ./tcl_iface/xxx/xb.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-xb.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-xb.Tpo -c -o abendsternuxgl32-xb.obj `if test -f './tcl_iface/xxx/xb.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xb.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xb.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-xb.Tpo $(DEPDIR)/abendsternuxgl32-xb.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xb.cxx' object='abendsternuxgl32-xb.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-xb.obj `if test -f './tcl_iface/xxx/xb.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xb.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xb.cxx'; fi`
+
+abendsternuxgl32-xc.o: ./tcl_iface/xxx/xc.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-xc.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-xc.Tpo -c -o abendsternuxgl32-xc.o `test -f './tcl_iface/xxx/xc.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xc.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-xc.Tpo $(DEPDIR)/abendsternuxgl32-xc.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xc.cxx' object='abendsternuxgl32-xc.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-xc.o `test -f './tcl_iface/xxx/xc.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xc.cxx
+
+abendsternuxgl32-xc.obj: ./tcl_iface/xxx/xc.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-xc.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-xc.Tpo -c -o abendsternuxgl32-xc.obj `if test -f './tcl_iface/xxx/xc.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xc.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xc.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-xc.Tpo $(DEPDIR)/abendsternuxgl32-xc.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xc.cxx' object='abendsternuxgl32-xc.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-xc.obj `if test -f './tcl_iface/xxx/xc.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xc.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xc.cxx'; fi`
+
+abendsternuxgl32-xd.o: ./tcl_iface/xxx/xd.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-xd.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-xd.Tpo -c -o abendsternuxgl32-xd.o `test -f './tcl_iface/xxx/xd.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xd.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-xd.Tpo $(DEPDIR)/abendsternuxgl32-xd.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xd.cxx' object='abendsternuxgl32-xd.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-xd.o `test -f './tcl_iface/xxx/xd.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xd.cxx
+
+abendsternuxgl32-xd.obj: ./tcl_iface/xxx/xd.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-xd.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-xd.Tpo -c -o abendsternuxgl32-xd.obj `if test -f './tcl_iface/xxx/xd.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xd.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xd.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-xd.Tpo $(DEPDIR)/abendsternuxgl32-xd.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xd.cxx' object='abendsternuxgl32-xd.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-xd.obj `if test -f './tcl_iface/xxx/xd.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xd.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xd.cxx'; fi`
+
+abendsternuxgl32-xe.o: ./tcl_iface/xxx/xe.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-xe.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-xe.Tpo -c -o abendsternuxgl32-xe.o `test -f './tcl_iface/xxx/xe.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xe.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-xe.Tpo $(DEPDIR)/abendsternuxgl32-xe.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xe.cxx' object='abendsternuxgl32-xe.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-xe.o `test -f './tcl_iface/xxx/xe.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xe.cxx
+
+abendsternuxgl32-xe.obj: ./tcl_iface/xxx/xe.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-xe.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-xe.Tpo -c -o abendsternuxgl32-xe.obj `if test -f './tcl_iface/xxx/xe.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xe.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xe.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-xe.Tpo $(DEPDIR)/abendsternuxgl32-xe.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xe.cxx' object='abendsternuxgl32-xe.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-xe.obj `if test -f './tcl_iface/xxx/xe.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xe.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xe.cxx'; fi`
+
+abendsternuxgl32-xf.o: ./tcl_iface/xxx/xf.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-xf.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-xf.Tpo -c -o abendsternuxgl32-xf.o `test -f './tcl_iface/xxx/xf.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xf.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-xf.Tpo $(DEPDIR)/abendsternuxgl32-xf.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xf.cxx' object='abendsternuxgl32-xf.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-xf.o `test -f './tcl_iface/xxx/xf.cxx' || echo '$(srcdir)/'`./tcl_iface/xxx/xf.cxx
+
+abendsternuxgl32-xf.obj: ./tcl_iface/xxx/xf.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-xf.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-xf.Tpo -c -o abendsternuxgl32-xf.obj `if test -f './tcl_iface/xxx/xf.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xf.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xf.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-xf.Tpo $(DEPDIR)/abendsternuxgl32-xf.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./tcl_iface/xxx/xf.cxx' object='abendsternuxgl32-xf.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-xf.obj `if test -f './tcl_iface/xxx/xf.cxx'; then $(CYGPATH_W) './tcl_iface/xxx/xf.cxx'; else $(CYGPATH_W) '$(srcdir)/./tcl_iface/xxx/xf.cxx'; fi`
 
 abendsternuxgl32-wavload.o: ./audio/wavload.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-wavload.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-wavload.Tpo -c -o abendsternuxgl32-wavload.o `test -f './audio/wavload.cxx' || echo '$(srcdir)/'`./audio/wavload.cxx
@@ -9594,6 +10354,22 @@ uninstall-am: uninstall-binPROGRAMS
 
 ./tcl_iface/bridge.cxx: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 	./tcl_iface/generate.tcl tcl_iface/definition.tcl
+./tcl_iface/xxx/x0.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x1.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x2.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x3.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x4.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x5.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x6.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x7.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x8.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x9.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xa.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xb.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xc.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xd.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xe.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xf.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

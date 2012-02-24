@@ -37,6 +37,7 @@ class Declaration {
   protected variable isPureVirtual
   protected variable isInClassContext
   protected variable throwSpec
+  public variable implfile
 
   constructor {nam inClassContext {memmods ""}} {
     set name [new Identifier $nam]
@@ -47,6 +48,7 @@ class Declaration {
     set isPureVirtual no
     set isInClassContext $inClassContext
     set throwSpec {}
+    set implfile $::currentImplFile
     foreach mod $memmods {
       switch -glob $mod {
         const {set isConst yes}
@@ -66,6 +68,10 @@ class Declaration {
   # that automate conversion and importation/exportation
   method generateC++Glue {}
   method generateTclGlue {}
+  # The pre-declaration code lists function declarations needed
+  # for the C++ dec code to work.
+  # Defgult is an empty string.
+  method generateC++PreDec {} {}
   # The declaration code is executed exactly one time
   # to put the glue into place
   method generateC++Dec {}
@@ -240,7 +246,8 @@ class CharType {
   method getC++Name {} {return char}
   method generateC++ImportCode {objectIn valueOut} {
     format {
-      if (Tcl_GetCharLength(%s) != 1) scriptError("Attempt to pass char of length other than 1");
+      if (Tcl_GetCharLength(%s) != 1)
+          scriptError("Attempt to pass char of length other than 1");
       %s = Tcl_GetStringFromObj(%s, NULL)[0];
     } $objectIn $valueOut $objectIn
   }
@@ -384,7 +391,8 @@ class TclInterpType {
   method getC++Name {} { return "Tcl_Interp*" }
   method generateC++ImportCode {objectIn valueOut} {
     return "
-      $valueOut = Tcl_GetSlave(invokingInterpreter, Tcl_GetStringFromObj($objectIn, NULL));
+      $valueOut = Tcl_GetSlave(invokingInterpreter,
+                               Tcl_GetStringFromObj($objectIn, NULL));
     "
   }
   method generateC++ExportCode {valueIn objectOut {occ yes}} {
@@ -468,7 +476,8 @@ class EnumType {
       append build [
         format {
           case %s: tmp="%s"; break;} \
-          [[lindex $identifierList $i] inCpp] [[lindex $identifierList $i] inTcl]
+          [[lindex $identifierList $i] inCpp] \
+          [[lindex $identifierList $i] inTcl]
       ]
     }
     if {$isOpen} {
@@ -482,7 +491,8 @@ class EnumType {
       append build [
         format {
           default:
-          cerr << "FATAL: Unable to convert enumeration %s value " << (int)%s << " (invalid!)!" << endl;
+          cerr << "FATAL: Unable to convert enumeration %s value "
+               << (int)%s << " (invalid!)!" << endl;
           ::exit(EXIT_PROGRAM_BUG);
         } $cppType $valueIn
       ]
@@ -577,7 +587,9 @@ class CompositeType {
             //So undo works properly
             tmp->ownerBak.interpreter=tmp->owner.interpreter;
             break;
-          case AObject::Container: scriptError(\"Change of ownership of automatic C++ value\"); break;
+          case AObject::Container:
+            scriptError(\"Change of ownership of automatic C++ value\");
+            break;
         }"
       }
       yield {
@@ -586,7 +598,7 @@ class CompositeType {
         # We do need to make sure it's not automatic, though
         # and if strict, make sure it's not already Tcl
         if {$mmstrict} {
-          set strictHandler "scriptError(\"Double-import out of C++\"); break;\n"
+          set strictHandler "scriptError(\"Double-import out of C++\");break;\n"
         } else {
           set strictHandler ""
         }
@@ -602,7 +614,9 @@ class CompositeType {
             tmp->ownerBak.interpreter=tmp->owner.interpreter;
             tmp->owner.interpreter=interp;
             break;
-          case AObject::Container: scriptError(\"Change of ownership of automatic C++ value\"); break;
+          case AObject::Container:
+            scriptError(\"Change of ownership of automatic C++ value\");
+            break;
         }"
       }
       copy {
@@ -618,10 +632,12 @@ class CompositeType {
         InterpInfo* info=interpreters\[interp\];
         map<string,Export*>::iterator it=info->exportsByName.find(name);
         if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin(); it != info->exportsByName.end(); ++it) {
+          for (it=info->exportsByName.begin();
+               it != info->exportsByName.end(); ++it) {
             cout << (*it).first << endl;
           }
-          sprintf(staticError, \"Invalid export passed to C++: %s\", name.c_str());
+          sprintf(staticError, \"Invalid export passed to C++: %s\",
+                  name.c_str());
           scriptError(staticError);
         }
         Export* ex=(*it).second;
@@ -629,7 +645,8 @@ class CompositeType {
         if (ex->type->theType != typeid([$name inCpp])
         &&  0==ex->type->superclasses.count(&typeid([$name inCpp]))) {
           //Nope
-          sprintf(staticError, \"Wrong type passed to C++ function; expected [$name inCpp], \"
+          sprintf(staticError, \"Wrong type passed to C++ function; expected\"
+                               \" [$name inCpp], \"
                                \"got %s\", ex->type->tclClassName.c_str());
           scriptError(staticError);
         }
@@ -640,7 +657,7 @@ class CompositeType {
         $valueOut = tmp;
     } else "
     if {$isImmediate} {
-      append code "{ scriptError(\"Null pointer assigned to immediate value\"); }\n"
+      append code "{scriptError(\"Null pointer assigned to immediate\");}\n"
     } else {
       append code "$valueOut=NULL;\n"
     }
@@ -657,7 +674,8 @@ class CompositeType {
           if {$mmstrict} {
             # This is C++'s fault
             set strictHandler {
-              cerr << "FATAL: Unexpected double-export, strictly steal to Tcl" << endl;
+              cerr << "FATAL: Unexpected double-export, strictly steal to Tcl"
+                   << endl;
               ::exit(EXIT_PROGRAM_BUG);
               break;
             }
@@ -678,7 +696,8 @@ class CompositeType {
               $valueIn->owner.interpreter=interp;
               break;
             case AObject::Container:
-              cerr << \"FATAL: Attempt by C++ to give Tcl ownership of automatic value\" << endl;
+              cerr <<
+\"FATAL: Attempt by C++ to give Tcl ownership of automatic value\" << endl;
               ::exit(EXIT_PROGRAM_BUG);
           }"
         }
@@ -705,7 +724,8 @@ class CompositeType {
               $valueIn->ownerBak.interpreter=$valueIn->owner.interpreter;
               break;
             case AObject::Container:
-              cerr << \"FATAL: Unexpected yielding of automatic value from Tcl to C++\" << endl;
+              cerr <<
+\"FATAL: Unexpected yielding of automatic value from Tcl to C++\" << endl;
               ::exit(EXIT_PROGRAM_BUG);
           }"
         }
@@ -751,7 +771,8 @@ class CompositeType {
         //  new Type {}
         Tcl_Obj* cmd\[3\] = {
           Tcl_NewStringObj(\"new\", 3),
-          Tcl_NewStringObj(ex->type->tclClassName.c_str(), ex->type->tclClassName.size()),
+          Tcl_NewStringObj(ex->type->tclClassName.c_str(),
+                           ex->type->tclClassName.size()),
           Tcl_NewObj(),
         };
         for (unsigned i=0; i<lenof(cmd); ++i)
@@ -760,7 +781,8 @@ class CompositeType {
         for (unsigned i=0; i<lenof(cmd); ++i)
           Tcl_DecrRefCount(cmd\[i\]);
         if (status == TCL_ERROR) {
-          sprintf(staticError, \"Error exporting C++ object to Tcl: %s\", Tcl_GetStringResult(interp));
+          sprintf(staticError, \"Error exporting C++ object to Tcl: %s\",
+                  Tcl_GetStringResult(interp));
           scriptError(staticError);
         }
 
@@ -788,7 +810,9 @@ class CompositeType {
       yield -
       steal {
         return \
-        "if ($value) $value->ownStat=$value->ownStatBak; $value->owner.interpreter=$value->ownerBak.interpreter;"
+        "if ($value) {
+          $value->ownStat=$value->ownStatBak;
+          $value->owner.interpreter=$value->ownerBak.interpreter; }"
       }
       copy {
         # When copied, we just new'd one, so get rid of it now
@@ -926,6 +950,10 @@ class Variable {
 
   variable cppSetName
   variable cppGetName
+  # If in class context, the refl functions are global
+  # which simply call the class functions.
+  variable cppSetRefl
+  variable cppGetRefl
   variable tclTraceName
 
   constructor {id vt tmods isInClass {memmods ""}} {
@@ -937,6 +965,19 @@ class Variable {
     set cppGetName [genC++Id get]
     if {!$isConst} {set cppSetName [genC++Id set]}
     set tclTraceName [genC++Id accessor]
+  }
+
+  method generateC++PreDec {} {
+    set code "int ${cppGetName}(ClientData,Tcl_Interp*,int,Tcl_Obj*const*);"
+    if {!$isConst} {
+      append code \
+        "int ${cppSetName}(ClientData,Tcl_Interp*,int,Tcl_Obj*const*);"
+    }
+    if {!$isInClassContext} {
+      return $code
+    } else {
+      return {}
+    }
   }
 
   # The C++ glue code is one or two functions that get and set
@@ -1130,6 +1171,16 @@ class Function {
 
     set mainTrampoline [genC++Id trampoline]
     set defaultTrampoline [genC++Id deftramp]
+  }
+
+  method generateC++PreDec {} {
+    set code \
+    "int ${mainTrampoline}(ClientData,Tcl_Interp*,int,Tcl_Obj*const*) throw();"
+    if {!$isInClassContext} {
+      return $code
+    } else {
+      return {}
+    }
   }
 
   # See notes below on generateC++Glue for implementation details.
@@ -1631,11 +1682,13 @@ class Class {
   variable superclasses
   variable innerDeclarations
   variable hasBody
+  variable reflectFun
 
   constructor {ct nam supers bdy} {
     Declaration::constructor $nam no
   } {
     set isAbstract no
+    set reflectFun [genC++Id classdec]
     switch $ct {
       final -
       extendable -
@@ -1665,9 +1718,11 @@ class Class {
     global knownTypes
     if {![info exists knownTypes($ptrT)]} {
       set knownTypes($ptrT) [
-        new CompositeType "[$name inCpp] [$name inTcl]" [expr {$classType == {foreign}}] no]
+        new CompositeType [list [$name inCpp] [$name inTcl]] \
+            [expr {$classType == {foreign}}] no]
       set knownTypes($typename) [
-        new CompositeType "[$name inCpp] [$name inTcl]" [expr {$classType == {foreign}}] yes]
+        new CompositeType [list [$name inCpp] [$name inTcl]] \
+           [expr {$classType == {foreign}}] yes]
       set knownTypes([$name inTcl]*) $knownTypes($ptrT)
       set knownTypes([$name inTcl])  $knownTypes($typename)
     }
@@ -1694,7 +1749,8 @@ class Class {
       proc class {args} { error "Nested classes not supported" }
       proc const {name type {typemods {}} {memmods {}}} {
         global declarations
-        lappend declarations [new Variable $name $type $typemods yes "const $memmods"]
+        lappend declarations \
+          [new Variable $name $type $typemods yes "const $memmods"]
       }
       proc var {name type {typemods {}} {memmods {}}} {
         global declarations
@@ -1702,7 +1758,8 @@ class Class {
       }
       proc fun {returnTypeAndMods name {memmods {}} {args {}}} {
         global declarations
-        lappend declarations [new Function $name $returnTypeAndMods $args yes $memmods]
+        lappend declarations \
+          [new Function $name $returnTypeAndMods $args yes $memmods]
       }
       proc constructor {name {args {}}} {
         global declarations
@@ -1744,6 +1801,10 @@ class Class {
     return $glue
   }
 
+  method generateC++PreDec {} {
+    return "void ${reflectFun}(bool,Tcl_Interp*) throw();"
+  }
+
   method generateC++Glue {} {
     if {!$hasBody} return
     global currentClassName
@@ -1763,7 +1824,7 @@ class Class {
       append glue "[$dec generateC++Glue]\n"
     }
 
-    append glue "static void cppDecCode(bool safe, Tcl_Interp* interp) {"
+    append glue "static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {"
     foreach dec $innerDeclarations {
       append glue "[$dec generateC++Dec]\n"
     }
@@ -1781,13 +1842,16 @@ class Class {
     append glue "typeExports\[&typeid([extendedClassName $name])\]=ete;\n"
     append glue "}\n"
 
-    append glue "};"
+    append glue "};\n"
+    append glue "void ${reflectFun}(bool safe, Tcl_Interp* interp) throw() {\n"
+    append glue "  [extendedClassName $name]::cppDecCode(safe,interp);\n"
+    append glue "}"
     return $glue
   }
 
   method generateC++Dec {} {
     if {!$hasBody} return
-    return "[extendedClassName $name]::cppDecCode(safe, interp);"
+    return "${reflectFun}(safe, interp);"
   }
 
   method generateTclGlue {} {
@@ -1920,6 +1984,14 @@ class ExcludeFromSafe {
     set declarations $declBak
   }
 
+  method generateC++PreDec {} {
+    set ret ""
+    foreach decl $innerDeclarations {
+      append ret "[$decl generateC++PreDec]\n"
+    }
+    return $ret
+  }
+
   method generateC++Glue {} {
     set ret ""
     foreach decl $innerDeclarations {
@@ -2032,6 +2104,22 @@ proc unsafe code {
   lappend declarations [new ExcludeFromSafe $code]
 }
 
+proc cxx args {
+  global cxxoutfiles currentImplFile outfilesUntouched
+  set cxxoutfiles [lassign $cxxoutfiles currentImplFile]
+  lappend cxxoutfiles $currentImplFile
+  foreach header $args {
+    puts $currentImplFile "#include \"$header\""
+  }
+  set outfilesUntouched [lrange $outfilesUntouched 1 end]
+}
+
+proc predecclass args {
+  foreach arg $args {
+    puts $::cppout "class $arg;"
+  }
+}
+
 proc const {args} {eval "toplevelConst $args"}
 proc var {args} {eval "toplevelVar $args"}
 proc fun {args} {eval "toplevelFun $args"}
@@ -2082,36 +2170,63 @@ proc newFunType {ret args} {
     fun ${tclType}::fun_t* get"
 }
 
-# Process definitions
-source "tcl_iface/definition.tcl"
-
-# Open our output files
-set cppout [open "tcl_iface/bridge.cxx" w]
-set tclout [open "../tcl/bridge.tcl" w]
-
-# Write topmatter for bridge.cxx
-puts $cppout {
+set cxxtopmatter {
   /**
    * @file
    * @author C++-Tcl Bridge Code Generator
-   * @brief C++-to-Tcl bindings; autogenerated; <b>not intended for human consumption</b>
+   * @brief Autogenerated bindings; <b>not intended for human consumption</b>
    *
    * AUTOGENERATED BY generate.tcl. DO NOT EDIT DIRECTLY.
    * @see src/tcl_iface/readme.txt
    */
 
-  #include "bridge.hxx"
-  #include "include_all_headers.hxx"
-  #include "implementation.hxx"
+  #include <map>
+  #include <set>
+  #include <vector>
+  #include <string>
+  #include <cstring>
+  #include <cstdio>
+  #include <cstdlib>
+  #include <iostream>
+
+  #include <GL/gl.h>
+  #include <SDL.h>
+  #include <tcl.h>
+  #include <itcl.h>
+  #include <libconfig.h++>
+
+  #include "src/tcl_iface/bridge.hxx"
+  #include "src/tcl_iface/implementation.hxx"
+  #include "src/tcl_iface/dynfun.hxx"
+  #include "src/exit_conditions.hxx"
+  #include "src/globals.hxx"
 
   #pragma GCC diagnostic ignored "-Wunused-label"
   #pragma GCC diagnostic ignored "-Waddress"
+  using namespace std;
   using namespace tcl_glue_implementation;
-  
+  using namespace libconfig;
+
   //Commands get their zeroth argument as their own name;
   //code generation is simpler if we drop this
   #define SHIFT ++objv, --objc
 }
+
+# Open our output files
+set cppout [open "tcl_iface/bridge.cxx" w]
+set tclout [open "../tcl/bridge.tcl" w]
+set cxxoutfiles {}
+set outfilesUntouched {}
+for {set i 0} {$i < 16} {incr i} {
+  set filename [format "tcl_iface/xxx/x%01x.cxx" $i]
+  set f [open $filename w]
+  puts $f $cxxtopmatter
+  lappend cxxoutfiles $f
+  lappend outfilesUntouched $filename
+}
+
+# Write topmatter for bridge.cxx
+puts $cppout $cxxtopmatter
 
 # Write topmatter for bridge.tcl
 puts $tclout {
@@ -2168,10 +2283,14 @@ puts $tclout {
   }
 }
 
+# Process definitions
+source "tcl_iface/definition.tcl"
+
 #Write top declarations
 for {set i 0} {$i < [llength $declarations]} {incr i} {
   set dec [lindex $declarations $i]
-  puts $cppout [$dec generateC++Glue]
+  puts [$dec cget -implfile] [$dec generateC++Glue]
+  puts $cppout [$dec generateC++PreDec]
   puts $tclout [$dec generateTclGlue]
 }
 
@@ -2193,3 +2312,9 @@ puts $tclout "safe_source tcl/autosource.tcl"
 
 close $cppout
 close $tclout
+foreach f $cxxoutfiles { close $f }
+
+# If any of the outfiles haven't been touched, replace them with empty files.
+foreach f $outfilesUntouched {
+  close [open $f w]
+}
