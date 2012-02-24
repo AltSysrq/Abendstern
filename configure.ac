@@ -80,6 +80,17 @@ else
   exit 1
 fi
 
+# Check for Itcl
+echo -n ['checking for [incr Tcl]... ']
+if echo ['exit [catch {package require Itcl}]'] | tclsh; then
+  echo 'yes'
+else
+  echo 'no'
+  echo ['Tcl cannot find the [incr Tcl] (also known as Itcl) library.']
+  echo 'Make sure that Itcl (at least version 3.4) is installed.'
+  exit 1
+fi
+
 # Checks for libraries.
 AC_LANG_PUSH([C++])
 CPPFLAGS="$CPPFLAGS -I/usr/include/tcl8.5"
