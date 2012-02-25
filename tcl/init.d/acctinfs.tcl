@@ -16,6 +16,11 @@ if {"" != $::abnet::userid} {
   $ close remote
   ::abnet::putf abendstern.rc remoterc.tmp
   $state setCallback [_ A boot acctinfs] {
-    expr {$::abnet::busy? 0 : 200}
+    if {$::abnet::busy} {
+      return 0
+    } else {
+      file delete remoterc.tmp
+      return 200
+    }
   }
 }
