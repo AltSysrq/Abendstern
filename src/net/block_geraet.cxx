@@ -441,3 +441,7 @@ void OutputBlockGeraet::nak(NetworkConnection::seq_t seq) throw() {
     }
   }
 }
+
+bool OutputBlockGeraet::isSynchronised() const throw() {
+  return syncPending.empty() && remoteStates.empty();
+}
