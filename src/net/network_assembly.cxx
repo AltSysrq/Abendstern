@@ -51,3 +51,8 @@ void NetworkAssembly::update(unsigned et) noth {
   for (unsigned i=0; i<connections.size(); ++i)
     connections[i]->update(et);
 }
+
+void NetworkAssembly::setFieldSize(float w, float h) throw() {
+  for (unsigned i=0; i<connections.size(); ++i)
+    connections[i]->setFieldSize(w,h);
+}

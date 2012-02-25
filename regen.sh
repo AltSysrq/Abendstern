@@ -1,3 +1,4 @@
 #! /bin/bash
-src/tcl_iface/generate.tcl
+cd src
+tcl_iface/generate.tcl
 

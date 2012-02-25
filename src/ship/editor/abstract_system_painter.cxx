@@ -235,6 +235,8 @@ const char* AbstractSystemPainter::paintSystems(Cell* cell) {
   //Delete backups
   if (s0) delete s0;
   if (s1) delete s1;
+  //Forse re-inventory of ship shields (and other infos)
+  ship->physicsClear(PHYS_SHIP_ALL | PHYS_CELL_ALL);
 
   return error;
 }

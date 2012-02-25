@@ -1,6 +1,10 @@
 # Critical binding
+cxx
 fun void {cppDelete {c++ delete}} string string
 
+predecclass Ship NetworkConnection InputNetworkGeraet
+
+cxx src/graphics/asgi.hxx
 enum asgi::Primitive {} \
   {asgi::Points        GL_POINTS} \
   {asgi::Lines         GL_LINES} \
@@ -25,6 +29,8 @@ fun void {asgi::uscale          glUScale} float
 unsafe {
   fun void {asgi::reset         glReset}
 }
+
+cxx src/graphics/acsgi.hxx
 fun void acsgi_begin
 fun void acsgi_end
 fun void acsgi_draw
@@ -42,6 +48,7 @@ fun void {acsgid_scale          cglScale} float float
 fun void {acsgid_uscale         cglUScale} float
 fun void {acsgid_text           cglText} cstr float float
 
+cxx
 ##BEGIN -- SDL Events
 set knownTypes(Uint8) [new IntType Uint8]
 set knownTypes(Uint16) [new IntType Uint16]
@@ -222,8 +229,10 @@ unsafe {
 ##END -- Misc SDL stuff
 
 ##BEGIN to EOF -- Abendstern
+cxx
 newPairType float float
 
+cxx src/graphics/font.hxx
 class final Font {} {
   unsafe {
     constructor default cstr float bool
@@ -242,6 +251,7 @@ class final Font {} {
 const sysfont Font*
 const sysfontStipple Font*
 
+cxx src/core/game_state.hxx
 class abstract-extendable GameState {} {
   constructor default
   fun {GameState* steal} update purevirtual float
@@ -252,20 +262,26 @@ class abstract-extendable GameState {} {
   fun void mouseButton virtual SDL_MouseButtonEvent*
 }
 
+cxx src/core/init_state.hxx
 unsafe {
   class final InitState GameState {
     constructor default
   }
 }
 
+cxx src/test_state.hxx
 var {test_state::gameClass gameClass} cstr copy
 var {test_state::humanShip humanShip} int
-enum {test_state::Mode TestStateMode} TSM {test_state::StandardTeam StandardTeam} \
-  {test_state::HomogeneousTeam HomogeneousTeam} {test_state::HeterogeneousTeam HeterogeneousTeam} \
-  {test_state::FreeForAll FreeForAll} {test_state::LastManStanding LastManStanding} \
+enum {test_state::Mode TestStateMode} TSM \
+  {test_state::StandardTeam StandardTeam} \
+  {test_state::HomogeneousTeam HomogeneousTeam} \
+  {test_state::HeterogeneousTeam HeterogeneousTeam} \
+  {test_state::FreeForAll FreeForAll} \
+  {test_state::LastManStanding LastManStanding} \
   {test_state::ManVsWorld ManVsWorld}
 enum {test_state::Background TestStateBackground} TSB \
-  {test_state::StarField StarField} {test_state::Planet Planet} {test_state::Nebula Nebula}
+  {test_state::StarField StarField} {test_state::Planet Planet} \
+  {test_state::Nebula Nebula}
 var {test_state::mode testStateMode} TestStateMode
 var {test_state::size testStateSize} int
 
@@ -277,9 +293,12 @@ unsafe {
   }
 }
 
+cxx src/sim/game_object.hxx src/sim/collision.hxx src/sim/game_field.hxx
 class final GameField {}
-enum GameObject::Classification GOClass Generic {ClassShip Ship} LightWeapon HeavyWeapon
-enum CollisionResult {} NoCollision UnlikelyCollision MaybeCollision YesCollision
+enum GameObject::Classification GOClass Generic {ClassShip Ship}\
+     LightWeapon HeavyWeapon
+enum CollisionResult {} NoCollision UnlikelyCollision \
+                        MaybeCollision YesCollision
 class abstract-extendable GameObject {} {
   const isRemote bool
   var isExportable bool
@@ -321,17 +340,21 @@ class abstract-extendable GameObject {} {
   fun void del
 }
 
+cxx src/camera/effects_handler.hxx
 class extendable EffectsHandler {}
+
+cxx src/sim/game_field.hxx src/camera/effects_handler.hxx
 class final GameField {} {
   const fieldClock Uint32
-  const width float
-  const height float
+  var width float
+  var height float
   var effects EffectsHandler* steal
   var perfectRadar bool
   constructor default float float
   fun void update {} float
   fun void draw
-  fun GameObject* {operator[] at} const {unsigned {check ok=(val < parent->size());}}
+  fun GameObject* {operator[] at} const \
+    {unsigned {check ok=(val < parent->size());}}
   fun unsigned size const
   fun void add {} {GameObject* steal {check ok=val;}}
   fun void addBegin {} {GameObject* steal {check ok=val;}}
@@ -340,6 +363,7 @@ class final GameField {} {
   fun void clear noth
 }
 
+cxx src/sim/blast.hxx
 class final Blast GameObject {
   const blame unsigned
   constructor default     {GameField* {check ok=val;}} unsigned float float float float
@@ -363,17 +387,20 @@ class final Blast GameObject {
 # Tcl needs to know about ANY type of GameObject that can come into
 # existence, even if Tcl will never need to mess with it
 # So include these visual effects
+cxx src/ship/auxobj/cell_fragment.hxx
 class final CellFragment GameObject {
   fun bool update {} float
   fun void draw
   fun float getRadius
 }
+cxx src/ship/auxobj/plasma_fire.hxx
 class final PlasmaFire GameObject {
   fun bool update {} float
   fun void draw
   fun float getRadius
 }
 
+cxx src/background/explosion.hxx src/sim/game_field.hxx
 enum ExplosionType {} {*}{
   Explosion::Simple
   Explosion::Spark
@@ -401,14 +428,21 @@ unsafe {
     fun float getSize
     fun float getDensity
   }
+}
 
+cxx src/background/old_style_explosion.hxx \
+    src/background/explosion.hxx
+unsafe {
   class final OldStyleExplosion GameObject {
     constructor default Explosion*
     fun bool update {} float
     fun void draw
     fun float getRadius
   }
+}
 
+cxx src/secondary/light_trail.hxx src/sim/game_field.hxx
+unsafe {
   class final LightTrail GameObject {
     constructor default GameField* float int float float float float float float float float float float
     fun bool update {} float
@@ -419,6 +453,7 @@ unsafe {
   }
 }
 
+cxx src/ship/ship.hxx
 class abstract-extendable ShipSystem {}
 class final Shield {}
 class final Cell {}
@@ -430,6 +465,8 @@ class final radar_t {} {
   constructor default
 }
 
+cxx src/ship/ship.hxx src/sim/game_field.hxx src/control/controller.hxx \
+    src/camera/effects_handler.hxx src/ship/cell/cell.hxx
 class final Ship GameObject {
   unsafe {
     var controller Controller* steal
@@ -510,6 +547,8 @@ class final Ship GameObject {
   fun cstr getDeathAttributions
 }
 
+cxx src/ship/ship.hxx src/ship/shipio.hxx src/ship/cell/cell.hxx \
+    src/camera/effects_handler.hxx src/sim/game_field.hxx
 fun cstr verify {Ship* {check ok=val;}}
 unsafe {
   fun {Ship* steal} loadShip GameField* cstr
@@ -521,6 +560,7 @@ enum TargettingMode {} TargettingMode_NA TargettingMode_None TargettingMode_Stan
   TargettingMode_Bridge TargettingMode_Power TargettingMode_Weapon TargettingMode_Engine \
   TargettingMode_Shield TargettingMode_Cell
 
+cxx src/ship/auxobj/shield.hxx
 unsafe {
   class final Shield {} {
     fun void update {} float
@@ -535,6 +575,7 @@ unsafe {
   }
 }
 
+cxx src/ship/insignia.hxx
 enum Alliance A Neutral Allies Enemies
 fun unsigned insignia cstr
 unsafe {
@@ -545,6 +586,8 @@ unsafe {
   fun void setAlliance Alliance unsigned unsigned
 }
 
+cxx src/weapon/energy_charge.hxx \
+    src/sim/game_field.hxx src/ship/ship.hxx
 class final EnergyCharge GameObject {
   constructor default {GameField* {check ok=val;}} {Ship* {check ok=val;}} float float float float
   fun bool update {virtual noth} float
@@ -554,6 +597,8 @@ class final EnergyCharge GameObject {
   fun void explode {} {GameObject* {check ok=val;}}
 }
 
+cxx src/weapon/magneto_bomb.hxx \
+    src/sim/game_field.hxx src/ship/ship.hxx
 class final MagnetoBomb GameObject {
   constructor default {GameField* {check ok=val;}} float float float float float {Ship* {check ok=val;}}
   fun bool update {virtual noth} float
@@ -563,10 +608,14 @@ class final MagnetoBomb GameObject {
   fun void simulateFailure
 }
 
+cxx src/weapon/semiguided_bomb.hxx \
+    src/sim/game_field.hxx src/ship/ship.hxx
 class final SemiguidedBomb MagnetoBomb {
   constructor default {GameField* {check ok=val;}} float float float float float {Ship* {check ok=val;}}
 }
 
+cxx src/weapon/plasma_burst.hxx \
+    src/ship/ship.hxx src/sim/game_field.hxx
 class final PlasmaBurst GameObject {
   constructor default {GameField* {check ok=val;}} {Ship* {check ok=val;}} float float float float float float
   fun bool update {virtual noth} float
@@ -575,14 +624,18 @@ class final PlasmaBurst GameObject {
   fun float getMass
 }
 
+cxx src/weapon/monophasic_energy_pulse.hxx \
+    src/ship/ship.hxx src/sim/game_field.hxx
 class final MonophasicEnergyPulse GameObject {
   constructor default {GameField* {check ok=val;}} {Ship* {check ok=val;}} float float float int
 }
 
+cxx src/weapon/missile.hxx src/ship/ship.hxx src/sim/game_field.hxx
 class final Missile GameObject {
   constructor default {GameField* {check ok=val;}} int float float float float Ship* GameObject*
 }
 
+cxx src/camera/effects_handler.hxx src/background/explosion.hxx
 class extendable EffectsHandler {} {
   constructor default
   fun void impact {virtual noth} float
@@ -591,6 +644,7 @@ class extendable EffectsHandler {} {
 }
 const nullEffectsHandler EffectsHandler
 
+cxx src/background/background.hxx src/sim/game_object.hxx
 unsafe {
   class final Background EffectsHandler {
     fun void draw
@@ -598,14 +652,27 @@ unsafe {
     fun void updateReference {} GameObject* bool
     fun void repopulate
   }
+}
+
+cxx src/background/planet.hxx
+unsafe {
   class final Planet Background {
     constructor default GameObject* GameField* cstr cstr float float float float
   }
+}
 
+cxx src/background/star_field.hxx \
+    src/sim/game_object.hxx src/sim/game_field.hxx
+unsafe {
   class final StarField Background {
     constructor default GameObject* GameField* int
   }
 
+  fun void initStarLists
+}
+
+cxx src/background/nebula.hxx src/sim/game_object.hxx src/sim/game_field.hxx
+unsafe {
   class final Nebula Background {
     constructor default GameObject* GameField* float float float float float
     fun cstr setFlowEquation noth cstr cstr bool
@@ -616,10 +683,9 @@ unsafe {
     fun float getVelocityResetTime const
     fun void setForceMultiplier noth float
   }
-
-  fun void initStarLists
 }
 
+cxx src/camera/camera.hxx
 unsafe {
   class abstract-extendable Camera EffectsHandler {
     constructor default GameObject*
@@ -630,7 +696,10 @@ unsafe {
     fun void reset {virtual noth}
     fun void setup {} bool
   }
+}
 
+cxx src/camera/dynamic_camera.hxx
+unsafe {
   enum DynamicCamera::RotateMode DCRM \
     {DynamicCamera::None None} \
     {DynamicCamera::Direction Direction} \
@@ -649,11 +718,17 @@ unsafe {
     fun float getVisualRotation {}
     fun void hc_conf_bind
   }
+}
 
+cxx src/camera/fixed_camera.hxx
+unsafe {
   class final FixedCamera Camera {
     constructor default GameObject*
   }
+}
 
+cxx src/control/controller.hxx src/ship/ship.hxx
+unsafe {
   class abstract-extendable Controller AObject {
     const ship Ship*
     constructor default Ship*
@@ -662,7 +737,10 @@ unsafe {
     fun void otherShipDied {virtual noth} Ship*
     fun void notifyScore {virtual noth} int
   }
+}
 
+cxx src/control/human_controller.hxx src/ship/ship.hxx
+unsafe {
   class final HumanController Controller {
     constructor default Ship*
     fun void hc_conf_bind
@@ -672,12 +750,25 @@ unsafe {
     fun void key    {} SDL_KeyboardEvent*
   }
   const isCompositionBufferInUse bool
+}
 
+cxx src/control/hc_conf.hxx
+unsafe {
+  fun void {hc_conf::configure hc_conf_configure} HumanController* cstr
+  fun void {hc_conf::clear hc_conf_clear}
+}
+
+cxx src/control/ai/aictrl.hxx src/ship/ship.hxx
+unsafe {
   class final AIControl Controller {
     constructor default Ship* cstr cstr
     fun void update {} float
   }
+}
 
+cxx src/control/genai/genai.hxx src/control/genetic_ai.hxx \
+    src/ship/ship.hxx
+unsafe {
   class final GeneticAI Controller {
     constructor default Ship*
     fun void update {} float
@@ -694,7 +785,10 @@ unsafe {
     fun string getScores const
   }
   fun GenAI* {GenAI::makeGenAI GenAI_make} Ship*
+}
 
+cxx src/tcl_iface/common_keyboard_client.hxx
+unsafe {
   class extendable CommonKeyboardClient AObject {
     constructor default
     fun void exit virtual
@@ -706,15 +800,14 @@ unsafe {
     fun void statsOff virtual
     fun void hc_conf_bind
   }
-
-  fun void {hc_conf::configure hc_conf_configure} HumanController* cstr
-  fun void {hc_conf::clear hc_conf_clear}
 }
 
+cxx src/camera/forwarding_effects_handler.hxx
 class final ForwardingEffectsHandler EffectsHandler {
   constructor default Ship*
 }
 
+cxx src/camera/spectator.hxx src/ship/ship.hxx src/sim/game_field.hxx
 class final Spectator GameObject {
   constructor default Ship*
   constructor explicit Ship* bool
@@ -725,6 +818,7 @@ class final Spectator GameObject {
   fun Ship* getReference
 }
 
+cxx src/sim/game_env.hxx src/background/background.hxx src/camera/camera.hxx
 unsafe {
   class final GameEnv {} {
     constructor customCamera {Camera* steal} float float
@@ -737,7 +831,10 @@ unsafe {
     var cam Camera* steal
     var stars Background* steal
   }
+}
 
+cxx src/ship/editor/manipulator.hxx src/ship/ship.hxx src/ship/cell/cell.hxx
+unsafe {
   class final Manipulator {} {
     constructor default
     fun void update
@@ -764,6 +861,7 @@ unsafe {
   }
 }
 
+cxx src/secondary/planet_generator.hxx
 unsafe {
   const {planetgen::width  planetgen_width } unsigned
   const {planetgen::height planetgen_height} unsigned
@@ -811,12 +909,15 @@ unsafe {
   fun void  {planetgen::save planetgen_save} cstr cstr
 }
 
+cxx src/camera/hud.hxx
 fun void {hud_user_messages::setmsg set_hud_message} unsigned cstr
+
+cxx src/secondary/global_chat.hxx
 fun void {global_chat::post global_chat_post} cstr
 fun void {global_chat::postLocal global_chat_post_local} cstr
-#fun void {global_chat::postRemote global_chat_post_remote_all} cstr
-#fun void {global_chat::postRemote global_chat_post_remote_one} cstr Peer*
+fun void {global_chat::postRemote global_chat_post_remote} cstr
 
+cxx src/globals.hxx src/core/game_state.hxx
 unsafe {
   var state GameState* steal
 }
@@ -850,8 +951,11 @@ const currentFrameTimeLeft float
 const currentVFrameLast bool
 const sparkCountMultiplier float
 const gameClock unsigned
+
+cxx src/ship/cell/cell.hxx
 const STD_CELL_SZ float
 
+cxx src/tcl_iface/square_icon.hxx
 unsafe {
   enum SquareIcon::LoadReq SILR {SquareIcon::Strict Strict} \
                                 {SquareIcon::Lax    Lax   } \
@@ -867,6 +971,7 @@ unsafe {
 }
 
 # Networking stuff
+cxx src/net/antenna.hxx src/net/tuner.hxx src/net/globalid.hxx
 unsafe {
   class final Tuner {}
   class final GlobalID {}
@@ -884,20 +989,35 @@ unsafe {
   }
   const antenna Antenna
   var packetDropMask unsigned
+}
 
+cxx src/net/tuner.hxx
+unsafe {
   class final Tuner {} {
     constructor default
   }
+}
 
+cxx src/net/globalid.hxx
+unsafe {
   class final GlobalID {} {
     constructor default
     fun string toString
   }
+}
 
+cxx src/net/packet_processor.hxx
+unsafe {
   class final PacketProcessor {} {
   }
 
   class final NetworkConnection PacketProcessor
+}
+
+cxx src/net/network_assembly.hxx src/sim/game_field.hxx src/net/antenna.hxx \
+    src/net/tuner.hxx src/net/packet_processor.hxx \
+    src/net/network_connection.hxx
+unsafe {
   class final NetworkAssembly {} {
     const field GameField*
     const antenna Antenna*
@@ -909,8 +1029,12 @@ unsafe {
     fun void removeConnection {} unsigned
     fun void addPacketProcessor {} {PacketProcessor* steal}
     fun void update {} unsigned
+    fun void setFieldSize {} float float
   }
+}
 
+cxx src/net/network_connection.hxx src/net/network_assembly.hxx
+unsafe {
   enum NetworkConnection::Status {} \
     {NetworkConnection::Connecting} {NetworkConnection::Established} \
     {NetworkConnection::Ready} {NetworkConnection::Zombie}
@@ -919,18 +1043,28 @@ unsafe {
     fun void update {} unsigned
     fun NetworkConnection::Status getStatus
     fun string getDisconnectReason
+    fun void setFieldSize {} float float
   }
+}
 
+cxx src/net/connection_listener.hxx
+unsafe {
   class final ConnectionListener PacketProcessor {
   }
+}
 
+cxx src/net/game_advertiser.hxx src/net/tuner.hxx
+unsafe {
   class final GameAdvertiser PacketProcessor {
     constructor default Tuner* bool unsigned unsigned bool cstr
     fun void setOverseerId {} unsigned
     fun void setPeerCount {} unsigned
     fun void setGameMode {} cstr
   }
+}
 
+cxx src/net/game_discoverer.hxx src/net/tuner.hxx src/net/antenna.hxx
+unsafe {
   class final GameDiscoverer PacketProcessor {
     constructor default Tuner*
     fun void start
@@ -938,12 +1072,25 @@ unsafe {
     fun float progress
     fun void dumpResults
   }
+}
 
+cxx src/net/network_geraet.hxx src/net/network_connection.hxx
+unsafe {
   class final InputNetworkGeraet {} {
   }
   class final OutputNetworkGeraet {} {
   }
+
+  newFunType InputNetworkGeraet* NetworkConnection*
+}
+
+cxx src/net/async_ack_geraet.hxx
+unsafe {
   class final AsyncAckGeraet {} {}
+}
+
+cxx src/net/seq_text_geraet.hxx src/net/async_ack_geraet.hxx
+unsafe {
   class final SeqTextOutputGeraet OutputNetworkGeraet {
     constructor default AsyncAckGeraet*
     fun void send {} string
@@ -954,10 +1101,9 @@ unsafe {
     constructor default AsyncAckGeraet*
     fun void receiveText {noth purevirtual} string
   }
-
-  newFunType InputNetworkGeraet* NetworkConnection*
 }
 
+cxx src/secondary/confreg.hxx
 enum Setting::Type ST {Setting::TypeInt    Int   } {Setting::TypeInt64   Int64} \
                       {Setting::TypeFloat  Float } {Setting::TypeBoolean Bool} \
                       {Setting::TypeString String} \
@@ -1018,6 +1164,7 @@ class final ConfReg {} {
 const {conf globalConf} ConfReg
 fun void confcpy string string
 
+cxx src/core/lxn.hxx
 unsafe {
   fun void {l10n::acceptLanguage l10n_acceptLanguage} cstr
   fun bool {l10n::loadCatalogue  l10n_loadCatalogue} char cstr
@@ -1025,16 +1172,19 @@ unsafe {
 }
 fun cstr {l10n::lookup _} char cstr cstr
 
+cxx src/secondary/namegen.hxx
 fun string {namegenGet namegenAny}
 fun string {namegenGet namegenGet} cstr
 
 # Slave interpreter interface
+cxx
 unsafe {
   fun Tcl_Interp* newInterpreter bool Tcl_Interp*
   fun void delInterpreter Tcl_Interp*
 }
 fun void {interpSafeSource safe_source} {cstr {check ok=validateSafeSourcePath(val);}}
 
+cxx src/tcl_iface/slave_thread.hxx
 unsafe {
   fun void bkg_start
   fun void bkg_req cstr
@@ -1044,19 +1194,35 @@ unsafe {
   fun cstr bkg_rcv
   fun cstr bkg_get
   fun void bkg_wait
+}
 
+cxx src/net/crypto.hxx
+unsafe {
   fun void crypto_init cstr
   fun cstr crypto_rand
   fun cstr crypto_powm cstr cstr
+}
 
+cxx src/secondary/validation.hxx
+unsafe {
   fun void performValidation int int int int
   fun int getValidationResultA
   fun int getValidationResultB
+}
 
+cxx src/net/network_test.hxx
+unsafe {
   fun void networkTestListen
   fun unsigned networkTestRun cstr unsigned
+}
 
+cxx src/audio/ship_mixer.hxx
+unsafe {
   fun void {audio::ShipMixer::init ship_mixer_init}
   fun void {audio::ShipMixer::end ship_mixer_end}
+}
+
+cxx
+unsafe {
   fun void debugTclExports
 }

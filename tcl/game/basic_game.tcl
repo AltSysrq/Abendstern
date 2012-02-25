@@ -1038,6 +1038,8 @@ class BasicGame {
   }
 
   method motion evt {
+    set ::cursorX [$evt cget -x]
+    set ::cursorY [$evt cget -y]
     if {[$mode enableRawInputForwarding] && $human != "0"} {
       $human motion $evt
     }
@@ -1112,6 +1114,7 @@ class BasicGameMode {
 
   variable app
   variable enableDrawing
+  variable cursorEnabled
 
   # Constructs a new BasicGameMode.
   # bg: The BasicGame that owns it
@@ -1147,6 +1150,15 @@ class BasicGameMode {
     cglPopMatrix
     acsgi_end
     acsgi_textNormal no
+
+    # Show cursor if either analogue setting is in joystick mode
+    set scheme [$ str conf.control_scheme]
+    if {![$ bool conf.$scheme.analogue.horiz.recentre]
+    ||  ![$ bool conf.$scheme.analogue.vert.recentre]} {
+      set cursorEnabled yes
+    } else {
+      set cursorEnabled no
+    }
   }
 
   method draw {} {
@@ -1158,7 +1170,7 @@ class BasicGameMode {
   }
 
   method enableCursor {} {
-    return no
+    return $cursorEnabled
   }
 }
 

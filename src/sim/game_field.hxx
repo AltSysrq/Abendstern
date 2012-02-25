@@ -79,11 +79,11 @@ class GameField : public AObject {
   std::vector<GameObject*> toDelete;
 
   public:
-  /** The maximum height and width for the field.
-   * The field extends from 0...width, etc
+  /** The maximum width for the field.
+   * The field extends from 0..width, excluding width itsellf.
    * If any object goes outside, it will be destroyed.
    */
-  const float width, height; ///< The maximum height of the field. @see width
+  float width, height; ///< The maximum height of the field. @see width
 
   /** A set of GameObjects that are to be deleted at the
    * end of the next physical frame. We do this so that all ObjRefs have
