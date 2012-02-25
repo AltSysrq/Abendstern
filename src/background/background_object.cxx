@@ -54,10 +54,6 @@ void BackgroundObject::randomize(float maxx, float maxy) noth {
   y = rand()/(float)RAND_MAX * maxy;
 }
 
-float BackgroundObject::getX() const noth { return x; }
-float BackgroundObject::getY() const noth { return y; }
-float BackgroundObject::getZ() const noth { return z; }
-
 void BackgroundObject::draw(float rx, float ry) const noth {
   BEGINGP("BackgroundObject")
   mPush();
