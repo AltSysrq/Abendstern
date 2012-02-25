@@ -121,7 +121,7 @@
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <DisableSpecificWarnings>4244;4355</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4244;4355;4068</DisableSpecificWarnings>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -407,7 +407,6 @@
     <ClInclude Include="..\..\..\src\tcl_iface\dynfun_create_trampolines.hxx" />
     <ClInclude Include="..\..\..\src\tcl_iface\dynfun_list_trampolines.hxx" />
     <ClInclude Include="..\..\..\src\tcl_iface\implementation.hxx" />
-    <ClInclude Include="..\..\..\src\tcl_iface\include_all_headers.hxx" />
     <ClInclude Include="..\..\..\src\tcl_iface\slave_thread.hxx" />
     <ClInclude Include="..\..\..\src\tcl_iface\square_icon.hxx" />
     <ClInclude Include="..\..\..\src\test_state.hxx" />
@@ -603,8 +602,30 @@
     <ClCompile Include="..\..\..\src\sim\object_intref.cxx" />
     <ClCompile Include="..\..\..\src\tcl_iface\bridge.cxx" />
     <ClCompile Include="..\..\..\src\tcl_iface\common_keyboard_client.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\implementation.cxx" />
     <ClCompile Include="..\..\..\src\tcl_iface\slave_thread.cxx" />
     <ClCompile Include="..\..\..\src\tcl_iface\square_icon.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\x0.cxx">
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4244;4355;4068</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='ReleaseGL14|Win32'">4244;4355;4068</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='ReleaseGL21|Win32'">4244;4355;4068</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='ReleaseGL32|Win32'">4244;4355;4068</DisableSpecificWarnings>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\x1.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\x2.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\x3.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\x4.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\x5.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\x6.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\x7.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\x8.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\x9.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\xa.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\xb.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\xc.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\xd.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\xe.cxx" />
+    <ClCompile Include="..\..\..\src\tcl_iface\xxx\xf.cxx" />
     <ClCompile Include="..\..\..\src\test_state.cxx" />
     <ClCompile Include="..\..\..\src\weapon\energy_charge.cxx" />
     <ClCompile Include="..\..\..\src\weapon\magneto_bomb.cxx" />
