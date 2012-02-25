@@ -968,10 +968,10 @@ class Variable {
   }
 
   method generateC++PreDec {} {
-    set code "int ${cppGetName}(ClientData,Tcl_Interp*,int,Tcl_Obj*const*);"
+    set code "int ${cppGetName}(ClientData,Tcl_Interp*,int,Tcl_Obj*const\[\]);"
     if {!$isConst} {
       append code \
-        "int ${cppSetName}(ClientData,Tcl_Interp*,int,Tcl_Obj*const*);"
+        "int ${cppSetName}(ClientData,Tcl_Interp*,int,Tcl_Obj*const\[\]);"
     }
     if {!$isInClassContext} {
       return $code
@@ -1175,7 +1175,7 @@ class Function {
 
   method generateC++PreDec {} {
     set code \
-    "int ${mainTrampoline}(ClientData,Tcl_Interp*,int,Tcl_Obj*const*) throw();"
+"int ${mainTrampoline}(ClientData,Tcl_Interp*,int,Tcl_Obj*const\[\])throw();"
     if {!$isInClassContext} {
       return $code
     } else {
