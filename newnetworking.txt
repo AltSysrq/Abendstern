@@ -316,3 +316,20 @@ confirmed processed.
 
 The structure for objects themselves is defined in  src/net/definition.tcl .
 See src/net/generate.tcl for a formal description of the file's contents.
+
+SHIP DAMAGE GERÄT
+Gerät number: (automatic)
+Sends events indicating that one of the receiver's ships is believed to have
+taken damage. Packets are not ordered. Packets relating to nonexistent ships are
+silently ignored. See the Blast class for interpretation of Blast-related data.
+Packet structure:
+  uint32        ID of ship being damaged
+  float         X coordinate of ship at time of damage
+  float         Y coordinate of ship at time of damage
+  float         theta of ship at time of damage
+  float         X coordinate of blast centre
+  float         Y coordinate of blast centre
+  float         falloff of blast
+  float         stringth of blast
+  float         size of blast
+  byte          blame of blast
