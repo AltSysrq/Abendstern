@@ -39,8 +39,13 @@ void AIM_FireWeapon::action() {
 void AIM_FireWeapon::timer(int) {
   if (controller.getCurrentWeapon() != expectedWeapon)
     controller.delTimer(this, 0);
-  else
+  else {
     weapon_fire(ship, (Weapon)expectedWeapon);
+    if (ship->getCurrentCapacitance() == 0) {
+      //Out of energy to continue firing
+      controller.delTimer(this, 0);
+    }
+  }
 }
 
 static AIModuleRegistrar<AIM_FireWeapon> registrar("attack/fire");
