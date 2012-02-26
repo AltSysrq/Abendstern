@@ -20,6 +20,7 @@ NetworkAssembly::NetworkAssembly(GameField* field_, Antenna* antenna_)
 : tuner(new Tuner), field(field_), antenna(antenna_)
 {
   antenna->tuner = tuner;
+  field->networkAssembly = this;
 }
 
 NetworkAssembly::~NetworkAssembly() {
@@ -55,4 +56,12 @@ void NetworkAssembly::update(unsigned et) noth {
 void NetworkAssembly::setFieldSize(float w, float h) throw() {
   for (unsigned i=0; i<connections.size(); ++i)
     connections[i]->setFieldSize(w,h);
+}
+
+void NetworkAssembly::objectAdded(GameObject*) throw() {
+  //TODO
+}
+
+void NetworkAssembly::objectRemoved(GameObject*) throw() {
+  //TODO
 }

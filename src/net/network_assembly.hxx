@@ -16,6 +16,7 @@ class Tuner;
 class NetworkConnection;
 class PacketProcessor;
 class GameField;
+class GameObject;
 
 /**
  * Manages the various objects that are used to provide a functional network
@@ -100,6 +101,15 @@ public:
    * @see GameField::height
    */
   void setFieldSize(float,float) throw();
+
+  /**
+   * Called whenever a new GameObject is inserted into the field.
+   */
+  void objectAdded(GameObject*) throw();
+  /**
+   * Called whenever a GameObject is removed from the field.
+   */
+  void objectRemoved(GameObject*) throw();
 };
 
 #endif /* NETWORK_ASSEMBLY_HXX_ */

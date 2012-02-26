@@ -14,6 +14,8 @@
 #include "collision.hxx"
 #include "objdl.hxx"
 #include "src/exit_conditions.hxx"
+#include "src/net/network_assembly.hxx"
+
 using namespace std;
 
 const vector<CollisionRectangle*>* GameObject::getCollisionBounds() noth {
@@ -26,6 +28,8 @@ void GameObject::del() noth {
   for (ObjDL* odl=listeners; odl; odl=odl->nxt)
     odl->ref=NULL;
   listeners=NULL;
+  if (field->networkAssembly)
+    field->networkAssembly->objectRemoved(this);
 }
 
 GameObject::~GameObject() {
