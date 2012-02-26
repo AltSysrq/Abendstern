@@ -26,7 +26,10 @@ test = {
     { module = "state/edge_detect"; scared = "avoid_edge"; weight = 1; },
     { module = "introspection/throttle"; weight = 1; },
     { module = "introspection/weapons"; weight = 1; },
-    { module = "target/nearest"; weight = 1; }
+    { module = "target/nearest"; weight = 1; },
+    { module = "state/check_has_weapons"; weight = 1;
+      unarmed = "runaway"
+    }
   );
   attack = (
     { module = "introspection/weapons"; weight = 1; },
@@ -51,6 +54,10 @@ test = {
       weight = 1;
       overlap = "overlap";
     }
+    { module = "state/check_has_weapons";
+      weight = 1;
+      unarmed = "runaway"
+    }
   );
   avoid_edge = (
     { module = "navigation/avoid_edge"; weight = 3; },
@@ -66,6 +73,10 @@ test = {
       otherwise = "overlap";
     }
   );
+  runaway = (
+    { module = "navigation/run_away_simple"; weight = 16; }
+    { module = "misc/self_destruct"; weight = 1; }
+  )
 };
 
 # AI to use on player ships when paused in
