@@ -53,11 +53,11 @@ protected:
   bool created;
 
   /**
-   * Creates an ImportedGameObject of the given size on the given AAG.
+   * Creates an ImportedGameObject of the given size on the given connection.
    *
    * object is initialised to NULL and created to false.
    */
-  ImportedGameObject(unsigned, AsyncAckGeraet*);
+  ImportedGameObject(unsigned, NetworkConnection*);
 
 public:
   virtual ~ImportedGameObject();
@@ -101,7 +101,9 @@ protected:
 class ExportedGameObject: public OutputBlockGeraet {
 private:
   //Minimum time before pushing another update
-  unsigned timeUntilNextUpdate;
+  signed timeUntilNextUpdate;
+  //The status we believe the local object to be in.
+  bool alive;
 
 protected:
   /**
@@ -122,11 +124,11 @@ protected:
   /**
    * Constructs an ExportedGameObject.
    * @param sz the size of the block Gerät
-   * @param aag the AsyncAckGeraet to use
+   * @param cxn the NetworkConnection to use
    * @param local the real local object to track
    * @param remote a "remote" copy of local
    */
-  ExportedGameObject(unsigned sz, AsyncAckGeraet* aag,
+  ExportedGameObject(unsigned sz, NetworkConnection* cxn,
                      GameObject* local, GameObject* remote);
 
 public:
