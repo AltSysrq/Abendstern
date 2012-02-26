@@ -31,6 +31,9 @@ AIM_NavToTarget::AIM_NavToTarget(AIControl* c, const libconfig::Setting& s)
 void AIM_NavToTarget::action() {
   Ship* target = (Ship*)ship->target.ref;
   if (!target) return;
+  //If we can't accelerate, there is nothing we can do.
+  //Abort now to avoid divide by zero later.
+  if (fabs(ship->getAcceleration()) == 0) return;
 
   /* Derivation of the code below:
    * P = location of ship
@@ -68,30 +71,16 @@ void AIM_NavToTarget::action() {
    * In this case, we use which ever component is greater for v-w.
    */
   float t;
-  if (ship->getAcceleration() != 0) {
-    float a = ship->getAcceleration();
-    float v = sqrt(ship->getVX()*ship->getVX() + ship->getVY()*ship->getVY());
-    float w = sqrt(target->getVX()*target->getVX() + target->getVY()*target->getVY());
-    float p = sqrt(ship->getX()*ship->getX() + ship->getY()*ship->getY());
-    float q = sqrt(target->getX()*target->getX() + target->getY()*target->getY());
-    float inner = sqrt(fabs(v*v - 2*v*w + w*w - 2*a*p + 2*a*q));
-    float t1 = fabs((w - v + inner)/a);
-    float t2 = fabs((w - v - inner)/a);
-    t = (t1 < t2? t1:t2);
-  } else {
-    if (fabs(ship->getVX()-target->getVX()) > fabs(ship->getVY()-target->getVY())) {
-      if (0 != ship->getVX() - target->getVX())
-        t = (target->getX() - ship->getX())/(ship->getVX() - target->getVX());
-      else
-        t = 10000;
-    } else {
-      if (0 != ship->getVY() - target->getVY())
-        t = (target->getY() - ship->getY())/(ship->getVY() - target->getVY());
-      else
-        t = 10000;
-    }
-    if (t<0) t=10000;
-  }
+  float a = ship->getAcceleration();
+  float v = sqrt(ship->getVX()*ship->getVX() + ship->getVY()*ship->getVY());
+  float w = sqrt(target->getVX()*target->getVX() +
+                 target->getVY()*target->getVY());
+  float p = sqrt(ship->getX()*ship->getX() + ship->getY()*ship->getY());
+  float q = sqrt(target->getX()*target->getX() + target->getY()*target->getY());
+  float inner = sqrt(fabs(v*v - 2*v*w + w*w - 2*a*p + 2*a*q));
+  float t1 = fabs((w - v + inner)/a);
+  float t2 = fabs((w - v - inner)/a);
+  t = (t1 < t2? t1:t2);
 
   if (t > 10000) t=10000;
   float tx = target->getX() + target->getVX()*t,
@@ -102,19 +91,28 @@ void AIM_NavToTarget::action() {
   float speed = sqrt(ship->getVX()*ship->getVX() + ship->getVY()*ship->getVY());
   float tangle = atan2(dy, dx),
         cangle = ship->getRotation()+controller.gglob("thrust_angle", 0.0f),
-        vangle = (speed > 0.0001f? atan2(ship->getVY(), ship->getVX()) : cangle);
+        vangle = (speed > 0.0001f? atan2(ship->getVY(), ship->getVX()) :cangle);
   float cangDiff = tangle - cangle,
         vangDiff = tangle - vangle;
   if (cangDiff<-pi) cangDiff+=2*pi;
   if (cangDiff>+pi) cangDiff-=2*pi;
   if (vangDiff<-pi) vangDiff+=2*pi;
   if (vangDiff>+pi) vangDiff-=2*pi;
-  controller.setTargetTheta(tangle+vangDiff/2-controller.gglob("thrust_angle", 0.0f));
+  if (speed > 0.0001f)
+    controller.setTargetTheta(tangle+vangDiff/2 -
+                              controller.gglob("thrust_angle", 0.0f));
+  else
+    controller.setTargetTheta(tangle);
   if (speed > cruisingSpeed) ship->configureEngines(false, true, 0.05f);
   else {
-    if      (fabs(cangDiff) > pi/2)  ship->configureEngines(false, true, controller.gglob("max_brake", 1.0f));
-    else if (fabs(cangDiff) > pi/4)  ship->configureEngines(true,  true, controller.gglob("max_throttle", 1.0f)/2);
-    else                             ship->configureEngines(true, false, controller.gglob("max_throttle", 1.0f));
+    if      (fabs(cangDiff) > pi/2)
+      ship->configureEngines(false, true, controller.gglob("max_brake", 1.0f));
+    else if (fabs(cangDiff) > pi/4)
+      ship->configureEngines(true,  true,
+                             controller.gglob("max_throttle", 1.0f)/2);
+    else
+      ship->configureEngines(true, false,
+                             controller.gglob("max_throttle", 1.0f));
   }
 }
 

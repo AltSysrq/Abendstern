@@ -30,6 +30,7 @@ AIM_FireWeapon::AIM_FireWeapon(AIControl* c, const libconfig::Setting& s)
 void AIM_FireWeapon::action() {
   if (controller.gstat("no_appropriate_weapon", false)) return;
   if (controller.gstat("shot_quality", 0.0f) < thresh) return;
+  if (controller.gstat("veto_fire", false)) return;
 
   expectedWeapon = controller.getCurrentWeapon();
   controller.delTimer(this, 0);
@@ -39,8 +40,15 @@ void AIM_FireWeapon::action() {
 void AIM_FireWeapon::timer(int) {
   if (controller.getCurrentWeapon() != expectedWeapon)
     controller.delTimer(this, 0);
-  else
+  else {
     weapon_fire(ship, (Weapon)expectedWeapon);
+    if (ship->getCurrentCapacitance() == 0
+    ||  !ship->target.ref
+    ||  controller.gstat("veto_fire", false)) {
+      //Out of energy to continue firing
+      controller.delTimer(this, 0);
+    }
+  }
 }
 
 static AIModuleRegistrar<AIM_FireWeapon> registrar("attack/fire");

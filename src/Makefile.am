@@ -84,11 +84,13 @@ COMMONSOURCES= \
 ./control/ai/mod_attack/aim_fire_weapon.cxx \
 ./control/ai/mod_attack/aim_select_weapon.cxx \
 ./control/ai/mod_attack/aim_weapon_level.cxx \
+./control/ai/mod_attack/aim_veto_fire.cxx \
 ./control/ai/mod_state/aim_state_by_target_dist.cxx \
 ./control/ai/mod_state/aim_edge_detect.cxx \
 ./control/ai/mod_state/aim_goto.cxx \
 ./control/ai/mod_state/aim_detect_overlap.cxx \
 ./control/ai/mod_state/aim_indgoto.cxx \
+./control/ai/mod_state/aim_check_has_weapons.cxx \
 ./control/ai/mod_target/aim_target_nearest.cxx \
 ./control/ai/aimod.cxx \
 ./control/ai/mod_navigation/aim_park.cxx \
@@ -213,6 +215,7 @@ COMMONSOURCES= \
 ./net/text_message_geraet.cxx \
 ./net/lat_disc_geraet.cxx \
 ./net/block_geraet.cxx \
+./net/object_geraet.cxx \
 ./net/network_test.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \

@@ -127,6 +127,11 @@ protected:
 public:
   virtual void update(unsigned) throw();
 
+  /**
+   * Returns true if the local and remote states are confirmed synchronised.
+   */
+  bool isSynchronised() const throw();
+
 protected:
   virtual void ack(NetworkConnection::seq_t) throw();
   virtual void nak(NetworkConnection::seq_t) throw();

@@ -30,13 +30,19 @@
  * <tr>
  *   <td>no_appropriate_weapon</td>
  *   <td>bool</td>
- *   <td>If set to true, will not attempt to fire a weapon. Defaults to false.</td>
+ *   <td>If set to true, will not attempt to fire a weapon.
+ *       Defaults to false.</td>
  * </tr>
  * <tr>
  *   <td>shot_quality</td>
  *   <td>float</td>
- *   <td>The quality of the shot, judged against the thresh configuration. Defaults to 0.0f.</td>
+ *   <td>The quality of the shot, judged against the thresh configuration.
+ *       Defaults to 0.0f.</td>
  * </tr>
+ * <tr>
+ *   <td>veto_fire</td>
+ *   <td>bool</td>
+ *   <td>If true, no shots will be fired. Defaults to false.</td>
  * </table>
  */
 class AIM_FireWeapon: public AIModule {

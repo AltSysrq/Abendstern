@@ -148,7 +148,7 @@ void AIM_SelectWeapon::action() {
     if (i == (int)Weapon_PlasmaBurst || i == (int)Weapon_GatlingPlasma) {
       float pct = ship->getHeatPercent();
       if (pct > temperatureCaution)
-        ratings[i] = (int)(ratings[i] * (1 - (pct-temperatureCaution)/(1-temperatureCaution)));
+        ratings[i] = (int)(ratings[i] * (1 - pct/temperatureCaution));
     } else if (i == (int)Weapon_Monophase) {
       if (t->getRadius()*2 < minMonophaseSize)
         ratings[i] /= 2;

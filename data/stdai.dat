@@ -26,22 +26,29 @@ test = {
     { module = "state/edge_detect"; scared = "avoid_edge"; weight = 1; },
     { module = "introspection/throttle"; weight = 1; },
     { module = "introspection/weapons"; weight = 1; },
-    { module = "target/nearest"; weight = 1; }
+    { module = "target/nearest"; weight = 1; },
+    { module = "state/check_has_weapons"; weight = 1;
+      unarmed = "runaway"
+    }
   );
   attack = (
     { module = "introspection/weapons"; weight = 1; },
     { module = "attack/basic_aim"; weight = 4; },
+    { module = "attack/veto_fire"; weight = 1 }
     { module = "core/procedure"; weight = 4;
       modules = (
         { module = "attack/select_weapon"; },
         { module = "attack/weapon_level"; },
+        { module = "attack/veto_fire" }
         { module = "attack/fire"; }
       ); },
-    { module = "state/edge_detect"; scared = "avoid_edge"; otherwise = "attack"; weight = 1; },
+    { module = "state/edge_detect";
+      scared = "avoid_edge";
+      otherwise = "attack"; weight = 1; },
     { module = "target/nearest"; weight = 1; },
     { module = "state/target_distance";
       weight = 1;
-      consider_this_close = 4.0;
+      consider_this_close = 5.0; # Intentionally different from that in nav
       close_state = "attack";
       far_state = "navigate";
     },
@@ -49,15 +56,29 @@ test = {
       weight = 1;
       overlap = "overlap";
     }
+    { module = "state/check_has_weapons";
+      weight = 1;
+      unarmed = "runaway"
+    }
   );
   avoid_edge = (
     { module = "navigation/avoid_edge"; weight = 3; },
-    { module = "state/edge_detect"; scared = "avoid_edge"; otherwise = "navigate"; weight = 1; }
+    { module = "state/edge_detect"; scared = "avoid_edge";
+      otherwise = "navigate"; weight = 1; }
   );
   overlap = (
     { module = "navigation/run_away_simple"; weight = 1; },
-    { module = "state/detect_overlap"; weight = 1; otherwise = "navigate"; }
+    { module = "state/detect_overlap"; weight = 1;
+      otherwise = "navigate"; }
+    { module = "state/edge_detect"; weight = 1;
+      scared = "avoid_edge";
+      otherwise = "overlap";
+    }
   );
+  runaway = (
+    { module = "navigation/run_away_simple"; weight = 16; }
+    { module = "misc/self_destruct"; weight = 1; }
+  )
 };
 
 # AI to use on player ships when paused in

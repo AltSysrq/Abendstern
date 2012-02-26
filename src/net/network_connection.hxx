@@ -65,10 +65,13 @@ public:
     Zombie ///< Connection closed
   };
 
-private:
-  //Mirror field
+  /**
+   * The remote mirror field to use to keep track of objects exported
+   * to this peer.
+   */
   GameField field;
 
+private:
   //Local and remote channel mapping
   typedef std::map<channel,InputNetworkGeraet*> inchannels_t;
   inchannels_t inchannels;

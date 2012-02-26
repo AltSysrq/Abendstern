@@ -73,12 +73,12 @@ class BackgroundObject {
   void randomize(float maxx, float maxy) noth;
 
   /** Returns the X coordinate. */
-  float getX() const noth;
+  inline float getX() const noth { return x; }
   /** Returns the Y coordinate. */
-  float getY() const noth;
+  inline float getY() const noth { return y; }
 
   /** Returns the inverse Z coordinate (parallax) of the object. */
-  float getZ() const noth;
+  inline float getZ() const noth { return z; }
 
   /** Paints the object.
    * It is assumed that GL has already been
