@@ -57,6 +57,12 @@ class GameObject : public AObject {
    * Defaults to false.
    */
   bool isExportable;
+  /** Whether the GameObject is considered "transient" on the network.
+   * A transient object is considered short-ranged and short-lived, and
+   * is only exported to remote peers if they are close enough.
+   * Defaults to true.
+   */
+  bool isTransient;
 
   /** Keeps track of the head listener. */
   ObjDL* listeners;
@@ -206,7 +212,7 @@ class GameObject : public AObject {
    */
   GameObject(GameField* _field, float _x=0.0f, float _y=0.0f,
              float _vx=0.0f, float _vy=0.0f)
-  : isRemote(false), isExportable(false),
+  : isRemote(false), isExportable(false), isTransient(true),
     listeners(NULL),
     ignoreNetworkTag(false),
     nebulaInteraction(false), nebulaCache(false),

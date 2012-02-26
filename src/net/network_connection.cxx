@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
+#include <algorithm>
 
 #include <SDL.h>
 
@@ -33,6 +34,11 @@ using namespace std;
  */
 #define DISCONNECT_TIME 2048
 
+/* Maximum distance between reference and transient where we
+ * still export that transient.
+ */
+#define TRANSIENT_DIST 7.0f
+
 NetworkConnection::geraetNumMap_t* NetworkConnection::geraetNumMap;
 
 NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
@@ -44,6 +50,7 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
   latency(128),
   lastIncommingTime(SDL_GetTicks()),
   status(incomming? Established : Connecting),
+  timeSinceRetriedTransients(0),
   endpoint(endpoint_),
   parent(assembly_),
   scg(new SynchronousControlGeraet(this, incomming)),
@@ -83,6 +90,27 @@ void NetworkConnection::update(unsigned et) noth {
   for (outchannels_t::const_iterator it = outchannels.begin();
        it != outchannels.end(); ++it)
     it->second->update(et);
+
+  //TODO: Only process objects if in Ready status
+  timeSinceRetriedTransients += et;
+  if (timeSinceRetriedTransients > 128) {
+    candidateExports.insert(candidateExports.end(),
+                            ignoredExports.begin(),
+                            ignoredExports.end());
+    ignoredExports.clear();
+    timeSinceRetriedTransients = 0;
+  }
+  //Export candidates that are close enough or non-transient
+  while (!candidateExports.empty()) {
+    GameObject* go = candidateExports.front();
+    candidateExports.pop_front();
+    if (!go->isTransient || distanceOf(go) < TRANSIENT_DIST*TRANSIENT_DIST) {
+      actualExports.insert(go);
+      //TODO: export it
+    } else {
+      ignoredExports.insert(go);
+    }
+  }
 
   if (lastIncommingTime + DISCONNECT_TIME < SDL_GetTicks()) {
     scg->closeConnection("Timed out", "timed_out");
@@ -208,4 +236,43 @@ NetworkConnection::geraet_creator
 NetworkConnection::getGeraetCreator(geraet_num num) {
   assert(geraetNumMap->count(num));
   return (*geraetNumMap)[num];
+}
+
+void NetworkConnection::setReference(GameObject* go) throw() {
+  remoteReferences.push_back(go);
+}
+
+void NetworkConnection::unsetReference(GameObject* go) throw() {
+  vector<GameObject*>::iterator it =
+      find(remoteReferences.begin(), remoteReferences.end(), go);
+  if (it != remoteReferences.end())
+    remoteReferences.erase(it);
+}
+
+float NetworkConnection::distanceOf(const GameObject* go) const throw() {
+  float mindist = INFINITY;
+  for (unsigned i=0; i<remoteReferences.size(); ++i) {
+    const GameObject* that = remoteReferences[i];
+    float dx = go->getX() - that->getX();
+    float dy = go->getY() - that->getY();
+    float d = dx*dx + dy*dy;
+    if (d < mindist)
+      mindist = d;
+  }
+  return mindist;
+}
+
+void NetworkConnection::objectAdded(GameObject* go) throw() {
+  candidateExports.push_back(go);
+}
+
+void NetworkConnection::objectRemoved(GameObject* go) throw() {
+  deque<GameObject*>::iterator dit =
+      find(candidateExports.begin(), candidateExports.end(), go);
+  if (dit != candidateExports.end())
+    candidateExports.erase(dit);
+
+  actualExports.erase(go);
+  ignoredExports.erase(go);
+  unsetReference(go);
 }

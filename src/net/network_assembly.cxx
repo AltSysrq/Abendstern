@@ -63,8 +63,12 @@ void NetworkAssembly::objectAdded(GameObject* go) throw() {
     return;
 
   knownObjects.insert(go);
+  for (unsigned i=0; i<connections.size(); ++i)
+    connections[i]->objectAdded(go);
 }
 
 void NetworkAssembly::objectRemoved(GameObject* go) throw() {
   knownObjects.erase(go);
+  for (unsigned i=0; i<connections.size(); ++i)
+    connections[i]->objectRemoved(go);
 }
