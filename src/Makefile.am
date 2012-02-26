@@ -84,6 +84,7 @@ COMMONSOURCES= \
 ./control/ai/mod_attack/aim_fire_weapon.cxx \
 ./control/ai/mod_attack/aim_select_weapon.cxx \
 ./control/ai/mod_attack/aim_weapon_level.cxx \
+./control/ai/mod_attack/aim_veto_fire.cxx \
 ./control/ai/mod_state/aim_state_by_target_dist.cxx \
 ./control/ai/mod_state/aim_edge_detect.cxx \
 ./control/ai/mod_state/aim_goto.cxx \

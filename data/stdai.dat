@@ -34,10 +34,12 @@ test = {
   attack = (
     { module = "introspection/weapons"; weight = 1; },
     { module = "attack/basic_aim"; weight = 4; },
+    { module = "attack/veto_fire"; weight = 1 }
     { module = "core/procedure"; weight = 4;
       modules = (
         { module = "attack/select_weapon"; },
         { module = "attack/weapon_level"; },
+        { module = "attack/veto_fire" }
         { module = "attack/fire"; }
       ); },
     { module = "state/edge_detect";

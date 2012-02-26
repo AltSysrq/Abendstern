@@ -86,6 +86,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-aim_fire_weapon.$(OBJEXT) \
 	abendsternuxgl14-aim_select_weapon.$(OBJEXT) \
 	abendsternuxgl14-aim_weapon_level.$(OBJEXT) \
+	abendsternuxgl14-aim_veto_fire.$(OBJEXT) \
 	abendsternuxgl14-aim_state_by_target_dist.$(OBJEXT) \
 	abendsternuxgl14-aim_edge_detect.$(OBJEXT) \
 	abendsternuxgl14-aim_goto.$(OBJEXT) \
@@ -288,6 +289,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-aim_fire_weapon.$(OBJEXT) \
 	abendsternuxgl21-aim_select_weapon.$(OBJEXT) \
 	abendsternuxgl21-aim_weapon_level.$(OBJEXT) \
+	abendsternuxgl21-aim_veto_fire.$(OBJEXT) \
 	abendsternuxgl21-aim_state_by_target_dist.$(OBJEXT) \
 	abendsternuxgl21-aim_edge_detect.$(OBJEXT) \
 	abendsternuxgl21-aim_goto.$(OBJEXT) \
@@ -488,6 +490,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-aim_fire_weapon.$(OBJEXT) \
 	abendsternuxgl32-aim_select_weapon.$(OBJEXT) \
 	abendsternuxgl32-aim_weapon_level.$(OBJEXT) \
+	abendsternuxgl32-aim_veto_fire.$(OBJEXT) \
 	abendsternuxgl32-aim_state_by_target_dist.$(OBJEXT) \
 	abendsternuxgl32-aim_edge_detect.$(OBJEXT) \
 	abendsternuxgl32-aim_goto.$(OBJEXT) \
@@ -842,6 +845,7 @@ COMMONSOURCES = \
 ./control/ai/mod_attack/aim_fire_weapon.cxx \
 ./control/ai/mod_attack/aim_select_weapon.cxx \
 ./control/ai/mod_attack/aim_weapon_level.cxx \
+./control/ai/mod_attack/aim_veto_fire.cxx \
 ./control/ai/mod_state/aim_state_by_target_dist.cxx \
 ./control/ai/mod_state/aim_edge_detect.cxx \
 ./control/ai/mod_state/aim_goto.cxx \
@@ -1121,6 +1125,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_state_by_target_dist.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_target_nearest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_varset.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_veto_fire.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_weapon_level.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aimod.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-antenna.Po@am__quote@
@@ -1324,6 +1329,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_state_by_target_dist.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_target_nearest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_varset.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_veto_fire.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_weapon_level.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aimod.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-antenna.Po@am__quote@
@@ -1527,6 +1533,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_state_by_target_dist.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_target_nearest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_varset.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_veto_fire.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_weapon_level.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aimod.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-antenna.Po@am__quote@
@@ -2363,6 +2370,20 @@ abendsternuxgl14-aim_weapon_level.obj: ./control/ai/mod_attack/aim_weapon_level.
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_attack/aim_weapon_level.cxx' object='abendsternuxgl14-aim_weapon_level.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-aim_weapon_level.obj `if test -f './control/ai/mod_attack/aim_weapon_level.cxx'; then $(CYGPATH_W) './control/ai/mod_attack/aim_weapon_level.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_attack/aim_weapon_level.cxx'; fi`
+
+abendsternuxgl14-aim_veto_fire.o: ./control/ai/mod_attack/aim_veto_fire.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-aim_veto_fire.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-aim_veto_fire.Tpo -c -o abendsternuxgl14-aim_veto_fire.o `test -f './control/ai/mod_attack/aim_veto_fire.cxx' || echo '$(srcdir)/'`./control/ai/mod_attack/aim_veto_fire.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-aim_veto_fire.Tpo $(DEPDIR)/abendsternuxgl14-aim_veto_fire.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_attack/aim_veto_fire.cxx' object='abendsternuxgl14-aim_veto_fire.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-aim_veto_fire.o `test -f './control/ai/mod_attack/aim_veto_fire.cxx' || echo '$(srcdir)/'`./control/ai/mod_attack/aim_veto_fire.cxx
+
+abendsternuxgl14-aim_veto_fire.obj: ./control/ai/mod_attack/aim_veto_fire.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-aim_veto_fire.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-aim_veto_fire.Tpo -c -o abendsternuxgl14-aim_veto_fire.obj `if test -f './control/ai/mod_attack/aim_veto_fire.cxx'; then $(CYGPATH_W) './control/ai/mod_attack/aim_veto_fire.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_attack/aim_veto_fire.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-aim_veto_fire.Tpo $(DEPDIR)/abendsternuxgl14-aim_veto_fire.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_attack/aim_veto_fire.cxx' object='abendsternuxgl14-aim_veto_fire.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-aim_veto_fire.obj `if test -f './control/ai/mod_attack/aim_veto_fire.cxx'; then $(CYGPATH_W) './control/ai/mod_attack/aim_veto_fire.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_attack/aim_veto_fire.cxx'; fi`
 
 abendsternuxgl14-aim_state_by_target_dist.o: ./control/ai/mod_state/aim_state_by_target_dist.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-aim_state_by_target_dist.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-aim_state_by_target_dist.Tpo -c -o abendsternuxgl14-aim_state_by_target_dist.o `test -f './control/ai/mod_state/aim_state_by_target_dist.cxx' || echo '$(srcdir)/'`./control/ai/mod_state/aim_state_by_target_dist.cxx
@@ -5206,6 +5227,20 @@ abendsternuxgl21-aim_weapon_level.obj: ./control/ai/mod_attack/aim_weapon_level.
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-aim_weapon_level.obj `if test -f './control/ai/mod_attack/aim_weapon_level.cxx'; then $(CYGPATH_W) './control/ai/mod_attack/aim_weapon_level.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_attack/aim_weapon_level.cxx'; fi`
 
+abendsternuxgl21-aim_veto_fire.o: ./control/ai/mod_attack/aim_veto_fire.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-aim_veto_fire.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-aim_veto_fire.Tpo -c -o abendsternuxgl21-aim_veto_fire.o `test -f './control/ai/mod_attack/aim_veto_fire.cxx' || echo '$(srcdir)/'`./control/ai/mod_attack/aim_veto_fire.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-aim_veto_fire.Tpo $(DEPDIR)/abendsternuxgl21-aim_veto_fire.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_attack/aim_veto_fire.cxx' object='abendsternuxgl21-aim_veto_fire.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-aim_veto_fire.o `test -f './control/ai/mod_attack/aim_veto_fire.cxx' || echo '$(srcdir)/'`./control/ai/mod_attack/aim_veto_fire.cxx
+
+abendsternuxgl21-aim_veto_fire.obj: ./control/ai/mod_attack/aim_veto_fire.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-aim_veto_fire.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-aim_veto_fire.Tpo -c -o abendsternuxgl21-aim_veto_fire.obj `if test -f './control/ai/mod_attack/aim_veto_fire.cxx'; then $(CYGPATH_W) './control/ai/mod_attack/aim_veto_fire.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_attack/aim_veto_fire.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-aim_veto_fire.Tpo $(DEPDIR)/abendsternuxgl21-aim_veto_fire.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_attack/aim_veto_fire.cxx' object='abendsternuxgl21-aim_veto_fire.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-aim_veto_fire.obj `if test -f './control/ai/mod_attack/aim_veto_fire.cxx'; then $(CYGPATH_W) './control/ai/mod_attack/aim_veto_fire.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_attack/aim_veto_fire.cxx'; fi`
+
 abendsternuxgl21-aim_state_by_target_dist.o: ./control/ai/mod_state/aim_state_by_target_dist.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-aim_state_by_target_dist.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-aim_state_by_target_dist.Tpo -c -o abendsternuxgl21-aim_state_by_target_dist.o `test -f './control/ai/mod_state/aim_state_by_target_dist.cxx' || echo '$(srcdir)/'`./control/ai/mod_state/aim_state_by_target_dist.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-aim_state_by_target_dist.Tpo $(DEPDIR)/abendsternuxgl21-aim_state_by_target_dist.Po
@@ -8047,6 +8082,20 @@ abendsternuxgl32-aim_weapon_level.obj: ./control/ai/mod_attack/aim_weapon_level.
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_attack/aim_weapon_level.cxx' object='abendsternuxgl32-aim_weapon_level.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-aim_weapon_level.obj `if test -f './control/ai/mod_attack/aim_weapon_level.cxx'; then $(CYGPATH_W) './control/ai/mod_attack/aim_weapon_level.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_attack/aim_weapon_level.cxx'; fi`
+
+abendsternuxgl32-aim_veto_fire.o: ./control/ai/mod_attack/aim_veto_fire.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-aim_veto_fire.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-aim_veto_fire.Tpo -c -o abendsternuxgl32-aim_veto_fire.o `test -f './control/ai/mod_attack/aim_veto_fire.cxx' || echo '$(srcdir)/'`./control/ai/mod_attack/aim_veto_fire.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-aim_veto_fire.Tpo $(DEPDIR)/abendsternuxgl32-aim_veto_fire.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_attack/aim_veto_fire.cxx' object='abendsternuxgl32-aim_veto_fire.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-aim_veto_fire.o `test -f './control/ai/mod_attack/aim_veto_fire.cxx' || echo '$(srcdir)/'`./control/ai/mod_attack/aim_veto_fire.cxx
+
+abendsternuxgl32-aim_veto_fire.obj: ./control/ai/mod_attack/aim_veto_fire.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-aim_veto_fire.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-aim_veto_fire.Tpo -c -o abendsternuxgl32-aim_veto_fire.obj `if test -f './control/ai/mod_attack/aim_veto_fire.cxx'; then $(CYGPATH_W) './control/ai/mod_attack/aim_veto_fire.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_attack/aim_veto_fire.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-aim_veto_fire.Tpo $(DEPDIR)/abendsternuxgl32-aim_veto_fire.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_attack/aim_veto_fire.cxx' object='abendsternuxgl32-aim_veto_fire.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-aim_veto_fire.obj `if test -f './control/ai/mod_attack/aim_veto_fire.cxx'; then $(CYGPATH_W) './control/ai/mod_attack/aim_veto_fire.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_attack/aim_veto_fire.cxx'; fi`
 
 abendsternuxgl32-aim_state_by_target_dist.o: ./control/ai/mod_state/aim_state_by_target_dist.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-aim_state_by_target_dist.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-aim_state_by_target_dist.Tpo -c -o abendsternuxgl32-aim_state_by_target_dist.o `test -f './control/ai/mod_state/aim_state_by_target_dist.cxx' || echo '$(srcdir)/'`./control/ai/mod_state/aim_state_by_target_dist.cxx
