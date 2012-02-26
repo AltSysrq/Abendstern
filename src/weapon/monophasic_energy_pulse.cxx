@@ -80,7 +80,6 @@ MonophasicEnergyPulse::MonophasicEnergyPulse(GameField* field, Ship* par, float 
   collisionBounds.push_back(&colrect);
 
   isExportable=true;
-  generatesUpdates=false;
 }
 
 MonophasicEnergyPulse::MonophasicEnergyPulse(GameField* field, float x, float y,
@@ -93,7 +92,6 @@ MonophasicEnergyPulse::MonophasicEnergyPulse(GameField* field, float x, float y,
   classification = GameObject::LightWeapon;
   includeInCollisionDetection=false;
   isExportable=true;
-  generatesUpdates=false;
   isRemote=true;
   colrect.radius=SIZE*1.5f;
   collisionBounds.push_back(&colrect);

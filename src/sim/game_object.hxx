@@ -57,20 +57,6 @@ class GameObject : public AObject {
    * Defaults to false.
    */
   bool isExportable;
-  /** Whether the GameObject is considered "transient" (that is, network peers
-   * are only notified about its creation if it is near them).
-   * Defaults to true.
-   */
-  bool isTransient;
-  /** Whether the GameObject generates update packets when exported.
-   * The default is false.
-   */
-  bool generatesUpdates;
-  /** Stores the last seq of updating by a remote peer.
-   * This is meaningless outside of the networking system.
-   * It is initialized to the seq of the creating packet.
-   */
-  Uint32 lastRemoteUpdateSeq;
 
   /** Keeps track of the head listener. */
   ObjDL* listeners;
@@ -218,8 +204,9 @@ class GameObject : public AObject {
    * @param _vx Initial X velocity
    * @param _vy Initial Y velocity
    */
-  GameObject(GameField* _field, float _x=0.0f, float _y=0.0f, float _vx=0.0f, float _vy=0.0f)
-  : isRemote(false), isExportable(false), isTransient(true), generatesUpdates(false),
+  GameObject(GameField* _field, float _x=0.0f, float _y=0.0f,
+             float _vx=0.0f, float _vy=0.0f)
+  : isRemote(false), isExportable(false),
     listeners(NULL),
     ignoreNetworkTag(false),
     nebulaInteraction(false), nebulaCache(false),

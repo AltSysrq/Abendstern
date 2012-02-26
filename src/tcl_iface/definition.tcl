@@ -302,11 +302,8 @@ enum CollisionResult {} NoCollision UnlikelyCollision \
 class abstract-extendable GameObject {} {
   const isRemote bool
   var isExportable bool
-  var isTransient bool
-  var generatesUpdates bool
   var tag string
   var ignoreNetworkTag bool
-  const lastRemoteUpdateSeq Uint32
   const field GameField* {} protected
   const {ci.isDead isDead} bool
   # Can't do collisionBounds yet
