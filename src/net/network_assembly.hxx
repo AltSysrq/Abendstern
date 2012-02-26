@@ -8,6 +8,7 @@
 #define NETWORK_ASSEMBLY_HXX_
 
 #include <vector>
+#include <set>
 
 #include "src/core/aobject.hxx"
 
@@ -29,6 +30,9 @@ class NetworkAssembly: public AObject {
   std::vector<NetworkConnection*> connections;
   std::vector<PacketProcessor*> packetProcessors;
   Tuner* tuner;
+
+  /* Contains all local, exportable GameObjects known to the assembly. */
+  std::set<GameObject*> knownObjects;
 
   ///Not implemented, do not use
   NetworkAssembly(const NetworkAssembly&);

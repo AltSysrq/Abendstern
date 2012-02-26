@@ -58,10 +58,13 @@ void NetworkAssembly::setFieldSize(float w, float h) throw() {
     connections[i]->setFieldSize(w,h);
 }
 
-void NetworkAssembly::objectAdded(GameObject*) throw() {
-  //TODO
+void NetworkAssembly::objectAdded(GameObject* go) throw() {
+  if (!go->isExportable || go->isRemote)
+    return;
+
+  knownObjects.insert(go);
 }
 
-void NetworkAssembly::objectRemoved(GameObject*) throw() {
-  //TODO
+void NetworkAssembly::objectRemoved(GameObject* go) throw() {
+  knownObjects.erase(go);
 }
