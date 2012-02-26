@@ -80,9 +80,6 @@ private:
   //Next sequence numbers
   seq_t nextOutSeq;
 
-  //Unique Gerät number mapping
-  typedef std::map<geraet_num,InputNetworkGeraet*> geraete_t;
-  geraete_t geraete;
   //Local to mirror object mapping
   typedef std::map<GameObject*,GameObject*> objmap_t;
   objmap_t objects;
@@ -156,12 +153,6 @@ public:
   virtual void process(const Antenna::endpoint& source,
                        Antenna* antenna, Tuner* tuner,
                        const byte* data, unsigned len) noth;
-
-  /**
-   * Returns the most recently created input Gerät with the given Gerät number.
-   * Returns NULL if there is no such Gerät.
-   */
-  InputNetworkGeraet* getGeraetByNum(geraet_num) noth;
 
   /**
    * Registers the given Gerät creator, returning the Gerät number

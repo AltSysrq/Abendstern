@@ -149,10 +149,6 @@ noth {
   }
 }
 
-InputNetworkGeraet* NetworkConnection::getGeraetByNum(geraet_num num) noth {
-  return geraete[num];
-}
-
 NetworkConnection::seq_t NetworkConnection::seq() noth {
   //Check for network collapse
   if (locked[nextOutSeq]) {
