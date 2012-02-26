@@ -23,7 +23,7 @@ using namespace std;
 
 AIM_VetoFire::AIM_VetoFire(AIControl* c, const Setting& s)
 : AIModule(c),
-  trials(s.exists("trials")? s["trials"] : 64)
+  trials(s.exists("trials")? s["trials"] : 16)
 {
 }
 
