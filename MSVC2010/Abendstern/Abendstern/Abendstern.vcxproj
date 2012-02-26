@@ -240,6 +240,7 @@
     <ClInclude Include="..\..\..\src\control\ai\mod_attack\aim_basic_aim.hxx" />
     <ClInclude Include="..\..\..\src\control\ai\mod_attack\aim_fire_weapon.hxx" />
     <ClInclude Include="..\..\..\src\control\ai\mod_attack\aim_select_weapon.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_attack\aim_veto_fire.hxx" />
     <ClInclude Include="..\..\..\src\control\ai\mod_attack\aim_weapon_level.hxx" />
     <ClInclude Include="..\..\..\src\control\ai\mod_core\aim_idle.hxx" />
     <ClInclude Include="..\..\..\src\control\ai\mod_core\aim_procedure.hxx" />
@@ -252,6 +253,7 @@
     <ClInclude Include="..\..\..\src\control\ai\mod_navigation\aim_nav_to_target.hxx" />
     <ClInclude Include="..\..\..\src\control\ai\mod_navigation\aim_park.hxx" />
     <ClInclude Include="..\..\..\src\control\ai\mod_navigation\aim_run_away_simple.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_state\aim_check_has_weapons.hxx" />
     <ClInclude Include="..\..\..\src\control\ai\mod_state\aim_detect_overlap.hxx" />
     <ClInclude Include="..\..\..\src\control\ai\mod_state\aim_edge_detect.hxx" />
     <ClInclude Include="..\..\..\src\control\ai\mod_state\aim_goto.hxx" />
@@ -320,6 +322,7 @@
     <ClInclude Include="..\..\..\src\net\network_connection.hxx" />
     <ClInclude Include="..\..\..\src\net\network_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\network_test.hxx" />
+    <ClInclude Include="..\..\..\src\net\object_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\packet_processor.hxx" />
     <ClInclude Include="..\..\..\src\net\seq_text_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\synchronous_control_geraet.hxx" />
@@ -451,6 +454,7 @@
     <ClCompile Include="..\..\..\src\control\ai\mod_attack\aim_basic_aim.cxx" />
     <ClCompile Include="..\..\..\src\control\ai\mod_attack\aim_fire_weapon.cxx" />
     <ClCompile Include="..\..\..\src\control\ai\mod_attack\aim_select_weapon.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_attack\aim_veto_fire.cxx" />
     <ClCompile Include="..\..\..\src\control\ai\mod_attack\aim_weapon_level.cxx" />
     <ClCompile Include="..\..\..\src\control\ai\mod_core\aim_idle.cxx" />
     <ClCompile Include="..\..\..\src\control\ai\mod_core\aim_procedure.cxx" />
@@ -463,6 +467,7 @@
     <ClCompile Include="..\..\..\src\control\ai\mod_navigation\aim_nav_to_target.cxx" />
     <ClCompile Include="..\..\..\src\control\ai\mod_navigation\aim_park.cxx" />
     <ClCompile Include="..\..\..\src\control\ai\mod_navigation\aim_run_away_simple.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_state\aim_check_has_weapons.cxx" />
     <ClCompile Include="..\..\..\src\control\ai\mod_state\aim_detect_overlap.cxx" />
     <ClCompile Include="..\..\..\src\control\ai\mod_state\aim_edge_detect.cxx" />
     <ClCompile Include="..\..\..\src\control\ai\mod_state\aim_goto.cxx" />
@@ -529,6 +534,7 @@
     <ClCompile Include="..\..\..\src\net\network_assembly.cxx" />
     <ClCompile Include="..\..\..\src\net\network_connection.cxx" />
     <ClCompile Include="..\..\..\src\net\network_test.cxx" />
+    <ClCompile Include="..\..\..\src\net\object_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\seq_text_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\synchronous_control_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\text_message_geraet.cxx" />
