@@ -1,7 +1,6 @@
 verbatimh {
 }
 verbatimc {
-  #include "object_geraet.hxx"
   #include "src/sim/game_object.hxx"
   #include "src/ship/everything.hxx"
   #include "src/weapon/energy_charge.hxx"
@@ -18,7 +17,7 @@ prototype GameObject {
     extract { vx = X->vx; }
     update { X->vx = vx; }
     compare {{
-      float delta = fabs(x_vx - y_vx);
+      float delta = fabs(x.vx - y.vx);
       //Consider 1 screen/sec to be too much at 10 screens
       NEAR += delta*10000;
       FAR += delta*10000;
@@ -28,7 +27,7 @@ prototype GameObject {
     extract { vy = X->vy; }
     update { X->vy = vy; }
     compare {{
-      float delta = fabs(x_vy - y_vy);
+      float delta = fabs(x.vy - y.vy);
       NEAR += delta*10000;
       FAR += delta*10000;
     }}
@@ -37,7 +36,7 @@ prototype GameObject {
     extract { x = X->x; }
     update { X->x = max(0.0f, min(field->width, x + T*vx)); }
     compare {{
-      float delta = fabs(x_x - y_x);
+      float delta = fabs(x.x - y.x);
       NEAR += delta*32;
       FAR += delta*32;
     }}
@@ -46,17 +45,17 @@ prototype GameObject {
     extract { y = X->y; }
     update { X->y = max(0.0f, min(field->height, y + T*vy)); }
     compare {{
-      float delta = fabs(x_y + y_y);
+      float delta = fabs(x.y + y.y);
       NEAR += delta*32;
-      FAR += delta*32
+      FAR += delta*32;
     }}
   }
   str 128 tag {
     extract { strncpy(tag, X->tag.c_str(), sizeof(tag-1)); }
-    update { if (!X->ignoreRemoteTag) X->tag = tag; }
-    post-set { if (!X->ignoreRemoteTag) X->tag = tag; }
+    update { if (!X->ignoreNetworkTag) X->tag = tag; }
+    post-set { if (!X->ignoreNetworkTag) X->tag = tag; }
     compare {
-      if (strcmp(x_tag, y_tag)) return true; //Must send update
+      if (strcmp(x.tag, y.tag)) return true; //Must send update
     }
   }
 }
@@ -71,7 +70,6 @@ type EnergyCharge {
   }
   float theta {
     extract { theta = X->theta; }
-    update { X->theta = theat; }
   }
 
   bit 1 exploded {

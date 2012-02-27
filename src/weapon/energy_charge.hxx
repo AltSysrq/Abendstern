@@ -24,6 +24,9 @@ class Ship;
  * Its strength is represented by colour, which is magenta at 100% and red near 0%.
  */
 class EnergyCharge: public GameObject {
+  friend class INO_EnergyCharge;
+  friend class ENO_EnergyCharge;
+
   private:
   //0..1
   const Ship * const parent;
@@ -36,7 +39,8 @@ class EnergyCharge: public GameObject {
   unsigned blame;
 
   //For use by net code
-  EnergyCharge(GameField* field, const Ship* par, float x, float y, float vx, float vy, float _theta, float _inten);
+  EnergyCharge(GameField* field, float x, float y, float vx, float vy,
+               float _theta, float _inten);
 
   public:
   /** Constructs a new EnergyCharge with the given parms.

@@ -130,9 +130,11 @@ EnergyCharge::EnergyCharge(GameField* field, const Ship* par, float _x, float _y
   initVAO();
 }
 
-EnergyCharge::EnergyCharge(GameField* field, const Ship* par, float x, float y, float vx, float vy, float _theta, float _inten)
-: GameObject(field, x, y, vx, vy), parent(par), intensity(_inten), theta(_theta),
-  tcos(cos(theta)), tsin(sin(theta)), exploded(false), blame(par->blame)
+EnergyCharge::EnergyCharge(GameField* field, float x, float y,
+                           float vx, float vy, float _theta, float _inten)
+: GameObject(field, x, y, vx, vy), parent(NULL),
+  intensity(_inten), theta(_theta),
+  tcos(cos(theta)), tsin(sin(theta)), exploded(false), blame(-1)
 {
   classification = GameObject::LightWeapon;
   collisionRectangle.radius=EC_CRRAD;

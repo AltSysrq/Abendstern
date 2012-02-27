@@ -17,7 +17,7 @@ endif
 COMMONCXXFLAGS=-Wall -I./config $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PNG_CFLAGS) -I/usr/include/tcl8.5
 
 ./tcl_iface/bridge.cxx: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-	./tcl_iface/generate.tcl tcl_iface/definition.tcl
+	./tcl_iface/generate.tcl
 ./tcl_iface/xxx/x0.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 ./tcl_iface/xxx/x1.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 ./tcl_iface/xxx/x2.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
@@ -34,6 +34,9 @@ COMMONCXXFLAGS=-Wall -I./config $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PN
 ./tcl_iface/xxx/xd.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 ./tcl_iface/xxx/xe.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 ./tcl_iface/xxx/xf.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+
+./net/xxx/xnetobj.cxx: ./net/definition.tcl ./net/generate.tcl
+	./net/generate.tcl
 
 bin_PROGRAMS=$(GL14PROG) $(GL21PROG) $(GL32PROG)
 COMMONLDADD=$(SDL_LIBS) $(SDLIMG_LIBS) $(GL_LIBS) $(PNG_LIBS)
@@ -217,6 +220,7 @@ COMMONSOURCES= \
 ./net/block_geraet.cxx \
 ./net/object_geraet.cxx \
 ./net/network_test.cxx \
+./net/xxx/xnetobj.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \
 ./secondary/frame_recorder.cxx \
