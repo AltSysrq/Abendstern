@@ -1,5 +1,4 @@
 verbatimh {
-  #include "object_geraet.hxx"
 }
 verbatimc {
   #include "object_geraet.hxx"
@@ -18,43 +17,44 @@ prototype GameObject {
   float vx {
     extract { vx = X->vx; }
     update { X->vx = vx; }
-    compare {
+    compare {{
       float delta = fabs(x_vx - y_vx);
       //Consider 1 screen/sec to be too much at 10 screens
-      near += delta*10000;
-      far += delta*10000;
-    }
+      NEAR += delta*10000;
+      FAR += delta*10000;
+    }}
   }
   float vy {
     extract { vy = X->vy; }
     update { X->vy = vy; }
-    compare {
+    compare {{
       float delta = fabs(x_vy - y_vy);
-      near += delta*10000;
-      far += delta*10000;
-    }
+      NEAR += delta*10000;
+      FAR += delta*10000;
+    }}
   }
   float x {
     extract { x = X->x; }
     update { X->x = max(0.0f, min(field->width, x + T*vx)); }
-    compare {
+    compare {{
       float delta = fabs(x_x - y_x);
-      near += delta*32;
-      far += delta*32;
-    }
+      NEAR += delta*32;
+      FAR += delta*32;
+    }}
   }
   float y {
     extract { y = X->y; }
     update { X->y = max(0.0f, min(field->height, y + T*vy)); }
-    compare {
+    compare {{
       float delta = fabs(x_y + y_y);
-      near += delta*32;
-      far += delta*32
-    }
+      NEAR += delta*32;
+      FAR += delta*32
+    }}
   }
-  string 128 tag {
+  str 128 tag {
     extract { strncpy(tag, X->tag.c_str(), sizeof(tag-1)); }
     update { if (!X->ignoreRemoteTag) X->tag = tag; }
+    post-set { if (!X->ignoreRemoteTag) X->tag = tag; }
     compare {
       if (strcmp(x_tag, y_tag)) return true; //Must send update
     }
@@ -83,7 +83,7 @@ type EnergyCharge {
     }
   }
 
-  constructor {
+  construct {
      X = new EnergyCharge(field, x, y, vx, vy, theta, intensity);
   }
 }
