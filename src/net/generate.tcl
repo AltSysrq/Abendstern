@@ -38,6 +38,8 @@
 #   decode CODE
 #     execute CODE C++ code after decoding; variables:
 #       DATA    byte*const, input pointer
+#   validate CODE
+#     execute immediately after decoding
 #   extract CODE
 #     run this C++ code before encoding, with X as the operating object
 #   update CODE
@@ -57,6 +59,16 @@
 #     The C++ code may modify the variables "near" and "far"; if near exceeds
 #     1 after comparison, or far exceeds the distance, it is determined that
 #     the object must be updated.
+#   default MULT
+#     If specified, extract, update, and compare are automatically set (if they
+#     are not otherwise present) to:
+#       extract { NAME = X->NAME; }
+#       update  { X->NAME = NAME; }
+#       compare {{
+#         float delta = fabs(x.NAME-y.NAME);
+#         FAR += delta*MULT;
+#         NEAR += delta*MULT;
+#       }}
 #
 # The following data rules are available:
 #   extension SECTION
@@ -72,7 +84,10 @@
 #     PARMS: common parms, minus encode and decode
 #   float NAME PARMS
 #     Defines a floating-point bound to variable NAME.
-#     PARMS: common parms, minus encode and decode
+#     PARMS: common parms, minus encode and decode, plus min and max.
+#     If no custom validator is given, an automatic one will be generated which
+#     ensures that the value is non-NaN and between min and max, inclusive
+#     (which default to -1e9 and +1e9, respectively).
 #   void PARMS
 #     Does nothing but hold PARMS, which are the common parms (minus encode
 #     and decode).
@@ -197,7 +212,7 @@ proc type {name contents} {
   # Setup for evaluation
   set byteOffset 0
   set bitOffset 0
-  set elemets [list]
+  set elements [list]
   catch { unset typeConstructor }
   # Evaluate contents
   namespace eval :: $contents
@@ -251,8 +266,10 @@ void INO_${name}::update() throw() {
 
 $name* INO_${name}::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
+  const unsigned T = cxn->getLatency();
+  bool DESTROY;
   [cxxj declaration]
-  [cxxj decode]
+  [cxxj decode validate]
   $name* X;
   $typeConstructor
   [cxxj post-set]
@@ -264,7 +281,7 @@ const throw () {
   bool DESTROY = false;
   const unsigned T = cxn->getLatency();
   [cxxj declaration]
-  [cxxj decode update]
+  [cxxj decode validate update]
   return DESTROY;
 }
 
@@ -383,10 +400,24 @@ proc int-enc {signed sz name} {
 }
 
 # Adds the given parms to current
-proc eval-parms parms {
+proc eval-parms {parms {name {}}} {
   global current
   foreach {k v} $parms {
     dict set current $k $v
+  }
+
+  if {[dict exists $current default]} {
+    set mult [dict get $current default]
+    if {![dict exists $current update]} {
+      dict set current update "X->$name = $name;"
+    }
+    if {![dict exists $current extract]} {
+      dict set current extract "$name = X->$name;"
+    }
+    if {![dict exists $current compare]} {
+      dict set current comare \
+      "{float d=fabs(x.$name-y.$name)*$mult;FAR+=d;NEAR+=d;}"
+    }
   }
 }
 
@@ -407,7 +438,7 @@ proc elt-integer {sign sz name parms} {
   aliases $name
   int-decl $sign $sz $name
   int-enc $sign $sz $name
-  eval-parms $parms
+  eval-parms $parms $name
   incr byteOffset $sz
 }
 
@@ -428,7 +459,15 @@ proc float {name {parms {}} {save yes}} {
   dict set current declaration "float $name;"
   dict set current encode "io::write_c(&[data], $name);"
   dict set current decode "io::read_c(&[data], $name);"
-  eval-parms $parms
+  dict set current min -1.0e9
+  dict set current max +1.0e9
+  eval-parms $parms $name
+  if {![dict exists $current validate]} {
+    dict set current validate \
+"if ($name != $name) $name = [dict get $current min];
+ else if ($name < [dict get $current min]) $name = [dict get $current min];
+ else if ($name > [dict get $current max]) $name = [dict get $current max];"
+  }
   incr byteOffset 4
   if {$save} save
 }
@@ -468,7 +507,7 @@ proc bit {sz name {parms {}} {save yes}} {
   # In encoding, first zero out the bits we use, then write to them.
   dict set current encode \
   "[data] &= ~($mask<<$shift); [data] |= ($name & $mask) << $shift;"
-  eval-parms $parms
+  eval-parms $parms $name
 
   # If a type parm was given, replace the declaration
   if {[dict exists $current type]} {
@@ -493,7 +532,7 @@ proc str {maxlen name {parms {}} {save yes}} {
   "strncpy($name, (const char*)&[data], $maxlen-1); $name\[$maxlen-1]=0;"
   dict set current encode \
   "strncpy((char*)&[data], $name, $maxlen);"
-  eval-parms $parms
+  eval-parms $parms $name
   incr byteOffset $maxlen
 
   if {$save} save
@@ -508,7 +547,7 @@ proc dat {len name {parms {}} {save yes}} {
   dict set current declaration "byte $name\[$maxlen\];"
   dict set current decode "memcpy($name, &[data], $len);"
   dict set current encode "memcpy(&[data], $name, $len);"
-  eval-parms $parms
+  eval-parms $parms $name
   incr byteOffset $len
 
   if {$save} save

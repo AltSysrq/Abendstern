@@ -25,6 +25,8 @@ class Ship;
  * the mothership).
  */
 class MagnetoBomb: public GameObject {
+  friend class INO_MagnetoBomb;
+  friend class ENO_MagnetoBomb;
   private:
   float power;
   float coreRadius;
@@ -91,7 +93,8 @@ class MagnetoBomb: public GameObject {
    * @param g Subclass only --- overrides green component of colour
    * @param b Subclass only --- overrides blue component of colour
    */
-  MagnetoBomb(GameField* field, float x, float y, float vx, float vy, float power, Ship* parent, float subMult=1,
+  MagnetoBomb(GameField* field, float x, float y, float vx, float vy,
+              float power, Ship* parent, float subMult=1,
               float r=1, float g=1, float b=1);
   virtual bool update(float)  noth HOT;
   virtual void draw() noth;
