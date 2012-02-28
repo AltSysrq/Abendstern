@@ -25,10 +25,12 @@ info	{
   MagnetoBomb	3
  }
  sharing_enabled	t
- fileid	205
+ fileid	618
  ownerid	1
  needs_uploading	f
- verification_signature	1823590627
+ verification_signature	1911332503
+ original_filename	"hangar/1/drill.ship",
+ guid	"38a163e9-1505-458b-56d6-bdf0c3118063",
 }
 cells	{
  AAAA	{

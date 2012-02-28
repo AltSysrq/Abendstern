@@ -11,10 +11,12 @@ info	{
   EnergyCharge	5
  }
  sharing_enabled	t
- fileid	225
+ fileid	640
  ownerid	1
  needs_uploading	f
- verification_signature	1547561631
+ verification_signature	1911332503
+ original_filename	"hangar/1/haifisc0.ship",
+ guid	"0ae8c37c-8ce3-4795-52bf-9b4dccb21cf2",
 }
 cells	{
  konnichiwa	{

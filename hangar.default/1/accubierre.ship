@@ -11,10 +11,12 @@ info	{
  }
  sharing_enabled	t
  author	"AltSysrq",
- fileid	200
+ fileid	610
  ownerid	1
  needs_uploading	f
- verification_signature	1826952145
+ verification_signature	1911332503
+ original_filename	"hangar/1/accubierre.ship",
+ guid	"d436841f-5aa9-4706-5aba-8397a9a2632d",
 }
 cells	{
  AAAA	{

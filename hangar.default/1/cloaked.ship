@@ -11,10 +11,12 @@ info	{
   Monophase	1
  }
  sharing_enabled	t
- fileid	211
+ fileid	626
  ownerid	1
  needs_uploading	f
  verification_signature	651262396
+ original_filename	"hangar/1/cloaked.ship",
+ guid	"06fb35c4-f5bc-4679-444e-b7569880b369",
 }
 cells	{
  konnichiwa	{

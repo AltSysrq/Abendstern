@@ -13,10 +13,12 @@ info	{
   PlasmaBurst	6
   SGBomb	5
  }
- fileid	216
+ fileid	632
  ownerid	1
  needs_uploading	f
- verification_signature	1389232450
+ verification_signature	1623901118
+ original_filename	"hangar/1/leesreve.ship",
+ guid	"3612da6b-e3e3-4063-67af-e8a0612ee8e2",
 }
 cells	{
  ryindeiye	{

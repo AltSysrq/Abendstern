@@ -21,9 +21,11 @@ info	{
  }
  verification_signature	292137596
  sharing_enabled	t
- fileid	258
+ fileid	678
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/viking.ship",
+ guid	"ad35d3e2-c6e8-41e0-6b2b-33a1b5370bc0",
 }
 cells	{
  AAAA	{

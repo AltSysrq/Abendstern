@@ -59,9 +59,11 @@ info	{
  }
  verification_signature	110610021
  sharing_enabled	t
- fileid	241
+ fileid	658
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/enterprise.ship",
+ guid	"47b902e0-77be-4d3e-6427-089677f71035",
 }
 cells	{
  AAAA	{

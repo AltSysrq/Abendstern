@@ -45,6 +45,8 @@ class AsyncAckGeraet;
 class NetworkConnection: public PacketProcessor {
   friend class SynchronousControlGeraet;
   friend class LatDiscGeraet;
+  friend class NetworkAssembly;
+
 public:
   ///Type to use to identify channels
   typedef unsigned short channel;
@@ -80,13 +82,6 @@ private:
   //Next sequence numbers
   seq_t nextOutSeq;
 
-  //Unique Gerät number mapping
-  typedef std::map<geraet_num,InputNetworkGeraet*> geraete_t;
-  geraete_t geraete;
-  //Local to mirror object mapping
-  typedef std::map<GameObject*,GameObject*> objmap_t;
-  objmap_t objects;
-
   //Map Gerät numbers to their creators
   typedef std::map<geraet_num, geraet_creator> geraetNumMap_t;
   static geraetNumMap_t* geraetNumMap;
@@ -115,6 +110,26 @@ private:
   //Sequence numbers which are marked as "locked"
   //(see lock() and release())
   std::bitset<65536> locked;
+
+  //Contains GameObject*s that are candidates for exportation.
+  //That is, they are exportable, but have not yet been exported,
+  //either because they were just created, or because
+  //they are transient and are too far away to matter (and were
+  //recently moved back from ignoredExports).
+  std::deque<GameObject*> candidateExports;
+  //Contains GameObject*s that have been exported to the remote peer.
+  std::set<GameObject*> actualExports;
+  //Contains transient, exportable GameObject*s that were not exported
+  //due to distance from all of the remote peer's references.
+  //This periodically emptied back into candidateExports.
+  std::set<GameObject*> ignoredExports;
+
+  //Contains remote GameObject*s that are used as a reference point
+  //for determining whether to export transient objects.
+  std::vector<GameObject*> remoteReferences;
+
+  //The time since we last emptied ignoredExports into candidateExports.
+  unsigned timeSinceRetriedTransients;
 
 public:
   ///The endpoint of the remote peer
@@ -156,12 +171,6 @@ public:
   virtual void process(const Antenna::endpoint& source,
                        Antenna* antenna, Tuner* tuner,
                        const byte* data, unsigned len) noth;
-
-  /**
-   * Returns the most recently created input Gerät with the given Gerät number.
-   * Returns NULL if there is no such Gerät.
-   */
-  InputNetworkGeraet* getGeraetByNum(geraet_num) noth;
 
   /**
    * Registers the given Gerät creator, returning the Gerät number
@@ -251,6 +260,32 @@ public:
     field.width = w;
     field.height = h;
   }
+
+  /**
+   * Marks the given GameObject*, which should be remote comming from this
+   * peer, as a reference. References are used to determine the "distance"
+   * for purpose of exporting transients and rate of sending updates.
+   */
+  void setReference(GameObject*) throw();
+  /**
+   * Makes the given GameObject* as not a reference, if it was one already.
+   *
+   * @see setReference()
+   */
+  void unsetReference(GameObject*) throw();
+
+  /**
+   * Returns the "distance" of the given GameObject*. This is the minimum
+   * distance squared between the object and any reference, or INFINITY if
+   * there are no references.
+   */
+  float distanceOf(const GameObject*) const throw();
+
+private:
+  //Called by NetworkAssembly when an exportable object is added
+  void objectAdded(GameObject*) throw();
+  //Called by NetworkAssembly when ANY object is removed
+  void objectRemoved(GameObject*) throw();
 };
 
 #endif /* NETWORK_CONNECTION_HXX_ */

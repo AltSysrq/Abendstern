@@ -99,7 +99,6 @@ MagnetoBomb::MagnetoBomb(GameField* field, float x, float y, float vx, float vy,
 
   classification = GameObject::HeavyWeapon;
   isExportable=true;
-  generatesUpdates=true;
 }
 
 bool MagnetoBomb::update(float time) noth {

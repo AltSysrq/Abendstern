@@ -14,8 +14,10 @@ info	{
   PlasmaBurst	10
   SGBomb	5
  }
- fileid	488
+ fileid	594
  verification_signature	1389232450
+ original_filename	"hangar/1/hummingb.ship",
+ guid	"0e0abe6f-a973-4bb8-5fd9-e8e41328d999",
 }
 cells	{
  konnichiwa	{

@@ -17,11 +17,13 @@ info	{
  energy_levels	{
   EnergyCharge	5
  }
- verification_signature	1867266749
  sharing_enabled	t
- fileid	240
+ fileid	657
  ownerid	1
  needs_uploading	f
+ verification_signature	1911332503
+ original_filename	"hangar/1/x04.ship",
+ guid	"9148d085-9050-4f7a-4744-abdd59ba98bf",
 }
 cells	{
  AAAA	{

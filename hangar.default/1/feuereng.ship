@@ -32,10 +32,12 @@ info	{
   Missile	2
  }
  sharing_enabled	t
- fileid	243
+ fileid	660
  ownerid	1
  needs_uploading	f
  verification_signature	76958785
+ original_filename	"hangar/1/feuereng.ship",
+ guid	"c3a5b117-a54b-4aff-70be-846a59ccc3e6",
 }
 cells	{
  AAAA	{

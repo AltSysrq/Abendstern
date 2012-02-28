@@ -75,9 +75,11 @@ info	{
  }
  verification_signature	2040869292
  sharing_enabled	t
- fileid	478
+ fileid	651
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/vogelgru.ship",
+ guid	"af0710a6-712f-4d25-4ba4-85e5d948cc43",
 }
 cells	{
  AAAA	{

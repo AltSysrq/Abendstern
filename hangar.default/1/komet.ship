@@ -15,10 +15,12 @@ info	{
   EnergyCharge	5
  }
  sharing_enabled	t
- fileid	233
+ fileid	647
  ownerid	1
  needs_uploading	f
- verification_signature	1323156158
+ verification_signature	2136416760
+ original_filename	"hangar/1/komet.ship",
+ guid	"f4481913-babb-4c9f-6f48-cb96f7e0b06c",
 }
 cells	{
  AAAA	{

@@ -17,10 +17,12 @@ info	{
   MagnetoBomb	1
  }
  sharing_enabled	t
- verification_signature	2063503575
- fileid	234
+ fileid	648
  ownerid	1
  needs_uploading	f
+ verification_signature	2136416760
+ original_filename	"hangar/1/player0.ship",
+ guid	"ed8eef5f-b1aa-4ea4-6cc9-a39c0fba4a0e",
 }
 cells	{
  AAAA	{

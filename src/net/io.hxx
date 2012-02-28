@@ -52,6 +52,15 @@ namespace io {
     dst += sizeof(src);
   }
 
+  template<typename D>
+  inline void read_c(const byte* src, D& dst) {
+    bcpy(&dst, src, sizeof(dst));
+  }
+  template<typename D>
+  inline void write_c(byte* dst, const D& src) {
+    bcpy(dst, &src, sizeof(src));
+  }
+
   static inline void read24(const byte*& src, Uint32& dst) {
     bcpy(&dst, src, 3);
     src += 3;
@@ -59,6 +68,13 @@ namespace io {
   static inline void write24(byte*& dst, Uint32 src) {
     bcpy(dst, &src, 3);
     dst += 3;
+  }
+
+  static inline void read24_c(const byte* src, Uint32& dst) {
+    bcpy(&dst, src, 3);
+  }
+  static inline void write24_c(byte* dst, Uint32 src) {
+    bcpy(dst, &src, 3);
   }
 
   static inline void reads(const byte*& src, const byte*const end,

@@ -10,11 +10,13 @@ info	{
  energy_levels	{
   EnergyCharge	10
  }
- verification_signature	1474576536
  sharing_enabled	t
- fileid	230
+ fileid	644
  ownerid	1
  needs_uploading	f
+ verification_signature	1911332503
+ original_filename	"hangar/1/schwertw.ship",
+ guid	"f8d0ba4d-7467-4c57-4002-e0d00db6863d",
 }
 cells	{
  konnichiwa	{

@@ -73,7 +73,6 @@ Missile::Missile(GameField* field, int lvl, float x, float y, float vx, float vy
   colrect.radius = RADIUS;
 
   isExportable=true;
-  generatesUpdates=true;
 }
 
 //Networking constructor
@@ -84,7 +83,6 @@ Missile::Missile(GameField* field, int lvl, float x, float y, float vx, float vy
   level(lvl), timeAlive(ta), exploded(false), blame(par? par->blame : 0xFFFFFF)
 {
   isExportable=true;
-  generatesUpdates=true;
   isRemote=true;
   includeInCollisionDetection=false;
   decorative=true;

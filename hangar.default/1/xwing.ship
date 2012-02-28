@@ -1,5 +1,5 @@
 info	{
- name	"X-Wing (!)",
+ name	"X-Wing",
  alliance	["__ rebellion",]
  version	0
  author	"AltSysrq",
@@ -23,10 +23,12 @@ info	{
   MagnetoBomb	2
  }
  sharing_enabled	t
- fileid	239
+ verification_signature	1375564954
+ fileid	655
  ownerid	1
  needs_uploading	f
- verification_signature	1663964460
+ original_filename	"hangar/1/xwing.ship",
+ guid	"d5b494c1-3a41-47ce-7625-bd764540f527",
 }
 cells	{
  AAAA	{

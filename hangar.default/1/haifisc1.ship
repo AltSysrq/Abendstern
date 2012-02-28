@@ -23,8 +23,10 @@ info	{
  sharing_enabled	t
  ownerid	1
  needs_uploading	f
- fileid	492
- verification_signature	1210395665
+ fileid	665
+ verification_signature	1911332503
+ original_filename	"hangar/1/haifisc1.ship",
+ guid	"9b6cce5d-7c06-45f8-7e75-db5e440e5d2e",
 }
 cells	{
  AAAA	{

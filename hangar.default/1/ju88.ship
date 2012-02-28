@@ -51,10 +51,12 @@ info	{
   SGBomb	3
  }
  sharing_enabled	t
- fileid	246
+ fileid	663
  ownerid	1
  needs_uploading	f
  verification_signature	101764475
+ original_filename	"hangar/1/ju88.ship",
+ guid	"29d1ff08-1a9c-40a4-6a45-3072495badc3",
 }
 cells	{
  AAAA	{

@@ -55,20 +55,28 @@ if {[llength $ourShips]} {
         if {![$ exists $ship.info.fileid]} {
           $ addi $ship.info fileid 0
         }
+        if {![$ exists $ship.info.original_filename]} {
+          $ adds $ship.info original_filename [shipName2Path $shipname]
+        }
         if {$::abnet::username != [$ str $ship.info.author]} {
           $ sets $ship.info.author $::abnet::username
           $ setb $ship.info.needs_uploading yes
+        }
+        if {![$ exists $ship.info.guid]} {
+          $ adds $ship.info guid [::uuid::uuid generate]
         }
 
         if {[$ bool $ship.info.needs_uploading]} {
           # Send to server
           $ sync $ship
-          set filename [shipName2Path $shipname]
-          ::abnet::putf [file tail $filename] $filename [$ bool $ship.info.sharing_enabled]
+          set filename [shipMount2Path $ship]
+          set netfn "[$ str $ship.info.guid].ship"
+          ::abnet::putf $netfn $filename \
+              [$ bool $ship.info.sharing_enabled]
           $ setb $ship.info.needs_uploading no
           $ sync $ship
           set lastUploadedShip $ship
-          set lastUploadedShipFN [file tail $filename]
+          set lastUploadedShipFN $netfn
         }
       }
       return [expr {$ourShipIx * 100 / [llength $ourShips]}]

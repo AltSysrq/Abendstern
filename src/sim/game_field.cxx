@@ -21,12 +21,14 @@
 #include "src/graphics/matops.hxx"
 #include "src/graphics/glhelp.hxx"
 #include "src/graphics/asgi.hxx"
+#include "src/net/network_assembly.hxx"
 #include "src/exit_conditions.hxx"
 using namespace std;
 
 GameField::GameField(float w, float h)
 : fieldClock(0), fieldClockMicro(0), width(w), height(h),
-  effects(&nullEffectsHandler), perfectRadar(false)
+  effects(&nullEffectsHandler), perfectRadar(false),
+  networkAssembly(NULL)
 {
   nw=(int)ceil(w);
   nh=(int)ceil(h);
@@ -322,14 +324,11 @@ void GameField::draw() {
 }
 
 void GameField::add(GameObject* go) noth {
-  //objects.push_back(go);
-  //notifyCreation(go);
   toInsert.push_back(go);
 }
 
 void GameField::addBegin(GameObject* go)  noth {
   toInsert.push_back(go);
-  //We call notifyCreation() when we actually insert it
 }
 
 void GameField::add(Explosion* go) noth {
@@ -358,11 +357,15 @@ void GameField::clear() noth {
 
 void GameField::inject(GameObject* go) noth {
   if (!isInCollisionSubcycle
-  ||  (go->isDecorative() && !isUpdatingDecorative)) add(go); //Nothing special to do
+  ||  (go->isDecorative() && !isUpdatingDecorative))
+    add(go); //Nothing special to do
   else toInject.push_back(go);
 }
 
 unsigned GameField::doAdd(GameObject* go) noth {
+  if (networkAssembly)
+    networkAssembly->objectAdded(go);
+
   float rad=go->getRadius();
   go->ci.left=go->x-rad;
   go->ci.right=go->x+rad;

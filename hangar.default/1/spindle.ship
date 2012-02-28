@@ -14,9 +14,11 @@ info	{
  }
  sharing_enabled	t
  verification_signature	1928888996
- fileid	215
+ fileid	630
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/spindle.ship",
+ guid	"23c45895-537e-4697-4c8f-4879848e491e",
 }
 cells	{
  AAAA	{

@@ -12,10 +12,12 @@ info	{
  }
  sharing_enabled	t
  author	"AltSysrq",
- fileid	224
+ fileid	639
  ownerid	1
  needs_uploading	f
- verification_signature	1556714069
+ verification_signature	1911332503
+ original_filename	"hangar/1/defiant.ship",
+ guid	"a6009ac9-2545-4951-51bd-adc313d7986a",
 }
 cells	{
  AAAA	{

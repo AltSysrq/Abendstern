@@ -11,10 +11,12 @@ info	{
   EnergyCharge	5
  }
  sharing_enabled	t
- fileid	260
+ fileid	680
  ownerid	1
  needs_uploading	f
- verification_signature	1323156158
+ verification_signature	2136416760
+ original_filename	"hangar/1/silberfi.ship",
+ guid	"75031433-4ee6-4d3b-7608-f43b198ba5ee",
 }
 cells	{
  konnichiwa	{

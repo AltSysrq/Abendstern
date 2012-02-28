@@ -219,6 +219,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-block_geraet.$(OBJEXT) \
 	abendsternuxgl14-object_geraet.$(OBJEXT) \
 	abendsternuxgl14-network_test.$(OBJEXT) \
+	abendsternuxgl14-xnetobj.$(OBJEXT) \
 	abendsternuxgl14-namegen.$(OBJEXT) \
 	abendsternuxgl14-light_trail.$(OBJEXT) \
 	abendsternuxgl14-frame_recorder.$(OBJEXT) \
@@ -422,6 +423,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-block_geraet.$(OBJEXT) \
 	abendsternuxgl21-object_geraet.$(OBJEXT) \
 	abendsternuxgl21-network_test.$(OBJEXT) \
+	abendsternuxgl21-xnetobj.$(OBJEXT) \
 	abendsternuxgl21-namegen.$(OBJEXT) \
 	abendsternuxgl21-light_trail.$(OBJEXT) \
 	abendsternuxgl21-frame_recorder.$(OBJEXT) \
@@ -623,6 +625,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-block_geraet.$(OBJEXT) \
 	abendsternuxgl32-object_geraet.$(OBJEXT) \
 	abendsternuxgl32-network_test.$(OBJEXT) \
+	abendsternuxgl32-xnetobj.$(OBJEXT) \
 	abendsternuxgl32-namegen.$(OBJEXT) \
 	abendsternuxgl32-light_trail.$(OBJEXT) \
 	abendsternuxgl32-frame_recorder.$(OBJEXT) \
@@ -978,6 +981,7 @@ COMMONSOURCES = \
 ./net/block_geraet.cxx \
 ./net/object_geraet.cxx \
 ./net/network_test.cxx \
+./net/xxx/xnetobj.cxx \
 ./secondary/namegen.cxx \
 ./secondary/light_trail.cxx \
 ./secondary/frame_recorder.cxx \
@@ -1304,6 +1308,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-xd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-xe.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-xf.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-xnetobj.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-abendstern.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-abstract_system_painter.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-acsgi.Po@am__quote@
@@ -1508,6 +1513,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-xd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-xe.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-xf.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-xnetobj.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-abendstern.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-abstract_system_painter.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-acsgi.Po@am__quote@
@@ -1712,6 +1718,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-xd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-xe.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-xf.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-xnetobj.Po@am__quote@
 
 .cxx.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -4232,6 +4239,20 @@ abendsternuxgl14-network_test.obj: ./net/network_test.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/network_test.cxx' object='abendsternuxgl14-network_test.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-network_test.obj `if test -f './net/network_test.cxx'; then $(CYGPATH_W) './net/network_test.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_test.cxx'; fi`
+
+abendsternuxgl14-xnetobj.o: ./net/xxx/xnetobj.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-xnetobj.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-xnetobj.Tpo -c -o abendsternuxgl14-xnetobj.o `test -f './net/xxx/xnetobj.cxx' || echo '$(srcdir)/'`./net/xxx/xnetobj.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-xnetobj.Tpo $(DEPDIR)/abendsternuxgl14-xnetobj.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/xxx/xnetobj.cxx' object='abendsternuxgl14-xnetobj.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-xnetobj.o `test -f './net/xxx/xnetobj.cxx' || echo '$(srcdir)/'`./net/xxx/xnetobj.cxx
+
+abendsternuxgl14-xnetobj.obj: ./net/xxx/xnetobj.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-xnetobj.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-xnetobj.Tpo -c -o abendsternuxgl14-xnetobj.obj `if test -f './net/xxx/xnetobj.cxx'; then $(CYGPATH_W) './net/xxx/xnetobj.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/xxx/xnetobj.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-xnetobj.Tpo $(DEPDIR)/abendsternuxgl14-xnetobj.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/xxx/xnetobj.cxx' object='abendsternuxgl14-xnetobj.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-xnetobj.obj `if test -f './net/xxx/xnetobj.cxx'; then $(CYGPATH_W) './net/xxx/xnetobj.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/xxx/xnetobj.cxx'; fi`
 
 abendsternuxgl14-namegen.o: ./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-namegen.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-namegen.Tpo -c -o abendsternuxgl14-namegen.o `test -f './secondary/namegen.cxx' || echo '$(srcdir)/'`./secondary/namegen.cxx
@@ -7089,6 +7110,20 @@ abendsternuxgl21-network_test.obj: ./net/network_test.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-network_test.obj `if test -f './net/network_test.cxx'; then $(CYGPATH_W) './net/network_test.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_test.cxx'; fi`
 
+abendsternuxgl21-xnetobj.o: ./net/xxx/xnetobj.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-xnetobj.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-xnetobj.Tpo -c -o abendsternuxgl21-xnetobj.o `test -f './net/xxx/xnetobj.cxx' || echo '$(srcdir)/'`./net/xxx/xnetobj.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-xnetobj.Tpo $(DEPDIR)/abendsternuxgl21-xnetobj.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/xxx/xnetobj.cxx' object='abendsternuxgl21-xnetobj.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-xnetobj.o `test -f './net/xxx/xnetobj.cxx' || echo '$(srcdir)/'`./net/xxx/xnetobj.cxx
+
+abendsternuxgl21-xnetobj.obj: ./net/xxx/xnetobj.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-xnetobj.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-xnetobj.Tpo -c -o abendsternuxgl21-xnetobj.obj `if test -f './net/xxx/xnetobj.cxx'; then $(CYGPATH_W) './net/xxx/xnetobj.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/xxx/xnetobj.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-xnetobj.Tpo $(DEPDIR)/abendsternuxgl21-xnetobj.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/xxx/xnetobj.cxx' object='abendsternuxgl21-xnetobj.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-xnetobj.obj `if test -f './net/xxx/xnetobj.cxx'; then $(CYGPATH_W) './net/xxx/xnetobj.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/xxx/xnetobj.cxx'; fi`
+
 abendsternuxgl21-namegen.o: ./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-namegen.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-namegen.Tpo -c -o abendsternuxgl21-namegen.o `test -f './secondary/namegen.cxx' || echo '$(srcdir)/'`./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-namegen.Tpo $(DEPDIR)/abendsternuxgl21-namegen.Po
@@ -9945,6 +9980,20 @@ abendsternuxgl32-network_test.obj: ./net/network_test.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-network_test.obj `if test -f './net/network_test.cxx'; then $(CYGPATH_W) './net/network_test.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_test.cxx'; fi`
 
+abendsternuxgl32-xnetobj.o: ./net/xxx/xnetobj.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-xnetobj.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-xnetobj.Tpo -c -o abendsternuxgl32-xnetobj.o `test -f './net/xxx/xnetobj.cxx' || echo '$(srcdir)/'`./net/xxx/xnetobj.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-xnetobj.Tpo $(DEPDIR)/abendsternuxgl32-xnetobj.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/xxx/xnetobj.cxx' object='abendsternuxgl32-xnetobj.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-xnetobj.o `test -f './net/xxx/xnetobj.cxx' || echo '$(srcdir)/'`./net/xxx/xnetobj.cxx
+
+abendsternuxgl32-xnetobj.obj: ./net/xxx/xnetobj.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-xnetobj.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-xnetobj.Tpo -c -o abendsternuxgl32-xnetobj.obj `if test -f './net/xxx/xnetobj.cxx'; then $(CYGPATH_W) './net/xxx/xnetobj.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/xxx/xnetobj.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-xnetobj.Tpo $(DEPDIR)/abendsternuxgl32-xnetobj.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/xxx/xnetobj.cxx' object='abendsternuxgl32-xnetobj.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-xnetobj.obj `if test -f './net/xxx/xnetobj.cxx'; then $(CYGPATH_W) './net/xxx/xnetobj.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/xxx/xnetobj.cxx'; fi`
+
 abendsternuxgl32-namegen.o: ./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-namegen.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-namegen.Tpo -c -o abendsternuxgl32-namegen.o `test -f './secondary/namegen.cxx' || echo '$(srcdir)/'`./secondary/namegen.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-namegen.Tpo $(DEPDIR)/abendsternuxgl32-namegen.Po
@@ -10500,23 +10549,26 @@ uninstall-am: uninstall-binPROGRAMS
 
 
 ./tcl_iface/bridge.cxx: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-	./tcl_iface/generate.tcl tcl_iface/definition.tcl
-./tcl_iface/xxx/x0.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x1.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x2.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x3.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x4.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x5.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x6.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x7.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x8.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x9.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xa.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xb.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xc.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xd.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xe.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xf.cxx: ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+	./tcl_iface/generate.tcl
+./tcl_iface/xxx/x0.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x1.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x2.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x3.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x4.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x5.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x6.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x7.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x8.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x9.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xa.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xb.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xc.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xd.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xe.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xf.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+
+./net/xxx/xnetobj.cxx: ./net/definition.tcl ./net/generate.tcl
+	./net/generate.tcl
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

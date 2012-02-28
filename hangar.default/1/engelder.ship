@@ -16,10 +16,12 @@ info	{
   Missile	3
   ParticleBeam	3
  }
- fileid	279
+ fileid	599
  ownerid	1
  needs_uploading	f
  verification_signature	1826350659
+ original_filename	"hangar/1/engelder.ship",
+ guid	"d8f275e7-e7e4-4420-593b-55780151ffd2",
 }
 cells	{
  konnichiwa	{

@@ -15,10 +15,12 @@ info	{
   EnergyCharge	7
  }
  sharing_enabled	t
- fileid	263
+ fileid	683
  ownerid	1
  needs_uploading	f
  verification_signature	99514042
+ original_filename	"hangar/1/reiseeng.ship",
+ guid	"75779665-b3c4-47d9-6ca2-09e736cb12ba",
 }
 cells	{
  konnichiwa	{

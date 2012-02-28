@@ -19,9 +19,11 @@ info	{
  }
  verification_signature	962325386
  sharing_enabled	t
- fileid	213
+ fileid	628
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/boson.ship",
+ guid	"07de922f-d2c2-41ad-472a-2c32231d99ab",
 }
 cells	{
  AAAA	{

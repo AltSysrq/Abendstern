@@ -30,9 +30,11 @@ info	{
  }
  verification_signature	135165508
  sharing_enabled	t
- fileid	237
+ fileid	652
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/grasshop.ship",
+ guid	"07d94817-c707-4dca-4d41-4332250e3559",
 }
 cells	{
  AAAA	{

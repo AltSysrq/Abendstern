@@ -12,10 +12,12 @@ info	{
   MagnetoBomb	3
  }
  sharing_enabled	t
- verification_signature	138888965
- fileid	187
+ fileid	593
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/haifisch5.ship",
+ guid	"09667c7b-5dba-404d-5f94-c83e19c1f132",
+ verification_signature	138653115
 }
 cells	{
  AAAA	{

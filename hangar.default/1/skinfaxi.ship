@@ -12,9 +12,11 @@ info	{
   EnergyCharge	10
  }
  verification_signature	364121785
- fileid	219
+ fileid	634
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/skinfaxi.ship",
+ guid	"1741784b-9784-4584-43ad-1f1d863f7e61",
 }
 cells	{
  konnichiwa	{

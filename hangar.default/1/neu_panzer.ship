@@ -31,9 +31,11 @@ info	{
  }
  verification_signature	1794707261
  sharing_enabled	t
- fileid	221
+ fileid	636
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/neu_panzer.ship",
+ guid	"7ccea073-4bcf-45ab-7087-c6889aca2e04",
 }
 cells	{
  AAAA	{

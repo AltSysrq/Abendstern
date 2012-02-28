@@ -133,7 +133,6 @@ Ship::Ship(GameField* field) :
   classification = GameObject::ClassShip;
   isExportable=true;
   isTransient=false;
-  generatesUpdates=true;
   nebulaInteraction=true;
   memset(damageBlame, 0, sizeof(damageBlame));
 }
@@ -174,8 +173,7 @@ Ship::Ship(const Ship& other)
 {
   classification = GameObject::ClassShip;
   isExportable=true;
-  isTransient=false;
-  generatesUpdates=true;
+  isTransient = false;
   nebulaInteraction=true;
   memset(damageBlame, 0, sizeof(damageBlame));
 

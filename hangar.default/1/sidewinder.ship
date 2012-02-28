@@ -21,9 +21,11 @@ info	{
  }
  verification_signature	1794707261
  sharing_enabled	t
- fileid	244
+ fileid	661
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/sidewinder.ship",
+ guid	"d5b0f052-95ca-4e63-69d9-97e9fb8edc6f",
 }
 cells	{
  AAAA	{

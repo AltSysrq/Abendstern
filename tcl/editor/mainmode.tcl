@@ -201,6 +201,7 @@ class ShipEditorMain {
     $ sets ship:$basename.info.author $::abnet::username
     $ setb ship:$basename.info.needs_uploading yes
     $ setb ship:$basename.info.sharing_enabled [$ bool conf.default_share_ships]
+    catch { $ remove ship:$basename.info.guid }
     $ sync ship:$basename
     $ sync hangar
     $ sets edit.mountname ship:$basename

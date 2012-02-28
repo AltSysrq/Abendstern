@@ -30,8 +30,10 @@ info	{
  sharing_enabled	t
  ownerid	1
  needs_uploading	f
- fileid	493
+ fileid	653
  verification_signature	761707864
+ original_filename	"hangar/1/libellei.ship",
+ guid	"f00b0958-e1f5-4b0b-753d-6451434112d8",
 }
 cells	{
  AAAA	{

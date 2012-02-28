@@ -12,9 +12,11 @@ info	{
  }
  verification_signature	1715940367
  sharing_enabled	t
- fileid	255
+ fileid	675
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/toserpise.ship",
+ guid	"2d0e27ef-1cc5-4f15-5ee2-ba60a6079d25",
 }
 cells	{
  AAAA	{

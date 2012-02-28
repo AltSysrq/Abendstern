@@ -22,9 +22,11 @@ info	{
  }
  verification_signature	367109455
  sharing_enabled	t
- fileid	251
+ fileid	670
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/klingon.ship",
+ guid	"a2e3475f-a347-4f20-642c-4e750f1c7274",
 }
 cells	{
  AAAA	{

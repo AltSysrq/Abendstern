@@ -2213,6 +2213,7 @@ set cxxtopmatter {
 }
 
 # Open our output files
+file mkdir "tcl_iface/xxx"
 set cppout [open "tcl_iface/bridge.cxx" w]
 set tclout [open "../tcl/bridge.tcl" w]
 set cxxoutfiles {}

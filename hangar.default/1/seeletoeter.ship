@@ -19,9 +19,11 @@ info	{
 		"\n",
  mass	20446.0
  sharing_enabled	t
- fileid	247
+ fileid	666
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/seeletoeter.ship",
+ guid	"5d44f9c8-3950-4bc3-5795-d37596934917",
 }
 cells	{
  AAAA	{

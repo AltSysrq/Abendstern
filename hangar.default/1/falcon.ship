@@ -15,9 +15,11 @@ info	{
  }
  verification_signature	841145469
  sharing_enabled	t
- fileid	195
+ fileid	605
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/falcon.ship",
+ guid	"9bbf986a-b982-4ad5-610b-43d02aa8f47e",
 }
 cells	{
  AAAA	{

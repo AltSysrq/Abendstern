@@ -10,11 +10,13 @@ info	{
  needs_uploading	f
  sharing_enabled	t
  mass	57425.0
- verification_signature	2067474494
  energy_levels	{
-  EnergyCharge	7
+  EnergyCharge	8
  }
- fileid	490
+ fileid	614
+ verification_signature	1911332503
+ original_filename	"hangar/1/tintenfi.ship",
+ guid	"3f907ffb-726d-4450-5cf2-9e08b8912f98",
 }
 cells	{
  konnichiwa	{

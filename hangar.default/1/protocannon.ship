@@ -30,9 +30,11 @@ info	{
  }
  verification_signature	1794707261
  sharing_enabled	t
- fileid	214
+ fileid	629
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/protocannon.ship",
+ guid	"cdf2bc86-ca4c-438f-5947-febadd8e43bb",
 }
 cells	{
  AAAA	{

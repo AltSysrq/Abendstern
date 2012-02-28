@@ -12,10 +12,12 @@ info	{
   PlasmaBurst	21
  }
  sharing_enabled	t
- fileid	192
+ fileid	601
  ownerid	1
  needs_uploading	f
  verification_signature	1149322172
+ original_filename	"hangar/1/colonial.ship",
+ guid	"7c05accb-6a7a-4648-6e21-d84268e1bc98",
 }
 cells	{
  konnichiwa	{

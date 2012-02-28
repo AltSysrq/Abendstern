@@ -32,9 +32,11 @@ info	{
  }
  verification_signature	891403829
  sharing_enabled	t
- fileid	227
+ fileid	642
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/junker.ship",
+ guid	"c3b21bb2-13fd-4fc3-506e-418f57f8a12e",
 }
 cells	{
  AAAA	{

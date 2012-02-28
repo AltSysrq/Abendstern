@@ -16,7 +16,9 @@ info	{
   SGBomb	5
  }
  verification_signature	1751026817
- fileid	486
+ fileid	674
+ original_filename	"hangar/1/unladens.ship",
+ guid	"0b8a0b00-3ff4-4898-7e32-3f1d66c7550a",
 }
 cells	{
  konnichiwa	{

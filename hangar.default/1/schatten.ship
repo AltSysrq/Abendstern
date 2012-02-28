@@ -12,14 +12,16 @@ info	{
   Missile	2
   SGBomb	3
   Monophase	5
-  GatlingPlasma	2
+  GatlingPlasma	4
   ParticleBeam	3
  }
  sharing_enabled	t
- verification_signature	667442157
- fileid	207
+ fileid	620
  ownerid	1
  needs_uploading	f
+ verification_signature	577090347
+ original_filename	"hangar/1/schatten.ship",
+ guid	"2116b89c-2d80-4703-527b-1cba27a4388d",
 }
 cells	{
  konnichiwa	{

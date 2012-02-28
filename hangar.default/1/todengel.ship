@@ -15,10 +15,12 @@ info	{
   ParticleBeam	2
  }
  sharing_enabled	t
- fileid	191
+ fileid	600
  ownerid	1
  needs_uploading	f
  verification_signature	327282007
+ original_filename	"hangar/1/todengel.ship",
+ guid	"3c4d1331-7ec3-4ef1-766b-0a3b6e91fbe2",
 }
 cells	{
  konnichiwa	{

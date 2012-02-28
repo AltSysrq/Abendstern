@@ -24,6 +24,7 @@ class GameObject;
 class Explosion;
 class Blast;
 class EffectsHandler;
+class NetworkAssembly;
 
 /** The GameField handles the managing, updating, and drawing of GameObjects.
  *
@@ -108,6 +109,13 @@ class GameField : public AObject {
    * Defaults to false.
    */
   bool perfectRadar;
+
+  /**
+   * The NetworkAssembly to notify about object creations and deletions.
+   *
+   * Initialised to NULL.
+   */
+  NetworkAssembly* networkAssembly;
 
   /** Constructs a new GameField with the given size.
    *

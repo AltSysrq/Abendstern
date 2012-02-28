@@ -13,9 +13,11 @@ info	{
  }
  verification_signature	1889291512
  sharing_enabled	t
- fileid	253
+ fileid	672
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/schleich.ship",
+ guid	"f41140c4-3c6a-4e75-6cc4-c1314ef0bd24",
 }
 cells	{
  konnichiwa	{

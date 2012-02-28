@@ -10,12 +10,14 @@ info	{
  needs_uploading	f
  sharing_enabled	t
  mass	58250.0
- fileid	494
+ fileid	664
  energy_levels	{
   PlasmaBurst	10
   SGBomb	5
  }
  verification_signature	298169831
+ original_filename	"hangar/1/phoenix.ship",
+ guid	"f14e2ef2-25e0-4938-62b0-7571501f5e8e",
 }
 cells	{
  konnichiwa	{

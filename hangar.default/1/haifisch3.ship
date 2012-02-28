@@ -18,13 +18,15 @@ info	{
  mass	15698.0
  energy_levels	{
   EnergyCharge	7
-  MagnetoBomb	4
+  MagnetoBomb	3
  }
  sharing_enabled	t
- fileid	193
+ fileid	602
  ownerid	1
  needs_uploading	f
- verification_signature	656277220
+ verification_signature	1911332503
+ original_filename	"hangar/1/haifisch3.ship",
+ guid	"048fd00a-7bd3-4b15-4020-79df05f49129",
 }
 cells	{
  AAAA	{

@@ -15,8 +15,10 @@ info	{
   PlasmaBurst	10
   SGBomb	1
  }
- fileid	491
+ fileid	621
  verification_signature	101764475
+ original_filename	"hangar/1/vulture.ship",
+ guid	"ac39de46-6191-40ee-64e0-3393d83ad124",
 }
 cells	{
  konnichiwa	{
