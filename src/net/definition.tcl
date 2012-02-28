@@ -1,3 +1,14 @@
+verbatimc {
+//MSVC++ doesn't handle inherited members accessed by friends correctly.
+//This hack injects an appropriate friends list into GameObject
+#ifdef WIN32
+#define TclGameObject \
+  TclGameObject; \
+  friend class INO_EnergyCharge;\
+  friend class ENO_EnergyCharge
+#endif
+}
+
 verbatimh {
 }
 verbatimc {

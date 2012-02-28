@@ -136,6 +136,15 @@ puts $cout {
   //generated; they are safe to ignore.
   #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
   #pragma GCC diagnostic ignored "-Wunused-variable"
+
+  //These are defined to... something on windows
+  #ifdef NEAR
+  #undef NEAR
+  #endif
+  #ifdef FAR
+  #undef FAR
+  #endif
+
 }
 
 # Takes a list of dicts and a key(s); returns a list of entries matching
