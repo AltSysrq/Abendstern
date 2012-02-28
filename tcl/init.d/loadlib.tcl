@@ -3,6 +3,7 @@
 if {$PLATFORM == "WINDOWS"} {
   source tcllib/aes/aes.tcl
   source tcllib/sha1/sha256.tcl
+  source tcllib/uuid/uuid.tcl
 }
 
 package require http

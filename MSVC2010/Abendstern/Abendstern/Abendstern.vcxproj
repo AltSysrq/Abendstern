@@ -328,6 +328,7 @@
     <ClInclude Include="..\..\..\src\net\synchronous_control_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\text_message_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\tuner.hxx" />
+    <ClInclude Include="..\..\..\src\net\xxx\xnetobj.hxx" />
     <ClInclude Include="..\..\..\src\opto_flags.hxx" />
     <ClInclude Include="..\..\..\src\secondary\aggregate_set.hxx" />
     <ClInclude Include="..\..\..\src\secondary\confreg.hxx" />
@@ -539,6 +540,7 @@
     <ClCompile Include="..\..\..\src\net\synchronous_control_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\text_message_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\tuner.cxx" />
+    <ClCompile Include="..\..\..\src\net\xxx\xnetobj.cxx" />
     <ClCompile Include="..\..\..\src\secondary\confreg.cxx" />
     <ClCompile Include="..\..\..\src\secondary\frame_recorder.cxx" />
     <ClCompile Include="..\..\..\src\secondary\global_chat.cxx" />
