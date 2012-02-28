@@ -18,10 +18,12 @@ info	{
   PlasmaBurst	3
  }
  sharing_enabled	t
- fileid	199
+ fileid	609
  ownerid	1
  needs_uploading	f
  verification_signature	1323156158
+ original_filename	"hangar/1/scorpion.ship",
+ guid	"c67f34dd-8d0c-496d-7b9d-fd76ca5f4154",
 }
 cells	{
  AAAA	{

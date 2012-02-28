@@ -22,11 +22,13 @@ info	{
   EnergyCharge	3
   MagnetoBomb	3
  }
- verification_signature	962325386
  sharing_enabled	t
- fileid	228
+ fileid	643
  ownerid	1
  needs_uploading	f
+ verification_signature	1911332503
+ original_filename	"hangar/1/x02.ship",
+ guid	"5ae8c955-cafa-4daf-77b9-55a0bef0aa56",
 }
 cells	{
  AAAA	{

@@ -20,9 +20,11 @@ info	{
  }
  verification_signature	292137596
  sharing_enabled	t
- fileid	252
+ fileid	671
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/tie_b.ship",
+ guid	"62880c88-b1e5-4781-6146-c566eb857230",
 }
 cells	{
  AAAA	{

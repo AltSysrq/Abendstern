@@ -18,18 +18,15 @@
 if {![info exists SHIPDNLD_PROCS]} {
   set SHIPDNLD_PROCS {}
 
-  # Searches for an already-existing ship with the given fileid
+  # Searches for an already-existing ship with the given guid
   # and returns its name (eg, 0/foo); otherwise, returns an empty
-  # string. It is also possible to search by name.
-  proc shipdnld_findShip {fileid {name {}}} {
+  # string.
+  proc shipdnld_findShip {guid} {
     for {set i 0} {$i < [$ length hangar.all_ships]} {incr i} {
       set ship [$ str hangar.all_ships.\[$i\]]
       set ship [shipName2Mount $ship]
-      if {[$ exists $ship.info.fileid]
-      &&  $fileid == [$ int $ship.info.fileid]} {
-        return [$ str hangar.all_ships.\[$i\]]
-      }
-      if {$name != "" && $name == [$ str $ship.info.name]} {
+      if {[$ exists $ship.info.guid]
+      &&  $guid eq [$ str $ship.info.guid]} {
         return [$ str hangar.all_ships.\[$i\]]
       }
     }
@@ -40,10 +37,10 @@ if {![info exists SHIPDNLD_PROCS]} {
   # The fileid and owner must be indicated.
   # The temporary file will be moved to the new location.
   proc shipdnld_install {tmpfile shipname shipid fileid owner} {
-    set curr [shipdnld_findShip $fileid]
-    if {"" == $curr} {
-      set curr [shipdnld_findShip $fileid $shipname]
-    }
+    $ open $tmpfile tmpship
+    set guid [$ str tmpship.info.guid]
+    $ close tmpship
+    set curr [shipdnld_findShip $guid]
     if {"" == $curr} {
       set filename [generateNewShipBasename $shipname $owner]
       set filename [shipName2Path $filename]

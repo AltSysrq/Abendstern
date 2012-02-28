@@ -20,13 +20,15 @@ info	{
  mass	42434.0
  energy_levels	{
   EnergyCharge	7
-  MagnetoBomb	3
+  MagnetoBomb	5
  }
- verification_signature	1938479653
  sharing_enabled	t
- fileid	204
+ fileid	616
  ownerid	1
  needs_uploading	f
+ verification_signature	1911332503
+ original_filename	"hangar/1/vau.ship",
+ guid	"6f835910-9f2b-4d3c-6a55-a4fd88e11a38",
 }
 cells	{
  AAAA	{

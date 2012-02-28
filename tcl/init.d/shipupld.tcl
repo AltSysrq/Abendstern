@@ -69,13 +69,14 @@ if {[llength $ourShips]} {
         if {[$ bool $ship.info.needs_uploading]} {
           # Send to server
           $ sync $ship
-          set filename [shipName2Path $ship]
-          ::abnet::putf [file tail $filename] $filename \
+          set filename [shipMount2Path $ship]
+          set netfn "[$ str $ship.info.guid].ship"
+          ::abnet::putf $netfn $filename \
               [$ bool $ship.info.sharing_enabled]
           $ setb $ship.info.needs_uploading no
           $ sync $ship
           set lastUploadedShip $ship
-          set lastUploadedShipFN [file tail $filename]
+          set lastUploadedShipFN $netfn
         }
       }
       return [expr {$ourShipIx * 100 / [llength $ourShips]}]

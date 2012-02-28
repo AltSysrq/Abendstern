@@ -15,10 +15,12 @@ info	{
   PlasmaBurst	5
  }
  sharing_enabled	t
- fileid	259
+ fileid	679
  ownerid	1
  needs_uploading	f
- verification_signature	1473048421
+ verification_signature	150405435
+ original_filename	"hangar/1/meteor.ship",
+ guid	"9fc83ceb-0cb6-4395-6d05-6078ad6b2e10",
 }
 cells	{
  AAAA	{

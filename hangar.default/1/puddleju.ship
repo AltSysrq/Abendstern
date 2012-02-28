@@ -15,10 +15,12 @@ info	{
   ParticleBeam	3
  }
  sharing_enabled	t
- fileid	201
+ fileid	611
  ownerid	1
  needs_uploading	f
  verification_signature	1602193990
+ original_filename	"hangar/1/puddleju.ship",
+ guid	"7b12b070-af8d-4b7a-6b15-7d63e147816b",
 }
 cells	{
  konnichiwa	{

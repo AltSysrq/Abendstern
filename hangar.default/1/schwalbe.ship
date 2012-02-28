@@ -21,9 +21,11 @@ info	{
  }
  verification_signature	292137596
  sharing_enabled	t
- fileid	257
+ fileid	677
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/schwalbe.ship",
+ guid	"b4754b58-9bd8-4e3e-6f0a-5895e0376aa2",
 }
 cells	{
  AAAA	{

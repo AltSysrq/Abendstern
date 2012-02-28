@@ -25,9 +25,11 @@ info	{
  }
  verification_signature	292137596
  sharing_enabled	t
- fileid	261
+ fileid	681
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/tbone.ship",
+ guid	"7492e386-6bd6-4719-4aca-8d8f465de782",
 }
 cells	{
  AAAA	{

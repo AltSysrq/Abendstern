@@ -28,10 +28,12 @@ info	{
   SGBomb	2
  }
  sharing_enabled	t
- fileid	236
+ fileid	650
  ownerid	1
  needs_uploading	f
  verification_signature	1724270454
+ original_filename	"hangar/1/libelle.ship",
+ guid	"a01a3b4c-6085-4749-6a50-179d155270cb",
 }
 cells	{
  AAAA	{

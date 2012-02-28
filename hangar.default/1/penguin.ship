@@ -10,13 +10,15 @@ info	{
  needs_uploading	f
  sharing_enabled	t
  mass	66001.0
- fileid	484
+ fileid	631
  energy_levels	{
   EnergyCharge	10
   PlasmaBurst	15
   SGBomb	5
  }
  verification_signature	749700395
+ original_filename	"hangar/1/penguin.ship",
+ guid	"4f1a66a7-e266-4d3d-7c82-fae85c1280db",
 }
 cells	{
  konnichiwa	{

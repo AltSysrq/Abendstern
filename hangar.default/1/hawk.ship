@@ -25,9 +25,11 @@ info	{
  }
  verification_signature	292137596
  sharing_enabled	t
- fileid	264
+ fileid	684
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/hawk.ship",
+ guid	"1edda826-8adb-4394-6179-b08108775113",
 }
 cells	{
  AAAA	{

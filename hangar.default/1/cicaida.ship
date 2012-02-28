@@ -25,10 +25,12 @@ info	{
   MagnetoBomb	3
  }
  sharing_enabled	t
- fileid	189
+ fileid	597
  ownerid	1
  needs_uploading	f
- verification_signature	1058955191
+ verification_signature	1911332503
+ original_filename	"hangar/1/cicaida.ship",
+ guid	"6155c636-3abd-4d73-4aa5-ef866ef43207",
 }
 cells	{
  AAAA	{

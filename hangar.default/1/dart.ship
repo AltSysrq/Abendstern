@@ -12,9 +12,11 @@ info	{
  }
  sharing_enabled	t
  verification_signature	608165812
- fileid	197
+ fileid	607
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/dart.ship",
+ guid	"e16dd30d-569e-485c-60e9-83ca822dd307",
 }
 cells	{
  konnichiwa	{

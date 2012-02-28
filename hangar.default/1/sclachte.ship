@@ -15,9 +15,11 @@ info	{
  }
  verification_signature	1889291512
  sharing_enabled	t
- fileid	245
+ fileid	662
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/sclachte.ship",
+ guid	"3b5e68cb-868a-4e91-43ac-e5001776a7c3",
 }
 cells	{
  konnichiwa	{

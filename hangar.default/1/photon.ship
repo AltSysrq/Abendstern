@@ -12,10 +12,12 @@ info	{
   PlasmaBurst	3
  }
  sharing_enabled	t
- fileid	231
+ fileid	645
  ownerid	1
  needs_uploading	f
  verification_signature	1333913384
+ original_filename	"hangar/1/photon.ship",
+ guid	"0c5d2ea0-a6d9-4239-4dbd-e5e340f1b03d",
 }
 cells	{
  AAAA	{

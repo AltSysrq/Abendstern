@@ -11,10 +11,12 @@ info	{
  energy_levels	{
   EnergyCharge	6
  }
- fileid	254
+ fileid	673
  ownerid	1
  needs_uploading	f
  verification_signature	1547561631
+ original_filename	"hangar/1/hrimfaxi.ship",
+ guid	"5254ce43-8e43-4aa2-4116-2348a48c3374",
 }
 cells	{
  konnichiwa	{

@@ -12,10 +12,12 @@ info	{
   Missile	2
  }
  sharing_enabled	t
- fileid	248
+ fileid	667
  ownerid	1
  needs_uploading	f
  verification_signature	2137778585
+ original_filename	"hangar/1/cylon.ship",
+ guid	"950040e0-81c3-48e0-5ff1-311a939674e0",
 }
 cells	{
  konnichiwa	{

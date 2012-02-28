@@ -26,9 +26,11 @@ info	{
  }
  verification_signature	1794707261
  sharing_enabled	t
- fileid	222
+ fileid	637
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/mantis.ship",
+ guid	"8c3e9204-1d5f-475e-6b7d-0f18180d5b7c",
 }
 cells	{
  AAAA	{

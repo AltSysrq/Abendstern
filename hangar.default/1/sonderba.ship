@@ -12,9 +12,11 @@ info	{
  }
  verification_signature	1519085679
  sharing_enabled	t
- fileid	238
+ fileid	654
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/sonderba.ship",
+ guid	"b00399b4-2bb0-4419-4359-571f30fae57f",
 }
 cells	{
  konnichiwa	{

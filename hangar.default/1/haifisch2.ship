@@ -18,11 +18,13 @@ info	{
   EnergyCharge	5
   MagnetoBomb	3
  }
- verification_signature	962325386
  sharing_enabled	t
- fileid	210
+ fileid	625
  ownerid	1
  needs_uploading	f
+ verification_signature	1911332503
+ original_filename	"hangar/1/haifisch2.ship",
+ guid	"a7aebedf-0ead-4f66-6bcd-69113300ee2d",
 }
 cells	{
  AAAA	{

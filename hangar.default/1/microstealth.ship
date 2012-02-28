@@ -12,9 +12,11 @@ info	{
  }
  verification_signature	292137596
  sharing_enabled	t
- fileid	262
+ fileid	682
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/microstealth.ship",
+ guid	"fc8b874b-8735-4d99-43e3-71188fa4e825",
 }
 cells	{
  AAAA	{

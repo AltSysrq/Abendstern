@@ -11,10 +11,12 @@ info	{
   EnergyCharge	8
  }
  sharing_enabled	t
- fileid	223
+ fileid	638
  ownerid	1
  needs_uploading	f
- verification_signature	1323156158
+ verification_signature	1565014463
+ original_filename	"hangar/1/vaufisch.ship",
+ guid	"060bd5c0-440f-41f5-7064-e6aa9b524f2f",
 }
 cells	{
  konnichiwa	{

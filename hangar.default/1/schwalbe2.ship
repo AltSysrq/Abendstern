@@ -14,9 +14,11 @@ info	{
  verification_signature	292137596
  sharing_enabled	t
  author	"AltSysrq",
- fileid	235
+ fileid	649
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/schwalbe2.ship",
+ guid	"1a7dc71d-bb5c-4038-4238-8f097a7e7eee",
 }
 cells	{
  AAAA	{

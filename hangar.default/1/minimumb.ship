@@ -12,9 +12,11 @@ info	{
  }
  verification_signature	578839052
  sharing_enabled	t
- fileid	250
+ fileid	669
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/minimumb.ship",
+ guid	"b57843cd-eb26-4bff-78a0-eb12a9071266",
 }
 cells	{
  konnichiwa	{

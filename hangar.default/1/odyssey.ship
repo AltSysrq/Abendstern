@@ -19,11 +19,13 @@ info	{
   EnergyCharge	3
   MagnetoBomb	3
  }
- verification_signature	891403829
  sharing_enabled	t
- fileid	196
+ fileid	606
  ownerid	1
  needs_uploading	f
+ verification_signature	2136416760
+ original_filename	"hangar/1/odyssey.ship",
+ guid	"a92f9a12-866c-4a13-7ab2-dc3660d78163",
 }
 cells	{
  AAAA	{

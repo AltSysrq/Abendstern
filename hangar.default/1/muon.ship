@@ -16,9 +16,11 @@ info	{
  }
  verification_signature	1820265691
  sharing_enabled	t
- fileid	249
+ fileid	668
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/muon.ship",
+ guid	"02527a65-6e97-4fac-7fed-0a1730460a8f",
 }
 cells	{
  AAAA	{

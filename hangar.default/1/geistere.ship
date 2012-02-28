@@ -13,9 +13,11 @@ info	{
  }
  verification_signature	61109615
  sharing_enabled	t
- fileid	220
+ fileid	635
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/geistere.ship",
+ guid	"4a863967-1f82-4d3c-51bc-77cf26df6b8d",
 }
 cells	{
  konnichiwa	{

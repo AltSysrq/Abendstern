@@ -14,9 +14,11 @@ info	{
  verification_signature	841145469
  sharing_enabled	t
  author	"AltSysrq",
- fileid	194
+ fileid	603
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/y01.ship",
+ guid	"fd456c96-84d8-410a-7ee9-099051e19bc5",
 }
 cells	{
  AAAA	{

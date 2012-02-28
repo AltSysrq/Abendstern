@@ -26,10 +26,12 @@ info	{
   MagnetoBomb	1
  }
  sharing_enabled	t
- verification_signature	931893702
- fileid	208
+ fileid	623
  ownerid	1
  needs_uploading	f
+ verification_signature	2136416760
+ original_filename	"hangar/1/panzer.ship",
+ guid	"0b1270b0-ad77-4cc4-5073-490244efdbb0",
 }
 cells	{
  AAAA	{

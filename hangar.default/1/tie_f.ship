@@ -12,13 +12,15 @@ info	{
 		"2e.}.\n   n20s s1pc30 {n20s s0ea.}.\n  }.\n }.\n}.\n0.5\n  \n",
  mass	2144.0
  energy_levels	{
-  EnergyCharge	3
+  EnergyCharge	5
  }
  sharing_enabled	t
- fileid	186
+ fileid	595
  ownerid	1
  needs_uploading	f
- verification_signature	1751026817
+ verification_signature	904393341
+ original_filename	"hangar/1/tie_f.ship",
+ guid	"d972bd25-f015-47dc-6802-4b3a30e8790e",
 }
 cells	{
  AAAA	{

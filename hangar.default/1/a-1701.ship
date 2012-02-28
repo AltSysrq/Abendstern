@@ -23,9 +23,11 @@ info	{
  }
  verification_signature	1790370559
  sharing_enabled	t
- fileid	198
+ fileid	608
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/a-1701.ship",
+ guid	"c583dedc-8bb5-4a56-71a7-d4bfd8e07257",
 }
 cells	{
  AAAA	{

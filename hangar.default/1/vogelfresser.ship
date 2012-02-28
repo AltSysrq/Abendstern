@@ -75,9 +75,11 @@ info	{
  }
  verification_signature	841145469
  sharing_enabled	t
- fileid	212
+ fileid	627
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/vogelfresser.ship",
+ guid	"97d85fd1-b730-49c7-599d-92043824c68f",
 }
 cells	{
  AAAA	{

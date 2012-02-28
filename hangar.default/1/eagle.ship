@@ -35,10 +35,12 @@ info	{
   ParticleBeam	-1
  }
  sharing_enabled	t
- fileid	232
+ fileid	646
  ownerid	1
  needs_uploading	f
  verification_signature	1210395665
+ original_filename	"hangar/1/eagle.ship",
+ guid	"4505f6dc-57cd-4f8b-6f92-f8fd337aae78",
 }
 cells	{
  AAAA	{

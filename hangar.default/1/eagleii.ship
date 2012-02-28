@@ -28,7 +28,7 @@ info	{
   EnergyCharge	10
   MagnetoBomb	3
   PlasmaBurst	15
-  SGBomb	5
+  SGBomb	4
   GatlingPlasma	-1
   Monophase	-1
   Missile	-1
@@ -37,8 +37,10 @@ info	{
  sharing_enabled	t
  ownerid	1
  needs_uploading	f
- fileid	487
- verification_signature	1393483696
+ fileid	656
+ verification_signature	1605451661
+ original_filename	"hangar/1/eagleii.ship",
+ guid	"31fd8a5e-c26e-42fd-6816-6ba22ba268fe",
 }
 cells	{
  AAAA	{

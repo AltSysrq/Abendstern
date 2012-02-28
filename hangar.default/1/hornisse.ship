@@ -3,22 +3,24 @@ info	{
  author	"AltSysrq",
  version	0
  bridge	"woinushu",
- reinforcement	1.0
+ reinforcement	2.0
  class	"A",
  alliance	["EUF",	"WUDR",]
- mass	21494.0
+ mass	34942.0
  energy_levels	{
   SGBomb	3
   GatlingPlasma	10
-  Monophase	4
+  Monophase	5
   Missile	2
   ParticleBeam	3
  }
  sharing_enabled	t
- fileid	471
+ fileid	617
  ownerid	1
  needs_uploading	f
- verification_signature	651262396
+ verification_signature	577090347
+ original_filename	"hangar/1/hornisse.ship",
+ guid	"e7d481f3-6ab4-432a-6fa7-0ec4bacfd3dc",
 }
 cells	{
  konnichiwa	{
@@ -71,11 +73,13 @@ cells	{
  roudanoi	{
   neighbours	["nineinre",	"seishosoi",	"",	"deishino",]
   type	"square",
-  s0	{
-   type	"PowerCell",
-  }
   s1	{
    type	"PowerCell",
+  }
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.5
+   strength	7.0
   }
  }
  maipenei	{
@@ -118,11 +122,13 @@ cells	{
  reijeyo	{
   neighbours	["hureikai",	"beryointe",	"",	"buhoibei",]
   type	"square",
-  s0	{
-   type	"PowerCell",
-  }
   s1	{
    type	"PowerCell",
+  }
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.5
+   strength	7.0
   }
  }
  jeiwoushei	{
@@ -222,7 +228,7 @@ cells	{
   neighbours	["pandobou",	"",	"moidora",	"woigounhu",]
   type	"square",
   s0	{
-   type	"MissileLauncher",
+   type	"ParticleBeamLauncher",
    orient	1
   }
   s1	{
@@ -244,7 +250,7 @@ cells	{
   neighbours	["jujoinryo",	"yoipeiryoun",	"wigoifoi",	"",]
   type	"square",
   s0	{
-   type	"MissileLauncher",
+   type	"ParticleBeamLauncher",
    orient	3
   }
   s1	{
@@ -277,7 +283,9 @@ cells	{
    type	"AntimatterPower",
   }
   s1	{
-   type	"AntimatterPower",
+   type	"ShieldGenerator",
+   radius	2.5
+   strength	7.0
   }
  }
  reirosei	{
@@ -342,7 +350,9 @@ cells	{
    orient	1
   }
   s1	{
-   type	"PowerCell",
+   type	"ShieldGenerator",
+   radius	2.5
+   strength	7.0
   }
  }
  woinushu	{
@@ -391,62 +401,72 @@ cells	{
   neighbours	["roudanoi",	"",	"wibapoi",	"",]
   type	"right",
   s0	{
-   type	"PowerCell",
+   type	"Capacitor",
+   capacity	100
   }
  }
  wibapoi	{
   neighbours	["moidora",	"haiwugou",	"deishino",	"",]
   type	"right",
   s0	{
-   type	"PowerCell",
+   type	"Capacitor",
+   capacity	100
   }
  }
  moidora	{
   neighbours	["wibapoi",	"",	"kuranwou",	"",]
   type	"right",
   s0	{
-   type	"PowerCell",
+   type	"Capacitor",
+   capacity	100
   }
  }
  beryointe	{
   neighbours	["montusain",	"",	"reijeyo",	"",]
   type	"right",
   s0	{
-   type	"PowerCell",
+   type	"Capacitor",
+   capacity	100
   }
  }
  wigoifoi	{
   neighbours	["poigeijo",	"",	"montusain",	"",]
   type	"right",
   s0	{
-   type	"PowerCell",
+   type	"Capacitor",
+   capacity	100
   }
  }
  montusain	{
   neighbours	["beryointe",	"wudehai",	"wigoifoi",	"",]
   type	"right",
   s0	{
-   type	"PowerCell",
+   type	"Capacitor",
+   capacity	100
   }
  }
  befanpu	{
   neighbours	["pandobou",	"woigounhu",	"shounjaire",	"ryaitouro",]
   type	"square",
-  s0	{
-   type	"AntimatterPower",
-  }
   s1	{
    type	"AntimatterPower",
+  }
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.5
+   strength	7.0
   }
  }
  koiburyo	{
   neighbours	["ryaitouro",	"dutounai",	"yoipeiryoun",	"jujoinryo",]
   type	"square",
-  s0	{
-   type	"AntimatterPower",
-  }
   s1	{
    type	"AntimatterPower",
+  }
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.5
+   strength	7.0
   }
  }
  shounjaire	{

@@ -26,9 +26,11 @@ info	{
  }
  verification_signature	1794707261
  sharing_enabled	t
- fileid	242
+ fileid	659
  ownerid	1
  needs_uploading	f
+ original_filename	"hangar/1/spider.ship",
+ guid	"940f6288-31d2-4a90-58ea-13e728329550",
 }
 cells	{
  AAAA	{

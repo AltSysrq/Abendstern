@@ -1,7 +1,7 @@
 info	{
  name	"Albatross",
  alliance	["EUF",]
- mass	427492.0
+ mass	435802.0
  version	0
  bridge	"AAAA",
  reinforcement	5.0
@@ -13,10 +13,12 @@ info	{
   SGBomb	5
  }
  sharing_enabled	t
- fileid	190
+ fileid	598
  ownerid	1
  needs_uploading	f
- verification_signature	1571357972
+ verification_signature	551162192
+ original_filename	"hangar/1/albatross.ship",
+ guid	"9cd91a5c-b5aa-4169-5fe8-752052b4ef1f",
 }
 cells	{
  AAAA	{
@@ -110,6 +112,12 @@ cells	{
  JAAA	{
   type	"square",
   neighbours	["AAAA",	"",	"KAAA",	"TAAA",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+  s1	{
+   type	"ReinforcementBulkhead",
+  }
  }
  KAAA	{
   type	"square",
@@ -188,7 +196,7 @@ cells	{
   type	"square",
   neighbours	["AAAA",	"TAAA",	"",	"UAAA",]
   s0	{
-   type	"FusionPower",
+   type	"ReinforcementBulkhead",
   }
   s1	{
    type	"PlasmaBurstLauncher",
@@ -210,7 +218,7 @@ cells	{
   type	"square",
   neighbours	["JAAA",	"NBAA",	"",	"RAAA",]
   s0	{
-   type	"FusionPower",
+   type	"ReinforcementBulkhead",
   }
   s1	{
    type	"PlasmaBurstLauncher",
@@ -231,14 +239,14 @@ cells	{
  }
  VAAA	{
   type	"square",
-  neighbours	["UAAA",	"",	"WAAA",	"",]
+  neighbours	["UAAA",	"shonheiti",	"WAAA",	"",]
   s1	{
    type	"ReinforcementBulkhead",
   }
  }
  WAAA	{
   type	"circle",
-  neighbours	["VAAA",	"",	"XAAA",	"EBAA",]
+  neighbours	["VAAA",	"yiruha",	"XAAA",	"EBAA",]
   s0	{
    type	"ReinforcementBulkhead",
   }
@@ -551,14 +559,14 @@ cells	{
  }
  YBAA	{
   type	"square",
-  neighbours	["NBAA",	"",	"ZBAA",	"",]
+  neighbours	["NBAA",	"",	"ZBAA",	"ryoryoigou",]
   s1	{
    type	"ReinforcementBulkhead",
   }
  }
  ZBAA	{
   type	"circle",
-  neighbours	["YBAA",	"ACAA",	"BCAA",	"",]
+  neighbours	["YBAA",	"ACAA",	"BCAA",	"roinsajou",]
   s0	{
    type	"ReinforcementBulkhead",
   }
@@ -732,6 +740,12 @@ cells	{
  PCAA	{
   type	"square",
   neighbours	["OCAA",	"NCAA",	"",	"RCAA",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+  s1	{
+   type	"ReinforcementBulkhead",
+  }
  }
  QCAA	{
   type	"square",
@@ -772,6 +786,12 @@ cells	{
  TCAA	{
   type	"square",
   neighbours	["SCAA",	"RCAA",	"KIAA",	"VCAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"Heatsink",
+  }
  }
  UCAA	{
   type	"square",
@@ -788,6 +808,12 @@ cells	{
  VCAA	{
   type	"circle",
   neighbours	["UCAA",	"TCAA",	"NEAA",	"XCAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"Heatsink",
+  }
  }
  WCAA	{
   type	"circle",
@@ -804,10 +830,22 @@ cells	{
  XCAA	{
   type	"square",
   neighbours	["WCAA",	"VCAA",	"DEAA",	"YCAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"Heatsink",
+  }
  }
  YCAA	{
   type	"circle",
   neighbours	["FAAA",	"",	"XCAA",	"",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"Heatsink",
+  }
  }
  ZCAA	{
   type	"right",
@@ -904,6 +942,12 @@ cells	{
  HDAA	{
   type	"square",
   neighbours	["GDAA",	"BDAA",	"IDAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+  s1	{
+   type	"ReinforcementBulkhead",
+  }
  }
  IDAA	{
   type	"circle",
@@ -920,18 +964,42 @@ cells	{
  JDAA	{
   type	"square",
   neighbours	["IDAA",	"DDAA",	"KDAA",	"UEAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"Heatsink",
+  }
  }
  KDAA	{
   type	"circle",
   neighbours	["JDAA",	"EDAA",	"LDAA",	"SEAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"Heatsink",
+  }
  }
  LDAA	{
   type	"square",
   neighbours	["KDAA",	"FDAA",	"MDAA",	"HEAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"Heatsink",
+  }
  }
  MDAA	{
   type	"circle",
   neighbours	["LDAA",	"",	"OAAA",	"",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"Heatsink",
+  }
  }
  NDAA	{
   type	"square",
@@ -1054,14 +1122,32 @@ cells	{
  DEAA	{
   type	"circle",
   neighbours	["XCAA",	"NEAA",	"EEAA",	"",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"Heatsink",
+  }
  }
  EEAA	{
   type	"square",
   neighbours	["DEAA",	"MEAA",	"FEAA",	"",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"Heatsink",
+  }
  }
  FEAA	{
   type	"circle",
   neighbours	["EEAA",	"LEAA",	"GEAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+  s1	{
+   type	"ReinforcementBulkhead",
+  }
  }
  GEAA	{
   type	"right",
@@ -1075,14 +1161,32 @@ cells	{
  HEAA	{
   type	"circle",
   neighbours	["LDAA",	"",	"IEAA",	"SEAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"Heatsink",
+  }
  }
  IEAA	{
   type	"square",
   neighbours	["HEAA",	"",	"JEAA",	"REAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"Heatsink",
+  }
  }
  JEAA	{
   type	"circle",
   neighbours	["IEAA",	"",	"KEAA",	"QEAA",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+  s1	{
+   type	"ReinforcementBulkhead",
+  }
  }
  KEAA	{
   type	"right",
@@ -1096,10 +1200,16 @@ cells	{
  LEAA	{
   type	"right",
   neighbours	["MEAA",	"",	"FEAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
  }
  MEAA	{
   type	"circle",
   neighbours	["LEAA",	"EEAA",	"NEAA",	"OEAA",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
   s1	{
    type	"ShieldGenerator",
    radius	2.0
@@ -1109,22 +1219,40 @@ cells	{
  NEAA	{
   type	"square",
   neighbours	["MEAA",	"DEAA",	"VCAA",	"KIAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"Heatsink",
+  }
  }
  OEAA	{
   type	"right",
   neighbours	["KIAA",	"",	"MEAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
  }
  PEAA	{
   type	"right",
   neighbours	["RCAA",	"",	"KIAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
  }
  QEAA	{
   type	"right",
   neighbours	["JEAA",	"",	"REAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
  }
  REAA	{
   type	"circle",
   neighbours	["QEAA",	"TEAA",	"SEAA",	"IEAA",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
   s1	{
    type	"ShieldGenerator",
    radius	2.0
@@ -1134,14 +1262,26 @@ cells	{
  SEAA	{
   type	"square",
   neighbours	["REAA",	"UEAA",	"KDAA",	"HEAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"Heatsink",
+  }
  }
  TEAA	{
   type	"right",
   neighbours	["REAA",	"",	"UEAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
  }
  UEAA	{
   type	"circle",
   neighbours	["TEAA",	"VEAA",	"JDAA",	"SEAA",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
   s1	{
    type	"ShieldGenerator",
    radius	2.0
@@ -1151,6 +1291,9 @@ cells	{
  VEAA	{
   type	"right",
   neighbours	["UEAA",	"",	"IDAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
  }
  WEAA	{
   type	"square",
@@ -1563,6 +1706,9 @@ cells	{
  KGAA	{
   type	"right",
   neighbours	["EGAA",	"",	"LGAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
  }
  LGAA	{
   type	"circle",
@@ -1599,10 +1745,19 @@ cells	{
  OGAA	{
   type	"square",
   neighbours	["VGAA",	"",	"JFAA",	"AHAA",]
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
  }
  PGAA	{
   type	"right",
   neighbours	["QGAA",	"",	"GGAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
  }
  QGAA	{
   type	"circle",
@@ -1639,18 +1794,42 @@ cells	{
  TGAA	{
   type	"circle",
   neighbours	["SGAA",	"XHAA",	"YGAA",	"UGAA",]
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
  }
  UGAA	{
   type	"square",
   neighbours	["TGAA",	"BHAA",	"SFAA",	"",]
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
  }
  VGAA	{
   type	"circle",
   neighbours	["NGAA",	"OGAA",	"WGAA",	"DHAA",]
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
  }
  WGAA	{
   type	"square",
   neighbours	["VGAA",	"AHAA",	"XGAA",	"CHAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
  }
  XGAA	{
   type	"equil",
@@ -1662,6 +1841,12 @@ cells	{
  YGAA	{
   type	"square",
   neighbours	["TGAA",	"BIAA",	"ZGAA",	"BHAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
  }
  ZGAA	{
   type	"equil",
@@ -1673,10 +1858,16 @@ cells	{
  AHAA	{
   type	"right",
   neighbours	["OGAA",	"",	"WGAA",	"",]
+  s0	{
+   type	"PowerCell",
+  }
  }
  BHAA	{
   type	"right",
   neighbours	["YGAA",	"",	"UGAA",	"",]
+  s0	{
+   type	"PowerCell",
+  }
  }
  CHAA	{
   type	"right",
@@ -1690,14 +1881,26 @@ cells	{
  DHAA	{
   type	"square",
   neighbours	["CHAA",	"EHAA",	"GHAA",	"VGAA",]
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
  }
  EHAA	{
   type	"right",
   neighbours	["DHAA",	"",	"FHAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
  }
  FHAA	{
   type	"circle",
   neighbours	["EHAA",	"GIAA",	"JHAA",	"GHAA",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
   s1	{
    type	"ReinforcementBulkhead",
   }
@@ -1705,18 +1908,36 @@ cells	{
  GHAA	{
   type	"right",
   neighbours	["FHAA",	"",	"DHAA",	"",]
+  s0	{
+   type	"PowerCell",
+  }
  }
  HHAA	{
   type	"square",
   neighbours	["LGAA",	"IHAA",	"KHAA",	"LHAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
  }
  IHAA	{
   type	"right",
   neighbours	["HHAA",	"",	"JHAA",	"",]
+  s0	{
+   type	"PowerCell",
+  }
  }
  JHAA	{
   type	"square",
   neighbours	["IHAA",	"FHAA",	"",	"KHAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
  }
  KHAA	{
   type	"circle",
@@ -1733,26 +1954,53 @@ cells	{
  LHAA	{
   type	"circle",
   neighbours	["FGAA",	"HHAA",	"MHAA",	"NHAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
  }
  MHAA	{
   type	"square",
   neighbours	["LHAA",	"KHAA",	"",	"SHAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
  }
  NHAA	{
   type	"right",
   neighbours	["SHAA",	"",	"LHAA",	"",]
+  s0	{
+   type	"PowerCell",
+  }
  }
  OHAA	{
   type	"circle",
   neighbours	["HGAA",	"PHAA",	"RHAA",	"THAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
  }
  PHAA	{
   type	"right",
   neighbours	["OHAA",	"",	"QHAA",	"",]
+  s0	{
+   type	"PowerCell",
+  }
  }
  QHAA	{
   type	"square",
   neighbours	["PHAA",	"SHAA",	"LIAA",	"RHAA",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
   s1	{
    type	"ReinforcementBulkhead",
   }
@@ -1760,10 +2008,19 @@ cells	{
  RHAA	{
   type	"square",
   neighbours	["OHAA",	"QHAA",	"",	"WHAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
  }
  SHAA	{
   type	"square",
   neighbours	["QHAA",	"NHAA",	"MHAA",	"MIAA",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
   s1	{
    type	"ReinforcementBulkhead",
   }
@@ -1771,14 +2028,29 @@ cells	{
  THAA	{
   type	"square",
   neighbours	["QGAA",	"OHAA",	"WHAA",	"UHAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
  }
  UHAA	{
   type	"right",
   neighbours	["VHAA",	"",	"THAA",	"",]
+  s0	{
+   type	"PowerCell",
+  }
  }
  VHAA	{
   type	"square",
   neighbours	["UHAA",	"WHAA",	"",	"ZHAA",]
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
  }
  WHAA	{
   type	"circle",
@@ -1795,14 +2067,26 @@ cells	{
  XHAA	{
   type	"square",
   neighbours	["TGAA",	"YHAA",	"AIAA",	"BIAA",]
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
  }
  YHAA	{
   type	"right",
   neighbours	["XHAA",	"",	"ZHAA",	"",]
+  s0	{
+   type	"PowerCell",
+  }
  }
  ZHAA	{
   type	"circle",
   neighbours	["YHAA",	"VHAA",	"IIAA",	"AIAA",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
   s1	{
    type	"ReinforcementBulkhead",
   }
@@ -1810,6 +2094,9 @@ cells	{
  AIAA	{
   type	"right",
   neighbours	["ZHAA",	"",	"XHAA",	"",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
  }
  BIAA	{
   type	"right",
@@ -1903,6 +2190,9 @@ cells	{
  KIAA	{
   type	"square",
   neighbours	["NEAA",	"TCAA",	"PEAA",	"OEAA",]
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
   s1	{
    type	"ShieldGenerator",
    radius	2.0
@@ -2014,6 +2304,34 @@ cells	{
   neighbours	["GGAA",	"",	"",	"",]
   s0	{
    type	"FusionPower",
+  }
+ }
+ shonheiti	{
+  neighbours	["VAAA",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+ }
+ yiruha	{
+  neighbours	["WAAA",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+ }
+ ryoryoigou	{
+  neighbours	["YBAA",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"ReinforcementBulkhead",
+  }
+ }
+ roinsajou	{
+  neighbours	["ZBAA",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"ReinforcementBulkhead",
   }
  }
 }

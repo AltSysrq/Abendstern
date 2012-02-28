@@ -13,14 +13,16 @@ info	{
 		"........\n1\n",
  mass	6310.0
  energy_levels	{
-  EnergyCharge	5
+  EnergyCharge	7
   MagnetoBomb	3
  }
  sharing_enabled	t
- fileid	209
+ fileid	624
  ownerid	1
  needs_uploading	f
- verification_signature	1402946437
+ original_filename	"hangar/1/interceptor.ship",
+ guid	"0e269fb9-dc3e-4a68-4497-c4c9ffbb13df",
+ verification_signature	138653115
 }
 cells	{
  AAAA	{

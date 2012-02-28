@@ -12,10 +12,12 @@ info	{
   MagnetoBomb	3
  }
  sharing_enabled	t
- fileid	202
+ fileid	612
  ownerid	1
  needs_uploading	f
- verification_signature	1996578954
+ verification_signature	2136416760
+ original_filename	"hangar/1/kosmiche.ship",
+ guid	"24cb621a-d76f-45c6-6280-f582e544a1c3",
 }
 cells	{
  konnichiwa	{
