@@ -5,7 +5,11 @@ verbatimc {
 #define TclGameObject \
   TclGameObject; \
   friend class INO_EnergyCharge;\
-  friend class ENO_EnergyCharge
+  friend class ENO_EnergyCharge;\
+  friend class INO_MagnetoBomb;\
+  friend class ENO_MagnetoBomb;\
+  friend class INO_SemiguidedBomb;\
+  friend class ENO_SemiguidedBomb
 #endif
 }
 
@@ -108,6 +112,17 @@ type MagnetoBomb {
 
   construct {
     X = new MagnetoBomb(field, x, y, vx, vy, power, NULL);
+    X->isRemote = true;
+    X->includeInCollisionDetection = false;
+    X->decorative = true;
+  }
+}
+
+type SemiguidedBomb {
+  extension MagnetoBomb
+
+  construct {
+    X = new SemiguidedBomb(field, x, y, vx, vy, power, NULL);
     X->isRemote = true;
     X->includeInCollisionDetection = false;
     X->decorative = true;

@@ -27,6 +27,8 @@ class Ship;
 class MagnetoBomb: public GameObject {
   friend class INO_MagnetoBomb;
   friend class ENO_MagnetoBomb;
+  friend class INO_SemiguidedBomb;
+  friend class ENO_SemiguidedBomb;
   private:
   float power;
   float coreRadius;

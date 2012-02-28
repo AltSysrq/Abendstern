@@ -21,6 +21,8 @@ extern const float semiguidedBombSpeed;
  * determined by the distance between the parent and the target.
  */
 class SemiguidedBomb : public MagnetoBomb {
+  friend class INO_SemiguidedBomb;
+  friend class ENO_SemiguidedBomb;
   private:
   //It is not suitable to use MagnetoBomb::parent for this purpose
   ObjDL parent;
@@ -36,8 +38,10 @@ class SemiguidedBomb : public MagnetoBomb {
    * @param power Energy level of bomb
    * @param par Ship that launched the bomb
    */
-  SemiguidedBomb(GameField* field, float x, float y, float vx, float vy, float power, Ship* par)
-  : MagnetoBomb(field, x, y, vx, vy, power, par, SEMIGUIDED_SUBMUL, 0.7f, 0.85f, 1.0f),
+  SemiguidedBomb(GameField* field, float x, float y, float vx, float vy,
+                 float power, Ship* par)
+  : MagnetoBomb(field, x, y, vx, vy, power, par, SEMIGUIDED_SUBMUL,
+                0.7f, 0.85f, 1.0f),
     parent(par)
   { }
 
