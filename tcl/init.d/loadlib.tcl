@@ -9,5 +9,6 @@ package require http
 package require tls
 package require aes
 package require sha256
+package require uuid
 
 source tcl/lssinfo.tcl
