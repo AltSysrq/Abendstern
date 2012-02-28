@@ -21,12 +21,14 @@ if {![info exists SHIPDNLD_PROCS]} {
   # Searches for an already-existing ship with the given guid
   # and returns its name (eg, 0/foo); otherwise, returns an empty
   # string.
-  proc shipdnld_findShip {guid} {
+  # Only ships with the given owner are examined.
+  proc shipdnld_findShip {guid owner} {
     for {set i 0} {$i < [$ length hangar.all_ships]} {incr i} {
       set ship [$ str hangar.all_ships.\[$i\]]
       set ship [shipName2Mount $ship]
       if {[$ exists $ship.info.guid]
-      &&  $guid eq [$ str $ship.info.guid]} {
+      &&  $guid eq [$ str $ship.info.guid]
+      &&  $owner == [$ int $ship.info.ownerid]} {
         return [$ str hangar.all_ships.\[$i\]]
       }
     }
@@ -40,7 +42,7 @@ if {![info exists SHIPDNLD_PROCS]} {
     $ open $tmpfile tmpship
     set guid [$ str tmpship.info.guid]
     $ close tmpship
-    set curr [shipdnld_findShip $guid]
+    set curr [shipdnld_findShip $guid $owner]
     if {"" == $curr} {
       set filename [generateNewShipBasename $shipname $owner]
       set filename [shipName2Path $filename]
