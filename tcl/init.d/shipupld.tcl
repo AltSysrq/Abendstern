@@ -62,6 +62,9 @@ if {[llength $ourShips]} {
           $ sets $ship.info.author $::abnet::username
           $ setb $ship.info.needs_uploading yes
         }
+        if {![$ exists $ship.info.guid]} {
+          $ adds $ship.info guid [::uuid::uuid generate]
+        }
 
         if {[$ bool $ship.info.needs_uploading]} {
           # Send to server
