@@ -18,6 +18,8 @@ class INO_EnergyCharge: public ImportedGameObject {
   NetworkConnection* cxn;
 public:
   INO_EnergyCharge(NetworkConnection* cxn);
+  static const NetworkConnection::geraet_num num;
+
 protected:
   virtual void construct() throw();
   virtual void update() throw();
@@ -25,6 +27,8 @@ protected:
 private:
   EnergyCharge* decodeConstruct(const std::vector<byte>&) const throw();
   bool decodeUpdate(const std::vector<byte>&, EnergyCharge*) const throw();
+
+  static InputNetworkGeraet* create(NetworkConnection*) throw();
 };
 
 class ENO_EnergyCharge: public ExportedGameObject {
@@ -38,6 +42,166 @@ protected:
 private:
   void encode() throw();
   EnergyCharge* clone(const EnergyCharge*) const throw();
+};
+
+class MagnetoBomb;
+
+class INO_MagnetoBomb: public ImportedGameObject {
+  NetworkConnection* cxn;
+public:
+  INO_MagnetoBomb(NetworkConnection* cxn);
+  static const NetworkConnection::geraet_num num;
+
+protected:
+  virtual void construct() throw();
+  virtual void update() throw();
+
+private:
+  MagnetoBomb* decodeConstruct(const std::vector<byte>&) const throw();
+  bool decodeUpdate(const std::vector<byte>&, MagnetoBomb*) const throw();
+
+  static InputNetworkGeraet* create(NetworkConnection*) throw();
+};
+
+class ENO_MagnetoBomb: public ExportedGameObject {
+public:
+  ENO_MagnetoBomb(NetworkConnection*, MagnetoBomb*);
+
+protected:
+  virtual bool shouldUpdate() const throw();
+  virtual void updateRemote() throw();
+
+private:
+  void encode() throw();
+  MagnetoBomb* clone(const MagnetoBomb*) const throw();
+};
+
+class SemiguidedBomb;
+
+class INO_SemiguidedBomb: public ImportedGameObject {
+  NetworkConnection* cxn;
+public:
+  INO_SemiguidedBomb(NetworkConnection* cxn);
+  static const NetworkConnection::geraet_num num;
+
+protected:
+  virtual void construct() throw();
+  virtual void update() throw();
+
+private:
+  SemiguidedBomb* decodeConstruct(const std::vector<byte>&) const throw();
+  bool decodeUpdate(const std::vector<byte>&, SemiguidedBomb*) const throw();
+
+  static InputNetworkGeraet* create(NetworkConnection*) throw();
+};
+
+class ENO_SemiguidedBomb: public ExportedGameObject {
+public:
+  ENO_SemiguidedBomb(NetworkConnection*, SemiguidedBomb*);
+
+protected:
+  virtual bool shouldUpdate() const throw();
+  virtual void updateRemote() throw();
+
+private:
+  void encode() throw();
+  SemiguidedBomb* clone(const SemiguidedBomb*) const throw();
+};
+
+class PlasmaBurst;
+
+class INO_PlasmaBurst: public ImportedGameObject {
+  NetworkConnection* cxn;
+public:
+  INO_PlasmaBurst(NetworkConnection* cxn);
+  static const NetworkConnection::geraet_num num;
+
+protected:
+  virtual void construct() throw();
+  virtual void update() throw();
+
+private:
+  PlasmaBurst* decodeConstruct(const std::vector<byte>&) const throw();
+  bool decodeUpdate(const std::vector<byte>&, PlasmaBurst*) const throw();
+
+  static InputNetworkGeraet* create(NetworkConnection*) throw();
+};
+
+class ENO_PlasmaBurst: public ExportedGameObject {
+public:
+  ENO_PlasmaBurst(NetworkConnection*, PlasmaBurst*);
+
+protected:
+  virtual bool shouldUpdate() const throw();
+  virtual void updateRemote() throw();
+
+private:
+  void encode() throw();
+  PlasmaBurst* clone(const PlasmaBurst*) const throw();
+};
+
+class Missile;
+
+class INO_Missile: public ImportedGameObject {
+  NetworkConnection* cxn;
+public:
+  INO_Missile(NetworkConnection* cxn);
+  static const NetworkConnection::geraet_num num;
+
+protected:
+  virtual void construct() throw();
+  virtual void update() throw();
+
+private:
+  Missile* decodeConstruct(const std::vector<byte>&) const throw();
+  bool decodeUpdate(const std::vector<byte>&, Missile*) const throw();
+
+  static InputNetworkGeraet* create(NetworkConnection*) throw();
+};
+
+class ENO_Missile: public ExportedGameObject {
+public:
+  ENO_Missile(NetworkConnection*, Missile*);
+
+protected:
+  virtual bool shouldUpdate() const throw();
+  virtual void updateRemote() throw();
+
+private:
+  void encode() throw();
+  Missile* clone(const Missile*) const throw();
+};
+
+class ParticleEmitter;
+
+class INO_ParticleEmitter: public ImportedGameObject {
+  NetworkConnection* cxn;
+public:
+  INO_ParticleEmitter(NetworkConnection* cxn);
+  static const NetworkConnection::geraet_num num;
+
+protected:
+  virtual void construct() throw();
+  virtual void update() throw();
+
+private:
+  ParticleEmitter* decodeConstruct(const std::vector<byte>&) const throw();
+  bool decodeUpdate(const std::vector<byte>&, ParticleEmitter*) const throw();
+
+  static InputNetworkGeraet* create(NetworkConnection*) throw();
+};
+
+class ENO_ParticleEmitter: public ExportedGameObject {
+public:
+  ENO_ParticleEmitter(NetworkConnection*, ParticleEmitter*);
+
+protected:
+  virtual bool shouldUpdate() const throw();
+  virtual void updateRemote() throw();
+
+private:
+  void encode() throw();
+  ParticleEmitter* clone(const ParticleEmitter*) const throw();
 };
 
 #endif

@@ -46,8 +46,6 @@ struct NebulaResistanceElement;
 class GameObject : public AObject {
   friend class GameField;
   friend class TclGameObject;
-  friend class INO_EnergyCharge;
-  friend class ENO_EnergyCharge;
 
   public:
   /** If the GameObject is remote, updates only continue extrapolation, and must

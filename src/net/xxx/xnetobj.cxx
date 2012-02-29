@@ -6,6 +6,11 @@
    */
 
   #include <cstring>
+//MSVC++ doesn't handle inherited members accessed by friends correctly.
+//This hack injects an appropriate friends list into GameObject
+#ifdef WIN32
+#define TclGameObject  TclGameObject;  friend class INO_EnergyCharge; friend class ENO_EnergyCharge; friend class INO_MagnetoBomb; friend class ENO_MagnetoBomb; friend class INO_SemiguidedBomb; friend class ENO_SemiguidedBomb; friend class INO_PlasmaBurst; friend class ENO_PlasmaBurst; friend class INO_Missile; friend class ENO_Missile; friend class INO_ParticleEmitter; friend class ENO_ParticleEmitter
+#endif
 
   #include "xnetobj.hxx"
   #include "../io.hxx"
@@ -15,6 +20,15 @@
   //generated; they are safe to ignore.
   #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
   #pragma GCC diagnostic ignored "-Wunused-variable"
+
+  //These are defined to... something on windows
+  #ifdef NEAR
+  #undef NEAR
+  #endif
+  #ifdef FAR
+  #undef FAR
+  #endif
+
 
 
   #include "src/sim/game_object.hxx"
@@ -27,17 +41,17 @@
   #include "src/weapon/monophasic_energy_pulse.hxx"
   #include "src/weapon/particle_beam.hxx"
 
-#ifdef NEAR
-#undef NEAR
-#endif
-#ifdef FAR
-#undef FAR
-#endif
-
 INO_EnergyCharge::INO_EnergyCharge(NetworkConnection* cxn_)
 : ImportedGameObject(153, cxn_),
   cxn(cxn_)
 { }
+
+const NetworkConnection::geraet_num INO_EnergyCharge::num =
+    NetworkConnection::registerGeraetCreator(&create);
+
+InputNetworkGeraet* INO_EnergyCharge::create(NetworkConnection* cxn) throw() {
+  return new INO_EnergyCharge(cxn);
+}
 
 void INO_EnergyCharge::construct() throw() {
   object = decodeConstruct(state);
@@ -50,6 +64,8 @@ void INO_EnergyCharge::update() throw() {
 
 EnergyCharge* INO_EnergyCharge::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
+  const unsigned T = cxn->getLatency();
+  bool DESTROY;
   float vx;
 float vy;
 float x;
@@ -59,12 +75,36 @@ float intensity;
 float theta;
 bool exploded;
   io::read_c(&DATA[0+0], vx);
+if (vx != vx) vx = -1.0e9;
+ else if (vx < -1.0e9) vx = -1.0e9;
+ else if (vx > +1.0e9) vx = +1.0e9;
 io::read_c(&DATA[4+0], vy);
+if (vy != vy) vy = -1.0e9;
+ else if (vy < -1.0e9) vy = -1.0e9;
+ else if (vy > +1.0e9) vy = +1.0e9;
 io::read_c(&DATA[8+0], x);
+
+      if (x == x)
+        x = max(0.0f, min(field->width, x + T*vx));
+      else
+        x = 0;
+    
 io::read_c(&DATA[12+0], y);
+
+      if (y == y)
+        y = max(0.0f, min(field->height, y + T*vy));
+      else
+        y = 0;
+    
 strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
 io::read_c(&DATA[144+0], intensity);
+if (intensity != intensity) intensity = 0;
+ else if (intensity < 0) intensity = 0;
+ else if (intensity > 1) intensity = 1;
 io::read_c(&DATA[148+0], theta);
+if (theta != theta) theta = -1.0e9;
+ else if (theta < -1.0e9) theta = -1.0e9;
+ else if (theta > +1.0e9) theta = +1.0e9;
 exploded = (DATA[152+0] >> 0) & 1;
   EnergyCharge* X;
   
@@ -87,18 +127,42 @@ float intensity;
 float theta;
 bool exploded;
   io::read_c(&DATA[0+0], vx);
- X->vx = vx; 
+if (vx != vx) vx = -1.0e9;
+ else if (vx < -1.0e9) vx = -1.0e9;
+ else if (vx > +1.0e9) vx = +1.0e9;
+X->vx = vx;
 io::read_c(&DATA[4+0], vy);
- X->vy = vy; 
+if (vy != vy) vy = -1.0e9;
+ else if (vy < -1.0e9) vy = -1.0e9;
+ else if (vy > +1.0e9) vy = +1.0e9;
+X->vy = vy;
 io::read_c(&DATA[8+0], x);
- X->x = max(0.0f, min(field->width, x + T*vx)); 
+
+      if (x == x)
+        x = max(0.0f, min(field->width, x + T*vx));
+      else
+        x = 0;
+    
+X->x = x;
 io::read_c(&DATA[12+0], y);
- X->y = max(0.0f, min(field->height, y + T*vy)); 
+
+      if (y == y)
+        y = max(0.0f, min(field->height, y + T*vy));
+      else
+        y = 0;
+    
+X->y = y;
 strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
  if (!X->ignoreNetworkTag) X->tag = tag; 
 io::read_c(&DATA[144+0], intensity);
- X->intensity = max(0.0f,min(1.0f,intensity)); 
+if (intensity != intensity) intensity = 0;
+ else if (intensity < 0) intensity = 0;
+ else if (intensity > 1) intensity = 1;
+X->intensity = intensity;
 io::read_c(&DATA[148+0], theta);
+if (theta != theta) theta = -1.0e9;
+ else if (theta < -1.0e9) theta = -1.0e9;
+ else if (theta > +1.0e9) theta = +1.0e9;
 exploded = (DATA[152+0] >> 0) & 1;
 
       if (!X->exploded && exploded)
@@ -125,12 +189,12 @@ float theta;
 bool exploded;
    exploded = X->exploded; 
  theta = X->theta; 
- intensity = X->intensity; 
+intensity = X->intensity;
  strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
- y = X->y; 
- x = X->x; 
- vy = X->vy; 
- vx = X->vx; 
+y = X->y;
+x = X->x;
+vy = X->vy;
+vx = X->vx;
   #undef X
   EnergyCharge* dst;
   #define X dst
@@ -155,39 +219,18 @@ float intensity;
 float theta;
 bool exploded;
     S(const EnergyCharge* X) {
-       vx = X->vx; 
- vy = X->vy; 
- x = X->x; 
- y = X->y; 
+      vx = X->vx;
+vy = X->vy;
+x = X->x;
+y = X->y;
  strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
- intensity = X->intensity; 
+intensity = X->intensity;
  theta = X->theta; 
  exploded = X->exploded; 
     }
   } x(static_cast<EnergyCharge*>(local.ref)), y(static_cast<EnergyCharge*>(remote));
 
    return false; 
-{
-      float delta = fabs(x.vx - y.vx);
-      //Consider 1 screen/sec to be too much at 10 screens
-      NEAR += delta*10000;
-      FAR += delta*10000;
-    }
-{
-      float delta = fabs(x.vy - y.vy);
-      NEAR += delta*10000;
-      FAR += delta*10000;
-    }
-{
-      float delta = fabs(x.x - y.x);
-      NEAR += delta*32;
-      FAR += delta*32;
-    }
-{
-      float delta = fabs(x.y + y.y);
-      NEAR += delta*32;
-      FAR += delta*32;
-    }
 
       if (strcmp(x.tag, y.tag)) return true; //Must send update
     
@@ -215,30 +258,1427 @@ bool exploded;
 DATA[152+0] &= ~(1<<0); DATA[152+0] |= (exploded & 1) << 0;
  theta = X->theta; 
 io::write_c(&DATA[148+0], theta);
- intensity = X->intensity; 
+intensity = X->intensity;
 io::write_c(&DATA[144+0], intensity);
  strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
 strncpy((char*)&DATA[16+0], tag, 128);
- y = X->y; 
+y = X->y;
 io::write_c(&DATA[12+0], y);
- x = X->x; 
+x = X->x;
 io::write_c(&DATA[8+0], x);
- vy = X->vy; 
+vy = X->vy;
 io::write_c(&DATA[4+0], vy);
- vx = X->vx; 
+vx = X->vx;
 io::write_c(&DATA[0+0], vx);
   #undef X
   #define X l_remote
-   X->vx = vx; 
- X->vy = vy; 
- X->x = max(0.0f, min(field->width, x + T*vx)); 
- X->y = max(0.0f, min(field->height, y + T*vy)); 
+  X->vx = vx;
+X->vy = vy;
+X->x = x;
+X->y = y;
  if (!X->ignoreNetworkTag) X->tag = tag; 
- X->intensity = max(0.0f,min(1.0f,intensity)); 
+X->intensity = intensity;
 
       if (!X->exploded && exploded)
         X->explode(NULL);
     
+  #undef X
+  #undef DATA
+  #undef T
+  #undef field
+}
+
+INO_MagnetoBomb::INO_MagnetoBomb(NetworkConnection* cxn_)
+: ImportedGameObject(159, cxn_),
+  cxn(cxn_)
+{ }
+
+const NetworkConnection::geraet_num INO_MagnetoBomb::num =
+    NetworkConnection::registerGeraetCreator(&create);
+
+InputNetworkGeraet* INO_MagnetoBomb::create(NetworkConnection* cxn) throw() {
+  return new INO_MagnetoBomb(cxn);
+}
+
+void INO_MagnetoBomb::construct() throw() {
+  object = decodeConstruct(state);
+}
+
+void INO_MagnetoBomb::update() throw() {
+  if (decodeUpdate(state, static_cast<MagnetoBomb*>(object)))
+    destroy();
+}
+
+MagnetoBomb* INO_MagnetoBomb::decodeConstruct(const std::vector<byte>& DATA)
+const throw() {
+  const unsigned T = cxn->getLatency();
+  bool DESTROY;
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float ax;
+float ay;
+float power;
+unsigned short timeAlive;
+bool exploded;
+  io::read_c(&DATA[0+0], vx);
+if (vx != vx) vx = -1.0e9;
+ else if (vx < -1.0e9) vx = -1.0e9;
+ else if (vx > +1.0e9) vx = +1.0e9;
+io::read_c(&DATA[4+0], vy);
+if (vy != vy) vy = -1.0e9;
+ else if (vy < -1.0e9) vy = -1.0e9;
+ else if (vy > +1.0e9) vy = +1.0e9;
+io::read_c(&DATA[8+0], x);
+
+      if (x == x)
+        x = max(0.0f, min(field->width, x + T*vx));
+      else
+        x = 0;
+    
+io::read_c(&DATA[12+0], y);
+
+      if (y == y)
+        y = max(0.0f, min(field->height, y + T*vy));
+      else
+        y = 0;
+    
+strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
+io::read_c(&DATA[144+0], ax);
+if (ax != ax) ax = -1.0e9;
+ else if (ax < -1.0e9) ax = -1.0e9;
+ else if (ax > +1.0e9) ax = +1.0e9;
+io::read_c(&DATA[148+0], ay);
+if (ay != ay) ay = -1.0e9;
+ else if (ay < -1.0e9) ay = -1.0e9;
+ else if (ay > +1.0e9) ay = +1.0e9;
+io::read_c(&DATA[152+0], power);
+if (power != power) power = 0;
+ else if (power < 0) power = 0;
+ else if (power > +1.0e9) power = +1.0e9;
+io::read_c(&DATA[156+0], timeAlive);
+ timeAlive = max((short unsigned)0,timeAlive); 
+exploded = (DATA[158+0] >> 0) & 1;
+  MagnetoBomb* X;
+  
+    X = new MagnetoBomb(field, x, y, vx, vy, power, NULL);
+    X->isRemote = true;
+    X->includeInCollisionDetection = false;
+    X->decorative = true;
+  
+   if (!X->ignoreNetworkTag) X->tag = tag; 
+ X->ax = ax; 
+ X->ay = ay; 
+ X->timeAlive = timeAlive; 
+  return X;
+}
+
+bool INO_MagnetoBomb::decodeUpdate(const std::vector<byte>& DATA, MagnetoBomb* X)
+const throw () {
+  bool DESTROY = false;
+  const unsigned T = cxn->getLatency();
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float ax;
+float ay;
+float power;
+unsigned short timeAlive;
+bool exploded;
+  io::read_c(&DATA[0+0], vx);
+if (vx != vx) vx = -1.0e9;
+ else if (vx < -1.0e9) vx = -1.0e9;
+ else if (vx > +1.0e9) vx = +1.0e9;
+X->vx = vx;
+io::read_c(&DATA[4+0], vy);
+if (vy != vy) vy = -1.0e9;
+ else if (vy < -1.0e9) vy = -1.0e9;
+ else if (vy > +1.0e9) vy = +1.0e9;
+X->vy = vy;
+io::read_c(&DATA[8+0], x);
+
+      if (x == x)
+        x = max(0.0f, min(field->width, x + T*vx));
+      else
+        x = 0;
+    
+X->x = x;
+io::read_c(&DATA[12+0], y);
+
+      if (y == y)
+        y = max(0.0f, min(field->height, y + T*vy));
+      else
+        y = 0;
+    
+X->y = y;
+strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
+ if (!X->ignoreNetworkTag) X->tag = tag; 
+io::read_c(&DATA[144+0], ax);
+if (ax != ax) ax = -1.0e9;
+ else if (ax < -1.0e9) ax = -1.0e9;
+ else if (ax > +1.0e9) ax = +1.0e9;
+X->ax = ax;
+io::read_c(&DATA[148+0], ay);
+if (ay != ay) ay = -1.0e9;
+ else if (ay < -1.0e9) ay = -1.0e9;
+ else if (ay > +1.0e9) ay = +1.0e9;
+X->ay = ay;
+io::read_c(&DATA[152+0], power);
+if (power != power) power = 0;
+ else if (power < 0) power = 0;
+ else if (power > +1.0e9) power = +1.0e9;
+X->power = power;
+io::read_c(&DATA[156+0], timeAlive);
+ timeAlive = max((short unsigned)0,timeAlive); 
+X->timeAlive = timeAlive;
+exploded = (DATA[158+0] >> 0) & 1;
+
+      if (!X->exploded && exploded)
+        X->explode();
+    
+  return DESTROY;
+}
+
+ENO_MagnetoBomb::ENO_MagnetoBomb(NetworkConnection* cxn, MagnetoBomb* obj)
+: ExportedGameObject(159, cxn, obj, clone(obj))
+{ }
+
+MagnetoBomb* ENO_MagnetoBomb::clone(const MagnetoBomb* src) const throw() {
+  #define X src
+  #define field (&this->cxn->field)
+  const unsigned T = cxn->getLatency();
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float ax;
+float ay;
+float power;
+unsigned short timeAlive;
+bool exploded;
+   exploded = X->exploded; 
+timeAlive = X->timeAlive;
+power = X->power;
+ay = X->ay;
+ax = X->ax;
+ strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+y = X->y;
+x = X->x;
+vy = X->vy;
+vx = X->vx;
+  #undef X
+  MagnetoBomb* dst;
+  #define X dst
+  
+    X = new MagnetoBomb(field, x, y, vx, vy, power, NULL);
+    X->isRemote = true;
+    X->includeInCollisionDetection = false;
+    X->decorative = true;
+  
+   if (!X->ignoreNetworkTag) X->tag = tag; 
+ X->ax = ax; 
+ X->ay = ay; 
+ X->timeAlive = timeAlive; 
+  #undef X
+  #undef field
+  return dst;
+}
+
+bool ENO_MagnetoBomb::shouldUpdate() const throw() {
+  float NEAR = 0, FAR = 0;
+  struct S {
+    float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float ax;
+float ay;
+float power;
+unsigned short timeAlive;
+bool exploded;
+    S(const MagnetoBomb* X) {
+      vx = X->vx;
+vy = X->vy;
+x = X->x;
+y = X->y;
+ strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+ax = X->ax;
+ay = X->ay;
+power = X->power;
+timeAlive = X->timeAlive;
+ exploded = X->exploded; 
+    }
+  } x(static_cast<MagnetoBomb*>(local.ref)), y(static_cast<MagnetoBomb*>(remote));
+
+  
+      if (strcmp(x.tag, y.tag)) return true; //Must send update
+    
+
+  float l_dist = cxn->distanceOf(this->local.ref);
+  return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
+}
+
+void ENO_MagnetoBomb::updateRemote() throw() {
+  #define T 0
+  #define DATA (this->state)
+  #define field (&this->cxn->field)
+  MagnetoBomb* l_local = static_cast<MagnetoBomb*>(this->local.ref);
+  MagnetoBomb* l_remote = static_cast<MagnetoBomb*>(this->remote);
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float ax;
+float ay;
+float power;
+unsigned short timeAlive;
+bool exploded;
+  #define X l_local
+   exploded = X->exploded; 
+DATA[158+0] &= ~(1<<0); DATA[158+0] |= (exploded & 1) << 0;
+timeAlive = X->timeAlive;
+io::write_c(&DATA[156+0], timeAlive);
+power = X->power;
+io::write_c(&DATA[152+0], power);
+ay = X->ay;
+io::write_c(&DATA[148+0], ay);
+ax = X->ax;
+io::write_c(&DATA[144+0], ax);
+ strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+strncpy((char*)&DATA[16+0], tag, 128);
+y = X->y;
+io::write_c(&DATA[12+0], y);
+x = X->x;
+io::write_c(&DATA[8+0], x);
+vy = X->vy;
+io::write_c(&DATA[4+0], vy);
+vx = X->vx;
+io::write_c(&DATA[0+0], vx);
+  #undef X
+  #define X l_remote
+  X->vx = vx;
+X->vy = vy;
+X->x = x;
+X->y = y;
+ if (!X->ignoreNetworkTag) X->tag = tag; 
+X->ax = ax;
+X->ay = ay;
+X->power = power;
+X->timeAlive = timeAlive;
+
+      if (!X->exploded && exploded)
+        X->explode();
+    
+  #undef X
+  #undef DATA
+  #undef T
+  #undef field
+}
+
+INO_SemiguidedBomb::INO_SemiguidedBomb(NetworkConnection* cxn_)
+: ImportedGameObject(159, cxn_),
+  cxn(cxn_)
+{ }
+
+const NetworkConnection::geraet_num INO_SemiguidedBomb::num =
+    NetworkConnection::registerGeraetCreator(&create);
+
+InputNetworkGeraet* INO_SemiguidedBomb::create(NetworkConnection* cxn) throw() {
+  return new INO_SemiguidedBomb(cxn);
+}
+
+void INO_SemiguidedBomb::construct() throw() {
+  object = decodeConstruct(state);
+}
+
+void INO_SemiguidedBomb::update() throw() {
+  if (decodeUpdate(state, static_cast<SemiguidedBomb*>(object)))
+    destroy();
+}
+
+SemiguidedBomb* INO_SemiguidedBomb::decodeConstruct(const std::vector<byte>& DATA)
+const throw() {
+  const unsigned T = cxn->getLatency();
+  bool DESTROY;
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float ax;
+float ay;
+float power;
+unsigned short timeAlive;
+bool exploded;
+  io::read_c(&DATA[0+0], vx);
+if (vx != vx) vx = -1.0e9;
+ else if (vx < -1.0e9) vx = -1.0e9;
+ else if (vx > +1.0e9) vx = +1.0e9;
+io::read_c(&DATA[4+0], vy);
+if (vy != vy) vy = -1.0e9;
+ else if (vy < -1.0e9) vy = -1.0e9;
+ else if (vy > +1.0e9) vy = +1.0e9;
+io::read_c(&DATA[8+0], x);
+
+      if (x == x)
+        x = max(0.0f, min(field->width, x + T*vx));
+      else
+        x = 0;
+    
+io::read_c(&DATA[12+0], y);
+
+      if (y == y)
+        y = max(0.0f, min(field->height, y + T*vy));
+      else
+        y = 0;
+    
+strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
+io::read_c(&DATA[144+0], ax);
+if (ax != ax) ax = -1.0e9;
+ else if (ax < -1.0e9) ax = -1.0e9;
+ else if (ax > +1.0e9) ax = +1.0e9;
+io::read_c(&DATA[148+0], ay);
+if (ay != ay) ay = -1.0e9;
+ else if (ay < -1.0e9) ay = -1.0e9;
+ else if (ay > +1.0e9) ay = +1.0e9;
+io::read_c(&DATA[152+0], power);
+if (power != power) power = 0;
+ else if (power < 0) power = 0;
+ else if (power > +1.0e9) power = +1.0e9;
+io::read_c(&DATA[156+0], timeAlive);
+ timeAlive = max((short unsigned)0,timeAlive); 
+exploded = (DATA[158+0] >> 0) & 1;
+  SemiguidedBomb* X;
+  
+    X = new SemiguidedBomb(field, x, y, vx, vy, power, NULL);
+    X->isRemote = true;
+    X->includeInCollisionDetection = false;
+    X->decorative = true;
+  
+   if (!X->ignoreNetworkTag) X->tag = tag; 
+ X->ax = ax; 
+ X->ay = ay; 
+ X->timeAlive = timeAlive; 
+  return X;
+}
+
+bool INO_SemiguidedBomb::decodeUpdate(const std::vector<byte>& DATA, SemiguidedBomb* X)
+const throw () {
+  bool DESTROY = false;
+  const unsigned T = cxn->getLatency();
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float ax;
+float ay;
+float power;
+unsigned short timeAlive;
+bool exploded;
+  io::read_c(&DATA[0+0], vx);
+if (vx != vx) vx = -1.0e9;
+ else if (vx < -1.0e9) vx = -1.0e9;
+ else if (vx > +1.0e9) vx = +1.0e9;
+X->vx = vx;
+io::read_c(&DATA[4+0], vy);
+if (vy != vy) vy = -1.0e9;
+ else if (vy < -1.0e9) vy = -1.0e9;
+ else if (vy > +1.0e9) vy = +1.0e9;
+X->vy = vy;
+io::read_c(&DATA[8+0], x);
+
+      if (x == x)
+        x = max(0.0f, min(field->width, x + T*vx));
+      else
+        x = 0;
+    
+X->x = x;
+io::read_c(&DATA[12+0], y);
+
+      if (y == y)
+        y = max(0.0f, min(field->height, y + T*vy));
+      else
+        y = 0;
+    
+X->y = y;
+strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
+ if (!X->ignoreNetworkTag) X->tag = tag; 
+io::read_c(&DATA[144+0], ax);
+if (ax != ax) ax = -1.0e9;
+ else if (ax < -1.0e9) ax = -1.0e9;
+ else if (ax > +1.0e9) ax = +1.0e9;
+X->ax = ax;
+io::read_c(&DATA[148+0], ay);
+if (ay != ay) ay = -1.0e9;
+ else if (ay < -1.0e9) ay = -1.0e9;
+ else if (ay > +1.0e9) ay = +1.0e9;
+X->ay = ay;
+io::read_c(&DATA[152+0], power);
+if (power != power) power = 0;
+ else if (power < 0) power = 0;
+ else if (power > +1.0e9) power = +1.0e9;
+X->power = power;
+io::read_c(&DATA[156+0], timeAlive);
+ timeAlive = max((short unsigned)0,timeAlive); 
+X->timeAlive = timeAlive;
+exploded = (DATA[158+0] >> 0) & 1;
+
+      if (!X->exploded && exploded)
+        X->explode();
+    
+  return DESTROY;
+}
+
+ENO_SemiguidedBomb::ENO_SemiguidedBomb(NetworkConnection* cxn, SemiguidedBomb* obj)
+: ExportedGameObject(159, cxn, obj, clone(obj))
+{ }
+
+SemiguidedBomb* ENO_SemiguidedBomb::clone(const SemiguidedBomb* src) const throw() {
+  #define X src
+  #define field (&this->cxn->field)
+  const unsigned T = cxn->getLatency();
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float ax;
+float ay;
+float power;
+unsigned short timeAlive;
+bool exploded;
+   exploded = X->exploded; 
+timeAlive = X->timeAlive;
+power = X->power;
+ay = X->ay;
+ax = X->ax;
+ strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+y = X->y;
+x = X->x;
+vy = X->vy;
+vx = X->vx;
+  #undef X
+  SemiguidedBomb* dst;
+  #define X dst
+  
+    X = new SemiguidedBomb(field, x, y, vx, vy, power, NULL);
+    X->isRemote = true;
+    X->includeInCollisionDetection = false;
+    X->decorative = true;
+  
+   if (!X->ignoreNetworkTag) X->tag = tag; 
+ X->ax = ax; 
+ X->ay = ay; 
+ X->timeAlive = timeAlive; 
+  #undef X
+  #undef field
+  return dst;
+}
+
+bool ENO_SemiguidedBomb::shouldUpdate() const throw() {
+  float NEAR = 0, FAR = 0;
+  struct S {
+    float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float ax;
+float ay;
+float power;
+unsigned short timeAlive;
+bool exploded;
+    S(const SemiguidedBomb* X) {
+      vx = X->vx;
+vy = X->vy;
+x = X->x;
+y = X->y;
+ strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+ax = X->ax;
+ay = X->ay;
+power = X->power;
+timeAlive = X->timeAlive;
+ exploded = X->exploded; 
+    }
+  } x(static_cast<SemiguidedBomb*>(local.ref)), y(static_cast<SemiguidedBomb*>(remote));
+
+  
+      if (strcmp(x.tag, y.tag)) return true; //Must send update
+    
+
+  float l_dist = cxn->distanceOf(this->local.ref);
+  return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
+}
+
+void ENO_SemiguidedBomb::updateRemote() throw() {
+  #define T 0
+  #define DATA (this->state)
+  #define field (&this->cxn->field)
+  SemiguidedBomb* l_local = static_cast<SemiguidedBomb*>(this->local.ref);
+  SemiguidedBomb* l_remote = static_cast<SemiguidedBomb*>(this->remote);
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float ax;
+float ay;
+float power;
+unsigned short timeAlive;
+bool exploded;
+  #define X l_local
+   exploded = X->exploded; 
+DATA[158+0] &= ~(1<<0); DATA[158+0] |= (exploded & 1) << 0;
+timeAlive = X->timeAlive;
+io::write_c(&DATA[156+0], timeAlive);
+power = X->power;
+io::write_c(&DATA[152+0], power);
+ay = X->ay;
+io::write_c(&DATA[148+0], ay);
+ax = X->ax;
+io::write_c(&DATA[144+0], ax);
+ strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+strncpy((char*)&DATA[16+0], tag, 128);
+y = X->y;
+io::write_c(&DATA[12+0], y);
+x = X->x;
+io::write_c(&DATA[8+0], x);
+vy = X->vy;
+io::write_c(&DATA[4+0], vy);
+vx = X->vx;
+io::write_c(&DATA[0+0], vx);
+  #undef X
+  #define X l_remote
+  X->vx = vx;
+X->vy = vy;
+X->x = x;
+X->y = y;
+ if (!X->ignoreNetworkTag) X->tag = tag; 
+X->ax = ax;
+X->ay = ay;
+X->power = power;
+X->timeAlive = timeAlive;
+
+      if (!X->exploded && exploded)
+        X->explode();
+    
+  #undef X
+  #undef DATA
+  #undef T
+  #undef field
+}
+
+INO_PlasmaBurst::INO_PlasmaBurst(NetworkConnection* cxn_)
+: ImportedGameObject(153, cxn_),
+  cxn(cxn_)
+{ }
+
+const NetworkConnection::geraet_num INO_PlasmaBurst::num =
+    NetworkConnection::registerGeraetCreator(&create);
+
+InputNetworkGeraet* INO_PlasmaBurst::create(NetworkConnection* cxn) throw() {
+  return new INO_PlasmaBurst(cxn);
+}
+
+void INO_PlasmaBurst::construct() throw() {
+  object = decodeConstruct(state);
+}
+
+void INO_PlasmaBurst::update() throw() {
+  if (decodeUpdate(state, static_cast<PlasmaBurst*>(object)))
+    destroy();
+}
+
+PlasmaBurst* INO_PlasmaBurst::decodeConstruct(const std::vector<byte>& DATA)
+const throw() {
+  const unsigned T = cxn->getLatency();
+  bool DESTROY;
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float mass;
+float direction;
+unsigned exploded;
+  io::read_c(&DATA[0+0], vx);
+if (vx != vx) vx = -1.0e9;
+ else if (vx < -1.0e9) vx = -1.0e9;
+ else if (vx > +1.0e9) vx = +1.0e9;
+io::read_c(&DATA[4+0], vy);
+if (vy != vy) vy = -1.0e9;
+ else if (vy < -1.0e9) vy = -1.0e9;
+ else if (vy > +1.0e9) vy = +1.0e9;
+io::read_c(&DATA[8+0], x);
+
+      if (x == x)
+        x = max(0.0f, min(field->width, x + T*vx));
+      else
+        x = 0;
+    
+io::read_c(&DATA[12+0], y);
+
+      if (y == y)
+        y = max(0.0f, min(field->height, y + T*vy));
+      else
+        y = 0;
+    
+strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
+io::read_c(&DATA[144+0], mass);
+if (mass != mass) mass = 0;
+ else if (mass < 0) mass = 0;
+ else if (mass > 100) mass = 100;
+io::read_c(&DATA[148+0], direction);
+if (direction != direction) direction = -1.0e9;
+ else if (direction < -1.0e9) direction = -1.0e9;
+ else if (direction > +1.0e9) direction = +1.0e9;
+exploded = (DATA[152+0] >> 0) & 1;
+  PlasmaBurst* X;
+  
+    X = new PlasmaBurst(field, x, y, vx, vy, direction, mass);
+  
+   if (!X->ignoreNetworkTag) X->tag = tag; 
+  return X;
+}
+
+bool INO_PlasmaBurst::decodeUpdate(const std::vector<byte>& DATA, PlasmaBurst* X)
+const throw () {
+  bool DESTROY = false;
+  const unsigned T = cxn->getLatency();
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float mass;
+float direction;
+unsigned exploded;
+  io::read_c(&DATA[0+0], vx);
+if (vx != vx) vx = -1.0e9;
+ else if (vx < -1.0e9) vx = -1.0e9;
+ else if (vx > +1.0e9) vx = +1.0e9;
+X->vx = vx;
+io::read_c(&DATA[4+0], vy);
+if (vy != vy) vy = -1.0e9;
+ else if (vy < -1.0e9) vy = -1.0e9;
+ else if (vy > +1.0e9) vy = +1.0e9;
+X->vy = vy;
+io::read_c(&DATA[8+0], x);
+
+      if (x == x)
+        x = max(0.0f, min(field->width, x + T*vx));
+      else
+        x = 0;
+    
+X->x = x;
+io::read_c(&DATA[12+0], y);
+
+      if (y == y)
+        y = max(0.0f, min(field->height, y + T*vy));
+      else
+        y = 0;
+    
+X->y = y;
+strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
+ if (!X->ignoreNetworkTag) X->tag = tag; 
+io::read_c(&DATA[144+0], mass);
+if (mass != mass) mass = 0;
+ else if (mass < 0) mass = 0;
+ else if (mass > 100) mass = 100;
+X->mass = mass;
+io::read_c(&DATA[148+0], direction);
+if (direction != direction) direction = -1.0e9;
+ else if (direction < -1.0e9) direction = -1.0e9;
+ else if (direction > +1.0e9) direction = +1.0e9;
+X->direction = direction;
+exploded = (DATA[152+0] >> 0) & 1;
+
+      if (exploded && !X->exploded) {
+        X->explode(NULL);
+      }
+    
+  return DESTROY;
+}
+
+ENO_PlasmaBurst::ENO_PlasmaBurst(NetworkConnection* cxn, PlasmaBurst* obj)
+: ExportedGameObject(153, cxn, obj, clone(obj))
+{ }
+
+PlasmaBurst* ENO_PlasmaBurst::clone(const PlasmaBurst* src) const throw() {
+  #define X src
+  #define field (&this->cxn->field)
+  const unsigned T = cxn->getLatency();
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float mass;
+float direction;
+unsigned exploded;
+  
+      exploded = X->exploded;
+    
+direction = X->direction;
+mass = X->mass;
+ strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+y = X->y;
+x = X->x;
+vy = X->vy;
+vx = X->vx;
+  #undef X
+  PlasmaBurst* dst;
+  #define X dst
+  
+    X = new PlasmaBurst(field, x, y, vx, vy, direction, mass);
+  
+   if (!X->ignoreNetworkTag) X->tag = tag; 
+  #undef X
+  #undef field
+  return dst;
+}
+
+bool ENO_PlasmaBurst::shouldUpdate() const throw() {
+  float NEAR = 0, FAR = 0;
+  struct S {
+    float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float mass;
+float direction;
+unsigned exploded;
+    S(const PlasmaBurst* X) {
+      vx = X->vx;
+vy = X->vy;
+x = X->x;
+y = X->y;
+ strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+mass = X->mass;
+direction = X->direction;
+
+      exploded = X->exploded;
+    
+    }
+  } x(static_cast<PlasmaBurst*>(local.ref)), y(static_cast<PlasmaBurst*>(remote));
+
+  
+      if (strcmp(x.tag, y.tag)) return true; //Must send update
+    
+ return false; 
+
+  float l_dist = cxn->distanceOf(this->local.ref);
+  return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
+}
+
+void ENO_PlasmaBurst::updateRemote() throw() {
+  #define T 0
+  #define DATA (this->state)
+  #define field (&this->cxn->field)
+  PlasmaBurst* l_local = static_cast<PlasmaBurst*>(this->local.ref);
+  PlasmaBurst* l_remote = static_cast<PlasmaBurst*>(this->remote);
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float mass;
+float direction;
+unsigned exploded;
+  #define X l_local
+  
+      exploded = X->exploded;
+    
+DATA[152+0] &= ~(1<<0); DATA[152+0] |= (exploded & 1) << 0;
+direction = X->direction;
+io::write_c(&DATA[148+0], direction);
+mass = X->mass;
+io::write_c(&DATA[144+0], mass);
+ strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+strncpy((char*)&DATA[16+0], tag, 128);
+y = X->y;
+io::write_c(&DATA[12+0], y);
+x = X->x;
+io::write_c(&DATA[8+0], x);
+vy = X->vy;
+io::write_c(&DATA[4+0], vy);
+vx = X->vx;
+io::write_c(&DATA[0+0], vx);
+  #undef X
+  #define X l_remote
+  X->vx = vx;
+X->vy = vy;
+X->x = x;
+X->y = y;
+ if (!X->ignoreNetworkTag) X->tag = tag; 
+X->mass = mass;
+X->direction = direction;
+
+      if (exploded && !X->exploded) {
+        X->explode(NULL);
+      }
+    
+  #undef X
+  #undef DATA
+  #undef T
+  #undef field
+}
+
+INO_Missile::INO_Missile(NetworkConnection* cxn_)
+: ImportedGameObject(155, cxn_),
+  cxn(cxn_)
+{ }
+
+const NetworkConnection::geraet_num INO_Missile::num =
+    NetworkConnection::registerGeraetCreator(&create);
+
+InputNetworkGeraet* INO_Missile::create(NetworkConnection* cxn) throw() {
+  return new INO_Missile(cxn);
+}
+
+void INO_Missile::construct() throw() {
+  object = decodeConstruct(state);
+}
+
+void INO_Missile::update() throw() {
+  if (decodeUpdate(state, static_cast<Missile*>(object)))
+    destroy();
+}
+
+Missile* INO_Missile::decodeConstruct(const std::vector<byte>& DATA)
+const throw() {
+  const unsigned T = cxn->getLatency();
+  bool DESTROY;
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float ax;
+float ay;
+unsigned short timeAlive;
+unsigned level;
+unsigned exploded;
+  io::read_c(&DATA[0+0], vx);
+if (vx != vx) vx = -1.0e9;
+ else if (vx < -1.0e9) vx = -1.0e9;
+ else if (vx > +1.0e9) vx = +1.0e9;
+io::read_c(&DATA[4+0], vy);
+if (vy != vy) vy = -1.0e9;
+ else if (vy < -1.0e9) vy = -1.0e9;
+ else if (vy > +1.0e9) vy = +1.0e9;
+io::read_c(&DATA[8+0], x);
+
+      if (x == x)
+        x = max(0.0f, min(field->width, x + T*vx));
+      else
+        x = 0;
+    
+io::read_c(&DATA[12+0], y);
+
+      if (y == y)
+        y = max(0.0f, min(field->height, y + T*vy));
+      else
+        y = 0;
+    
+strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
+io::read_c(&DATA[144+0], ax);
+if (ax != ax) ax = -2.0e-6f;
+ else if (ax < -2.0e-6f) ax = -2.0e-6f;
+ else if (ax > +2.0e-6f) ax = +2.0e-6f;
+io::read_c(&DATA[148+0], ay);
+if (ay != ay) ay = -2.0e-6f;
+ else if (ay < -2.0e-6f) ay = -2.0e-6f;
+ else if (ay > +2.0e-6f) ay = +2.0e-6f;
+io::read_c(&DATA[152+0], timeAlive);
+level = (DATA[154+0] >> 0) & 15;
+exploded = (DATA[154+0] >> 4) & 1;
+  Missile* X;
+  
+    X = new Missile(field, level, x, y, vx, vy, ax, ay, timeAlive);
+  
+   if (!X->ignoreNetworkTag) X->tag = tag; 
+  return X;
+}
+
+bool INO_Missile::decodeUpdate(const std::vector<byte>& DATA, Missile* X)
+const throw () {
+  bool DESTROY = false;
+  const unsigned T = cxn->getLatency();
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float ax;
+float ay;
+unsigned short timeAlive;
+unsigned level;
+unsigned exploded;
+  io::read_c(&DATA[0+0], vx);
+if (vx != vx) vx = -1.0e9;
+ else if (vx < -1.0e9) vx = -1.0e9;
+ else if (vx > +1.0e9) vx = +1.0e9;
+X->vx = vx;
+io::read_c(&DATA[4+0], vy);
+if (vy != vy) vy = -1.0e9;
+ else if (vy < -1.0e9) vy = -1.0e9;
+ else if (vy > +1.0e9) vy = +1.0e9;
+X->vy = vy;
+io::read_c(&DATA[8+0], x);
+
+      if (x == x)
+        x = max(0.0f, min(field->width, x + T*vx));
+      else
+        x = 0;
+    
+X->x = x;
+io::read_c(&DATA[12+0], y);
+
+      if (y == y)
+        y = max(0.0f, min(field->height, y + T*vy));
+      else
+        y = 0;
+    
+X->y = y;
+strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
+ if (!X->ignoreNetworkTag) X->tag = tag; 
+io::read_c(&DATA[144+0], ax);
+if (ax != ax) ax = -2.0e-6f;
+ else if (ax < -2.0e-6f) ax = -2.0e-6f;
+ else if (ax > +2.0e-6f) ax = +2.0e-6f;
+X->ax = ax;
+io::read_c(&DATA[148+0], ay);
+if (ay != ay) ay = -2.0e-6f;
+ else if (ay < -2.0e-6f) ay = -2.0e-6f;
+ else if (ay > +2.0e-6f) ay = +2.0e-6f;
+X->ay = ay;
+io::read_c(&DATA[152+0], timeAlive);
+X->timeAlive = timeAlive;
+level = (DATA[154+0] >> 0) & 15;
+ X->level = min(10u,max(1u,level)); 
+exploded = (DATA[154+0] >> 4) & 1;
+
+      if (exploded && !X->exploded) {
+        X->explode(NULL);
+      }
+    
+  return DESTROY;
+}
+
+ENO_Missile::ENO_Missile(NetworkConnection* cxn, Missile* obj)
+: ExportedGameObject(155, cxn, obj, clone(obj))
+{ }
+
+Missile* ENO_Missile::clone(const Missile* src) const throw() {
+  #define X src
+  #define field (&this->cxn->field)
+  const unsigned T = cxn->getLatency();
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float ax;
+float ay;
+unsigned short timeAlive;
+unsigned level;
+unsigned exploded;
+   exploded = X->exploded; 
+ level = X->level; 
+timeAlive = X->timeAlive;
+ay = X->ay;
+ax = X->ax;
+ strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+y = X->y;
+x = X->x;
+vy = X->vy;
+vx = X->vx;
+  #undef X
+  Missile* dst;
+  #define X dst
+  
+    X = new Missile(field, level, x, y, vx, vy, ax, ay, timeAlive);
+  
+   if (!X->ignoreNetworkTag) X->tag = tag; 
+  #undef X
+  #undef field
+  return dst;
+}
+
+bool ENO_Missile::shouldUpdate() const throw() {
+  float NEAR = 0, FAR = 0;
+  struct S {
+    float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float ax;
+float ay;
+unsigned short timeAlive;
+unsigned level;
+unsigned exploded;
+    S(const Missile* X) {
+      vx = X->vx;
+vy = X->vy;
+x = X->x;
+y = X->y;
+ strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+ax = X->ax;
+ay = X->ay;
+timeAlive = X->timeAlive;
+ level = X->level; 
+ exploded = X->exploded; 
+    }
+  } x(static_cast<Missile*>(local.ref)), y(static_cast<Missile*>(remote));
+
+  
+      if (strcmp(x.tag, y.tag)) return true; //Must send update
+    
+
+  float l_dist = cxn->distanceOf(this->local.ref);
+  return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
+}
+
+void ENO_Missile::updateRemote() throw() {
+  #define T 0
+  #define DATA (this->state)
+  #define field (&this->cxn->field)
+  Missile* l_local = static_cast<Missile*>(this->local.ref);
+  Missile* l_remote = static_cast<Missile*>(this->remote);
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+float ax;
+float ay;
+unsigned short timeAlive;
+unsigned level;
+unsigned exploded;
+  #define X l_local
+   exploded = X->exploded; 
+DATA[154+0] &= ~(1<<4); DATA[154+0] |= (exploded & 1) << 4;
+ level = X->level; 
+DATA[154+0] &= ~(15<<0); DATA[154+0] |= (level & 15) << 0;
+timeAlive = X->timeAlive;
+io::write_c(&DATA[152+0], timeAlive);
+ay = X->ay;
+io::write_c(&DATA[148+0], ay);
+ax = X->ax;
+io::write_c(&DATA[144+0], ax);
+ strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+strncpy((char*)&DATA[16+0], tag, 128);
+y = X->y;
+io::write_c(&DATA[12+0], y);
+x = X->x;
+io::write_c(&DATA[8+0], x);
+vy = X->vy;
+io::write_c(&DATA[4+0], vy);
+vx = X->vx;
+io::write_c(&DATA[0+0], vx);
+  #undef X
+  #define X l_remote
+  X->vx = vx;
+X->vy = vy;
+X->x = x;
+X->y = y;
+ if (!X->ignoreNetworkTag) X->tag = tag; 
+X->ax = ax;
+X->ay = ay;
+X->timeAlive = timeAlive;
+ X->level = min(10u,max(1u,level)); 
+
+      if (exploded && !X->exploded) {
+        X->explode(NULL);
+      }
+    
+  #undef X
+  #undef DATA
+  #undef T
+  #undef field
+}
+
+INO_ParticleEmitter::INO_ParticleEmitter(NetworkConnection* cxn_)
+: ImportedGameObject(156, cxn_),
+  cxn(cxn_)
+{ }
+
+const NetworkConnection::geraet_num INO_ParticleEmitter::num =
+    NetworkConnection::registerGeraetCreator(&create);
+
+InputNetworkGeraet* INO_ParticleEmitter::create(NetworkConnection* cxn) throw() {
+  return new INO_ParticleEmitter(cxn);
+}
+
+void INO_ParticleEmitter::construct() throw() {
+  object = decodeConstruct(state);
+}
+
+void INO_ParticleEmitter::update() throw() {
+  if (decodeUpdate(state, static_cast<ParticleEmitter*>(object)))
+    destroy();
+}
+
+ParticleEmitter* INO_ParticleEmitter::decodeConstruct(const std::vector<byte>& DATA)
+const throw() {
+  const unsigned T = cxn->getLatency();
+  bool DESTROY;
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+unsigned type;
+unsigned rmajor;
+unsigned rminor;
+unsigned short timeAlive;
+byte r[8];
+unsigned char blame;
+  io::read_c(&DATA[0+0], vx);
+if (vx != vx) vx = -1.0e9;
+ else if (vx < -1.0e9) vx = -1.0e9;
+ else if (vx > +1.0e9) vx = +1.0e9;
+io::read_c(&DATA[4+0], vy);
+if (vy != vy) vy = -1.0e9;
+ else if (vy < -1.0e9) vy = -1.0e9;
+ else if (vy > +1.0e9) vy = +1.0e9;
+io::read_c(&DATA[8+0], x);
+
+      if (x == x)
+        x = max(0.0f, min(field->width, x + T*vx));
+      else
+        x = 0;
+    
+io::read_c(&DATA[12+0], y);
+
+      if (y == y)
+        y = max(0.0f, min(field->height, y + T*vy));
+      else
+        y = 0;
+    
+strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
+type = (DATA[144+0] >> 0) & 3;
+rmajor = (DATA[144+0] >> 2) & 7;
+rminor = (DATA[144+0] >> 5) & 7;
+io::read_c(&DATA[145+0], timeAlive);
+memcpy(r, &DATA[147+0], 8);
+io::read_c(&DATA[155+0], blame);
+  ParticleEmitter* X;
+  
+    X = new ParticleEmitter(field, (ParticleBeamType)type,
+                            0xFFFFFF, //TODO: Translate to local blame
+                            x, y, vx, vy,
+                            r, rmajor, rminor,
+                            timeAlive);
+  
+   if (!X->ignoreNetworkTag) X->tag = tag; 
+  return X;
+}
+
+bool INO_ParticleEmitter::decodeUpdate(const std::vector<byte>& DATA, ParticleEmitter* X)
+const throw () {
+  bool DESTROY = false;
+  const unsigned T = cxn->getLatency();
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+unsigned type;
+unsigned rmajor;
+unsigned rminor;
+unsigned short timeAlive;
+byte r[8];
+unsigned char blame;
+  io::read_c(&DATA[0+0], vx);
+if (vx != vx) vx = -1.0e9;
+ else if (vx < -1.0e9) vx = -1.0e9;
+ else if (vx > +1.0e9) vx = +1.0e9;
+X->vx = vx;
+io::read_c(&DATA[4+0], vy);
+if (vy != vy) vy = -1.0e9;
+ else if (vy < -1.0e9) vy = -1.0e9;
+ else if (vy > +1.0e9) vy = +1.0e9;
+X->vy = vy;
+io::read_c(&DATA[8+0], x);
+
+      if (x == x)
+        x = max(0.0f, min(field->width, x + T*vx));
+      else
+        x = 0;
+    
+X->x = x;
+io::read_c(&DATA[12+0], y);
+
+      if (y == y)
+        y = max(0.0f, min(field->height, y + T*vy));
+      else
+        y = 0;
+    
+X->y = y;
+strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
+ if (!X->ignoreNetworkTag) X->tag = tag; 
+type = (DATA[144+0] >> 0) & 3;
+rmajor = (DATA[144+0] >> 2) & 7;
+X->rmajor = rmajor;
+rminor = (DATA[144+0] >> 5) & 7;
+X->rminor = rminor;
+io::read_c(&DATA[145+0], timeAlive);
+X->timeAlive = timeAlive;
+memcpy(r, &DATA[147+0], 8);
+  memcpy(X->r, r, sizeof(r)); 
+io::read_c(&DATA[155+0], blame);
+X->blame = blame;
+  return DESTROY;
+}
+
+ENO_ParticleEmitter::ENO_ParticleEmitter(NetworkConnection* cxn, ParticleEmitter* obj)
+: ExportedGameObject(156, cxn, obj, clone(obj))
+{ }
+
+ParticleEmitter* ENO_ParticleEmitter::clone(const ParticleEmitter* src) const throw() {
+  #define X src
+  #define field (&this->cxn->field)
+  const unsigned T = cxn->getLatency();
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+unsigned type;
+unsigned rmajor;
+unsigned rminor;
+unsigned short timeAlive;
+byte r[8];
+unsigned char blame;
+  blame = X->blame;
+ memcpy(r, X->r, sizeof(r)); 
+timeAlive = X->timeAlive;
+rminor = X->rminor;
+rmajor = X->rmajor;
+ type = (unsigned)X->type; 
+ strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+y = X->y;
+x = X->x;
+vy = X->vy;
+vx = X->vx;
+  #undef X
+  ParticleEmitter* dst;
+  #define X dst
+  
+    X = new ParticleEmitter(field, (ParticleBeamType)type,
+                            0xFFFFFF, //TODO: Translate to local blame
+                            x, y, vx, vy,
+                            r, rmajor, rminor,
+                            timeAlive);
+  
+   if (!X->ignoreNetworkTag) X->tag = tag; 
+  #undef X
+  #undef field
+  return dst;
+}
+
+bool ENO_ParticleEmitter::shouldUpdate() const throw() {
+  float NEAR = 0, FAR = 0;
+  struct S {
+    float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+unsigned type;
+unsigned rmajor;
+unsigned rminor;
+unsigned short timeAlive;
+byte r[8];
+unsigned char blame;
+    S(const ParticleEmitter* X) {
+      vx = X->vx;
+vy = X->vy;
+x = X->x;
+y = X->y;
+ strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+ type = (unsigned)X->type; 
+rmajor = X->rmajor;
+rminor = X->rminor;
+timeAlive = X->timeAlive;
+ memcpy(r, X->r, sizeof(r)); 
+blame = X->blame;
+    }
+  } x(static_cast<ParticleEmitter*>(local.ref)), y(static_cast<ParticleEmitter*>(remote));
+
+  
+      if (strcmp(x.tag, y.tag)) return true; //Must send update
+    
+ return false; 
+
+  float l_dist = cxn->distanceOf(this->local.ref);
+  return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
+}
+
+void ENO_ParticleEmitter::updateRemote() throw() {
+  #define T 0
+  #define DATA (this->state)
+  #define field (&this->cxn->field)
+  ParticleEmitter* l_local = static_cast<ParticleEmitter*>(this->local.ref);
+  ParticleEmitter* l_remote = static_cast<ParticleEmitter*>(this->remote);
+  float vx;
+float vy;
+float x;
+float y;
+char tag[128];
+unsigned type;
+unsigned rmajor;
+unsigned rminor;
+unsigned short timeAlive;
+byte r[8];
+unsigned char blame;
+  #define X l_local
+  blame = X->blame;
+io::write_c(&DATA[155+0], blame);
+ memcpy(r, X->r, sizeof(r)); 
+memcpy(&DATA[147+0], r, 8);
+timeAlive = X->timeAlive;
+io::write_c(&DATA[145+0], timeAlive);
+rminor = X->rminor;
+DATA[144+0] &= ~(7<<5); DATA[144+0] |= (rminor & 7) << 5;
+rmajor = X->rmajor;
+DATA[144+0] &= ~(7<<2); DATA[144+0] |= (rmajor & 7) << 2;
+ type = (unsigned)X->type; 
+DATA[144+0] &= ~(3<<0); DATA[144+0] |= (type & 3) << 0;
+ strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+strncpy((char*)&DATA[16+0], tag, 128);
+y = X->y;
+io::write_c(&DATA[12+0], y);
+x = X->x;
+io::write_c(&DATA[8+0], x);
+vy = X->vy;
+io::write_c(&DATA[4+0], vy);
+vx = X->vx;
+io::write_c(&DATA[0+0], vx);
+  #undef X
+  #define X l_remote
+  X->vx = vx;
+X->vy = vy;
+X->x = x;
+X->y = y;
+ if (!X->ignoreNetworkTag) X->tag = tag; 
+X->rmajor = rmajor;
+X->rminor = rminor;
+X->timeAlive = timeAlive;
+  memcpy(X->r, r, sizeof(r)); 
+X->blame = blame;
   #undef X
   #undef DATA
   #undef T
