@@ -62,14 +62,14 @@ ParticleEmitter::ParticleEmitter(GameField* field, ParticleBeamType t,
     r[i] = rand();
 }
 
-ParticleEmitter::ParticleEmitter(GameField* field, ParticleBeamType t, unsigned bla,
+ParticleEmitter::ParticleEmitter(GameField* field, ParticleBeamType t,
+                                 unsigned bla,
                                  float x, float y, float vx, float vy,
                                  const unsigned char* _r,
                                  unsigned rmaj, unsigned rmin,
-                                 float ta,
-                                 Ship* par)
+                                 float ta)
 : GameObject(field, x, y, vx, vy),
-  parent(par), type(t), rmajor(rmaj), rminor(rmin), timeAlive(ta),
+  parent(NULL), type(t), rmajor(rmaj), rminor(rmin), timeAlive(ta),
   blame(bla)
 {
   collisionBounds.push_back(&colrect);

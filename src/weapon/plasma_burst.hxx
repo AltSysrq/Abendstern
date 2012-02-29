@@ -27,6 +27,8 @@ class Ship;
  * The actual projectile in only a few pixels across.
  */
 class PlasmaBurst : public GameObject {
+  friend class INO_PlasmaBurst;
+  friend class ENO_PlasmaBurst;
   private:
   Ship* parent;
   float mass;
@@ -48,7 +50,8 @@ class PlasmaBurst : public GameObject {
   unsigned blame;
 
   //For the net
-  PlasmaBurst(GameField*, Ship*, float x, float y, float vx, float vy, float theta, float mass, int sig);
+  PlasmaBurst(GameField*, float x, float y, float vx, float vy, float theta,
+              float mass);
 
   public:
   /**
@@ -63,7 +66,8 @@ class PlasmaBurst : public GameObject {
    * @param theta Launch direction
    * @param mass Initial mass
    */
-  PlasmaBurst(GameField* field, Ship* par, float x, float y, float sourceVX, float sourceVY, float theta, float mass);
+  PlasmaBurst(GameField* field, Ship* par, float x, float y, float sourceVX,
+              float sourceVY, float theta, float mass);
   virtual bool update(float) noth;
   virtual void draw() noth;
   virtual CollisionResult checkCollision(GameObject*) noth;
@@ -73,7 +77,7 @@ class PlasmaBurst : public GameObject {
   virtual float getRadius() const noth;
   virtual float getRotation() const noth { return direction; }
 
-  float getMass() const { return mass; } ///< Returns the mass of the PlasmaBurst
+  float getMass() const { return mass; } ///<Returns the mass of the PlasmaBurst
 
   private:
   void explode(GameObject*) noth;

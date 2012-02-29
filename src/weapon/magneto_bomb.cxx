@@ -81,7 +81,8 @@ DELAY_SHADER(magnetoBomb)
 END_DELAY_SHADER(static mbshader);
 #endif /* AB_OPENGL_14 */
 
-MagnetoBomb::MagnetoBomb(GameField* field, float x, float y, float vx, float vy, float _power, Ship* _parent,
+MagnetoBomb::MagnetoBomb(GameField* field, float x, float y, float vx,
+                         float vy, float _power, Ship* _parent,
                          float subMult, float _r, float _g, float _b)
 : GameObject(field, x, y, vx, vy),
   power(_power*subMult), coreRadius(sqrt(_power*subMult)/500.0f),
@@ -118,9 +119,10 @@ bool MagnetoBomb::update(float time) noth {
         if (dist < 0.001f) continue;
         float cosine=dx/dist, sine=dy/dist;
 
-        float guidanceActivated = (timeAlive < GUIDANCE_ACTIVATE_TIME? timeAlive/GUIDANCE_ACTIVATE_TIME : 1);
-        ax = (float)(cosine*ATTRACTION*ship->getMass()/dist * guidanceActivated);
-        ay = (float)(sine  *ATTRACTION*ship->getMass()/dist * guidanceActivated);
+        float guidanceActivated = (timeAlive < GUIDANCE_ACTIVATE_TIME?
+                                   timeAlive/GUIDANCE_ACTIVATE_TIME : 1);
+        ax= (float)(cosine*ATTRACTION*ship->getMass()/dist * guidanceActivated);
+        ay= (float)(sine  *ATTRACTION*ship->getMass()/dist * guidanceActivated);
       }
     }
   }
@@ -156,8 +158,10 @@ bool MagnetoBomb::coreUpdate(float time) noth {
   float radius=CORE_RADIUS;
   for (unsigned int i=0; i<NUM_COLLISION_RECTS; ++i) {
     for (int v=0; v<4; ++v) {
-      collisionRects[i].vertices[v].first = x + radius*baseCollisionRects[i].vertices[v].first;
-      collisionRects[i].vertices[v].second= y + radius*baseCollisionRects[i].vertices[v].second;
+      collisionRects[i].vertices[v].first =
+        x + radius*baseCollisionRects[i].vertices[v].first;
+      collisionRects[i].vertices[v].second =
+      y + radius*baseCollisionRects[i].vertices[v].second;
     }
   }
   return true;
@@ -173,7 +177,8 @@ void MagnetoBomb::draw() noth {
   square_graphic::bind();
   mPush();
   mTrans(x,y);
-  mUScale(radius*(timeAlive*2 < GUIDANCE_ACTIVATE_TIME? timeAlive*2/GUIDANCE_ACTIVATE_TIME : 1));
+  mUScale(radius*(timeAlive*2 < GUIDANCE_ACTIVATE_TIME?
+                  timeAlive*2 / GUIDANCE_ACTIVATE_TIME : 1));
   mTrans(-0.5f,-0.5f);
   mbshader->activate(&uni);
   square_graphic::draw();
@@ -194,9 +199,10 @@ void MagnetoBomb::draw() noth {
 
   glTranslatef(x, y, 0);
   glRotatef(rotation/pi*180.0f, 0, 0, 1);
-  //We draw the core with triangles, each with a vertex at the centre, the middle of a spike, and
-  //the side of a spike. The spikes are drawn in two pieces: The middle and inner edges, which are
-  //solid, and the end, which is fully transparent.
+  //We draw the core with triangles, each with a vertex at the centre, the
+  //middle of a spike, and the side of a spike. The spikes are drawn in two
+  //pieces: The middle and inner edges, which are solid, and the end, which is
+  //fully transparent.
   glBegin(GL_TRIANGLES);
   float edges[3][2];
   float angleInc=1.0f/NUM_MAGNETO_GLARES*2*pi;
@@ -241,7 +247,8 @@ void MagnetoBomb::draw() noth {
 CollisionResult MagnetoBomb::checkCollision(GameObject* that) noth {
   if (isRemote) return NoCollision;
   if (armTime>0 && that==parent) return NoCollision;
-  if (that->isCollideable()) return (objectsCollide(this, that)? YesCollision : NoCollision);
+  if (that->isCollideable())
+    return (objectsCollide(this, that)? YesCollision : NoCollision);
   else return UnlikelyCollision;
 }
 
@@ -273,10 +280,13 @@ bool MagnetoBomb::isCollideable() const noth {
 
 void MagnetoBomb::explode() noth {
   exploded=true;
-  Explosion ex(field, Explosion::Spark, r, g, b, CORE_RADIUS*30, 0.0001f*power, 1500.0f, this);
+  Explosion ex(field, Explosion::Spark, r, g, b, CORE_RADIUS*30,
+               0.0001f*power, 1500.0f, this);
   ex.multiExplosion(3);
   if (!isRemote)
-    field->inject(new Blast(field, blame, x, y, STD_CELL_SZ*sqrt(power/2)-STD_CELL_SZ/2, power/8.0f,
+    field->inject(new Blast(field, blame, x, y,
+                            STD_CELL_SZ*sqrt(power/2)-STD_CELL_SZ/2,
+                            power/8.0f,
                             false, CORE_RADIUS+STD_CELL_SZ/2));
 }
 

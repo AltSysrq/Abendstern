@@ -46,13 +46,13 @@ PlasmaBurst::PlasmaBurst(GameField* field, Ship* par, float x, float y,
 }
 
 //Networking constructor
-PlasmaBurst::PlasmaBurst(GameField* field, Ship* par, float x, float y,
-                         float vx, float vy, float theta, float initmass, int)
+PlasmaBurst::PlasmaBurst(GameField* field, float x, float y,
+                         float vx, float vy, float theta, float initmass)
 : GameObject(field, x, y, vx, vy),
-  parent(par),
+  parent(NULL),
   mass(initmass), direction(theta), timeUntilArm(50),
   inParentsShields(true), hitParentsShields(true), timeSinceLastExplosion(999),
-  exploded(false), blame(par? par->blame : 0xFFFFFF)
+  exploded(false), blame(0xFFFFFF)
 {
   classification = GameObject::LightWeapon;
   isExportable=true;

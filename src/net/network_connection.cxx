@@ -220,7 +220,7 @@ NetworkConnection::registerGeraetCreator(geraet_creator fun,
 
   geraet_num number = preferred;
 
-  if (number == ~(geraet_num)0)
+  if (number == (geraet_num)~(geraet_num)0)
     number = nextAuto++;
 
   if (geraetNumMap->count(number)) {
