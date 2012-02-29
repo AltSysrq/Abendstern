@@ -143,7 +143,6 @@ puts $cout {
 
   #include <cstring>
 
-  #include "xnetobj.hxx"
   #include "../io.hxx"
 
   using namespace std;

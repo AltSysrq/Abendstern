@@ -17,6 +17,8 @@ verbatimc {
   friend class INO_ParticleEmitter;\
   friend class ENO_ParticleEmitter
 #endif
+
+#include "xnetobj.hxx"
 }
 
 verbatimh {
