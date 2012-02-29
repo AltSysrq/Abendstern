@@ -11,7 +11,9 @@ verbatimc {
   friend class INO_SemiguidedBomb;\
   friend class ENO_SemiguidedBomb;\
   friend class INO_PlasmaBurst;\
-  friend class ENO_PlasmaBurst
+  friend class ENO_PlasmaBurst;\
+  friend class INO_Missile;\
+  friend class ENO_Missile
 #endif
 }
 
@@ -155,5 +157,37 @@ type PlasmaBurst {
 
   construct {
     X = new PlasmaBurst(field, x, y, vx, vy, direction, mass);
+  }
+}
+
+type Missile {
+  extension GameObject
+
+  float ax {
+    default 1.0e8f
+    min -2.0e-6f max +2.0e-6f
+  }
+  float ay {
+    default 1.0e8f
+    min -2.0e-6f max +2.0e-6f
+  }
+  ui 2 timeAlive {
+    default 0
+  }
+  bit 4 level {
+    extract { level = X->level; }
+    update { X->level = min(10u,max(1u,level)); }
+  }
+  bit 1 exploded {
+    extract { exploded = X->exploded; }
+    update {
+      if (exploded && !X->exploded) {
+        X->explode(NULL);
+      }
+    }
+  }
+
+  construct {
+    X = new Missile(field, level, x, y, vx, vy, ax, ay, timeAlive);
   }
 }

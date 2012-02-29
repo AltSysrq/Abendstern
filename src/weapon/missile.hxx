@@ -21,7 +21,8 @@
 
 class Ship;
 
-#define MISSILE_LAUNCH_SPEED 0.002f ///< The additional speed a Missile gets on launch
+/// The additional speed a Missile gets on launch
+#define MISSILE_LAUNCH_SPEED 0.002f
 
 /** The Missile is a fully-guided class A weapon.
  *
@@ -34,6 +35,9 @@ class Ship;
  * collide with anything else.
  */
 class Missile: public GameObject {
+  friend class INO_Missile;
+  friend class ENO_Missile;
+
   ObjDL trail, target, parent;
   int level;
   float timeAlive;
@@ -43,8 +47,13 @@ class Missile: public GameObject {
 
   unsigned blame;
 
+  //Acceleration to send to remote peers, and to use for tracking when
+  //this is a remote object.
+  float ax, ay;
+
   //Networking constructor
-  Missile(GameField*, int, float, float, float, float, float timeAlive, Ship*, GameObject*);
+  Missile(GameField*, int, float, float, float, float, float, float,
+          float timeAlive);
 
   public:
   /** Constructs a Missile with the given parms.
@@ -58,7 +67,8 @@ class Missile: public GameObject {
    * @param par Ship that launched the Missile
    * @param tgt Object to guide to and collide with
    */
-  Missile(GameField* field, int level, float x, float y, float vx, float vy, Ship* par, GameObject* tgt);
+  Missile(GameField* field, int level, float x, float y, float vx, float vy,
+          Ship* par, GameObject* tgt);
   virtual bool update(float) noth;
   virtual void draw() noth;
   virtual float getRadius() const noth;

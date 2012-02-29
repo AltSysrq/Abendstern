@@ -62,11 +62,13 @@ using namespace std;
   END_DELAY_SHADER(static missileShader);
 #endif /* not defined AB_OPENGL_14 */
 
-Missile::Missile(GameField* field, int lvl, float x, float y, float vx, float vy, Ship* par, GameObject* tgt)
+Missile::Missile(GameField* field, int lvl, float x, float y, float vx,
+                 float vy, Ship* par, GameObject* tgt)
 : GameObject(field, x, y, vx, vy),
   trail(NULL), target(tgt), parent(par),
   level(lvl), timeAlive(0), exploded(false),
-  blame(par->blame)
+  blame(par->blame),
+  ax(0), ay(0)
 {
   collisionBounds.push_back(&colrect);
   classification = GameObject::HeavyWeapon;
@@ -76,11 +78,12 @@ Missile::Missile(GameField* field, int lvl, float x, float y, float vx, float vy
 }
 
 //Networking constructor
-Missile::Missile(GameField* field, int lvl, float x, float y, float vx, float vy, float ta,
-                 Ship* par, GameObject* tgt)
+Missile::Missile(GameField* field, int lvl, float x, float y, float vx,
+                 float vy, float ax_, float ay_, float ta)
 : GameObject(field, x, y, vx, vy),
-  trail(NULL), target(tgt), parent(par),
-  level(lvl), timeAlive(ta), exploded(false), blame(par? par->blame : 0xFFFFFF)
+  trail(NULL), target(NULL), parent(NULL),
+  level(lvl), timeAlive(ta), exploded(false), blame(0xFFFFFF),
+  ax(ax_), ay(ay_)
 {
   isExportable=true;
   isRemote=true;
@@ -100,11 +103,12 @@ bool Missile::update(float et) noth {
     REMOTE_XYCK;
   }
 
-  if (target.ref && currentVFrameLast) {
+  if (target.ref && currentVFrameLast && !isRemote) {
     GameObject* t=target.ref;
     float accel=ACCELERATION/level*(LIFETIME-timeAlive)/LIFETIME;
     /*
-    float dx = x-t->getX()+(vx-t->getVX())*512, dy = y-t->getY()+(vy-t->getVY())*512;
+    float dx = x-t->getX()+(vx-t->getVX())*512,
+          dy = y-t->getY()+(vy-t->getVY())*512;
     float dist = sqrt(dx*dx + dy*dy);
     dx /= dist;
     dy /= dist;
@@ -116,7 +120,6 @@ bool Missile::update(float et) noth {
     float dx = t->getX()-x, dy = t->getY()-y;
     float dot = vx*dx + vy*dy;
 
-    float ax, ay;
     float speed = sqrt(vx*vx+vy*vy);
     float dist  = sqrt(dx*dx+dy*dy);
     float cross = vx*dy - vy*dx;
@@ -139,8 +142,12 @@ bool Missile::update(float et) noth {
         field->add(trail.ref);
       }
       LightTrail* trail=(LightTrail*)this->trail.ref;
-      trail->emit(x, y, vx-dx/dist*accel*1000*level, vy-dy/dist*accel*1000*level);
+      trail->emit(x, y, vx-dx/dist*accel*1000*level,
+                  vy-dy/dist*accel*1000*level);
     }
+  } else if (isRemote) {
+    vx += ax*et;
+    vy += ay*et;
   }
 
   //Friction
