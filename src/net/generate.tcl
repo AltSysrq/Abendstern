@@ -544,7 +544,7 @@ proc dat {len name {parms {}} {save yes}} {
   whole-byte
   new
   aliases $name
-  dict set current declaration "byte $name\[$maxlen\];"
+  dict set current declaration "byte $name\[$len\];"
   dict set current decode "memcpy($name, &[data], $len);"
   dict set current encode "memcpy(&[data], $name, $len);"
   eval-parms $parms $name

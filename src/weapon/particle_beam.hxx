@@ -57,6 +57,9 @@ enum ParticleBeamType {
  * simply ceases to exist.
  */
 class ParticleEmitter: public GameObject {
+  friend class INO_ParticleEmitter;
+  friend class ENO_ParticleEmitter;
+
   public:
   static const unsigned r_sz = 8; ///<Internal and networking only
   static const unsigned r_msk = 7; ///<Internal and networking only
@@ -96,9 +99,9 @@ class ParticleEmitter: public GameObject {
   unsigned blame;
 
   //Networking constructor
-  ParticleEmitter(GameField*, ParticleBeamType, unsigned, float, float, float, float,
-                  const unsigned char*, unsigned, unsigned, float timeAlive,
-                  Ship* parent);
+  ParticleEmitter(GameField*, ParticleBeamType, unsigned, float, float, float,
+                  float, const unsigned char*, unsigned, unsigned,
+                  float timeAlive);
 
   public:
   /** Constructs a ParticleEmitter with the given parms.
@@ -111,7 +114,8 @@ class ParticleEmitter: public GameObject {
    * @param vy Y velocity
    * @param par Ship that launched the emitter
    */
-  ParticleEmitter(GameField* field, ParticleBeamType t, float x, float y, float vx, float vy, Ship* par);
+  ParticleEmitter(GameField* field, ParticleBeamType t, float x, float y,
+                  float vx, float vy, Ship* par);
 
   virtual bool update(float) noth;
   virtual void draw() noth;
@@ -154,7 +158,8 @@ class ParticleBurst: public GameObject {
   bool hasCollided;
 
   //Constructor only useable by ParticleEmitter
-  ParticleBurst(GameField*, unsigned blame, float x, float y, float vx, float vy,
+  ParticleBurst(GameField*, unsigned blame, float x, float y,
+                float vx, float vy,
                 float ovx, float ovy, float time, ParticleBeamType);
 
   public:

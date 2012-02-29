@@ -13,7 +13,9 @@ verbatimc {
   friend class INO_PlasmaBurst;\
   friend class ENO_PlasmaBurst;\
   friend class INO_Missile;\
-  friend class ENO_Missile
+  friend class ENO_Missile;\
+  friend class INO_ParticleEmitter;\
+  friend class ENO_ParticleEmitter
 #endif
 }
 
@@ -189,5 +191,37 @@ type Missile {
 
   construct {
     X = new Missile(field, level, x, y, vx, vy, ax, ay, timeAlive);
+  }
+}
+
+type ParticleEmitter {
+  extension GameObject
+
+  # Never send updates
+  void { compare { return false; } }
+
+  bit 2 type {
+    extract { type = (unsigned)X->type; }
+  }
+  bit 3 rmajor { default 0 }
+  bit 3 rminor { default 0 }
+  ui 2 timeAlive {
+    default 0
+  }
+  dat 8 r {
+    extract { memcpy(r, X->r, sizeof(r)); }
+    update {  memcpy(X->r, r, sizeof(r)); }
+  }
+
+  ui 1 blame {
+    default 0
+  }
+
+  construct {
+    X = new ParticleEmitter(field, (ParticleBeamType)type,
+                            0xFFFFFF, //TODO: Translate to local blame
+                            x, y, vx, vy,
+                            r, rmajor, rminor,
+                            timeAlive);
   }
 }
