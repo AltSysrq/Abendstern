@@ -226,6 +226,8 @@ class INO_$name: public ImportedGameObject {
   NetworkConnection* cxn;
 public:
   INO_${name}(NetworkConnection* cxn);
+  static const NetworkConnection::geraet_num num;
+
 protected:
   virtual void construct() throw();
   virtual void update() throw();
@@ -233,6 +235,8 @@ protected:
 private:
   $name* decodeConstruct(const std::vector<byte>&) const throw();
   bool decodeUpdate(const std::vector<byte>&, $name*) const throw();
+
+  static InputNetworkGeraet* create(NetworkConnection*) throw();
 };
 
 class ENO_$name: public ExportedGameObject {
@@ -254,6 +258,13 @@ private:
 : ImportedGameObject($byteOffset, cxn_),
   cxn(cxn_)
 { }
+
+const NetworkConnection::geraet_num INO_${name}::num =
+    NetworkConnection::registerGeraetCreator(&create);
+
+InputNetworkGeraet* INO_${name}::create(NetworkConnection* cxn) throw() {
+  return new INO_${name}(cxn);
+}
 
 void INO_${name}::construct() throw() {
   object = decodeConstruct(state);
