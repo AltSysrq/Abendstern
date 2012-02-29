@@ -9,7 +9,9 @@ verbatimc {
   friend class INO_MagnetoBomb;\
   friend class ENO_MagnetoBomb;\
   friend class INO_SemiguidedBomb;\
-  friend class ENO_SemiguidedBomb
+  friend class ENO_SemiguidedBomb;\
+  friend class INO_PlasmaBurst;\
+  friend class ENO_PlasmaBurst
 #endif
 }
 
@@ -126,5 +128,32 @@ type SemiguidedBomb {
     X->isRemote = true;
     X->includeInCollisionDetection = false;
     X->decorative = true;
+  }
+}
+
+type PlasmaBurst {
+  extension GameObject
+
+  # Never send updates
+  void { compare { return false; } }
+
+  float mass {
+    default 0
+    min 0 max 100
+  }
+  float direction { default 0 }
+  bit 1 exploded {
+    extract {
+      exploded = X->exploded;
+    }
+    update {
+      if (exploded && !X->exploded) {
+        X->explode(NULL);
+      }
+    }
+  }
+
+  construct {
+    X = new PlasmaBurst(field, x, y, vx, vy, direction, mass);
   }
 }
