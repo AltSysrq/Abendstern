@@ -80,6 +80,9 @@ typedef AggregateSet<Ship*,Ship*> radar_t;
  */
 class Ship: public GameObject {
   friend void audio::shipSoundEffects(float,Ship*);
+  friend class INO_Ship;
+  friend class ENO_Ship;
+
   public:
   /** All Cells present in the Ship */
   std::vector<Cell*> cells;
@@ -333,15 +336,6 @@ class Ship: public GameObject {
   float timeUntilSlowFire;
 
   std::vector<NebulaResistanceElement> nebulaResistanceElements;
-
-  /* The networking protocol supports two types of ships:
-   * 8-bit, cell limit 254
-   * "16-bit" (actually 12-bit), cell limit 4094
-   * We determine which one to use the first time we are
-   * serialized, and thereafter must stick with it.
-   */
-  bool hasDeterminedNetworkFormat;
-  bool isNetworkFormat16;
 
   /* All ships connected to the same radar share sensor
    * information. Every five to ten seconds, a Ship refreshes

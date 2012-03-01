@@ -15,7 +15,9 @@ verbatimc {
   friend class INO_Missile;\
   friend class ENO_Missile;\
   friend class INO_ParticleEmitter;\
-  friend class ENO_ParticleEmitter
+  friend class ENO_ParticleEmitter;\
+  friend class INO_Ship;\
+  friend class ENO_Ship
 #endif
 
 #include "xnetobj.hxx"
@@ -226,4 +228,212 @@ type ParticleEmitter {
                             r, rmajor, rminor,
                             timeAlive);
   }
+}
+
+type Ship {
+  extension GameObject
+
+  # The name of the target, or empty string for NULL.
+  # (This matches the tag of another Ship.)
+  str 128 target {
+    extract {
+      if (X->target.ref)
+        strncpy(target, X->target.ref->tag.c_str(), 128);
+      else
+        target[0]=0;
+    }
+    update {
+      if (target[0]) {
+        //Stop immediately if no change
+        if (X->target.ref
+        &&  0 == strcmp(target, X->target.ref->tag.c_str()))
+          goto targetFound;
+
+        //Seacrh the field for such a ship
+        {
+          GameField::iterator it = field->begin(), end = field->end();
+          for (; it != end; ++it) {
+            GameObject* go = *it;
+            if (go->getClassification() == GameObject::ClassShip) {
+              Ship* s = (Ship*)go;
+              if (s->hasPower()
+              &&  Allies != getAlliance(X->insignia, s->insignia)
+              &&  0 == strcmp(target, s->tag.c_str())) {
+                //Found
+                X->target.assign(s);
+                goto targetFound;
+              }
+            }
+          }
+        }
+
+        //Not found
+        X->target.assign(NULL);
+
+        targetFound:;
+      } else {
+        X->target.assign(NULL);
+      }
+    }
+
+    compare {
+      //Only prioritise updating the target if near
+      if (strcmp(x.target, y.target))
+        NEAR += 100;
+    }
+  }
+
+  # Core, scalar information
+  float colourR { default 10 min 0 max 1 }
+  float colourG { default 10 min 0 max 1 }
+  float colourB { default 10 min 0 max 1 }
+  void {
+    post-set {
+      X->setColour(colourR, colourG, colourB);
+    }
+  }
+  float theta { default 10 post-set { X->theta = theta; } }
+  float vtheta { default 0.01 post-set { X->vtheta = vtheta; } }
+  # Maintain the cached cos() and sin() of theta
+  void {
+    update {
+      X->cosTheta = cos(X->theta);
+      X->sinTheta = sin(X->theta);
+    }
+    post-set {
+      X->cosTheta = cos(X->theta);
+      X->sinTheta = sin(X->theta);
+    }
+  }
+  float thrustPercent { default 10 min 0 max 1 update {} }
+  float reinforcement {
+    default 0
+    min 0 max 32
+    update {}
+    post-set {
+      X->setReinforcement(reinforcement);
+    }
+  }
+  ui 1 currentCapacitancePercent {
+    extract {
+      currentCapacitancePercent = 255*X->getCapacitancePercent();
+    }
+    update {
+      X->physicsRequire(PHYS_SHIP_CAPAC_BIT);
+      X->currentCapacitance=X->totalCapacitance*
+                            currentCapacitancePercent/255.0f;
+    }
+  }
+
+  ui 8 insignia {
+    default 100
+    post-set {
+      X->insignia = insignia;
+    }
+  }
+
+  bit 1 isFragment {
+    type bool
+    extract {
+      isFragment = X->isFragment;
+    }
+    update {
+      if (isFragment && !X->isFragment)
+        X->spontaneouslyDie();
+    }
+    post-set {
+      if (isFragment)
+        X->spontaneouslyDie();
+    }
+    compare {
+      if (x.isFragment != y.isFragment)
+        return true; //MUST update
+    }
+  }
+  bit 1 thrustOn {
+    type bool
+    default 1
+    update {}
+  }
+  bit 1 brakeOn {
+    type bool
+    default 1
+    update {}
+  }
+  bit 1 shieldsDeactivated {
+    type bool
+    default 1
+    update {
+      //TODO
+    }
+  }
+  bit 1 stealthMode {
+    type bool
+    default 10000
+    update {
+      X->setStealthMode(stealthMode);
+    }
+    post-set {
+      X->setStealthMode(stealthMode);
+    }
+  }
+  # Configure engines all at once
+  void {
+    update {
+      X->configureEngines(thrustPercent, thrustOn, brakeOn);
+    }
+    post-set {
+      X->configureEngines(thrustPercent, thrustOn, brakeOn);
+    }
+  }
+
+  si 2 rootTheta {
+    extract {
+      rootTheta = X->cells[0]->getT();
+    }
+  }
+
+  # The information to associate with each cell is:
+  #   uint2 cellType
+  #   bool isBridge
+  #   byte damage
+  #   uint12 neighbours[4]
+  #   uint2 systemOrientations[2]
+  #   uint6 systemTypes[2]
+  #   byte capacitors[2]
+  #   byte shieldMaxStrength
+  #   float shieldRadius
+  #   byte shieldCurrStrengthPercent
+  #   byte shiepdCurrAlpha
+  #   bool gatPlasmaTurbo
+  #
+  # damage is inverse, where 0 = non-existent and 255 is undamaged.
+  # A neighbour of zero is non-existent, and 1 is destroyed; anything else
+  # is two plus the index of the neighbour.
+  # A system type of zero is no system; anything else is a specific system type.
+  #
+  # In order to maximise data density and efficiency for ships of various sizes,
+  # lay the data out as follows (note that there is a maximum of 4094 cells):
+  #   nybble neighboursBits03[4*4094]
+  #   nybble neighboursBits47[4*4094]
+  #   nybble neighboursBits8B[4*4094]
+  #   struct {
+  #     nybble cellInfo[64] { bit 2 cellType; bit 1 isBridge }
+  #     byte cellDamage[64]
+  #     byte systemInfo[64]
+  #     byte capacitors[2*64]
+  #     struct {
+  #       byte    shieldMaxStrength
+  #       float   shieldRadius
+  #     } shieldConstInfo[64]
+  #     struct {
+  #       byte    shieldCurrStrengthPercent
+  #       byte    shieldCurrAlpha
+  #     } shieldCurrInfo[64]
+  #     bit gatPlasmaTurbo[64]
+  #   } chunk[64]
+
+  # TODO
+  # (For now, just do nothing so it compiles)
+  construct {}
 }
