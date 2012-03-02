@@ -425,7 +425,7 @@ type Ship {
   #   nybble neighboursBits8B[4*4094]
   #   bit2   cellType[4094]
   #   byte   cellDamage[4094]
-  #   byte   systemInfo[4094]
+  #   byte   systemInfo[2*4094] {bit 0,1: orientation; bit 2+: type}
   #   byte   capacitors[2*4094]
   #   byte   shieldMaxStrength[4094]
   #   float  shieldRadius[4094]
@@ -433,9 +433,28 @@ type Ship {
   #   byte   shieldCurrAlpha[4094]
   #   bit    gatPlasmaTurbo[4094]
 
-  arr {unsigned char} 16376 2 neighboursBits03 {nybble NAME} {}
-  arr {unsigned char} 16376 2 neighboursBits47 {nybble NAME} {}
-  arr {unsigned char} 16376 2 neighboursBits8B {nybble NAME} {}
+  arr {unsigned char} 16376 2 neighboursBits03  {nybble {NAME}} {}
+  arr {unsigned char} 16376 2 neighboursBits47  {nybble {NAME}} {}
+  arr {unsigned char} 16376 2 neighboursBits8B  {nybble {NAME}} {}
+  # 4096 because len%stride must be zero.
+  arr {unsigned char} 4096  4 cellType          {bit 2 {NAME}}  {}
+  arr {struct {
+    unsigned char orientation, type;
+  }}                  4094  1 cellDamage        {bit 2 {NAME.orientation}
+                                                 bit 6 {NAME.type}}   {}
+  arr {unsigned char} 8188  1 systemInfo        {ui 1 {NAME}}   {}
+  arr {unsigned char} 8188  1 capacitors        {ui 1 {NAME}}   {}
+  arr {struct {
+    float radius;
+    byte maxStrength, currStrengthPercent, currAlpha;
+  }}                  4094  1 shields           {
+    float {NAME.radius}
+    ui 1 {NAME.maxStrength}
+    ui 1 {NAME.currStrengthPercent}
+    ui 1 {NAME.currAlpha}
+  } {}
+  # 4096 because len%stride must be zero.
+  arr {bool}          4096 8 gatPlasmaTurbo     {bit 1 {NAME} {type bool}} {}
 
   # TODO
   # (For now, just do nothing so it compiles)

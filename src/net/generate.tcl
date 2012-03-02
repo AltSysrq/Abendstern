@@ -510,6 +510,10 @@ proc void {parms} {
 proc arr {ctype len stride name contents parms {save yes}} {
   global current byteOffset bitOffset elements
 
+  if {$len%$stride} {
+    error "Array length must be a multiple of its stride."
+  }
+
   whole-byte
   set oldByteOffset $byteOffset
   set byteOffset 0
@@ -518,7 +522,7 @@ proc arr {ctype len stride name contents parms {save yes}} {
   set elements [list]
   # Populate the contents
   for {set i 0} {$i < $stride} {incr i} {
-    eval [string map [list NAME "{$name\[$i+ARRAY_OFFSET\]}" \
+    eval [string map [list NAME "$name\[$i+ARRAY_OFFSET\]" \
                            IX "($i+ARRAY_OFFSET)"] $contents]
   }
   whole-byte
