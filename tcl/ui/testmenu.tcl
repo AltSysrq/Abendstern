@@ -135,7 +135,6 @@ class TestMode {
                     1 {} \
                     "format %d" [$::gui::font width 6]]
 
-    $gameparms add [new ::gui::Label [_ T a background] left]
     set bgdp [new ::gui::HorizontalContainer 0.01 grid]
     set bgp [new ::gui::VerticalContainer 0.01 top]
     $bgp add [new ::gui::Label [_ T a background] left]
