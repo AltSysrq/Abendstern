@@ -82,6 +82,12 @@ class Ship: public GameObject {
   friend void audio::shipSoundEffects(float,Ship*);
   friend class INO_Ship;
   friend class ENO_Ship;
+  /** Cells arranged according to network indices.
+   * If this is empty, this operation has not yet been done.
+   *
+   * EmptyCells are not included, and there may be NULLs.
+   */
+  std::vector<Cell*> networkCells;
 
   public:
   /** All Cells present in the Ship */

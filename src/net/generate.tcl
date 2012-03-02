@@ -59,6 +59,12 @@
 #     The C++ code may modify the variables "near" and "far"; if near exceeds
 #     1 after comparison, or far exceeds the distance, it is determined that
 #     the object must be updated.
+#   inoheader CODE
+#     Added to the end of the INO class header (within the class).
+#   enoheader CODE
+#     Added to the end of the ENO class header (within the clgss).
+#   impl CODE
+#     Added to the end of the implementation.
 #   default MULT
 #     If specified, extract, update, and compare are automatically set (if they
 #     are not otherwise present) to:
@@ -98,6 +104,8 @@
 #     Encodes an unsigned integer into SZ bits.
 #     PARMS: common parms, plus {type t}, giving the C++ type t to use
 #     (defaulting to unsigned).
+#   nybble ...
+#     Synonym for bit 4 ...
 #   str MAXLEN NAME PARMS
 #     Defines a NUL-terminated string with maximum length MAXLEN.
 #     PARMS: common parms, minus encode and decode.
@@ -106,6 +114,12 @@
 #   dat LEN NAME PARMS
 #     Defines a byte array of length LEN.
 #     PARMS: common parms, minus encode and decode
+#   arr CTYPE LEN STRIDE NAME CONTENTS PARMS
+#     Defines an array with name NAME, C++-type CTYPE, and length LEN.
+#     CONTENTS is evaluated STRIDE times, using varying names to replace "NAME"
+#     within. The string "IX" within CONTENTS will be replaced by an expression
+#     evaluating to the current datum's index within the array, insensitive of
+#     the stride.
 #   construct CODE
 #     Does not give encoding or decoding rules; rather, it provides C++ code
 #     to run to assign X to a new instance of the appropriate type. It is not
@@ -236,6 +250,8 @@ private:
   bool decodeUpdate(const std::vector<byte>&, $name*) const throw();
 
   static InputNetworkGeraet* create(NetworkConnection*) throw();
+
+  [cxxj inoheader]
 };
 
 class ENO_$name: public ExportedGameObject {
@@ -249,6 +265,8 @@ protected:
 private:
   void encode() throw();
   $name* clone(const $name*) const throw();
+
+  [cxxj enoheader]
 };
 "
 
@@ -347,6 +365,7 @@ void ENO_${name}::updateRemote() throw() {
   #undef T
   #undef field
 }
+[cxxj impl]
 "
 }
 
@@ -486,6 +505,67 @@ proc void {parms} {
   new
   eval-parms $parms
   save
+}
+
+proc arr {ctype len stride name contents parms {save yes}} {
+  global current byteOffset bitOffset elements
+
+  whole-byte
+  set oldByteOffset $byteOffset
+  set byteOffset 0
+
+  set oldElements $elements
+  set elements [list]
+  # Populate the contents
+  for {set i 0} {$i < $stride} {incr i} {
+    eval [string map [list NAME "{$name\[$i+ARRAY_OFFSET\]}" \
+                           IX "($i+ARRAY_OFFSET)"] $contents]
+  }
+  whole-byte
+  set strideLength $byteOffset
+  set byteOffset $oldByteOffset
+  set arrayLength [expr {$strideLength*$len/$stride}]
+
+  # Replace DATA in the elements with (DATA+OFF+ARRAY_OFFSET*STRIDE)
+  set elements \
+    [string map \
+            [list DATA "(&DATA\[0\]+$byteOffset+ARRAY_OFFSET*$strideLength)"] \
+            $elements]
+
+  set loop \
+  "for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<$len; ARRAY_OFFSET+=$stride)"
+
+  # Set array up
+  whole-byte
+  new
+  aliases $name
+  dict set current declaration "$ctype $name\[$len\];"
+  if {{} ne [cxxj encode]} {
+    dict set current encode "$loop {[cxxj encode]}"
+  }
+  if {{} ne [cxxj decode]} {
+    dict set current decode "$loop {[cxxj decode]}"
+  }
+  if {{} ne [cxxj validate]} {
+    dict set current validate "$loop {[cxxj validate]}"
+  }
+  if {{} ne [cxxj extract]} {
+    dict set current extract "$loop {[cxxj extract]}"
+  }
+  if {{} ne [cxxj update]} {
+    dict set current update "$loop {[cxxj update]}"
+  }
+  if {{} ne [cxxj post-set]} {
+    dict set current post-set "$loop {[cxxj post-set]}"
+  }
+  if {{} ne [cxxj compare]} {
+    dict set current compare "$loop {[cxxj compare]}"
+  }
+  incr byteOffset $arrayLength
+
+  # Restore old elements, then possibly save
+  set elements $oldElements
+  if {$save} save
 }
 
 proc virtual args {

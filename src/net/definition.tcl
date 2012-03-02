@@ -377,6 +377,13 @@ type Ship {
       X->setStealthMode(stealthMode);
     }
   }
+  bit 1 rootIsBridge {
+    type bool
+    extract {
+      rootIsBridge = (X->cells[0]->usage == CellBridge);
+    }
+  }
+
   # Configure engines all at once
   void {
     update {
@@ -395,7 +402,6 @@ type Ship {
 
   # The information to associate with each cell is:
   #   uint2 cellType
-  #   bool isBridge
   #   byte damage
   #   uint12 neighbours[4]
   #   uint2 systemOrientations[2]
@@ -417,21 +423,19 @@ type Ship {
   #   nybble neighboursBits03[4*4094]
   #   nybble neighboursBits47[4*4094]
   #   nybble neighboursBits8B[4*4094]
-  #   struct {
-  #     nybble cellInfo[64] { bit 2 cellType; bit 1 isBridge }
-  #     byte cellDamage[64]
-  #     byte systemInfo[64]
-  #     byte capacitors[2*64]
-  #     struct {
-  #       byte    shieldMaxStrength
-  #       float   shieldRadius
-  #     } shieldConstInfo[64]
-  #     struct {
-  #       byte    shieldCurrStrengthPercent
-  #       byte    shieldCurrAlpha
-  #     } shieldCurrInfo[64]
-  #     bit gatPlasmaTurbo[64]
-  #   } chunk[64]
+  #   bit2   cellType[4094]
+  #   byte   cellDamage[4094]
+  #   byte   systemInfo[4094]
+  #   byte   capacitors[2*4094]
+  #   byte   shieldMaxStrength[4094]
+  #   float  shieldRadius[4094]
+  #   byte   shieldCurrStrengthPercent[4094]
+  #   byte   shieldCurrAlpha[4094]
+  #   bit    gatPlasmaTurbo[4094]
+
+  arr {unsigned char} 16376 2 neighboursBits03 {nybble NAME} {}
+  arr {unsigned char} 16376 2 neighboursBits47 {nybble NAME} {}
+  arr {unsigned char} 16376 2 neighboursBits8B {nybble NAME} {}
 
   # TODO
   # (For now, just do nothing so it compiles)
