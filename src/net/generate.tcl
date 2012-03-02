@@ -565,6 +565,7 @@ proc arr {ctype len stride name contents parms {save yes}} {
   if {{} ne [cxxj compare]} {
     dict set current compare "$loop {[cxxj compare]}"
   }
+  eval-parms $parms
   incr byteOffset $arrayLength
 
   # Restore old elements, then possibly save
