@@ -24,6 +24,8 @@ verbatimc {
 }
 
 verbatimh {
+  class ShieldGenerator;
+  class Cell;
 }
 verbatimc {
   #include <cassert>
@@ -272,8 +274,36 @@ verbatimc {
   };
 }
 
+verbatimc {
+  #define SHGEN(ix) ((ix) < X->networkCells.size()? \
+                     getShieldGenerator(X->networkCells[(ix)]) : NULL)
+}
 type Ship {
   extension GameObject
+
+  void {
+    inoheader {
+      public:
+      static ShieldGenerator* getShieldGenerator(const Cell*) throw();
+    }
+    enoheader {
+      static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
+        return INO_Ship::getShieldGenerator(c);
+      }
+    }
+    impl {
+      ShieldGenerator* INO_Ship::getShieldGenerator(const Cell* c) throw() {
+        if (!c) return NULL;
+        if (c->systems[0]
+        &&  c->systems[0]->clazz == Classification_Shield)
+          return static_cast<ShieldGenerator*>(c->systems[0]);
+        if (c->systems[1]
+        &&  c->systems[1]->clazz == Classification_Shield)
+          return static_cast<ShieldGenerator*>(c->systems[1]);
+        return NULL;
+      }
+    }
+  }
 
   # The name of the target, or empty string for NULL.
   # (This matches the tag of another Ship.)
@@ -486,6 +516,7 @@ type Ship {
   #   byte   shieldMaxStrength[4094]
   #   float  shieldRadius[4094]
   #   byte   shieldCurrStrengthPercent[4094]
+  #   byte   shieldCurrStab[4094]
   #   byte   shieldCurrAlpha[4094]
   #   bit    gatPlasmaTurbo[4094]
 
@@ -634,19 +665,106 @@ type Ship {
   toggle ;# Enable updates
   arr {struct {
     float radius;
-    byte maxStrength, currStrengthPercent, currAlpha;
+    byte maxStrength, currStrengthPercent, currStability, currAlpha;
   }}                  4094  1 shields           {
     toggle
-    float {NAME.radius} {min STD_CELL_SZ*MIN_SHIELD_RAD
-                         max STD_CELL_SZ*MAX_SHIELD_RAD}
+    float {NAME.radius} {
+      min STD_CELL_SZ*MIN_SHIELD_RAD
+      max STD_CELL_SZ*MAX_SHIELD_RAD
+      extract {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            NAME.radius = gen->getRadius();
+        }
+      }
+    }
     ui 1 {NAME.maxStrength} {
       validate { NAME.maxStrength = min((byte)MAX_SHIELD_STR,
                                         max((byte)MIN_SHIELD_STR,
-                                            NAME.maxStrength)); }
+                                            NAME.maxStrength));
+      }
+      extract {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            NAME.maxStrength = (byte)gen->getStrength();
+        }
+      }
     }
     toggle
-    ui 1 {NAME.currStrengthPercent}
-    ui 1 {NAME.currAlpha}
+    ui 1 {NAME.currStrengthPercent} {
+      extract {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            NAME.currStrengthPercent =
+                (byte)(255*gen->getShieldStrength()/gen->getStrength());
+          else
+            NAME.currStrengthPercent = 0;
+        }
+      }
+      update {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            gen->setShieldStrength(NAME.currStrengthPercent/255.0f *
+                                   gen->getStrength());
+        }
+      }
+
+      compare {
+        //Usually send updates for differences when near
+        NEAR +=
+          fabs((float)x.NAME.currStrengthPercent - y.NAME.currStrengthPercent);
+      }
+    }
+    ui 1 {NAME.currStability} {
+      extract {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            NAME.currStability = (byte)(255.0f*gen->getShieldStability());
+          else
+            NAME.currStability = 0;
+        }
+      }
+
+      update {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            gen->setShieldStability(NAME.currStability/255.0f);
+        }
+      }
+
+      compare {
+        NEAR += fabs((float)x.NAME.currStability - y.NAME.currStability);
+      }
+    }
+    ui 1 {NAME.currAlpha} {
+      extract {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            NAME.currAlpha = (byte)(255.0f * gen->getShieldAlpha());
+          else
+            NAME.currAlpha = 0;
+        }
+      }
+
+      update {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            gen->setShieldAlpha(NAME.currAlpha/255.0f);
+        }
+      }
+
+      compare {
+        NEAR += fabs((float)x.NAME.currAlpha - y.NAME.currAlpha);
+      }
+    }
   }
   toggle ;# Disable updates
   # 4096 because len%stride must be zero.

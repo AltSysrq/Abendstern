@@ -573,25 +573,25 @@ proc arr {ctype len stride name contents {parms {}} {save yes}} {
   aliases $name
   dict set current declaration "$ctype $name\[$len\];"
   if {{} ne [cxxj encode]} {
-    dict set current encode "$loop {[cxxj encode]}"
+    dict set current encode "$loop {\n[cxxj encode]\n}"
   }
   if {{} ne [cxxj decode]} {
-    dict set current decode "$loop {[cxxj decode]}"
+    dict set current decode "$loop {\n[cxxj decode]\n}"
   }
   if {{} ne [cxxj validate]} {
-    dict set current validate "$loop {[cxxj validate]}"
+    dict set current validate "$loop {\n[cxxj validate]\n}"
   }
   if {{} ne [cxxj extract]} {
-    dict set current extract "$loop {[cxxj extract]}"
+    dict set current extract "$loop {\n[cxxj extract]\n}"
   }
   if {{} ne [cxxj update]} {
-    dict set current update "$loop {[cxxj update]}"
+    dict set current update "$loop {\n[cxxj update]\n}"
   }
   if {{} ne [cxxj post-set]} {
-    dict set current post-set "$loop {[cxxj post-set]}"
+    dict set current post-set "$loop {\n[cxxj post-set]\n}"
   }
   if {{} ne [cxxj compare]} {
-    dict set current compare "$loop {[cxxj compare]}"
+    dict set current compare "$loop {\n[cxxj compare]\n}"
   }
   eval-parms $parms
   incr byteOffset $arrayLength
