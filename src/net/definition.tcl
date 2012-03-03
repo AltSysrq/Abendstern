@@ -768,7 +768,22 @@ type Ship {
       }
     }
   }
-  arr {unsigned char} 8188  1 capacitors        {ui 1 {NAME}}
+  arr {unsigned char} 8188  1 capacitors        {
+    ui 1 {NAME} {
+      extract {
+        {
+          unsigned cellix = IX/2, sysix = IX&1;
+          if (cellix < X->networkCells.size()
+          &&  X->networkCells[cellix]
+          &&  X->networkCells[cellix]->systems[sysix]
+          &&  typeid(*X->networkCells[cellix]->systems[sysix]) ==
+              typeid(Capacitor))
+            NAME = ((Capacitor*)X->networkCells[cellix]->systems[sysix])->
+                   getCapacity();
+        }
+      }
+    }
+  }
   toggle ;# Enable updates
   arr {struct {
     float radius;
