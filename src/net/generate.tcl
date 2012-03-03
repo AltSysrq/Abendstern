@@ -535,7 +535,7 @@ proc void {parms} {
   save
 }
 
-proc arr {ctype len stride name contents parms {save yes}} {
+proc arr {ctype len stride name contents {parms {}} {save yes}} {
   global current byteOffset bitOffset elements
 
   if {$len%$stride} {

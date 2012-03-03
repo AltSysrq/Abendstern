@@ -26,6 +26,8 @@ verbatimc {
 verbatimh {
 }
 verbatimc {
+  #include <cassert>
+  #include <typeinfo>
   #include "src/sim/game_object.hxx"
   #include "src/ship/everything.hxx"
   #include "src/weapon/energy_charge.hxx"
@@ -228,6 +230,14 @@ type ParticleEmitter {
                             r, rmajor, rminor,
                             timeAlive);
   }
+}
+
+# Cell type definitions
+verbatimc {
+  #define SQUARE_CELL 0
+  #define CIRCLE_CELL 1
+  #define EQUT_CELL 2
+  #define RIGHTT_CELL 3
 }
 
 type Ship {
@@ -434,19 +444,108 @@ type Ship {
   #   bit    gatPlasmaTurbo[4094]
 
   toggle ;# Do not modify these data or expect them to be modifyed
-  arr {unsigned char} 16376 2 neighboursBits03  {nybble {NAME}} {}
-  arr {unsigned char} 16376 2 neighboursBits47  {nybble {NAME}} {}
-  arr {unsigned char} 16376 2 neighboursBits8B  {nybble {NAME}} {}
+  arr {unsigned char} 16376 2 neighboursBits03  {nybble {NAME}}
+  arr {unsigned char} 16376 2 neighboursBits47  {nybble {NAME}}
+  arr {unsigned char} 16376 2 neighboursBits8B  {nybble {NAME}}
+  arr {unsigned int}  16376 1 neighbours {
+    void {
+      decode {
+        NAME = (neighboursBits03[IX] << 0)
+             | (neighboursBits47[IX] << 4)
+             | (neighboursBits8B[IX] << 8);
+      }
+      encode {
+        neighboursBits03[IX] = NAME & 15;
+        neighboursBits47[IX] = (NAME >> 4) & 15;
+        neighboursBits8B[IX] = NAME >> 8;
+      }
+      extract {
+        {
+          const unsigned neigh = IX&3;
+          const unsigned cellix = IX>>2;
+          if (X->networkCells.size() > cellix
+          &&  X->networkCells[cellix]
+          &&  X->networkCells[cellix]->neighbours[neigh]) {
+            //Exists, but EmptyCells are encoded specially
+            if (X->networkCells[cellix]->neighbours[neigh]->isEmpty) {
+              //Special value: 1
+              NAME = 1;
+            } else {
+              //Generic
+              NAME = 2 + X->networkCells[cellix]->neighbours[neigh]->netIndex;
+            }
+          } else {
+            //Nonexistent
+            NAME = 0;
+          }
+        }
+      }
+    }
+  }
+
   # 4096 because len%stride must be zero.
-  arr {unsigned char} 4096  4 cellType          {bit 2 {NAME}}  {}
+  arr {unsigned char} 4096  4 cellType          {bit 2 {NAME} {
+    extract {
+      //Only bother initialising if the cell actually exists
+      if (X->networkCells.size() > IX && X->networkCells[IX]) {
+        Cell* c = X->networkCells[IX];
+        if (typeid(*c) == typeid(SquareCell))
+          NAME = SQUARE_CELL;
+        else if (typeid(*c) == typeid(CircleCell))
+          NAME = CIRCLE_CELL;
+        else if (typeid(*c) == typeid(EquTCell))
+          NAME = EQUT_CELL;
+        else {
+          assert(typeid(*c) == typeid(RightTCell));
+          NAME = RIGHTT_CELL;
+        }
+      }
+    }
+  }}
   toggle ;# End no updates
-  arr {unsigned char} 4094  1 cellDamage        {ui 1 {NAME}}   {}
+  arr {unsigned char} 4094  1 cellDamage        {ui 1 {NAME} {
+    extract {
+      if (IX < X->networkCells.size() && X->networkCells[IX]) {
+        Cell*const c = X->networkCells[IX];
+        NAME = max((byte)1,
+                   (byte)(255 - 255*c->getCurrDamage()/c->getMaxDamage()));
+      } else {
+        NAME = 0; //Nonexistent
+      }
+    }
+    update {
+      if (IX < X->networkCells.size() && X->networkCells[IX]) {
+        Cell*const c = X->networkCells[IX];
+        if (!NAME && !IX) {
+          //Illegal attempt to destroy root; ignore
+          #ifdef DEBUG
+          cerr << "Warning: Ignoring illegal attempt to destroy Ship root!"
+               << endl;
+          #endif
+          continue;
+        }
+        if (!NAME) {
+          //TODO
+        } else {
+          //TODO
+        }
+      }
+    }
+    compare {
+      //If one is zero and the other not, we must send an update
+      if ((x.NAME == 0) != (y.NAME == 0))
+        return true;
+
+      //Consider 10% difference worth it at close range; don't care at far
+      NEAR += fabs((x.NAME-y.NAME)/25.6f);
+    }
+  }}
   arr {struct {
     unsigned char orientation, type;
   }}                  8118  1 systemInfo        {bit 2 {NAME.orientation}
-                                                 bit 6 {NAME.type}}   {}
+                                                 bit 6 {NAME.type}}
   toggle ;# Disable updates
-  arr {unsigned char} 8188  1 capacitors        {ui 1 {NAME}}   {}
+  arr {unsigned char} 8188  1 capacitors        {ui 1 {NAME}}
   toggle ;# Enable updates
   arr {struct {
     float radius;
@@ -456,10 +555,10 @@ type Ship {
     ui 1 {NAME.maxStrength}
     ui 1 {NAME.currStrengthPercent}
     ui 1 {NAME.currAlpha}
-  } {}
+  }
   toggle ;# Disable updates
   # 4096 because len%stride must be zero.
-  arr {bool}          4096 8 gatPlasmaTurbo     {bit 1 {NAME} {type bool}} {}
+  arr {bool}          4096 8 gatPlasmaTurbo     {bit 1 {NAME} {type bool}}
 
   # TODO
   # (For now, just do nothing so it compiles)

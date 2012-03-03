@@ -107,7 +107,7 @@ class Cell: public AObject {
    * Records the original index within the Ship of
    * the Cell.
    */
-  int netIndex;
+  unsigned netIndex;
 
   /** The neighbours of this Cell */
   Cell* neighbours[4];
@@ -161,7 +161,8 @@ class Cell: public AObject {
      * Affects: rotational inertia, centre of gravity, torque <br>
      * Provides: Nothing
      */
-    float angle, /**@see angle*/ cosine, /**@see angle*/ sine, /**@see angle*/ distance;
+    float angle, /**@see angle*/ cosine, /**@see angle*/ sine,
+          /**@see angle*/ distance;
     /** Contributions to thrust produced by engines in this cell, when
      * the throttle is 100%. <br>
      * Invalidated by: Change of stealth mode <br>
@@ -174,7 +175,8 @@ class Cell: public AObject {
      * If the Cell* is non-NULL, the torque is nearly-exactly counter-
      * balanced by that cell, and the combined torque by both is
      * considered to be exactly zero. <br>
-     * Invalidated by: coordinate change, loss of linked cell, change of stealth mode <br>
+     * Invalidated by: coordinate change, loss of linked cell, change of
+     * stealth mode <br>
      * Provides: total torque
      */
     float torque;
