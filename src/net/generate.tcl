@@ -65,6 +65,12 @@
 #     Added to the end of the ENO class header (within the clgss).
 #   impl CODE
 #     Added to the end of the implementation.
+#   update-control
+#   compare-control
+#   transmission-control
+#     Used to temporarily enable/disable output (see special rules below).
+#     update is for receiving and transmitting updates; compare is during
+#     comparisons.
 #   default MULT
 #     If specified, extract, update, and compare are automatically set (if they
 #     are not otherwise present) to:
@@ -75,6 +81,10 @@
 #         FAR += delta*MULT;
 #         NEAR += delta*MULT;
 #       }}
+# Special rules:
+#   If an output entry is encountered whose value is solely a dollar, output
+#   is not produced until the next such entry. These entryes themselves are
+#   never output.
 #
 # The following data rules are available:
 #   extension SECTION
@@ -120,6 +130,8 @@
 #     within. The string "IX" within CONTENTS will be replaced by an expression
 #     evaluating to the current datum's index within the array, insensitive of
 #     the stride.
+#   toggle
+#     Synonym for   void { update-control $ compare-control $ }
 #   construct CODE
 #     Does not give encoding or decoding rules; rather, it provides C++ code
 #     to run to assign X to a new instance of the appropriate type. It is not
@@ -180,10 +192,15 @@ puts $cout {
 # Entries that don't exist are omitted.
 proc select {from args} {
   set ret [list]
+  set active yes
   foreach d $from {
     foreach key $args {
       if {[dict exists $d $key]} {
-        lappend ret [dict get $d $key]
+        if {"\$" == [dict get $d $key]} {
+          set active [expr {!$active}]
+        } elseif {$active} {
+          lappend ret [dict get $d $key]
+        }
       }
     }
   }
@@ -308,14 +325,25 @@ bool INO_${name}::decodeUpdate(const std::vector<byte>& DATA, $name* X)
 const throw () {
   bool DESTROY = false;
   const unsigned T = cxn->getLatency();
-  [cxxj declaration]
-  [cxxj decode validate update]
+  [cxxj update-control declaration]
+  [cxxj update-control decode validate update]
   return DESTROY;
 }
 
 ENO_${name}::ENO_${name}(NetworkConnection* cxn, $name* obj)
 : ExportedGameObject($byteOffset, cxn, obj, clone(obj))
-{ }
+{
+  //Populate initial data
+  #define X obj
+  #define field (cxn->field)
+  const unsigned T = cxn->getLatency();
+  #define DATA state
+  [cxxj declaration]
+  [jxxc extract encode]
+  #undef DATA
+  #undef field
+  #undef X
+}
 
 $name* ENO_${name}::clone(const $name* src) const throw() {
   #define X src
@@ -336,13 +364,13 @@ $name* ENO_${name}::clone(const $name* src) const throw() {
 bool ENO_${name}::shouldUpdate() const throw() {
   float NEAR = 0, FAR = 0;
   struct S {
-    [cxxj declaration]
+    [cxxj compare-control declaration]
     S(const $name* X) {
-      [cxxj extract]
+      [cxxj compare-control extract]
     }
   } x(static_cast<$name*>(local.ref)), y(static_cast<$name*>(remote));
 
-  [cxxj compare]
+  [cxxj compare-control compare]
 
   float l_dist = cxn->distanceOf(this->local.ref);
   return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
@@ -354,12 +382,12 @@ void ENO_${name}::updateRemote() throw() {
   #define field (&this->cxn->field)
   $name* l_local = static_cast<$name*>(this->local.ref);
   $name* l_remote = static_cast<$name*>(this->remote);
-  [cxxj declaration]
+  [cxxj update-control declaration]
   #define X l_local
-  [jxxc extract encode]
+  [jxxc update-control extract encode]
   #undef X
   #define X l_remote
-  [cxxj update]
+  [cxxj update-control update]
   #undef X
   #undef DATA
   #undef T
@@ -646,6 +674,10 @@ proc dat {len name {parms {}} {save yes}} {
   incr byteOffset $len
 
   if {$save} save
+}
+
+proc toggle {} {
+  void { update-control $ compare-control $ }
 }
 
 proc verbatimh {code} {

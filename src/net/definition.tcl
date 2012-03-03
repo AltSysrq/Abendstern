@@ -433,17 +433,21 @@ type Ship {
   #   byte   shieldCurrAlpha[4094]
   #   bit    gatPlasmaTurbo[4094]
 
+  toggle ;# Do not modify these data or expect them to be modifyed
   arr {unsigned char} 16376 2 neighboursBits03  {nybble {NAME}} {}
   arr {unsigned char} 16376 2 neighboursBits47  {nybble {NAME}} {}
   arr {unsigned char} 16376 2 neighboursBits8B  {nybble {NAME}} {}
   # 4096 because len%stride must be zero.
   arr {unsigned char} 4096  4 cellType          {bit 2 {NAME}}  {}
+  toggle ;# End no updates
+  arr {unsigned char} 4094  1 cellDamage        {ui 1 {NAME}}   {}
   arr {struct {
     unsigned char orientation, type;
-  }}                  4094  1 cellDamage        {bit 2 {NAME.orientation}
+  }}                  8118  1 systemInfo        {bit 2 {NAME.orientation}
                                                  bit 6 {NAME.type}}   {}
-  arr {unsigned char} 8188  1 systemInfo        {ui 1 {NAME}}   {}
+  toggle ;# Disable updates
   arr {unsigned char} 8188  1 capacitors        {ui 1 {NAME}}   {}
+  toggle ;# Enable updates
   arr {struct {
     float radius;
     byte maxStrength, currStrengthPercent, currAlpha;
@@ -453,6 +457,7 @@ type Ship {
     ui 1 {NAME.currStrengthPercent}
     ui 1 {NAME.currAlpha}
   } {}
+  toggle ;# Disable updates
   # 4096 because len%stride must be zero.
   arr {bool}          4096 8 gatPlasmaTurbo     {bit 1 {NAME} {type bool}} {}
 
