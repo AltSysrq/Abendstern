@@ -41,6 +41,7 @@ verbatimc {
   #include "src/weapon/missile.hxx"
   #include "src/weapon/monophasic_energy_pulse.hxx"
   #include "src/weapon/particle_beam.hxx"
+  #include "src/exit_conditions.hxx"
 }
 
 prototype GameObject {
@@ -272,6 +273,33 @@ verbatimc {
     SSCReinforcementBulkhead,
     SSCSelfDestructCharge
   };
+
+  //Uses the SYS(name) macro to handle every known ship system type.
+  #define HANDLE_SYSTEMS \
+  SYS(AntimatterPower) \
+  SYS(CloakingDevice) \
+  SYS(DispersionShield) \
+  SYS(GatlingPlasmaBurstLauncher) \
+  SYS(MissileLauncher) \
+  SYS(MonophasicEnergyEmitter) \
+  SYS(ParticleBeamLauncher) \
+  SYS(RelIonAccelerator) \
+  SYS(BussardRamjet) \
+  SYS(FusionPower) \
+  SYS(Heatsink) \
+  SYS(MiniGravwaveDriveMKII) \
+  SYS(PlasmaBurstLauncher) \
+  SYS(SemiguidedBombLauncher) \
+  SYS(SuperParticleAccelerator) \
+  SYS(Capacitor) \
+  SYS(EnergyChargeLauncher) \
+  SYS(FissionPower) \
+  SYS(MagnetoBombLauncher) \
+  SYS(MiniGravwaveDrive) \
+  SYS(ParticleAccelerator) \
+  SYS(PowerCell) \
+  SYS(ReinforcementBulkhead) \
+  SYS(SelfDestructCharge)
 }
 
 verbatimc {
@@ -698,8 +726,48 @@ type Ship {
   toggle ;# Disable updates
   arr {struct {
     unsigned char orientation, type;
-  }}                  8188  1 systemInfo        {bit 2 {NAME.orientation}
-                                                 bit 6 {NAME.type}}
+  }}                  8188  1 systemInfo        {
+    bit 2 {NAME.orientation} {
+      extract {
+        unsigned cellix = IX/2, sysix = IX&1;
+        if (cellix < X->networkCells.size()
+        &&  X->networkCells[cellix]
+        &&  X->networkCells[cellix]->systems[sysix]) {
+          NAME.orientation =
+            X->networkCells[cellix]->systems[sysix]->getOrientation();
+        } else {
+          NAME.orientation = 0;
+        }
+      }
+    }
+    bit 6 {NAME.type} {
+      extract {
+        {
+          #define SYS(clazz) \
+          if (typeid(*sys) == typeid(clazz)) \
+            NAME.type = (unsigned char)SSC##clazz; \
+          else
+
+          unsigned cellix = IX/2, sysix = IX&1;
+          if (cellix < X->networkCells.size()
+          &&  X->networkCells[cellix]
+          &&  X->networkCells[cellix]->systems[sysix]) {
+            ShipSystem*const sys = X->networkCells[cellix]->systems[sysix];
+            HANDLE_SYSTEMS
+            /* else */ {
+              cerr << "FATAL: Unexpected ShipSystem type: "
+                  << typeid(*sys).name() << endl;
+              exit(EXIT_PROGRAM_BUG);
+            }
+          } else {
+            NAME.type = 0;
+          }
+
+          #undef SYS
+        }
+      }
+    }
+  }
   arr {unsigned char} 8188  1 capacitors        {ui 1 {NAME}}
   toggle ;# Enable updates
   arr {struct {
