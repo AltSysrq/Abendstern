@@ -29,7 +29,9 @@ verbatimc {
   #include <cassert>
   #include <typeinfo>
   #include "src/sim/game_object.hxx"
+  #include "src/sim/blast.hxx"
   #include "src/ship/everything.hxx"
+  #include "src/ship/ship_renderer.hxx"
   #include "src/weapon/energy_charge.hxx"
   #include "src/weapon/magneto_bomb.hxx"
   #include "src/weapon/plasma_burst.hxx"
@@ -232,12 +234,42 @@ type ParticleEmitter {
   }
 }
 
-# Cell type definitions
+# Cell and system type definitions
 verbatimc {
   #define SQUARE_CELL 0
   #define CIRCLE_CELL 1
   #define EQUT_CELL 2
   #define RIGHTT_CELL 3
+
+  enum ShipSystemCode {
+    SSCAntimatterPower=0,
+    SSCCloakingDevice,
+    SSCDispersionShield,
+    SSCGatlingPlasmaBurstLauncher,
+    SSCMissileLauncher,
+    SSCMonophasicEnergyEmitter,
+    SSCParticleBeamLauncher,
+    SSCRelIonAccelerator,
+
+    SSCBussardRamjet,
+    SSCFusionPower,
+    SSCHeatsink,
+    SSCMiniGravwaveDriveMKII,
+    SSCPlasmaBurstLauncher,
+    SSCSemiguidedBombLauncher,
+    SSCShieldGenerator,
+    SSCSuperParticleAccelerator,
+
+    SSCCapacitor,
+    SSCEnergyChargeLauncher,
+    SSCFissionPower,
+    SSCMagnetoBombLauncher,
+    SSCMiniGravwaveDrive,
+    SSCParticleAccelerator,
+    SSCPowerCell,
+    SSCReinforcementBulkhead,
+    SSCSelfDestructCharge
+  };
 }
 
 type Ship {
@@ -293,10 +325,12 @@ type Ship {
     }
   }
 
+  toggle ;# Ignore (and don't send) colour changes.
   # Core, scalar information
   float colourR { default 10 min 0 max 1 }
   float colourG { default 10 min 0 max 1 }
   float colourB { default 10 min 0 max 1 }
+  toggle ;# Reenable updates
   void {
     post-set {
       X->setColour(colourR, colourG, colourB);
@@ -348,12 +382,17 @@ type Ship {
       isFragment = X->isFragment;
     }
     update {
-      if (isFragment && !X->isFragment)
+      if (isFragment && !X->isFragment) {
         X->spontaneouslyDie();
+        cxn->unsetReference(X);
+      }
     }
     post-set {
-      if (isFragment)
+      if (isFragment) {
         X->spontaneouslyDie();
+      } else {
+        cxn->setReference(X);
+      }
     }
     compare {
       if (x.isFragment != y.isFragment)
@@ -374,7 +413,14 @@ type Ship {
     type bool
     default 1
     update {
-      //TODO
+      shield_deactivate(X);
+      X->shieldsDeactivated=true;
+      //Clear all cell power bits that have shields
+      X->physicsRequire(PHYS_SHIP_SHIELD_INVENTORY_BIT);
+      for (unsigned i=0; i<X->shields.size(); ++i)
+        X->shields[i]->getParent()->physicsClear(PHYS_CELL_POWER_BITS
+                                                |PHYS_CELL_POWER_PROD_BITS);
+      X->shields.clear();
     }
   }
   bit 1 stealthMode {
@@ -525,9 +571,48 @@ type Ship {
           continue;
         }
         if (!NAME) {
-          //TODO
+          //Delink the cell from its neighbours, spawning PlasmaFires
+          //if appropriate.
+          for (unsigned n = 0; n < 4; ++n) {
+            if (c->neighbours[n]) {
+              unsigned ret = c->neighbours[n]->getNeighbour(c);
+              EmptyCell* ec = new EmptyCell(X, c->neighbours[n]);
+              c->neighbours[n]->neighbours[ret] = ec;
+              if (highQuality && EXPCLOSE(x,y))
+                field->add(new PlasmaFire(ec));
+            }
+          }
+
+          //Spawn fragments if appropriate
+          pair<float,float> coord = X->cellCoord(X, c);
+          Blast blast(field, 0, coord.first, coord.second,
+                      STD_CELL_SZ/2, c->getMaxDamage()-c->getCurrDamage(),
+                      true, STD_CELL_SZ/16, false, true, false);
+          CellFragment::spawn(c, &blast);
+
+          //Destroy systems within cell
+          if (c->systems[0]) c->systems[0]->destroy(0xFFFFFF);
+          if (c->systems[1]) c->systems[1]->destroy(0xFFFFFF);
+          //Remove cell from ship
+          X->preremove(c);
+          if (X->renderer)
+            X->renderer->cellRemoved(c);
+          X->removeCell(c);
+          X->networkCells[IX] = NULL;
+
+          //Free
+          delete c;
         } else {
-          //TODO
+          //Damage the cell by the appropriate amount
+          float newdmg = 1.0f - NAME/255.0f;
+          newdmg *= c->getMaxDamage();
+          float olddmg = c->getCurrDamage();
+          #ifndef NDEBUG
+          bool destroyed =
+          #endif
+          c->applyDamage(newdmg-olddmg, 0xFFFFFF);
+          assert(!destroyed);
+          X->cellDamaged(c);
         }
       }
     }
@@ -542,7 +627,7 @@ type Ship {
   }}
   arr {struct {
     unsigned char orientation, type;
-  }}                  8118  1 systemInfo        {bit 2 {NAME.orientation}
+  }}                  8188  1 systemInfo        {bit 2 {NAME.orientation}
                                                  bit 6 {NAME.type}}
   toggle ;# Disable updates
   arr {unsigned char} 8188  1 capacitors        {ui 1 {NAME}}
@@ -551,8 +636,15 @@ type Ship {
     float radius;
     byte maxStrength, currStrengthPercent, currAlpha;
   }}                  4094  1 shields           {
-    float {NAME.radius}
-    ui 1 {NAME.maxStrength}
+    toggle
+    float {NAME.radius} {min STD_CELL_SZ*MIN_SHIELD_RAD
+                         max STD_CELL_SZ*MAX_SHIELD_RAD}
+    ui 1 {NAME.maxStrength} {
+      validate { NAME.maxStrength = min((byte)MAX_SHIELD_STR,
+                                        max((byte)MIN_SHIELD_STR,
+                                            NAME.maxStrength)); }
+    }
+    toggle
     ui 1 {NAME.currStrengthPercent}
     ui 1 {NAME.currAlpha}
   }
