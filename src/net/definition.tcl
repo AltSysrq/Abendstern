@@ -676,6 +676,8 @@ type Ship {
           ShieldGenerator* gen = SHGEN(IX);
           if (gen)
             NAME.radius = gen->getRadius();
+          else
+            NAME.radius = 0;
         }
       }
     }
@@ -689,6 +691,8 @@ type Ship {
           ShieldGenerator* gen = SHGEN(IX);
           if (gen)
             NAME.maxStrength = (byte)gen->getStrength();
+          else
+            NAME.maxStrength = 0;
         }
       }
     }
@@ -768,7 +772,22 @@ type Ship {
   }
   toggle ;# Disable updates
   # 4096 because len%stride must be zero.
-  arr {bool}          4096 8 gatPlasmaTurbo     {bit 1 {NAME} {type bool}}
+  arr {bool}          4096 8 gatPlasmaTurbo     {bit 1 {NAME} {
+    type bool
+    extract {
+      if (IX < X->networkCells.size() && X->networkCells[IX]) {
+        ShipSystem*const*const s = X->networkCells[IX]->systems;
+
+        if (s[0] && typeid(*s[0]) == typeid(GatlingPlasmaBurstLauncher)) {
+          NAME = ((GatlingPlasmaBurstLauncher*)s[0])->getTurbo();
+        } else if (s[1] && typeid(*s[1])==typeid(GatlingPlasmaBurstLauncher)) {
+          NAME = ((GatlingPlasmaBurstLauncher*)s[1])->getTurbo();
+        } else {
+          NAME = false;
+        }
+      }
+    }
+  }}
 
   # TODO
   # (For now, just do nothing so it compiles)
