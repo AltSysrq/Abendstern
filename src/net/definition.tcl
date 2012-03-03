@@ -492,6 +492,7 @@ type Ship {
   #   uint12 neighbours[4]
   #   uint2 systemOrientations[2]
   #   uint6 systemTypes[2]
+  #   bool systemExistence[2]
   #   byte capacitors[2]
   #   byte shieldMaxStrength
   #   float shieldRadius
@@ -502,7 +503,9 @@ type Ship {
   # damage is inverse, where 0 = non-existent and 255 is undamaged.
   # A neighbour of zero is non-existent, and 1 is destroyed; anything else
   # is two plus the index of the neighbour.
-  # A system type of zero is no system; anything else is a specific system type.
+  #
+  # System existence is done separately from system types since it is cheaper
+  # to calculate (and sending types is unnecessary for updates).
   #
   # In order to maximise data density and efficiency for ships of various sizes,
   # lay the data out as follows (note that there is a maximum of 4094 cells):
@@ -511,6 +514,7 @@ type Ship {
   #   nybble neighboursBits8B[4*4094]
   #   bit2   cellType[4094]
   #   byte   cellDamage[4094]
+  #   bit    systemExist[2*4094]
   #   byte   systemInfo[2*4094] {bit 0,1: orientation; bit 2+: type}
   #   byte   capacitors[2*4094]
   #   byte   shieldMaxStrength[4094]
@@ -656,11 +660,46 @@ type Ship {
       NEAR += fabs((x.NAME-y.NAME)/25.6f);
     }
   }}
+  # 8192 so that len%stride == 0
+  arr bool            8192  8 systemExist       {
+    bit 1 {NAME} {
+      type bool
+      extract {
+        {
+          unsigned cellix = IX/2;
+          unsigned sysix = IX&1;
+          NAME = (X->networkCells.size() > cellix
+              &&  X->networkCells[cellix]
+              &&  X->networkCells[cellix]->systems[sysix]);
+        }
+      }
+
+      update {
+        {
+          unsigned cellix = IX/2;
+          unsigned sysix = IX&1;
+          //Check for system destruction
+          if (!NAME
+          &&  X->networkCells.size() > cellix
+          &&  X->networkCells[cellix]
+          &&  X->networkCells[cellix]->systems[sysix]) {
+            //Destroy it
+            X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
+            delete X->networkCells[cellix]->systems[sysix];
+            X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
+            X->cellChanged(X->networkCells[cellix]);
+          }
+        }
+      }
+    }
+  }
+
+  toggle ;# Disable updates
   arr {struct {
     unsigned char orientation, type;
   }}                  8188  1 systemInfo        {bit 2 {NAME.orientation}
                                                  bit 6 {NAME.type}}
-  toggle ;# Disable updates
   arr {unsigned char} 8188  1 capacitors        {ui 1 {NAME}}
   toggle ;# Enable updates
   arr {struct {
