@@ -161,7 +161,7 @@ protected:
    * After this call, the Gerät waits until the deletion is confirmed
    * received, then closes itself.
    */
-  virtual void destroyRemote() throw() = 0;
+  virtual void destroyRemote() throw() { };
 };
 
 #endif /* OBJECT_GERAET_HXX_ */
