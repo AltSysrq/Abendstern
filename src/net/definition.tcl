@@ -91,8 +91,10 @@ type EnergyCharge {
     type bool
     extract { exploded = X->exploded; }
     update {
-      if (!X->exploded && exploded)
+      if (!X->exploded && exploded) {
         X->explode(NULL);
+        destroy(false);
+      }
     }
   }
 
@@ -122,8 +124,10 @@ type MagnetoBomb {
     type bool
     extract { exploded = X->exploded; }
     update {
-      if (!X->exploded && exploded)
+      if (!X->exploded && exploded) {
         X->explode();
+        destroy(false);
+      }
     }
   }
 
@@ -164,6 +168,7 @@ type PlasmaBurst {
     update {
       if (exploded && !X->exploded) {
         X->explode(NULL);
+        destroy(false);
       }
     }
   }
@@ -196,6 +201,7 @@ type Missile {
     update {
       if (exploded && !X->exploded) {
         X->explode(NULL);
+        destroy(false);
       }
     }
   }

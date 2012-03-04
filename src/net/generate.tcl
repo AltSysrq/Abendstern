@@ -264,7 +264,7 @@ protected:
 
 private:
   $name* decodeConstruct(const std::vector<byte>&) const throw();
-  bool decodeUpdate(const std::vector<byte>&, $name*) const throw();
+  bool decodeUpdate(const std::vector<byte>&, $name*) throw();
 
   static InputNetworkGeraet* create(NetworkConnection*) throw();
 
@@ -306,7 +306,7 @@ void INO_${name}::construct() throw() {
 
 void INO_${name}::update() throw() {
   if (decodeUpdate(state, static_cast<$name*>(object)))
-    destroy();
+    destroy(false);
 }
 
 $name* INO_${name}::decodeConstruct(const std::vector<byte>& DATA)
@@ -322,7 +322,7 @@ const throw() {
 }
 
 bool INO_${name}::decodeUpdate(const std::vector<byte>& DATA, $name* X)
-const throw () {
+throw () {
   bool DESTROY = false;
   const unsigned T = cxn->getLatency();
   [cxxj update-control declaration]

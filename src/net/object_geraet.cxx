@@ -27,7 +27,7 @@ ImportedGameObject::ImportedGameObject(unsigned sz, NetworkConnection* cxn)
 }
 
 ImportedGameObject::~ImportedGameObject() {
-  if (object) destroy();
+  if (object) destroy(false);
 }
 
 void ImportedGameObject::modified() throw() {
@@ -42,7 +42,7 @@ void ImportedGameObject::modified() throw() {
   }
 }
 
-void ImportedGameObject::destroy() throw() {
+void ImportedGameObject::destroy(bool) throw() {
   object->collideWith(object);
   field->remove(object);
   object->del();
