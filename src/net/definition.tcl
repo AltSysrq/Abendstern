@@ -309,6 +309,20 @@ verbatimc {
 type Ship {
   extension GameObject
 
+  # Ensure that the ship's cells have been numbered
+  void {
+    extract {
+      if (X->networkCells.empty()) {
+        for (unsigned i = 0; i < X->cells.size(); ++i) {
+          if (!X->cells[i]->isEmpty) {
+            X->cells[i]->netIndex = X->networkCells.size();
+            const_cast<Ship*>(X)->networkCells.push_back(X->cells[i]);
+          }
+        }
+      }
+    }
+  }
+
   void {
     inoheader {
       public:
