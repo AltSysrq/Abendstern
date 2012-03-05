@@ -93,7 +93,7 @@ type EnergyCharge {
     update {
       if (!X->exploded && exploded) {
         X->explode(NULL);
-        destroy(false);
+        DESTROY(false);
       }
     }
   }
@@ -126,7 +126,7 @@ type MagnetoBomb {
     update {
       if (!X->exploded && exploded) {
         X->explode();
-        destroy(false);
+        DESTROY(false);
       }
     }
   }
@@ -168,7 +168,7 @@ type PlasmaBurst {
     update {
       if (exploded && !X->exploded) {
         X->explode(NULL);
-        destroy(false);
+        DESTROY(false);
       }
     }
   }
@@ -201,7 +201,7 @@ type Missile {
     update {
       if (exploded && !X->exploded) {
         X->explode(NULL);
-        destroy(false);
+        DESTROY(false);
       }
     }
   }
@@ -651,7 +651,7 @@ type Ship {
           cerr << "Warning: Ignoring illegal attempt to destroy Ship root!"
                << endl;
           #endif
-          continue;
+          DESTROY(true);
         }
         if (!NAME) {
           //Delink the cell from its neighbours, spawning PlasmaFires
@@ -931,7 +931,7 @@ type Ship {
     }
   }}
 
-  # TODO
-  # (For now, just do nothing so it compiles)
-  construct {}
+  construct {
+    //TODO
+  }
 }

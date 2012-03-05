@@ -45,8 +45,8 @@
 #   update CODE
 #     run this C++ code after decoding, with X as the operating object, and T
 #     as the current latency.
-#     May set the variable DESTROY to true to indicate that the object should
-#     be destroyed.
+#     May call the macro DESTROY(x) to destroy the object; x is true if
+#     the object is being destroyed due to error, false otherwise.
 #   post-set CODE
 #     Like update, but run after construction. X is the operating object.
 #     May NOT set DESTROY (which doesn't exist).
@@ -311,23 +311,25 @@ void INO_${name}::update() throw() {
 
 $name* INO_${name}::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
+  #define DESTROY(x) return NULL
   const unsigned T = cxn->getLatency();
-  bool DESTROY;
   [cxxj declaration]
   [cxxj decode validate]
   $name* X;
   $typeConstructor
   [cxxj post-set]
   return X;
+  #undef DESTROY
 }
 
 bool INO_${name}::decodeUpdate(const std::vector<byte>& DATA, $name* X)
 throw () {
-  bool DESTROY = false;
+  #define DESTROY(x) return true
   const unsigned T = cxn->getLatency();
   [cxxj update-control declaration]
   [cxxj update-control decode validate update]
-  return DESTROY;
+  return false;
+  #undef DESTROY
 }
 
 ENO_${name}::ENO_${name}(NetworkConnection* cxn, $name* obj)
@@ -348,6 +350,7 @@ ENO_${name}::ENO_${name}(NetworkConnection* cxn, $name* obj)
 $name* ENO_${name}::clone(const $name* src) const throw() {
   #define X src
   #define field (&this->cxn->field)
+  #define DESTROY(x) assert(!(x))
   const unsigned T = cxn->getLatency();
   [cxxj declaration]
   [jxxc extract]
@@ -358,6 +361,7 @@ $name* ENO_${name}::clone(const $name* src) const throw() {
   [cxxj post-set]
   #undef X
   #undef field
+  #undef DESTROY
   return dst;
 }
 
@@ -380,6 +384,7 @@ void ENO_${name}::updateRemote() throw() {
   #define T 0
   #define DATA (this->state)
   #define field (&this->cxn->field)
+  #define DESTROY(x) assert(!(x))
   $name* l_local = static_cast<$name*>(this->local.ref);
   $name* l_remote = static_cast<$name*>(this->remote);
   [cxxj update-control declaration]
@@ -391,6 +396,7 @@ void ENO_${name}::updateRemote() throw() {
   #undef X
   #undef DATA
   #undef T
+  #undef DESTROY
   #undef field
 }
 [cxxj impl]
