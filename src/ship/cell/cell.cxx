@@ -148,23 +148,22 @@ void Cell::getAdjoined(vector<Cell*>& list) noth {
 }
 
 float Cell::getMaxDamage() const noth {
-  return getIntrinsicDamage()*(1+parent->getReinforcement());
+  const_cast<Cell*>(this)->physicsRequire(PHYS_CELL_REINFORCEMENT_BIT);
+  return getIntrinsicDamage()*(1+parent->getReinforcement())*
+         physics.reinforcement;
 }
 
 float Cell::getCurrDamage() const noth {
   return damage;
 }
 
-bool Cell::applyDamage(float amount, unsigned blame) noth {
+bool Cell::applyDamage(float amount, unsigned blame)
+noth {
   //catch bug
   if (amount!=amount) {
     cout << "Cell::applyDamage(float): amount is NaN! Comitting suicide..." << endl;
     ++*((int*)NULL);
   }
-
-  //Apply dampening from reinforcement
-  physicsRequire(PHYS_CELL_REINFORCEMENT_BIT);
-  amount /= physics.reinforcement;
 
   float maxDamage=getMaxDamage();
 
@@ -196,12 +195,14 @@ bool Cell::applyDamage(float amount, unsigned blame) noth {
       glBindTexture(GL_TEXTURE_2D, damageTexture);
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, IMG_SCALE);
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, IMG_SCALE);
-      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 16, 16, 0, GL_RGBA, GL_UNSIGNED_BYTE, damageTextureData);
+      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 16, 16, 0, GL_RGBA,
+                   GL_UNSIGNED_BYTE, damageTextureData);
       glBindTexture(GL_TEXTURE_2D, 0);
     }
   }
 
-  if (!parent->isRemote && damage>maxDamage-getIntrinsicDamage() && damage<maxDamage) {
+  if (!parent->isRemote && damage>maxDamage-getIntrinsicDamage() &&
+      damage<maxDamage) {
     bool destruction=false;
     if (systems[0]) if (!systems[0]->damage(blame)) {
       delete systems[0];
@@ -215,7 +216,8 @@ bool Cell::applyDamage(float amount, unsigned blame) noth {
     }
     if (destruction) {
       //Assumes only power generators and miscelaneous systems can explode
-      physics_bits bits = PHYS_CELL_POWER_BITS | PHYS_CELL_MASS_BITS | PHYS_CELL_POWER_PROD_BITS;
+      physics_bits bits = PHYS_CELL_POWER_BITS | PHYS_CELL_MASS_BITS
+                        | PHYS_CELL_POWER_PROD_BITS;
       physicsClear(bits);
       parent->cellChanged(this);
       parent->refreshUpdates();

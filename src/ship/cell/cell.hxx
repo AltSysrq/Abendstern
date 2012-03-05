@@ -339,7 +339,7 @@ class Cell: public AObject {
    * Returns whether the cell is still intact.
    * If the cell is damaged below its intrinsic amount,
    * the damage() method of both systems is called, which
-   * can result in a Blast.
+   * can result in a Blast (this is only done if not remote).
    */
   bool applyDamage(float amount, unsigned blame) noth;
 
