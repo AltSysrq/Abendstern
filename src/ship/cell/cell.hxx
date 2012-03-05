@@ -8,7 +8,6 @@
 #define CELL_HXX_
 
 #include <vector>
-#include <stdexcept>
 #include <string>
 //for GLuint
 #include <GL/gl.h>
@@ -293,8 +292,8 @@ class Cell: public AObject {
   unsigned _intrinsicMass;
 
   public:
-  /** Returns the index of the given neighbour, or throw range_error if not found */
-  unsigned getNeighbour(const Cell* other) throw (std::range_error);
+  /** Returns the index of the given neighbour, or abort if not found */
+  unsigned getNeighbour(const Cell* other) noth;
   /** Returns how many neighbours are supported */
   virtual unsigned numNeighbours() const noth = 0;
   /** Returns the relative distance between this cell's centre
@@ -354,11 +353,11 @@ class Cell: public AObject {
   /** Makes this Cell the root cell and orients all
    * others according to it.
    */
-  void orient(int initTheta=0) throw (std::range_error);
+  void orient(int initTheta=0) noth;
   /** Orient all neighbours according to this cell's current orientation.
    * Assumes this cell has already been properly oriented.
    */
-  void orientImpl() throw (std::range_error);
+  void orientImpl() noth;
 
   /** Mark the cell as needing orientation.
    * All cells should be marked this way before

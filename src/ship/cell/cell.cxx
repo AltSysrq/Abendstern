@@ -21,6 +21,7 @@
 #include "src/ship/sys/c/capacitor.hxx"
 #include "src/ship/sys/a/dispersion_shield.hxx"
 #include "src/globals.hxx"
+#include "src/exit_conditions.hxx"
 #include "src/graphics/matops.hxx"
 using namespace std;
 
@@ -54,14 +55,14 @@ Cell::Cell(Ship* p) :
   physics.nearestDS = physics.nextDepDS = physics.torquePair = NULL;
 }
 
-void Cell::orient(int initTheta) throw (range_error) {
+void Cell::orient(int initTheta) noth {
   //We are root
   x=y=0;
   theta=initTheta;
   oriented=true;
   orientImpl();
 }
-void Cell::orientImpl() throw (range_error) {
+void Cell::orientImpl() noth {
   for (int i=0; i<4; ++i)
     if (neighbours[i] && !neighbours[i]->oriented) {
       neighbours[i]->oriented=true;
@@ -80,9 +81,11 @@ void Cell::orientImpl() throw (range_error) {
     }
 }
 
-unsigned Cell::getNeighbour(const Cell* that) throw (range_error) {
+unsigned Cell::getNeighbour(const Cell* that) noth {
   for (int i=0; i<4; ++i) if (neighbours[i]==that) return i;
-  throw range_error("The given cell is not one of my neighbours!");
+  cerr << "FATAL: Could not find neighbour in Cell::getNeighbour()" << endl;
+  assert(false);
+  exit(EXIT_PROGRAM_BUG);
 }
 
 void Cell::draw(bool translate) noth {
