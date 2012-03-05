@@ -932,6 +932,130 @@ type Ship {
   }}
 
   construct {
-    //TODO
+    X = new Ship(field);
+    //Set fields from GameObject
+    X->x = x;
+    X->y = y;
+    X->vx = vx;
+    X->vy = vy;
+    X->isRemote = true;
+
+    //Count the number of cell slots used
+    //The last cell with non-zero health is the last index we must store,
+    //so the length is one plus that index.
+    unsigned cellCount = lenof(cellDamage);
+    while (cellCount > 0 && !cellDamage[cellCount-1]) --cellCount;
+
+    X->networkCells.resize(cellCount, NULL);
+
+    if (!cellDamage[0]) {
+      #ifdef DEBUG
+      cerr << "Warning: Ignoring ship with nonexistent root." << endl;
+      #endif
+      DESTROY(true);
+    }
+
+    if (rootIsBridge && rootTheta != 0) {
+      #ifdef DEBUG
+      cerr << "Warning: Ignoring ship with rotated bridge." << endl;
+      #endif
+      DESTROY(true);
+    }
+
+    //Initialise living cells
+    for (unsigned i = 0; i < cellCount; ++i) {
+      if (cellDamage[i]) {
+        Cell* c;
+        switch (cellType[i]) {
+          case SQUARE_CELL:
+            c = new SquareCell(X);
+            break;
+
+          case CIRCLE_CELL:
+            c = new CircleCell(X);
+            break;
+
+          case EQUT_CELL:
+            c = new EquTCell(X);
+            break;
+
+          default: //RIGHTT_CELL
+            assert(cellType[i] == RIGHTT_CELL);
+            if (i == 0 && rootIsBridge) {
+              #ifdef DEBUG
+              cerr << "Warning: Attempt to make right triangle bridge." << endl;
+              #endif
+              DESTROY(true);
+            }
+            c = new RightTCell(X);
+            break;
+        }
+        //Wait with applying damage until ready to do physics
+
+        //Add cell to ship
+        X->cells.push_back(c);
+        X->networkCells[i] = c;
+        c->netIndex = i;
+        if (i == 0 && rootIsBridge)
+          c->usage = CellBridge;
+      }
+    }
+
+    //Link cells to each other
+    for (unsigned i=0; i < cellCount; ++i) {
+      if (cellDamage[i]) {
+        unsigned numNeighbours = (cellType[i] <= CIRCLE_CELL? 4 : 3);
+        for (unsigned n = 0; n < numNeighbours; ++n) {
+          if (unsigned nix = neighbours[i*4+n]) {
+            //There is a linkage to this neighbour
+            Cell* neighbour;
+            if (nix == 1) {
+              //Special case: EmptyCell
+              neighbour = new EmptyCell(X, X->networkCells[i]);
+              X->cells.push_back(neighbour);
+            } else if (nix-2 < cellCount) {
+              //General case
+              neighbour = X->networkCells[nix-2];
+            } else {
+              #ifdef DEBUG
+              cerr << "Warning: Neighbour index out of bounds: " << (nix-2)
+                   << endl;
+              #endif
+              neighbour = NULL;
+            }
+
+            if (!neighbour) {
+              #ifdef DEBUG
+              cerr << "Warning: Nonexistent neighbour." << endl;
+              #endif
+              DESTROY(true);
+            }
+
+            X->networkCells[i]->neighbours[n] = neighbour;
+          }
+        }
+      }
+    }
+
+    //Verify that all cells have bidirectional linkage
+    for (unsigned i=0; i < X->cells.size(); ++i) {
+      Cell* c = X->cells[i];
+      for (unsigned n=0; n < 4; ++n) {
+        if (c->neighbours[n]) {
+          Cell* d = c->neighbours[n];
+          for (unsigned m = 0; m < 4; ++m) {
+            if (d->neighbours[m] == c)
+              goto nextN;
+          }
+
+          //Shouldn't get here if all linkage is valid
+          #ifdef DEBUG
+          cerr << "Warning: Ignoring ship with monodirectional linkage." <<endl;
+          #endif
+          DESTROY(true);
+        }
+        nextN:;
+      }
+    }
   }
 }

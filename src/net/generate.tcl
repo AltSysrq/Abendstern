@@ -311,7 +311,7 @@ void INO_${name}::update() throw() {
 
 $name* INO_${name}::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) return NULL
+  #define DESTROY(x) do { delete X; return NULL; } while(0)
   const unsigned T = cxn->getLatency();
   [cxxj declaration]
   [cxxj decode validate]
