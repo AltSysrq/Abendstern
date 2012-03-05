@@ -678,8 +678,10 @@ type Ship {
           if (c->systems[1]) c->systems[1]->destroy(0xFFFFFF);
           //Remove cell from ship
           X->preremove(c);
+          #ifndef AB_OPENGL_14
           if (X->renderer)
             X->renderer->cellRemoved(c);
+          #endif
           X->removeCell(c);
           X->networkCells[IX] = NULL;
 
