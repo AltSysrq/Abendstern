@@ -804,6 +804,10 @@ type Ship {
                    getCapacity();
         }
       }
+
+      validate {
+        NAME = min((unsigned char)CAPACITOR_MAX, max((unsigned char)1, NAME));
+      }
     }
   }
   toggle ;# Enable updates
@@ -1059,5 +1063,8 @@ type Ship {
         nextN:;
       }
     }
+
+    //Orient the cells
+    X->cells[0]->orient(rootTheta);
   }
 }
