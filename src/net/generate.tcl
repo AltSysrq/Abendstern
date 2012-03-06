@@ -158,6 +158,16 @@ puts $hout {
    */
 
   #include "../object_geraet.hxx"
+
+  /**
+   * Creates and returns an ExportedObjectGeraet* that relays the object to the
+   * remote peer. The channel is opened automatically.
+   *
+   * The program is aborted if it is not known how to export the given type of
+   * object.
+   */
+  ExportedGameObject* createObjectExport(NetworkConnection*, GameObject*)
+  throw();
 }
 
 puts $cout {
@@ -220,6 +230,7 @@ proc jxxc {args} {
 }
 
 set prototypes [dict create]
+set classes [list]
 
 proc prototype {name contents} {
   global prototypes
@@ -236,9 +247,10 @@ proc whole-byte {} {
 }
 
 proc type {name contents} {
-  global byteOffset bitOffset elements typeConstructor hout cout
+  global byteOffset bitOffset elements typeConstructor hout cout classes
   # Register the type
   prototype $name $contents
+  lappend classes $name
   # Setup for evaluation
   set byteOffset 0
   set bitOffset 0
@@ -695,6 +707,33 @@ proc verbatimc {code} {
 }
 
 source net/definition.tcl
+
+# Write the exporter creator
+puts $cout "
+  #include \"../synchronous_control_geraet.hxx\"
+  ExportedGameObject* createObjectExport(NetworkConnection* cxn,
+                                         GameObject* object)
+  throw() {
+    ExportedGameObject* ego;
+"
+foreach class $classes {
+  puts $cout "if (typeid(*object) == typeid($class))"
+  puts $cout "  ego = new ENO_${class}(cxn, ($class*)object);"
+  puts $cout "else"
+}
+
+puts $cout "
+  {
+    cerr << \"FATAL: Unknown object type to export: \"
+         << typeid(*object).name() << endl;
+    assert(false);
+    exit(EXIT_PROGRAM_BUG);
+  }
+
+  assert(ego);
+  cxn->scg->openChannel(ego, INO_${class}::num);
+  return ego;
+}"
 
 puts $hout "#endif"
 close $hout
