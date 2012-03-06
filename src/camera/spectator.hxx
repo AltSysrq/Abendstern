@@ -36,6 +36,9 @@ class Ship;
  * It will never go out of bounds.
  */
 class Spectator: public GameObject {
+  friend class INO_Spectator;
+  friend class ENO_Spectator;
+
   ObjDL ref;
 
   float timeWithoutReference;
@@ -45,6 +48,9 @@ class Spectator: public GameObject {
   float theta;
 
   bool isAlive;
+
+  /** Network constructor. */
+  Spectator(GameField*, float x, float y, float vx, float vy);
 
   public:
   /** Constructs a new Spectator with the given Ship as

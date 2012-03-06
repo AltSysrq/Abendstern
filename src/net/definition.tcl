@@ -41,6 +41,7 @@ verbatimc {
   #include "src/weapon/missile.hxx"
   #include "src/weapon/monophasic_energy_pulse.hxx"
   #include "src/weapon/particle_beam.hxx"
+  #include "src/camera/spectator.hxx"
   #include "src/exit_conditions.hxx"
 }
 
@@ -243,6 +244,17 @@ type ParticleEmitter {
   }
 }
 
+# Spectator must be exported since it serves as a reference
+type Spectator {
+  extension GameObject
+
+  void { set-reference { cxn->setReference(X); } }
+
+  construct {
+    X = new Spectator(field, x, y, vx, vy);
+  }
+}
+
 # Cell and system type definitions
 verbatimc {
   #define SQUARE_CELL 0
@@ -355,6 +367,7 @@ verbatimc {
     }
   };
 }
+
 type Ship {
   extension GameObject
 

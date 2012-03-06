@@ -33,6 +33,9 @@ Spectator::Spectator(Ship* s, bool insta)
   includeInCollisionDetection = false;
   decorative = true;
   okToDecorate();
+
+  isExportable = true;
+  isTransient = false;
 }
 
 Spectator::Spectator(GameField* f)
@@ -47,13 +50,34 @@ Spectator::Spectator(GameField* f)
   includeInCollisionDetection = false;
   decorative = true;
   okToDecorate();
+
+  isExportable = true;
+  isTransient = false;
+}
+
+Spectator::Spectator(GameField* f, float x, float y, float vx, float vy)
+: GameObject(f, x, y, vx, vy),
+  ref(NULL),
+  timeWithoutReference(0),
+  insignia(0),
+  isInsigniaRequired(false),
+  theta(0),
+  isAlive(true)
+{
+  includeInCollisionDetection = false;
+  decorative = true;
+  okToDecorate();
+
+  isExportable = true;
+  isTransient = false;
+  isRemote = true;
 }
 
 bool Spectator::update(float et) noth {
   if (ref.ref && !((Ship*)ref.ref)->hasPower())
     ref.assign(NULL);
 
-  if (!ref.ref) {
+  if (!ref.ref && !isRemote) {
     timeWithoutReference += et;
     if (timeWithoutReference > MAX_WITHOUT_REF_TIME) {
       nextReference();
