@@ -45,8 +45,8 @@
 #   update CODE
 #     run this C++ code after decoding, with X as the operating object, and T
 #     as the current latency.
-#     May set the variable DESTROY to true to indicate that the object should
-#     be destroyed.
+#     May call the macro DESTROY(x) to destroy the object; x is true if
+#     the object is being destroyed due to error, false otherwise.
 #   post-set CODE
 #     Like update, but run after construction. X is the operating object.
 #     May NOT set DESTROY (which doesn't exist).
@@ -59,6 +59,20 @@
 #     The C++ code may modify the variables "near" and "far"; if near exceeds
 #     1 after comparison, or far exceeds the distance, it is determined that
 #     the object must be updated.
+#   inoheader CODE
+#     Added to the end of the INO class header (within the class).
+#   enoheader CODE
+#     Added to the end of the ENO class header (within the clgss).
+#   impl CODE
+#     Added to the end of the implementation.
+#   update-control
+#   compare-control
+#   transmission-control
+#     Used to temporarily enable/disable output (see special rules below).
+#     update is for receiving and transmitting updates; compare is during
+#     comparisons.
+#   set-reference CODE
+#     Run after successful construction of an imported object.
 #   default MULT
 #     If specified, extract, update, and compare are automatically set (if they
 #     are not otherwise present) to:
@@ -69,6 +83,10 @@
 #         FAR += delta*MULT;
 #         NEAR += delta*MULT;
 #       }}
+# Special rules:
+#   If an output entry is encountered whose value is solely a dollar, output
+#   is not produced until the next such entry. These entryes themselves are
+#   never output.
 #
 # The following data rules are available:
 #   extension SECTION
@@ -98,6 +116,8 @@
 #     Encodes an unsigned integer into SZ bits.
 #     PARMS: common parms, plus {type t}, giving the C++ type t to use
 #     (defaulting to unsigned).
+#   nybble ...
+#     Synonym for bit 4 ...
 #   str MAXLEN NAME PARMS
 #     Defines a NUL-terminated string with maximum length MAXLEN.
 #     PARMS: common parms, minus encode and decode.
@@ -106,6 +126,14 @@
 #   dat LEN NAME PARMS
 #     Defines a byte array of length LEN.
 #     PARMS: common parms, minus encode and decode
+#   arr CTYPE LEN STRIDE NAME CONTENTS PARMS
+#     Defines an array with name NAME, C++-type CTYPE, and length LEN.
+#     CONTENTS is evaluated STRIDE times, using varying names to replace "NAME"
+#     within. The string "IX" within CONTENTS will be replaced by an expression
+#     evaluating to the current datum's index within the array, insensitive of
+#     the stride.
+#   toggle
+#     Synonym for   void { update-control $ compare-control $ }
 #   construct CODE
 #     Does not give encoding or decoding rules; rather, it provides C++ code
 #     to run to assign X to a new instance of the appropriate type. It is not
@@ -132,6 +160,16 @@ puts $hout {
    */
 
   #include "../object_geraet.hxx"
+
+  /**
+   * Creates and returns an ExportedObjectGeraet* that relays the object to the
+   * remote peer. The channel is opened automatically.
+   *
+   * The program is aborted if it is not known how to export the given type of
+   * object.
+   */
+  ExportedGameObject* createObjectExport(NetworkConnection*, GameObject*)
+  throw();
 }
 
 puts $cout {
@@ -143,7 +181,6 @@ puts $cout {
 
   #include <cstring>
 
-  #include "xnetobj.hxx"
   #include "../io.hxx"
 
   using namespace std;
@@ -167,10 +204,15 @@ puts $cout {
 # Entries that don't exist are omitted.
 proc select {from args} {
   set ret [list]
+  set active yes
   foreach d $from {
     foreach key $args {
       if {[dict exists $d $key]} {
-        lappend ret [dict get $d $key]
+        if {"\$" == [dict get $d $key]} {
+          set active [expr {!$active}]
+        } elseif {$active} {
+          lappend ret [dict get $d $key]
+        }
       }
     }
   }
@@ -190,6 +232,7 @@ proc jxxc {args} {
 }
 
 set prototypes [dict create]
+set classes [list]
 
 proc prototype {name contents} {
   global prototypes
@@ -206,9 +249,10 @@ proc whole-byte {} {
 }
 
 proc type {name contents} {
-  global byteOffset bitOffset elements typeConstructor hout cout
+  global byteOffset bitOffset elements typeConstructor hout cout classes
   # Register the type
   prototype $name $contents
+  lappend classes $name
   # Setup for evaluation
   set byteOffset 0
   set bitOffset 0
@@ -234,9 +278,11 @@ protected:
 
 private:
   $name* decodeConstruct(const std::vector<byte>&) const throw();
-  bool decodeUpdate(const std::vector<byte>&, $name*) const throw();
+  bool decodeUpdate(const std::vector<byte>&, $name*) throw();
 
   static InputNetworkGeraet* create(NetworkConnection*) throw();
+
+  [cxxj inoheader]
 };
 
 class ENO_$name: public ExportedGameObject {
@@ -250,6 +296,8 @@ protected:
 private:
   void encode() throw();
   $name* clone(const $name*) const throw();
+
+  [cxxj enoheader]
 };
 "
 
@@ -272,37 +320,52 @@ void INO_${name}::construct() throw() {
 
 void INO_${name}::update() throw() {
   if (decodeUpdate(state, static_cast<$name*>(object)))
-    destroy();
+    destroy(false);
 }
 
 $name* INO_${name}::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
+  #define DESTROY(x) do { delete X; return NULL; } while(0)
   const unsigned T = cxn->getLatency();
-  bool DESTROY;
   [cxxj declaration]
   [cxxj decode validate]
   $name* X;
   $typeConstructor
   [cxxj post-set]
+  [cxxj set-reference]
   return X;
+  #undef DESTROY
 }
 
 bool INO_${name}::decodeUpdate(const std::vector<byte>& DATA, $name* X)
-const throw () {
-  bool DESTROY = false;
+throw () {
+  #define DESTROY(x) return true
   const unsigned T = cxn->getLatency();
-  [cxxj declaration]
-  [cxxj decode validate update]
-  return DESTROY;
+  [cxxj update-control declaration]
+  [cxxj update-control decode validate update]
+  return false;
+  #undef DESTROY
 }
 
 ENO_${name}::ENO_${name}(NetworkConnection* cxn, $name* obj)
 : ExportedGameObject($byteOffset, cxn, obj, clone(obj))
-{ }
+{
+  //Populate initial data
+  #define X obj
+  #define field (cxn->field)
+  const unsigned T = cxn->getLatency();
+  #define DATA state
+  [cxxj declaration]
+  [jxxc extract encode]
+  #undef DATA
+  #undef field
+  #undef X
+}
 
 $name* ENO_${name}::clone(const $name* src) const throw() {
   #define X src
   #define field (&this->cxn->field)
+  #define DESTROY(x) assert(!(x))
   const unsigned T = cxn->getLatency();
   [cxxj declaration]
   [jxxc extract]
@@ -313,19 +376,20 @@ $name* ENO_${name}::clone(const $name* src) const throw() {
   [cxxj post-set]
   #undef X
   #undef field
+  #undef DESTROY
   return dst;
 }
 
 bool ENO_${name}::shouldUpdate() const throw() {
   float NEAR = 0, FAR = 0;
   struct S {
-    [cxxj declaration]
+    [cxxj compare-control declaration]
     S(const $name* X) {
-      [cxxj extract]
+      [cxxj compare-control extract]
     }
   } x(static_cast<$name*>(local.ref)), y(static_cast<$name*>(remote));
 
-  [cxxj compare]
+  [cxxj compare-control compare]
 
   float l_dist = cxn->distanceOf(this->local.ref);
   return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
@@ -335,19 +399,22 @@ void ENO_${name}::updateRemote() throw() {
   #define T 0
   #define DATA (this->state)
   #define field (&this->cxn->field)
+  #define DESTROY(x) assert(!(x))
   $name* l_local = static_cast<$name*>(this->local.ref);
   $name* l_remote = static_cast<$name*>(this->remote);
-  [cxxj declaration]
+  [cxxj update-control declaration]
   #define X l_local
-  [jxxc extract encode]
+  [jxxc update-control extract encode]
   #undef X
   #define X l_remote
-  [cxxj update]
+  [cxxj update-control update]
   #undef X
   #undef DATA
   #undef T
+  #undef DESTROY
   #undef field
 }
+[cxxj impl]
 "
 }
 
@@ -489,6 +556,72 @@ proc void {parms} {
   save
 }
 
+proc arr {ctype len stride name contents {parms {}} {save yes}} {
+  global current byteOffset bitOffset elements
+
+  if {$len%$stride} {
+    error "Array length must be a multiple of its stride."
+  }
+
+  whole-byte
+  set oldByteOffset $byteOffset
+  set byteOffset 0
+
+  set oldElements $elements
+  set elements [list]
+  # Populate the contents
+  for {set i 0} {$i < $stride} {incr i} {
+    eval [string map [list NAME "$name\[$i+ARRAY_OFFSET\]" \
+                           IX "($i+ARRAY_OFFSET)"] $contents]
+  }
+  whole-byte
+  set strideLength $byteOffset
+  set byteOffset $oldByteOffset
+  set arrayLength [expr {$strideLength*$len/$stride}]
+
+  # Replace DATA in the elements with (DATA+OFF+ARRAY_OFFSET*STRIDE)
+  set elements \
+    [string map \
+            [list DATA "(&DATA\[0\]+$byteOffset+ARRAY_OFFSET*$strideLength)"] \
+            $elements]
+
+  set loop \
+  "for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<$len; ARRAY_OFFSET+=$stride)"
+
+  # Set array up
+  whole-byte
+  new
+  aliases $name
+  dict set current declaration "$ctype $name\[$len\];"
+  if {{} ne [cxxj encode]} {
+    dict set current encode "$loop {\n[cxxj encode]\n}"
+  }
+  if {{} ne [cxxj decode]} {
+    dict set current decode "$loop {\n[cxxj decode]\n}"
+  }
+  if {{} ne [cxxj validate]} {
+    dict set current validate "$loop {\n[cxxj validate]\n}"
+  }
+  if {{} ne [cxxj extract]} {
+    dict set current extract "$loop {\n[cxxj extract]\n}"
+  }
+  if {{} ne [cxxj update]} {
+    dict set current update "$loop {\n[cxxj update]\n}"
+  }
+  if {{} ne [cxxj post-set]} {
+    dict set current post-set "$loop {\n[cxxj post-set]\n}"
+  }
+  if {{} ne [cxxj compare]} {
+    dict set current compare "$loop {\n[cxxj compare]\n}"
+  }
+  eval-parms $parms
+  incr byteOffset $arrayLength
+
+  # Restore old elements, then possibly save
+  set elements $oldElements
+  if {$save} save
+}
+
 proc virtual args {
   global byteOffset current
   set bo $byteOffset
@@ -564,6 +697,10 @@ proc dat {len name {parms {}} {save yes}} {
   if {$save} save
 }
 
+proc toggle {} {
+  void { update-control $ compare-control $ }
+}
+
 proc verbatimh {code} {
   puts $::hout $code
 }
@@ -573,6 +710,33 @@ proc verbatimc {code} {
 }
 
 source net/definition.tcl
+
+# Write the exporter creator
+puts $cout "
+  #include \"../synchronous_control_geraet.hxx\"
+  ExportedGameObject* createObjectExport(NetworkConnection* cxn,
+                                         GameObject* object)
+  throw() {
+    ExportedGameObject* ego;
+"
+foreach class $classes {
+  puts $cout "if (typeid(*object) == typeid($class))"
+  puts $cout "  ego = new ENO_${class}(cxn, ($class*)object);"
+  puts $cout "else"
+}
+
+puts $cout "
+  {
+    cerr << \"FATAL: Unknown object type to export: \"
+         << typeid(*object).name() << endl;
+    assert(false);
+    exit(EXIT_PROGRAM_BUG);
+  }
+
+  assert(ego);
+  cxn->scg->openChannel(ego, INO_${class}::num);
+  return ego;
+}"
 
 puts $hout "#endif"
 close $hout

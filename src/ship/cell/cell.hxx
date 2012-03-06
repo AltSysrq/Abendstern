@@ -8,7 +8,6 @@
 #define CELL_HXX_
 
 #include <vector>
-#include <stdexcept>
 #include <string>
 //for GLuint
 #include <GL/gl.h>
@@ -107,7 +106,7 @@ class Cell: public AObject {
    * Records the original index within the Ship of
    * the Cell.
    */
-  int netIndex;
+  unsigned netIndex;
 
   /** The neighbours of this Cell */
   Cell* neighbours[4];
@@ -161,7 +160,8 @@ class Cell: public AObject {
      * Affects: rotational inertia, centre of gravity, torque <br>
      * Provides: Nothing
      */
-    float angle, /**@see angle*/ cosine, /**@see angle*/ sine, /**@see angle*/ distance;
+    float angle, /**@see angle*/ cosine, /**@see angle*/ sine,
+          /**@see angle*/ distance;
     /** Contributions to thrust produced by engines in this cell, when
      * the throttle is 100%. <br>
      * Invalidated by: Change of stealth mode <br>
@@ -174,7 +174,8 @@ class Cell: public AObject {
      * If the Cell* is non-NULL, the torque is nearly-exactly counter-
      * balanced by that cell, and the combined torque by both is
      * considered to be exactly zero. <br>
-     * Invalidated by: coordinate change, loss of linked cell, change of stealth mode <br>
+     * Invalidated by: coordinate change, loss of linked cell, change of
+     * stealth mode <br>
      * Provides: total torque
      */
     float torque;
@@ -291,8 +292,8 @@ class Cell: public AObject {
   unsigned _intrinsicMass;
 
   public:
-  /** Returns the index of the given neighbour, or throw range_error if not found */
-  unsigned getNeighbour(const Cell* other) throw (std::range_error);
+  /** Returns the index of the given neighbour, or abort if not found */
+  unsigned getNeighbour(const Cell* other) noth;
   /** Returns how many neighbours are supported */
   virtual unsigned numNeighbours() const noth = 0;
   /** Returns the relative distance between this cell's centre
@@ -337,7 +338,7 @@ class Cell: public AObject {
    * Returns whether the cell is still intact.
    * If the cell is damaged below its intrinsic amount,
    * the damage() method of both systems is called, which
-   * can result in a Blast.
+   * can result in a Blast (this is only done if not remote).
    */
   bool applyDamage(float amount, unsigned blame) noth;
 
@@ -352,11 +353,11 @@ class Cell: public AObject {
   /** Makes this Cell the root cell and orients all
    * others according to it.
    */
-  void orient(int initTheta=0) throw (std::range_error);
+  void orient(int initTheta=0) noth;
   /** Orient all neighbours according to this cell's current orientation.
    * Assumes this cell has already been properly oriented.
    */
-  void orientImpl() throw (std::range_error);
+  void orientImpl() noth;
 
   /** Mark the cell as needing orientation.
    * All cells should be marked this way before

@@ -22,6 +22,8 @@
 #include "async_ack_geraet.hxx"
 #include "lat_disc_geraet.hxx"
 
+#include "xxx/xnetobj.hxx"
+
 #include "src/sim/game_field.hxx"
 #include "src/sim/game_object.hxx"
 #include "src/core/lxn.hxx"
@@ -106,7 +108,7 @@ void NetworkConnection::update(unsigned et) noth {
     candidateExports.pop_front();
     if (!go->isTransient || distanceOf(go) < TRANSIENT_DIST*TRANSIENT_DIST) {
       actualExports.insert(go);
-      //TODO: export it
+      createObjectExport(this, go);
     } else {
       ignoredExports.insert(go);
     }

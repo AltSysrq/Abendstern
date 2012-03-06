@@ -87,8 +87,10 @@ protected:
    * Properly destroys the object, including queueing it for deletion and
    * removing it from the field.
    * Behaviour is undefined if object==NULL.
+   *
+   * @param error ignored
    */
-  void destroy() throw();
+  void destroy(bool error) throw();
 };
 
 /**
@@ -161,7 +163,7 @@ protected:
    * After this call, the Gerät waits until the deletion is confirmed
    * received, then closes itself.
    */
-  virtual void destroyRemote() throw() = 0;
+  virtual void destroyRemote() throw() { };
 };
 
 #endif /* OBJECT_GERAET_HXX_ */

@@ -15,15 +15,27 @@ verbatimc {
   friend class INO_Missile;\
   friend class ENO_Missile;\
   friend class INO_ParticleEmitter;\
-  friend class ENO_ParticleEmitter
+  friend class ENO_ParticleEmitter;\
+  friend class INO_Ship;\
+  friend class ENO_Ship;\
+  friend class INO_Spectator;\
+  friend class ENO_Spectator
 #endif
+
+#include "xnetobj.hxx"
 }
 
 verbatimh {
+  class ShieldGenerator;
+  class Cell;
 }
 verbatimc {
+  #include <cassert>
+  #include <typeinfo>
   #include "src/sim/game_object.hxx"
+  #include "src/sim/blast.hxx"
   #include "src/ship/everything.hxx"
+  #include "src/ship/ship_renderer.hxx"
   #include "src/weapon/energy_charge.hxx"
   #include "src/weapon/magneto_bomb.hxx"
   #include "src/weapon/plasma_burst.hxx"
@@ -31,6 +43,8 @@ verbatimc {
   #include "src/weapon/missile.hxx"
   #include "src/weapon/monophasic_energy_pulse.hxx"
   #include "src/weapon/particle_beam.hxx"
+  #include "src/camera/spectator.hxx"
+  #include "src/exit_conditions.hxx"
 }
 
 prototype GameObject {
@@ -80,8 +94,10 @@ type EnergyCharge {
     type bool
     extract { exploded = X->exploded; }
     update {
-      if (!X->exploded && exploded)
+      if (!X->exploded && exploded) {
         X->explode(NULL);
+        DESTROY(false);
+      }
     }
   }
 
@@ -111,8 +127,10 @@ type MagnetoBomb {
     type bool
     extract { exploded = X->exploded; }
     update {
-      if (!X->exploded && exploded)
+      if (!X->exploded && exploded) {
         X->explode();
+        DESTROY(false);
+      }
     }
   }
 
@@ -153,6 +171,7 @@ type PlasmaBurst {
     update {
       if (exploded && !X->exploded) {
         X->explode(NULL);
+        DESTROY(false);
       }
     }
   }
@@ -185,6 +204,7 @@ type Missile {
     update {
       if (exploded && !X->exploded) {
         X->explode(NULL);
+        DESTROY(false);
       }
     }
   }
@@ -223,5 +243,960 @@ type ParticleEmitter {
                             x, y, vx, vy,
                             r, rmajor, rminor,
                             timeAlive);
+  }
+}
+
+# Spectator must be exported since it serves as a reference
+type Spectator {
+  extension GameObject
+
+  void { set-reference { cxn->setReference(X); } }
+
+  construct {
+    X = new Spectator(field, x, y, vx, vy);
+  }
+}
+
+# Cell and system type definitions
+verbatimc {
+  #define SQUARE_CELL 0
+  #define CIRCLE_CELL 1
+  #define EQUT_CELL 2
+  #define RIGHTT_CELL 3
+
+  enum ShipSystemCode {
+    SSCAntimatterPower=0,
+    SSCCloakingDevice,
+    SSCDispersionShield,
+    SSCGatlingPlasmaBurstLauncher,
+    SSCMissileLauncher,
+    SSCMonophasicEnergyEmitter,
+    SSCParticleBeamLauncher,
+    SSCRelIonAccelerator,
+
+    SSCBussardRamjet,
+    SSCFusionPower,
+    SSCHeatsink,
+    SSCMiniGravwaveDriveMKII,
+    SSCPlasmaBurstLauncher,
+    SSCSemiguidedBombLauncher,
+    SSCShieldGenerator,
+    SSCSuperParticleAccelerator,
+
+    SSCCapacitor,
+    SSCEnergyChargeLauncher,
+    SSCFissionPower,
+    SSCMagnetoBombLauncher,
+    SSCMiniGravwaveDrive,
+    SSCParticleAccelerator,
+    SSCPowerCell,
+    SSCReinforcementBulkhead,
+    SSCSelfDestructCharge
+  };
+
+  //Uses the SYS(name) macro to handle every known ship system type.
+  #define HANDLE_SYSTEMS \
+  SYS(AntimatterPower) \
+  SYS(CloakingDevice) \
+  SYS(DispersionShield) \
+  SYS(GatlingPlasmaBurstLauncher) \
+  SYS(MissileLauncher) \
+  SYS(MonophasicEnergyEmitter) \
+  SYS(ParticleBeamLauncher) \
+  SYS(RelIonAccelerator) \
+  SYS(BussardRamjet) \
+  SYS(FusionPower) \
+  SYS(Heatsink) \
+  SYS(MiniGravwaveDriveMKII) \
+  SYS(PlasmaBurstLauncher) \
+  SYS(SemiguidedBombLauncher) \
+  SYS(SuperParticleAccelerator) \
+  SYS(Capacitor) \
+  SYS(EnergyChargeLauncher) \
+  SYS(FissionPower) \
+  SYS(MagnetoBombLauncher) \
+  SYS(MiniGravwaveDrive) \
+  SYS(ParticleAccelerator) \
+  SYS(PowerCell) \
+  SYS(ReinforcementBulkhead) \
+  SYS(SelfDestructCharge)
+
+  #define SHGEN(ix) ((ix) < X->networkCells.size()? \
+                     getShieldGenerator(X->networkCells[(ix)]) : NULL)
+
+  //ShipSystem constructor helper
+  template<typename T>
+  struct ShipSystemConstructor {
+    inline
+    static T* construct(Ship* ship, unsigned cellix, unsigned sysix,
+                        unsigned capacitance, bool gatPlasmaTurbo,
+                        float shieldRad, unsigned shieldStrength)
+    throw() {
+      return new T(ship);
+    }
+  };
+
+  template<>
+  struct ShipSystemConstructor<Capacitor> {
+    inline
+    static Capacitor* construct(Ship* ship, unsigned cellix, unsigned sysix,
+                                unsigned capacitance, bool gatPlasmaTurbo,
+                                float shieldRad, unsigned shieldStrength)
+    throw() {
+      return new Capacitor(ship, capacitance);
+    }
+  };
+
+  template<>
+  struct ShipSystemConstructor<GatlingPlasmaBurstLauncher> {
+    inline static GatlingPlasmaBurstLauncher*
+    construct(Ship* ship, unsigned cellix, unsigned sysix,
+              unsigned capacitance, bool gatPlasmaTurbo,
+              float shieldRad, unsigned shieldStrength)
+    throw() {
+      return new GatlingPlasmaBurstLauncher(ship, gatPlasmaTurbo);
+    }
+  };
+
+  template<>
+  struct ShipSystemConstructor<ShieldGenerator> {
+    inline static ShieldGenerator*
+    construct(Ship* ship, unsigned cellix, unsigned sysix,
+              unsigned capacitance, bool gatPlasmaTurbo,
+              float shieldRad, unsigned shieldStrength)
+    throw() {
+      return new ShieldGenerator(ship, shieldStrength, shieldRad);
+    }
+  };
+}
+
+type Ship {
+  extension GameObject
+
+  # Ensure that the ship's cells have been numbered
+  void {
+    extract {
+      if (X->networkCells.empty()) {
+        for (unsigned i = 0; i < X->cells.size(); ++i) {
+          if (!X->cells[i]->isEmpty) {
+            X->cells[i]->netIndex = X->networkCells.size();
+            const_cast<Ship*>(X)->networkCells.push_back(X->cells[i]);
+          }
+        }
+      }
+    }
+  }
+
+  void {
+    inoheader {
+      public:
+      static ShieldGenerator* getShieldGenerator(const Cell*) throw();
+    }
+    enoheader {
+      static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
+        return INO_Ship::getShieldGenerator(c);
+      }
+    }
+    impl {
+      ShieldGenerator* INO_Ship::getShieldGenerator(const Cell* c) throw() {
+        if (!c) return NULL;
+        if (c->systems[0]
+        &&  c->systems[0]->clazz == Classification_Shield)
+          return static_cast<ShieldGenerator*>(c->systems[0]);
+        if (c->systems[1]
+        &&  c->systems[1]->clazz == Classification_Shield)
+          return static_cast<ShieldGenerator*>(c->systems[1]);
+        return NULL;
+      }
+    }
+  }
+
+  # The name of the target, or empty string for NULL.
+  # (This matches the tag of another Ship.)
+  str 128 target {
+    extract {
+      if (X->target.ref)
+        strncpy(target, X->target.ref->tag.c_str(), 128);
+      else
+        target[0]=0;
+    }
+    update {
+      if (target[0]) {
+        //Stop immediately if no change
+        if (X->target.ref
+        &&  0 == strcmp(target, X->target.ref->tag.c_str()))
+          goto targetFound;
+
+        //Seacrh the field for such a ship
+        {
+          GameField::iterator it = field->begin(), end = field->end();
+          for (; it != end; ++it) {
+            GameObject* go = *it;
+            if (go->getClassification() == GameObject::ClassShip) {
+              Ship* s = (Ship*)go;
+              if (s->hasPower()
+              &&  Allies != getAlliance(X->insignia, s->insignia)
+              &&  0 == strcmp(target, s->tag.c_str())) {
+                //Found
+                X->target.assign(s);
+                goto targetFound;
+              }
+            }
+          }
+        }
+
+        //Not found
+        X->target.assign(NULL);
+
+        targetFound:;
+      } else {
+        X->target.assign(NULL);
+      }
+    }
+
+    compare {
+      //Only prioritise updating the target if near
+      if (strcmp(x.target, y.target))
+        NEAR += 100;
+    }
+  }
+
+  toggle ;# Ignore (and don't send) colour changes.
+  # Core, scalar information
+  float colourR { default 10 min 0 max 1 }
+  float colourG { default 10 min 0 max 1 }
+  float colourB { default 10 min 0 max 1 }
+  toggle ;# Reenable updates
+  void {
+    post-set {
+      X->setColour(colourR, colourG, colourB);
+    }
+  }
+  float theta { default 10 post-set { X->theta = theta; } }
+  float vtheta { default 0.01 post-set { X->vtheta = vtheta; } }
+  # Maintain the cached cos() and sin() of theta
+  void {
+    update {
+      X->cosTheta = cos(X->theta);
+      X->sinTheta = sin(X->theta);
+    }
+    post-set {
+      X->cosTheta = cos(X->theta);
+      X->sinTheta = sin(X->theta);
+    }
+  }
+  float thrustPercent { default 10 min 0 max 1 update {} }
+  float reinforcement {
+    default 0
+    min 0 max 32
+    update {}
+    post-set {
+      X->setReinforcement(reinforcement);
+    }
+  }
+  ui 1 currentCapacitancePercent {
+    extract {
+      currentCapacitancePercent = 255*X->getCapacitancePercent();
+    }
+    update {
+      X->physicsRequire(PHYS_SHIP_CAPAC_BIT);
+      X->currentCapacitance=X->totalCapacitance*
+                            currentCapacitancePercent/255.0f;
+    }
+  }
+
+  ui 8 insignia {
+    default 100
+    post-set {
+      X->insignia = insignia;
+    }
+  }
+
+  bit 1 isFragment {
+    type bool
+    extract {
+      isFragment = X->isFragment;
+    }
+    update {
+      if (isFragment && !X->isFragment) {
+        X->spontaneouslyDie();
+        cxn->unsetReference(X);
+      }
+    }
+    post-set {
+      if (isFragment) {
+        X->spontaneouslyDie();
+      } else {
+        cxn->setReference(X);
+      }
+    }
+    compare {
+      if (x.isFragment != y.isFragment)
+        return true; //MUST update
+    }
+  }
+  bit 1 thrustOn {
+    type bool
+    default 1
+    update {}
+  }
+  bit 1 brakeOn {
+    type bool
+    default 1
+    update {}
+  }
+  bit 1 shieldsDeactivated {
+    type bool
+    default 1
+    update {
+      shield_deactivate(X);
+      X->shieldsDeactivated=true;
+      //Clear all cell power bits that have shields
+      X->physicsRequire(PHYS_SHIP_SHIELD_INVENTORY_BIT);
+      for (unsigned i=0; i<X->shields.size(); ++i)
+        X->shields[i]->getParent()->physicsClear(PHYS_CELL_POWER_BITS
+                                                |PHYS_CELL_POWER_PROD_BITS);
+      X->shields.clear();
+    }
+  }
+  bit 1 stealthMode {
+    type bool
+    default 10000
+    update {
+      X->setStealthMode(stealthMode);
+    }
+    post-set {
+      X->setStealthMode(stealthMode);
+    }
+  }
+  bit 1 rootIsBridge {
+    type bool
+    extract {
+      rootIsBridge = (X->cells[0]->usage == CellBridge);
+    }
+  }
+
+  # Configure engines all at once
+  void {
+    update {
+      X->configureEngines(thrustPercent, thrustOn, brakeOn);
+    }
+    post-set {
+      X->configureEngines(thrustPercent, thrustOn, brakeOn);
+    }
+  }
+
+  si 2 rootTheta {
+    extract {
+      rootTheta = X->cells[0]->getT();
+    }
+  }
+
+  # The information to associate with each cell is:
+  #   uint2 cellType
+  #   byte damage
+  #   uint12 neighbours[4]
+  #   uint2 systemOrientations[2]
+  #   uint6 systemTypes[2]
+  #   bool systemExistence[2]
+  #   byte capacitors[2]
+  #   byte shieldMaxStrength
+  #   float shieldRadius
+  #   byte shieldCurrStrengthPercent
+  #   byte shiepdCurrAlpha
+  #   bool gatPlasmaTurbo
+  #
+  # damage is inverse, where 0 = non-existent and 255 is undamaged.
+  # A neighbour of zero is non-existent, and 1 is destroyed; anything else
+  # is two plus the index of the neighbour.
+  #
+  # System existence is done separately from system types since it is cheaper
+  # to calculate (and sending types is unnecessary for updates).
+  #
+  # In order to maximise data density and efficiency for ships of various sizes,
+  # lay the data out as follows (note that there is a maximum of 4094 cells):
+  #   nybble neighboursBits03[4*4094]
+  #   nybble neighboursBits47[4*4094]
+  #   nybble neighboursBits8B[4*4094]
+  #   bit2   cellType[4094]
+  #   byte   cellDamage[4094]
+  #   bit    systemExist[2*4094]
+  #   byte   systemInfo[2*4094] {bit 0,1: orientation; bit 2+: type}
+  #   byte   capacitors[2*4094]
+  #   byte   shieldMaxStrength[4094]
+  #   float  shieldRadius[4094]
+  #   byte   shieldCurrStrengthPercent[4094]
+  #   byte   shieldCurrStab[4094]
+  #   byte   shieldCurrAlpha[4094]
+  #   bit    gatPlasmaTurbo[4094]
+
+  toggle ;# Do not modify these data or expect them to be modifyed
+  arr {unsigned char} 16376 2 neighboursBits03  {nybble {NAME}}
+  arr {unsigned char} 16376 2 neighboursBits47  {nybble {NAME}}
+  arr {unsigned char} 16376 2 neighboursBits8B  {nybble {NAME}}
+  arr {unsigned int}  16376 1 neighbours {
+    void {
+      decode {
+        NAME = (neighboursBits03[IX] << 0)
+             | (neighboursBits47[IX] << 4)
+             | (neighboursBits8B[IX] << 8);
+      }
+      encode {
+        neighboursBits03[IX] = NAME & 15;
+        neighboursBits47[IX] = (NAME >> 4) & 15;
+        neighboursBits8B[IX] = NAME >> 8;
+      }
+      extract {
+        {
+          const unsigned neigh = IX&3;
+          const unsigned cellix = IX>>2;
+          if (X->networkCells.size() > cellix
+          &&  X->networkCells[cellix]
+          &&  X->networkCells[cellix]->neighbours[neigh]) {
+            //Exists, but EmptyCells are encoded specially
+            if (X->networkCells[cellix]->neighbours[neigh]->isEmpty) {
+              //Special value: 1
+              NAME = 1;
+            } else {
+              //Generic
+              NAME = 2 + X->networkCells[cellix]->neighbours[neigh]->netIndex;
+            }
+          } else {
+            //Nonexistent
+            NAME = 0;
+          }
+        }
+      }
+    }
+  }
+
+  # 4096 because len%stride must be zero.
+  arr {unsigned char} 4096  4 cellType          {bit 2 {NAME} {
+    extract {
+      //Only bother initialising if the cell actually exists
+      if (X->networkCells.size() > IX && X->networkCells[IX]) {
+        Cell* c = X->networkCells[IX];
+        if (typeid(*c) == typeid(SquareCell))
+          NAME = SQUARE_CELL;
+        else if (typeid(*c) == typeid(CircleCell))
+          NAME = CIRCLE_CELL;
+        else if (typeid(*c) == typeid(EquTCell))
+          NAME = EQUT_CELL;
+        else {
+          assert(typeid(*c) == typeid(RightTCell));
+          NAME = RIGHTT_CELL;
+        }
+      }
+    }
+  }}
+  toggle ;# End no updates
+  arr {unsigned char} 4094  1 cellDamage        {ui 1 {NAME} {
+    extract {
+      if (IX < X->networkCells.size() && X->networkCells[IX]) {
+        Cell*const c = X->networkCells[IX];
+        NAME = max((byte)1,
+                   (byte)(255 - 255*c->getCurrDamage()/c->getMaxDamage()));
+      } else {
+        NAME = 0; //Nonexistent
+      }
+    }
+    update {
+      if (IX < X->networkCells.size() && X->networkCells[IX]) {
+        Cell*const c = X->networkCells[IX];
+        if (!NAME && !IX) {
+          //Illegal attempt to destroy root; ignore
+          #ifdef DEBUG
+          cerr << "Warning: Ignoring illegal attempt to destroy Ship root!"
+               << endl;
+          #endif
+          DESTROY(true);
+        }
+        if (!NAME) {
+          //Delink the cell from its neighbours, spawning PlasmaFires
+          //if appropriate.
+          for (unsigned n = 0; n < 4; ++n) {
+            if (c->neighbours[n]) {
+              unsigned ret = c->neighbours[n]->getNeighbour(c);
+              EmptyCell* ec = new EmptyCell(X, c->neighbours[n]);
+              c->neighbours[n]->neighbours[ret] = ec;
+              if (highQuality && EXPCLOSE(x,y))
+                field->add(new PlasmaFire(ec));
+            }
+          }
+
+          //Spawn fragments if appropriate
+          pair<float,float> coord = X->cellCoord(X, c);
+          Blast blast(field, 0, coord.first, coord.second,
+                      STD_CELL_SZ/2, c->getMaxDamage()-c->getCurrDamage(),
+                      true, STD_CELL_SZ/16, false, true, false);
+          CellFragment::spawn(c, &blast);
+
+          //Destroy systems within cell
+          if (c->systems[0]) c->systems[0]->destroy(0xFFFFFF);
+          if (c->systems[1]) c->systems[1]->destroy(0xFFFFFF);
+          //Remove cell from ship
+          X->preremove(c);
+          #ifndef AB_OPENGL_14
+          if (X->renderer)
+            X->renderer->cellRemoved(c);
+          #endif
+          X->removeCell(c);
+          X->networkCells[IX] = NULL;
+
+          //Free
+          delete c;
+        } else {
+          //Damage the cell by the appropriate amount
+          float newdmg = 1.0f - NAME/255.0f;
+          newdmg *= c->getMaxDamage();
+          float olddmg = c->getCurrDamage();
+          #ifndef NDEBUG
+          bool destroyed =
+          #endif
+          c->applyDamage(newdmg-olddmg, 0xFFFFFF);
+          assert(!destroyed);
+          X->cellDamaged(c);
+        }
+      }
+    }
+    compare {
+      //If one is zero and the other not, we must send an update
+      if ((x.NAME == 0) != (y.NAME == 0))
+        return true;
+
+      //Consider 10% difference worth it at close range; don't care at far
+      NEAR += fabs((x.NAME-y.NAME)/25.6f);
+    }
+  }}
+  # 8192 so that len%stride == 0
+  arr bool            8192  8 systemExist       {
+    bit 1 {NAME} {
+      type bool
+      extract {
+        {
+          unsigned cellix = IX/2;
+          unsigned sysix = IX&1;
+          NAME = (X->networkCells.size() > cellix
+              &&  X->networkCells[cellix]
+              &&  X->networkCells[cellix]->systems[sysix]);
+        }
+      }
+
+      update {
+        {
+          unsigned cellix = IX/2;
+          unsigned sysix = IX&1;
+          //Check for system destruction
+          if (!NAME
+          &&  X->networkCells.size() > cellix
+          &&  X->networkCells[cellix]
+          &&  X->networkCells[cellix]->systems[sysix]) {
+            //Destroy it
+            X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
+            delete X->networkCells[cellix]->systems[sysix];
+            X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
+            X->cellChanged(X->networkCells[cellix]);
+          }
+        }
+      }
+    }
+  }
+
+  toggle ;# Disable updates
+  arr {struct {
+    unsigned char orientation, type;
+  }}                  8188  1 systemInfo        {
+    bit 2 {NAME.orientation} {
+      extract {
+        unsigned cellix = IX/2, sysix = IX&1;
+        if (cellix < X->networkCells.size()
+        &&  X->networkCells[cellix]
+        &&  X->networkCells[cellix]->systems[sysix]) {
+          NAME.orientation =
+            X->networkCells[cellix]->systems[sysix]->getOrientation();
+        } else {
+          NAME.orientation = 0;
+        }
+      }
+    }
+    bit 6 {NAME.type} {
+      extract {
+        {
+          #define SYS(clazz) \
+          if (typeid(*sys) == typeid(clazz)) \
+            NAME.type = (unsigned char)SSC##clazz; \
+          else
+
+          unsigned cellix = IX/2, sysix = IX&1;
+          if (cellix < X->networkCells.size()
+          &&  X->networkCells[cellix]
+          &&  X->networkCells[cellix]->systems[sysix]) {
+            ShipSystem*const sys = X->networkCells[cellix]->systems[sysix];
+            HANDLE_SYSTEMS
+            /* else */ {
+              cerr << "FATAL: Unexpected ShipSystem type: "
+                  << typeid(*sys).name() << endl;
+              exit(EXIT_PROGRAM_BUG);
+            }
+          } else {
+            NAME.type = 0;
+          }
+
+          #undef SYS
+        }
+      }
+    }
+  }
+  arr {unsigned char} 8188  1 capacitors        {
+    ui 1 {NAME} {
+      extract {
+        {
+          unsigned cellix = IX/2, sysix = IX&1;
+          if (cellix < X->networkCells.size()
+          &&  X->networkCells[cellix]
+          &&  X->networkCells[cellix]->systems[sysix]
+          &&  typeid(*X->networkCells[cellix]->systems[sysix]) ==
+              typeid(Capacitor))
+            NAME = ((Capacitor*)X->networkCells[cellix]->systems[sysix])->
+                   getCapacity();
+        }
+      }
+
+      validate {
+        NAME = min((unsigned char)CAPACITOR_MAX, max((unsigned char)1, NAME));
+      }
+    }
+  }
+  toggle ;# Enable updates
+  arr {struct {
+    float radius;
+    byte maxStrength, currStrengthPercent, currStability, currAlpha;
+  }}                  4094  1 shields           {
+    toggle
+    float {NAME.radius} {
+      min STD_CELL_SZ*MIN_SHIELD_RAD
+      max STD_CELL_SZ*MAX_SHIELD_RAD
+      extract {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            NAME.radius = gen->getRadius();
+          else
+            NAME.radius = 0;
+        }
+      }
+    }
+    ui 1 {NAME.maxStrength} {
+      validate { NAME.maxStrength = min((byte)MAX_SHIELD_STR,
+                                        max((byte)MIN_SHIELD_STR,
+                                            NAME.maxStrength));
+      }
+      extract {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            NAME.maxStrength = (byte)gen->getStrength();
+          else
+            NAME.maxStrength = 0;
+        }
+      }
+    }
+    toggle
+    ui 1 {NAME.currStrengthPercent} {
+      extract {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            NAME.currStrengthPercent =
+                (byte)(255*gen->getShieldStrength()/gen->getStrength());
+          else
+            NAME.currStrengthPercent = 0;
+        }
+      }
+      update {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            gen->setShieldStrength(NAME.currStrengthPercent/255.0f *
+                                   gen->getStrength());
+        }
+      }
+      post-set {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            gen->setShieldStrength(NAME.currStrengthPercent/255.0f *
+                                   gen->getStrength());
+        }
+      }
+
+      compare {
+        //Usually send updates for differences when near
+        NEAR +=
+          fabs((float)x.NAME.currStrengthPercent - y.NAME.currStrengthPercent);
+      }
+    }
+    ui 1 {NAME.currStability} {
+      extract {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            NAME.currStability = (byte)(255.0f*gen->getShieldStability());
+          else
+            NAME.currStability = 0;
+        }
+      }
+
+      update {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            gen->setShieldStability(NAME.currStability/255.0f);
+        }
+      }
+      post-set {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            gen->setShieldStability(NAME.currStability/255.0f);
+        }
+      }
+
+      compare {
+        NEAR += fabs((float)x.NAME.currStability - y.NAME.currStability);
+      }
+    }
+    ui 1 {NAME.currAlpha} {
+      extract {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            NAME.currAlpha = (byte)(255.0f * gen->getShieldAlpha());
+          else
+            NAME.currAlpha = 0;
+        }
+      }
+
+      update {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            gen->setShieldAlpha(NAME.currAlpha/255.0f);
+        }
+      }
+      post-set {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            gen->setShieldAlpha(NAME.currAlpha/255.0f);
+        }
+      }
+
+      compare {
+        NEAR += fabs((float)x.NAME.currAlpha - y.NAME.currAlpha);
+      }
+    }
+  }
+  toggle ;# Disable updates
+  # 4096 because len%stride must be zero.
+  arr {bool}          4096 8 gatPlasmaTurbo     {bit 1 {NAME} {
+    type bool
+    extract {
+      if (IX < X->networkCells.size() && X->networkCells[IX]) {
+        ShipSystem*const*const s = X->networkCells[IX]->systems;
+
+        if (s[0] && typeid(*s[0]) == typeid(GatlingPlasmaBurstLauncher)) {
+          NAME = ((GatlingPlasmaBurstLauncher*)s[0])->getTurbo();
+        } else if (s[1] && typeid(*s[1])==typeid(GatlingPlasmaBurstLauncher)) {
+          NAME = ((GatlingPlasmaBurstLauncher*)s[1])->getTurbo();
+        } else {
+          NAME = false;
+        }
+      }
+    }
+  }}
+
+  void { set-reference { cxn->setReference(X); } }
+
+  construct {
+    X = new Ship(field);
+    //Set fields from GameObject
+    X->x = x;
+    X->y = y;
+    X->vx = vx;
+    X->vy = vy;
+    X->isRemote = true;
+
+    //Count the number of cell slots used
+    //The last cell with non-zero health is the last index we must store,
+    //so the length is one plus that index.
+    unsigned cellCount = lenof(cellDamage);
+    while (cellCount > 0 && !cellDamage[cellCount-1]) --cellCount;
+
+    X->networkCells.resize(cellCount, NULL);
+
+    if (!cellDamage[0]) {
+      #ifdef DEBUG
+      cerr << "Warning: Ignoring ship with nonexistent root." << endl;
+      #endif
+      DESTROY(true);
+    }
+
+    if (rootIsBridge && rootTheta != 0) {
+      #ifdef DEBUG
+      cerr << "Warning: Ignoring ship with rotated bridge." << endl;
+      #endif
+      DESTROY(true);
+    }
+
+    //Initialise living cells
+    for (unsigned i = 0; i < cellCount; ++i) {
+      if (cellDamage[i]) {
+        Cell* c;
+        switch (cellType[i]) {
+          case SQUARE_CELL:
+            c = new SquareCell(X);
+            break;
+
+          case CIRCLE_CELL:
+            c = new CircleCell(X);
+            break;
+
+          case EQUT_CELL:
+            c = new EquTCell(X);
+            break;
+
+          default: //RIGHTT_CELL
+            assert(cellType[i] == RIGHTT_CELL);
+            if (i == 0 && rootIsBridge) {
+              #ifdef DEBUG
+              cerr << "Warning: Attempt to make right triangle bridge." << endl;
+              #endif
+              DESTROY(true);
+            }
+            c = new RightTCell(X);
+            break;
+        }
+        //Wait with applying damage until ready to do physics
+
+        //Add cell to ship
+        X->cells.push_back(c);
+        X->networkCells[i] = c;
+        c->netIndex = i;
+        if (i == 0 && rootIsBridge)
+          c->usage = CellBridge;
+      }
+    }
+
+    //Link cells to each other
+    for (unsigned i=0; i < cellCount; ++i) {
+      if (cellDamage[i]) {
+        unsigned numNeighbours = (cellType[i] <= CIRCLE_CELL? 4 : 3);
+        for (unsigned n = 0; n < numNeighbours; ++n) {
+          if (unsigned nix = neighbours[i*4+n]) {
+            //There is a linkage to this neighbour
+            Cell* neighbour;
+            if (nix == 1) {
+              //Special case: EmptyCell
+              neighbour = new EmptyCell(X, X->networkCells[i]);
+              X->cells.push_back(neighbour);
+            } else if (nix-2 < cellCount) {
+              //General case
+              neighbour = X->networkCells[nix-2];
+            } else {
+              #ifdef DEBUG
+              cerr << "Warning: Neighbour index out of bounds: " << (nix-2)
+                   << endl;
+              #endif
+              neighbour = NULL;
+            }
+
+            if (!neighbour) {
+              #ifdef DEBUG
+              cerr << "Warning: Nonexistent neighbour." << endl;
+              #endif
+              DESTROY(true);
+            }
+
+            X->networkCells[i]->neighbours[n] = neighbour;
+          }
+        }
+      }
+    }
+
+    //Verify that all cells have bidirectional linkage
+    for (unsigned i=0; i < X->cells.size(); ++i) {
+      Cell* c = X->cells[i];
+      for (unsigned n=0; n < 4; ++n) {
+        if (c->neighbours[n]) {
+          Cell* d = c->neighbours[n];
+          for (unsigned m = 0; m < 4; ++m) {
+            if (d->neighbours[m] == c)
+              goto nextN;
+          }
+
+          //Shouldn't get here if all linkage is valid
+          #ifdef DEBUG
+          cerr << "Warning: Ignoring ship with monodirectional linkage." <<endl;
+          #endif
+          DESTROY(true);
+        }
+        nextN:;
+      }
+    }
+
+    //Orient the cells
+    X->cells[0]->orient(rootTheta);
+
+    //Add systems
+    for (unsigned i=0; i<cellCount; ++i) if (cellDamage[i]) {
+      if (i==0 && rootIsBridge) continue; //Bridge has no systems
+
+      unsigned syscount = (cellType[i] <= CIRCLE_CELL? 2:1);
+      for (unsigned s=0; s<syscount; ++s) if (systemExist[i*2+s]) {
+        ShipSystem* ss;
+        #define SYS(systype) \
+        case (unsigned)SSC##systype: \
+        ss = ShipSystemConstructor<systype>::construct( \
+                X, i, s, capacitors[i*2+s], gatPlasmaTurbo[i], \
+                shields[i].radius, shields[i].maxStrength); \
+        break;
+        switch (systemInfo[i*2+s].type) {
+          HANDLE_SYSTEMS
+          default:
+            #ifdef DEBUG
+            cerr << "Warning: Ignoring unknown ship system type: "
+                 << systemInfo[i*2+s].type << endl;
+            #endif
+            continue;
+        }
+        #undef SYS
+
+        assert(ss);
+
+        //Add system to ship
+        X->networkCells[i]->systems[s] = ss;
+        ss->container = X->networkCells[i];
+
+        //Configure system and ensure it is happy there
+        if (const char* error =
+            ss->setOrientation(systemInfo[i*2+s].orientation)) {
+          #ifdef DEBUG
+          cerr << "Warning: Rejecting ship system with bad orientation: "
+               << error << endl;
+          #endif
+          DESTROY(true);
+        }
+      }
+    }
+
+    //Ensure ship is valid
+    if (const char* error = verify(X)) {
+      #ifdef DEBUG
+      cerr << "Warning: Discarding invalid ship: " << error << endl;
+      #endif
+      DESTROY(true);
+    }
   }
 }
