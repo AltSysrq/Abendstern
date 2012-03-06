@@ -10569,6 +10569,7 @@ uninstall-am: uninstall-binPROGRAMS
 
 ./net/xxx/xnetobj.cxx: ./net/definition.tcl ./net/generate.tcl
 	./net/generate.tcl
+./net/xxx/xnetobj.hxx: | ./net/xxx/xnetobj.cxx ./net/definition.tcl ./net/generate.tcl
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
