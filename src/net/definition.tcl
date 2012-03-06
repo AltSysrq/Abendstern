@@ -1002,6 +1002,8 @@ type Ship {
     }
   }}
 
+  void { set-reference { cxn->setReference(X); } }
+
   construct {
     X = new Ship(field);
     //Set fields from GameObject

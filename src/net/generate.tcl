@@ -71,6 +71,8 @@
 #     Used to temporarily enable/disable output (see special rules below).
 #     update is for receiving and transmitting updates; compare is during
 #     comparisons.
+#   set-reference CODE
+#     Run after successful construction of an imported object.
 #   default MULT
 #     If specified, extract, update, and compare are automatically set (if they
 #     are not otherwise present) to:
@@ -330,6 +332,7 @@ const throw() {
   $name* X;
   $typeConstructor
   [cxxj post-set]
+  [cxxj set-reference]
   return X;
   #undef DESTROY
 }
