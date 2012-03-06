@@ -306,11 +306,54 @@ verbatimc {
   SYS(PowerCell) \
   SYS(ReinforcementBulkhead) \
   SYS(SelfDestructCharge)
-}
 
-verbatimc {
   #define SHGEN(ix) ((ix) < X->networkCells.size()? \
                      getShieldGenerator(X->networkCells[(ix)]) : NULL)
+
+  //ShipSystem constructor helper
+  template<typename T>
+  struct ShipSystemConstructor {
+    inline
+    static T* construct(Ship* ship, unsigned cellix, unsigned sysix,
+                        unsigned capacitance, bool gatPlasmaTurbo,
+                        float shieldRad, unsigned shieldStrength)
+    throw() {
+      return new T(ship);
+    }
+  };
+
+  template<>
+  struct ShipSystemConstructor<Capacitor> {
+    inline
+    static Capacitor* construct(Ship* ship, unsigned cellix, unsigned sysix,
+                                unsigned capacitance, bool gatPlasmaTurbo,
+                                float shieldRad, unsigned shieldStrength)
+    throw() {
+      return new Capacitor(ship, capacitance);
+    }
+  };
+
+  template<>
+  struct ShipSystemConstructor<GatlingPlasmaBurstLauncher> {
+    inline static GatlingPlasmaBurstLauncher*
+    construct(Ship* ship, unsigned cellix, unsigned sysix,
+              unsigned capacitance, bool gatPlasmaTurbo,
+              float shieldRad, unsigned shieldStrength)
+    throw() {
+      return new GatlingPlasmaBurstLauncher(ship, gatPlasmaTurbo);
+    }
+  };
+
+  template<>
+  struct ShipSystemConstructor<ShieldGenerator> {
+    inline static ShieldGenerator*
+    construct(Ship* ship, unsigned cellix, unsigned sysix,
+              unsigned capacitance, bool gatPlasmaTurbo,
+              float shieldRad, unsigned shieldStrength)
+    throw() {
+      return new ShieldGenerator(ship, shieldStrength, shieldRad);
+    }
+  };
 }
 type Ship {
   extension GameObject
@@ -864,6 +907,14 @@ type Ship {
                                    gen->getStrength());
         }
       }
+      post-set {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            gen->setShieldStrength(NAME.currStrengthPercent/255.0f *
+                                   gen->getStrength());
+        }
+      }
 
       compare {
         //Usually send updates for differences when near
@@ -889,6 +940,13 @@ type Ship {
             gen->setShieldStability(NAME.currStability/255.0f);
         }
       }
+      post-set {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            gen->setShieldStability(NAME.currStability/255.0f);
+        }
+      }
 
       compare {
         NEAR += fabs((float)x.NAME.currStability - y.NAME.currStability);
@@ -906,6 +964,13 @@ type Ship {
       }
 
       update {
+        {
+          ShieldGenerator* gen = SHGEN(IX);
+          if (gen)
+            gen->setShieldAlpha(NAME.currAlpha/255.0f);
+        }
+      }
+      post-set {
         {
           ShieldGenerator* gen = SHGEN(IX);
           if (gen)
@@ -1066,5 +1131,55 @@ type Ship {
 
     //Orient the cells
     X->cells[0]->orient(rootTheta);
+
+    //Add systems
+    for (unsigned i=0; i<cellCount; ++i) if (cellDamage[i]) {
+      if (i==0 && rootIsBridge) continue; //Bridge has no systems
+
+      unsigned syscount = (cellType[i] <= CIRCLE_CELL? 2:1);
+      for (unsigned s=0; s<syscount; ++s) if (systemExist[i*2+s]) {
+        ShipSystem* ss;
+        #define SYS(systype) \
+        case (unsigned)SSC##systype: \
+        ss = ShipSystemConstructor<systype>::construct( \
+                X, i, s, capacitors[i*2+s], gatPlasmaTurbo[i], \
+                shields[i].radius, shields[i].maxStrength); \
+        break;
+        switch (systemInfo[i*2+s].type) {
+          HANDLE_SYSTEMS
+          default:
+            #ifdef DEBUG
+            cerr << "Warning: Ignoring unknown ship system type: "
+                 << systemInfo[i*2+s].type << endl;
+            #endif
+            continue;
+        }
+        #undef SYS
+
+        assert(ss);
+
+        //Add system to ship
+        X->networkCells[i]->systems[s] = ss;
+        ss->container = X->networkCells[i];
+
+        //Configure system and ensure it is happy there
+        if (const char* error =
+            ss->setOrientation(systemInfo[i*2+s].orientation)) {
+          #ifdef DEBUG
+          cerr << "Warning: Rejecting ship system with bad orientation: "
+               << error << endl;
+          #endif
+          DESTROY(true);
+        }
+      }
+    }
+
+    //Ensure ship is valid
+    if (const char* error = verify(X)) {
+      #ifdef DEBUG
+      cerr << "Warning: Discarding invalid ship: " << error << endl;
+      #endif
+      DESTROY(true);
+    }
   }
 }
