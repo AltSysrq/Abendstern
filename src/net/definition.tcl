@@ -17,7 +17,9 @@ verbatimc {
   friend class INO_ParticleEmitter;\
   friend class ENO_ParticleEmitter;\
   friend class INO_Ship;\
-  friend class ENO_Ship
+  friend class ENO_Ship;\
+  friend class INO_Spectator;\
+  friend class ENO_Spectator
 #endif
 
 #include "xnetobj.hxx"
