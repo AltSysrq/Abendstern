@@ -394,8 +394,6 @@ bool ENO_${name}::shouldUpdate() const throw() {
   [cxxj compare-control compare]
 
   float l_dist = cxn->distanceOf(this->local.ref);
-  cout << \"l_dist=\" << l_dist << \"; FAR=\" << FAR << \"; NEAR=\" << NEAR
-       << endl;
   return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
 }
 
@@ -497,7 +495,7 @@ proc eval-parms {parms {name {}}} {
       dict set current extract "$name = X->$name;"
     }
     if {![dict exists $current compare]} {
-      dict set current comare \
+      dict set current compare \
       "{float d=fabs(x.$name-y.$name)*$mult;FAR+=d;NEAR+=d;}"
     }
   }
