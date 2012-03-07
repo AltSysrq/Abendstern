@@ -86,6 +86,7 @@ NetworkConnection::~NetworkConnection() {
 
   delete aag;
   delete scg;
+  delete ldg;
 }
 
 void NetworkConnection::update(unsigned et) noth {
@@ -141,8 +142,11 @@ noth {
   io::read(data, seq);
   io::read(data, chan);
   datlen -= 4;
-  cout << "Receive seq=" << seq << " on chan=" << chan
-       << " with length=" << datlen << " from " << source << endl;
+  //Suppress messages from channel 1 since it is not interesting
+  if (chan != 1)
+    cout << "Receive seq=" << seq << " on chan=" << chan
+         << " with length=" << datlen << " from " << source
+         << " (latency=" << latency << " ms)" << endl;
 
   //Range check
   if (seq-greatestSeq < 1024 || greatestSeq-seq < 1024) {
