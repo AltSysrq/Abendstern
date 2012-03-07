@@ -6,6 +6,7 @@
  */
 
 #include <cstdlib>
+#include <iostream>
 
 #include <SDL.h>
 
@@ -70,19 +71,21 @@ throw() {
       cxn->writeHeader(out, channel);
       *out++ = PONG;
       memcpy(out, dat+1, len-1);
+      cxn->send(pack, len+NetworkConnection::headerSize);
     } break;
 
     case PONG: {
       if (len == 1+sizeof(signature)) {
         //Packet has the expected size
         Uint32 sig;
+        ++dat;
         io::read(dat, sig);
 
         if (sig == signature) {
           //Matching PONG; move the current latency closer to the latency
           //of this packet
           cxn->latency = (cxn->latency*9 + timeSincePing)/10;
-          //Randomise signature so potential duplicates are ignore
+          //Randomise signature so potential duplicates are ignored
           signature = rand();
         }
       }
