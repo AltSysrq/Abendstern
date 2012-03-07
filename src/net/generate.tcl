@@ -365,7 +365,7 @@ ENO_${name}::ENO_${name}(NetworkConnection* cxn, $name* obj)
 $name* ENO_${name}::clone(const $name* src, NetworkConnection* cxn)
 const throw() {
   #define X src
-  #define field (&this->cxn->field)
+  #define field (&cxn->field)
   #define DESTROY(x) assert(!(x))
   const unsigned T = cxn->getLatency();
   [cxxj declaration]
