@@ -65,6 +65,10 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
   if (incomming)
     scg->transmitAck(0);
 
+  //Open standard channels
+  scg->openChannel(aag, aag->num);
+  scg->openChannel(ldg, ldg->num);
+
   parent->getTuner()->connect(endpoint, this);
 }
 
