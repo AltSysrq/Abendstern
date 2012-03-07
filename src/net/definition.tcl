@@ -740,12 +740,14 @@ type Ship {
           float newdmg = 1.0f - NAME/255.0f;
           newdmg *= c->getMaxDamage();
           float olddmg = c->getCurrDamage();
-          #ifndef NDEBUG
-          bool destroyed =
-          #endif
-          c->applyDamage(newdmg-olddmg, 0xFFFFFF);
-          assert(!destroyed);
-          X->cellDamaged(c);
+          if (newdmg > olddmg) {
+            #ifndef NDEBUG
+            bool intact =
+            #endif
+            c->applyDamage(newdmg-olddmg, 0xFFFFFF);
+            assert(intact);
+            X->cellDamaged(c);
+          }
         }
       }
     }
