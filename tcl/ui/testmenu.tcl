@@ -93,7 +93,7 @@ class TestMode {
     $main add $quit
     global commandBox commandResult
     set commandBox [new gui::TextField Tcl \
-                    "set packetDropMask 0; networkTestRun 192.168.10.199 12544" \
+                    "" \
                     {} {} runCmd]
     set commandResult [new gui::MultiLineLabel]
     $main add $commandBox
