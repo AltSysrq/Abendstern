@@ -583,7 +583,7 @@ proc arr {ctype len stride name contents {parms {}} {save yes}} {
   # Replace DATA in the elements with (DATA+OFF+ARRAY_OFFSET*STRIDE)
   set elements \
     [string map \
-            [list DATA "(&DATA\[0\]+$byteOffset+ARRAY_OFFSET*$strideLength)"] \
+            [list DATA "(&DATA\[0\]+$byteOffset+ARRAY_OFFSET*$strideLength/$stride)"] \
             $elements]
 
   set loop \
