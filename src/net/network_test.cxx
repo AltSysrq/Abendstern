@@ -33,11 +33,34 @@
 
 using namespace std;
 
+class NetworkTestListener: public ConnectionListener {
+  NetworkAssembly*const assembly;
+public:
+  NetworkTestListener(NetworkAssembly* nasm)
+  : ConnectionListener(nasm->getTuner()),
+    assembly(nasm)
+  { }
+
+protected:
+  virtual bool acceptConnection(const Antenna::endpoint& source,
+                                Antenna* antenna, Tuner* tuner,
+                                string&, string&)
+  noth {
+    assembly->addConnection(new NetworkConnection(assembly, source, true));
+    return true;
+  }
+};
+
 NetworkTest::NetworkTest(const char* host, unsigned port)
 : TestState(init()),
   assembly(new NetworkAssembly(env.getField(), &antenna))
 {
-  //TODO
+  new NetworkTestListener(assembly);
+  if (host) {
+    asio::ip::udp::endpoint dst(
+      asio::ip::address::from_string(host), port);
+    assembly->addConnection(new NetworkConnection(assembly, dst, false));
+  }
 }
 
 NetworkTest::~NetworkTest() {
