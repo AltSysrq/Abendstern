@@ -9,7 +9,22 @@
 #ifndef NETWORK_TEST_HXX_
 #define NETWORK_TEST_HXX_
 
-void networkTestListen();
-unsigned networkTestRun(const char*, unsigned);
+#include "src/test_state.hxx"
+
+class NetworkAssembly;
+class HumanController;
+
+class NetworkTest: public TestState {
+  NetworkAssembly* assembly;
+
+public:
+  NetworkTest(const char* host = 0, unsigned port = 0);
+  virtual ~NetworkTest();
+
+  virtual GameState* update(float);
+
+private:
+  static test_state::Background init();
+};
 
 #endif /* NETWORK_TEST_HXX_ */

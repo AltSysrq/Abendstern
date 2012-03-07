@@ -1209,8 +1209,10 @@ unsafe {
 
 cxx src/net/network_test.hxx
 unsafe {
-  fun void networkTestListen
-  fun unsigned networkTestRun cstr unsigned
+  class final NetworkTest TestState {
+    constructor connect cstr unsigned
+    constructor listen
+  }
 }
 
 cxx src/audio/ship_mixer.hxx
