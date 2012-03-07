@@ -567,10 +567,10 @@ type Ship {
   # Configure engines all at once
   void {
     update {
-      X->configureEngines(thrustPercent, thrustOn, brakeOn);
+      X->configureEngines(thrustOn, brakeOn, thrustPercent);
     }
     post-set {
-      X->configureEngines(thrustPercent, thrustOn, brakeOn);
+      X->configureEngines(thrustOn, brakeOn, thrustPercent);
     }
   }
 
