@@ -373,20 +373,6 @@ verbatimc {
 type Ship {
   extension GameObject
 
-  # Ensure that the ship's cells have been numbered
-  void {
-    extract {
-      if (X->networkCells.empty()) {
-        for (unsigned i = 0; i < X->cells.size(); ++i) {
-          if (!X->cells[i]->isEmpty) {
-            X->cells[i]->netIndex = X->networkCells.size();
-            const_cast<Ship*>(X)->networkCells.push_back(X->cells[i]);
-          }
-        }
-      }
-    }
-  }
-
   void {
     inoheader {
       public:
@@ -1022,6 +1008,20 @@ type Ship {
   }}
 
   void { set-reference { cxn->setReference(X); } }
+  # Ensure that the ship's cells have been numbered
+  # (This is at the end since extraction runs in reverse order)
+  void {
+    extract {
+      if (X->networkCells.empty()) {
+        for (unsigned i = 0; i < X->cells.size(); ++i) {
+          if (!X->cells[i]->isEmpty) {
+            X->cells[i]->netIndex = X->networkCells.size();
+            const_cast<Ship*>(X)->networkCells.push_back(X->cells[i]);
+          }
+        }
+      }
+    }
+  }
 
   construct {
     X = new Ship(field);
