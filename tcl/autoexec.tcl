@@ -125,6 +125,15 @@ proc makePlanet {} {
   delete object $parms
 }
 
+# Convenience network test procs
+proc ntl {} {
+  set ::state [new NetworkTest listen]
+}
+
+proc ntc {{host 192.168.10.199} {port 12544}} {
+  set ::state [new NetworkTest connect $host $port]
+}
+
 source tcl/boot.tcl
 set oldState $state
 set state [new BootManager boot]
