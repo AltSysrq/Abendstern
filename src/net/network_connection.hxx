@@ -12,6 +12,7 @@
 #include <set>
 #include <string>
 #include <bitset>
+#include <queue>
 
 #include "src/sim/game_field.hxx"
 #include "packet_processor.hxx"
@@ -130,6 +131,9 @@ private:
 
   //The time since we last emptied ignoredExports into candidateExports.
   unsigned timeSinceRetriedTransients;
+
+  //Queue of channel numbers to close once safe
+  std::queue<channel> channelsToClose;
 
 public:
   ///The endpoint of the remote peer
@@ -280,6 +284,16 @@ public:
    * there are no references.
    */
   float distanceOf(const GameObject*) const throw();
+
+  /**
+   * Queues the given channel number for closing at a later time, when it
+   * is safe to do so.
+   * This is typically used from within OutputNetworkGeraet functions which
+   * cannot safely directly close the channel at the time.
+   */
+  void closeChannelWhenSafe(channel chan) throw() {
+    channelsToClose.push(chan);
+  }
 
 private:
   //Called by NetworkAssembly when an exportable object is added

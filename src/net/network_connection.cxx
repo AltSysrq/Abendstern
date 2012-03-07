@@ -98,6 +98,12 @@ void NetworkConnection::update(unsigned et) noth {
        it != outchannels.end(); ++it)
     it->second->update(et);
 
+  //Safe point for channel closing
+  while (!channelsToClose.empty()) {
+    scg->closeChannel(channelsToClose.front());
+    channelsToClose.pop();
+  }
+
   //TODO: Only process objects if in Ready status
   timeSinceRetriedTransients += et;
   if (timeSinceRetriedTransients > 128) {

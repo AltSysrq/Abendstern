@@ -85,8 +85,7 @@ void ExportedGameObject::update(unsigned et) throw() {
     } else {
       //Close channel once all is sent.
       if (isSynchronised()) {
-        cxn->scg->closeChannel(channel);
-        //this has been deleted
+        cxn->closeChannelWhenSafe(channel);
         return;
       }
     }
