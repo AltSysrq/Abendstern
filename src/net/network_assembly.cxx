@@ -45,6 +45,11 @@ void NetworkAssembly::addPacketProcessor(PacketProcessor* proc) noth {
 
 void NetworkAssembly::addConnection(NetworkConnection* cxn) noth {
   connections.push_back(cxn);
+
+  //Notify connection of all known objects
+  for (set<GameObject*>::const_iterator it = knownObjects.begin();
+       it != knownObjects.end(); ++it)
+    cxn->objectAdded(*it);
 }
 
 void NetworkAssembly::update(unsigned et) noth {
