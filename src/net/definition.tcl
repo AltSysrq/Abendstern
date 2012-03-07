@@ -472,8 +472,12 @@ type Ship {
       X->setColour(colourR, colourG, colourB);
     }
   }
-  float theta { default 10 post-set { X->theta = theta; } }
   float vtheta { default 0.01 post-set { X->vtheta = vtheta; } }
+  float theta {
+    default 10
+    update { X->theta = theta + vtheta*T; }
+    post-set { X->theta = theta + vtheta*T; }
+  }
   # Maintain the cached cos() and sin() of theta
   void {
     update {
