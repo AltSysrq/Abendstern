@@ -1009,7 +1009,7 @@ type Ship {
 
   toggle ;# Reenable updates
 
-  void { set-reference { cxn->setReference(X); } }
+  void { set-reference { if (!X->isFragment) cxn->setReference(X); } }
   # Ensure that the ship's cells have been numbered
   # (This is at the end since extraction runs in reverse order)
   void {
