@@ -260,7 +260,7 @@ throw() {
         //Remove if exists; silently ignore if not exists or if
         //it is marked Intrinsic or Eternal
         if (it != cxn->inchannels.end()) {
-          if (it->second->deletionStrategy != InputNetworkGeraet::DSNormal) {
+          if (it->second->deletionStrategy == InputNetworkGeraet::DSNormal) {
             delete it->second;
             cxn->inchannels.erase(it);
           } else {
