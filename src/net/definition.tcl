@@ -516,8 +516,6 @@ type Ship {
     post-set {
       if (isFragment) {
         X->spontaneouslyDie();
-      } else {
-        cxn->setReference(X);
       }
     }
     compare {
@@ -1008,6 +1006,8 @@ type Ship {
       }
     }
   }}
+
+  toggle ;# Reenable updates
 
   void { set-reference { cxn->setReference(X); } }
   # Ensure that the ship's cells have been numbered

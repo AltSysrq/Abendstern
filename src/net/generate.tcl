@@ -325,11 +325,11 @@ void INO_${name}::update() throw() {
 
 $name* INO_${name}::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
   const unsigned T = cxn->getLatency();
+  $name* X = NULL;
   [cxxj declaration]
   [cxxj decode validate]
-  $name* X;
   $typeConstructor
   [cxxj post-set]
   [cxxj set-reference]
@@ -394,6 +394,8 @@ bool ENO_${name}::shouldUpdate() const throw() {
   [cxxj compare-control compare]
 
   float l_dist = cxn->distanceOf(this->local.ref);
+  cout << \"l_dist=\" << l_dist << \"; FAR=\" << FAR << \"; NEAR=\" << NEAR
+       << endl;
   return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
 }
 
