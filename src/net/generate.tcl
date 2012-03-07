@@ -360,6 +360,7 @@ ENO_${name}::ENO_${name}(NetworkConnection* cxn, $name* obj)
   #undef DATA
   #undef field
   #undef X
+  dirty = true;
 }
 
 $name* ENO_${name}::clone(const $name* src, NetworkConnection* cxn)
@@ -719,10 +720,12 @@ puts $cout "
                                          GameObject* object)
   throw() {
     ExportedGameObject* ego;
+    NetworkConnection::geraet_num num;
 "
 foreach class $classes {
   puts $cout "if (typeid(*object) == typeid($class))"
-  puts $cout "  ego = new ENO_${class}(cxn, ($class*)object);"
+  puts $cout "  ego = new ENO_${class}(cxn, ($class*)object),"
+  puts $cout "  num = INO_${class}::num;"
   puts $cout "else"
 }
 
@@ -735,7 +738,7 @@ puts $cout "
   }
 
   assert(ego);
-  cxn->scg->openChannel(ego, INO_${class}::num);
+  cxn->scg->openChannel(ego, num);
   return ego;
 }"
 

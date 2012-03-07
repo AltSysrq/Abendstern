@@ -31,11 +31,12 @@ ImportedGameObject::~ImportedGameObject() {
 }
 
 void ImportedGameObject::modified() throw() {
-  if (created) {
+  if (!created) {
     construct();
     created = true;
     fill(dirty.begin(), dirty.end(), false);
-    field->add(object);
+    if (object)
+      field->add(object);
   } else if (object) {
     update();
     fill(dirty.begin(), dirty.end(), false);
