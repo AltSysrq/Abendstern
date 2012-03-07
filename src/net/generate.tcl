@@ -295,7 +295,7 @@ protected:
 
 private:
   void encode() throw();
-  $name* clone(const $name*) const throw();
+  $name* clone(const $name*, NetworkConnection*) const throw();
 
   [cxxj enoheader]
 };
@@ -348,7 +348,7 @@ throw () {
 }
 
 ENO_${name}::ENO_${name}(NetworkConnection* cxn, $name* obj)
-: ExportedGameObject($byteOffset, cxn, obj, clone(obj))
+: ExportedGameObject($byteOffset, cxn, obj, clone(obj, cxn))
 {
   //Populate initial data
   #define X obj
@@ -362,7 +362,8 @@ ENO_${name}::ENO_${name}(NetworkConnection* cxn, $name* obj)
   #undef X
 }
 
-$name* ENO_${name}::clone(const $name* src) const throw() {
+$name* ENO_${name}::clone(const $name* src, NetworkConnection* cxn)
+const throw() {
   #define X src
   #define field (&this->cxn->field)
   #define DESTROY(x) assert(!(x))
