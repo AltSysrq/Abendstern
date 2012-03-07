@@ -310,6 +310,7 @@ verbatimc {
   SYS(MiniGravwaveDriveMKII) \
   SYS(PlasmaBurstLauncher) \
   SYS(SemiguidedBombLauncher) \
+  SYS(ShieldGenerator) \
   SYS(SuperParticleAccelerator) \
   SYS(Capacitor) \
   SYS(EnergyChargeLauncher) \
