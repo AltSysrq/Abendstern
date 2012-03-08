@@ -864,7 +864,6 @@ type Ship {
     float radius;
     byte maxStrength, currStrengthPercent, currStability, currAlpha;
   }}                  4094  1 shields           {
-    toggle
     float {NAME.radius} {
       min STD_CELL_SZ*MIN_SHIELD_RAD
       max STD_CELL_SZ*MAX_SHIELD_RAD
@@ -893,7 +892,6 @@ type Ship {
         }
       }
     }
-    toggle
     ui 1 {NAME.currStrengthPercent} {
       extract {
         {
