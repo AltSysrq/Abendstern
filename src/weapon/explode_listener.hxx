@@ -1,3 +1,6 @@
+#ifndef EXPLODE_LISTENER_HXX_
+#define EXPLODE_LISTENER_HXX_
+
 /**
  * @file
  * @author Jason Lingle
@@ -45,3 +48,5 @@ public:
    */
   virtual void exploded(T*) throw() = 0;
 };
+
+#endif /* EXPLODE_LISTENER_HXX_ */
