@@ -34,6 +34,7 @@ using namespace std;
 PlasmaBurst::PlasmaBurst(GameField* field, Ship* par, float x, float y,
                          float svx, float svy, float theta, float initmass) :
   GameObject(field, x, y, svx+SPEED*cos(theta), svy+SPEED*sin(theta)),
+  explodeListeners(NULL),
   parent(par),
   mass(initmass), direction(theta), timeUntilArm(50),
   inParentsShields(true), hitParentsShields(true), timeSinceLastExplosion(999),
@@ -49,7 +50,7 @@ PlasmaBurst::PlasmaBurst(GameField* field, Ship* par, float x, float y,
 PlasmaBurst::PlasmaBurst(GameField* field, float x, float y,
                          float vx, float vy, float theta, float initmass)
 : GameObject(field, x, y, vx, vy),
-  parent(NULL),
+  explodeListeners(NULL), parent(NULL),
   mass(initmass), direction(theta), timeUntilArm(50),
   inParentsShields(true), hitParentsShields(true), timeSinceLastExplosion(999),
   exploded(false), blame(0xFFFFFF)
@@ -159,6 +160,9 @@ void PlasmaBurst::explode(GameObject* other) noth {
                  x, y, other->getVX(), other->getVY());
     ex.multiExplosion(2);
   }
+
+  for (ExplodeListener<PlasmaBurst>* l = explodeListeners; l; l = l->nxt)
+    l->exploded(this);
 }
 
 float PlasmaBurst::getRadius() const noth {
