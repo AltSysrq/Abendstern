@@ -18,6 +18,7 @@
 
 #include "src/sim/game_object.hxx"
 #include "src/sim/objdl.hxx"
+#include "explode_listener.hxx"
 
 class Ship;
 
@@ -37,6 +38,9 @@ class Ship;
 class Missile: public GameObject {
   friend class INO_Missile;
   friend class ENO_Missile;
+  friend class ExplodeListener<Missile>;
+
+  ExplodeListener<Missile>* explodeListeners;
 
   ObjDL trail, target, parent;
   int level;

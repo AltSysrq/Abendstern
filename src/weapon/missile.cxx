@@ -65,6 +65,7 @@ using namespace std;
 Missile::Missile(GameField* field, int lvl, float x, float y, float vx,
                  float vy, Ship* par, GameObject* tgt)
 : GameObject(field, x, y, vx, vy),
+  explodeListeners(NULL),
   trail(NULL), target(tgt), parent(par),
   level(lvl), timeAlive(0), exploded(false),
   blame(par->blame),
@@ -81,6 +82,7 @@ Missile::Missile(GameField* field, int lvl, float x, float y, float vx,
 Missile::Missile(GameField* field, int lvl, float x, float y, float vx,
                  float vy, float ax_, float ay_, float ta)
 : GameObject(field, x, y, vx, vy),
+  explodeListeners(NULL),
   trail(NULL), target(NULL), parent(NULL),
   level(lvl), timeAlive(ta), exploded(false), blame(0xFFFFFF),
   ax(ax_), ay(ay_)
@@ -221,4 +223,6 @@ void Missile::explode(GameObject* ref) noth {
                              sqrt((float)level)*2.5f, level/2000.0f,
                              1000, x, y, ref->getVX(), ref->getVY()));
   exploded=true;
+  for (ExplodeListener<Missile>* l = explodeListeners; l; l = l->nxt)
+    l->exploded(this);
 }
