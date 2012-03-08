@@ -84,10 +84,10 @@ MonophasicEnergyPulse::MonophasicEnergyPulse(GameField* field, Ship* par, float 
 }
 
 MonophasicEnergyPulse::MonophasicEnergyPulse(GameField* field, float x, float y,
-                                             float vx, float vy, unsigned t, unsigned el)
+                                             float vx, float vy, float pow, unsigned et)
 : GameObject(field, x, y, vx, vy),
   explodeListeners(NULL),
-  deathWaveNumber(100), timeAlive(t), power(el*POWER_MUL),
+  deathWaveNumber(100), timeAlive(et), power(pow),
   previousFrameWasFinal(false), parent(NULL), exploded(false),
   blame(0xFFFFFF)
 {

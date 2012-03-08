@@ -39,6 +39,8 @@ class Ship;
  * randomly selected wave.
  */
 class MonophasicEnergyPulse: public GameObject {
+  friend class INO_MonophasicEnergyPulse;
+  friend class ENO_MonophasicEnergyPulse;
   friend class ExplodeListener<MonophasicEnergyPulse>;
 
   ExplodeListener<MonophasicEnergyPulse>* explodeListeners;
@@ -66,7 +68,7 @@ class MonophasicEnergyPulse: public GameObject {
   unsigned blame;
 
   //Networking constructor
-  MonophasicEnergyPulse(GameField*, float x, float y, float vx, float vy, unsigned t, unsigned el);
+  MonophasicEnergyPulse(GameField*, float x, float y, float vx, float vy, float pow, unsigned el);
 
   public:
   /** Constructs a MonophasicEnergyPulse with the given parms.
@@ -78,7 +80,7 @@ class MonophasicEnergyPulse: public GameObject {
    * @param theta Direction of firing
    * @param el Energy level
    */
-  MonophasicEnergyPulse(GameField* field, Ship* par, float x, float y, float theta, unsigned el);
+  MonophasicEnergyPulse(GameField* field, Ship* par, float x, float y, float theta, unsigned et);
 
   virtual bool update(float) noth;
   virtual void draw() noth;

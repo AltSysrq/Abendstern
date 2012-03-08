@@ -16,6 +16,8 @@ verbatimc {
   friend class ENO_Missile;\
   friend class INO_ParticleEmitter;\
   friend class ENO_ParticleEmitter;\
+  friend class INO_MonophasicEnergyPulse;\
+  friend class ENO_MonophasicEnergyPulse;\
   friend class INO_Ship;\
   friend class ENO_Ship;\
   friend class INO_Spectator;\
@@ -369,6 +371,17 @@ verbatimc {
       return new ShieldGenerator(ship, shieldStrength, shieldRad);
     }
   };
+}
+
+type MonophasicEnergyPulse {
+  extension GameObject
+
+  float power { default 0 min 0 }
+  ui 2 timeAlive { default 0 }
+
+  construct {
+    X = new MonophasicEnergyPulse(field, x, y, vx, vy, power, timeAlive);
+  }
 }
 
 type Ship {
