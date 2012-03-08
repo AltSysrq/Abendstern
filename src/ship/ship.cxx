@@ -1202,6 +1202,11 @@ bool Ship::collideWith(GameObject* other) noth {
             rootDestroyed=true;
           }
 
+          //Remove networking entry
+          if (networkCells.size() > 0)
+            networkCells[cells[i]->netIndex] = NULL;
+
+          //Remove cell
           delete cells[i];
           if (renderer) renderer->cellRemoved(cells[i]);
           cells.erase(cells.begin() + i--);
@@ -1286,6 +1291,9 @@ bool Ship::collideWith(GameObject* other) noth {
               if (cells[k]==frag->cells[j]) {
                 if (renderer) renderer->cellRemoved(cells[k]);
                 cells.erase(cells.begin() + k);
+                if (networkCells.size() && !cells[k]->isEmpty)
+                  networkCells[cells[k]->netIndex] = NULL;
+
                 //Looks odd, but i is unsigned...
                 if (k<=i && i<(((unsigned int)0)-1)) --i;
                 --k;
