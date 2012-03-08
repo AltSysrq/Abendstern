@@ -15,6 +15,7 @@
  */
 
 #include "src/sim/game_object.hxx"
+#include "explode_listener.hxx"
 
 class Ship;
 
@@ -38,6 +39,10 @@ class Ship;
  * randomly selected wave.
  */
 class MonophasicEnergyPulse: public GameObject {
+  friend class ExplodeListener<MonophasicEnergyPulse>;
+
+  ExplodeListener<MonophasicEnergyPulse>* explodeListeners;
+  
   unsigned deathWaveNumber;
   float timeAlive;
   float power;

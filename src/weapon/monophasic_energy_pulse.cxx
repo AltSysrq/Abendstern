@@ -71,6 +71,7 @@ END_DELAY_SHADER(static mepShader);
 
 MonophasicEnergyPulse::MonophasicEnergyPulse(GameField* field, Ship* par, float x, float y, float theta, unsigned el)
 : GameObject(field, x, y, par->getVX() + getSpeed(el)*cos(theta), par->getVY() + getSpeed(el)*sin(theta)),
+  explodeListeners(NULL),
   deathWaveNumber(rand()%MAX_LIFE_WAVES+1), timeAlive(0), power(el*POWER_MUL),
   previousFrameWasFinal(false), parent(par), exploded(false), blame(par->blame)
 {
@@ -85,6 +86,7 @@ MonophasicEnergyPulse::MonophasicEnergyPulse(GameField* field, Ship* par, float 
 MonophasicEnergyPulse::MonophasicEnergyPulse(GameField* field, float x, float y,
                                              float vx, float vy, unsigned t, unsigned el)
 : GameObject(field, x, y, vx, vy),
+  explodeListeners(NULL),
   deathWaveNumber(100), timeAlive(t), power(el*POWER_MUL),
   previousFrameWasFinal(false), parent(NULL), exploded(false),
   blame(0xFFFFFF)
@@ -173,6 +175,9 @@ void MonophasicEnergyPulse::explode(GameObject* obj) noth {
                              1.0f, 0.01f, 1000,
                              x, y, obj->getVX(), obj->getVY()));
   exploded=true;
+
+  for (ExplodeListener<MonophasicEnergyPulse>* l = explodeListeners; l; l = l->nxt)
+    l->exploded(this);
 }
 
 bool MonophasicEnergyPulse::collideWith(GameObject* obj) noth {
