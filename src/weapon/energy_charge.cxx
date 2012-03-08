@@ -120,6 +120,7 @@ static void initVAO() {
 
 EnergyCharge::EnergyCharge(GameField* field, const Ship* par, float _x, float _y, float _theta, float power) :
   GameObject(field, _x, _y, par->getVX()+SPEED*cos(_theta), par->getVY()+SPEED*sin(_theta)),
+  explodeListeners(NULL),
   parent(par), intensity(power), theta(_theta), tcos(cos(theta)), tsin(sin(theta)),
   exploded(false), blame(par->blame)
 {
@@ -132,7 +133,8 @@ EnergyCharge::EnergyCharge(GameField* field, const Ship* par, float _x, float _y
 
 EnergyCharge::EnergyCharge(GameField* field, float x, float y,
                            float vx, float vy, float _theta, float _inten)
-: GameObject(field, x, y, vx, vy), parent(NULL),
+: GameObject(field, x, y, vx, vy),
+  explodeListeners(NULL), parent(NULL),
   intensity(_inten), theta(_theta),
   tcos(cos(theta)), tsin(sin(theta)), exploded(false), blame(-1)
 {
@@ -212,6 +214,9 @@ void EnergyCharge::explode(GameObject* other) noth {
                getColourB(intensity), 0.15f*(1+intensity), 0.001f*(1+intensity*10), 1000.0f, x, y,
                other->getVX(), other->getVY());
   ex.multiExplosion(1);
+
+  for (ExplodeListener<EnergyCharge>* l = explodeListeners; l; l = l->nxt)
+    l->exploded(this);
 }
 
 float EnergyCharge::getRotation() const noth {

@@ -14,12 +14,12 @@
  */
 template<typename T>
 class ExplodeListener {
+public:
   //Linked list of listeners; prv is a pointer to a nxt pointer
   ExplodeListener<T>** prv, * nxt;
 
   ExplodeListener<T>(const ExplodeListener<T>&);
 
-public:
   /**
    * Constructs the ExplodeListener on the given object, which may be NULL.
    */

@@ -10,6 +10,7 @@
 #include <cmath>
 
 #include "src/sim/game_object.hxx"
+#include "explode_listener.hxx"
 
 class Ship;
 
@@ -28,6 +29,8 @@ class EnergyCharge: public GameObject {
   friend class ENO_EnergyCharge;
 
   private:
+  ExplodeListener<EnergyCharge>* explodeListeners;
+  
   //0..1
   const Ship * const parent;
   float intensity;
