@@ -170,13 +170,20 @@ CollisionResult MonophasicEnergyPulse::checkCollision(GameObject* obj) noth {
 }
 
 void MonophasicEnergyPulse::explode(GameObject* obj) noth {
+  if (!obj)
+    obj = this;
   if (EXPCLOSE(x,y))
     field->add(new Explosion(field, Explosion::Simple, 0.3f, 0.5f, 1.0f,
                              1.0f, 0.01f, 1000,
                              x, y, obj->getVX(), obj->getVY()));
   exploded=true;
+  //Reset velocity to match obj so that the velocity of the explosion
+  //can be communicated over the network.
+  vx = obj->getVX();
+  vy = obj->getVY();
 
-  for (ExplodeListener<MonophasicEnergyPulse>* l = explodeListeners; l; l = l->nxt)
+  for (ExplodeListener<MonophasicEnergyPulse>* l = explodeListeners; l;
+       l = l->nxt)
     l->exploded(this);
 }
 

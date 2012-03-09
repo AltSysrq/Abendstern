@@ -217,11 +217,18 @@ const vector<CollisionRectangle*>* Missile::getCollisionBounds() noth {
 void Missile::explode(GameObject* ref) noth {
   if (!ref) ref=this;
   if (!isRemote)
-    field->inject(new Blast(field, blame, x, y, STD_CELL_SZ*3.5f, level*DAMAGE_MUL, true, RADIUS));
+    field->inject(new Blast(field, blame, x, y, STD_CELL_SZ*3.5f,
+                            level*DAMAGE_MUL, true, RADIUS));
   if (EXPCLOSE(x,y))
     field->add(new Explosion(field, Explosion::Simple, 0.8f, 0.8f, 1.0f,
                              sqrt((float)level)*2.5f, level/2000.0f,
                              1000, x, y, ref->getVX(), ref->getVY()));
+
+  //Reset velocities to that of ref so that the explosion's velocity
+  //can be communicated over the network.
+  vx = ref->getVX();
+  vy = ref->getVY();
+
   exploded=true;
   for (ExplodeListener<Missile>* l = explodeListeners; l; l = l->nxt)
     l->exploded(this);

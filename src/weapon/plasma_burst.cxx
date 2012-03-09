@@ -149,7 +149,8 @@ bool PlasmaBurst::collideWith(GameObject* other) noth {
 }
 
 void PlasmaBurst::explode(GameObject* other) noth {
-  exploded=true;
+  if (!other) other = this;
+
   if (EXPCLOSE(x,y)) {
     //Quantize mass to nearest 5 for caching
     float massQ=((int)((mass+5.0f)/5.0f))*5.0f;
@@ -160,6 +161,12 @@ void PlasmaBurst::explode(GameObject* other) noth {
                  x, y, other->getVX(), other->getVY());
     ex.multiExplosion(2);
   }
+
+  exploded=true;
+  //Reset velocities to that of other so that the velocity of the explosion
+  //can be communicated over the network.
+  vx = other->getVX();
+  vy = other->getVY();
 
   for (ExplodeListener<PlasmaBurst>* l = explodeListeners; l; l = l->nxt)
     l->exploded(this);
