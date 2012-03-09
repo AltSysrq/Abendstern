@@ -121,12 +121,12 @@ NetworkConnection::~NetworkConnection() {
   cout << "Packets rcvd: " << packetInCount
        << " (average " << (packetInCount*1000/(double)duration) << " per sec; "
        << "peak " << packetInCountSecMax << " per sec)" << endl;
-  cout << "Data sent: " << dataCount2Str(dataOutCount)
-       << " (average " << dataCount2Str(dataOutCount*1000/duration) << "/s; "
-       << "peak " << dataCount2Str(dataOutCountSecMax) << "/s)" << endl;
-  cout << "Data rcvd: " << dataCount2Str(dataInCount)
-       << " (average " << dataCount2Str(dataInCount*1000/duration) << "/s; "
-       << "peak " << dataCount2Str(dataInCountSecMax) << "/s)" << endl;
+  cout << "Data sent: " << dataCount2Str(dataOutCount);
+  cout << " (average " << dataCount2Str(dataOutCount*1000/duration) << "/s; ";
+  cout << "peak " << dataCount2Str(dataOutCountSecMax) << "/s)" << endl;
+  cout << "Data rcvd: " << dataCount2Str(dataInCount);
+  cout << " (average " << dataCount2Str(dataInCount*1000/duration) << "/s; ";
+  cout << "peak " << dataCount2Str(dataInCountSecMax) << "/s)" << endl;
 }
 
 void NetworkConnection::update(unsigned et) noth {
