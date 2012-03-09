@@ -261,6 +261,7 @@ void AsyncAckGeraet::nak(seq_t seq) throw() {
 }
 
 void AsyncAckGeraet::add(seq_t seq, AAGSender* sender) noth {
+  assert(senders.count(sender) || static_cast<AAGSender*>(this) == sender);
   timeSinceTxn = 0;
   pendingOut.insert(make_pair(seq, sender));
   //If anything reuses this seq, the AAG will break (not as in
