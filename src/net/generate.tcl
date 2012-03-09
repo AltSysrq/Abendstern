@@ -724,6 +724,7 @@ source net/definition.tcl
 # Write the exporter creator
 puts $cout "
   #include \"../synchronous_control_geraet.hxx\"
+  #include \"../anticipatory_channels.hxx\"
   ExportedGameObject* createObjectExport(NetworkConnection* cxn,
                                          GameObject* object)
   throw() {
@@ -746,7 +747,7 @@ puts $cout "
   }
 
   assert(ego);
-  cxn->scg->openChannel(ego, num);
+  cxn->anticipation->openChannel(ego, num);
   return ego;
 }"
 
