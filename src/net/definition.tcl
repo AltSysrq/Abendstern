@@ -707,7 +707,6 @@ type Ship {
   # 4096 because len%stride must be zero.
   arr {unsigned char} 4096  4 cellType          {bit 2 {NAME} {
     extract {
-      //Only bother initialising if the cell actually exists
       if (X->networkCells.size() > IX && X->networkCells[IX]) {
         Cell* c = X->networkCells[IX];
         if (typeid(*c) == typeid(SquareCell))
@@ -720,6 +719,8 @@ type Ship {
           assert(typeid(*c) == typeid(RightTCell));
           NAME = RIGHTT_CELL;
         }
+      } else {
+        NAME = 0;
       }
     }
   }}
@@ -896,6 +897,8 @@ type Ship {
               typeid(Capacitor))
             NAME = ((Capacitor*)X->networkCells[cellix]->systems[sysix])->
                    getCapacity();
+          else
+            NAME = 0;
         }
       }
 
