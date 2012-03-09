@@ -220,13 +220,15 @@ type Missile {
   float ax {
     default 1.0e6f
     min -2.0e-5f max +2.0e-5f
+    post-set { X->ax = ax; }
   }
   float ay {
     default 1.0e6f
     min -2.0e-5f max +2.0e-5f
+    post-set { X->ay = ay; }
   }
-  float xdir { default 0 }
-  float ydir { default 0 }
+  float xdir { default 0 post-set { X->xdir = xdir; } }
+  float ydir { default 0 post-set { X->ydir = ydir; } }
   ui 2 timeAlive {
     default 0
   }
