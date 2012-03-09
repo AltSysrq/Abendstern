@@ -99,6 +99,12 @@ MonophasicEnergyPulse::MonophasicEnergyPulse(GameField* field, float x, float y,
   collisionBounds.push_back(&colrect);
 }
 
+MonophasicEnergyPulse::~MonophasicEnergyPulse() {
+  //Remove any ExplodeListener chain attached
+  if (explodeListeners)
+    explodeListeners->prv = NULL;
+}
+
 bool MonophasicEnergyPulse::update(float et) noth {
   x += vx*et;
   y += vy*et;

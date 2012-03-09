@@ -148,6 +148,12 @@ EnergyCharge::EnergyCharge(GameField* field, float x, float y,
   initVAO();
 }
 
+EnergyCharge::~EnergyCharge() {
+  //Remove any ExplodeListener list we may yet have
+  if (explodeListeners)
+    explodeListeners->prv = NULL;
+}
+
 bool EnergyCharge::update(float et) noth {
   x+=vx*et;
   y+=vy*et;

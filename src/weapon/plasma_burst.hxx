@@ -34,7 +34,7 @@ class PlasmaBurst : public GameObject {
 
   private:
   ExplodeListener<PlasmaBurst>* explodeListeners;
-  
+
   Ship* parent;
   float mass;
   float direction;
@@ -73,6 +73,8 @@ class PlasmaBurst : public GameObject {
    */
   PlasmaBurst(GameField* field, Ship* par, float x, float y, float sourceVX,
               float sourceVY, float theta, float mass);
+  virtual ~PlasmaBurst();
+
   virtual bool update(float) noth;
   virtual void draw() noth;
   virtual CollisionResult checkCollision(GameObject*) noth;

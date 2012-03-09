@@ -47,6 +47,8 @@ class EnergyCharge: public GameObject {
                float _theta, float _inten);
 
   public:
+  virtual ~EnergyCharge();
+
   /** Constructs a new EnergyCharge with the given parms.
    *
    * @param field The field the charge will live in

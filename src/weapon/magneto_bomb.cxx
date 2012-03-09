@@ -103,6 +103,12 @@ MagnetoBomb::MagnetoBomb(GameField* field, float x, float y, float vx,
   isExportable=true;
 }
 
+MagnetoBomb::~MagnetoBomb() {
+  //Remove any ExplodeListener chain attached
+  if (explodeListeners)
+    explodeListeners->prv = NULL;
+}
+
 bool MagnetoBomb::update(float time) noth {
   //Only update velocities on physical frame boundaries with local bombs
   if (currentVFrameLast && 5 == ++physFrameCount) {

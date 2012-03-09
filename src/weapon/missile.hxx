@@ -75,6 +75,8 @@ class Missile: public GameObject {
    */
   Missile(GameField* field, int level, float x, float y, float vx, float vy,
           Ship* par, GameObject* tgt);
+  virtual ~Missile();
+
   virtual bool update(float) noth;
   virtual void draw() noth;
   virtual float getRadius() const noth;

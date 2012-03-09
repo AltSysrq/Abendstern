@@ -93,6 +93,12 @@ Missile::Missile(GameField* field, int lvl, float x, float y, float vx,
   decorative=true;
 }
 
+Missile::~Missile() {
+  //Remove any ExplodeListener chain attached
+  if (explodeListeners)
+    explodeListeners->prv = NULL;
+}
+
 bool Missile::update(float et) noth {
   x += vx*et;
   y += vy*et;

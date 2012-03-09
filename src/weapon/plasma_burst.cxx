@@ -63,6 +63,12 @@ PlasmaBurst::PlasmaBurst(GameField* field, float x, float y,
   collisionBounds.push_back(&colrect);
 }
 
+PlasmaBurst::~PlasmaBurst() {
+  //Remove any ExplodeListener chain attached
+  if (explodeListeners)
+    explodeListeners->prv = NULL;
+}
+
 bool PlasmaBurst::update(float et) noth {
   if (timeUntilArm <= 0) {
     inParentsShields=hitParentsShields;

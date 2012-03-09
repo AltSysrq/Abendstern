@@ -103,6 +103,8 @@ class MagnetoBomb: public GameObject {
   MagnetoBomb(GameField* field, float x, float y, float vx, float vy,
               float power, Ship* parent, float subMult=1,
               float r=1, float g=1, float b=1);
+  virtual ~MagnetoBomb();
+
   virtual bool update(float)  noth HOT;
   virtual void draw() noth;
   virtual CollisionResult checkCollision(GameObject*) noth;
