@@ -314,6 +314,15 @@ NetworkConnection::getGeraetCreator(geraet_num num) {
   return (*geraetNumMap)[num];
 }
 
+void NetworkConnection::transmogrify(channel chan, OutputNetworkGeraet* ong)
+throw() {
+  assert(outchannels.count(chan));
+  if (outchannels[chan] != ong)
+    delete outchannels[chan];
+  outchannels[chan] = ong;
+  ong->setChannel(chan);
+}
+
 void NetworkConnection::setReference(GameObject* go) throw() {
   remoteReferences.push_back(go);
 }

@@ -302,6 +302,21 @@ public:
     channelsToClose.push(chan);
   }
 
+  /**
+   * Replaces the OutputNetworkGeraet* associated with the given channel
+   * (which MUST be open) to the new one given.
+   *
+   * Unless the new value is the same as the old, the old Gerät will be
+   * deleted.
+   *
+   * setChannel() will be called to set its output channel, in any case.
+   *
+   * @note The remote peer has no way to know this has happened. There are
+   * only a few isolated cases where this is the desired action.
+   * (See the anticipatory channel system.)
+   */
+  void transmogrify(channel, OutputNetworkGeraet*) throw();
+
 private:
   //Called by NetworkAssembly when an exportable object is added
   void objectAdded(GameObject*) throw();
