@@ -131,5 +131,11 @@ public:
   void setChannel(NetworkConnection::channel chan) throw() {
     channel = chan;
   }
+
+  /**
+   * Called by the SynchronousControlGeraet when the channel is confirmed
+   * open. Default does nothing.
+   */
+  virtual void outputOpen() throw() {}
 };
 #endif /* NETWORK_GERAET_HXX_ */

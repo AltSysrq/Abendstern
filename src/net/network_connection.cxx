@@ -21,6 +21,7 @@
 #include "synchronous_control_geraet.hxx"
 #include "async_ack_geraet.hxx"
 #include "lat_disc_geraet.hxx"
+#include "anticipatory_channels.hxx"
 
 #include "xxx/xnetobj.hxx"
 
@@ -62,7 +63,8 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
   parent(assembly_),
   scg(new SynchronousControlGeraet(this, incomming)),
   aag(new AsyncAckGeraet(this)),
-  ldg(new LatDiscGeraet(this))
+  ldg(new LatDiscGeraet(this)),
+  anticipation(new AnticipatoryChannels(this))
 {
   inchannels[0] = scg;
   outchannels[0] = scg;
@@ -107,6 +109,7 @@ NetworkConnection::~NetworkConnection() {
   delete aag;
   delete scg;
   delete ldg;
+  delete anticipation;
 
   Uint32 now = SDL_GetTicks(), duration = now-connectionStart;
   if (!duration) duration=1;

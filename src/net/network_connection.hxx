@@ -24,6 +24,7 @@ class NetworkAssembly;
 class SynchronousControlGeraet;
 class LatDiscGeraet;
 class AsyncAckGeraet;
+class AnticipatoryChannels;
 
 /**
  * Encapsulates all information pertaining to a connection to another peer.
@@ -153,6 +154,8 @@ public:
   AsyncAckGeraet*const aag;
   ///The LDG used with this NetworkConnection
   LatDiscGeraet* const ldg;
+  ///AnticipatoryChannels service used with this NetworkConnection
+  AnticipatoryChannels*const anticipation;
 
   /**
    * Constructs a NetworkConnection within the given assembly.

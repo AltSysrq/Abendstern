@@ -220,6 +220,7 @@ COMMONSOURCES= \
 ./net/lat_disc_geraet.cxx \
 ./net/block_geraet.cxx \
 ./net/object_geraet.cxx \
+./net/anticipatory_channels.cxx \
 ./net/network_test.cxx \
 ./net/xxx/xnetobj.cxx \
 ./secondary/namegen.cxx \

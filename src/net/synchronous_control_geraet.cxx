@@ -151,6 +151,7 @@ throw() {
             for (unsigned i=0; i<lastXonLen; ++i) {
               const XonDat& dat(xonsOut.front());
               cxn->outchannels[dat.chan] = dat.localGeraet;
+              dat.localGeraet->outputOpen();
               xonsOut.pop_front();
             }
             lastPackOutType = 0;

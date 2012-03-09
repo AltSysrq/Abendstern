@@ -218,6 +218,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-lat_disc_geraet.$(OBJEXT) \
 	abendsternuxgl14-block_geraet.$(OBJEXT) \
 	abendsternuxgl14-object_geraet.$(OBJEXT) \
+	abendsternuxgl14-anticipatory_channels.$(OBJEXT) \
 	abendsternuxgl14-network_test.$(OBJEXT) \
 	abendsternuxgl14-xnetobj.$(OBJEXT) \
 	abendsternuxgl14-namegen.$(OBJEXT) \
@@ -422,6 +423,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-lat_disc_geraet.$(OBJEXT) \
 	abendsternuxgl21-block_geraet.$(OBJEXT) \
 	abendsternuxgl21-object_geraet.$(OBJEXT) \
+	abendsternuxgl21-anticipatory_channels.$(OBJEXT) \
 	abendsternuxgl21-network_test.$(OBJEXT) \
 	abendsternuxgl21-xnetobj.$(OBJEXT) \
 	abendsternuxgl21-namegen.$(OBJEXT) \
@@ -624,6 +626,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-lat_disc_geraet.$(OBJEXT) \
 	abendsternuxgl32-block_geraet.$(OBJEXT) \
 	abendsternuxgl32-object_geraet.$(OBJEXT) \
+	abendsternuxgl32-anticipatory_channels.$(OBJEXT) \
 	abendsternuxgl32-network_test.$(OBJEXT) \
 	abendsternuxgl32-xnetobj.$(OBJEXT) \
 	abendsternuxgl32-namegen.$(OBJEXT) \
@@ -980,6 +983,7 @@ COMMONSOURCES = \
 ./net/lat_disc_geraet.cxx \
 ./net/block_geraet.cxx \
 ./net/object_geraet.cxx \
+./net/anticipatory_channels.cxx \
 ./net/network_test.cxx \
 ./net/xxx/xnetobj.cxx \
 ./secondary/namegen.cxx \
@@ -1133,6 +1137,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_weapon_level.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aimod.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-antenna.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-anticipatory_channels.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-antimatter_power.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aobject.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-asgi.Po@am__quote@
@@ -1338,6 +1343,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_weapon_level.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aimod.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-antenna.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-anticipatory_channels.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-antimatter_power.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aobject.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-asgi.Po@am__quote@
@@ -1543,6 +1549,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_weapon_level.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aimod.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-antenna.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-anticipatory_channels.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-antimatter_power.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aobject.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-asgi.Po@am__quote@
@@ -4225,6 +4232,20 @@ abendsternuxgl14-object_geraet.obj: ./net/object_geraet.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/object_geraet.cxx' object='abendsternuxgl14-object_geraet.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-object_geraet.obj `if test -f './net/object_geraet.cxx'; then $(CYGPATH_W) './net/object_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/object_geraet.cxx'; fi`
+
+abendsternuxgl14-anticipatory_channels.o: ./net/anticipatory_channels.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-anticipatory_channels.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-anticipatory_channels.Tpo -c -o abendsternuxgl14-anticipatory_channels.o `test -f './net/anticipatory_channels.cxx' || echo '$(srcdir)/'`./net/anticipatory_channels.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-anticipatory_channels.Tpo $(DEPDIR)/abendsternuxgl14-anticipatory_channels.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/anticipatory_channels.cxx' object='abendsternuxgl14-anticipatory_channels.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-anticipatory_channels.o `test -f './net/anticipatory_channels.cxx' || echo '$(srcdir)/'`./net/anticipatory_channels.cxx
+
+abendsternuxgl14-anticipatory_channels.obj: ./net/anticipatory_channels.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-anticipatory_channels.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-anticipatory_channels.Tpo -c -o abendsternuxgl14-anticipatory_channels.obj `if test -f './net/anticipatory_channels.cxx'; then $(CYGPATH_W) './net/anticipatory_channels.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/anticipatory_channels.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-anticipatory_channels.Tpo $(DEPDIR)/abendsternuxgl14-anticipatory_channels.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/anticipatory_channels.cxx' object='abendsternuxgl14-anticipatory_channels.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-anticipatory_channels.obj `if test -f './net/anticipatory_channels.cxx'; then $(CYGPATH_W) './net/anticipatory_channels.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/anticipatory_channels.cxx'; fi`
 
 abendsternuxgl14-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-network_test.Tpo -c -o abendsternuxgl14-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx
@@ -7096,6 +7117,20 @@ abendsternuxgl21-object_geraet.obj: ./net/object_geraet.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-object_geraet.obj `if test -f './net/object_geraet.cxx'; then $(CYGPATH_W) './net/object_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/object_geraet.cxx'; fi`
 
+abendsternuxgl21-anticipatory_channels.o: ./net/anticipatory_channels.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-anticipatory_channels.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-anticipatory_channels.Tpo -c -o abendsternuxgl21-anticipatory_channels.o `test -f './net/anticipatory_channels.cxx' || echo '$(srcdir)/'`./net/anticipatory_channels.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-anticipatory_channels.Tpo $(DEPDIR)/abendsternuxgl21-anticipatory_channels.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/anticipatory_channels.cxx' object='abendsternuxgl21-anticipatory_channels.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-anticipatory_channels.o `test -f './net/anticipatory_channels.cxx' || echo '$(srcdir)/'`./net/anticipatory_channels.cxx
+
+abendsternuxgl21-anticipatory_channels.obj: ./net/anticipatory_channels.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-anticipatory_channels.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-anticipatory_channels.Tpo -c -o abendsternuxgl21-anticipatory_channels.obj `if test -f './net/anticipatory_channels.cxx'; then $(CYGPATH_W) './net/anticipatory_channels.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/anticipatory_channels.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-anticipatory_channels.Tpo $(DEPDIR)/abendsternuxgl21-anticipatory_channels.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/anticipatory_channels.cxx' object='abendsternuxgl21-anticipatory_channels.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-anticipatory_channels.obj `if test -f './net/anticipatory_channels.cxx'; then $(CYGPATH_W) './net/anticipatory_channels.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/anticipatory_channels.cxx'; fi`
+
 abendsternuxgl21-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-network_test.Tpo -c -o abendsternuxgl21-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-network_test.Tpo $(DEPDIR)/abendsternuxgl21-network_test.Po
@@ -9965,6 +10000,20 @@ abendsternuxgl32-object_geraet.obj: ./net/object_geraet.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/object_geraet.cxx' object='abendsternuxgl32-object_geraet.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-object_geraet.obj `if test -f './net/object_geraet.cxx'; then $(CYGPATH_W) './net/object_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/object_geraet.cxx'; fi`
+
+abendsternuxgl32-anticipatory_channels.o: ./net/anticipatory_channels.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-anticipatory_channels.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-anticipatory_channels.Tpo -c -o abendsternuxgl32-anticipatory_channels.o `test -f './net/anticipatory_channels.cxx' || echo '$(srcdir)/'`./net/anticipatory_channels.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-anticipatory_channels.Tpo $(DEPDIR)/abendsternuxgl32-anticipatory_channels.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/anticipatory_channels.cxx' object='abendsternuxgl32-anticipatory_channels.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-anticipatory_channels.o `test -f './net/anticipatory_channels.cxx' || echo '$(srcdir)/'`./net/anticipatory_channels.cxx
+
+abendsternuxgl32-anticipatory_channels.obj: ./net/anticipatory_channels.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-anticipatory_channels.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-anticipatory_channels.Tpo -c -o abendsternuxgl32-anticipatory_channels.obj `if test -f './net/anticipatory_channels.cxx'; then $(CYGPATH_W) './net/anticipatory_channels.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/anticipatory_channels.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-anticipatory_channels.Tpo $(DEPDIR)/abendsternuxgl32-anticipatory_channels.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/anticipatory_channels.cxx' object='abendsternuxgl32-anticipatory_channels.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-anticipatory_channels.obj `if test -f './net/anticipatory_channels.cxx'; then $(CYGPATH_W) './net/anticipatory_channels.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/anticipatory_channels.cxx'; fi`
 
 abendsternuxgl32-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-network_test.Tpo -c -o abendsternuxgl32-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx
