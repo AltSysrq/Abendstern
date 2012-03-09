@@ -116,7 +116,7 @@ bool MonophasicEnergyPulse::update(float et) noth {
   float oldAngle = fmod(oldTime*FREQUENCY*2*pi, 2*pi);
   float newAngle = fmod(timeAlive*FREQUENCY*2*pi, 2*pi);
   unsigned wavesAlive = (unsigned)2*timeAlive*FREQUENCY;
-  if (wavesAlive == deathWaveNumber) return false;
+  if (wavesAlive == deathWaveNumber && !isRemote) return false;
 
   //Check if we need to become collideable
   if (!isRemote) {
