@@ -97,7 +97,7 @@ prototype GameObject {
     }
   }
   str 128 tag {
-    extract { strncpy(tag, X->tag.c_str(), sizeof(tag-1)); }
+    extract { strncpy(tag, X->tag.c_str(), sizeof(tag)); }
     update { if (!X->ignoreNetworkTag) X->tag = tag; }
     post-set { if (!X->ignoreNetworkTag) X->tag = tag; }
     compare {
@@ -454,7 +454,7 @@ type Ship {
       if (X->target.ref)
         strncpy(target, X->target.ref->tag.c_str(), 128);
       else
-        target[0]=0;
+        memset(target, 0, sizeof(target));
     }
     update {
       if (target[0]) {
