@@ -208,10 +208,13 @@ bool EnergyCharge::collideWith(GameObject* other) noth {
 
 void EnergyCharge::explode(GameObject* other) noth {
   exploded=true;
+  if (!other) other = this;
   Explosion ex(field, Explosion::Simple,
                getColourR(intensity),
                getColourG(intensity),
-               getColourB(intensity), 0.15f*(1+intensity), 0.001f*(1+intensity*10), 1000.0f, x, y,
+               getColourB(intensity), 0.15f*(1+intensity),
+               0.001f*(1+intensity*10), 1000.0f,
+               x, y,
                other->getVX(), other->getVY());
   ex.multiExplosion(1);
 
