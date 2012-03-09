@@ -96,14 +96,6 @@ prototype GameObject {
         y = 0;
     }
   }
-  str 128 tag {
-    extract { strncpy(tag, X->tag.c_str(), sizeof(tag)); }
-    update { if (!X->ignoreNetworkTag) X->tag = tag; }
-    post-set { if (!X->ignoreNetworkTag) X->tag = tag; }
-    compare {
-      if (strcmp(x.tag, y.tag)) return true; //Must send update
-    }
-  }
 }
 
 type EnergyCharge {
@@ -444,6 +436,15 @@ type Ship {
           return static_cast<ShieldGenerator*>(c->systems[1]);
         return NULL;
       }
+    }
+  }
+
+  str 128 tag {
+    extract { strncpy(tag, X->tag.c_str(), sizeof(tag)); }
+    update { if (!X->ignoreNetworkTag) X->tag = tag; }
+    post-set { if (!X->ignoreNetworkTag) X->tag = tag; }
+    compare {
+      if (strcmp(x.tag, y.tag)) return true; //Must send update
     }
   }
 
