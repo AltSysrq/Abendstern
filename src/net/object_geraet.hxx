@@ -138,6 +138,12 @@ public:
 
   virtual void update(unsigned) throw();
 
+  /**
+   * Forces the object to be updated immediately, regardless of
+   * shouldUpdate().
+   */
+  void forceUpdate() throw();
+
 protected:
   /**
    * Compares the real local object with the remote mirror, and returns whether

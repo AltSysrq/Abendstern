@@ -30,6 +30,7 @@ verbatimc {
 verbatimh {
   class ShieldGenerator;
   class Cell;
+  #include "src/weapon/explode_listener.hxx"
 }
 verbatimc {
   #include <cassert>
@@ -45,8 +46,33 @@ verbatimc {
   #include "src/weapon/missile.hxx"
   #include "src/weapon/monophasic_energy_pulse.hxx"
   #include "src/weapon/particle_beam.hxx"
+  #include "src/weapon/explode_listener.hxx"
   #include "src/camera/spectator.hxx"
   #include "src/exit_conditions.hxx"
+}
+
+# Inserts common ExplodeListener code to the various weapon types.
+proc explodable {clazz} {
+  void "
+    enoheader {
+      class ExplListener: public ExplodeListener<$clazz> {
+        ENO_@@@*const that;
+      public:
+        ExplListener($clazz* it, ENO_@@@* that_);
+
+        virtual void exploded($clazz*) throw() {
+          that->forceUpdate();
+        }
+      } explListener;
+    }
+    impl {
+      ENO_@@@::ExplListener::ExplListener($clazz* it, ENO_@@@* that_)
+      : ExplodeListener<$clazz>(it), that(that_) {}
+    }
+    enoconstructor {
+      ,explListener(($clazz*)local.ref, this)
+    }
+  "
 }
 
 prototype GameObject {
@@ -81,6 +107,8 @@ prototype GameObject {
 }
 
 type EnergyCharge {
+  explodable EnergyCharge
+
   # Never send updates
   void { compare { return false; } }
   extension GameObject
@@ -110,6 +138,7 @@ type EnergyCharge {
 
 type MagnetoBomb {
   extension GameObject
+  explodable MagnetoBomb
 
   float ax {
     default 0
@@ -157,6 +186,7 @@ type SemiguidedBomb {
 
 type PlasmaBurst {
   extension GameObject
+  explodable PlasmaBurst
 
   # Never send updates
   void { compare { return false; } }
@@ -185,6 +215,7 @@ type PlasmaBurst {
 
 type Missile {
   extension GameObject
+  explodable Missile
 
   float ax {
     default 1.0e8f
@@ -245,6 +276,18 @@ type ParticleEmitter {
                             x, y, vx, vy,
                             r, rmajor, rminor,
                             timeAlive);
+  }
+}
+
+type MonophasicEnergyPulse {
+  extension GameObject
+  explodable MonophasicEnergyPulse
+
+  float power { default 0 min 0 }
+  ui 2 timeAlive { default 0 }
+
+  construct {
+    X = new MonophasicEnergyPulse(field, x, y, vx, vy, power, timeAlive);
   }
 }
 
@@ -371,17 +414,6 @@ verbatimc {
       return new ShieldGenerator(ship, shieldStrength, shieldRad);
     }
   };
-}
-
-type MonophasicEnergyPulse {
-  extension GameObject
-
-  float power { default 0 min 0 }
-  ui 2 timeAlive { default 0 }
-
-  construct {
-    X = new MonophasicEnergyPulse(field, x, y, vx, vy, power, timeAlive);
-  }
 }
 
 type Ship {

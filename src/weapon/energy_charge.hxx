@@ -27,10 +27,11 @@ class Ship;
 class EnergyCharge: public GameObject {
   friend class INO_EnergyCharge;
   friend class ENO_EnergyCharge;
+  friend class ExplodeListener<EnergyCharge>;
 
   private:
   ExplodeListener<EnergyCharge>* explodeListeners;
-  
+
   //0..1
   const Ship * const parent;
   float intensity;

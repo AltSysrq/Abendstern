@@ -30,6 +30,8 @@
 # decoding rules. On decoding (ie, parsing binary data), the rules are evaluated
 # in the order specified; on encoding, they are evaluated in reverse order.
 #
+# The rules can use the text @@@ to indicate the name of the current class.
+#
 # In the rules below, a PARMS argument is a list alternating between parm name
 # and parm argument. "Common parms" refers to the following:
 #   encode CODE
@@ -61,8 +63,12 @@
 #     the object must be updated.
 #   inoheader CODE
 #     Added to the end of the INO class header (within the class).
+#   inoconstructor CODE
+#     Added to the end of the initialiser list for the INO class.
 #   enoheader CODE
-#     Added to the end of the ENO class header (within the clgss).
+#     Added to the end of the ENO class header (within the class).
+#   enoconstructor CODE
+#     Added to the end of the initialiser list for the ENO class.
 #   impl CODE
 #     Added to the end of the implementation.
 #   update-control
@@ -261,6 +267,7 @@ proc type {name contents} {
   # Evaluate contents
   namespace eval :: $contents
   whole-byte
+  set elements [string map [list @@@ $name] $elements]
 
   # Produce output
   puts $hout \
@@ -304,7 +311,7 @@ private:
   puts $cout \
 "INO_${name}::INO_${name}(NetworkConnection* cxn_)
 : ImportedGameObject($byteOffset, cxn_),
-  cxn(cxn_)
+  cxn(cxn_) [cxxj inoconstructor]
 { }
 
 const NetworkConnection::geraet_num INO_${name}::num =
@@ -349,6 +356,7 @@ throw () {
 
 ENO_${name}::ENO_${name}(NetworkConnection* cxn, $name* obj)
 : ExportedGameObject($byteOffset, cxn, obj, clone(obj, cxn))
+  [cxxj enoconstructor]
 {
   //Populate initial data
   #define X obj

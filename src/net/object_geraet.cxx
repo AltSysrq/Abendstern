@@ -93,3 +93,8 @@ void ExportedGameObject::update(unsigned et) throw() {
 
   OutputBlockGeraet::update(et);
 }
+
+void ExportedGameObject::forceUpdate() throw() {
+  updateRemote();
+  dirty = true;
+}
