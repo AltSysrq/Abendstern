@@ -1,5 +1,6 @@
 #include <deque>
 #include <map>
+#include <iostream>
 
 #include "anticipatory_channels.hxx"
 #include "network_geraet.hxx"
@@ -46,12 +47,7 @@ throw() {
     //Fall back, then increase reserve
     ret = cxn->scg->openChannel(ong, num);
 
-    //Increase by 25% or 8, whichever is greater,
-    //if not already waiting for new channels
-    unsigned delta = chan.desiredCount/4;
-    if (delta < 8) delta = 8;
-    if (chan.pending == chan.desiredCount)
-      chan.desiredCount += delta;
+    ++chan.desiredCount;
   }
 
   //Reserve new channels
