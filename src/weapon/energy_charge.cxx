@@ -218,6 +218,10 @@ void EnergyCharge::explode(GameObject* other) noth {
                other->getVX(), other->getVY());
   ex.multiExplosion(1);
 
+  //Set velocity to match other for networking purposes
+  vx = other->getVX();
+  vy = other->getVY();
+
   for (ExplodeListener<EnergyCharge>* l = explodeListeners; l; l = l->nxt)
     l->exploded(this);
 }
