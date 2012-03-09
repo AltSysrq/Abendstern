@@ -218,11 +218,11 @@ type Missile {
   explodable Missile
 
   float ax {
-    default 1.0e8f
+    default 1.0e6f
     min -2.0e-5f max +2.0e-5f
   }
   float ay {
-    default 1.0e8f
+    default 1.0e6f
     min -2.0e-5f max +2.0e-5f
   }
   float xdir { default 0 }
