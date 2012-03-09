@@ -75,6 +75,8 @@ void ExportedGameObject::update(unsigned et) throw() {
       updateRemote();
       dirty = true;
       timeUntilNextUpdate = UPDATE_DELAY;
+    } else if (timeUntilNextUpdate <= 0) {
+      timeUntilNextUpdate = UPDATE_DELAY;
     }
   } else {
     //If we believed the object was still alive, send death update.
