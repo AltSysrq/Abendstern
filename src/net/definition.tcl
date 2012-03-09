@@ -946,7 +946,7 @@ type Ship {
           ShieldGenerator* gen = SHGEN(IX);
           if (gen)
             NAME.currStrengthPercent =
-                (byte)(255*gen->getShieldStrength()/gen->getStrength());
+              (byte)(255*min(1.0f,gen->getShieldStrength())/gen->getStrength());
           else
             NAME.currStrengthPercent = 0;
         }
@@ -979,7 +979,8 @@ type Ship {
         {
           ShieldGenerator* gen = SHGEN(IX);
           if (gen)
-            NAME.currStability = (byte)(255.0f*gen->getShieldStability());
+            NAME.currStability =
+                (byte)(255.0f*min(1.0f,gen->getShieldStability()));
           else
             NAME.currStability = 0;
         }
@@ -1009,7 +1010,7 @@ type Ship {
         {
           ShieldGenerator* gen = SHGEN(IX);
           if (gen)
-            NAME.currAlpha = (byte)(255.0f * gen->getShieldAlpha());
+            NAME.currAlpha = (byte)(255.0f * max(0.0f,gen->getShieldAlpha()));
           else
             NAME.currAlpha = 0;
         }
