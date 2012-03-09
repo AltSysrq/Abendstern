@@ -587,14 +587,16 @@ type Ship {
     type bool
     default 1
     update {
-      shield_deactivate(X);
-      X->shieldsDeactivated=true;
-      //Clear all cell power bits that have shields
-      X->physicsRequire(PHYS_SHIP_SHIELD_INVENTORY_BIT);
-      for (unsigned i=0; i<X->shields.size(); ++i)
-        X->shields[i]->getParent()->physicsClear(PHYS_CELL_POWER_BITS
-                                                |PHYS_CELL_POWER_PROD_BITS);
-      X->shields.clear();
+      if (shieldsDeactivated && X->shieldsDeactivated) {
+        shield_deactivate(X);
+        X->shieldsDeactivated=true;
+        //Clear all cell power bits that have shields
+        X->physicsRequire(PHYS_SHIP_SHIELD_INVENTORY_BIT);
+        for (unsigned i=0; i<X->shields.size(); ++i)
+          X->shields[i]->getParent()->physicsClear(PHYS_CELL_POWER_BITS
+                                                  |PHYS_CELL_POWER_PROD_BITS);
+        X->shields.clear();
+      }
     }
   }
   bit 1 stealthMode {

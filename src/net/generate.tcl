@@ -402,7 +402,7 @@ bool ENO_${name}::shouldUpdate() const throw() {
   [cxxj compare-control compare]
 
   float l_dist = cxn->distanceOf(this->local.ref);
-  return (FAR*FAR > l_dist) || (NEAR > 1 && l_dist < 5*5);
+  return (FAR*FAR > l_dist && l_dist >= 5*5) || (NEAR > 1 && l_dist < 5*5);
 }
 
 void ENO_${name}::updateRemote() throw() {
