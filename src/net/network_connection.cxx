@@ -53,6 +53,11 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
   lastIncommingTime(SDL_GetTicks()),
   status(incomming? Established : Connecting),
   timeSinceRetriedTransients(0),
+  lastStatsUpdate(SDL_GetTicks()), connectionStart(SDL_GetTicks()),
+  packetInCount(0), packetInCountSec(0), packetInCountSecMax(0),
+  packetOutCount(0), packetOutCountSec(0), packetOutCountSecMax(0),
+  dataInCount(0), dataInCountSec(0), dataInCountSecMax(0),
+  dataOutCount(0), dataOutCountSec(0), dataOutCountSecMax(0),
   endpoint(endpoint_),
   parent(assembly_),
   scg(new SynchronousControlGeraet(this, incomming)),
@@ -72,6 +77,21 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
   parent->getTuner()->connect(endpoint, this);
 }
 
+static const char* dataCount2Str(unsigned long long data) {
+  static char buffer[32];
+  static const char*const units[] = {
+    "B", "kB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"
+  };
+  unsigned unit = 0;
+  while (data > 40960) {
+    ++unit;
+    data /= 1024;
+  }
+
+  sprintf(buffer, "%d %s", (int)data, units[unit]);
+  return buffer;
+}
+
 NetworkConnection::~NetworkConnection() {
   parent->getTuner()->disconnect(endpoint);
 
@@ -87,6 +107,23 @@ NetworkConnection::~NetworkConnection() {
   delete aag;
   delete scg;
   delete ldg;
+
+  Uint32 now = SDL_GetTicks(), duration = now-connectionStart;
+  if (!duration) duration=1;
+  cout << "Connection statistics for connection to " << endpoint << ":" << endl;
+  cout << "Duration: " << duration << " ms" << endl;
+  cout << "Packets sent: " << packetOutCount
+       << " (average " << (packetOutCount*1000/(double)duration) << " per sec; "
+       << "peak " << packetOutCountSecMax << " per sec)" << endl;
+  cout << "Packets rcvd: " << packetInCount
+       << " (average " << (packetInCount*1000/(double)duration) << " per sec; "
+       << "peak " << packetInCountSecMax << " per sec)" << endl;
+  cout << "Data sent: " << dataCount2Str(dataOutCount)
+       << " (average " << dataCount2Str(dataOutCount*1000/duration) << "/s; "
+       << "peak " << dataCount2Str(dataOutCountSecMax) << "/s)" << endl;
+  cout << "Data rcvd: " << dataCount2Str(dataInCount)
+       << " (average " << dataCount2Str(dataInCount*1000/duration) << "/s; "
+       << "peak " << dataCount2Str(dataInCountSecMax) << "/s)" << endl;
 }
 
 void NetworkConnection::update(unsigned et) noth {
@@ -128,6 +165,19 @@ void NetworkConnection::update(unsigned et) noth {
   if (lastIncommingTime + DISCONNECT_TIME < SDL_GetTicks()) {
     scg->closeConnection("Timed out", "timed_out");
   }
+
+  if (SDL_GetTicks() - lastStatsUpdate >= 1000) {
+    //Update peak values
+    #define UPDATE(val) \
+      if (val > val##Max) val##Max = val; \
+      val = 0
+    UPDATE(packetInCountSec);
+    UPDATE(packetOutCountSec);
+    UPDATE(dataInCountSec);
+    UPDATE(dataOutCountSec);
+    #undef UPDATE
+    lastStatsUpdate = SDL_GetTicks();
+  }
 }
 
 void NetworkConnection::process(const Antenna::endpoint& source,
@@ -142,6 +192,11 @@ noth {
     #endif
     return;
   }
+
+  //Update stats
+  ++packetInCount, ++packetInCountSec;
+  dataInCount += datlen;
+  dataInCountSec += datlen;
 
   channel chan;
   seq_t seq;
@@ -214,6 +269,11 @@ noth {
 }
 
 void NetworkConnection::send(const byte* data, unsigned len) throw() {
+  //Update stats
+  ++packetOutCount, ++packetOutCountSec;
+  dataOutCount += len;
+  dataOutCountSec += len;
+
   try {
     parent->antenna->send(endpoint, data, len);
   } catch (asio::system_error e) {

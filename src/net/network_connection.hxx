@@ -135,6 +135,13 @@ private:
   //Queue of channel numbers to close once safe
   std::queue<channel> channelsToClose;
 
+  //Networking statistics
+  Uint32 lastStatsUpdate, connectionStart;
+  unsigned packetInCount, packetInCountSec, packetInCountSecMax;
+  unsigned packetOutCount, packetOutCountSec, packetOutCountSecMax;
+  unsigned long long dataInCount, dataInCountSec, dataInCountSecMax;
+  unsigned long long dataOutCount, dataOutCountSec, dataOutCountSecMax;
+
 public:
   ///The endpoint of the remote peer
   const Antenna::endpoint endpoint;
