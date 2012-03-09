@@ -54,6 +54,8 @@ class Missile: public GameObject {
   //Acceleration to send to remote peers, and to use for tracking when
   //this is a remote object.
   float ax, ay;
+  //Similar to ax and ay, but used for the direction of the trail
+  float xdir, ydir;
 
   //Networking constructor
   Missile(GameField*, int, float, float, float, float, float, float,

@@ -136,20 +136,22 @@ bool Missile::update(float et) noth {
     vx -= ax*currentFrameTime;
     vy -= ay*currentFrameTime;
 
-    if (EXPCLOSE(x,y) && !headless) {
-      if (!trail.ref) {
-        trail.assign(new LightTrail(field, 3000, 64, 4*RADIUS, RADIUS,
-                                    0.8f, 0.8f, 1.0f, 1.0f,
-                                    0.0f, -0.5f, -1.0f, -2.0f));
-        field->add(trail.ref);
-      }
-      LightTrail* trail=(LightTrail*)this->trail.ref;
-      trail->emit(x, y, vx-dx/dist*accel*1000*level,
-                  vy-dy/dist*accel*1000*level);
-    }
+    xdir = dx/dist*accel;
+    ydir = dy/dist*accel;
   } else if (isRemote) {
     vx += ax*et;
     vy += ay*et;
+  }
+  if (EXPCLOSE(x,y) && !headless && currentVFrameLast
+  &&  (isRemote || target.ref)) {
+    if (!trail.ref) {
+      trail.assign(new LightTrail(field, 3000, 64, 4*RADIUS, RADIUS,
+                                  0.8f, 0.8f, 1.0f, 1.0f,
+                                  0.0f, -0.5f, -1.0f, -2.0f));
+      field->add(trail.ref);
+    }
+    LightTrail* trail=(LightTrail*)this->trail.ref;
+    trail->emit(x, y, vx-xdir*1000*level, vy-ydir*1000*level);
   }
 
   //Friction

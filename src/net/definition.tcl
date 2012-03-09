@@ -219,12 +219,14 @@ type Missile {
 
   float ax {
     default 1.0e8f
-    min -2.0e-6f max +2.0e-6f
+    min -2.0e-5f max +2.0e-5f
   }
   float ay {
     default 1.0e8f
-    min -2.0e-6f max +2.0e-6f
+    min -2.0e-5f max +2.0e-5f
   }
+  float xdir { default 0 }
+  float ydir { default 0 }
   ui 2 timeAlive {
     default 0
   }
