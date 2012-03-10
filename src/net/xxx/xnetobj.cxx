@@ -29,9 +29,9 @@
 //This hack injects an appropriate friends list into GameObject
 #ifdef WIN32
 #define TclGameObject  TclGameObject;  friend class INO_EnergyCharge; friend class ENO_EnergyCharge; friend class INO_MagnetoBomb; friend class ENO_MagnetoBomb; friend class INO_SemiguidedBomb; friend class ENO_SemiguidedBomb; friend class INO_PlasmaBurst; friend class ENO_PlasmaBurst; friend class INO_Missile; friend class ENO_Missile; friend class INO_ParticleEmitter; friend class ENO_ParticleEmitter; friend class INO_MonophasicEnergyPulse; friend class ENO_MonophasicEnergyPulse; friend class INO_Ship; friend class ENO_Ship; friend class INO_Spectator; friend class ENO_Spectator
+//MSVC++ can't handle fabs(int)
 #define fabs(x) std::fabs((float)(x))
 #endif
-
 #include "xnetobj.hxx"
 
 
@@ -3015,8 +3015,9 @@ gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] >> 7) &
         ss->container = X->networkCells[i];
 
         //Configure system and ensure it is happy there
-        if (const char* error =
-            ss->setOrientation(systemInfo[i*2+s].orientation)) {
+        const char* error;
+        if ((error = ss->setOrientation(systemInfo[i*2+s].orientation))
+        &&  !isFragment) {
           #ifdef DEBUG
           cerr << "Warning: Rejecting ship system with bad orientation: "
                << error << endl;
@@ -4744,8 +4745,9 @@ vx = X->vx;
         ss->container = X->networkCells[i];
 
         //Configure system and ensure it is happy there
-        if (const char* error =
-            ss->setOrientation(systemInfo[i*2+s].orientation)) {
+        const char* error;
+        if ((error = ss->setOrientation(systemInfo[i*2+s].orientation))
+        &&  !isFragment) {
           #ifdef DEBUG
           cerr << "Warning: Rejecting ship system with bad orientation: "
                << error << endl;
