@@ -104,11 +104,11 @@ type EnergyCharge {
   # Never send updates
   void { compare { return false; } }
   extension GameObject
-  ui 1 intensity {
-    extract { intensity = (byte)(255.0f*X->intensity); }
-  }
   ui 1 theta {
     extract { theta = (byte)(X->theta/2/pi*255.0f); }
+  }
+  bit 7 intensity {
+    extract { intensity = (byte)(127.0f*X->intensity); }
   }
 
   bit 1 exploded {
@@ -124,7 +124,7 @@ type EnergyCharge {
 
   construct {
      X = new EnergyCharge(field, x, y, vx, vy,
-                          theta*pi*2/255.0f, intensity/255.0f);
+                          theta*pi*2/255.0f, intensity/127.0f);
   }
 }
 
