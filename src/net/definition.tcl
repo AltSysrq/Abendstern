@@ -215,21 +215,16 @@ type Missile {
   extension GameObject
   explodable Missile
 
-  float ax {
+  fixed 2 2.0e-6f ax {
     default 1.0e6f
-    min -2.0e-5f max +2.0e-5f
     post-set { X->ax = ax; }
   }
-  float ay {
+  fixed 2 2.0e-6f ay {
     default 1.0e6f
-    min -2.0e-5f max +2.0e-5f
     post-set { X->ay = ay; }
   }
-  float xdir { default 0 post-set { X->xdir = xdir; } }
-  float ydir { default 0 post-set { X->ydir = ydir; } }
-  ui 2 timeAlive {
-    default 0
-  }
+  fixed 2 2.0e-6f xdir { default 0 post-set { X->xdir = xdir; } }
+  fixed 2 2.0e-6f ydir { default 0 post-set { X->ydir = ydir; } }
   bit 4 level {
     extract { level = X->level; }
     update { X->level = min(10u,max(1u,level)); }
@@ -243,6 +238,13 @@ type Missile {
       }
     }
   }
+  toggle ;# Disable updates
+  ui 1 timeAlive {
+    extract {
+      timeAlive = X->timeAlive/12;
+    }
+  }
+  toggle
 
   construct {
     X = new Missile(field, level, x, y, vx, vy, ax, ay, timeAlive);
