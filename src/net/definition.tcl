@@ -185,11 +185,15 @@ type PlasmaBurst {
   # Never send updates
   void { compare { return false; } }
 
-  float mass {
-    default 0
-    min 0 max 100
+  ui 1 direction {
+    extract {
+      direction = (byte)(255.0f*X->direction/2/pi);
+    }
   }
-  float direction { default 0 }
+  bit 7 mass {
+    default 0
+    validate { if (mass > 100) mass = 100; }
+  }
   bit 1 exploded {
     extract {
       exploded = X->exploded;
@@ -203,7 +207,7 @@ type PlasmaBurst {
   }
 
   construct {
-    X = new PlasmaBurst(field, x, y, vx, vy, direction, mass);
+    X = new PlasmaBurst(field, x, y, vx, vy, direction*pi*2/255.0f, mass);
   }
 }
 
