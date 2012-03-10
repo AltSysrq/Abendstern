@@ -309,6 +309,7 @@
     <ClInclude Include="..\..\..\src\graphics\vaoemu.hxx" />
     <ClInclude Include="..\..\..\src\graphics\vec.hxx" />
     <ClInclude Include="..\..\..\src\net\antenna.hxx" />
+    <ClInclude Include="..\..\..\src\net\anticipatory_channels.hxx" />
     <ClInclude Include="..\..\..\src\net\async_ack_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\block_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\connection_listener.hxx" />
@@ -325,6 +326,7 @@
     <ClInclude Include="..\..\..\src\net\object_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\packet_processor.hxx" />
     <ClInclude Include="..\..\..\src\net\seq_text_geraet.hxx" />
+    <ClInclude Include="..\..\..\src\net\ship_damage_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\synchronous_control_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\text_message_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\tuner.hxx" />
@@ -415,6 +417,7 @@
     <ClInclude Include="..\..\..\src\tcl_iface\square_icon.hxx" />
     <ClInclude Include="..\..\..\src\test_state.hxx" />
     <ClInclude Include="..\..\..\src\weapon\energy_charge.hxx" />
+    <ClInclude Include="..\..\..\src\weapon\explode_listener.hxx" />
     <ClInclude Include="..\..\..\src\weapon\magneto_bomb.hxx" />
     <ClInclude Include="..\..\..\src\weapon\missile.hxx" />
     <ClInclude Include="..\..\..\src\weapon\monophasic_energy_pulse.hxx" />
@@ -520,6 +523,7 @@
     <ClCompile Include="..\..\..\src\graphics\vaoemu.cxx" />
     <ClCompile Include="..\..\..\src\graphics\vec.cxx" />
     <ClCompile Include="..\..\..\src\net\antenna.cxx" />
+    <ClCompile Include="..\..\..\src\net\anticipatory_channels.cxx" />
     <ClCompile Include="..\..\..\src\net\async_ack_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\block_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\connection_listener.cxx" />
@@ -537,6 +541,7 @@
     <ClCompile Include="..\..\..\src\net\network_test.cxx" />
     <ClCompile Include="..\..\..\src\net\object_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\seq_text_geraet.cxx" />
+    <ClCompile Include="..\..\..\src\net\ship_damage_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\synchronous_control_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\text_message_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\tuner.cxx" />
