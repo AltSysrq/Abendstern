@@ -1,12 +1,8 @@
+#version 120
 /* Explosion frag shader. Similar to sparkle, but time-independant,
  * resulting in an effect similar to the old explosions.
  * This version has a 256x256 pixel resolution.
  */
-#ifndef GL_ES
-#version 120
-#else
-#version 100
-#endif
 
 uniform int id;
 uniform float elapsedTime;

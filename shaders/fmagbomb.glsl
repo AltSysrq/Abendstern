@@ -1,12 +1,8 @@
+#version 120
 /* Fragment shader for MagnetoBomb and the like.
  * Use with vbastex, as this computes the bomb's
  * graphic from the "texture coordinates".
  */
-#ifndef GL_ES
-#version 120
-#else
-#version 100
-#endif
 
 uniform vec4 modColour;
 uniform float rotation;

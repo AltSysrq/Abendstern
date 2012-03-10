@@ -1,11 +1,7 @@
+#version 120
 /* An explosion frag shader that makes a "sparkling" explosion.
  * It implements its own PRNG.
  */
-#ifndef GL_ES
-#version 120
-#else
-#version 100
-#endif
 
 uniform int id;
 uniform float elapsedTime;

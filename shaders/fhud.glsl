@@ -1,11 +1,7 @@
+#version 120
 /* Fragment shader for drawing the HUD reticle.
  * This is compatible with input from vbastex.
  */
-#ifndef GL_ES
-#version 120
-#else
-#version 100
-#endif
 
 uniform float topBarVal, botBarVal, leftBarVal, rightBarVal;
 uniform vec3  topBarCol, botBarCol, leftBarCol, rightBarCol;

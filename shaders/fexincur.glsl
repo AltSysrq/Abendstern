@@ -1,12 +1,8 @@
+#version 120
 /* Explosion frag shader. Draws a sci-fi style "incursion" type explosion.
  * That is, a ring of high intensity with internal fluctuations, and a
  * fading centre glow.
  */
-#ifndef GL_ES
-#version 120
-#else
-#version 100
-#endif
 
 uniform float elapsedTime;
 uniform vec4 colour;

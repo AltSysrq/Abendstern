@@ -1,13 +1,9 @@
+#version 120
 /* Shader for ships in their final, texturized form.
  * Texture 0 is the ship itself, while texture 1 is the damage
  * texture. A uniform array specifying the pallet must be sent
  * for the higher half.
  */
-#ifndef GL_ES
-#version 120
-#else
-#version 100
-#endif
 
 uniform vec3 shipColour;
 uniform float highColour[128*3];

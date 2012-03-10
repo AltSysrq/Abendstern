@@ -1,11 +1,7 @@
+#version 120
 /* Basic texture fragment shader. Multiplies a uniform colour
  * by the texture samples, emulating GL_MODULATE.
  */
-#ifndef GL_ES
-#version 120
-#else
-#version 100
-#endif
 
 varying in vec2 varyingTexCoord;
 uniform sampler2D colourMap;

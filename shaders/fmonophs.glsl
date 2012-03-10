@@ -1,9 +1,5 @@
-/* Frag shader for Monophasic Energy Pulse. */
-#ifndef GL_ES
 #version 120
-#else
-#version 100
-#endif
+/* Frag shader for Monophasic Energy Pulse. */
 
 uniform vec3 baseColour;
 uniform float visibility;

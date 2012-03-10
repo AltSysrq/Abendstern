@@ -1,11 +1,7 @@
+#version 120
 /* Vertex shader for use with Planet.
  * Interpolates day/night. (day=1, night=0)
  */
-#ifndef GL_ES
-#version 120
-#else
-#version 10j
-#endif
 
 uniform mat4 transform;
 in vec2 texCoord;

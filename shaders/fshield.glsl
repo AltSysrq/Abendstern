@@ -1,9 +1,5 @@
-/* "Texture" frag shader for shields. */
-#ifndef GL_ES
 #version 120
-#else
-#version 100
-#endif
+/* "Texture" frag shader for shields. */
 
 uniform vec4 colour;
 varying in vec2 varyingTexCoord;
