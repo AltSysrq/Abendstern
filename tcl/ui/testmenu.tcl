@@ -340,10 +340,22 @@ class TestMode {
       }
       Nebula {
         set background {
-          set nebula [new Nebula default 0 $field 0.1 0.3 0.9 0.15 10]
-          $nebula setFlowEquation "cos * x 10" "cos * x 13" yes
-          $nebula setVelocityResetTime 100
-          $nebula setForceMultiplier 1
+          set r [expr {rand()}]
+          set g [expr {rand()}]
+          set b [expr {rand()}]
+          set viscosity [expr {rand()*rand()}]
+          set density [expr {20*rand()}]
+          set nebula [new Nebula default 0 $field $r $g $b $viscosity $density]
+          set xxc [expr {20*rand()}]
+          set xyc [expr {20*rand()}]
+          set yxc [expr {20*rand()}]
+          set yyc [expr {20*rand()}]
+          set xf [expr {rand()}]
+          set yf [expr {rand()}]
+          $nebula setFlowEquation "* $xf + cos * x $xxc cos * y $yyc" \
+                                  "* $yf + cos * x $yxc cos * y $yyc" yes
+          $nebula setVelocityResetTime [expr {200*rand()}]
+          $nebula setForceMultiplier [expr {rand()}]
           expr {$nebula}
         }
       }
