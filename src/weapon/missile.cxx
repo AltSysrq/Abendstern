@@ -69,7 +69,7 @@ Missile::Missile(GameField* field, int lvl, float x, float y, float vx,
   trail(NULL), target(tgt), parent(par),
   level(lvl), timeAlive(0), exploded(false),
   blame(par->blame),
-  ax(0), ay(0)
+  ax(0), ay(0), xdir(0), ydir(0)
 {
   collisionBounds.push_back(&colrect);
   classification = GameObject::HeavyWeapon;
@@ -85,7 +85,7 @@ Missile::Missile(GameField* field, int lvl, float x, float y, float vx,
   explodeListeners(NULL),
   trail(NULL), target(NULL), parent(NULL),
   level(lvl), timeAlive(ta), exploded(false), blame(0xFFFFFF),
-  ax(ax_), ay(ay_)
+  ax(ax_), ay(ay_), xdir(0), ydir(0)
 {
   isExportable=true;
   isRemote=true;
