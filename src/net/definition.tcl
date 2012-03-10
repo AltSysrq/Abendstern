@@ -459,13 +459,19 @@ type Ship {
   }
 
   # Max vtheta of 32 rad/sec
-  fixed 2 32.0e-3f vtheta { default 10000 post-set { X->vtheta = vtheta; } }
+  fixed 2 32.0e-3f vtheta {
+    default 1000
+    post-set { X->vtheta = vtheta; }
+    compare {
+      NEAR += 1000*fabs(x.vtheta-y.vtheta);
+    }
+  }
   ui 1 theta {
     extract  { theta = (byte)(X->theta*255.0f/pi/2); }
     update   { X->theta = theta/255.0f*pi*2 + vtheta*T; }
     post-set { X->theta = theta/255.0f*pi*2 + vtheta*T; }
     compare  {
-      NEAR += fabs((((float)x.theta) - ((float)y.theta))/16.0f);
+      NEAR += fabs((((float)x.theta) - ((float)y.theta))/6.0f);
       FAR +=  fabs((((float)x.theta) - ((float)y.theta))/48.0f);
     }
   }
