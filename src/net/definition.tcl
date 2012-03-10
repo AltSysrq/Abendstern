@@ -579,13 +579,13 @@ type Ship {
     }
     update {
       if (isFragment && !X->isFragment) {
-        X->spontaneouslyDie();
+        X->isFragment = true;
         cxn->unsetReference(X);
       }
     }
     post-set {
       if (isFragment) {
-        X->spontaneouslyDie();
+        X->isFragment = true;
       }
     }
     compare {
