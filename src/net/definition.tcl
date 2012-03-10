@@ -458,6 +458,29 @@ type Ship {
     }
   }
 
+  # Max vtheta of 32 rad/sec
+  fixed 2 32.0e-3f vtheta { default 10000 post-set { X->vtheta = vtheta; } }
+  ui 1 theta {
+    extract  { theta = (byte)(X->theta*255.0f/pi/2); }
+    update   { X->theta = theta/255.0f*pi*2 + vtheta*T; }
+    post-set { X->theta = theta/255.0f*pi*2 + vtheta*T; }
+    compare  {
+      NEAR += fabs((((float)x.theta) - ((float)y.theta))/16.0f);
+      FAR +=  fabs((((float)x.theta) - ((float)y.theta))/48.0f);
+    }
+  }
+  # Maintain the cached cos() and sin() of theta
+  void {
+    update {
+      X->cosTheta = cos(X->theta);
+      X->sinTheta = sin(X->theta);
+    }
+    post-set {
+      X->cosTheta = cos(X->theta);
+      X->sinTheta = sin(X->theta);
+    }
+  }
+
   str 128 tag {
     extract { strncpy(tag, X->tag.c_str(), sizeof(tag)); }
     update { if (!X->ignoreNetworkTag) X->tag = tag; }
@@ -526,23 +549,6 @@ type Ship {
   void {
     post-set {
       X->setColour(colourR, colourG, colourB);
-    }
-  }
-  float vtheta { default 0.01 post-set { X->vtheta = vtheta; } }
-  float theta {
-    default 10
-    update { X->theta = theta + vtheta*T; }
-    post-set { X->theta = theta + vtheta*T; }
-  }
-  # Maintain the cached cos() and sin() of theta
-  void {
-    update {
-      X->cosTheta = cos(X->theta);
-      X->sinTheta = sin(X->theta);
-    }
-    post-set {
-      X->cosTheta = cos(X->theta);
-      X->sinTheta = sin(X->theta);
     }
   }
   float thrustPercent { default 10 min 0 max 1 update {} }
