@@ -20,7 +20,7 @@
 
 using namespace std;
 
-#define PACKET_SIZE (3*2+1+5*2+1)
+#define PACKET_SIZE (2+8*4+1)
 
 const NetworkConnection::geraet_num ShipDamageGeraet::num =
     NetworkConnection::registerGeraetCreator(&create);
@@ -76,14 +76,14 @@ throw() {
   byte* pack = packet+NetworkConnection::headerSize;
 
   io::write(pack, remoteShips[ship]);
-  io::write(pack, (Uint16)(512.0f*ship->getX()));
-  io::write(pack, (Uint16)(512.0f*ship->getY()));
-  io::write(pack, (byte)(255.0f*ship->getRotation()/2.0f/pi));
-  io::write(pack, (Uint16)(512.0f*blast->getX()));
-  io::write(pack, (Uint16)(512.0f*blast->getY()));
-  io::write(pack, (Uint16)(65536.0f*blast->getFalloff()));
-  io::write(pack, (Uint16)(128.0f*blast->getStrength()));
-  io::write(pack, (Uint16)(65536.0f*blast->getSize()));
+  io::write(pack, ship->getX());
+  io::write(pack, ship->getY());
+  io::write(pack, ship->getRotation());
+  io::write(pack, blast->getX());
+  io::write(pack, blast->getY());
+  io::write(pack, blast->getFalloff());
+  io::write(pack, blast->getStrength());
+  io::write(pack, blast->getSize());
   io::write(pack, (byte)(blast->blame));
   assert(pack == packet+sizeof(packet));
   send(packet, sizeof(packet));
@@ -100,8 +100,9 @@ throw() {
     return;
   }
 
-  Uint16 chan, sx, sy, bx, by, falloff, strength, size;
-  byte theta, blame;
+  Uint16 chan;
+  float sx, sy, bx, by, falloff, strength, size, theta;
+  byte blame;
   io::read(data, chan);
   io::read(data, sx);
   io::read(data, sy);
@@ -112,6 +113,17 @@ throw() {
   io::read(data, strength);
   io::read(data, size);
   io::read(data, blame);
+  if (theta < 0) theta += 2*pi;
+  #define VER(var) if (var != var || var < 0 || var > 1.0e3f) return
+  VER(sx);
+  VER(sy);
+  VER(theta);
+  VER(bx);
+  VER(by);
+  VER(falloff);
+  VER(strength);
+  VER(size);
+  #undef VER
 
   if (!localShips.count(chan)) {
     #ifdef DEBUG
@@ -123,11 +135,11 @@ throw() {
 
   Ship* ship = localShips[chan];
   float* tempdat = ship->temporaryZero();
-  ship->teleport(sx/512.0f, sy/512.0f, theta/255.0f*pi*2.0f);
+  ship->teleport(sx, sy, theta);
   //TODO: translate blame
-  Blast blast(ship->getField(), blame, bx/512.0f, by/512.0f,
-              falloff/65536.0f, strength/64.0f,
-              true, size/65536.0f, false, ship->isDecorative(), true);
+  Blast blast(ship->getField(), blame, bx, by,
+              falloff, strength,
+              true, size, false, ship->isDecorative(), true);
   if (!ship->collideWith(&blast)) {
     //Remove from field and free
     ship->getField()->remove(ship);
