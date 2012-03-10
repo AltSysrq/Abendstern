@@ -1,12 +1,8 @@
+#version 120
 /* Explosion fragment shader for a simple explosion.
  * Color is blended out as distance from the source
  * increases.
  */
-#ifndef GL_ES
-#version 120
-#else
-#version 100
-#endif
 
 uniform vec4 colour;
 varying in vec2 expCoord;

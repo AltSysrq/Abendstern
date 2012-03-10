@@ -1,14 +1,9 @@
+#version 120
 /* Vertex shader for light trail in 2.1 mode.
  * Since it does not have access to adjacent vertices,
  * it assumes that the velocity is an appropriate direction
  * for the trail, which may not be the case.
  */
-
-#ifndef GL_ES
-#version 120
-#else
-#version 100
-#endif
 
 in float ix;
 in vec2 vertex;

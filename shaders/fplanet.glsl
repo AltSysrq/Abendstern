@@ -1,11 +1,7 @@
+#version 120
 /* Frag shader for planet.
  * Takes day texture and night texture, mixes appropriately.
  */
-#ifndef GL_ES
-#version 120
-#else
-#version 100
-#endif
 
 uniform sampler2D dayTex, nightTex;
 uniform vec4 glareColour;

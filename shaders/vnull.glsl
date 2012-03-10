@@ -1,9 +1,5 @@
-/* Null vertex shader. Returns the vertex unmodified. */
-#ifndef GL_ES
 #version 120
-#else
-#version 100
-#endif
+/* Null vertex shader. Returns the vertex unmodified. */
 
 in vec2 vertex;
 

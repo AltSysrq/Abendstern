@@ -1,9 +1,5 @@
-/* Open GL 2.1 vertex shader for explosions. */
-#ifndef GL_ES
 #version 120
-#else
-#version 100
-#endif
+/* Open GL 2.1 vertex shader for explosions. */
 
 in vec2 vertex;
 uniform mat4 transform;

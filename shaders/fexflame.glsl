@@ -1,9 +1,5 @@
-/* Explosion frag shader that tries to produce a flame-like effect. */
-#ifndef GL_ES
 #version 120
-#else
-#version 100
-#endif
+/* Explosion frag shader that tries to produce a flame-like effect. */
 
 uniform vec4 colour;
 uniform float elapsedTime;

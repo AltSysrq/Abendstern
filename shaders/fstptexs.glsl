@@ -1,9 +1,5 @@
-/* Stensiling texture stiple frag shader. */
-#ifndef GL_ES
 #version 120
-#else
-#version 100
-#endif
+/* Stensiling texture stiple frag shader. */
 
 varying in vec2 varyingTexCoords;
 varying in vec2 screenCoord;

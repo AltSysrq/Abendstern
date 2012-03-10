@@ -1,9 +1,5 @@
-/* Simple colour-only stipler. */
-#ifndef GL_ES
 #version 120
-#else
-#version 100
-#endif
+/* Simple colour-only stipler. */
 
 uniform vec4 colour;
 varying in vec2 screenCoord;

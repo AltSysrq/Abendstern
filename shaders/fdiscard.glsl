@@ -1,9 +1,5 @@
-/* Frag shader that discards everything. */
-#ifndef GL_ES
 #version 120
-#else
-#version 100
-#endif
+/* Frag shader that discards everything. */
 
 varying out vec4 dst;
 

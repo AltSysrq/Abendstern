@@ -1,11 +1,7 @@
+#version 120
 /* Missile frag shader, for use with the square graphic
  * and the vbastex vert shader.
  */
-#ifndef GL_ES
-#version 120
-#else
-#version 100
-#endif
 
 uniform float green;
 

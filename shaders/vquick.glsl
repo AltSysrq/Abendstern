@@ -1,11 +1,7 @@
+#version 120
 /* Fast vertex shader. Only transforms vertices; supports
  * no other attributes.
  */
-#ifndef GL_ES
-#version 120
-#else
-#version 10j
-#endif
 
 in vec2 vertex;
 uniform mat4 transform;
