@@ -836,6 +836,13 @@ type Ship {
 
           //Free
           delete c;
+
+          if (X->cells.empty()) {
+            #ifdef DEBUG
+            cerr << "Warning: Discarding ship with no cells." << endl;
+            #endif
+            DESTROY(true);
+          }
         } else {
           //Damage the cell by the appropriate amount
           float newdmg = 1.0f - NAME/255.0f;
