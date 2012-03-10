@@ -134,6 +134,21 @@ throw() {
   }
 
   Ship* ship = localShips[chan];
+  /* It is possible for the ship to have zero cells, if it was destroyed
+   * earlier but has not yet been deleted.
+   * Handle this scenario specially.
+   */
+  if (ship->cells.empty()) {
+    //Deregister
+    for (map<NetworkConnection::channel,Ship*>::iterator it =localShips.begin();
+         it != localShips.end(); ++it) {
+      if (it->second == ship) {
+        localShips.erase(it);
+        return;
+      }
+    }
+  }
+
   float* tempdat = ship->temporaryZero();
   ship->teleport(sx, sy, theta);
   //TODO: translate blame
