@@ -49,6 +49,7 @@ verbatimc {
   #include "src/weapon/explode_listener.hxx"
   #include "src/camera/spectator.hxx"
   #include "src/exit_conditions.hxx"
+  #include "../ship_damage_geraet.hxx"
 }
 
 # Inserts common ExplodeListener code to the various weapon types.
@@ -444,6 +445,12 @@ type Ship {
         return INO_Ship::getShieldGenerator(c);
       }
     }
+    init {
+      cxn->sdg->addLocalShip(channel, X);
+    }
+    enodestructor {
+      cxn->sdg->delLocalShip(channel);
+    }
     impl {
       ShieldGenerator* INO_Ship::getShieldGenerator(const Cell* c) throw() {
         if (!c) return NULL;
@@ -763,6 +770,10 @@ type Ship {
     }
   }}
   toggle ;# End no updates
+  void {
+    declaration { bool destruction; }
+    extract { destruction = false; }
+  }
   arr {unsigned char} 4094  1 cellDamage        {ui 1 {NAME} {
     extract {
       if (IX < X->networkCells.size() && X->networkCells[IX]) {
@@ -785,15 +796,27 @@ type Ship {
           DESTROY(true);
         }
         if (!NAME) {
+          destruction = true;
+          X->physicsRequire(PHYS_SHIP_DS_INVENTORY_BIT
+                           |PHYS_CELL_DS_NEAREST_BIT);
           //Delink the cell from its neighbours, spawning PlasmaFires
           //if appropriate.
+          //Empty neighbours will cease to exist.
           for (unsigned n = 0; n < 4; ++n) {
             if (c->neighbours[n]) {
-              unsigned ret = c->neighbours[n]->getNeighbour(c);
-              EmptyCell* ec = new EmptyCell(X, c->neighbours[n]);
-              c->neighbours[n]->neighbours[ret] = ec;
-              if (highQuality && EXPCLOSE(x,y))
-                field->add(new PlasmaFire(ec));
+              if (c->neighbours[n]->isEmpty) {
+                X->removeCell(c->neighbours[n]);
+                delete c->neighbours[n];
+              } else {
+                unsigned ret = c->neighbours[n]->getNeighbour(c);
+                EmptyCell* ec = new EmptyCell(X, c->neighbours[n]);
+                c->neighbours[n]->neighbours[ret] = ec;
+                X->cells.push_back(ec);
+                if (highQuality && !isFragment)
+                  field->add(new PlasmaFire(ec));
+                X->physicsClear(PHYS_CELL_LOCATION_PROPERTIES_BITS
+                               |PHYS_SHIP_COORDS_BITS);
+              }
             }
           }
 
@@ -1290,5 +1313,11 @@ type Ship {
       #endif
       DESTROY(true);
     }
+
+    //Register with SDG
+    #ifndef LOCAL_CLONE
+    X->shipDamageGeraet = cxn->sdg;
+    cxn->sdg->addRemoteShip(X, inputChannel);
+    #endif /* LOCAL_CLONE */
   }
 }

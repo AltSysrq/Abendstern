@@ -30,6 +30,14 @@ ShipDamageGeraet::ShipDamageGeraet(AsyncAckGeraet* aag)
   AAGReceiver(aag, InputNetworkGeraet::DSIntrinsic)
 { }
 
+ShipDamageGeraet::~ShipDamageGeraet() {
+  //Must remove reference to self in all remote ships
+  for (map<const Ship*,NetworkConnection::channel>::const_iterator it =
+          remoteShips.begin();
+       it != remoteShips.end(); ++it)
+    const_cast<Ship*>(it->first)->shipDamageGeraet = NULL;
+}
+
 InputNetworkGeraet* ShipDamageGeraet::create(NetworkConnection* cxn) throw() {
   return cxn->sdg;
 }
@@ -57,7 +65,12 @@ void ShipDamageGeraet::delLocalShip(NetworkConnection::channel chan) throw() {
 void ShipDamageGeraet::shipBlastCollision(const Ship* ship, const Blast* blast)
 throw() {
   //Ignore if not registered
-  if (!remoteShips.count(ship)) return;
+  if (!remoteShips.count(ship)) {
+    #ifdef DEBUG
+    cerr << "Warning: Ignoring blast against unknown ship " << ship << endl;
+    #endif
+    return;
+  }
 
   byte packet[PACKET_SIZE + NetworkConnection::headerSize];
   byte* pack = packet+NetworkConnection::headerSize;
@@ -71,6 +84,7 @@ throw() {
   io::write(pack, (Uint16)(65536.0f*blast->getFalloff()));
   io::write(pack, (Uint16)(128.0f*blast->getStrength()));
   io::write(pack, (Uint16)(65536.0f*blast->getSize()));
+  io::write(pack, (byte)(blast->blame));
   assert(pack == packet+sizeof(packet));
   send(packet, sizeof(packet));
 }
@@ -99,15 +113,36 @@ throw() {
   io::read(data, size);
   io::read(data, blame);
 
-  if (!localShips.count(chan)) return;
+  if (!localShips.count(chan)) {
+    #ifdef DEBUG
+    cerr << "Warning: Ignoring remote damage to unknown ship channel "
+         << chan << endl;
+    #endif
+    return;
+  }
 
   Ship* ship = localShips[chan];
   float* tempdat = ship->temporaryZero();
   ship->teleport(sx/512.0f, sy/512.0f, theta/255.0f*pi*2.0f);
   //TODO: translate blame
   Blast blast(ship->getField(), blame, bx/512.0f, by/512.0f,
-              falloff/65536.0f,
+              falloff/65536.0f, strength/64.0f,
               true, size/65536.0f, false, ship->isDecorative(), true);
-  ship->collideWith(&blast);
-  ship->restoreFromZero(tempdat);
+  if (!ship->collideWith(&blast)) {
+    //Remove from field and free
+    ship->getField()->remove(ship);
+    ship->del();
+    //Deregister ahead of time (since the ship might have exactly zero
+    //cells, and we could get more Blasts)
+    for (map<NetworkConnection::channel,Ship*>::iterator it =localShips.begin();
+         it != localShips.end(); ++it) {
+      if (it->second == ship) {
+        localShips.erase(it);
+        break;
+      }
+    }
+  } else {
+    ship->restoreFromZero(tempdat);
+    assert(ship->cells.size());
+  }
 }

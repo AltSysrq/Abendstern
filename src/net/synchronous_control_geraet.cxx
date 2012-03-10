@@ -224,6 +224,7 @@ throw() {
         }
 
         cxn->inchannels[chan] = creator(cxn);
+        cxn->inchannels[chan]->inputChannel = chan;
       }
 
       //Done processing, acknowledge packet

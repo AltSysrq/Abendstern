@@ -14,6 +14,10 @@
  * Defines the interface common to all input network Geräte.
  */
 class InputNetworkGeraet: public AObject {
+  friend class SynchronousControlGeraet;
+protected:
+  ///The input channel that packets are received through
+  NetworkConnection::channel inputChannel;
 public:
   /**
    * DeletionStrategies inform NetworkConnection and the

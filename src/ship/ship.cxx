@@ -1075,16 +1075,25 @@ bool Ship::collideWith(GameObject* other) noth {
   }
 
   if (typeid(*other)==typeid(Blast)) {
+    Blast* blast=(Blast*)other;
+    //Compensate for Blasts from the other decoration
+    if (blast->isDecorative() != this->isDecorative()) return true;
     /* If we are remote, just calculate
      * velocity change and forward the blast
-     * to the remote peer. Ignore shields.
+     * to the remote peer.
      */
+    if (isRemote && shipDamageGeraet && blast->causesDamage()
+    &&  blast->isDecorative() == this->isDecorative())
+      shipDamageGeraet->shipBlastCollision(this, blast);
 
     /* Since we integrate shield collision with our own,
      * we must pass this on to all Shields as well (it
      * is OK if no collision actually occurred).
+     *
+     * (Collide the shields even if remote, so that we don't
+     * have to wait for confirmation.)
      */
-    if (!isRemote) for (unsigned i=0; i<shields.size(); ++i) {
+    for (unsigned i=0; i<shields.size(); ++i) {
       /* A Shield will never die from collision,
        * so it's OK to ignore the return value.
        */
@@ -1097,9 +1106,6 @@ bool Ship::collideWith(GameObject* other) noth {
     }
 
     bool rootDestroyed=false;
-    Blast* blast=(Blast*)other;
-    //Compensate for Blasts from the other decoration
-    if (blast->isDecorative() != this->isDecorative()) return true;
     float dx, dy;
     pair<float,float> edge;
     Cell* maxStrengthCell=NULL;
@@ -1109,7 +1115,8 @@ bool Ship::collideWith(GameObject* other) noth {
       if (cells[i]->isEmpty) continue;
       pair<float,float> cc=cellCoord(this, cells[i]);
 
-      edge=closestEdgePoint(*cells[i]->getCollisionBounds(), make_pair(blast->getX(), blast->getY()));
+      edge=closestEdgePoint(*cells[i]->getCollisionBounds(),
+                            make_pair(blast->getX(), blast->getY()));
       dx=edge.first-blast->getX(), dy=edge.second-blast->getY();
       //See if it would be better to use the centre of the cell than the edge
       float cdx = cc.first-blast->getX(), cdy=cc.second-blast->getY();
@@ -1126,13 +1133,16 @@ bool Ship::collideWith(GameObject* other) noth {
        * //We actually care about the edge->ship, not cell->ship
        * cellToShipAngle=atan2(edge.second-centre.second,
        *                       edge.first -centre.first);
-       * //We should consider the blast to be comming from the angle at which is the closest point
-       * blastToCellAngle=atan2(blast->getY()-edge.second, blast->getX()-edge.first);
+       * //We should consider the blast to be comming from the angle at
+       * //which is the closest point
+       * blastToCellAngle=atan2(blast->getY()-edge.second,
+       *                        blast->getX()-edge.first);
        **/
 
       float distance=sqrt(dx*dx + dy*dy);
 
-      float strength=blast->getStrength(distance), movementStrength=blast->getStrength(distance/2);
+      float strength=blast->getStrength(distance),
+            movementStrength=blast->getStrength(distance/2);
       if (movementStrength==0) continue;
       totalStrength += strength;
       if (strength>maxStrength) {
@@ -1140,7 +1150,8 @@ bool Ship::collideWith(GameObject* other) noth {
         maxStrengthCell = cells[i];
       }
       //Velocity adjustments
-      applyCollision(edge.first, edge.second, strength, blast->getX(), blast->getY());
+      applyCollision(edge.first, edge.second, strength, blast->getX(),
+                     blast->getY());
     }
 
     effects->impact(totalStrength/mass);
@@ -1156,19 +1167,28 @@ bool Ship::collideWith(GameObject* other) noth {
     float maxCellDamage = 0;
     for (unsigned int i=0; i<cells.size() && blast->causesDamage(); ++i) {
       if (cells[i]->isEmpty) continue;
-      pair<float,float> cc=closestEdgePoint(*cells[i]->getCollisionBounds(), make_pair(blast->getX(), blast->getY()));
+      pair<float,float> cc=closestEdgePoint(*cells[i]->getCollisionBounds(),
+                                            make_pair(blast->getX(),
+                                                      blast->getY()));
       float dx=cc.first-blast->getX(), dy=cc.second-blast->getY();
       float dist=sqrt(dx*dx + dy*dy);
       float strength=blast->getStrength(dist);
       if (!isRemote && strength > 0) {
         //Check for possible damage reduction
         cells[i]->physicsRequire(PHYS_CELL_DS_NEAREST_BIT);
-        if (cells[i]->physics.distanceDS >= 0 && !stealthMode && !shieldsDeactivated && !isFragment) {
-          float maxRedByDist = DAM_DISP_MAX / (1 + DAM_DISP_DIST_MUL*cells[i]->physics.distanceDS/STD_CELL_SZ);
+        if (cells[i]->physics.distanceDS >= 0
+        &&  !stealthMode
+        &&  !shieldsDeactivated
+        &&  !isFragment) {
+          float maxRedByDist = DAM_DISP_MAX /
+              (1 + DAM_DISP_DIST_MUL*cells[i]->physics.distanceDS/STD_CELL_SZ);
           float maxRedByCap = currentCapacitance / DAM_DISP_CAP_MUL;
-          float maxRedByTemp = (MAX_TEMP - heatInfo.temperature) / DAM_DISP_TEMP_MUL;
-          float maxRedByPDist = strength / (1 + DAM_DISP_DIST_MUL*cells[i]->physics.distanceDS/STD_CELL_SZ);
-          float reduction = min(min(maxRedByDist, maxRedByCap), min(maxRedByTemp, maxRedByPDist));
+          float maxRedByTemp = (MAX_TEMP - heatInfo.temperature) /
+                               DAM_DISP_TEMP_MUL;
+          float maxRedByPDist = strength /
+              (1 + DAM_DISP_DIST_MUL*cells[i]->physics.distanceDS/STD_CELL_SZ);
+          float reduction = min(min(maxRedByDist, maxRedByCap),
+                                min(maxRedByTemp, maxRedByPDist));
 
           //Apply if possible
           if (reduction > 0) {
@@ -1280,8 +1300,6 @@ bool Ship::collideWith(GameObject* other) noth {
             preremove(frag->cells[j]);
             //Transfer ownership
             frag->cells[j]->parent=frag;
-            //Reset its index
-            frag->cells[j]->netIndex=-1;
             if (frag->cells[j]->systems[0]) {
               frag->cells[j]->systems[0]->parent=frag;
               frag->cells[j]->systems[0]->parentChanged();
@@ -1295,9 +1313,9 @@ bool Ship::collideWith(GameObject* other) noth {
             for (unsigned int k=0; k<cells.size(); ++k) {
               if (cells[k]==frag->cells[j]) {
                 if (renderer) renderer->cellRemoved(cells[k]);
-                cells.erase(cells.begin() + k);
                 if (networkCells.size() && !cells[k]->isEmpty)
                   networkCells[cells[k]->netIndex] = NULL;
+                cells.erase(cells.begin() + k);
 
                 //Looks odd, but i is unsigned...
                 if (k<=i && i<(((unsigned int)0)-1)) --i;
@@ -1306,7 +1324,8 @@ bool Ship::collideWith(GameObject* other) noth {
               }
             }
 
-            cerr << "Unable to find a match for cell: " << frag->cells[j] << endl;
+            cerr << "Unable to find a match for cell: " << frag->cells[j]
+                 << endl;
             exit(EXIT_PROGRAM_BUG);
 
             cellRemoved:;

@@ -40,6 +40,7 @@ public:
    * Constructs an SDG using the given AAG.
    */
   ShipDamageGeraet(AsyncAckGeraet*);
+  virtual ~ShipDamageGeraet();
 
   /**
    * Called by a remote Ship to notify the appropriate peer of damage.

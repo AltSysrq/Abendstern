@@ -64,7 +64,9 @@ bool PlasmaFire::update(float et) noth {
 
   float desaturation = rand()/(float)RAND_MAX;
   float colour[3] = { 1, 0.5f + desaturation/2, desaturation };
-  field->addBegin(new Explosion(field, (rand() & 3? Explosion::Simple : Explosion::Flame),
+  field->addBegin(new Explosion(field,
+                                (rand() & 3? Explosion::Simple
+                                           : Explosion::Flame),
                                 colour[0], colour[1], colour[2],
                                 0.100f*power, //sizeAt1Sec
                                 0.003f*power, //density

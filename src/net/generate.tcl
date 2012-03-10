@@ -65,12 +65,18 @@
 #     Added to the end of the INO class header (within the class).
 #   inoconstructor CODE
 #     Added to the end of the initialiser list for the INO class.
+#   inodestructor CODE
+#     Run in the INO destructor.
 #   enoheader CODE
 #     Added to the end of the ENO class header (within the class).
 #   enoconstructor CODE
 #     Added to the end of the initialiser list for the ENO class.
+#   enodestructor CODE
+#     Run in the ENO destructor.
 #   impl CODE
 #     Added to the end of the implementation.
+#   init CODE
+#     The body of the init() function of the ENO class.
 #   update-control
 #   compare-control
 #   transmission-control
@@ -152,6 +158,9 @@
 #     Does not give encoding or decoding rules; rather, it provides C++ code
 #     to run to assign X to a new instance of the appropriate type. It is not
 #     part of the section proper, and is thus not copied by extension.
+#
+#     If the preprocessor macro LOCAL_CLONE is defined, the code is being
+#     excuted to create a remote mirror instead of an imported object.
 #
 # Additionally, at the top-level, commands
 #   verbatimh CODE
@@ -285,6 +294,7 @@ class INO_$name: public ImportedGameObject {
   NetworkConnection* cxn;
 public:
   INO_${name}(NetworkConnection* cxn);
+  virtual ~INO_${name}();
   static const NetworkConnection::geraet_num num;
 
 protected:
@@ -303,6 +313,9 @@ private:
 class ENO_$name: public ExportedGameObject {
 public:
   ENO_${name}(NetworkConnection*, $name*);
+  virtual ~ENO_${name}();
+
+  virtual void init() throw();
 
 protected:
   virtual bool shouldUpdate() const throw();
@@ -321,6 +334,10 @@ private:
 : ImportedGameObject($byteOffset, cxn_),
   cxn(cxn_) [cxxj inoconstructor]
 { }
+
+INO_${name}::~INO_${name}() {
+  [cxxj inodestructor]
+}
 
 const NetworkConnection::geraet_num INO_${name}::num =
     NetworkConnection::registerGeraetCreator(&create);
@@ -379,11 +396,21 @@ ENO_${name}::ENO_${name}(NetworkConnection* cxn, $name* obj)
   dirty = true;
 }
 
+ENO_${name}::~ENO_${name}() {
+  [cxxj enodestructor]
+}
+
+void ENO_${name}::init() throw() {
+  $name*const X = ($name*)local.ref;
+  [cxxj init]
+}
+
 $name* ENO_${name}::clone(const $name* src, NetworkConnection* cxn)
 const throw() {
   #define X src
   #define field (&cxn->field)
   #define DESTROY(x) assert(!(x))
+  #define LOCAL_CLONE
   const unsigned T = cxn->getLatency();
   [cxxj declaration]
   [jxxc extract]
@@ -392,6 +419,7 @@ const throw() {
   #define X dst
   $typeConstructor
   [cxxj post-set]
+  #undef LOCAL_CLONE
   #undef X
   #undef field
   #undef DESTROY
@@ -802,6 +830,7 @@ puts $cout "
 
   assert(ego);
   cxn->anticipation->openChannel(ego, num);
+  ego->init();
   return ego;
 }"
 

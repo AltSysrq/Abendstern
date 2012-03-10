@@ -4,8 +4,12 @@
  * @brief Implementation of src/ship/cell/empty_cell.hxx
  */
 
+#include <cmath>
+
 #include "empty_cell.hxx"
 #include "src/ship/auxobj/plasma_fire.hxx"
+
+using namespace std;
 
 EmptyCell::EmptyCell(Ship* ship, Cell* neighbour)
 : Cell(ship), fire(NULL)
@@ -37,7 +41,7 @@ EmptyCell::EmptyCell(Ship* ship, Cell* neighbour)
   physics.nextDepDS = NULL;
   physics.distanceDS = -1;
   physics.reinforcement = 1;
-  physics.valid = PHYS_CELL_ALL;
+  physics.valid = PHYS_CELL_ALL & ~PHYS_CELL_LOCATION_PROPERTIES_BIT;
 }
 
 EmptyCell::~EmptyCell() {
