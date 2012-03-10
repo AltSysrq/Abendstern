@@ -1,6 +1,6 @@
 @ECHO OFF
 
-ECHO Waiting fo Abendstern to exit...
+ECHO Waiting for Abendstern to exit...
 PING -n 10 localhost >NUL 2>NUL
 
 IF NOT EXIST bin\NUL MD bin
