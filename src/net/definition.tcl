@@ -767,7 +767,7 @@ type Ship {
   toggle ;# End no updates
   void {
     declaration { bool destruction; }
-    extract { destruction = false; }
+    update { destruction = false; }
   }
   arr {unsigned char} 4094  1 cellDamage        {ui 1 {NAME} {
     extract {
@@ -868,6 +868,16 @@ type Ship {
       NEAR += fabs((x.NAME-y.NAME)/25.6f);
     }
   }}
+  void { update {
+    if (destruction) {
+      //Call detectPhysics() on all systems
+      for (unsigned i=0; i<X->cells.size(); ++i)
+        for (unsigned s=0; s<2; ++s)
+          if (X->cells[i]->systems[s])
+            X->cells[i]->systems[s]->detectPhysics();
+    }
+  }}
+
   # 8192 so that len%stride == 0
   arr bool            8192  8 systemExist       {
     bit 1 {NAME} {
@@ -1316,6 +1326,12 @@ type Ship {
       #endif
       DESTROY(true);
     }
+
+    //Call detectPhysics() on all systems
+    for (unsigned i=0; i<X->cells.size(); ++i)
+      for (unsigned s=0; s<2; ++s)
+        if (X->cells[i]->systems[s])
+          X->cells[i]->systems[s]->detectPhysics();
 
     //Register with SDG
     #ifndef LOCAL_CLONE
