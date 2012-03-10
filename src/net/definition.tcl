@@ -84,19 +84,13 @@ prototype GameObject {
   fixed u2 128.0f x {
     default 128
     validate {
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     }
   }
   fixed u2 128.0f y {
     default 128
     validate {
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     }
   }
 }
