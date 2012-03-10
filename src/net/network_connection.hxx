@@ -12,6 +12,7 @@
 #include <set>
 #include <string>
 #include <bitset>
+#include <queue>
 
 #include "src/sim/game_field.hxx"
 #include "packet_processor.hxx"
@@ -23,6 +24,8 @@ class NetworkAssembly;
 class SynchronousControlGeraet;
 class LatDiscGeraet;
 class AsyncAckGeraet;
+class ShipDamageGeraet;
+class AnticipatoryChannels;
 
 /**
  * Encapsulates all information pertaining to a connection to another peer.
@@ -131,6 +134,16 @@ private:
   //The time since we last emptied ignoredExports into candidateExports.
   unsigned timeSinceRetriedTransients;
 
+  //Queue of channel numbers to close once safe
+  std::queue<channel> channelsToClose;
+
+  //Networking statistics
+  Uint32 lastStatsUpdate, connectionStart;
+  unsigned packetInCount, packetInCountSec, packetInCountSecMax;
+  unsigned packetOutCount, packetOutCountSec, packetOutCountSecMax;
+  unsigned long long dataInCount, dataInCountSec, dataInCountSecMax;
+  unsigned long long dataOutCount, dataOutCountSec, dataOutCountSecMax;
+
 public:
   ///The endpoint of the remote peer
   const Antenna::endpoint endpoint;
@@ -142,6 +155,10 @@ public:
   AsyncAckGeraet*const aag;
   ///The LDG used with this NetworkConnection
   LatDiscGeraet* const ldg;
+  ///The SDG used with this NetworkConnection
+  ShipDamageGeraet*const sdg;
+  ///AnticipatoryChannels service used with this NetworkConnection
+  AnticipatoryChannels*const anticipation;
 
   /**
    * Constructs a NetworkConnection within the given assembly.
@@ -280,6 +297,31 @@ public:
    * there are no references.
    */
   float distanceOf(const GameObject*) const throw();
+
+  /**
+   * Queues the given channel number for closing at a later time, when it
+   * is safe to do so.
+   * This is typically used from within OutputNetworkGeraet functions which
+   * cannot safely directly close the channel at the time.
+   */
+  void closeChannelWhenSafe(channel chan) throw() {
+    channelsToClose.push(chan);
+  }
+
+  /**
+   * Replaces the OutputNetworkGeraet* associated with the given channel
+   * (which MUST be open) to the new one given.
+   *
+   * Unless the new value is the same as the old, the old Gerät will be
+   * deleted.
+   *
+   * setChannel() will be called to set its output channel, in any case.
+   *
+   * @note The remote peer has no way to know this has happened. There are
+   * only a few isolated cases where this is the desired action.
+   * (See the anticipatory channel system.)
+   */
+  void transmogrify(channel, OutputNetworkGeraet*) throw();
 
 private:
   //Called by NetworkAssembly when an exportable object is added

@@ -120,6 +120,7 @@ static void initVAO() {
 
 EnergyCharge::EnergyCharge(GameField* field, const Ship* par, float _x, float _y, float _theta, float power) :
   GameObject(field, _x, _y, par->getVX()+SPEED*cos(_theta), par->getVY()+SPEED*sin(_theta)),
+  explodeListeners(NULL),
   parent(par), intensity(power), theta(_theta), tcos(cos(theta)), tsin(sin(theta)),
   exploded(false), blame(par->blame)
 {
@@ -132,7 +133,8 @@ EnergyCharge::EnergyCharge(GameField* field, const Ship* par, float _x, float _y
 
 EnergyCharge::EnergyCharge(GameField* field, float x, float y,
                            float vx, float vy, float _theta, float _inten)
-: GameObject(field, x, y, vx, vy), parent(NULL),
+: GameObject(field, x, y, vx, vy),
+  explodeListeners(NULL), parent(NULL),
   intensity(_inten), theta(_theta),
   tcos(cos(theta)), tsin(sin(theta)), exploded(false), blame(-1)
 {
@@ -144,6 +146,12 @@ EnergyCharge::EnergyCharge(GameField* field, float x, float y,
   isRemote=true;
   collisionBounds.push_back(&collisionRectangle);
   initVAO();
+}
+
+EnergyCharge::~EnergyCharge() {
+  //Remove any ExplodeListener list we may yet have
+  if (explodeListeners)
+    explodeListeners->prv = NULL;
 }
 
 bool EnergyCharge::update(float et) noth {
@@ -206,12 +214,22 @@ bool EnergyCharge::collideWith(GameObject* other) noth {
 
 void EnergyCharge::explode(GameObject* other) noth {
   exploded=true;
+  if (!other) other = this;
   Explosion ex(field, Explosion::Simple,
                getColourR(intensity),
                getColourG(intensity),
-               getColourB(intensity), 0.15f*(1+intensity), 0.001f*(1+intensity*10), 1000.0f, x, y,
+               getColourB(intensity), 0.15f*(1+intensity),
+               0.001f*(1+intensity*10), 1000.0f,
+               x, y,
                other->getVX(), other->getVY());
   ex.multiExplosion(1);
+
+  //Set velocity to match other for networking purposes
+  vx = other->getVX();
+  vy = other->getVY();
+
+  for (ExplodeListener<EnergyCharge>* l = explodeListeners; l; l = l->nxt)
+    l->exploded(this);
 }
 
 float EnergyCharge::getRotation() const noth {

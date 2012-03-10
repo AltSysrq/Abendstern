@@ -18,6 +18,7 @@
 
 #include "src/sim/game_object.hxx"
 #include "src/sim/objdl.hxx"
+#include "explode_listener.hxx"
 
 class Ship;
 
@@ -37,6 +38,9 @@ class Ship;
 class Missile: public GameObject {
   friend class INO_Missile;
   friend class ENO_Missile;
+  friend class ExplodeListener<Missile>;
+
+  ExplodeListener<Missile>* explodeListeners;
 
   ObjDL trail, target, parent;
   int level;
@@ -50,6 +54,8 @@ class Missile: public GameObject {
   //Acceleration to send to remote peers, and to use for tracking when
   //this is a remote object.
   float ax, ay;
+  //Similar to ax and ay, but used for the direction of the trail
+  float xdir, ydir;
 
   //Networking constructor
   Missile(GameField*, int, float, float, float, float, float, float,
@@ -69,6 +75,8 @@ class Missile: public GameObject {
    */
   Missile(GameField* field, int level, float x, float y, float vx, float vy,
           Ship* par, GameObject* tgt);
+  virtual ~Missile();
+
   virtual bool update(float) noth;
   virtual void draw() noth;
   virtual float getRadius() const noth;

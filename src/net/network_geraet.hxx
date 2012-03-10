@@ -14,6 +14,10 @@
  * Defines the interface common to all input network Geräte.
  */
 class InputNetworkGeraet: public AObject {
+  friend class SynchronousControlGeraet;
+protected:
+  ///The input channel that packets are received through
+  NetworkConnection::channel inputChannel;
 public:
   /**
    * DeletionStrategies inform NetworkConnection and the
@@ -131,5 +135,11 @@ public:
   void setChannel(NetworkConnection::channel chan) throw() {
     channel = chan;
   }
+
+  /**
+   * Called by the SynchronousControlGeraet when the channel is confirmed
+   * open. Default does nothing.
+   */
+  virtual void outputOpen() throw() {}
 };
 #endif /* NETWORK_GERAET_HXX_ */

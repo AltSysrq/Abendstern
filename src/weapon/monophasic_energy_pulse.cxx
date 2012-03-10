@@ -71,6 +71,7 @@ END_DELAY_SHADER(static mepShader);
 
 MonophasicEnergyPulse::MonophasicEnergyPulse(GameField* field, Ship* par, float x, float y, float theta, unsigned el)
 : GameObject(field, x, y, par->getVX() + getSpeed(el)*cos(theta), par->getVY() + getSpeed(el)*sin(theta)),
+  explodeListeners(NULL),
   deathWaveNumber(rand()%MAX_LIFE_WAVES+1), timeAlive(0), power(el*POWER_MUL),
   previousFrameWasFinal(false), parent(par), exploded(false), blame(par->blame)
 {
@@ -83,9 +84,10 @@ MonophasicEnergyPulse::MonophasicEnergyPulse(GameField* field, Ship* par, float 
 }
 
 MonophasicEnergyPulse::MonophasicEnergyPulse(GameField* field, float x, float y,
-                                             float vx, float vy, unsigned t, unsigned el)
+                                             float vx, float vy, float pow, unsigned et)
 : GameObject(field, x, y, vx, vy),
-  deathWaveNumber(100), timeAlive(t), power(el*POWER_MUL),
+  explodeListeners(NULL),
+  deathWaveNumber(100), timeAlive(et), power(pow),
   previousFrameWasFinal(false), parent(NULL), exploded(false),
   blame(0xFFFFFF)
 {
@@ -95,6 +97,12 @@ MonophasicEnergyPulse::MonophasicEnergyPulse(GameField* field, float x, float y,
   isRemote=true;
   colrect.radius=SIZE*1.5f;
   collisionBounds.push_back(&colrect);
+}
+
+MonophasicEnergyPulse::~MonophasicEnergyPulse() {
+  //Remove any ExplodeListener chain attached
+  if (explodeListeners)
+    explodeListeners->prv = NULL;
 }
 
 bool MonophasicEnergyPulse::update(float et) noth {
@@ -114,7 +122,7 @@ bool MonophasicEnergyPulse::update(float et) noth {
   float oldAngle = fmod(oldTime*FREQUENCY*2*pi, 2*pi);
   float newAngle = fmod(timeAlive*FREQUENCY*2*pi, 2*pi);
   unsigned wavesAlive = (unsigned)2*timeAlive*FREQUENCY;
-  if (wavesAlive == deathWaveNumber) return false;
+  if (wavesAlive == deathWaveNumber && !isRemote) return false;
 
   //Check if we need to become collideable
   if (!isRemote) {
@@ -168,11 +176,21 @@ CollisionResult MonophasicEnergyPulse::checkCollision(GameObject* obj) noth {
 }
 
 void MonophasicEnergyPulse::explode(GameObject* obj) noth {
+  if (!obj)
+    obj = this;
   if (EXPCLOSE(x,y))
     field->add(new Explosion(field, Explosion::Simple, 0.3f, 0.5f, 1.0f,
                              1.0f, 0.01f, 1000,
                              x, y, obj->getVX(), obj->getVY()));
   exploded=true;
+  //Reset velocity to match obj so that the velocity of the explosion
+  //can be communicated over the network.
+  vx = obj->getVX();
+  vy = obj->getVY();
+
+  for (ExplodeListener<MonophasicEnergyPulse>* l = explodeListeners; l;
+       l = l->nxt)
+    l->exploded(this);
 }
 
 bool MonophasicEnergyPulse::collideWith(GameObject* obj) noth {

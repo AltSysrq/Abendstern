@@ -65,10 +65,11 @@ using namespace std;
 Missile::Missile(GameField* field, int lvl, float x, float y, float vx,
                  float vy, Ship* par, GameObject* tgt)
 : GameObject(field, x, y, vx, vy),
+  explodeListeners(NULL),
   trail(NULL), target(tgt), parent(par),
   level(lvl), timeAlive(0), exploded(false),
   blame(par->blame),
-  ax(0), ay(0)
+  ax(0), ay(0), xdir(0), ydir(0)
 {
   collisionBounds.push_back(&colrect);
   classification = GameObject::HeavyWeapon;
@@ -81,14 +82,21 @@ Missile::Missile(GameField* field, int lvl, float x, float y, float vx,
 Missile::Missile(GameField* field, int lvl, float x, float y, float vx,
                  float vy, float ax_, float ay_, float ta)
 : GameObject(field, x, y, vx, vy),
+  explodeListeners(NULL),
   trail(NULL), target(NULL), parent(NULL),
   level(lvl), timeAlive(ta), exploded(false), blame(0xFFFFFF),
-  ax(ax_), ay(ay_)
+  ax(ax_), ay(ay_), xdir(0), ydir(0)
 {
   isExportable=true;
   isRemote=true;
   includeInCollisionDetection=false;
   decorative=true;
+}
+
+Missile::~Missile() {
+  //Remove any ExplodeListener chain attached
+  if (explodeListeners)
+    explodeListeners->prv = NULL;
 }
 
 bool Missile::update(float et) noth {
@@ -134,20 +142,23 @@ bool Missile::update(float et) noth {
     vx -= ax*currentFrameTime;
     vy -= ay*currentFrameTime;
 
-    if (EXPCLOSE(x,y) && !headless) {
-      if (!trail.ref) {
-        trail.assign(new LightTrail(field, 3000, 64, 4*RADIUS, RADIUS,
-                                    0.8f, 0.8f, 1.0f, 1.0f,
-                                    0.0f, -0.5f, -1.0f, -2.0f));
-        field->add(trail.ref);
-      }
-      LightTrail* trail=(LightTrail*)this->trail.ref;
-      trail->emit(x, y, vx-dx/dist*accel*1000*level,
-                  vy-dy/dist*accel*1000*level);
-    }
+    xdir = dx/dist*accel;
+    ydir = dy/dist*accel;
   } else if (isRemote) {
     vx += ax*et;
     vy += ay*et;
+  }
+  if (EXPCLOSE(x,y) && !headless && currentVFrameLast
+  &&  xdir != 0 && ydir != 0
+  &&  (isRemote || target.ref)) {
+    if (!trail.ref) {
+      trail.assign(new LightTrail(field, 3000, 64, 4*RADIUS, RADIUS,
+                                  0.8f, 0.8f, 1.0f, 1.0f,
+                                  0.0f, -0.5f, -1.0f, -2.0f));
+      field->add(trail.ref);
+    }
+    LightTrail* trail=(LightTrail*)this->trail.ref;
+    trail->emit(x, y, vx-xdir*1000*level, vy-ydir*1000*level);
   }
 
   //Friction
@@ -215,10 +226,19 @@ const vector<CollisionRectangle*>* Missile::getCollisionBounds() noth {
 void Missile::explode(GameObject* ref) noth {
   if (!ref) ref=this;
   if (!isRemote)
-    field->inject(new Blast(field, blame, x, y, STD_CELL_SZ*3.5f, level*DAMAGE_MUL, true, RADIUS));
+    field->inject(new Blast(field, blame, x, y, STD_CELL_SZ*3.5f,
+                            level*DAMAGE_MUL, true, RADIUS));
   if (EXPCLOSE(x,y))
     field->add(new Explosion(field, Explosion::Simple, 0.8f, 0.8f, 1.0f,
                              sqrt((float)level)*2.5f, level/2000.0f,
                              1000, x, y, ref->getVX(), ref->getVY()));
+
+  //Reset velocities to that of ref so that the explosion's velocity
+  //can be communicated over the network.
+  vx = ref->getVX();
+  vy = ref->getVY();
+
   exploded=true;
+  for (ExplodeListener<Missile>* l = explodeListeners; l; l = l->nxt)
+    l->exploded(this);
 }

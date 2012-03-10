@@ -31,11 +31,12 @@ ImportedGameObject::~ImportedGameObject() {
 }
 
 void ImportedGameObject::modified() throw() {
-  if (created) {
+  if (!created) {
     construct();
     created = true;
     fill(dirty.begin(), dirty.end(), false);
-    field->add(object);
+    if (object)
+      field->add(object);
   } else if (object) {
     update();
     fill(dirty.begin(), dirty.end(), false);
@@ -74,6 +75,8 @@ void ExportedGameObject::update(unsigned et) throw() {
       updateRemote();
       dirty = true;
       timeUntilNextUpdate = UPDATE_DELAY;
+    } else if (timeUntilNextUpdate <= 0) {
+      timeUntilNextUpdate = UPDATE_DELAY;
     }
   } else {
     //If we believed the object was still alive, send death update.
@@ -84,12 +87,16 @@ void ExportedGameObject::update(unsigned et) throw() {
     } else {
       //Close channel once all is sent.
       if (isSynchronised()) {
-        cxn->scg->closeChannel(channel);
-        //this has been deleted
+        cxn->closeChannelWhenSafe(channel);
         return;
       }
     }
   }
 
   OutputBlockGeraet::update(et);
+}
+
+void ExportedGameObject::forceUpdate() throw() {
+  updateRemote();
+  dirty = true;
 }

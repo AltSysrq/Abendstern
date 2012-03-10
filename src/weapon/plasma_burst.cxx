@@ -34,6 +34,7 @@ using namespace std;
 PlasmaBurst::PlasmaBurst(GameField* field, Ship* par, float x, float y,
                          float svx, float svy, float theta, float initmass) :
   GameObject(field, x, y, svx+SPEED*cos(theta), svy+SPEED*sin(theta)),
+  explodeListeners(NULL),
   parent(par),
   mass(initmass), direction(theta), timeUntilArm(50),
   inParentsShields(true), hitParentsShields(true), timeSinceLastExplosion(999),
@@ -49,7 +50,7 @@ PlasmaBurst::PlasmaBurst(GameField* field, Ship* par, float x, float y,
 PlasmaBurst::PlasmaBurst(GameField* field, float x, float y,
                          float vx, float vy, float theta, float initmass)
 : GameObject(field, x, y, vx, vy),
-  parent(NULL),
+  explodeListeners(NULL), parent(NULL),
   mass(initmass), direction(theta), timeUntilArm(50),
   inParentsShields(true), hitParentsShields(true), timeSinceLastExplosion(999),
   exploded(false), blame(0xFFFFFF)
@@ -60,6 +61,12 @@ PlasmaBurst::PlasmaBurst(GameField* field, float x, float y,
   decorative=true;
   includeInCollisionDetection=false;
   collisionBounds.push_back(&colrect);
+}
+
+PlasmaBurst::~PlasmaBurst() {
+  //Remove any ExplodeListener chain attached
+  if (explodeListeners)
+    explodeListeners->prv = NULL;
 }
 
 bool PlasmaBurst::update(float et) noth {
@@ -148,7 +155,8 @@ bool PlasmaBurst::collideWith(GameObject* other) noth {
 }
 
 void PlasmaBurst::explode(GameObject* other) noth {
-  exploded=true;
+  if (!other) other = this;
+
   if (EXPCLOSE(x,y)) {
     //Quantize mass to nearest 5 for caching
     float massQ=((int)((mass+5.0f)/5.0f))*5.0f;
@@ -159,6 +167,15 @@ void PlasmaBurst::explode(GameObject* other) noth {
                  x, y, other->getVX(), other->getVY());
     ex.multiExplosion(2);
   }
+
+  exploded=true;
+  //Reset velocities to that of other so that the velocity of the explosion
+  //can be communicated over the network.
+  vx = other->getVX();
+  vy = other->getVY();
+
+  for (ExplodeListener<PlasmaBurst>* l = explodeListeners; l; l = l->nxt)
+    l->exploded(this);
 }
 
 float PlasmaBurst::getRadius() const noth {

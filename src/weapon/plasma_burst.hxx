@@ -11,6 +11,7 @@
 
 #include "src/sim/game_object.hxx"
 #include "src/sim/objdl.hxx"
+#include "explode_listener.hxx"
 
 class Ship;
 
@@ -29,7 +30,11 @@ class Ship;
 class PlasmaBurst : public GameObject {
   friend class INO_PlasmaBurst;
   friend class ENO_PlasmaBurst;
+  friend class ExplodeListener<PlasmaBurst>;
+
   private:
+  ExplodeListener<PlasmaBurst>* explodeListeners;
+
   Ship* parent;
   float mass;
   float direction;
@@ -68,6 +73,8 @@ class PlasmaBurst : public GameObject {
    */
   PlasmaBurst(GameField* field, Ship* par, float x, float y, float sourceVX,
               float sourceVY, float theta, float mass);
+  virtual ~PlasmaBurst();
+
   virtual bool update(float) noth;
   virtual void draw() noth;
   virtual CollisionResult checkCollision(GameObject*) noth;

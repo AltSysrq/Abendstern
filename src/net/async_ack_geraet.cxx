@@ -127,6 +127,8 @@ AsyncAckGeraet::~AsyncAckGeraet() {
   for (set<AAGSender*>::const_iterator it = senders.begin();
        it != senders.end(); ++it)
     (*it)->aag = NULL;
+  //Don't need to release seqs, since we will only be deleted
+  //when the parent connection is.
 }
 
 void AsyncAckGeraet::update(unsigned et) throw() {
@@ -259,6 +261,7 @@ void AsyncAckGeraet::nak(seq_t seq) throw() {
 }
 
 void AsyncAckGeraet::add(seq_t seq, AAGSender* sender) noth {
+  assert(senders.count(sender) || static_cast<AAGSender*>(this) == sender);
   timeSinceTxn = 0;
   pendingOut.insert(make_pair(seq, sender));
   //If anything reuses this seq, the AAG will break (not as in
@@ -269,6 +272,7 @@ void AsyncAckGeraet::add(seq_t seq, AAGSender* sender) noth {
 
 void AsyncAckGeraet::remove(seq_t seq) noth {
   pendingOut.erase(seq);
+  cxn->release(seq);
 }
 
 bool AsyncAckGeraet::incomming(seq_t seq) noth {
@@ -307,6 +311,15 @@ void AsyncAckGeraet::assocSender(AAGSender* s) noth {
 }
 
 void AsyncAckGeraet::disassocSender(AAGSender* s) noth {
-  if (s != static_cast<AAGSender*>(this))
+  if (s != static_cast<AAGSender*>(this)) {
     senders.erase(s);
+    //Remove all packets associated with it
+    vector<seq_t> seqsToRemove;
+    for (pendingOut_t::const_iterator it = pendingOut.begin();
+         it != pendingOut.end(); ++it)
+      if (it->second == s)
+        seqsToRemove.push_back(it->first);
+    for (unsigned i=0; i<seqsToRemove.size(); ++i)
+      remove(seqsToRemove[i]);
+  }
 }

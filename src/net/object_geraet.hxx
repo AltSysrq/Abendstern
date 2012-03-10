@@ -138,6 +138,19 @@ public:
 
   virtual void update(unsigned) throw();
 
+  /**
+   * Forces the object to be updated immediately, regardless of
+   * shouldUpdate().
+   */
+  void forceUpdate() throw();
+
+  /**
+   * Called after the channel for the object has been opened and
+   * setChannel() called.
+   * Default does nothing.
+   */
+  virtual void init() throw() {}
+
 protected:
   /**
    * Compares the real local object with the remote mirror, and returns whether

@@ -30,6 +30,8 @@
 # decoding rules. On decoding (ie, parsing binary data), the rules are evaluated
 # in the order specified; on encoding, they are evaluated in reverse order.
 #
+# The rules can use the text @@@ to indicate the name of the current class.
+#
 # In the rules below, a PARMS argument is a list alternating between parm name
 # and parm argument. "Common parms" refers to the following:
 #   encode CODE
@@ -61,10 +63,20 @@
 #     the object must be updated.
 #   inoheader CODE
 #     Added to the end of the INO class header (within the class).
+#   inoconstructor CODE
+#     Added to the end of the initialiser list for the INO class.
+#   inodestructor CODE
+#     Run in the INO destructor.
 #   enoheader CODE
-#     Added to the end of the ENO class header (within the clgss).
+#     Added to the end of the ENO class header (within the class).
+#   enoconstructor CODE
+#     Added to the end of the initialiser list for the ENO class.
+#   enodestructor CODE
+#     Run in the ENO destructor.
 #   impl CODE
 #     Added to the end of the implementation.
+#   init CODE
+#     The body of the init() function of the ENO class.
 #   update-control
 #   compare-control
 #   transmission-control
@@ -106,6 +118,14 @@
 #     If no custom validator is given, an automatic one will be generated which
 #     ensures that the value is non-NaN and between min and max, inclusive
 #     (which default to -1e9 and +1e9, respectively).
+#   fixed BYTES MULT NAME PARMS
+#     Defines a floating-point number represented as a fixed-point value. The
+#     fixed-point is a BYTES-byte signed integer (same allowable values as ui).
+#     The fixed maps to floating as:
+#       FIXED = (inttype)FLOAT/MULT*maxvalue
+#       FLOAT = FIXED/(float)maxvalue*(float)MULT
+#     If BYTES is prefixed with 'u', the integer (and thus the fixed) will
+#     be unsigned.
 #   void PARMS
 #     Does nothing but hold PARMS, which are the common parms (minus encode
 #     and decode).
@@ -138,6 +158,9 @@
 #     Does not give encoding or decoding rules; rather, it provides C++ code
 #     to run to assign X to a new instance of the appropriate type. It is not
 #     part of the section proper, and is thus not copied by extension.
+#
+#     If the preprocessor macro LOCAL_CLONE is defined, the code is being
+#     excuted to create a remote mirror instead of an imported object.
 #
 # Additionally, at the top-level, commands
 #   verbatimh CODE
@@ -261,6 +284,7 @@ proc type {name contents} {
   # Evaluate contents
   namespace eval :: $contents
   whole-byte
+  set elements [string map [list @@@ $name] $elements]
 
   # Produce output
   puts $hout \
@@ -270,6 +294,7 @@ class INO_$name: public ImportedGameObject {
   NetworkConnection* cxn;
 public:
   INO_${name}(NetworkConnection* cxn);
+  virtual ~INO_${name}();
   static const NetworkConnection::geraet_num num;
 
 protected:
@@ -288,6 +313,9 @@ private:
 class ENO_$name: public ExportedGameObject {
 public:
   ENO_${name}(NetworkConnection*, $name*);
+  virtual ~ENO_${name}();
+
+  virtual void init() throw();
 
 protected:
   virtual bool shouldUpdate() const throw();
@@ -295,7 +323,7 @@ protected:
 
 private:
   void encode() throw();
-  $name* clone(const $name*) const throw();
+  $name* clone(const $name*, NetworkConnection*) const throw();
 
   [cxxj enoheader]
 };
@@ -304,8 +332,12 @@ private:
   puts $cout \
 "INO_${name}::INO_${name}(NetworkConnection* cxn_)
 : ImportedGameObject($byteOffset, cxn_),
-  cxn(cxn_)
+  cxn(cxn_) [cxxj inoconstructor]
 { }
+
+INO_${name}::~INO_${name}() {
+  [cxxj inodestructor]
+}
 
 const NetworkConnection::geraet_num INO_${name}::num =
     NetworkConnection::registerGeraetCreator(&create);
@@ -325,11 +357,11 @@ void INO_${name}::update() throw() {
 
 $name* INO_${name}::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
   const unsigned T = cxn->getLatency();
+  $name* X = NULL;
   [cxxj declaration]
   [cxxj decode validate]
-  $name* X;
   $typeConstructor
   [cxxj post-set]
   [cxxj set-reference]
@@ -348,7 +380,8 @@ throw () {
 }
 
 ENO_${name}::ENO_${name}(NetworkConnection* cxn, $name* obj)
-: ExportedGameObject($byteOffset, cxn, obj, clone(obj))
+: ExportedGameObject($byteOffset, cxn, obj, clone(obj, cxn))
+  [cxxj enoconstructor]
 {
   //Populate initial data
   #define X obj
@@ -360,12 +393,24 @@ ENO_${name}::ENO_${name}(NetworkConnection* cxn, $name* obj)
   #undef DATA
   #undef field
   #undef X
+  dirty = true;
 }
 
-$name* ENO_${name}::clone(const $name* src) const throw() {
+ENO_${name}::~ENO_${name}() {
+  [cxxj enodestructor]
+}
+
+void ENO_${name}::init() throw() {
+  $name*const X = ($name*)local.ref;
+  [cxxj init]
+}
+
+$name* ENO_${name}::clone(const $name* src, NetworkConnection* cxn)
+const throw() {
   #define X src
-  #define field (&this->cxn->field)
+  #define field (&cxn->field)
   #define DESTROY(x) assert(!(x))
+  #define LOCAL_CLONE
   const unsigned T = cxn->getLatency();
   [cxxj declaration]
   [jxxc extract]
@@ -374,6 +419,7 @@ $name* ENO_${name}::clone(const $name* src) const throw() {
   #define X dst
   $typeConstructor
   [cxxj post-set]
+  #undef LOCAL_CLONE
   #undef X
   #undef field
   #undef DESTROY
@@ -392,7 +438,7 @@ bool ENO_${name}::shouldUpdate() const throw() {
   [cxxj compare-control compare]
 
   float l_dist = cxn->distanceOf(this->local.ref);
-  return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
+  return (FAR*FAR > l_dist && l_dist >= 5*5) || (NEAR > 1 && l_dist < 5*5);
 }
 
 void ENO_${name}::updateRemote() throw() {
@@ -493,7 +539,7 @@ proc eval-parms {parms {name {}}} {
       dict set current extract "$name = X->$name;"
     }
     if {![dict exists $current compare]} {
-      dict set current comare \
+      dict set current compare \
       "{float d=fabs(x.$name-y.$name)*$mult;FAR+=d;NEAR+=d;}"
     }
   }
@@ -549,6 +595,52 @@ proc float {name {parms {}} {save yes}} {
   incr byteOffset 4
   if {$save} save
 }
+proc fixed {bytes mult name {parms {}} {save yes}} {
+  global current byteOffset
+
+  set signed 1
+  if {[string index $bytes 0] eq "u"} {
+    set signed 0
+    set bytes [string range $bytes 1 end]
+  }
+  set inttype [int-type-for $signed $bytes]
+
+  set enct {}
+  if {$bytes == 3} {
+    set enct 24
+  }
+
+  switch -exact "$signed/$bytes" {
+    0/1 { set maxval 0xFF }
+    1/1 { set maxval 0x7F }
+    0/2 { set maxval 0xFFFF }
+    1/2 { set maxval 0x7FFF }
+    0/3 { set maxval 0xFFFFFF }
+    1/3 { set maxval 0x7FFFFF }
+    0/4 { set maxval 0xFFFFFFFF }
+    1/4 { set maxval 0x7FFFFFFF }
+    0/8 { set maxval 0xFFFFFFFFFFFFFFFFLL }
+    1/8 { set maxval 0x7FFFFFFFFFFFFFFFLL }
+    default {
+      error "Bad byte count for fixed: $bytes"
+    }
+  }
+
+  whole-byte
+  new
+  aliases $name
+  dict set current declaration "float $name;"
+  dict set current encode \
+  "{$inttype _$name = $name/$mult*$maxval; io::write${enct}_c(&[data],_$name);}"
+  dict set current decode \
+  "{$inttype _$name;
+    io::read${enct}_c(&[data],_$name);
+    $name=_$name*$mult/$maxval;
+   }"
+  eval-parms $parms $name
+  incr byteOffset $bytes
+  if {$save} save
+}
 
 proc void {parms} {
   new
@@ -582,7 +674,7 @@ proc arr {ctype len stride name contents {parms {}} {save yes}} {
   # Replace DATA in the elements with (DATA+OFF+ARRAY_OFFSET*STRIDE)
   set elements \
     [string map \
-            [list DATA "(&DATA\[0\]+$byteOffset+ARRAY_OFFSET*$strideLength)"] \
+            [list DATA "(&DATA\[0\]+$byteOffset+ARRAY_OFFSET*$strideLength/$stride)"] \
             $elements]
 
   set loop \
@@ -714,14 +806,17 @@ source net/definition.tcl
 # Write the exporter creator
 puts $cout "
   #include \"../synchronous_control_geraet.hxx\"
+  #include \"../anticipatory_channels.hxx\"
   ExportedGameObject* createObjectExport(NetworkConnection* cxn,
                                          GameObject* object)
   throw() {
     ExportedGameObject* ego;
+    NetworkConnection::geraet_num num;
 "
 foreach class $classes {
   puts $cout "if (typeid(*object) == typeid($class))"
-  puts $cout "  ego = new ENO_${class}(cxn, ($class*)object);"
+  puts $cout "  ego = new ENO_${class}(cxn, ($class*)object),"
+  puts $cout "  num = INO_${class}::num;"
   puts $cout "else"
 }
 
@@ -734,7 +829,8 @@ puts $cout "
   }
 
   assert(ego);
-  cxn->scg->openChannel(ego, INO_${class}::num);
+  cxn->anticipation->openChannel(ego, num);
+  ego->init();
   return ego;
 }"
 

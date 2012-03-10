@@ -10,6 +10,7 @@
 #include <vector>
 
 #include "src/sim/game_object.hxx"
+#include "explode_listener.hxx"
 
 class Ship;
 
@@ -29,7 +30,11 @@ class MagnetoBomb: public GameObject {
   friend class ENO_MagnetoBomb;
   friend class INO_SemiguidedBomb;
   friend class ENO_SemiguidedBomb;
+  friend class ExplodeListener<MagnetoBomb>;
+
   private:
+  ExplodeListener<MagnetoBomb>* explodeListeners;
+
   float power;
   float coreRadius;
   /* Each second, there is this probability that the bomb spontaneously
@@ -98,6 +103,8 @@ class MagnetoBomb: public GameObject {
   MagnetoBomb(GameField* field, float x, float y, float vx, float vy,
               float power, Ship* parent, float subMult=1,
               float r=1, float g=1, float b=1);
+  virtual ~MagnetoBomb();
+
   virtual bool update(float)  noth HOT;
   virtual void draw() noth;
   virtual CollisionResult checkCollision(GameObject*) noth;

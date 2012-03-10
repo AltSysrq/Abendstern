@@ -16,6 +16,8 @@ verbatimc {
   friend class ENO_Missile;\
   friend class INO_ParticleEmitter;\
   friend class ENO_ParticleEmitter;\
+  friend class INO_MonophasicEnergyPulse;\
+  friend class ENO_MonophasicEnergyPulse;\
   friend class INO_Ship;\
   friend class ENO_Ship;\
   friend class INO_Spectator;\
@@ -28,6 +30,7 @@ verbatimc {
 verbatimh {
   class ShieldGenerator;
   class Cell;
+  #include "src/weapon/explode_listener.hxx"
 }
 verbatimc {
   #include <cassert>
@@ -43,51 +46,66 @@ verbatimc {
   #include "src/weapon/missile.hxx"
   #include "src/weapon/monophasic_energy_pulse.hxx"
   #include "src/weapon/particle_beam.hxx"
+  #include "src/weapon/explode_listener.hxx"
   #include "src/camera/spectator.hxx"
   #include "src/exit_conditions.hxx"
+  #include "../ship_damage_geraet.hxx"
+}
+
+# Inserts common ExplodeListener code to the various weapon types.
+proc explodable {clazz} {
+  void "
+    enoheader {
+      class ExplListener: public ExplodeListener<$clazz> {
+        ENO_@@@*const that;
+      public:
+        ExplListener($clazz* it, ENO_@@@* that_);
+
+        virtual void exploded($clazz*) throw() {
+          that->forceUpdate();
+        }
+      } explListener;
+    }
+    impl {
+      ENO_@@@::ExplListener::ExplListener($clazz* it, ENO_@@@* that_)
+      : ExplodeListener<$clazz>(it), that(that_) {}
+    }
+    enoconstructor {
+      ,explListener(($clazz*)local.ref, this)
+    }
+  "
 }
 
 prototype GameObject {
-  float vx {default 10000}
-  float vy {default 10000}
-  float x {
-    default 32
+  # Maximum velocity is 32 screen/sec
+  fixed 2 32.0e-3f vx {default 10000}
+  fixed 2 32.0e-3f vy {default 10000}
+  # Maximum coordinate is 128,128
+  fixed u2 128.0f x {
+    default 128
     validate {
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     }
   }
-  float y {
-    default 32
+  fixed u2 128.0f y {
+    default 128
     validate {
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
-    }
-  }
-  str 128 tag {
-    extract { strncpy(tag, X->tag.c_str(), sizeof(tag-1)); }
-    update { if (!X->ignoreNetworkTag) X->tag = tag; }
-    post-set { if (!X->ignoreNetworkTag) X->tag = tag; }
-    compare {
-      if (strcmp(x.tag, y.tag)) return true; //Must send update
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     }
   }
 }
 
 type EnergyCharge {
+  explodable EnergyCharge
+
   # Never send updates
   void { compare { return false; } }
   extension GameObject
-  float intensity {
-    default 0
-    min 0 max 1
+  ui 1 theta {
+    extract { theta = (byte)(X->theta/2/pi*255.0f); }
   }
-  float theta {
-    extract { theta = X->theta; }
+  bit 7 intensity {
+    extract { intensity = (byte)(127.0f*X->intensity); }
   }
 
   bit 1 exploded {
@@ -102,12 +120,14 @@ type EnergyCharge {
   }
 
   construct {
-     X = new EnergyCharge(field, x, y, vx, vy, theta, intensity);
+     X = new EnergyCharge(field, x, y, vx, vy,
+                          theta*pi*2/255.0f, intensity/127.0f);
   }
 }
 
 type MagnetoBomb {
   extension GameObject
+  explodable MagnetoBomb
 
   float ax {
     default 0
@@ -155,15 +175,20 @@ type SemiguidedBomb {
 
 type PlasmaBurst {
   extension GameObject
+  explodable PlasmaBurst
 
   # Never send updates
   void { compare { return false; } }
 
-  float mass {
-    default 0
-    min 0 max 100
+  ui 1 direction {
+    extract {
+      direction = (byte)(255.0f*X->direction/2/pi);
+    }
   }
-  float direction { default 0 }
+  bit 7 mass {
+    default 0
+    validate { if (mass > 100) mass = 100; }
+  }
   bit 1 exploded {
     extract {
       exploded = X->exploded;
@@ -177,24 +202,24 @@ type PlasmaBurst {
   }
 
   construct {
-    X = new PlasmaBurst(field, x, y, vx, vy, direction, mass);
+    X = new PlasmaBurst(field, x, y, vx, vy, direction*pi*2/255.0f, mass);
   }
 }
 
 type Missile {
   extension GameObject
+  explodable Missile
 
-  float ax {
-    default 1.0e8f
-    min -2.0e-6f max +2.0e-6f
+  fixed 2 2.0e-6f ax {
+    default 1.0e6f
+    post-set { X->ax = ax; }
   }
-  float ay {
-    default 1.0e8f
-    min -2.0e-6f max +2.0e-6f
+  fixed 2 2.0e-6f ay {
+    default 1.0e6f
+    post-set { X->ay = ay; }
   }
-  ui 2 timeAlive {
-    default 0
-  }
+  fixed 2 2.0e-6f xdir { default 0 post-set { X->xdir = xdir; } }
+  fixed 2 2.0e-6f ydir { default 0 post-set { X->ydir = ydir; } }
   bit 4 level {
     extract { level = X->level; }
     update { X->level = min(10u,max(1u,level)); }
@@ -208,6 +233,13 @@ type Missile {
       }
     }
   }
+  toggle ;# Disable updates
+  ui 1 timeAlive {
+    extract {
+      timeAlive = X->timeAlive/12;
+    }
+  }
+  toggle
 
   construct {
     X = new Missile(field, level, x, y, vx, vy, ax, ay, timeAlive);
@@ -243,6 +275,29 @@ type ParticleEmitter {
                             x, y, vx, vy,
                             r, rmajor, rminor,
                             timeAlive);
+  }
+}
+
+type MonophasicEnergyPulse {
+  extension GameObject
+  explodable MonophasicEnergyPulse
+
+  bit 1 exploded {
+    extract { exploded = X->exploded; }
+    update {
+      if (exploded && !X->exploded) {
+        X->explode(NULL);
+        DESTROY(false);
+      }
+    }
+  }
+  toggle ;# Disable updates
+  bit 7 power { default 0 }
+  ui 2 timeAlive { default 0 }
+  toggle ;# Reenable
+
+  construct {
+    X = new MonophasicEnergyPulse(field, x, y, vx, vy, (float)power, timeAlive);
   }
 }
 
@@ -310,6 +365,7 @@ verbatimc {
   SYS(MiniGravwaveDriveMKII) \
   SYS(PlasmaBurstLauncher) \
   SYS(SemiguidedBombLauncher) \
+  SYS(ShieldGenerator) \
   SYS(SuperParticleAccelerator) \
   SYS(Capacitor) \
   SYS(EnergyChargeLauncher) \
@@ -373,20 +429,6 @@ verbatimc {
 type Ship {
   extension GameObject
 
-  # Ensure that the ship's cells have been numbered
-  void {
-    extract {
-      if (X->networkCells.empty()) {
-        for (unsigned i = 0; i < X->cells.size(); ++i) {
-          if (!X->cells[i]->isEmpty) {
-            X->cells[i]->netIndex = X->networkCells.size();
-            const_cast<Ship*>(X)->networkCells.push_back(X->cells[i]);
-          }
-        }
-      }
-    }
-  }
-
   void {
     inoheader {
       public:
@@ -396,6 +438,12 @@ type Ship {
       static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
         return INO_Ship::getShieldGenerator(c);
       }
+    }
+    init {
+      cxn->sdg->addLocalShip(channel, X);
+    }
+    enodestructor {
+      cxn->sdg->delLocalShip(channel);
     }
     impl {
       ShieldGenerator* INO_Ship::getShieldGenerator(const Cell* c) throw() {
@@ -411,6 +459,44 @@ type Ship {
     }
   }
 
+  # Max vtheta of 32 rad/sec
+  fixed 2 32.0e-3f vtheta {
+    default 1000
+    post-set { X->vtheta = vtheta; }
+    compare {
+      NEAR += 1000*fabs(x.vtheta-y.vtheta);
+    }
+  }
+  ui 1 theta {
+    extract  { theta = (byte)(X->theta*255.0f/pi/2); }
+    update   { X->theta = theta/255.0f*pi*2 + vtheta*T; }
+    post-set { X->theta = theta/255.0f*pi*2 + vtheta*T; }
+    compare  {
+      NEAR += fabs((((float)x.theta) - ((float)y.theta))/6.0f);
+      FAR +=  fabs((((float)x.theta) - ((float)y.theta))/48.0f);
+    }
+  }
+  # Maintain the cached cos() and sin() of theta
+  void {
+    update {
+      X->cosTheta = cos(X->theta);
+      X->sinTheta = sin(X->theta);
+    }
+    post-set {
+      X->cosTheta = cos(X->theta);
+      X->sinTheta = sin(X->theta);
+    }
+  }
+
+  str 128 tag {
+    extract { strncpy(tag, X->tag.c_str(), sizeof(tag)); }
+    update { if (!X->ignoreNetworkTag) X->tag = tag; }
+    post-set { if (!X->ignoreNetworkTag) X->tag = tag; }
+    compare {
+      if (strcmp(x.tag, y.tag)) return true; //Must send update
+    }
+  }
+
   # The name of the target, or empty string for NULL.
   # (This matches the tag of another Ship.)
   str 128 target {
@@ -418,7 +504,7 @@ type Ship {
       if (X->target.ref)
         strncpy(target, X->target.ref->tag.c_str(), 128);
       else
-        target[0]=0;
+        memset(target, 0, sizeof(target));
     }
     update {
       if (target[0]) {
@@ -472,19 +558,6 @@ type Ship {
       X->setColour(colourR, colourG, colourB);
     }
   }
-  float theta { default 10 post-set { X->theta = theta; } }
-  float vtheta { default 0.01 post-set { X->vtheta = vtheta; } }
-  # Maintain the cached cos() and sin() of theta
-  void {
-    update {
-      X->cosTheta = cos(X->theta);
-      X->sinTheta = sin(X->theta);
-    }
-    post-set {
-      X->cosTheta = cos(X->theta);
-      X->sinTheta = sin(X->theta);
-    }
-  }
   float thrustPercent { default 10 min 0 max 1 update {} }
   float reinforcement {
     default 0
@@ -519,15 +592,13 @@ type Ship {
     }
     update {
       if (isFragment && !X->isFragment) {
-        X->spontaneouslyDie();
+        X->isFragment = true;
         cxn->unsetReference(X);
       }
     }
     post-set {
       if (isFragment) {
-        X->spontaneouslyDie();
-      } else {
-        cxn->setReference(X);
+        X->isFragment = true;
       }
     }
     compare {
@@ -549,14 +620,16 @@ type Ship {
     type bool
     default 1
     update {
-      shield_deactivate(X);
-      X->shieldsDeactivated=true;
-      //Clear all cell power bits that have shields
-      X->physicsRequire(PHYS_SHIP_SHIELD_INVENTORY_BIT);
-      for (unsigned i=0; i<X->shields.size(); ++i)
-        X->shields[i]->getParent()->physicsClear(PHYS_CELL_POWER_BITS
-                                                |PHYS_CELL_POWER_PROD_BITS);
-      X->shields.clear();
+      if (shieldsDeactivated && X->shieldsDeactivated) {
+        shield_deactivate(X);
+        X->shieldsDeactivated=true;
+        //Clear all cell power bits that have shields
+        X->physicsRequire(PHYS_SHIP_SHIELD_INVENTORY_BIT);
+        for (unsigned i=0; i<X->shields.size(); ++i)
+          X->shields[i]->getParent()->physicsClear(PHYS_CELL_POWER_BITS
+                                                  |PHYS_CELL_POWER_PROD_BITS);
+        X->shields.clear();
+      }
     }
   }
   bit 1 stealthMode {
@@ -579,10 +652,10 @@ type Ship {
   # Configure engines all at once
   void {
     update {
-      X->configureEngines(thrustPercent, thrustOn, brakeOn);
+      X->configureEngines(thrustOn, brakeOn, thrustPercent);
     }
     post-set {
-      X->configureEngines(thrustPercent, thrustOn, brakeOn);
+      X->configureEngines(thrustOn, brakeOn, thrustPercent);
     }
   }
 
@@ -673,7 +746,6 @@ type Ship {
   # 4096 because len%stride must be zero.
   arr {unsigned char} 4096  4 cellType          {bit 2 {NAME} {
     extract {
-      //Only bother initialising if the cell actually exists
       if (X->networkCells.size() > IX && X->networkCells[IX]) {
         Cell* c = X->networkCells[IX];
         if (typeid(*c) == typeid(SquareCell))
@@ -686,10 +758,16 @@ type Ship {
           assert(typeid(*c) == typeid(RightTCell));
           NAME = RIGHTT_CELL;
         }
+      } else {
+        NAME = 0;
       }
     }
   }}
   toggle ;# End no updates
+  void {
+    declaration { bool destruction; }
+    extract { destruction = false; }
+  }
   arr {unsigned char} 4094  1 cellDamage        {ui 1 {NAME} {
     extract {
       if (IX < X->networkCells.size() && X->networkCells[IX]) {
@@ -712,15 +790,27 @@ type Ship {
           DESTROY(true);
         }
         if (!NAME) {
+          destruction = true;
+          X->physicsRequire(PHYS_SHIP_DS_INVENTORY_BIT
+                           |PHYS_CELL_DS_NEAREST_BIT);
           //Delink the cell from its neighbours, spawning PlasmaFires
           //if appropriate.
+          //Empty neighbours will cease to exist.
           for (unsigned n = 0; n < 4; ++n) {
             if (c->neighbours[n]) {
-              unsigned ret = c->neighbours[n]->getNeighbour(c);
-              EmptyCell* ec = new EmptyCell(X, c->neighbours[n]);
-              c->neighbours[n]->neighbours[ret] = ec;
-              if (highQuality && EXPCLOSE(x,y))
-                field->add(new PlasmaFire(ec));
+              if (c->neighbours[n]->isEmpty) {
+                X->removeCell(c->neighbours[n]);
+                delete c->neighbours[n];
+              } else {
+                unsigned ret = c->neighbours[n]->getNeighbour(c);
+                EmptyCell* ec = new EmptyCell(X, c->neighbours[n]);
+                c->neighbours[n]->neighbours[ret] = ec;
+                X->cells.push_back(ec);
+                if (highQuality && !isFragment)
+                  field->add(new PlasmaFire(ec));
+                X->physicsClear(PHYS_CELL_LOCATION_PROPERTIES_BITS
+                               |PHYS_SHIP_COORDS_BITS);
+              }
             }
           }
 
@@ -750,12 +840,14 @@ type Ship {
           float newdmg = 1.0f - NAME/255.0f;
           newdmg *= c->getMaxDamage();
           float olddmg = c->getCurrDamage();
-          #ifndef NDEBUG
-          bool destroyed =
-          #endif
-          c->applyDamage(newdmg-olddmg, 0xFFFFFF);
-          assert(!destroyed);
-          X->cellDamaged(c);
+          if (newdmg > olddmg) {
+            #ifndef NDEBUG
+            bool intact =
+            #endif
+            c->applyDamage(newdmg-olddmg, 0xFFFFFF);
+            assert(intact);
+            X->cellDamaged(c);
+          }
         }
       }
     }
@@ -860,6 +952,8 @@ type Ship {
               typeid(Capacitor))
             NAME = ((Capacitor*)X->networkCells[cellix]->systems[sysix])->
                    getCapacity();
+          else
+            NAME = 0;
         }
       }
 
@@ -873,7 +967,6 @@ type Ship {
     float radius;
     byte maxStrength, currStrengthPercent, currStability, currAlpha;
   }}                  4094  1 shields           {
-    toggle
     float {NAME.radius} {
       min STD_CELL_SZ*MIN_SHIELD_RAD
       max STD_CELL_SZ*MAX_SHIELD_RAD
@@ -902,14 +995,13 @@ type Ship {
         }
       }
     }
-    toggle
     ui 1 {NAME.currStrengthPercent} {
       extract {
         {
           ShieldGenerator* gen = SHGEN(IX);
           if (gen)
             NAME.currStrengthPercent =
-                (byte)(255*gen->getShieldStrength()/gen->getStrength());
+              (byte)(255*min(1.0f,gen->getShieldStrength())/gen->getStrength());
           else
             NAME.currStrengthPercent = 0;
         }
@@ -942,7 +1034,8 @@ type Ship {
         {
           ShieldGenerator* gen = SHGEN(IX);
           if (gen)
-            NAME.currStability = (byte)(255.0f*gen->getShieldStability());
+            NAME.currStability =
+                (byte)(255.0f*min(1.0f,gen->getShieldStability()));
           else
             NAME.currStability = 0;
         }
@@ -972,7 +1065,7 @@ type Ship {
         {
           ShieldGenerator* gen = SHGEN(IX);
           if (gen)
-            NAME.currAlpha = (byte)(255.0f * gen->getShieldAlpha());
+            NAME.currAlpha = (byte)(255.0f * max(0.0f,gen->getShieldAlpha()));
           else
             NAME.currAlpha = 0;
         }
@@ -1017,7 +1110,23 @@ type Ship {
     }
   }}
 
-  void { set-reference { cxn->setReference(X); } }
+  toggle ;# Reenable updates
+
+  void { set-reference { if (!X->isFragment) cxn->setReference(X); } }
+  # Ensure that the ship's cells have been numbered
+  # (This is at the end since extraction runs in reverse order)
+  void {
+    extract {
+      if (X->networkCells.empty()) {
+        for (unsigned i = 0; i < X->cells.size(); ++i) {
+          if (!X->cells[i]->isEmpty) {
+            X->cells[i]->netIndex = X->networkCells.size();
+            const_cast<Ship*>(X)->networkCells.push_back(X->cells[i]);
+          }
+        }
+      }
+    }
+  }
 
   construct {
     X = new Ship(field);
@@ -1198,5 +1307,11 @@ type Ship {
       #endif
       DESTROY(true);
     }
+
+    //Register with SDG
+    #ifndef LOCAL_CLONE
+    X->shipDamageGeraet = cxn->sdg;
+    cxn->sdg->addRemoteShip(X, inputChannel);
+    #endif /* LOCAL_CLONE */
   }
 }

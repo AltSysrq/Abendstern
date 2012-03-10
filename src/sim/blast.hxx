@@ -63,7 +63,8 @@ class Blast: public GameObject {
    *   have both decorative and addDecorativeCopy true.
    * @param causesDamage Whether the Blast causes damage or just pushes things
    */
-  Blast(GameField* field, unsigned blame, float x, float y, float falloff, float strength,
+  Blast(GameField* field, unsigned blame, float x, float y, float falloff,
+        float strength,
         bool direct=false, float size=0, bool addDecorativeCopy=true,
         bool decorative=false, bool causesDamage=true);
   /** Creates a possibly non-damaging clone of a Blast.

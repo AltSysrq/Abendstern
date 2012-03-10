@@ -151,6 +151,7 @@ throw() {
             for (unsigned i=0; i<lastXonLen; ++i) {
               const XonDat& dat(xonsOut.front());
               cxn->outchannels[dat.chan] = dat.localGeraet;
+              dat.localGeraet->outputOpen();
               xonsOut.pop_front();
             }
             lastPackOutType = 0;
@@ -223,6 +224,7 @@ throw() {
         }
 
         cxn->inchannels[chan] = creator(cxn);
+        cxn->inchannels[chan]->inputChannel = chan;
       }
 
       //Done processing, acknowledge packet
@@ -260,7 +262,7 @@ throw() {
         //Remove if exists; silently ignore if not exists or if
         //it is marked Intrinsic or Eternal
         if (it != cxn->inchannels.end()) {
-          if (it->second->deletionStrategy != InputNetworkGeraet::DSNormal) {
+          if (it->second->deletionStrategy == InputNetworkGeraet::DSNormal) {
             delete it->second;
             cxn->inchannels.erase(it);
           } else {

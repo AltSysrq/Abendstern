@@ -93,7 +93,7 @@ class TestMode {
     $main add $quit
     global commandBox commandResult
     set commandBox [new gui::TextField Tcl \
-                    "set packetDropMask 0; networkTestRun 192.168.10.199 12544" \
+                    "" \
                     {} {} runCmd]
     set commandResult [new gui::MultiLineLabel]
     $main add $commandBox
@@ -192,13 +192,14 @@ class TestMode {
           lappend cts [$ str hangar.user.usr$i.name]
           $hangarList setItems $cts
           $hangarList setSelection [expr {[llength $cts]-1}]
-          makeHangarEffective [$hangarList getSelection]
+          %s makeHangarEffective
           $ sync hangar
         } else {
-          $hangarList setSelection {}
+          $hangarList setSelection 0
+          %s makeHangarEffective
         }
       }]
-    } $app $app $this]]
+    } $app $app $this $this $this]]
     $hangarButtons add [new gui::Button [_ T a edit_dots] [format {
       global hangarList
       set sel [$hangarList getSelection]
@@ -213,13 +214,13 @@ class TestMode {
             set cts [lreplace $cts $sel $sel [$ str hangar.user.\[$sel\].name]]
             $hangarList setItems $cts
             $hangarList setSelection $sel
-            makeHangarEffective [$hangarList getSelection]
+            %s makeHangarEffective
             $ sync hangar
           }]
         }
       }
-    } $app $app $this]]
-    $hangarButtons add [new gui::Button [_ T a delete] {
+    } $app $app $this $this]]
+    $hangarButtons add [new gui::Button [_ T a delete] [format {
       global hangarList
       set sel [$hangarList getSelection]
       if {[llength $sel]} {
@@ -230,14 +231,14 @@ class TestMode {
           set cts [lreplace $cts $sel $sel]
           $hangarList setItems $cts
           $hangarList setSelection 0
-          makeHangarEffective [$hangarList getSelection]
+          %s makeHangarEffective
 
           # Remove from actual hangar
           $ remix hangar.user $sel
           $ sync hangar
         }
       }
-    }]
+    } $this]]
     $hangarTab setElt bottom $hangarButtons
     $hangarList setSelection 0
     $tabs add [_ T a tab_hangar] $hangarTab

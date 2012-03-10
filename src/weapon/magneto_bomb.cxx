@@ -85,6 +85,7 @@ MagnetoBomb::MagnetoBomb(GameField* field, float x, float y, float vx,
                          float vy, float _power, Ship* _parent,
                          float subMult, float _r, float _g, float _b)
 : GameObject(field, x, y, vx, vy),
+  explodeListeners(NULL),
   power(_power*subMult), coreRadius(sqrt(_power*subMult)/500.0f),
   halflife(1000 + rand()/(float)RAND_MAX*100000.0f/_power),
   armTime(100), inParentsShields(true), hitParentsShields(true),
@@ -100,6 +101,12 @@ MagnetoBomb::MagnetoBomb(GameField* field, float x, float y, float vx,
 
   classification = GameObject::HeavyWeapon;
   isExportable=true;
+}
+
+MagnetoBomb::~MagnetoBomb() {
+  //Remove any ExplodeListener chain attached
+  if (explodeListeners)
+    explodeListeners->prv = NULL;
 }
 
 bool MagnetoBomb::update(float time) noth {
@@ -288,6 +295,9 @@ void MagnetoBomb::explode() noth {
                             STD_CELL_SZ*sqrt(power/2)-STD_CELL_SZ/2,
                             power/8.0f,
                             false, CORE_RADIUS+STD_CELL_SZ/2));
+
+  for (ExplodeListener<MagnetoBomb>* l = explodeListeners; l; l = l->nxt)
+    l->exploded(this);
 }
 
 void MagnetoBomb::simulateFailure() noth {
