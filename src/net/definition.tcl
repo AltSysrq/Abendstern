@@ -287,11 +287,22 @@ type MonophasicEnergyPulse {
   extension GameObject
   explodable MonophasicEnergyPulse
 
-  float power { default 0 min 0 }
+  bit 1 exploded {
+    extract { exploded = X->exploded; }
+    update {
+      if (exploded && !X->exploded) {
+        X->explode(NULL);
+        DESTROY(false);
+      }
+    }
+  }
+  toggle ;# Disable updates
+  bit 7 power { default 0 }
   ui 2 timeAlive { default 0 }
+  toggle ;# Reenable
 
   construct {
-    X = new MonophasicEnergyPulse(field, x, y, vx, vy, power, timeAlive);
+    X = new MonophasicEnergyPulse(field, x, y, vx, vy, (float)power, timeAlive);
   }
 }
 
