@@ -2319,16 +2319,16 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "ANeutral")) {arg0=Neutral; goto done1681;}
+          if (0 == strcmp(tmp, "ANeutral")) {arg0=Neutral; goto done1682;}
         
-          if (0 == strcmp(tmp, "AAllies")) {arg0=Allies; goto done1681;}
+          if (0 == strcmp(tmp, "AAllies")) {arg0=Allies; goto done1682;}
         
-          if (0 == strcmp(tmp, "AEnemies")) {arg0=Enemies; goto done1681;}
+          if (0 == strcmp(tmp, "AEnemies")) {arg0=Enemies; goto done1682;}
          {
         sprintf(staticError, "Unable to convert %s to Alliance", tmp);
         scriptError(staticError);
       } 
-done1681:;};
+done1682:;};
 arg0Init=true;
 {int tmp;
             int err = Tcl_GetIntFromObj(interp, objv[1], &tmp);

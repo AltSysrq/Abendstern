@@ -5586,22 +5586,43 @@ set ret $retpi
 return $ret
 }
 
-proc {networkTestListen} {  } {set retpi [uplevel 1 [list {c++ trampoline1386} ]]
-return $retpi
-}
-proc {networkTestRun} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1388} $a0 $a1 ]]
+::itcl::class {NetworkTest} {
+inherit TestState
+namespace eval :: {
+proc {c++ new NetworkTest default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1387} $a0 $a1 ]]
 set ret $retpi
 return $ret
-}
+}}
 
-proc {ship_mixer_init} {  } {set retpi [uplevel 1 [list {c++ trampoline1390} ]]
+method {connect} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1389} $this $a0 $a1 ]]
 return $retpi
 }
-proc {ship_mixer_end} {  } {set retpi [uplevel 1 [list {c++ trampoline1392} ]]
+constructor {clazz cname arguments} {
+      # Every class we extend (if it isn't just AObject) has
+      # exactly one purpose in its constructor: Call the parent
+      # constructor until we reach AObject. Therefore, to avoid
+      # multiple instantiation, only call the first super
+      TestState::constructor [expr {[string length $cname] && {*}==[string index $cname 0]?
+                 "Tcl$clazz" : $clazz}] [expr {[string length $cname] && {*}==[string index $cname 0]?
+                 [string range $cname 1 [string length $cname]] : $cname}] $arguments} {
+
+
+}
+destructor {
+
+
+}
+}
+
+
+proc {ship_mixer_init} {  } {set retpi [uplevel 1 [list {c++ trampoline1391} ]]
+return $retpi
+}
+proc {ship_mixer_end} {  } {set retpi [uplevel 1 [list {c++ trampoline1393} ]]
 return $retpi
 }
 
-proc {debugTclExports} {  } {set retpi [uplevel 1 [list {c++ trampoline1394} ]]
+proc {debugTclExports} {  } {set retpi [uplevel 1 [list {c++ trampoline1395} ]]
 return $retpi
 }
 
@@ -6464,6 +6485,8 @@ trace add variable globalConf {read write unset} accessor1337
 
 
 
+
+set glueClass(NetworkTest) yes
 
 
 

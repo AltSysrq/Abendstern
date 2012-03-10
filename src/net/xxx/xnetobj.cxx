@@ -28,7 +28,7 @@
 //MSVC++ doesn't handle inherited members accessed by friends correctly.
 //This hack injects an appropriate friends list into GameObject
 #ifdef WIN32
-#define TclGameObject  TclGameObject;  friend class INO_EnergyCharge; friend class ENO_EnergyCharge; friend class INO_MagnetoBomb; friend class ENO_MagnetoBomb; friend class INO_SemiguidedBomb; friend class ENO_SemiguidedBomb; friend class INO_PlasmaBurst; friend class ENO_PlasmaBurst; friend class INO_Missile; friend class ENO_Missile; friend class INO_ParticleEmitter; friend class ENO_ParticleEmitter; friend class INO_Ship; friend class ENO_Ship; friend class INO_Spectator; friend class ENO_Spectator
+#define TclGameObject  TclGameObject;  friend class INO_EnergyCharge; friend class ENO_EnergyCharge; friend class INO_MagnetoBomb; friend class ENO_MagnetoBomb; friend class INO_SemiguidedBomb; friend class ENO_SemiguidedBomb; friend class INO_PlasmaBurst; friend class ENO_PlasmaBurst; friend class INO_Missile; friend class ENO_Missile; friend class INO_ParticleEmitter; friend class ENO_ParticleEmitter; friend class INO_MonophasicEnergyPulse; friend class ENO_MonophasicEnergyPulse; friend class INO_Ship; friend class ENO_Ship; friend class INO_Spectator; friend class ENO_Spectator
 #endif
 
 #include "xnetobj.hxx"
@@ -47,13 +47,19 @@
   #include "src/weapon/missile.hxx"
   #include "src/weapon/monophasic_energy_pulse.hxx"
   #include "src/weapon/particle_beam.hxx"
+  #include "src/weapon/explode_listener.hxx"
   #include "src/camera/spectator.hxx"
   #include "src/exit_conditions.hxx"
+  #include "../ship_damage_geraet.hxx"
 
 INO_EnergyCharge::INO_EnergyCharge(NetworkConnection* cxn_)
-: ImportedGameObject(153, cxn_),
-  cxn(cxn_)
+: ImportedGameObject(10, cxn_),
+  cxn(cxn_) 
 { }
+
+INO_EnergyCharge::~INO_EnergyCharge() {
+  
+}
 
 const NetworkConnection::geraet_num INO_EnergyCharge::num =
     NetworkConnection::registerGeraetCreator(&create);
@@ -73,53 +79,46 @@ void INO_EnergyCharge::update() throw() {
 
 EnergyCharge* INO_EnergyCharge::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
   const unsigned T = cxn->getLatency();
+  EnergyCharge* X = NULL;
   float vx;
 float vy;
 float x;
 float y;
-char tag[128];
-float intensity;
-float theta;
+unsigned char theta;
+unsigned intensity;
 bool exploded;
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
-io::read_c(&DATA[8+0], x);
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
-io::read_c(&DATA[144+0], intensity);
-if (intensity != intensity) intensity = 0;
- else if (intensity < 0) intensity = 0;
- else if (intensity > 1) intensity = 1;
-io::read_c(&DATA[148+0], theta);
-if (theta != theta) theta = -1.0e9;
- else if (theta < -1.0e9) theta = -1.0e9;
- else if (theta > +1.0e9) theta = +1.0e9;
-exploded = (DATA[152+0] >> 0) & 1;
-  EnergyCharge* X;
+io::read_c(&DATA[8+0], theta);
+intensity = (DATA[9+0] >> 0) & 127;
+exploded = (DATA[9+0] >> 7) & 1;
   
-     X = new EnergyCharge(field, x, y, vx, vy, theta, intensity);
+     X = new EnergyCharge(field, x, y, vx, vy,
+                          theta*pi*2/255.0f, intensity/127.0f);
   
-   if (!X->ignoreNetworkTag) X->tag = tag; 
+  
   
   return X;
   #undef DESTROY
@@ -133,48 +132,38 @@ throw () {
 float vy;
 float x;
 float y;
-char tag[128];
-float intensity;
-float theta;
+unsigned char theta;
+unsigned intensity;
 bool exploded;
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
 X->vx = vx;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
 X->vy = vy;
-io::read_c(&DATA[8+0], x);
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
 X->x = x;
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
 X->y = y;
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
- if (!X->ignoreNetworkTag) X->tag = tag; 
-io::read_c(&DATA[144+0], intensity);
-if (intensity != intensity) intensity = 0;
- else if (intensity < 0) intensity = 0;
- else if (intensity > 1) intensity = 1;
-X->intensity = intensity;
-io::read_c(&DATA[148+0], theta);
-if (theta != theta) theta = -1.0e9;
- else if (theta < -1.0e9) theta = -1.0e9;
- else if (theta > +1.0e9) theta = +1.0e9;
-exploded = (DATA[152+0] >> 0) & 1;
+io::read_c(&DATA[8+0], theta);
+intensity = (DATA[9+0] >> 0) & 127;
+exploded = (DATA[9+0] >> 7) & 1;
 
       if (!X->exploded && exploded) {
         X->explode(NULL);
@@ -186,7 +175,10 @@ exploded = (DATA[152+0] >> 0) & 1;
 }
 
 ENO_EnergyCharge::ENO_EnergyCharge(NetworkConnection* cxn, EnergyCharge* obj)
-: ExportedGameObject(153, cxn, obj, clone(obj))
+: ExportedGameObject(10, cxn, obj, clone(obj, cxn))
+  
+      ,explListener((EnergyCharge*)local.ref, this)
+    
 {
   //Populate initial data
   #define X obj
@@ -197,48 +189,55 @@ ENO_EnergyCharge::ENO_EnergyCharge(NetworkConnection* cxn, EnergyCharge* obj)
 float vy;
 float x;
 float y;
-char tag[128];
-float intensity;
-float theta;
+unsigned char theta;
+unsigned intensity;
 bool exploded;
    exploded = X->exploded; 
-DATA[152+0] &= ~(1<<0); DATA[152+0] |= (exploded & 1) << 0;
- theta = X->theta; 
-io::write_c(&DATA[148+0], theta);
-intensity = X->intensity;
-io::write_c(&DATA[144+0], intensity);
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
+DATA[9+0] &= ~(1<<7); DATA[9+0] |= (exploded & 1) << 7;
+ intensity = (byte)(127.0f*X->intensity); 
+DATA[9+0] &= ~(127<<0); DATA[9+0] |= (intensity & 127) << 0;
+ theta = (byte)(X->theta/2/pi*255.0f); 
+io::write_c(&DATA[8+0], theta);
 y = X->y;
-io::write_c(&DATA[12+0], y);
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef DATA
   #undef field
   #undef X
+  dirty = true;
 }
 
-EnergyCharge* ENO_EnergyCharge::clone(const EnergyCharge* src) const throw() {
+ENO_EnergyCharge::~ENO_EnergyCharge() {
+  
+}
+
+void ENO_EnergyCharge::init() throw() {
+  EnergyCharge*const X = (EnergyCharge*)local.ref;
+  
+}
+
+EnergyCharge* ENO_EnergyCharge::clone(const EnergyCharge* src, NetworkConnection* cxn)
+const throw() {
   #define X src
-  #define field (&this->cxn->field)
+  #define field (&cxn->field)
   #define DESTROY(x) assert(!(x))
+  #define LOCAL_CLONE
   const unsigned T = cxn->getLatency();
   float vx;
 float vy;
 float x;
 float y;
-char tag[128];
-float intensity;
-float theta;
+unsigned char theta;
+unsigned intensity;
 bool exploded;
    exploded = X->exploded; 
- theta = X->theta; 
-intensity = X->intensity;
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+ intensity = (byte)(127.0f*X->intensity); 
+ theta = (byte)(X->theta/2/pi*255.0f); 
 y = X->y;
 x = X->x;
 vy = X->vy;
@@ -247,9 +246,11 @@ vx = X->vx;
   EnergyCharge* dst;
   #define X dst
   
-     X = new EnergyCharge(field, x, y, vx, vy, theta, intensity);
+     X = new EnergyCharge(field, x, y, vx, vy,
+                          theta*pi*2/255.0f, intensity/127.0f);
   
-   if (!X->ignoreNetworkTag) X->tag = tag; 
+  
+  #undef LOCAL_CLONE
   #undef X
   #undef field
   #undef DESTROY
@@ -263,29 +264,28 @@ bool ENO_EnergyCharge::shouldUpdate() const throw() {
 float vy;
 float x;
 float y;
-char tag[128];
-float intensity;
-float theta;
+unsigned char theta;
+unsigned intensity;
 bool exploded;
     S(const EnergyCharge* X) {
       vx = X->vx;
 vy = X->vy;
 x = X->x;
 y = X->y;
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-intensity = X->intensity;
- theta = X->theta; 
+ theta = (byte)(X->theta/2/pi*255.0f); 
+ intensity = (byte)(127.0f*X->intensity); 
  exploded = X->exploded; 
     }
   } x(static_cast<EnergyCharge*>(local.ref)), y(static_cast<EnergyCharge*>(remote));
 
    return false; 
-
-      if (strcmp(x.tag, y.tag)) return true; //Must send update
-    
+{float d=fabs(x.vx-y.vx)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.vy-y.vy)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.x-y.x)*128;FAR+=d;NEAR+=d;}
+{float d=fabs(x.y-y.y)*128;FAR+=d;NEAR+=d;}
 
   float l_dist = cxn->distanceOf(this->local.ref);
-  return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
+  return (FAR*FAR > l_dist && l_dist >= 5*5) || (NEAR > 1 && l_dist < 5*5);
 }
 
 void ENO_EnergyCharge::updateRemote() throw() {
@@ -299,35 +299,30 @@ void ENO_EnergyCharge::updateRemote() throw() {
 float vy;
 float x;
 float y;
-char tag[128];
-float intensity;
-float theta;
+unsigned char theta;
+unsigned intensity;
 bool exploded;
   #define X l_local
    exploded = X->exploded; 
-DATA[152+0] &= ~(1<<0); DATA[152+0] |= (exploded & 1) << 0;
- theta = X->theta; 
-io::write_c(&DATA[148+0], theta);
-intensity = X->intensity;
-io::write_c(&DATA[144+0], intensity);
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
+DATA[9+0] &= ~(1<<7); DATA[9+0] |= (exploded & 1) << 7;
+ intensity = (byte)(127.0f*X->intensity); 
+DATA[9+0] &= ~(127<<0); DATA[9+0] |= (intensity & 127) << 0;
+ theta = (byte)(X->theta/2/pi*255.0f); 
+io::write_c(&DATA[8+0], theta);
 y = X->y;
-io::write_c(&DATA[12+0], y);
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
   #define X l_remote
   X->vx = vx;
 X->vy = vy;
 X->x = x;
 X->y = y;
- if (!X->ignoreNetworkTag) X->tag = tag; 
-X->intensity = intensity;
 
       if (!X->exploded && exploded) {
         X->explode(NULL);
@@ -341,11 +336,18 @@ X->intensity = intensity;
   #undef field
 }
 
+      ENO_EnergyCharge::ExplListener::ExplListener(EnergyCharge* it, ENO_EnergyCharge* that_)
+      : ExplodeListener<EnergyCharge>(it), that(that_) {}
+    
 
 INO_MagnetoBomb::INO_MagnetoBomb(NetworkConnection* cxn_)
-: ImportedGameObject(159, cxn_),
-  cxn(cxn_)
+: ImportedGameObject(23, cxn_),
+  cxn(cxn_) 
 { }
+
+INO_MagnetoBomb::~INO_MagnetoBomb() {
+  
+}
 
 const NetworkConnection::geraet_num INO_MagnetoBomb::num =
     NetworkConnection::registerGeraetCreator(&create);
@@ -365,65 +367,62 @@ void INO_MagnetoBomb::update() throw() {
 
 MagnetoBomb* INO_MagnetoBomb::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
   const unsigned T = cxn->getLatency();
+  MagnetoBomb* X = NULL;
   float vx;
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
 float power;
 unsigned short timeAlive;
 bool exploded;
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
-io::read_c(&DATA[8+0], x);
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
-io::read_c(&DATA[144+0], ax);
+io::read_c(&DATA[8+0], ax);
 if (ax != ax) ax = -1.0e9;
  else if (ax < -1.0e9) ax = -1.0e9;
  else if (ax > +1.0e9) ax = +1.0e9;
-io::read_c(&DATA[148+0], ay);
+io::read_c(&DATA[12+0], ay);
 if (ay != ay) ay = -1.0e9;
  else if (ay < -1.0e9) ay = -1.0e9;
  else if (ay > +1.0e9) ay = +1.0e9;
-io::read_c(&DATA[152+0], power);
+io::read_c(&DATA[16+0], power);
 if (power != power) power = 0;
  else if (power < 0) power = 0;
  else if (power > +1.0e9) power = +1.0e9;
-io::read_c(&DATA[156+0], timeAlive);
+io::read_c(&DATA[20+0], timeAlive);
  timeAlive = max((short unsigned)0,timeAlive); 
-exploded = (DATA[158+0] >> 0) & 1;
-  MagnetoBomb* X;
+exploded = (DATA[22+0] >> 0) & 1;
   
     X = new MagnetoBomb(field, x, y, vx, vy, power, NULL);
     X->isRemote = true;
     X->includeInCollisionDetection = false;
     X->decorative = true;
   
-   if (!X->ignoreNetworkTag) X->tag = tag; 
- X->ax = ax; 
+   X->ax = ax; 
  X->ay = ay; 
  X->timeAlive = timeAlive; 
   
@@ -439,59 +438,56 @@ throw () {
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
 float power;
 unsigned short timeAlive;
 bool exploded;
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
 X->vx = vx;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
 X->vy = vy;
-io::read_c(&DATA[8+0], x);
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
 X->x = x;
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
 X->y = y;
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
- if (!X->ignoreNetworkTag) X->tag = tag; 
-io::read_c(&DATA[144+0], ax);
+io::read_c(&DATA[8+0], ax);
 if (ax != ax) ax = -1.0e9;
  else if (ax < -1.0e9) ax = -1.0e9;
  else if (ax > +1.0e9) ax = +1.0e9;
 X->ax = ax;
-io::read_c(&DATA[148+0], ay);
+io::read_c(&DATA[12+0], ay);
 if (ay != ay) ay = -1.0e9;
  else if (ay < -1.0e9) ay = -1.0e9;
  else if (ay > +1.0e9) ay = +1.0e9;
 X->ay = ay;
-io::read_c(&DATA[152+0], power);
+io::read_c(&DATA[16+0], power);
 if (power != power) power = 0;
  else if (power < 0) power = 0;
  else if (power > +1.0e9) power = +1.0e9;
 X->power = power;
-io::read_c(&DATA[156+0], timeAlive);
+io::read_c(&DATA[20+0], timeAlive);
  timeAlive = max((short unsigned)0,timeAlive); 
 X->timeAlive = timeAlive;
-exploded = (DATA[158+0] >> 0) & 1;
+exploded = (DATA[22+0] >> 0) & 1;
 
       if (!X->exploded && exploded) {
         X->explode();
@@ -503,7 +499,10 @@ exploded = (DATA[158+0] >> 0) & 1;
 }
 
 ENO_MagnetoBomb::ENO_MagnetoBomb(NetworkConnection* cxn, MagnetoBomb* obj)
-: ExportedGameObject(159, cxn, obj, clone(obj))
+: ExportedGameObject(23, cxn, obj, clone(obj, cxn))
+  
+      ,explListener((MagnetoBomb*)local.ref, this)
+    
 {
   //Populate initial data
   #define X obj
@@ -514,47 +513,55 @@ ENO_MagnetoBomb::ENO_MagnetoBomb(NetworkConnection* cxn, MagnetoBomb* obj)
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
 float power;
 unsigned short timeAlive;
 bool exploded;
    exploded = X->exploded; 
-DATA[158+0] &= ~(1<<0); DATA[158+0] |= (exploded & 1) << 0;
+DATA[22+0] &= ~(1<<0); DATA[22+0] |= (exploded & 1) << 0;
 timeAlive = X->timeAlive;
-io::write_c(&DATA[156+0], timeAlive);
+io::write_c(&DATA[20+0], timeAlive);
 power = X->power;
-io::write_c(&DATA[152+0], power);
+io::write_c(&DATA[16+0], power);
 ay = X->ay;
-io::write_c(&DATA[148+0], ay);
+io::write_c(&DATA[12+0], ay);
 ax = X->ax;
-io::write_c(&DATA[144+0], ax);
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
+io::write_c(&DATA[8+0], ax);
 y = X->y;
-io::write_c(&DATA[12+0], y);
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef DATA
   #undef field
   #undef X
+  dirty = true;
 }
 
-MagnetoBomb* ENO_MagnetoBomb::clone(const MagnetoBomb* src) const throw() {
+ENO_MagnetoBomb::~ENO_MagnetoBomb() {
+  
+}
+
+void ENO_MagnetoBomb::init() throw() {
+  MagnetoBomb*const X = (MagnetoBomb*)local.ref;
+  
+}
+
+MagnetoBomb* ENO_MagnetoBomb::clone(const MagnetoBomb* src, NetworkConnection* cxn)
+const throw() {
   #define X src
-  #define field (&this->cxn->field)
+  #define field (&cxn->field)
   #define DESTROY(x) assert(!(x))
+  #define LOCAL_CLONE
   const unsigned T = cxn->getLatency();
   float vx;
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
 float power;
@@ -565,7 +572,6 @@ timeAlive = X->timeAlive;
 power = X->power;
 ay = X->ay;
 ax = X->ax;
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
 y = X->y;
 x = X->x;
 vy = X->vy;
@@ -579,10 +585,10 @@ vx = X->vx;
     X->includeInCollisionDetection = false;
     X->decorative = true;
   
-   if (!X->ignoreNetworkTag) X->tag = tag; 
- X->ax = ax; 
+   X->ax = ax; 
  X->ay = ay; 
  X->timeAlive = timeAlive; 
+  #undef LOCAL_CLONE
   #undef X
   #undef field
   #undef DESTROY
@@ -596,7 +602,6 @@ bool ENO_MagnetoBomb::shouldUpdate() const throw() {
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
 float power;
@@ -607,7 +612,6 @@ bool exploded;
 vy = X->vy;
 x = X->x;
 y = X->y;
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
 ax = X->ax;
 ay = X->ay;
 power = X->power;
@@ -616,12 +620,17 @@ timeAlive = X->timeAlive;
     }
   } x(static_cast<MagnetoBomb*>(local.ref)), y(static_cast<MagnetoBomb*>(remote));
 
-  
-      if (strcmp(x.tag, y.tag)) return true; //Must send update
-    
+  {float d=fabs(x.vx-y.vx)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.vy-y.vy)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.x-y.x)*128;FAR+=d;NEAR+=d;}
+{float d=fabs(x.y-y.y)*128;FAR+=d;NEAR+=d;}
+{float d=fabs(x.ax-y.ax)*0;FAR+=d;NEAR+=d;}
+{float d=fabs(x.ay-y.ay)*0;FAR+=d;NEAR+=d;}
+{float d=fabs(x.power-y.power)*0;FAR+=d;NEAR+=d;}
+{float d=fabs(x.timeAlive-y.timeAlive)*0;FAR+=d;NEAR+=d;}
 
   float l_dist = cxn->distanceOf(this->local.ref);
-  return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
+  return (FAR*FAR > l_dist && l_dist >= 5*5) || (NEAR > 1 && l_dist < 5*5);
 }
 
 void ENO_MagnetoBomb::updateRemote() throw() {
@@ -635,7 +644,6 @@ void ENO_MagnetoBomb::updateRemote() throw() {
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
 float power;
@@ -643,32 +651,29 @@ unsigned short timeAlive;
 bool exploded;
   #define X l_local
    exploded = X->exploded; 
-DATA[158+0] &= ~(1<<0); DATA[158+0] |= (exploded & 1) << 0;
+DATA[22+0] &= ~(1<<0); DATA[22+0] |= (exploded & 1) << 0;
 timeAlive = X->timeAlive;
-io::write_c(&DATA[156+0], timeAlive);
+io::write_c(&DATA[20+0], timeAlive);
 power = X->power;
-io::write_c(&DATA[152+0], power);
+io::write_c(&DATA[16+0], power);
 ay = X->ay;
-io::write_c(&DATA[148+0], ay);
+io::write_c(&DATA[12+0], ay);
 ax = X->ax;
-io::write_c(&DATA[144+0], ax);
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
+io::write_c(&DATA[8+0], ax);
 y = X->y;
-io::write_c(&DATA[12+0], y);
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
   #define X l_remote
   X->vx = vx;
 X->vy = vy;
 X->x = x;
 X->y = y;
- if (!X->ignoreNetworkTag) X->tag = tag; 
 X->ax = ax;
 X->ay = ay;
 X->power = power;
@@ -686,11 +691,18 @@ X->timeAlive = timeAlive;
   #undef field
 }
 
+      ENO_MagnetoBomb::ExplListener::ExplListener(MagnetoBomb* it, ENO_MagnetoBomb* that_)
+      : ExplodeListener<MagnetoBomb>(it), that(that_) {}
+    
 
 INO_SemiguidedBomb::INO_SemiguidedBomb(NetworkConnection* cxn_)
-: ImportedGameObject(159, cxn_),
-  cxn(cxn_)
+: ImportedGameObject(23, cxn_),
+  cxn(cxn_) 
 { }
+
+INO_SemiguidedBomb::~INO_SemiguidedBomb() {
+  
+}
 
 const NetworkConnection::geraet_num INO_SemiguidedBomb::num =
     NetworkConnection::registerGeraetCreator(&create);
@@ -710,65 +722,62 @@ void INO_SemiguidedBomb::update() throw() {
 
 SemiguidedBomb* INO_SemiguidedBomb::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
   const unsigned T = cxn->getLatency();
+  SemiguidedBomb* X = NULL;
   float vx;
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
 float power;
 unsigned short timeAlive;
 bool exploded;
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
-io::read_c(&DATA[8+0], x);
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
-io::read_c(&DATA[144+0], ax);
+io::read_c(&DATA[8+0], ax);
 if (ax != ax) ax = -1.0e9;
  else if (ax < -1.0e9) ax = -1.0e9;
  else if (ax > +1.0e9) ax = +1.0e9;
-io::read_c(&DATA[148+0], ay);
+io::read_c(&DATA[12+0], ay);
 if (ay != ay) ay = -1.0e9;
  else if (ay < -1.0e9) ay = -1.0e9;
  else if (ay > +1.0e9) ay = +1.0e9;
-io::read_c(&DATA[152+0], power);
+io::read_c(&DATA[16+0], power);
 if (power != power) power = 0;
  else if (power < 0) power = 0;
  else if (power > +1.0e9) power = +1.0e9;
-io::read_c(&DATA[156+0], timeAlive);
+io::read_c(&DATA[20+0], timeAlive);
  timeAlive = max((short unsigned)0,timeAlive); 
-exploded = (DATA[158+0] >> 0) & 1;
-  SemiguidedBomb* X;
+exploded = (DATA[22+0] >> 0) & 1;
   
     X = new SemiguidedBomb(field, x, y, vx, vy, power, NULL);
     X->isRemote = true;
     X->includeInCollisionDetection = false;
     X->decorative = true;
   
-   if (!X->ignoreNetworkTag) X->tag = tag; 
- X->ax = ax; 
+   X->ax = ax; 
  X->ay = ay; 
  X->timeAlive = timeAlive; 
   
@@ -784,59 +793,56 @@ throw () {
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
 float power;
 unsigned short timeAlive;
 bool exploded;
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
 X->vx = vx;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
 X->vy = vy;
-io::read_c(&DATA[8+0], x);
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
 X->x = x;
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
 X->y = y;
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
- if (!X->ignoreNetworkTag) X->tag = tag; 
-io::read_c(&DATA[144+0], ax);
+io::read_c(&DATA[8+0], ax);
 if (ax != ax) ax = -1.0e9;
  else if (ax < -1.0e9) ax = -1.0e9;
  else if (ax > +1.0e9) ax = +1.0e9;
 X->ax = ax;
-io::read_c(&DATA[148+0], ay);
+io::read_c(&DATA[12+0], ay);
 if (ay != ay) ay = -1.0e9;
  else if (ay < -1.0e9) ay = -1.0e9;
  else if (ay > +1.0e9) ay = +1.0e9;
 X->ay = ay;
-io::read_c(&DATA[152+0], power);
+io::read_c(&DATA[16+0], power);
 if (power != power) power = 0;
  else if (power < 0) power = 0;
  else if (power > +1.0e9) power = +1.0e9;
 X->power = power;
-io::read_c(&DATA[156+0], timeAlive);
+io::read_c(&DATA[20+0], timeAlive);
  timeAlive = max((short unsigned)0,timeAlive); 
 X->timeAlive = timeAlive;
-exploded = (DATA[158+0] >> 0) & 1;
+exploded = (DATA[22+0] >> 0) & 1;
 
       if (!X->exploded && exploded) {
         X->explode();
@@ -848,7 +854,10 @@ exploded = (DATA[158+0] >> 0) & 1;
 }
 
 ENO_SemiguidedBomb::ENO_SemiguidedBomb(NetworkConnection* cxn, SemiguidedBomb* obj)
-: ExportedGameObject(159, cxn, obj, clone(obj))
+: ExportedGameObject(23, cxn, obj, clone(obj, cxn))
+  
+      ,explListener((MagnetoBomb*)local.ref, this)
+    
 {
   //Populate initial data
   #define X obj
@@ -859,47 +868,55 @@ ENO_SemiguidedBomb::ENO_SemiguidedBomb(NetworkConnection* cxn, SemiguidedBomb* o
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
 float power;
 unsigned short timeAlive;
 bool exploded;
    exploded = X->exploded; 
-DATA[158+0] &= ~(1<<0); DATA[158+0] |= (exploded & 1) << 0;
+DATA[22+0] &= ~(1<<0); DATA[22+0] |= (exploded & 1) << 0;
 timeAlive = X->timeAlive;
-io::write_c(&DATA[156+0], timeAlive);
+io::write_c(&DATA[20+0], timeAlive);
 power = X->power;
-io::write_c(&DATA[152+0], power);
+io::write_c(&DATA[16+0], power);
 ay = X->ay;
-io::write_c(&DATA[148+0], ay);
+io::write_c(&DATA[12+0], ay);
 ax = X->ax;
-io::write_c(&DATA[144+0], ax);
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
+io::write_c(&DATA[8+0], ax);
 y = X->y;
-io::write_c(&DATA[12+0], y);
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef DATA
   #undef field
   #undef X
+  dirty = true;
 }
 
-SemiguidedBomb* ENO_SemiguidedBomb::clone(const SemiguidedBomb* src) const throw() {
+ENO_SemiguidedBomb::~ENO_SemiguidedBomb() {
+  
+}
+
+void ENO_SemiguidedBomb::init() throw() {
+  SemiguidedBomb*const X = (SemiguidedBomb*)local.ref;
+  
+}
+
+SemiguidedBomb* ENO_SemiguidedBomb::clone(const SemiguidedBomb* src, NetworkConnection* cxn)
+const throw() {
   #define X src
-  #define field (&this->cxn->field)
+  #define field (&cxn->field)
   #define DESTROY(x) assert(!(x))
+  #define LOCAL_CLONE
   const unsigned T = cxn->getLatency();
   float vx;
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
 float power;
@@ -910,7 +927,6 @@ timeAlive = X->timeAlive;
 power = X->power;
 ay = X->ay;
 ax = X->ax;
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
 y = X->y;
 x = X->x;
 vy = X->vy;
@@ -924,10 +940,10 @@ vx = X->vx;
     X->includeInCollisionDetection = false;
     X->decorative = true;
   
-   if (!X->ignoreNetworkTag) X->tag = tag; 
- X->ax = ax; 
+   X->ax = ax; 
  X->ay = ay; 
  X->timeAlive = timeAlive; 
+  #undef LOCAL_CLONE
   #undef X
   #undef field
   #undef DESTROY
@@ -941,7 +957,6 @@ bool ENO_SemiguidedBomb::shouldUpdate() const throw() {
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
 float power;
@@ -952,7 +967,6 @@ bool exploded;
 vy = X->vy;
 x = X->x;
 y = X->y;
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
 ax = X->ax;
 ay = X->ay;
 power = X->power;
@@ -961,12 +975,17 @@ timeAlive = X->timeAlive;
     }
   } x(static_cast<SemiguidedBomb*>(local.ref)), y(static_cast<SemiguidedBomb*>(remote));
 
-  
-      if (strcmp(x.tag, y.tag)) return true; //Must send update
-    
+  {float d=fabs(x.vx-y.vx)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.vy-y.vy)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.x-y.x)*128;FAR+=d;NEAR+=d;}
+{float d=fabs(x.y-y.y)*128;FAR+=d;NEAR+=d;}
+{float d=fabs(x.ax-y.ax)*0;FAR+=d;NEAR+=d;}
+{float d=fabs(x.ay-y.ay)*0;FAR+=d;NEAR+=d;}
+{float d=fabs(x.power-y.power)*0;FAR+=d;NEAR+=d;}
+{float d=fabs(x.timeAlive-y.timeAlive)*0;FAR+=d;NEAR+=d;}
 
   float l_dist = cxn->distanceOf(this->local.ref);
-  return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
+  return (FAR*FAR > l_dist && l_dist >= 5*5) || (NEAR > 1 && l_dist < 5*5);
 }
 
 void ENO_SemiguidedBomb::updateRemote() throw() {
@@ -980,7 +999,6 @@ void ENO_SemiguidedBomb::updateRemote() throw() {
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
 float power;
@@ -988,32 +1006,29 @@ unsigned short timeAlive;
 bool exploded;
   #define X l_local
    exploded = X->exploded; 
-DATA[158+0] &= ~(1<<0); DATA[158+0] |= (exploded & 1) << 0;
+DATA[22+0] &= ~(1<<0); DATA[22+0] |= (exploded & 1) << 0;
 timeAlive = X->timeAlive;
-io::write_c(&DATA[156+0], timeAlive);
+io::write_c(&DATA[20+0], timeAlive);
 power = X->power;
-io::write_c(&DATA[152+0], power);
+io::write_c(&DATA[16+0], power);
 ay = X->ay;
-io::write_c(&DATA[148+0], ay);
+io::write_c(&DATA[12+0], ay);
 ax = X->ax;
-io::write_c(&DATA[144+0], ax);
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
+io::write_c(&DATA[8+0], ax);
 y = X->y;
-io::write_c(&DATA[12+0], y);
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
   #define X l_remote
   X->vx = vx;
 X->vy = vy;
 X->x = x;
 X->y = y;
- if (!X->ignoreNetworkTag) X->tag = tag; 
 X->ax = ax;
 X->ay = ay;
 X->power = power;
@@ -1031,11 +1046,18 @@ X->timeAlive = timeAlive;
   #undef field
 }
 
+      ENO_SemiguidedBomb::ExplListener::ExplListener(MagnetoBomb* it, ENO_SemiguidedBomb* that_)
+      : ExplodeListener<MagnetoBomb>(it), that(that_) {}
+    
 
 INO_PlasmaBurst::INO_PlasmaBurst(NetworkConnection* cxn_)
-: ImportedGameObject(153, cxn_),
-  cxn(cxn_)
+: ImportedGameObject(10, cxn_),
+  cxn(cxn_) 
 { }
+
+INO_PlasmaBurst::~INO_PlasmaBurst() {
+  
+}
 
 const NetworkConnection::geraet_num INO_PlasmaBurst::num =
     NetworkConnection::registerGeraetCreator(&create);
@@ -1055,53 +1077,46 @@ void INO_PlasmaBurst::update() throw() {
 
 PlasmaBurst* INO_PlasmaBurst::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
   const unsigned T = cxn->getLatency();
+  PlasmaBurst* X = NULL;
   float vx;
 float vy;
 float x;
 float y;
-char tag[128];
-float mass;
-float direction;
+unsigned char direction;
+unsigned mass;
 unsigned exploded;
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
-io::read_c(&DATA[8+0], x);
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
-io::read_c(&DATA[144+0], mass);
-if (mass != mass) mass = 0;
- else if (mass < 0) mass = 0;
- else if (mass > 100) mass = 100;
-io::read_c(&DATA[148+0], direction);
-if (direction != direction) direction = -1.0e9;
- else if (direction < -1.0e9) direction = -1.0e9;
- else if (direction > +1.0e9) direction = +1.0e9;
-exploded = (DATA[152+0] >> 0) & 1;
-  PlasmaBurst* X;
+io::read_c(&DATA[8+0], direction);
+mass = (DATA[9+0] >> 0) & 127;
+ if (mass > 100) mass = 100; 
+exploded = (DATA[9+0] >> 7) & 1;
   
-    X = new PlasmaBurst(field, x, y, vx, vy, direction, mass);
+    X = new PlasmaBurst(field, x, y, vx, vy, direction*pi*2/255.0f, mass);
   
-   if (!X->ignoreNetworkTag) X->tag = tag; 
+  
   
   return X;
   #undef DESTROY
@@ -1115,49 +1130,40 @@ throw () {
 float vy;
 float x;
 float y;
-char tag[128];
-float mass;
-float direction;
+unsigned char direction;
+unsigned mass;
 unsigned exploded;
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
 X->vx = vx;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
 X->vy = vy;
-io::read_c(&DATA[8+0], x);
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
 X->x = x;
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
 X->y = y;
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
- if (!X->ignoreNetworkTag) X->tag = tag; 
-io::read_c(&DATA[144+0], mass);
-if (mass != mass) mass = 0;
- else if (mass < 0) mass = 0;
- else if (mass > 100) mass = 100;
+io::read_c(&DATA[8+0], direction);
+mass = (DATA[9+0] >> 0) & 127;
+ if (mass > 100) mass = 100; 
 X->mass = mass;
-io::read_c(&DATA[148+0], direction);
-if (direction != direction) direction = -1.0e9;
- else if (direction < -1.0e9) direction = -1.0e9;
- else if (direction > +1.0e9) direction = +1.0e9;
-X->direction = direction;
-exploded = (DATA[152+0] >> 0) & 1;
+exploded = (DATA[9+0] >> 7) & 1;
 
       if (exploded && !X->exploded) {
         X->explode(NULL);
@@ -1169,7 +1175,10 @@ exploded = (DATA[152+0] >> 0) & 1;
 }
 
 ENO_PlasmaBurst::ENO_PlasmaBurst(NetworkConnection* cxn, PlasmaBurst* obj)
-: ExportedGameObject(153, cxn, obj, clone(obj))
+: ExportedGameObject(10, cxn, obj, clone(obj, cxn))
+  
+      ,explListener((PlasmaBurst*)local.ref, this)
+    
 {
   //Populate initial data
   #define X obj
@@ -1180,52 +1189,63 @@ ENO_PlasmaBurst::ENO_PlasmaBurst(NetworkConnection* cxn, PlasmaBurst* obj)
 float vy;
 float x;
 float y;
-char tag[128];
-float mass;
-float direction;
+unsigned char direction;
+unsigned mass;
 unsigned exploded;
   
       exploded = X->exploded;
     
-DATA[152+0] &= ~(1<<0); DATA[152+0] |= (exploded & 1) << 0;
-direction = X->direction;
-io::write_c(&DATA[148+0], direction);
+DATA[9+0] &= ~(1<<7); DATA[9+0] |= (exploded & 1) << 7;
 mass = X->mass;
-io::write_c(&DATA[144+0], mass);
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
+DATA[9+0] &= ~(127<<0); DATA[9+0] |= (mass & 127) << 0;
+
+      direction = (byte)(255.0f*X->direction/2/pi);
+    
+io::write_c(&DATA[8+0], direction);
 y = X->y;
-io::write_c(&DATA[12+0], y);
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef DATA
   #undef field
   #undef X
+  dirty = true;
 }
 
-PlasmaBurst* ENO_PlasmaBurst::clone(const PlasmaBurst* src) const throw() {
+ENO_PlasmaBurst::~ENO_PlasmaBurst() {
+  
+}
+
+void ENO_PlasmaBurst::init() throw() {
+  PlasmaBurst*const X = (PlasmaBurst*)local.ref;
+  
+}
+
+PlasmaBurst* ENO_PlasmaBurst::clone(const PlasmaBurst* src, NetworkConnection* cxn)
+const throw() {
   #define X src
-  #define field (&this->cxn->field)
+  #define field (&cxn->field)
   #define DESTROY(x) assert(!(x))
+  #define LOCAL_CLONE
   const unsigned T = cxn->getLatency();
   float vx;
 float vy;
 float x;
 float y;
-char tag[128];
-float mass;
-float direction;
+unsigned char direction;
+unsigned mass;
 unsigned exploded;
   
       exploded = X->exploded;
     
-direction = X->direction;
 mass = X->mass;
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+
+      direction = (byte)(255.0f*X->direction/2/pi);
+    
 y = X->y;
 x = X->x;
 vy = X->vy;
@@ -1234,9 +1254,10 @@ vx = X->vx;
   PlasmaBurst* dst;
   #define X dst
   
-    X = new PlasmaBurst(field, x, y, vx, vy, direction, mass);
+    X = new PlasmaBurst(field, x, y, vx, vy, direction*pi*2/255.0f, mass);
   
-   if (!X->ignoreNetworkTag) X->tag = tag; 
+  
+  #undef LOCAL_CLONE
   #undef X
   #undef field
   #undef DESTROY
@@ -1250,31 +1271,33 @@ bool ENO_PlasmaBurst::shouldUpdate() const throw() {
 float vy;
 float x;
 float y;
-char tag[128];
-float mass;
-float direction;
+unsigned char direction;
+unsigned mass;
 unsigned exploded;
     S(const PlasmaBurst* X) {
       vx = X->vx;
 vy = X->vy;
 x = X->x;
 y = X->y;
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+
+      direction = (byte)(255.0f*X->direction/2/pi);
+    
 mass = X->mass;
-direction = X->direction;
 
       exploded = X->exploded;
     
     }
   } x(static_cast<PlasmaBurst*>(local.ref)), y(static_cast<PlasmaBurst*>(remote));
 
-  
-      if (strcmp(x.tag, y.tag)) return true; //Must send update
-    
+  {float d=fabs(x.vx-y.vx)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.vy-y.vy)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.x-y.x)*128;FAR+=d;NEAR+=d;}
+{float d=fabs(x.y-y.y)*128;FAR+=d;NEAR+=d;}
  return false; 
+{float d=fabs(x.mass-y.mass)*0;FAR+=d;NEAR+=d;}
 
   float l_dist = cxn->distanceOf(this->local.ref);
-  return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
+  return (FAR*FAR > l_dist && l_dist >= 5*5) || (NEAR > 1 && l_dist < 5*5);
 }
 
 void ENO_PlasmaBurst::updateRemote() throw() {
@@ -1288,38 +1311,35 @@ void ENO_PlasmaBurst::updateRemote() throw() {
 float vy;
 float x;
 float y;
-char tag[128];
-float mass;
-float direction;
+unsigned char direction;
+unsigned mass;
 unsigned exploded;
   #define X l_local
   
       exploded = X->exploded;
     
-DATA[152+0] &= ~(1<<0); DATA[152+0] |= (exploded & 1) << 0;
-direction = X->direction;
-io::write_c(&DATA[148+0], direction);
+DATA[9+0] &= ~(1<<7); DATA[9+0] |= (exploded & 1) << 7;
 mass = X->mass;
-io::write_c(&DATA[144+0], mass);
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
+DATA[9+0] &= ~(127<<0); DATA[9+0] |= (mass & 127) << 0;
+
+      direction = (byte)(255.0f*X->direction/2/pi);
+    
+io::write_c(&DATA[8+0], direction);
 y = X->y;
-io::write_c(&DATA[12+0], y);
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
   #define X l_remote
   X->vx = vx;
 X->vy = vy;
 X->x = x;
 X->y = y;
- if (!X->ignoreNetworkTag) X->tag = tag; 
 X->mass = mass;
-X->direction = direction;
 
       if (exploded && !X->exploded) {
         X->explode(NULL);
@@ -1333,11 +1353,18 @@ X->direction = direction;
   #undef field
 }
 
+      ENO_PlasmaBurst::ExplListener::ExplListener(PlasmaBurst* it, ENO_PlasmaBurst* that_)
+      : ExplodeListener<PlasmaBurst>(it), that(that_) {}
+    
 
 INO_Missile::INO_Missile(NetworkConnection* cxn_)
-: ImportedGameObject(155, cxn_),
-  cxn(cxn_)
+: ImportedGameObject(18, cxn_),
+  cxn(cxn_) 
 { }
+
+INO_Missile::~INO_Missile() {
+  
+}
 
 const NetworkConnection::geraet_num INO_Missile::num =
     NetworkConnection::registerGeraetCreator(&create);
@@ -1357,57 +1384,68 @@ void INO_Missile::update() throw() {
 
 Missile* INO_Missile::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
   const unsigned T = cxn->getLatency();
+  Missile* X = NULL;
   float vx;
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
-unsigned short timeAlive;
+float xdir;
+float ydir;
 unsigned level;
 unsigned exploded;
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
-io::read_c(&DATA[8+0], x);
+unsigned char timeAlive;
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
-io::read_c(&DATA[144+0], ax);
-if (ax != ax) ax = -2.0e-6f;
- else if (ax < -2.0e-6f) ax = -2.0e-6f;
- else if (ax > +2.0e-6f) ax = +2.0e-6f;
-io::read_c(&DATA[148+0], ay);
-if (ay != ay) ay = -2.0e-6f;
- else if (ay < -2.0e-6f) ay = -2.0e-6f;
- else if (ay > +2.0e-6f) ay = +2.0e-6f;
-io::read_c(&DATA[152+0], timeAlive);
-level = (DATA[154+0] >> 0) & 15;
-exploded = (DATA[154+0] >> 4) & 1;
-  Missile* X;
+{signed short _ax;
+    io::read_c(&DATA[8+0],_ax);
+    ax=_ax*2.0e-6f/0x7FFF;
+   }
+{signed short _ay;
+    io::read_c(&DATA[10+0],_ay);
+    ay=_ay*2.0e-6f/0x7FFF;
+   }
+{signed short _xdir;
+    io::read_c(&DATA[12+0],_xdir);
+    xdir=_xdir*2.0e-6f/0x7FFF;
+   }
+{signed short _ydir;
+    io::read_c(&DATA[14+0],_ydir);
+    ydir=_ydir*2.0e-6f/0x7FFF;
+   }
+level = (DATA[16+0] >> 0) & 15;
+exploded = (DATA[16+0] >> 4) & 1;
+io::read_c(&DATA[17+0], timeAlive);
   
     X = new Missile(field, level, x, y, vx, vy, ax, ay, timeAlive);
   
-   if (!X->ignoreNetworkTag) X->tag = tag; 
+   X->ax = ax; 
+ X->ay = ay; 
+ X->xdir = xdir; 
+ X->ydir = ydir; 
   
   return X;
   #undef DESTROY
@@ -1421,55 +1459,61 @@ throw () {
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
-unsigned short timeAlive;
+float xdir;
+float ydir;
 unsigned level;
 unsigned exploded;
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
 X->vx = vx;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
 X->vy = vy;
-io::read_c(&DATA[8+0], x);
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
 X->x = x;
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
 X->y = y;
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
- if (!X->ignoreNetworkTag) X->tag = tag; 
-io::read_c(&DATA[144+0], ax);
-if (ax != ax) ax = -2.0e-6f;
- else if (ax < -2.0e-6f) ax = -2.0e-6f;
- else if (ax > +2.0e-6f) ax = +2.0e-6f;
+{signed short _ax;
+    io::read_c(&DATA[8+0],_ax);
+    ax=_ax*2.0e-6f/0x7FFF;
+   }
 X->ax = ax;
-io::read_c(&DATA[148+0], ay);
-if (ay != ay) ay = -2.0e-6f;
- else if (ay < -2.0e-6f) ay = -2.0e-6f;
- else if (ay > +2.0e-6f) ay = +2.0e-6f;
+{signed short _ay;
+    io::read_c(&DATA[10+0],_ay);
+    ay=_ay*2.0e-6f/0x7FFF;
+   }
 X->ay = ay;
-io::read_c(&DATA[152+0], timeAlive);
-X->timeAlive = timeAlive;
-level = (DATA[154+0] >> 0) & 15;
+{signed short _xdir;
+    io::read_c(&DATA[12+0],_xdir);
+    xdir=_xdir*2.0e-6f/0x7FFF;
+   }
+X->xdir = xdir;
+{signed short _ydir;
+    io::read_c(&DATA[14+0],_ydir);
+    ydir=_ydir*2.0e-6f/0x7FFF;
+   }
+X->ydir = ydir;
+level = (DATA[16+0] >> 0) & 15;
  X->level = min(10u,max(1u,level)); 
-exploded = (DATA[154+0] >> 4) & 1;
+exploded = (DATA[16+0] >> 4) & 1;
 
       if (exploded && !X->exploded) {
         X->explode(NULL);
@@ -1481,7 +1525,10 @@ exploded = (DATA[154+0] >> 4) & 1;
 }
 
 ENO_Missile::ENO_Missile(NetworkConnection* cxn, Missile* obj)
-: ExportedGameObject(155, cxn, obj, clone(obj))
+: ExportedGameObject(18, cxn, obj, clone(obj, cxn))
+  
+      ,explListener((Missile*)local.ref, this)
+    
 {
   //Populate initial data
   #define X obj
@@ -1492,58 +1539,79 @@ ENO_Missile::ENO_Missile(NetworkConnection* cxn, Missile* obj)
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
-unsigned short timeAlive;
+float xdir;
+float ydir;
 unsigned level;
 unsigned exploded;
-   exploded = X->exploded; 
-DATA[154+0] &= ~(1<<4); DATA[154+0] |= (exploded & 1) << 4;
+unsigned char timeAlive;
+  
+      timeAlive = X->timeAlive/12;
+    
+io::write_c(&DATA[17+0], timeAlive);
+ exploded = X->exploded; 
+DATA[16+0] &= ~(1<<4); DATA[16+0] |= (exploded & 1) << 4;
  level = X->level; 
-DATA[154+0] &= ~(15<<0); DATA[154+0] |= (level & 15) << 0;
-timeAlive = X->timeAlive;
-io::write_c(&DATA[152+0], timeAlive);
+DATA[16+0] &= ~(15<<0); DATA[16+0] |= (level & 15) << 0;
+ydir = X->ydir;
+{signed short _ydir = ydir/2.0e-6f*0x7FFF; io::write_c(&DATA[14+0],_ydir);}
+xdir = X->xdir;
+{signed short _xdir = xdir/2.0e-6f*0x7FFF; io::write_c(&DATA[12+0],_xdir);}
 ay = X->ay;
-io::write_c(&DATA[148+0], ay);
+{signed short _ay = ay/2.0e-6f*0x7FFF; io::write_c(&DATA[10+0],_ay);}
 ax = X->ax;
-io::write_c(&DATA[144+0], ax);
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
+{signed short _ax = ax/2.0e-6f*0x7FFF; io::write_c(&DATA[8+0],_ax);}
 y = X->y;
-io::write_c(&DATA[12+0], y);
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef DATA
   #undef field
   #undef X
+  dirty = true;
 }
 
-Missile* ENO_Missile::clone(const Missile* src) const throw() {
+ENO_Missile::~ENO_Missile() {
+  
+}
+
+void ENO_Missile::init() throw() {
+  Missile*const X = (Missile*)local.ref;
+  
+}
+
+Missile* ENO_Missile::clone(const Missile* src, NetworkConnection* cxn)
+const throw() {
   #define X src
-  #define field (&this->cxn->field)
+  #define field (&cxn->field)
   #define DESTROY(x) assert(!(x))
+  #define LOCAL_CLONE
   const unsigned T = cxn->getLatency();
   float vx;
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
-unsigned short timeAlive;
+float xdir;
+float ydir;
 unsigned level;
 unsigned exploded;
-   exploded = X->exploded; 
+unsigned char timeAlive;
+  
+      timeAlive = X->timeAlive/12;
+    
+ exploded = X->exploded; 
  level = X->level; 
-timeAlive = X->timeAlive;
+ydir = X->ydir;
+xdir = X->xdir;
 ay = X->ay;
 ax = X->ax;
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
 y = X->y;
 x = X->x;
 vy = X->vy;
@@ -1554,7 +1622,11 @@ vx = X->vx;
   
     X = new Missile(field, level, x, y, vx, vy, ax, ay, timeAlive);
   
-   if (!X->ignoreNetworkTag) X->tag = tag; 
+   X->ax = ax; 
+ X->ay = ay; 
+ X->xdir = xdir; 
+ X->ydir = ydir; 
+  #undef LOCAL_CLONE
   #undef X
   #undef field
   #undef DESTROY
@@ -1568,10 +1640,10 @@ bool ENO_Missile::shouldUpdate() const throw() {
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
-unsigned short timeAlive;
+float xdir;
+float ydir;
 unsigned level;
 unsigned exploded;
     S(const Missile* X) {
@@ -1579,21 +1651,26 @@ unsigned exploded;
 vy = X->vy;
 x = X->x;
 y = X->y;
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
 ax = X->ax;
 ay = X->ay;
-timeAlive = X->timeAlive;
+xdir = X->xdir;
+ydir = X->ydir;
  level = X->level; 
  exploded = X->exploded; 
     }
   } x(static_cast<Missile*>(local.ref)), y(static_cast<Missile*>(remote));
 
-  
-      if (strcmp(x.tag, y.tag)) return true; //Must send update
-    
+  {float d=fabs(x.vx-y.vx)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.vy-y.vy)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.x-y.x)*128;FAR+=d;NEAR+=d;}
+{float d=fabs(x.y-y.y)*128;FAR+=d;NEAR+=d;}
+{float d=fabs(x.ax-y.ax)*1.0e6f;FAR+=d;NEAR+=d;}
+{float d=fabs(x.ay-y.ay)*1.0e6f;FAR+=d;NEAR+=d;}
+{float d=fabs(x.xdir-y.xdir)*0;FAR+=d;NEAR+=d;}
+{float d=fabs(x.ydir-y.ydir)*0;FAR+=d;NEAR+=d;}
 
   float l_dist = cxn->distanceOf(this->local.ref);
-  return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
+  return (FAR*FAR > l_dist && l_dist >= 5*5) || (NEAR > 1 && l_dist < 5*5);
 }
 
 void ENO_Missile::updateRemote() throw() {
@@ -1607,43 +1684,43 @@ void ENO_Missile::updateRemote() throw() {
 float vy;
 float x;
 float y;
-char tag[128];
 float ax;
 float ay;
-unsigned short timeAlive;
+float xdir;
+float ydir;
 unsigned level;
 unsigned exploded;
   #define X l_local
    exploded = X->exploded; 
-DATA[154+0] &= ~(1<<4); DATA[154+0] |= (exploded & 1) << 4;
+DATA[16+0] &= ~(1<<4); DATA[16+0] |= (exploded & 1) << 4;
  level = X->level; 
-DATA[154+0] &= ~(15<<0); DATA[154+0] |= (level & 15) << 0;
-timeAlive = X->timeAlive;
-io::write_c(&DATA[152+0], timeAlive);
+DATA[16+0] &= ~(15<<0); DATA[16+0] |= (level & 15) << 0;
+ydir = X->ydir;
+{signed short _ydir = ydir/2.0e-6f*0x7FFF; io::write_c(&DATA[14+0],_ydir);}
+xdir = X->xdir;
+{signed short _xdir = xdir/2.0e-6f*0x7FFF; io::write_c(&DATA[12+0],_xdir);}
 ay = X->ay;
-io::write_c(&DATA[148+0], ay);
+{signed short _ay = ay/2.0e-6f*0x7FFF; io::write_c(&DATA[10+0],_ay);}
 ax = X->ax;
-io::write_c(&DATA[144+0], ax);
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
+{signed short _ax = ax/2.0e-6f*0x7FFF; io::write_c(&DATA[8+0],_ax);}
 y = X->y;
-io::write_c(&DATA[12+0], y);
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
   #define X l_remote
   X->vx = vx;
 X->vy = vy;
 X->x = x;
 X->y = y;
- if (!X->ignoreNetworkTag) X->tag = tag; 
 X->ax = ax;
 X->ay = ay;
-X->timeAlive = timeAlive;
+X->xdir = xdir;
+X->ydir = ydir;
  X->level = min(10u,max(1u,level)); 
 
       if (exploded && !X->exploded) {
@@ -1658,11 +1735,18 @@ X->timeAlive = timeAlive;
   #undef field
 }
 
+      ENO_Missile::ExplListener::ExplListener(Missile* it, ENO_Missile* that_)
+      : ExplodeListener<Missile>(it), that(that_) {}
+    
 
 INO_ParticleEmitter::INO_ParticleEmitter(NetworkConnection* cxn_)
-: ImportedGameObject(156, cxn_),
-  cxn(cxn_)
+: ImportedGameObject(20, cxn_),
+  cxn(cxn_) 
 { }
+
+INO_ParticleEmitter::~INO_ParticleEmitter() {
+  
+}
 
 const NetworkConnection::geraet_num INO_ParticleEmitter::num =
     NetworkConnection::registerGeraetCreator(&create);
@@ -1682,49 +1766,47 @@ void INO_ParticleEmitter::update() throw() {
 
 ParticleEmitter* INO_ParticleEmitter::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
   const unsigned T = cxn->getLatency();
+  ParticleEmitter* X = NULL;
   float vx;
 float vy;
 float x;
 float y;
-char tag[128];
 unsigned type;
 unsigned rmajor;
 unsigned rminor;
 unsigned short timeAlive;
 byte r[8];
 unsigned char blame;
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
-io::read_c(&DATA[8+0], x);
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
-type = (DATA[144+0] >> 0) & 3;
-rmajor = (DATA[144+0] >> 2) & 7;
-rminor = (DATA[144+0] >> 5) & 7;
-io::read_c(&DATA[145+0], timeAlive);
-memcpy(r, &DATA[147+0], 8);
-io::read_c(&DATA[155+0], blame);
-  ParticleEmitter* X;
+type = (DATA[8+0] >> 0) & 3;
+rmajor = (DATA[8+0] >> 2) & 7;
+rminor = (DATA[8+0] >> 5) & 7;
+io::read_c(&DATA[9+0], timeAlive);
+memcpy(r, &DATA[11+0], 8);
+io::read_c(&DATA[19+0], blame);
   
     X = new ParticleEmitter(field, (ParticleBeamType)type,
                             0xFFFFFF, //TODO: Translate to local blame
@@ -1732,7 +1814,7 @@ io::read_c(&DATA[155+0], blame);
                             r, rmajor, rminor,
                             timeAlive);
   
-   if (!X->ignoreNetworkTag) X->tag = tag; 
+  
   
   return X;
   #undef DESTROY
@@ -1746,58 +1828,56 @@ throw () {
 float vy;
 float x;
 float y;
-char tag[128];
 unsigned type;
 unsigned rmajor;
 unsigned rminor;
 unsigned short timeAlive;
 byte r[8];
 unsigned char blame;
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
 X->vx = vx;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
 X->vy = vy;
-io::read_c(&DATA[8+0], x);
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
 X->x = x;
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
 X->y = y;
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
- if (!X->ignoreNetworkTag) X->tag = tag; 
-type = (DATA[144+0] >> 0) & 3;
-rmajor = (DATA[144+0] >> 2) & 7;
+type = (DATA[8+0] >> 0) & 3;
+rmajor = (DATA[8+0] >> 2) & 7;
 X->rmajor = rmajor;
-rminor = (DATA[144+0] >> 5) & 7;
+rminor = (DATA[8+0] >> 5) & 7;
 X->rminor = rminor;
-io::read_c(&DATA[145+0], timeAlive);
+io::read_c(&DATA[9+0], timeAlive);
 X->timeAlive = timeAlive;
-memcpy(r, &DATA[147+0], 8);
+memcpy(r, &DATA[11+0], 8);
   memcpy(X->r, r, sizeof(r)); 
-io::read_c(&DATA[155+0], blame);
+io::read_c(&DATA[19+0], blame);
 X->blame = blame;
   return false;
   #undef DESTROY
 }
 
 ENO_ParticleEmitter::ENO_ParticleEmitter(NetworkConnection* cxn, ParticleEmitter* obj)
-: ExportedGameObject(156, cxn, obj, clone(obj))
+: ExportedGameObject(20, cxn, obj, clone(obj, cxn))
+  
 {
   //Populate initial data
   #define X obj
@@ -1808,7 +1888,6 @@ ENO_ParticleEmitter::ENO_ParticleEmitter(NetworkConnection* cxn, ParticleEmitter
 float vy;
 float x;
 float y;
-char tag[128];
 unsigned type;
 unsigned rmajor;
 unsigned rminor;
@@ -1816,42 +1895,51 @@ unsigned short timeAlive;
 byte r[8];
 unsigned char blame;
   blame = X->blame;
-io::write_c(&DATA[155+0], blame);
+io::write_c(&DATA[19+0], blame);
  memcpy(r, X->r, sizeof(r)); 
-memcpy(&DATA[147+0], r, 8);
+memcpy(&DATA[11+0], r, 8);
 timeAlive = X->timeAlive;
-io::write_c(&DATA[145+0], timeAlive);
+io::write_c(&DATA[9+0], timeAlive);
 rminor = X->rminor;
-DATA[144+0] &= ~(7<<5); DATA[144+0] |= (rminor & 7) << 5;
+DATA[8+0] &= ~(7<<5); DATA[8+0] |= (rminor & 7) << 5;
 rmajor = X->rmajor;
-DATA[144+0] &= ~(7<<2); DATA[144+0] |= (rmajor & 7) << 2;
+DATA[8+0] &= ~(7<<2); DATA[8+0] |= (rmajor & 7) << 2;
  type = (unsigned)X->type; 
-DATA[144+0] &= ~(3<<0); DATA[144+0] |= (type & 3) << 0;
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
+DATA[8+0] &= ~(3<<0); DATA[8+0] |= (type & 3) << 0;
 y = X->y;
-io::write_c(&DATA[12+0], y);
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef DATA
   #undef field
   #undef X
+  dirty = true;
 }
 
-ParticleEmitter* ENO_ParticleEmitter::clone(const ParticleEmitter* src) const throw() {
+ENO_ParticleEmitter::~ENO_ParticleEmitter() {
+  
+}
+
+void ENO_ParticleEmitter::init() throw() {
+  ParticleEmitter*const X = (ParticleEmitter*)local.ref;
+  
+}
+
+ParticleEmitter* ENO_ParticleEmitter::clone(const ParticleEmitter* src, NetworkConnection* cxn)
+const throw() {
   #define X src
-  #define field (&this->cxn->field)
+  #define field (&cxn->field)
   #define DESTROY(x) assert(!(x))
+  #define LOCAL_CLONE
   const unsigned T = cxn->getLatency();
   float vx;
 float vy;
 float x;
 float y;
-char tag[128];
 unsigned type;
 unsigned rmajor;
 unsigned rminor;
@@ -1864,7 +1952,6 @@ timeAlive = X->timeAlive;
 rminor = X->rminor;
 rmajor = X->rmajor;
  type = (unsigned)X->type; 
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
 y = X->y;
 x = X->x;
 vy = X->vy;
@@ -1879,7 +1966,8 @@ vx = X->vx;
                             r, rmajor, rminor,
                             timeAlive);
   
-   if (!X->ignoreNetworkTag) X->tag = tag; 
+  
+  #undef LOCAL_CLONE
   #undef X
   #undef field
   #undef DESTROY
@@ -1893,7 +1981,6 @@ bool ENO_ParticleEmitter::shouldUpdate() const throw() {
 float vy;
 float x;
 float y;
-char tag[128];
 unsigned type;
 unsigned rmajor;
 unsigned rminor;
@@ -1905,7 +1992,6 @@ unsigned char blame;
 vy = X->vy;
 x = X->x;
 y = X->y;
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
  type = (unsigned)X->type; 
 rmajor = X->rmajor;
 rminor = X->rminor;
@@ -1915,13 +2001,18 @@ blame = X->blame;
     }
   } x(static_cast<ParticleEmitter*>(local.ref)), y(static_cast<ParticleEmitter*>(remote));
 
-  
-      if (strcmp(x.tag, y.tag)) return true; //Must send update
-    
+  {float d=fabs(x.vx-y.vx)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.vy-y.vy)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.x-y.x)*128;FAR+=d;NEAR+=d;}
+{float d=fabs(x.y-y.y)*128;FAR+=d;NEAR+=d;}
  return false; 
+{float d=fabs(x.rmajor-y.rmajor)*0;FAR+=d;NEAR+=d;}
+{float d=fabs(x.rminor-y.rminor)*0;FAR+=d;NEAR+=d;}
+{float d=fabs(x.timeAlive-y.timeAlive)*0;FAR+=d;NEAR+=d;}
+{float d=fabs(x.blame-y.blame)*0;FAR+=d;NEAR+=d;}
 
   float l_dist = cxn->distanceOf(this->local.ref);
-  return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
+  return (FAR*FAR > l_dist && l_dist >= 5*5) || (NEAR > 1 && l_dist < 5*5);
 }
 
 void ENO_ParticleEmitter::updateRemote() throw() {
@@ -1935,7 +2026,6 @@ void ENO_ParticleEmitter::updateRemote() throw() {
 float vy;
 float x;
 float y;
-char tag[128];
 unsigned type;
 unsigned rmajor;
 unsigned rminor;
@@ -1944,34 +2034,31 @@ byte r[8];
 unsigned char blame;
   #define X l_local
   blame = X->blame;
-io::write_c(&DATA[155+0], blame);
+io::write_c(&DATA[19+0], blame);
  memcpy(r, X->r, sizeof(r)); 
-memcpy(&DATA[147+0], r, 8);
+memcpy(&DATA[11+0], r, 8);
 timeAlive = X->timeAlive;
-io::write_c(&DATA[145+0], timeAlive);
+io::write_c(&DATA[9+0], timeAlive);
 rminor = X->rminor;
-DATA[144+0] &= ~(7<<5); DATA[144+0] |= (rminor & 7) << 5;
+DATA[8+0] &= ~(7<<5); DATA[8+0] |= (rminor & 7) << 5;
 rmajor = X->rmajor;
-DATA[144+0] &= ~(7<<2); DATA[144+0] |= (rmajor & 7) << 2;
+DATA[8+0] &= ~(7<<2); DATA[8+0] |= (rmajor & 7) << 2;
  type = (unsigned)X->type; 
-DATA[144+0] &= ~(3<<0); DATA[144+0] |= (type & 3) << 0;
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
+DATA[8+0] &= ~(3<<0); DATA[8+0] |= (type & 3) << 0;
 y = X->y;
-io::write_c(&DATA[12+0], y);
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
   #define X l_remote
   X->vx = vx;
 X->vy = vy;
 X->x = x;
 X->y = y;
- if (!X->ignoreNetworkTag) X->tag = tag; 
 X->rmajor = rmajor;
 X->rminor = rminor;
 X->timeAlive = timeAlive;
@@ -1985,10 +2072,285 @@ X->blame = blame;
 }
 
 
-INO_Spectator::INO_Spectator(NetworkConnection* cxn_)
-: ImportedGameObject(144, cxn_),
-  cxn(cxn_)
+INO_MonophasicEnergyPulse::INO_MonophasicEnergyPulse(NetworkConnection* cxn_)
+: ImportedGameObject(11, cxn_),
+  cxn(cxn_) 
 { }
+
+INO_MonophasicEnergyPulse::~INO_MonophasicEnergyPulse() {
+  
+}
+
+const NetworkConnection::geraet_num INO_MonophasicEnergyPulse::num =
+    NetworkConnection::registerGeraetCreator(&create);
+
+InputNetworkGeraet* INO_MonophasicEnergyPulse::create(NetworkConnection* cxn) throw() {
+  return new INO_MonophasicEnergyPulse(cxn);
+}
+
+void INO_MonophasicEnergyPulse::construct() throw() {
+  object = decodeConstruct(state);
+}
+
+void INO_MonophasicEnergyPulse::update() throw() {
+  if (decodeUpdate(state, static_cast<MonophasicEnergyPulse*>(object)))
+    destroy(false);
+}
+
+MonophasicEnergyPulse* INO_MonophasicEnergyPulse::decodeConstruct(const std::vector<byte>& DATA)
+const throw() {
+  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
+  const unsigned T = cxn->getLatency();
+  MonophasicEnergyPulse* X = NULL;
+  float vx;
+float vy;
+float x;
+float y;
+unsigned exploded;
+unsigned power;
+unsigned short timeAlive;
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
+
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
+    
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
+
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
+    
+exploded = (DATA[8+0] >> 0) & 1;
+power = (DATA[8+0] >> 1) & 127;
+io::read_c(&DATA[9+0], timeAlive);
+  
+    X = new MonophasicEnergyPulse(field, x, y, vx, vy, (float)power, timeAlive);
+  
+  
+  
+  return X;
+  #undef DESTROY
+}
+
+bool INO_MonophasicEnergyPulse::decodeUpdate(const std::vector<byte>& DATA, MonophasicEnergyPulse* X)
+throw () {
+  #define DESTROY(x) return true
+  const unsigned T = cxn->getLatency();
+  float vx;
+float vy;
+float x;
+float y;
+unsigned exploded;
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
+X->vx = vx;
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
+X->vy = vy;
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
+
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
+    
+X->x = x;
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
+
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
+    
+X->y = y;
+exploded = (DATA[8+0] >> 0) & 1;
+
+      if (exploded && !X->exploded) {
+        X->explode(NULL);
+        DESTROY(false);
+      }
+    
+  return false;
+  #undef DESTROY
+}
+
+ENO_MonophasicEnergyPulse::ENO_MonophasicEnergyPulse(NetworkConnection* cxn, MonophasicEnergyPulse* obj)
+: ExportedGameObject(11, cxn, obj, clone(obj, cxn))
+  
+      ,explListener((MonophasicEnergyPulse*)local.ref, this)
+    
+{
+  //Populate initial data
+  #define X obj
+  #define field (cxn->field)
+  const unsigned T = cxn->getLatency();
+  #define DATA state
+  float vx;
+float vy;
+float x;
+float y;
+unsigned exploded;
+unsigned power;
+unsigned short timeAlive;
+  timeAlive = X->timeAlive;
+io::write_c(&DATA[9+0], timeAlive);
+power = X->power;
+DATA[8+0] &= ~(127<<1); DATA[8+0] |= (power & 127) << 1;
+ exploded = X->exploded; 
+DATA[8+0] &= ~(1<<0); DATA[8+0] |= (exploded & 1) << 0;
+y = X->y;
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
+x = X->x;
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
+vy = X->vy;
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
+vx = X->vx;
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
+  #undef DATA
+  #undef field
+  #undef X
+  dirty = true;
+}
+
+ENO_MonophasicEnergyPulse::~ENO_MonophasicEnergyPulse() {
+  
+}
+
+void ENO_MonophasicEnergyPulse::init() throw() {
+  MonophasicEnergyPulse*const X = (MonophasicEnergyPulse*)local.ref;
+  
+}
+
+MonophasicEnergyPulse* ENO_MonophasicEnergyPulse::clone(const MonophasicEnergyPulse* src, NetworkConnection* cxn)
+const throw() {
+  #define X src
+  #define field (&cxn->field)
+  #define DESTROY(x) assert(!(x))
+  #define LOCAL_CLONE
+  const unsigned T = cxn->getLatency();
+  float vx;
+float vy;
+float x;
+float y;
+unsigned exploded;
+unsigned power;
+unsigned short timeAlive;
+  timeAlive = X->timeAlive;
+power = X->power;
+ exploded = X->exploded; 
+y = X->y;
+x = X->x;
+vy = X->vy;
+vx = X->vx;
+  #undef X
+  MonophasicEnergyPulse* dst;
+  #define X dst
+  
+    X = new MonophasicEnergyPulse(field, x, y, vx, vy, (float)power, timeAlive);
+  
+  
+  #undef LOCAL_CLONE
+  #undef X
+  #undef field
+  #undef DESTROY
+  return dst;
+}
+
+bool ENO_MonophasicEnergyPulse::shouldUpdate() const throw() {
+  float NEAR = 0, FAR = 0;
+  struct S {
+    float vx;
+float vy;
+float x;
+float y;
+unsigned exploded;
+    S(const MonophasicEnergyPulse* X) {
+      vx = X->vx;
+vy = X->vy;
+x = X->x;
+y = X->y;
+ exploded = X->exploded; 
+    }
+  } x(static_cast<MonophasicEnergyPulse*>(local.ref)), y(static_cast<MonophasicEnergyPulse*>(remote));
+
+  {float d=fabs(x.vx-y.vx)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.vy-y.vy)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.x-y.x)*128;FAR+=d;NEAR+=d;}
+{float d=fabs(x.y-y.y)*128;FAR+=d;NEAR+=d;}
+
+  float l_dist = cxn->distanceOf(this->local.ref);
+  return (FAR*FAR > l_dist && l_dist >= 5*5) || (NEAR > 1 && l_dist < 5*5);
+}
+
+void ENO_MonophasicEnergyPulse::updateRemote() throw() {
+  #define T 0
+  #define DATA (this->state)
+  #define field (&this->cxn->field)
+  #define DESTROY(x) assert(!(x))
+  MonophasicEnergyPulse* l_local = static_cast<MonophasicEnergyPulse*>(this->local.ref);
+  MonophasicEnergyPulse* l_remote = static_cast<MonophasicEnergyPulse*>(this->remote);
+  float vx;
+float vy;
+float x;
+float y;
+unsigned exploded;
+  #define X l_local
+   exploded = X->exploded; 
+DATA[8+0] &= ~(1<<0); DATA[8+0] |= (exploded & 1) << 0;
+y = X->y;
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
+x = X->x;
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
+vy = X->vy;
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
+vx = X->vx;
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
+  #undef X
+  #define X l_remote
+  X->vx = vx;
+X->vy = vy;
+X->x = x;
+X->y = y;
+
+      if (exploded && !X->exploded) {
+        X->explode(NULL);
+        DESTROY(false);
+      }
+    
+  #undef X
+  #undef DATA
+  #undef T
+  #undef DESTROY
+  #undef field
+}
+
+      ENO_MonophasicEnergyPulse::ExplListener::ExplListener(MonophasicEnergyPulse* it, ENO_MonophasicEnergyPulse* that_)
+      : ExplodeListener<MonophasicEnergyPulse>(it), that(that_) {}
+    
+
+INO_Spectator::INO_Spectator(NetworkConnection* cxn_)
+: ImportedGameObject(8, cxn_),
+  cxn(cxn_) 
+{ }
+
+INO_Spectator::~INO_Spectator() {
+  
+}
 
 const NetworkConnection::geraet_num INO_Spectator::num =
     NetworkConnection::registerGeraetCreator(&create);
@@ -2008,41 +2370,39 @@ void INO_Spectator::update() throw() {
 
 Spectator* INO_Spectator::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
   const unsigned T = cxn->getLatency();
+  Spectator* X = NULL;
   float vx;
 float vy;
 float x;
 float y;
-char tag[128];
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
-io::read_c(&DATA[8+0], x);
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
-  Spectator* X;
   
     X = new Spectator(field, x, y, vx, vy);
   
-   if (!X->ignoreNetworkTag) X->tag = tag; 
+  
    cxn->setReference(X); 
   return X;
   #undef DESTROY
@@ -2056,41 +2416,39 @@ throw () {
 float vy;
 float x;
 float y;
-char tag[128];
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
 X->vx = vx;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
 X->vy = vy;
-io::read_c(&DATA[8+0], x);
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
 X->x = x;
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
 X->y = y;
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
- if (!X->ignoreNetworkTag) X->tag = tag; 
   return false;
   #undef DESTROY
 }
 
 ENO_Spectator::ENO_Spectator(NetworkConnection* cxn, Spectator* obj)
-: ExportedGameObject(144, cxn, obj, clone(obj))
+: ExportedGameObject(8, cxn, obj, clone(obj, cxn))
+  
 {
   //Populate initial data
   #define X obj
@@ -2101,34 +2459,41 @@ ENO_Spectator::ENO_Spectator(NetworkConnection* cxn, Spectator* obj)
 float vy;
 float x;
 float y;
-char tag[128];
-   strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
-y = X->y;
-io::write_c(&DATA[12+0], y);
+  y = X->y;
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef DATA
   #undef field
   #undef X
+  dirty = true;
 }
 
-Spectator* ENO_Spectator::clone(const Spectator* src) const throw() {
+ENO_Spectator::~ENO_Spectator() {
+  
+}
+
+void ENO_Spectator::init() throw() {
+  Spectator*const X = (Spectator*)local.ref;
+  
+}
+
+Spectator* ENO_Spectator::clone(const Spectator* src, NetworkConnection* cxn)
+const throw() {
   #define X src
-  #define field (&this->cxn->field)
+  #define field (&cxn->field)
   #define DESTROY(x) assert(!(x))
+  #define LOCAL_CLONE
   const unsigned T = cxn->getLatency();
   float vx;
 float vy;
 float x;
 float y;
-char tag[128];
-   strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-y = X->y;
+  y = X->y;
 x = X->x;
 vy = X->vy;
 vx = X->vx;
@@ -2138,7 +2503,8 @@ vx = X->vx;
   
     X = new Spectator(field, x, y, vx, vy);
   
-   if (!X->ignoreNetworkTag) X->tag = tag; 
+  
+  #undef LOCAL_CLONE
   #undef X
   #undef field
   #undef DESTROY
@@ -2152,22 +2518,21 @@ bool ENO_Spectator::shouldUpdate() const throw() {
 float vy;
 float x;
 float y;
-char tag[128];
     S(const Spectator* X) {
       vx = X->vx;
 vy = X->vy;
 x = X->x;
 y = X->y;
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
     }
   } x(static_cast<Spectator*>(local.ref)), y(static_cast<Spectator*>(remote));
 
-  
-      if (strcmp(x.tag, y.tag)) return true; //Must send update
-    
+  {float d=fabs(x.vx-y.vx)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.vy-y.vy)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.x-y.x)*128;FAR+=d;NEAR+=d;}
+{float d=fabs(x.y-y.y)*128;FAR+=d;NEAR+=d;}
 
   float l_dist = cxn->distanceOf(this->local.ref);
-  return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
+  return (FAR*FAR > l_dist && l_dist >= 5*5) || (NEAR > 1 && l_dist < 5*5);
 }
 
 void ENO_Spectator::updateRemote() throw() {
@@ -2181,25 +2546,21 @@ void ENO_Spectator::updateRemote() throw() {
 float vy;
 float x;
 float y;
-char tag[128];
   #define X l_local
-   strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
-y = X->y;
-io::write_c(&DATA[12+0], y);
+  y = X->y;
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
   #define X l_remote
   X->vx = vx;
 X->vy = vy;
 X->x = x;
 X->y = y;
- if (!X->ignoreNetworkTag) X->tag = tag; 
   #undef X
   #undef DATA
   #undef T
@@ -2245,7 +2606,7 @@ X->y = y;
   };
 
   //Uses the SYS(name) macro to handle every known ship system type.
-  #define HANDLE_SYSTEMS  SYS(AntimatterPower)  SYS(CloakingDevice)  SYS(DispersionShield)  SYS(GatlingPlasmaBurstLauncher)  SYS(MissileLauncher)  SYS(MonophasicEnergyEmitter)  SYS(ParticleBeamLauncher)  SYS(RelIonAccelerator)  SYS(BussardRamjet)  SYS(FusionPower)  SYS(Heatsink)  SYS(MiniGravwaveDriveMKII)  SYS(PlasmaBurstLauncher)  SYS(SemiguidedBombLauncher)  SYS(SuperParticleAccelerator)  SYS(Capacitor)  SYS(EnergyChargeLauncher)  SYS(FissionPower)  SYS(MagnetoBombLauncher)  SYS(MiniGravwaveDrive)  SYS(ParticleAccelerator)  SYS(PowerCell)  SYS(ReinforcementBulkhead)  SYS(SelfDestructCharge)
+  #define HANDLE_SYSTEMS  SYS(AntimatterPower)  SYS(CloakingDevice)  SYS(DispersionShield)  SYS(GatlingPlasmaBurstLauncher)  SYS(MissileLauncher)  SYS(MonophasicEnergyEmitter)  SYS(ParticleBeamLauncher)  SYS(RelIonAccelerator)  SYS(BussardRamjet)  SYS(FusionPower)  SYS(Heatsink)  SYS(MiniGravwaveDriveMKII)  SYS(PlasmaBurstLauncher)  SYS(SemiguidedBombLauncher)  SYS(ShieldGenerator)  SYS(SuperParticleAccelerator)  SYS(Capacitor)  SYS(EnergyChargeLauncher)  SYS(FissionPower)  SYS(MagnetoBombLauncher)  SYS(MiniGravwaveDrive)  SYS(ParticleAccelerator)  SYS(PowerCell)  SYS(ReinforcementBulkhead)  SYS(SelfDestructCharge)
 
   #define SHGEN(ix) ((ix) < X->networkCells.size()?  getShieldGenerator(X->networkCells[(ix)]) : NULL)
 
@@ -2295,9 +2656,13 @@ X->y = y;
   };
 
 INO_Ship::INO_Ship(NetworkConnection* cxn_)
-: ImportedGameObject(80658, cxn_),
-  cxn(cxn_)
+: ImportedGameObject(80645, cxn_),
+  cxn(cxn_) 
 { }
+
+INO_Ship::~INO_Ship() {
+  
+}
 
 const NetworkConnection::geraet_num INO_Ship::num =
     NetworkConnection::registerGeraetCreator(&create);
@@ -2317,19 +2682,20 @@ void INO_Ship::update() throw() {
 
 Ship* INO_Ship::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
   const unsigned T = cxn->getLatency();
+  Ship* X = NULL;
   float vx;
 float vy;
 float x;
 float y;
+float vtheta;
+unsigned char theta;
 char tag[128];
 char target[128];
 float colourR;
 float colourG;
 float colourB;
-float theta;
-float vtheta;
 float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
@@ -2346,6 +2712,7 @@ unsigned char neighboursBits47[16376];
 unsigned char neighboursBits8B[16376];
 unsigned int neighbours[16376];
 unsigned char cellType[4096];
+ bool destruction; 
 unsigned char cellDamage[4094];
 bool systemExist[8192];
 struct {
@@ -2357,78 +2724,75 @@ struct {
     byte maxStrength, currStrengthPercent, currStability, currAlpha;
   } shields[4094];
 bool gatPlasmaTurbo[4096];
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
-io::read_c(&DATA[8+0], x);
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
-strncpy(target, (const char*)&DATA[144+0], 128-1); target[128-1]=0;
-io::read_c(&DATA[272+0], colourR);
+{signed short _vtheta;
+    io::read_c(&DATA[8+0],_vtheta);
+    vtheta=_vtheta*32.0e-3f/0x7FFF;
+   }
+io::read_c(&DATA[10+0], theta);
+strncpy(tag, (const char*)&DATA[11+0], 128-1); tag[128-1]=0;
+strncpy(target, (const char*)&DATA[139+0], 128-1); target[128-1]=0;
+io::read_c(&DATA[267+0], colourR);
 if (colourR != colourR) colourR = 0;
  else if (colourR < 0) colourR = 0;
  else if (colourR > 1) colourR = 1;
-io::read_c(&DATA[276+0], colourG);
+io::read_c(&DATA[271+0], colourG);
 if (colourG != colourG) colourG = 0;
  else if (colourG < 0) colourG = 0;
  else if (colourG > 1) colourG = 1;
-io::read_c(&DATA[280+0], colourB);
+io::read_c(&DATA[275+0], colourB);
 if (colourB != colourB) colourB = 0;
  else if (colourB < 0) colourB = 0;
  else if (colourB > 1) colourB = 1;
-io::read_c(&DATA[284+0], theta);
-if (theta != theta) theta = -1.0e9;
- else if (theta < -1.0e9) theta = -1.0e9;
- else if (theta > +1.0e9) theta = +1.0e9;
-io::read_c(&DATA[288+0], vtheta);
-if (vtheta != vtheta) vtheta = -1.0e9;
- else if (vtheta < -1.0e9) vtheta = -1.0e9;
- else if (vtheta > +1.0e9) vtheta = +1.0e9;
-io::read_c(&DATA[292+0], thrustPercent);
+io::read_c(&DATA[279+0], thrustPercent);
 if (thrustPercent != thrustPercent) thrustPercent = 0;
  else if (thrustPercent < 0) thrustPercent = 0;
  else if (thrustPercent > 1) thrustPercent = 1;
-io::read_c(&DATA[296+0], reinforcement);
+io::read_c(&DATA[283+0], reinforcement);
 if (reinforcement != reinforcement) reinforcement = 0;
  else if (reinforcement < 0) reinforcement = 0;
  else if (reinforcement > 32) reinforcement = 32;
-io::read_c(&DATA[300+0], currentCapacitancePercent);
-io::read_c(&DATA[301+0], insignia);
-isFragment = (DATA[309+0] >> 0) & 1;
-thrustOn = (DATA[309+0] >> 1) & 1;
-brakeOn = (DATA[309+0] >> 2) & 1;
-shieldsDeactivated = (DATA[309+0] >> 3) & 1;
-stealthMode = (DATA[309+0] >> 4) & 1;
-rootIsBridge = (DATA[309+0] >> 5) & 1;
-io::read_c(&DATA[310+0], rootTheta);
+io::read_c(&DATA[287+0], currentCapacitancePercent);
+io::read_c(&DATA[288+0], insignia);
+isFragment = (DATA[296+0] >> 0) & 1;
+thrustOn = (DATA[296+0] >> 1) & 1;
+brakeOn = (DATA[296+0] >> 2) & 1;
+shieldsDeactivated = (DATA[296+0] >> 3) & 1;
+stealthMode = (DATA[296+0] >> 4) & 1;
+rootIsBridge = (DATA[296+0] >> 5) & 1;
+io::read_c(&DATA[297+0], rootTheta);
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=2) {
-neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+312+ARRAY_OFFSET*1)[0+0] >> 0) & 15;
-neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+312+ARRAY_OFFSET*1)[0+0] >> 4) & 15;
+neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=2) {
-neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+8500+ARRAY_OFFSET*1)[0+0] >> 0) & 15;
-neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+8500+ARRAY_OFFSET*1)[0+0] >> 4) & 15;
+neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+8487+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+8487+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=2) {
-neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+16688+ARRAY_OFFSET*1)[0+0] >> 0) & 15;
-neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+16688+ARRAY_OFFSET*1)[0+0] >> 4) & 15;
+neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+16675+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+16675+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=1) {
 
@@ -2438,30 +2802,30 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
-cellType[0+ARRAY_OFFSET] = ((&DATA[0]+24876+ARRAY_OFFSET*1)[0+0] >> 0) & 3;
-cellType[1+ARRAY_OFFSET] = ((&DATA[0]+24876+ARRAY_OFFSET*1)[0+0] >> 2) & 3;
-cellType[2+ARRAY_OFFSET] = ((&DATA[0]+24876+ARRAY_OFFSET*1)[0+0] >> 4) & 3;
-cellType[3+ARRAY_OFFSET] = ((&DATA[0]+24876+ARRAY_OFFSET*1)[0+0] >> 6) & 3;
+cellType[0+ARRAY_OFFSET] = ((&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] >> 0) & 3;
+cellType[1+ARRAY_OFFSET] = ((&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] >> 2) & 3;
+cellType[2+ARRAY_OFFSET] = ((&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] >> 4) & 3;
+cellType[3+ARRAY_OFFSET] = ((&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] >> 6) & 3;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+25900+ARRAY_OFFSET*1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+25887+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8188; ARRAY_OFFSET+=1) {
-systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+31018+ARRAY_OFFSET*1)[0+0] >> 0) & 3;
-systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+31018+ARRAY_OFFSET*1)[0+0] >> 2) & 63;
+systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+31005+ARRAY_OFFSET*1/1)[0+0] >> 0) & 3;
+systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+31005+ARRAY_OFFSET*1/1)[0+0] >> 2) & 63;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8188; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+39206+ARRAY_OFFSET*1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+39193+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8188; ARRAY_OFFSET+=1) {
 
@@ -2469,11 +2833,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8188; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = STD_CELL_SZ*MIN_SHIELD_RAD;
@@ -2485,16 +2849,15 @@ if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=8) {
-gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] >> 0) & 1;
-gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] >> 1) & 1;
-gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] >> 2) & 1;
-gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] >> 3) & 1;
-gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] >> 4) & 1;
-gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] >> 5) & 1;
-gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] >> 6) & 1;
-gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] >> 7) & 1;
+gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
-  Ship* X;
   
     X = new Ship(field);
     //Set fields from GameObject
@@ -2669,16 +3032,22 @@ gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] >> 7) & 1
       #endif
       DESTROY(true);
     }
-  
-   if (!X->ignoreNetworkTag) X->tag = tag; 
 
-      X->setColour(colourR, colourG, colourB);
-    
- X->theta = theta; 
- X->vtheta = vtheta; 
+    //Register with SDG
+    #ifndef LOCAL_CLONE
+    X->shipDamageGeraet = cxn->sdg;
+    cxn->sdg->addRemoteShip(X, inputChannel);
+    #endif /* LOCAL_CLONE */
+  
+   X->vtheta = vtheta; 
+ X->theta = theta/255.0f*pi*2 + vtheta*T; 
 
       X->cosTheta = cos(X->theta);
       X->sinTheta = sin(X->theta);
+    
+ if (!X->ignoreNetworkTag) X->tag = tag; 
+
+      X->setColour(colourR, colourG, colourB);
     
 
       X->setReinforcement(reinforcement);
@@ -2688,16 +3057,14 @@ gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] >> 7) & 1
     
 
       if (isFragment) {
-        X->spontaneouslyDie();
-      } else {
-        cxn->setReference(X);
+        X->isFragment = true;
       }
     
 
       X->setStealthMode(stealthMode);
     
 
-      X->configureEngines(thrustPercent, thrustOn, brakeOn);
+      X->configureEngines(thrustOn, brakeOn, thrustPercent);
     
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
@@ -2723,7 +3090,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         }
       
 }
-   cxn->setReference(X); 
+   if (!X->isFragment) cxn->setReference(X); 
   return X;
   #undef DESTROY
 }
@@ -2736,10 +3103,10 @@ throw () {
 float vy;
 float x;
 float y;
+float vtheta;
+unsigned char theta;
 char tag[128];
 char target[128];
-float theta;
-float vtheta;
 float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
@@ -2751,41 +3118,53 @@ bool shieldsDeactivated;
 bool stealthMode;
 bool rootIsBridge;
 signed short rootTheta;
+ bool destruction; 
 unsigned char cellDamage[4094];
 bool systemExist[8192];
 struct {
     float radius;
     byte maxStrength, currStrengthPercent, currStability, currAlpha;
   } shields[4094];
-  io::read_c(&DATA[0+0], vx);
-if (vx != vx) vx = -1.0e9;
- else if (vx < -1.0e9) vx = -1.0e9;
- else if (vx > +1.0e9) vx = +1.0e9;
+  {signed short _vx;
+    io::read_c(&DATA[0+0],_vx);
+    vx=_vx*32.0e-3f/0x7FFF;
+   }
 X->vx = vx;
-io::read_c(&DATA[4+0], vy);
-if (vy != vy) vy = -1.0e9;
- else if (vy < -1.0e9) vy = -1.0e9;
- else if (vy > +1.0e9) vy = +1.0e9;
+{signed short _vy;
+    io::read_c(&DATA[2+0],_vy);
+    vy=_vy*32.0e-3f/0x7FFF;
+   }
 X->vy = vy;
-io::read_c(&DATA[8+0], x);
+{unsigned short _x;
+    io::read_c(&DATA[4+0],_x);
+    x=_x*128.0f/0xFFFF;
+   }
 
-      if (x == x)
-        x = max(0.0f, min(field->width, x + T*vx));
-      else
-        x = 0;
+      x = max(0.0f, min(field->width-0.0001f, x + T*vx));
     
 X->x = x;
-io::read_c(&DATA[12+0], y);
+{unsigned short _y;
+    io::read_c(&DATA[6+0],_y);
+    y=_y*128.0f/0xFFFF;
+   }
 
-      if (y == y)
-        y = max(0.0f, min(field->height, y + T*vy));
-      else
-        y = 0;
+      y = max(0.0f, min(field->height-0.0001f, y + T*vy));
     
 X->y = y;
-strncpy(tag, (const char*)&DATA[16+0], 128-1); tag[128-1]=0;
+{signed short _vtheta;
+    io::read_c(&DATA[8+0],_vtheta);
+    vtheta=_vtheta*32.0e-3f/0x7FFF;
+   }
+X->vtheta = vtheta;
+io::read_c(&DATA[10+0], theta);
+ X->theta = theta/255.0f*pi*2 + vtheta*T; 
+
+      X->cosTheta = cos(X->theta);
+      X->sinTheta = sin(X->theta);
+    
+strncpy(tag, (const char*)&DATA[11+0], 128-1); tag[128-1]=0;
  if (!X->ignoreNetworkTag) X->tag = tag; 
-strncpy(target, (const char*)&DATA[144+0], 128-1); target[128-1]=0;
+strncpy(target, (const char*)&DATA[139+0], 128-1); target[128-1]=0;
 
       if (target[0]) {
         //Stop immediately if no change
@@ -2819,71 +3198,59 @@ strncpy(target, (const char*)&DATA[144+0], 128-1); target[128-1]=0;
         X->target.assign(NULL);
       }
     
-io::read_c(&DATA[284+0], theta);
-if (theta != theta) theta = -1.0e9;
- else if (theta < -1.0e9) theta = -1.0e9;
- else if (theta > +1.0e9) theta = +1.0e9;
-X->theta = theta;
-io::read_c(&DATA[288+0], vtheta);
-if (vtheta != vtheta) vtheta = -1.0e9;
- else if (vtheta < -1.0e9) vtheta = -1.0e9;
- else if (vtheta > +1.0e9) vtheta = +1.0e9;
-X->vtheta = vtheta;
-
-      X->cosTheta = cos(X->theta);
-      X->sinTheta = sin(X->theta);
-    
-io::read_c(&DATA[292+0], thrustPercent);
+io::read_c(&DATA[279+0], thrustPercent);
 if (thrustPercent != thrustPercent) thrustPercent = 0;
  else if (thrustPercent < 0) thrustPercent = 0;
  else if (thrustPercent > 1) thrustPercent = 1;
 
-io::read_c(&DATA[296+0], reinforcement);
+io::read_c(&DATA[283+0], reinforcement);
 if (reinforcement != reinforcement) reinforcement = 0;
  else if (reinforcement < 0) reinforcement = 0;
  else if (reinforcement > 32) reinforcement = 32;
 
-io::read_c(&DATA[300+0], currentCapacitancePercent);
+io::read_c(&DATA[287+0], currentCapacitancePercent);
 
       X->physicsRequire(PHYS_SHIP_CAPAC_BIT);
       X->currentCapacitance=X->totalCapacitance*
                             currentCapacitancePercent/255.0f;
     
-io::read_c(&DATA[301+0], insignia);
+io::read_c(&DATA[288+0], insignia);
 X->insignia = insignia;
-isFragment = (DATA[309+0] >> 0) & 1;
+isFragment = (DATA[296+0] >> 0) & 1;
 
       if (isFragment && !X->isFragment) {
-        X->spontaneouslyDie();
+        X->isFragment = true;
         cxn->unsetReference(X);
       }
     
-thrustOn = (DATA[309+0] >> 1) & 1;
+thrustOn = (DATA[296+0] >> 1) & 1;
 
-brakeOn = (DATA[309+0] >> 2) & 1;
+brakeOn = (DATA[296+0] >> 2) & 1;
 
-shieldsDeactivated = (DATA[309+0] >> 3) & 1;
+shieldsDeactivated = (DATA[296+0] >> 3) & 1;
 
-      shield_deactivate(X);
-      X->shieldsDeactivated=true;
-      //Clear all cell power bits that have shields
-      X->physicsRequire(PHYS_SHIP_SHIELD_INVENTORY_BIT);
-      for (unsigned i=0; i<X->shields.size(); ++i)
-        X->shields[i]->getParent()->physicsClear(PHYS_CELL_POWER_BITS
-                                                |PHYS_CELL_POWER_PROD_BITS);
-      X->shields.clear();
+      if (shieldsDeactivated && X->shieldsDeactivated) {
+        shield_deactivate(X);
+        X->shieldsDeactivated=true;
+        //Clear all cell power bits that have shields
+        X->physicsRequire(PHYS_SHIP_SHIELD_INVENTORY_BIT);
+        for (unsigned i=0; i<X->shields.size(); ++i)
+          X->shields[i]->getParent()->physicsClear(PHYS_CELL_POWER_BITS
+                                                  |PHYS_CELL_POWER_PROD_BITS);
+        X->shields.clear();
+      }
     
-stealthMode = (DATA[309+0] >> 4) & 1;
+stealthMode = (DATA[296+0] >> 4) & 1;
 
       X->setStealthMode(stealthMode);
     
-rootIsBridge = (DATA[309+0] >> 5) & 1;
+rootIsBridge = (DATA[296+0] >> 5) & 1;
 
-      X->configureEngines(thrustPercent, thrustOn, brakeOn);
+      X->configureEngines(thrustOn, brakeOn, thrustPercent);
     
-io::read_c(&DATA[310+0], rootTheta);
+io::read_c(&DATA[297+0], rootTheta);
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+25900+ARRAY_OFFSET*1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+25887+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
@@ -2898,15 +3265,27 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
           DESTROY(true);
         }
         if (!cellDamage[0+ARRAY_OFFSET]) {
+          destruction = true;
+          X->physicsRequire(PHYS_SHIP_DS_INVENTORY_BIT
+                           |PHYS_CELL_DS_NEAREST_BIT);
           //Delink the cell from its neighbours, spawning PlasmaFires
           //if appropriate.
+          //Empty neighbours will cease to exist.
           for (unsigned n = 0; n < 4; ++n) {
             if (c->neighbours[n]) {
-              unsigned ret = c->neighbours[n]->getNeighbour(c);
-              EmptyCell* ec = new EmptyCell(X, c->neighbours[n]);
-              c->neighbours[n]->neighbours[ret] = ec;
-              if (highQuality && EXPCLOSE(x,y))
-                field->add(new PlasmaFire(ec));
+              if (c->neighbours[n]->isEmpty) {
+                X->removeCell(c->neighbours[n]);
+                delete c->neighbours[n];
+              } else {
+                unsigned ret = c->neighbours[n]->getNeighbour(c);
+                EmptyCell* ec = new EmptyCell(X, c->neighbours[n]);
+                c->neighbours[n]->neighbours[ret] = ec;
+                X->cells.push_back(ec);
+                if (highQuality && !isFragment)
+                  field->add(new PlasmaFire(ec));
+                X->physicsClear(PHYS_CELL_LOCATION_PROPERTIES_BITS
+                               |PHYS_SHIP_COORDS_BITS);
+              }
             }
           }
 
@@ -2936,25 +3315,27 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
           float newdmg = 1.0f - cellDamage[0+ARRAY_OFFSET]/255.0f;
           newdmg *= c->getMaxDamage();
           float olddmg = c->getCurrDamage();
-          #ifndef NDEBUG
-          bool destroyed =
-          #endif
-          c->applyDamage(newdmg-olddmg, 0xFFFFFF);
-          assert(!destroyed);
-          X->cellDamaged(c);
+          if (newdmg > olddmg) {
+            #ifndef NDEBUG
+            bool intact =
+            #endif
+            c->applyDamage(newdmg-olddmg, 0xFFFFFF);
+            assert(intact);
+            X->cellDamaged(c);
+          }
         }
       }
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
 
@@ -3103,11 +3484,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = STD_CELL_SZ*MIN_SHIELD_RAD;
@@ -3147,7 +3528,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 }
 
 ENO_Ship::ENO_Ship(NetworkConnection* cxn, Ship* obj)
-: ExportedGameObject(80658, cxn, obj, clone(obj))
+: ExportedGameObject(80645, cxn, obj, clone(obj, cxn))
+  
 {
   //Populate initial data
   #define X obj
@@ -3158,13 +3540,13 @@ ENO_Ship::ENO_Ship(NetworkConnection* cxn, Ship* obj)
 float vy;
 float x;
 float y;
+float vtheta;
+unsigned char theta;
 char tag[128];
 char target[128];
 float colourR;
 float colourG;
 float colourB;
-float theta;
-float vtheta;
 float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
@@ -3181,6 +3563,7 @@ unsigned char neighboursBits47[16376];
 unsigned char neighboursBits8B[16376];
 unsigned int neighbours[16376];
 unsigned char cellType[4096];
+ bool destruction; 
 unsigned char cellDamage[4094];
 bool systemExist[8192];
 struct {
@@ -3192,7 +3575,17 @@ struct {
     byte maxStrength, currStrengthPercent, currStability, currAlpha;
   } shields[4094];
 bool gatPlasmaTurbo[4096];
-  for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=8) {
+  
+      if (X->networkCells.empty()) {
+        for (unsigned i = 0; i < X->cells.size(); ++i) {
+          if (!X->cells[i]->isEmpty) {
+            X->cells[i]->netIndex = X->networkCells.size();
+            const_cast<Ship*>(X)->networkCells.push_back(X->cells[i]);
+          }
+        }
+      }
+    
+for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=8) {
 
       if ((0+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(0+ARRAY_OFFSET)]) {
         ShipSystem*const*const s = X->networkCells[(0+ARRAY_OFFSET)]->systems;
@@ -3299,14 +3692,14 @@ bool gatPlasmaTurbo[4096];
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=8) {
-(&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] &= ~(1<<0); (&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] &= ~(1<<1); (&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] &= ~(1<<2); (&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] &= ~(1<<3); (&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] &= ~(1<<4); (&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] &= ~(1<<5); (&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] &= ~(1<<6); (&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] &= ~(1<<7); (&DATA[0]+80146+ARRAY_OFFSET*1)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
@@ -3332,7 +3725,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
             shields[0+ARRAY_OFFSET].currStrengthPercent =
-                (byte)(255*gen->getShieldStrength()/gen->getStrength());
+              (byte)(255*min(1.0f,gen->getShieldStrength())/gen->getStrength());
           else
             shields[0+ARRAY_OFFSET].currStrengthPercent = 0;
         }
@@ -3341,7 +3734,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
-            shields[0+ARRAY_OFFSET].currStability = (byte)(255.0f*gen->getShieldStability());
+            shields[0+ARRAY_OFFSET].currStability =
+                (byte)(255.0f*min(1.0f,gen->getShieldStability()));
           else
             shields[0+ARRAY_OFFSET].currStability = 0;
         }
@@ -3350,18 +3744,18 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
-            shields[0+ARRAY_OFFSET].currAlpha = (byte)(255.0f * gen->getShieldAlpha());
+            shields[0+ARRAY_OFFSET].currAlpha = (byte)(255.0f * max(0.0f,gen->getShieldAlpha()));
           else
             shields[0+ARRAY_OFFSET].currAlpha = 0;
         }
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8188; ARRAY_OFFSET+=1) {
 
@@ -3374,11 +3768,13 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8188; ARRAY_OFFSET+=1) {
               typeid(Capacitor))
             capacitors[0+ARRAY_OFFSET] = ((Capacitor*)X->networkCells[cellix]->systems[sysix])->
                    getCapacity();
+          else
+            capacitors[0+ARRAY_OFFSET] = 0;
         }
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8188; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+39206+ARRAY_OFFSET*1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+39193+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8188; ARRAY_OFFSET+=1) {
 
@@ -3416,8 +3812,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8188; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8188; ARRAY_OFFSET+=1) {
-(&DATA[0]+31018+ARRAY_OFFSET*1)[0+0] &= ~(3<<0); (&DATA[0]+31018+ARRAY_OFFSET*1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
-(&DATA[0]+31018+ARRAY_OFFSET*1)[0+0] &= ~(63<<2); (&DATA[0]+31018+ARRAY_OFFSET*1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
+(&DATA[0]+31005+ARRAY_OFFSET*1/1)[0+0] &= ~(3<<0); (&DATA[0]+31005+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
+(&DATA[0]+31005+ARRAY_OFFSET*1/1)[0+0] &= ~(63<<2); (&DATA[0]+31005+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
 
@@ -3494,14 +3890,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<0); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<1); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<2); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<3); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<4); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<5); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<6); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<7); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
@@ -3515,11 +3911,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+25900+ARRAY_OFFSET*1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+25887+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
+ destruction = false; 
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
 
-      //Only bother initialising if the cell actually exists
       if (X->networkCells.size() > (0+ARRAY_OFFSET) && X->networkCells[(0+ARRAY_OFFSET)]) {
         Cell* c = X->networkCells[(0+ARRAY_OFFSET)];
         if (typeid(*c) == typeid(SquareCell))
@@ -3532,10 +3928,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
           assert(typeid(*c) == typeid(RightTCell));
           cellType[0+ARRAY_OFFSET] = RIGHTT_CELL;
         }
+      } else {
+        cellType[0+ARRAY_OFFSET] = 0;
       }
     
 
-      //Only bother initialising if the cell actually exists
       if (X->networkCells.size() > (1+ARRAY_OFFSET) && X->networkCells[(1+ARRAY_OFFSET)]) {
         Cell* c = X->networkCells[(1+ARRAY_OFFSET)];
         if (typeid(*c) == typeid(SquareCell))
@@ -3548,10 +3945,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
           assert(typeid(*c) == typeid(RightTCell));
           cellType[1+ARRAY_OFFSET] = RIGHTT_CELL;
         }
+      } else {
+        cellType[1+ARRAY_OFFSET] = 0;
       }
     
 
-      //Only bother initialising if the cell actually exists
       if (X->networkCells.size() > (2+ARRAY_OFFSET) && X->networkCells[(2+ARRAY_OFFSET)]) {
         Cell* c = X->networkCells[(2+ARRAY_OFFSET)];
         if (typeid(*c) == typeid(SquareCell))
@@ -3564,10 +3962,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
           assert(typeid(*c) == typeid(RightTCell));
           cellType[2+ARRAY_OFFSET] = RIGHTT_CELL;
         }
+      } else {
+        cellType[2+ARRAY_OFFSET] = 0;
       }
     
 
-      //Only bother initialising if the cell actually exists
       if (X->networkCells.size() > (3+ARRAY_OFFSET) && X->networkCells[(3+ARRAY_OFFSET)]) {
         Cell* c = X->networkCells[(3+ARRAY_OFFSET)];
         if (typeid(*c) == typeid(SquareCell))
@@ -3580,14 +3979,16 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
           assert(typeid(*c) == typeid(RightTCell));
           cellType[3+ARRAY_OFFSET] = RIGHTT_CELL;
         }
+      } else {
+        cellType[3+ARRAY_OFFSET] = 0;
       }
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
-(&DATA[0]+24876+ARRAY_OFFSET*1)[0+0] &= ~(3<<0); (&DATA[0]+24876+ARRAY_OFFSET*1)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
-(&DATA[0]+24876+ARRAY_OFFSET*1)[0+0] &= ~(3<<2); (&DATA[0]+24876+ARRAY_OFFSET*1)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
-(&DATA[0]+24876+ARRAY_OFFSET*1)[0+0] &= ~(3<<4); (&DATA[0]+24876+ARRAY_OFFSET*1)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
-(&DATA[0]+24876+ARRAY_OFFSET*1)[0+0] &= ~(3<<6); (&DATA[0]+24876+ARRAY_OFFSET*1)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
+(&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<0); (&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
+(&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<2); (&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
+(&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<4); (&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
+(&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<6); (&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=1) {
 
@@ -3620,105 +4021,111 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=2) {
-(&DATA[0]+16688+ARRAY_OFFSET*1)[0+0] &= ~(15<<0); (&DATA[0]+16688+ARRAY_OFFSET*1)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+16688+ARRAY_OFFSET*1)[0+0] &= ~(15<<4); (&DATA[0]+16688+ARRAY_OFFSET*1)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+16675+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+16675+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+16675+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+16675+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=2) {
-(&DATA[0]+8500+ARRAY_OFFSET*1)[0+0] &= ~(15<<0); (&DATA[0]+8500+ARRAY_OFFSET*1)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+8500+ARRAY_OFFSET*1)[0+0] &= ~(15<<4); (&DATA[0]+8500+ARRAY_OFFSET*1)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+8487+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+8487+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+8487+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+8487+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=2) {
-(&DATA[0]+312+ARRAY_OFFSET*1)[0+0] &= ~(15<<0); (&DATA[0]+312+ARRAY_OFFSET*1)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+312+ARRAY_OFFSET*1)[0+0] &= ~(15<<4); (&DATA[0]+312+ARRAY_OFFSET*1)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
 }
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[310+0], rootTheta);
+io::write_c(&DATA[297+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[309+0] &= ~(1<<5); DATA[309+0] |= (rootIsBridge & 1) << 5;
+DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[309+0] &= ~(1<<4); DATA[309+0] |= (stealthMode & 1) << 4;
+DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[309+0] &= ~(1<<3); DATA[309+0] |= (shieldsDeactivated & 1) << 3;
+DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[309+0] &= ~(1<<2); DATA[309+0] |= (brakeOn & 1) << 2;
+DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[309+0] &= ~(1<<1); DATA[309+0] |= (thrustOn & 1) << 1;
+DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[309+0] &= ~(1<<0); DATA[309+0] |= (isFragment & 1) << 0;
+DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
 insignia = X->insignia;
-io::write_c(&DATA[301+0], insignia);
+io::write_c(&DATA[288+0], insignia);
 
       currentCapacitancePercent = 255*X->getCapacitancePercent();
     
-io::write_c(&DATA[300+0], currentCapacitancePercent);
+io::write_c(&DATA[287+0], currentCapacitancePercent);
 reinforcement = X->reinforcement;
-io::write_c(&DATA[296+0], reinforcement);
+io::write_c(&DATA[283+0], reinforcement);
 thrustPercent = X->thrustPercent;
-io::write_c(&DATA[292+0], thrustPercent);
-vtheta = X->vtheta;
-io::write_c(&DATA[288+0], vtheta);
-theta = X->theta;
-io::write_c(&DATA[284+0], theta);
+io::write_c(&DATA[279+0], thrustPercent);
 colourB = X->colourB;
-io::write_c(&DATA[280+0], colourB);
+io::write_c(&DATA[275+0], colourB);
 colourG = X->colourG;
-io::write_c(&DATA[276+0], colourG);
+io::write_c(&DATA[271+0], colourG);
 colourR = X->colourR;
-io::write_c(&DATA[272+0], colourR);
+io::write_c(&DATA[267+0], colourR);
 
       if (X->target.ref)
         strncpy(target, X->target.ref->tag.c_str(), 128);
       else
-        target[0]=0;
+        memset(target, 0, sizeof(target));
     
-strncpy((char*)&DATA[144+0], target, 128);
-
-      if (X->networkCells.empty()) {
-        for (unsigned i = 0; i < X->cells.size(); ++i) {
-          if (!X->cells[i]->isEmpty) {
-            X->cells[i]->netIndex = X->networkCells.size();
-            const_cast<Ship*>(X)->networkCells.push_back(X->cells[i]);
-          }
-        }
-      }
-    
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
+strncpy((char*)&DATA[139+0], target, 128);
+ strncpy(tag, X->tag.c_str(), sizeof(tag)); 
+strncpy((char*)&DATA[11+0], tag, 128);
+ theta = (byte)(X->theta*255.0f/pi/2); 
+io::write_c(&DATA[10+0], theta);
+vtheta = X->vtheta;
+{signed short _vtheta = vtheta/32.0e-3f*0x7FFF; io::write_c(&DATA[8+0],_vtheta);}
 y = X->y;
-io::write_c(&DATA[12+0], y);
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef DATA
   #undef field
   #undef X
+  dirty = true;
 }
 
-Ship* ENO_Ship::clone(const Ship* src) const throw() {
+ENO_Ship::~ENO_Ship() {
+  
+      cxn->sdg->delLocalShip(channel);
+    
+}
+
+void ENO_Ship::init() throw() {
+  Ship*const X = (Ship*)local.ref;
+  
+      cxn->sdg->addLocalShip(channel, X);
+    
+}
+
+Ship* ENO_Ship::clone(const Ship* src, NetworkConnection* cxn)
+const throw() {
   #define X src
-  #define field (&this->cxn->field)
+  #define field (&cxn->field)
   #define DESTROY(x) assert(!(x))
+  #define LOCAL_CLONE
   const unsigned T = cxn->getLatency();
   float vx;
 float vy;
 float x;
 float y;
+float vtheta;
+unsigned char theta;
 char tag[128];
 char target[128];
 float colourR;
 float colourG;
 float colourB;
-float theta;
-float vtheta;
 float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
@@ -3735,6 +4142,7 @@ unsigned char neighboursBits47[16376];
 unsigned char neighboursBits8B[16376];
 unsigned int neighbours[16376];
 unsigned char cellType[4096];
+ bool destruction; 
 unsigned char cellDamage[4094];
 bool systemExist[8192];
 struct {
@@ -3746,7 +4154,17 @@ struct {
     byte maxStrength, currStrengthPercent, currStability, currAlpha;
   } shields[4094];
 bool gatPlasmaTurbo[4096];
-  for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=8) {
+  
+      if (X->networkCells.empty()) {
+        for (unsigned i = 0; i < X->cells.size(); ++i) {
+          if (!X->cells[i]->isEmpty) {
+            X->cells[i]->netIndex = X->networkCells.size();
+            const_cast<Ship*>(X)->networkCells.push_back(X->cells[i]);
+          }
+        }
+      }
+    
+for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=8) {
 
       if ((0+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(0+ARRAY_OFFSET)]) {
         ShipSystem*const*const s = X->networkCells[(0+ARRAY_OFFSET)]->systems;
@@ -3876,7 +4294,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
             shields[0+ARRAY_OFFSET].currStrengthPercent =
-                (byte)(255*gen->getShieldStrength()/gen->getStrength());
+              (byte)(255*min(1.0f,gen->getShieldStrength())/gen->getStrength());
           else
             shields[0+ARRAY_OFFSET].currStrengthPercent = 0;
         }
@@ -3885,7 +4303,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
-            shields[0+ARRAY_OFFSET].currStability = (byte)(255.0f*gen->getShieldStability());
+            shields[0+ARRAY_OFFSET].currStability =
+                (byte)(255.0f*min(1.0f,gen->getShieldStability()));
           else
             shields[0+ARRAY_OFFSET].currStability = 0;
         }
@@ -3894,7 +4313,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
-            shields[0+ARRAY_OFFSET].currAlpha = (byte)(255.0f * gen->getShieldAlpha());
+            shields[0+ARRAY_OFFSET].currAlpha = (byte)(255.0f * max(0.0f,gen->getShieldAlpha()));
           else
             shields[0+ARRAY_OFFSET].currAlpha = 0;
         }
@@ -3911,6 +4330,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8188; ARRAY_OFFSET+=1) {
               typeid(Capacitor))
             capacitors[0+ARRAY_OFFSET] = ((Capacitor*)X->networkCells[cellix]->systems[sysix])->
                    getCapacity();
+          else
+            capacitors[0+ARRAY_OFFSET] = 0;
         }
       
 }
@@ -4034,9 +4455,9 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
       }
     
 }
+ destruction = false; 
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
 
-      //Only bother initialising if the cell actually exists
       if (X->networkCells.size() > (0+ARRAY_OFFSET) && X->networkCells[(0+ARRAY_OFFSET)]) {
         Cell* c = X->networkCells[(0+ARRAY_OFFSET)];
         if (typeid(*c) == typeid(SquareCell))
@@ -4049,10 +4470,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
           assert(typeid(*c) == typeid(RightTCell));
           cellType[0+ARRAY_OFFSET] = RIGHTT_CELL;
         }
+      } else {
+        cellType[0+ARRAY_OFFSET] = 0;
       }
     
 
-      //Only bother initialising if the cell actually exists
       if (X->networkCells.size() > (1+ARRAY_OFFSET) && X->networkCells[(1+ARRAY_OFFSET)]) {
         Cell* c = X->networkCells[(1+ARRAY_OFFSET)];
         if (typeid(*c) == typeid(SquareCell))
@@ -4065,10 +4487,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
           assert(typeid(*c) == typeid(RightTCell));
           cellType[1+ARRAY_OFFSET] = RIGHTT_CELL;
         }
+      } else {
+        cellType[1+ARRAY_OFFSET] = 0;
       }
     
 
-      //Only bother initialising if the cell actually exists
       if (X->networkCells.size() > (2+ARRAY_OFFSET) && X->networkCells[(2+ARRAY_OFFSET)]) {
         Cell* c = X->networkCells[(2+ARRAY_OFFSET)];
         if (typeid(*c) == typeid(SquareCell))
@@ -4081,10 +4504,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
           assert(typeid(*c) == typeid(RightTCell));
           cellType[2+ARRAY_OFFSET] = RIGHTT_CELL;
         }
+      } else {
+        cellType[2+ARRAY_OFFSET] = 0;
       }
     
 
-      //Only bother initialising if the cell actually exists
       if (X->networkCells.size() > (3+ARRAY_OFFSET) && X->networkCells[(3+ARRAY_OFFSET)]) {
         Cell* c = X->networkCells[(3+ARRAY_OFFSET)];
         if (typeid(*c) == typeid(SquareCell))
@@ -4097,6 +4521,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
           assert(typeid(*c) == typeid(RightTCell));
           cellType[3+ARRAY_OFFSET] = RIGHTT_CELL;
         }
+      } else {
+        cellType[3+ARRAY_OFFSET] = 0;
       }
     
 }
@@ -4142,8 +4568,6 @@ insignia = X->insignia;
     
 reinforcement = X->reinforcement;
 thrustPercent = X->thrustPercent;
-vtheta = X->vtheta;
-theta = X->theta;
 colourB = X->colourB;
 colourG = X->colourG;
 colourR = X->colourR;
@@ -4151,19 +4575,11 @@ colourR = X->colourR;
       if (X->target.ref)
         strncpy(target, X->target.ref->tag.c_str(), 128);
       else
-        target[0]=0;
+        memset(target, 0, sizeof(target));
     
-
-      if (X->networkCells.empty()) {
-        for (unsigned i = 0; i < X->cells.size(); ++i) {
-          if (!X->cells[i]->isEmpty) {
-            X->cells[i]->netIndex = X->networkCells.size();
-            const_cast<Ship*>(X)->networkCells.push_back(X->cells[i]);
-          }
-        }
-      }
-    
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
+ strncpy(tag, X->tag.c_str(), sizeof(tag)); 
+ theta = (byte)(X->theta*255.0f/pi/2); 
+vtheta = X->vtheta;
 y = X->y;
 x = X->x;
 vy = X->vy;
@@ -4345,16 +4761,22 @@ vx = X->vx;
       #endif
       DESTROY(true);
     }
-  
-   if (!X->ignoreNetworkTag) X->tag = tag; 
 
-      X->setColour(colourR, colourG, colourB);
-    
- X->theta = theta; 
- X->vtheta = vtheta; 
+    //Register with SDG
+    #ifndef LOCAL_CLONE
+    X->shipDamageGeraet = cxn->sdg;
+    cxn->sdg->addRemoteShip(X, inputChannel);
+    #endif /* LOCAL_CLONE */
+  
+   X->vtheta = vtheta; 
+ X->theta = theta/255.0f*pi*2 + vtheta*T; 
 
       X->cosTheta = cos(X->theta);
       X->sinTheta = sin(X->theta);
+    
+ if (!X->ignoreNetworkTag) X->tag = tag; 
+
+      X->setColour(colourR, colourG, colourB);
     
 
       X->setReinforcement(reinforcement);
@@ -4364,16 +4786,14 @@ vx = X->vx;
     
 
       if (isFragment) {
-        X->spontaneouslyDie();
-      } else {
-        cxn->setReference(X);
+        X->isFragment = true;
       }
     
 
       X->setStealthMode(stealthMode);
     
 
-      X->configureEngines(thrustPercent, thrustOn, brakeOn);
+      X->configureEngines(thrustOn, brakeOn, thrustPercent);
     
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
@@ -4399,6 +4819,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         }
       
 }
+  #undef LOCAL_CLONE
   #undef X
   #undef field
   #undef DESTROY
@@ -4412,10 +4833,10 @@ bool ENO_Ship::shouldUpdate() const throw() {
 float vy;
 float x;
 float y;
+float vtheta;
+unsigned char theta;
 char tag[128];
 char target[128];
-float theta;
-float vtheta;
 float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
@@ -4427,6 +4848,7 @@ bool shieldsDeactivated;
 bool stealthMode;
 bool rootIsBridge;
 signed short rootTheta;
+ bool destruction; 
 unsigned char cellDamage[4094];
 bool systemExist[8192];
 struct {
@@ -4438,25 +4860,15 @@ struct {
 vy = X->vy;
 x = X->x;
 y = X->y;
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-
-      if (X->networkCells.empty()) {
-        for (unsigned i = 0; i < X->cells.size(); ++i) {
-          if (!X->cells[i]->isEmpty) {
-            X->cells[i]->netIndex = X->networkCells.size();
-            const_cast<Ship*>(X)->networkCells.push_back(X->cells[i]);
-          }
-        }
-      }
-    
+vtheta = X->vtheta;
+ theta = (byte)(X->theta*255.0f/pi/2); 
+ strncpy(tag, X->tag.c_str(), sizeof(tag)); 
 
       if (X->target.ref)
         strncpy(target, X->target.ref->tag.c_str(), 128);
       else
-        target[0]=0;
+        memset(target, 0, sizeof(target));
     
-theta = X->theta;
-vtheta = X->vtheta;
 thrustPercent = X->thrustPercent;
 reinforcement = X->reinforcement;
 
@@ -4476,6 +4888,7 @@ stealthMode = X->stealthMode;
 
       rootTheta = X->cells[0]->getT();
     
+ destruction = false; 
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
       if ((0+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(0+ARRAY_OFFSET)]) {
@@ -4585,7 +4998,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
             shields[0+ARRAY_OFFSET].currStrengthPercent =
-                (byte)(255*gen->getShieldStrength()/gen->getStrength());
+              (byte)(255*min(1.0f,gen->getShieldStrength())/gen->getStrength());
           else
             shields[0+ARRAY_OFFSET].currStrengthPercent = 0;
         }
@@ -4594,7 +5007,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
-            shields[0+ARRAY_OFFSET].currStability = (byte)(255.0f*gen->getShieldStability());
+            shields[0+ARRAY_OFFSET].currStability =
+                (byte)(255.0f*min(1.0f,gen->getShieldStability()));
           else
             shields[0+ARRAY_OFFSET].currStability = 0;
         }
@@ -4603,16 +5017,37 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
-            shields[0+ARRAY_OFFSET].currAlpha = (byte)(255.0f * gen->getShieldAlpha());
+            shields[0+ARRAY_OFFSET].currAlpha = (byte)(255.0f * max(0.0f,gen->getShieldAlpha()));
           else
             shields[0+ARRAY_OFFSET].currAlpha = 0;
         }
       
 }
+
+      if (X->networkCells.empty()) {
+        for (unsigned i = 0; i < X->cells.size(); ++i) {
+          if (!X->cells[i]->isEmpty) {
+            X->cells[i]->netIndex = X->networkCells.size();
+            const_cast<Ship*>(X)->networkCells.push_back(X->cells[i]);
+          }
+        }
+      }
+    
     }
   } x(static_cast<Ship*>(local.ref)), y(static_cast<Ship*>(remote));
 
-  
+  {float d=fabs(x.vx-y.vx)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.vy-y.vy)*10000;FAR+=d;NEAR+=d;}
+{float d=fabs(x.x-y.x)*128;FAR+=d;NEAR+=d;}
+{float d=fabs(x.y-y.y)*128;FAR+=d;NEAR+=d;}
+
+      NEAR += 1000*fabs(x.vtheta-y.vtheta);
+    
+
+      NEAR += fabs((((float)x.theta) - ((float)y.theta))/6.0f);
+      FAR +=  fabs((((float)x.theta) - ((float)y.theta))/48.0f);
+    
+
       if (strcmp(x.tag, y.tag)) return true; //Must send update
     
 
@@ -4620,10 +5055,17 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
       if (strcmp(x.target, y.target))
         NEAR += 100;
     
+{float d=fabs(x.thrustPercent-y.thrustPercent)*10;FAR+=d;NEAR+=d;}
+{float d=fabs(x.reinforcement-y.reinforcement)*0;FAR+=d;NEAR+=d;}
+{float d=fabs(x.insignia-y.insignia)*100;FAR+=d;NEAR+=d;}
 
       if (x.isFragment != y.isFragment)
         return true; //MUST update
     
+{float d=fabs(x.thrustOn-y.thrustOn)*1;FAR+=d;NEAR+=d;}
+{float d=fabs(x.brakeOn-y.brakeOn)*1;FAR+=d;NEAR+=d;}
+{float d=fabs(x.shieldsDeactivated-y.shieldsDeactivated)*1;FAR+=d;NEAR+=d;}
+{float d=fabs(x.stealthMode-y.stealthMode)*10000;FAR+=d;NEAR+=d;}
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
       //If one is zero and the other not, we must send an update
@@ -4649,7 +5091,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 }
 
   float l_dist = cxn->distanceOf(this->local.ref);
-  return (FAR > l_dist) || (NEAR > 1 && l_dist < 5);
+  return (FAR*FAR > l_dist && l_dist >= 5*5) || (NEAR > 1 && l_dist < 5*5);
 }
 
 void ENO_Ship::updateRemote() throw() {
@@ -4663,10 +5105,10 @@ void ENO_Ship::updateRemote() throw() {
 float vy;
 float x;
 float y;
+float vtheta;
+unsigned char theta;
 char tag[128];
 char target[128];
-float theta;
-float vtheta;
 float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
@@ -4678,6 +5120,7 @@ bool shieldsDeactivated;
 bool stealthMode;
 bool rootIsBridge;
 signed short rootTheta;
+ bool destruction; 
 unsigned char cellDamage[4094];
 bool systemExist[8192];
 struct {
@@ -4685,7 +5128,17 @@ struct {
     byte maxStrength, currStrengthPercent, currStability, currAlpha;
   } shields[4094];
   #define X l_local
-  for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
+  
+      if (X->networkCells.empty()) {
+        for (unsigned i = 0; i < X->cells.size(); ++i) {
+          if (!X->cells[i]->isEmpty) {
+            X->cells[i]->netIndex = X->networkCells.size();
+            const_cast<Ship*>(X)->networkCells.push_back(X->cells[i]);
+          }
+        }
+      }
+    
+for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
         {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
@@ -4709,7 +5162,7 @@ struct {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
             shields[0+ARRAY_OFFSET].currStrengthPercent =
-                (byte)(255*gen->getShieldStrength()/gen->getStrength());
+              (byte)(255*min(1.0f,gen->getShieldStrength())/gen->getStrength());
           else
             shields[0+ARRAY_OFFSET].currStrengthPercent = 0;
         }
@@ -4718,7 +5171,8 @@ struct {
         {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
-            shields[0+ARRAY_OFFSET].currStability = (byte)(255.0f*gen->getShieldStability());
+            shields[0+ARRAY_OFFSET].currStability =
+                (byte)(255.0f*min(1.0f,gen->getShieldStability()));
           else
             shields[0+ARRAY_OFFSET].currStability = 0;
         }
@@ -4727,18 +5181,18 @@ struct {
         {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
-            shields[0+ARRAY_OFFSET].currAlpha = (byte)(255.0f * gen->getShieldAlpha());
+            shields[0+ARRAY_OFFSET].currAlpha = (byte)(255.0f * max(0.0f,gen->getShieldAlpha()));
           else
             shields[0+ARRAY_OFFSET].currAlpha = 0;
         }
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+47394+ARRAY_OFFSET*8)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
 
@@ -4815,14 +5269,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<0); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<1); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<2); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<3); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<4); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<5); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<6); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] &= ~(1<<7); (&DATA[0]+29994+ARRAY_OFFSET*1)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
@@ -4836,75 +5290,72 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+25900+ARRAY_OFFSET*1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+25887+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
+ destruction = false; 
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[310+0], rootTheta);
+io::write_c(&DATA[297+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[309+0] &= ~(1<<5); DATA[309+0] |= (rootIsBridge & 1) << 5;
+DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[309+0] &= ~(1<<4); DATA[309+0] |= (stealthMode & 1) << 4;
+DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[309+0] &= ~(1<<3); DATA[309+0] |= (shieldsDeactivated & 1) << 3;
+DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[309+0] &= ~(1<<2); DATA[309+0] |= (brakeOn & 1) << 2;
+DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[309+0] &= ~(1<<1); DATA[309+0] |= (thrustOn & 1) << 1;
+DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[309+0] &= ~(1<<0); DATA[309+0] |= (isFragment & 1) << 0;
+DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
 insignia = X->insignia;
-io::write_c(&DATA[301+0], insignia);
+io::write_c(&DATA[288+0], insignia);
 
       currentCapacitancePercent = 255*X->getCapacitancePercent();
     
-io::write_c(&DATA[300+0], currentCapacitancePercent);
+io::write_c(&DATA[287+0], currentCapacitancePercent);
 reinforcement = X->reinforcement;
-io::write_c(&DATA[296+0], reinforcement);
+io::write_c(&DATA[283+0], reinforcement);
 thrustPercent = X->thrustPercent;
-io::write_c(&DATA[292+0], thrustPercent);
-vtheta = X->vtheta;
-io::write_c(&DATA[288+0], vtheta);
-theta = X->theta;
-io::write_c(&DATA[284+0], theta);
+io::write_c(&DATA[279+0], thrustPercent);
 
       if (X->target.ref)
         strncpy(target, X->target.ref->tag.c_str(), 128);
       else
-        target[0]=0;
+        memset(target, 0, sizeof(target));
     
-strncpy((char*)&DATA[144+0], target, 128);
-
-      if (X->networkCells.empty()) {
-        for (unsigned i = 0; i < X->cells.size(); ++i) {
-          if (!X->cells[i]->isEmpty) {
-            X->cells[i]->netIndex = X->networkCells.size();
-            const_cast<Ship*>(X)->networkCells.push_back(X->cells[i]);
-          }
-        }
-      }
-    
- strncpy(tag, X->tag.c_str(), sizeof(tag-1)); 
-strncpy((char*)&DATA[16+0], tag, 128);
+strncpy((char*)&DATA[139+0], target, 128);
+ strncpy(tag, X->tag.c_str(), sizeof(tag)); 
+strncpy((char*)&DATA[11+0], tag, 128);
+ theta = (byte)(X->theta*255.0f/pi/2); 
+io::write_c(&DATA[10+0], theta);
+vtheta = X->vtheta;
+{signed short _vtheta = vtheta/32.0e-3f*0x7FFF; io::write_c(&DATA[8+0],_vtheta);}
 y = X->y;
-io::write_c(&DATA[12+0], y);
+{unsigned short _y = y/128.0f*0xFFFF; io::write_c(&DATA[6+0],_y);}
 x = X->x;
-io::write_c(&DATA[8+0], x);
+{unsigned short _x = x/128.0f*0xFFFF; io::write_c(&DATA[4+0],_x);}
 vy = X->vy;
-io::write_c(&DATA[4+0], vy);
+{signed short _vy = vy/32.0e-3f*0x7FFF; io::write_c(&DATA[2+0],_vy);}
 vx = X->vx;
-io::write_c(&DATA[0+0], vx);
+{signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
   #define X l_remote
   X->vx = vx;
 X->vy = vy;
 X->x = x;
 X->y = y;
+X->vtheta = vtheta;
+ X->theta = theta/255.0f*pi*2 + vtheta*T; 
+
+      X->cosTheta = cos(X->theta);
+      X->sinTheta = sin(X->theta);
+    
  if (!X->ignoreNetworkTag) X->tag = tag; 
 
       if (target[0]) {
@@ -4939,12 +5390,6 @@ X->y = y;
         X->target.assign(NULL);
       }
     
-X->theta = theta;
-X->vtheta = vtheta;
-
-      X->cosTheta = cos(X->theta);
-      X->sinTheta = sin(X->theta);
-    
 
 
 
@@ -4955,27 +5400,29 @@ X->vtheta = vtheta;
 X->insignia = insignia;
 
       if (isFragment && !X->isFragment) {
-        X->spontaneouslyDie();
+        X->isFragment = true;
         cxn->unsetReference(X);
       }
     
 
 
 
-      shield_deactivate(X);
-      X->shieldsDeactivated=true;
-      //Clear all cell power bits that have shields
-      X->physicsRequire(PHYS_SHIP_SHIELD_INVENTORY_BIT);
-      for (unsigned i=0; i<X->shields.size(); ++i)
-        X->shields[i]->getParent()->physicsClear(PHYS_CELL_POWER_BITS
-                                                |PHYS_CELL_POWER_PROD_BITS);
-      X->shields.clear();
+      if (shieldsDeactivated && X->shieldsDeactivated) {
+        shield_deactivate(X);
+        X->shieldsDeactivated=true;
+        //Clear all cell power bits that have shields
+        X->physicsRequire(PHYS_SHIP_SHIELD_INVENTORY_BIT);
+        for (unsigned i=0; i<X->shields.size(); ++i)
+          X->shields[i]->getParent()->physicsClear(PHYS_CELL_POWER_BITS
+                                                  |PHYS_CELL_POWER_PROD_BITS);
+        X->shields.clear();
+      }
     
 
       X->setStealthMode(stealthMode);
     
 
-      X->configureEngines(thrustPercent, thrustOn, brakeOn);
+      X->configureEngines(thrustOn, brakeOn, thrustPercent);
     
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
@@ -4990,15 +5437,27 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
           DESTROY(true);
         }
         if (!cellDamage[0+ARRAY_OFFSET]) {
+          destruction = true;
+          X->physicsRequire(PHYS_SHIP_DS_INVENTORY_BIT
+                           |PHYS_CELL_DS_NEAREST_BIT);
           //Delink the cell from its neighbours, spawning PlasmaFires
           //if appropriate.
+          //Empty neighbours will cease to exist.
           for (unsigned n = 0; n < 4; ++n) {
             if (c->neighbours[n]) {
-              unsigned ret = c->neighbours[n]->getNeighbour(c);
-              EmptyCell* ec = new EmptyCell(X, c->neighbours[n]);
-              c->neighbours[n]->neighbours[ret] = ec;
-              if (highQuality && EXPCLOSE(x,y))
-                field->add(new PlasmaFire(ec));
+              if (c->neighbours[n]->isEmpty) {
+                X->removeCell(c->neighbours[n]);
+                delete c->neighbours[n];
+              } else {
+                unsigned ret = c->neighbours[n]->getNeighbour(c);
+                EmptyCell* ec = new EmptyCell(X, c->neighbours[n]);
+                c->neighbours[n]->neighbours[ret] = ec;
+                X->cells.push_back(ec);
+                if (highQuality && !isFragment)
+                  field->add(new PlasmaFire(ec));
+                X->physicsClear(PHYS_CELL_LOCATION_PROPERTIES_BITS
+                               |PHYS_SHIP_COORDS_BITS);
+              }
             }
           }
 
@@ -5028,12 +5487,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
           float newdmg = 1.0f - cellDamage[0+ARRAY_OFFSET]/255.0f;
           newdmg *= c->getMaxDamage();
           float olddmg = c->getCurrDamage();
-          #ifndef NDEBUG
-          bool destroyed =
-          #endif
-          c->applyDamage(newdmg-olddmg, 0xFFFFFF);
-          assert(!destroyed);
-          X->cellDamaged(c);
+          if (newdmg > olddmg) {
+            #ifndef NDEBUG
+            bool intact =
+            #endif
+            c->applyDamage(newdmg-olddmg, 0xFFFFFF);
+            assert(intact);
+            X->cellDamaged(c);
+          }
         }
       }
     
@@ -5229,34 +5690,48 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
 
   #include "../synchronous_control_geraet.hxx"
+  #include "../anticipatory_channels.hxx"
   ExportedGameObject* createObjectExport(NetworkConnection* cxn,
                                          GameObject* object)
   throw() {
     ExportedGameObject* ego;
+    NetworkConnection::geraet_num num;
 
 if (typeid(*object) == typeid(EnergyCharge))
-  ego = new ENO_EnergyCharge(cxn, (EnergyCharge*)object);
+  ego = new ENO_EnergyCharge(cxn, (EnergyCharge*)object),
+  num = INO_EnergyCharge::num;
 else
 if (typeid(*object) == typeid(MagnetoBomb))
-  ego = new ENO_MagnetoBomb(cxn, (MagnetoBomb*)object);
+  ego = new ENO_MagnetoBomb(cxn, (MagnetoBomb*)object),
+  num = INO_MagnetoBomb::num;
 else
 if (typeid(*object) == typeid(SemiguidedBomb))
-  ego = new ENO_SemiguidedBomb(cxn, (SemiguidedBomb*)object);
+  ego = new ENO_SemiguidedBomb(cxn, (SemiguidedBomb*)object),
+  num = INO_SemiguidedBomb::num;
 else
 if (typeid(*object) == typeid(PlasmaBurst))
-  ego = new ENO_PlasmaBurst(cxn, (PlasmaBurst*)object);
+  ego = new ENO_PlasmaBurst(cxn, (PlasmaBurst*)object),
+  num = INO_PlasmaBurst::num;
 else
 if (typeid(*object) == typeid(Missile))
-  ego = new ENO_Missile(cxn, (Missile*)object);
+  ego = new ENO_Missile(cxn, (Missile*)object),
+  num = INO_Missile::num;
 else
 if (typeid(*object) == typeid(ParticleEmitter))
-  ego = new ENO_ParticleEmitter(cxn, (ParticleEmitter*)object);
+  ego = new ENO_ParticleEmitter(cxn, (ParticleEmitter*)object),
+  num = INO_ParticleEmitter::num;
+else
+if (typeid(*object) == typeid(MonophasicEnergyPulse))
+  ego = new ENO_MonophasicEnergyPulse(cxn, (MonophasicEnergyPulse*)object),
+  num = INO_MonophasicEnergyPulse::num;
 else
 if (typeid(*object) == typeid(Spectator))
-  ego = new ENO_Spectator(cxn, (Spectator*)object);
+  ego = new ENO_Spectator(cxn, (Spectator*)object),
+  num = INO_Spectator::num;
 else
 if (typeid(*object) == typeid(Ship))
-  ego = new ENO_Ship(cxn, (Ship*)object);
+  ego = new ENO_Ship(cxn, (Ship*)object),
+  num = INO_Ship::num;
 else
 
   {
@@ -5267,6 +5742,7 @@ else
   }
 
   assert(ego);
-  cxn->scg->openChannel(ego, INO_Ship::num);
+  cxn->anticipation->openChannel(ego, num);
+  ego->init();
   return ego;
 }

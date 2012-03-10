@@ -205,9 +205,9 @@ static int set235 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {int gen1461;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1461);
-            newVal=gen1461;
+      {int gen1462;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1462);
+            newVal=gen1462;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -465,9 +465,9 @@ static int set241 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {int gen1464;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1464);
-            newVal=gen1464;
+      {int gen1465;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1465);
+            newVal=gen1465;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -1221,9 +1221,9 @@ static int set260 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {int gen1472;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1472);
-            newVal=gen1472;
+      {int gen1473;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1473);
+            newVal=gen1473;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -1364,18 +1364,18 @@ static int set263 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "GOClassGeneric")) {newVal=Generic; goto done1474;}
+          if (0 == strcmp(tmp, "GOClassGeneric")) {newVal=Generic; goto done1475;}
         
-          if (0 == strcmp(tmp, "GOClassShip")) {newVal=ClassShip; goto done1474;}
+          if (0 == strcmp(tmp, "GOClassShip")) {newVal=ClassShip; goto done1475;}
         
-          if (0 == strcmp(tmp, "GOClassLightWeapon")) {newVal=LightWeapon; goto done1474;}
+          if (0 == strcmp(tmp, "GOClassLightWeapon")) {newVal=LightWeapon; goto done1475;}
         
-          if (0 == strcmp(tmp, "GOClassHeavyWeapon")) {newVal=HeavyWeapon; goto done1474;}
+          if (0 == strcmp(tmp, "GOClassHeavyWeapon")) {newVal=HeavyWeapon; goto done1475;}
          {
         sprintf(staticError, "Unable to convert %s to GameObject::Classification", tmp);
         scriptError(staticError);
       } 
-done1474:;}
+done1475:;}
 
       //Any necessary checks
       
@@ -1491,9 +1491,9 @@ static int set266 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {int gen1476;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1476);
-            newVal=gen1476;
+      {int gen1477;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1477);
+            newVal=gen1477;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -2314,9 +2314,9 @@ arg0Tcl=NULL;
 
       //OK!
 returnValueTcl = Tcl_GetObjResult(interp);
-        {int gen1480;
-            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen1480);
-            returnValue=gen1480;
+        {int gen1481;
+            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen1481);
+            returnValue=gen1481;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -4163,9 +4163,9 @@ virtual
 
       //OK!
 returnValueTcl = Tcl_GetObjResult(interp);
-        {int gen1496;
-            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen1496);
-            returnValue=gen1496;
+        {int gen1497;
+            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen1497);
+            returnValue=gen1497;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -4496,18 +4496,18 @@ returnValueTcl = Tcl_GetObjResult(interp);
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "NoCollision")) {returnValue=NoCollision; goto done1499;}
+          if (0 == strcmp(tmp, "NoCollision")) {returnValue=NoCollision; goto done1500;}
         
-          if (0 == strcmp(tmp, "UnlikelyCollision")) {returnValue=UnlikelyCollision; goto done1499;}
+          if (0 == strcmp(tmp, "UnlikelyCollision")) {returnValue=UnlikelyCollision; goto done1500;}
         
-          if (0 == strcmp(tmp, "MaybeCollision")) {returnValue=MaybeCollision; goto done1499;}
+          if (0 == strcmp(tmp, "MaybeCollision")) {returnValue=MaybeCollision; goto done1500;}
         
-          if (0 == strcmp(tmp, "YesCollision")) {returnValue=YesCollision; goto done1499;}
+          if (0 == strcmp(tmp, "YesCollision")) {returnValue=YesCollision; goto done1500;}
          {
         sprintf(staticError, "Unable to convert %s to CollisionResult", tmp);
         scriptError(staticError);
       } 
-done1499:;}
+done1500:;}
         //Run any check code we may have
         { bool ok=true;
           #define val returnValue
@@ -7582,7 +7582,7 @@ void classdec1164(bool safe, Tcl_Interp* interp) throw() {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1390 (
+     trampoline1391 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -7624,7 +7624,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1392 (
+     trampoline1393 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {

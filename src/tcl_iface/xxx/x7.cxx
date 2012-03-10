@@ -649,9 +649,9 @@ arg0Tcl=NULL;
 
       //OK!
 returnValueTcl = Tcl_GetObjResult(interp);
-        {int gen1684;
-            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen1684);
-            returnValue=gen1684;
+        {int gen1685;
+            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen1685);
+            returnValue=gen1685;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}

@@ -141,9 +141,9 @@ static int set393 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {int gen1562;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1562);
-            newVal=gen1562;
+      {int gen1563;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1563);
+            newVal=gen1563;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -300,24 +300,24 @@ arg2Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1564;}
+          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1565;}
         
-          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1564;}
+          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1565;}
         
-          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1564;}
+          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1565;}
         
-          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1564;}
+          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1565;}
         
-          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1564;}
+          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1565;}
         
-          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1564;}
+          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1565;}
         
-          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1564;}
+          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1565;}
          {
         sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
         scriptError(staticError);
       } 
-done1564:;};
+done1565:;};
 arg3Init=true;
 {double tmp;
             int err = Tcl_GetDoubleFromObj(interp, objv[4], &tmp);
@@ -609,24 +609,24 @@ arg2Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1566;}
+          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1567;}
         
-          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1566;}
+          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1567;}
         
-          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1566;}
+          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1567;}
         
-          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1566;}
+          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1567;}
         
-          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1566;}
+          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1567;}
         
-          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1566;}
+          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1567;}
         
-          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1566;}
+          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1567;}
          {
         sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
         scriptError(staticError);
       } 
-done1566:;};
+done1567:;};
 arg3Init=true;
 {double tmp;
             int err = Tcl_GetDoubleFromObj(interp, objv[4], &tmp);
@@ -934,24 +934,24 @@ arg2Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1568;}
+          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1569;}
         
-          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1568;}
+          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1569;}
         
-          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1568;}
+          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1569;}
         
-          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1568;}
+          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1569;}
         
-          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1568;}
+          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1569;}
         
-          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1568;}
+          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1569;}
         
-          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1568;}
+          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1569;}
          {
         sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
         scriptError(staticError);
       } 
-done1568:;};
+done1569:;};
 arg3Init=true;
 {double tmp;
             int err = Tcl_GetDoubleFromObj(interp, objv[4], &tmp);
@@ -1268,24 +1268,24 @@ arg2Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1570;}
+          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1571;}
         
-          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1570;}
+          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1571;}
         
-          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1570;}
+          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1571;}
         
-          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1570;}
+          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1571;}
         
-          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1570;}
+          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1571;}
         
-          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1570;}
+          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1571;}
         
-          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1570;}
+          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1571;}
          {
         sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
         scriptError(staticError);
       } 
-done1570:;};
+done1571:;};
 arg3Init=true;
 {double tmp;
             int err = Tcl_GetDoubleFromObj(interp, objv[4], &tmp);

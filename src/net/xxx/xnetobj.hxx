@@ -23,6 +23,7 @@
 
   class ShieldGenerator;
   class Cell;
+  #include "src/weapon/explode_listener.hxx"
 
 class EnergyCharge;
 
@@ -30,6 +31,7 @@ class INO_EnergyCharge: public ImportedGameObject {
   NetworkConnection* cxn;
 public:
   INO_EnergyCharge(NetworkConnection* cxn);
+  virtual ~INO_EnergyCharge();
   static const NetworkConnection::geraet_num num;
 
 protected:
@@ -48,6 +50,9 @@ private:
 class ENO_EnergyCharge: public ExportedGameObject {
 public:
   ENO_EnergyCharge(NetworkConnection*, EnergyCharge*);
+  virtual ~ENO_EnergyCharge();
+
+  virtual void init() throw();
 
 protected:
   virtual bool shouldUpdate() const throw();
@@ -55,9 +60,19 @@ protected:
 
 private:
   void encode() throw();
-  EnergyCharge* clone(const EnergyCharge*) const throw();
+  EnergyCharge* clone(const EnergyCharge*, NetworkConnection*) const throw();
 
   
+      class ExplListener: public ExplodeListener<EnergyCharge> {
+        ENO_EnergyCharge*const that;
+      public:
+        ExplListener(EnergyCharge* it, ENO_EnergyCharge* that_);
+
+        virtual void exploded(EnergyCharge*) throw() {
+          that->forceUpdate();
+        }
+      } explListener;
+    
 };
 
 class MagnetoBomb;
@@ -66,6 +81,7 @@ class INO_MagnetoBomb: public ImportedGameObject {
   NetworkConnection* cxn;
 public:
   INO_MagnetoBomb(NetworkConnection* cxn);
+  virtual ~INO_MagnetoBomb();
   static const NetworkConnection::geraet_num num;
 
 protected:
@@ -84,6 +100,9 @@ private:
 class ENO_MagnetoBomb: public ExportedGameObject {
 public:
   ENO_MagnetoBomb(NetworkConnection*, MagnetoBomb*);
+  virtual ~ENO_MagnetoBomb();
+
+  virtual void init() throw();
 
 protected:
   virtual bool shouldUpdate() const throw();
@@ -91,9 +110,19 @@ protected:
 
 private:
   void encode() throw();
-  MagnetoBomb* clone(const MagnetoBomb*) const throw();
+  MagnetoBomb* clone(const MagnetoBomb*, NetworkConnection*) const throw();
 
   
+      class ExplListener: public ExplodeListener<MagnetoBomb> {
+        ENO_MagnetoBomb*const that;
+      public:
+        ExplListener(MagnetoBomb* it, ENO_MagnetoBomb* that_);
+
+        virtual void exploded(MagnetoBomb*) throw() {
+          that->forceUpdate();
+        }
+      } explListener;
+    
 };
 
 class SemiguidedBomb;
@@ -102,6 +131,7 @@ class INO_SemiguidedBomb: public ImportedGameObject {
   NetworkConnection* cxn;
 public:
   INO_SemiguidedBomb(NetworkConnection* cxn);
+  virtual ~INO_SemiguidedBomb();
   static const NetworkConnection::geraet_num num;
 
 protected:
@@ -120,6 +150,9 @@ private:
 class ENO_SemiguidedBomb: public ExportedGameObject {
 public:
   ENO_SemiguidedBomb(NetworkConnection*, SemiguidedBomb*);
+  virtual ~ENO_SemiguidedBomb();
+
+  virtual void init() throw();
 
 protected:
   virtual bool shouldUpdate() const throw();
@@ -127,9 +160,19 @@ protected:
 
 private:
   void encode() throw();
-  SemiguidedBomb* clone(const SemiguidedBomb*) const throw();
+  SemiguidedBomb* clone(const SemiguidedBomb*, NetworkConnection*) const throw();
 
   
+      class ExplListener: public ExplodeListener<MagnetoBomb> {
+        ENO_SemiguidedBomb*const that;
+      public:
+        ExplListener(MagnetoBomb* it, ENO_SemiguidedBomb* that_);
+
+        virtual void exploded(MagnetoBomb*) throw() {
+          that->forceUpdate();
+        }
+      } explListener;
+    
 };
 
 class PlasmaBurst;
@@ -138,6 +181,7 @@ class INO_PlasmaBurst: public ImportedGameObject {
   NetworkConnection* cxn;
 public:
   INO_PlasmaBurst(NetworkConnection* cxn);
+  virtual ~INO_PlasmaBurst();
   static const NetworkConnection::geraet_num num;
 
 protected:
@@ -156,6 +200,9 @@ private:
 class ENO_PlasmaBurst: public ExportedGameObject {
 public:
   ENO_PlasmaBurst(NetworkConnection*, PlasmaBurst*);
+  virtual ~ENO_PlasmaBurst();
+
+  virtual void init() throw();
 
 protected:
   virtual bool shouldUpdate() const throw();
@@ -163,9 +210,19 @@ protected:
 
 private:
   void encode() throw();
-  PlasmaBurst* clone(const PlasmaBurst*) const throw();
+  PlasmaBurst* clone(const PlasmaBurst*, NetworkConnection*) const throw();
 
   
+      class ExplListener: public ExplodeListener<PlasmaBurst> {
+        ENO_PlasmaBurst*const that;
+      public:
+        ExplListener(PlasmaBurst* it, ENO_PlasmaBurst* that_);
+
+        virtual void exploded(PlasmaBurst*) throw() {
+          that->forceUpdate();
+        }
+      } explListener;
+    
 };
 
 class Missile;
@@ -174,6 +231,7 @@ class INO_Missile: public ImportedGameObject {
   NetworkConnection* cxn;
 public:
   INO_Missile(NetworkConnection* cxn);
+  virtual ~INO_Missile();
   static const NetworkConnection::geraet_num num;
 
 protected:
@@ -192,6 +250,9 @@ private:
 class ENO_Missile: public ExportedGameObject {
 public:
   ENO_Missile(NetworkConnection*, Missile*);
+  virtual ~ENO_Missile();
+
+  virtual void init() throw();
 
 protected:
   virtual bool shouldUpdate() const throw();
@@ -199,9 +260,19 @@ protected:
 
 private:
   void encode() throw();
-  Missile* clone(const Missile*) const throw();
+  Missile* clone(const Missile*, NetworkConnection*) const throw();
 
   
+      class ExplListener: public ExplodeListener<Missile> {
+        ENO_Missile*const that;
+      public:
+        ExplListener(Missile* it, ENO_Missile* that_);
+
+        virtual void exploded(Missile*) throw() {
+          that->forceUpdate();
+        }
+      } explListener;
+    
 };
 
 class ParticleEmitter;
@@ -210,6 +281,7 @@ class INO_ParticleEmitter: public ImportedGameObject {
   NetworkConnection* cxn;
 public:
   INO_ParticleEmitter(NetworkConnection* cxn);
+  virtual ~INO_ParticleEmitter();
   static const NetworkConnection::geraet_num num;
 
 protected:
@@ -228,6 +300,9 @@ private:
 class ENO_ParticleEmitter: public ExportedGameObject {
 public:
   ENO_ParticleEmitter(NetworkConnection*, ParticleEmitter*);
+  virtual ~ENO_ParticleEmitter();
+
+  virtual void init() throw();
 
 protected:
   virtual bool shouldUpdate() const throw();
@@ -235,9 +310,59 @@ protected:
 
 private:
   void encode() throw();
-  ParticleEmitter* clone(const ParticleEmitter*) const throw();
+  ParticleEmitter* clone(const ParticleEmitter*, NetworkConnection*) const throw();
 
   
+};
+
+class MonophasicEnergyPulse;
+
+class INO_MonophasicEnergyPulse: public ImportedGameObject {
+  NetworkConnection* cxn;
+public:
+  INO_MonophasicEnergyPulse(NetworkConnection* cxn);
+  virtual ~INO_MonophasicEnergyPulse();
+  static const NetworkConnection::geraet_num num;
+
+protected:
+  virtual void construct() throw();
+  virtual void update() throw();
+
+private:
+  MonophasicEnergyPulse* decodeConstruct(const std::vector<byte>&) const throw();
+  bool decodeUpdate(const std::vector<byte>&, MonophasicEnergyPulse*) throw();
+
+  static InputNetworkGeraet* create(NetworkConnection*) throw();
+
+  
+};
+
+class ENO_MonophasicEnergyPulse: public ExportedGameObject {
+public:
+  ENO_MonophasicEnergyPulse(NetworkConnection*, MonophasicEnergyPulse*);
+  virtual ~ENO_MonophasicEnergyPulse();
+
+  virtual void init() throw();
+
+protected:
+  virtual bool shouldUpdate() const throw();
+  virtual void updateRemote() throw();
+
+private:
+  void encode() throw();
+  MonophasicEnergyPulse* clone(const MonophasicEnergyPulse*, NetworkConnection*) const throw();
+
+  
+      class ExplListener: public ExplodeListener<MonophasicEnergyPulse> {
+        ENO_MonophasicEnergyPulse*const that;
+      public:
+        ExplListener(MonophasicEnergyPulse* it, ENO_MonophasicEnergyPulse* that_);
+
+        virtual void exploded(MonophasicEnergyPulse*) throw() {
+          that->forceUpdate();
+        }
+      } explListener;
+    
 };
 
 class Spectator;
@@ -246,6 +371,7 @@ class INO_Spectator: public ImportedGameObject {
   NetworkConnection* cxn;
 public:
   INO_Spectator(NetworkConnection* cxn);
+  virtual ~INO_Spectator();
   static const NetworkConnection::geraet_num num;
 
 protected:
@@ -264,6 +390,9 @@ private:
 class ENO_Spectator: public ExportedGameObject {
 public:
   ENO_Spectator(NetworkConnection*, Spectator*);
+  virtual ~ENO_Spectator();
+
+  virtual void init() throw();
 
 protected:
   virtual bool shouldUpdate() const throw();
@@ -271,7 +400,7 @@ protected:
 
 private:
   void encode() throw();
-  Spectator* clone(const Spectator*) const throw();
+  Spectator* clone(const Spectator*, NetworkConnection*) const throw();
 
   
 };
@@ -282,6 +411,7 @@ class INO_Ship: public ImportedGameObject {
   NetworkConnection* cxn;
 public:
   INO_Ship(NetworkConnection* cxn);
+  virtual ~INO_Ship();
   static const NetworkConnection::geraet_num num;
 
 protected:
@@ -303,6 +433,9 @@ private:
 class ENO_Ship: public ExportedGameObject {
 public:
   ENO_Ship(NetworkConnection*, Ship*);
+  virtual ~ENO_Ship();
+
+  virtual void init() throw();
 
 protected:
   virtual bool shouldUpdate() const throw();
@@ -310,7 +443,7 @@ protected:
 
 private:
   void encode() throw();
-  Ship* clone(const Ship*) const throw();
+  Ship* clone(const Ship*, NetworkConnection*) const throw();
 
   
       static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {

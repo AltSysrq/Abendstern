@@ -901,16 +901,16 @@ arg1Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "SILRStrict")) {arg2=SquareIcon::Strict; goto done1901;}
+          if (0 == strcmp(tmp, "SILRStrict")) {arg2=SquareIcon::Strict; goto done1902;}
         
-          if (0 == strcmp(tmp, "SILRLax")) {arg2=SquareIcon::Lax; goto done1901;}
+          if (0 == strcmp(tmp, "SILRLax")) {arg2=SquareIcon::Lax; goto done1902;}
         
-          if (0 == strcmp(tmp, "SILRScale")) {arg2=SquareIcon::Scale; goto done1901;}
+          if (0 == strcmp(tmp, "SILRScale")) {arg2=SquareIcon::Scale; goto done1902;}
          {
         sprintf(staticError, "Unable to convert %s to SquareIcon::LoadReq", tmp);
         scriptError(staticError);
       } 
-done1901:;};
+done1902:;};
 arg2Init=true;
 try {
       ret =
@@ -1301,9 +1301,9 @@ Tcl_Interp* arg1; bool arg1Init=false;
 Tcl_Interp* ret; Tcl_Obj* retTcl=NULL;
 PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
 
-{int gen2010;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2010);
-            arg0=gen2010;
+{int gen2011;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2011);
+            arg0=gen2011;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};

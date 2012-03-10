@@ -188,9 +188,9 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 bool arg0; bool arg0Init=false;
 PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
 
-{int gen1397;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen1397);
-            arg0=gen1397;
+{int gen1398;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen1398);
+            arg0=gen1398;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -244,26 +244,26 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "GL_POINTS")) {arg0=asgi::Points; goto done1398;}
+          if (0 == strcmp(tmp, "GL_POINTS")) {arg0=asgi::Points; goto done1399;}
         
-          if (0 == strcmp(tmp, "GL_LINES")) {arg0=asgi::Lines; goto done1398;}
+          if (0 == strcmp(tmp, "GL_LINES")) {arg0=asgi::Lines; goto done1399;}
         
-          if (0 == strcmp(tmp, "GL_LINE_STRIP")) {arg0=asgi::LineStrip; goto done1398;}
+          if (0 == strcmp(tmp, "GL_LINE_STRIP")) {arg0=asgi::LineStrip; goto done1399;}
         
-          if (0 == strcmp(tmp, "GL_LINE_LOOP")) {arg0=asgi::LineLoop; goto done1398;}
+          if (0 == strcmp(tmp, "GL_LINE_LOOP")) {arg0=asgi::LineLoop; goto done1399;}
         
-          if (0 == strcmp(tmp, "GL_TRIANGLES")) {arg0=asgi::Triangles; goto done1398;}
+          if (0 == strcmp(tmp, "GL_TRIANGLES")) {arg0=asgi::Triangles; goto done1399;}
         
-          if (0 == strcmp(tmp, "GL_TRIANGLE_STRIP")) {arg0=asgi::TriangleStrip; goto done1398;}
+          if (0 == strcmp(tmp, "GL_TRIANGLE_STRIP")) {arg0=asgi::TriangleStrip; goto done1399;}
         
-          if (0 == strcmp(tmp, "GL_TRIANGLE_FAN")) {arg0=asgi::TriangleFan; goto done1398;}
+          if (0 == strcmp(tmp, "GL_TRIANGLE_FAN")) {arg0=asgi::TriangleFan; goto done1399;}
         
-          if (0 == strcmp(tmp, "GL_QUADS")) {arg0=asgi::Quads; goto done1398;}
+          if (0 == strcmp(tmp, "GL_QUADS")) {arg0=asgi::Quads; goto done1399;}
          {
         sprintf(staticError, "Unable to convert %s to asgi::Primitive", tmp);
         scriptError(staticError);
       } 
-done1398:;};
+done1399:;};
 arg0Init=true;
 try {
       
@@ -1323,9 +1323,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else arg0=NULL;
 };
 arg0Init=true;
-{int gen1590;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1590);
-            arg1=gen1590;
+{int gen1591;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1591);
+            arg1=gen1591;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -1443,9 +1443,9 @@ arg0Init=true;
     } else arg1=NULL;
 };
 arg1Init=true;
-{int gen1593;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1593);
-            arg2=gen1593;
+{int gen1594;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1594);
+            arg2=gen1594;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -3219,9 +3219,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else parent=NULL;
 }
       if (!parent) { scriptError("NULL this passed into C++"); }
-{int gen1754;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1754);
-            arg0=gen1754;
+{int gen1755;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1755);
+            arg0=gen1755;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -3556,9 +3556,9 @@ void classdec706(bool safe, Tcl_Interp* interp) throw() {
       
 
       //Extract value
-      {int gen1895;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen1895);
-            newVal=gen1895;
+      {int gen1896;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen1896);
+            newVal=gen1896;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -3611,9 +3611,9 @@ void classdec706(bool safe, Tcl_Interp* interp) throw() {
       
 
       //Extract value
-      {int gen1896;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen1896);
-            newVal=gen1896;
+      {int gen1897;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen1897);
+            newVal=gen1897;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -3666,9 +3666,9 @@ void classdec706(bool safe, Tcl_Interp* interp) throw() {
       
 
       //Extract value
-      {int gen1897;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen1897);
-            newVal=gen1897;
+      {int gen1898;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen1898);
+            newVal=gen1898;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -3721,9 +3721,9 @@ void classdec706(bool safe, Tcl_Interp* interp) throw() {
       
 
       //Extract value
-      {int gen1898;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen1898);
-            newVal=gen1898;
+      {int gen1899;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen1899);
+            newVal=gen1899;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -3776,9 +3776,9 @@ void classdec706(bool safe, Tcl_Interp* interp) throw() {
       
 
       //Extract value
-      {int gen1899;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen1899);
-            newVal=gen1899;
+      {int gen1900;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen1900);
+            newVal=gen1900;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}

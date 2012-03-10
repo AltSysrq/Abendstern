@@ -660,9 +660,9 @@ static int set320 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {int gen1511;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1511);
-            newVal=gen1511;
+      {int gen1512;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1512);
+            newVal=gen1512;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}

@@ -157,9 +157,9 @@ arg2Init=true;
               scriptError(Tcl_GetStringResult(interp));
             arg3 = (float)tmp;};
 arg3Init=true;
-{int gen1425;
-            int err = Tcl_GetBooleanFromObj(interp, objv[4], (int*)&gen1425);
-            arg4=gen1425;
+{int gen1426;
+            int err = Tcl_GetBooleanFromObj(interp, objv[4], (int*)&gen1426);
+            arg4=gen1426;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};

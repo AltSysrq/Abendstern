@@ -69,26 +69,26 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "GL_POINTS")) {arg0=asgi::Points; goto done1396;}
+          if (0 == strcmp(tmp, "GL_POINTS")) {arg0=asgi::Points; goto done1397;}
         
-          if (0 == strcmp(tmp, "GL_LINES")) {arg0=asgi::Lines; goto done1396;}
+          if (0 == strcmp(tmp, "GL_LINES")) {arg0=asgi::Lines; goto done1397;}
         
-          if (0 == strcmp(tmp, "GL_LINE_STRIP")) {arg0=asgi::LineStrip; goto done1396;}
+          if (0 == strcmp(tmp, "GL_LINE_STRIP")) {arg0=asgi::LineStrip; goto done1397;}
         
-          if (0 == strcmp(tmp, "GL_LINE_LOOP")) {arg0=asgi::LineLoop; goto done1396;}
+          if (0 == strcmp(tmp, "GL_LINE_LOOP")) {arg0=asgi::LineLoop; goto done1397;}
         
-          if (0 == strcmp(tmp, "GL_TRIANGLES")) {arg0=asgi::Triangles; goto done1396;}
+          if (0 == strcmp(tmp, "GL_TRIANGLES")) {arg0=asgi::Triangles; goto done1397;}
         
-          if (0 == strcmp(tmp, "GL_TRIANGLE_STRIP")) {arg0=asgi::TriangleStrip; goto done1396;}
+          if (0 == strcmp(tmp, "GL_TRIANGLE_STRIP")) {arg0=asgi::TriangleStrip; goto done1397;}
         
-          if (0 == strcmp(tmp, "GL_TRIANGLE_FAN")) {arg0=asgi::TriangleFan; goto done1396;}
+          if (0 == strcmp(tmp, "GL_TRIANGLE_FAN")) {arg0=asgi::TriangleFan; goto done1397;}
         
-          if (0 == strcmp(tmp, "GL_QUADS")) {arg0=asgi::Quads; goto done1396;}
+          if (0 == strcmp(tmp, "GL_QUADS")) {arg0=asgi::Quads; goto done1397;}
          {
         sprintf(staticError, "Unable to convert %s to asgi::Primitive", tmp);
         scriptError(staticError);
       } 
-done1396:;};
+done1397:;};
 arg0Init=true;
 try {
       
@@ -1811,9 +1811,9 @@ arg0Init=true;
           arg1 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
         };
 arg1Init=true;
-{int gen1735;
-            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen1735);
-            arg2=gen1735;
+{int gen1736;
+            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen1736);
+            arg2=gen1736;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -1925,9 +1925,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
           arg0 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
         };
 arg0Init=true;
-{int gen1737;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1737);
-            arg1=gen1737;
+{int gen1738;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1738);
+            arg1=gen1738;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -3761,9 +3761,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else parent=NULL;
 }
       if (!parent) { scriptError("NULL this passed into C++"); }
-{int gen1971;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1971);
-            arg0=gen1971;
+{int gen1972;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1972);
+            arg0=gen1972;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -4442,9 +4442,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
       arg0 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
     };
 arg0Init=true;
-{int gen1979;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1979);
-            arg1=gen1979;
+{int gen1980;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1980);
+            arg1=gen1980;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -4863,26 +4863,26 @@ arg1Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "STInt")) {arg2=Setting::TypeInt; goto done1984;}
+          if (0 == strcmp(tmp, "STInt")) {arg2=Setting::TypeInt; goto done1985;}
         
-          if (0 == strcmp(tmp, "STInt64")) {arg2=Setting::TypeInt64; goto done1984;}
+          if (0 == strcmp(tmp, "STInt64")) {arg2=Setting::TypeInt64; goto done1985;}
         
-          if (0 == strcmp(tmp, "STFloat")) {arg2=Setting::TypeFloat; goto done1984;}
+          if (0 == strcmp(tmp, "STFloat")) {arg2=Setting::TypeFloat; goto done1985;}
         
-          if (0 == strcmp(tmp, "STBool")) {arg2=Setting::TypeBoolean; goto done1984;}
+          if (0 == strcmp(tmp, "STBool")) {arg2=Setting::TypeBoolean; goto done1985;}
         
-          if (0 == strcmp(tmp, "STString")) {arg2=Setting::TypeString; goto done1984;}
+          if (0 == strcmp(tmp, "STString")) {arg2=Setting::TypeString; goto done1985;}
         
-          if (0 == strcmp(tmp, "STArray")) {arg2=Setting::TypeArray; goto done1984;}
+          if (0 == strcmp(tmp, "STArray")) {arg2=Setting::TypeArray; goto done1985;}
         
-          if (0 == strcmp(tmp, "STList")) {arg2=Setting::TypeList; goto done1984;}
+          if (0 == strcmp(tmp, "STList")) {arg2=Setting::TypeList; goto done1985;}
         
-          if (0 == strcmp(tmp, "STGroup")) {arg2=Setting::TypeGroup; goto done1984;}
+          if (0 == strcmp(tmp, "STGroup")) {arg2=Setting::TypeGroup; goto done1985;}
          {
         sprintf(staticError, "Unable to convert %s to Setting::Type", tmp);
         scriptError(staticError);
       } 
-done1984:;};
+done1985:;};
 arg2Init=true;
 try {
       
@@ -4992,9 +4992,9 @@ arg0Init=true;
       arg1 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
     };
 arg1Init=true;
-{int gen1986;
-            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen1986);
-            arg2=gen1986;
+{int gen1987;
+            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen1987);
+            arg2=gen1987;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -5537,26 +5537,26 @@ arg0Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "STInt")) {arg1=Setting::TypeInt; goto done1992;}
+          if (0 == strcmp(tmp, "STInt")) {arg1=Setting::TypeInt; goto done1993;}
         
-          if (0 == strcmp(tmp, "STInt64")) {arg1=Setting::TypeInt64; goto done1992;}
+          if (0 == strcmp(tmp, "STInt64")) {arg1=Setting::TypeInt64; goto done1993;}
         
-          if (0 == strcmp(tmp, "STFloat")) {arg1=Setting::TypeFloat; goto done1992;}
+          if (0 == strcmp(tmp, "STFloat")) {arg1=Setting::TypeFloat; goto done1993;}
         
-          if (0 == strcmp(tmp, "STBool")) {arg1=Setting::TypeBoolean; goto done1992;}
+          if (0 == strcmp(tmp, "STBool")) {arg1=Setting::TypeBoolean; goto done1993;}
         
-          if (0 == strcmp(tmp, "STString")) {arg1=Setting::TypeString; goto done1992;}
+          if (0 == strcmp(tmp, "STString")) {arg1=Setting::TypeString; goto done1993;}
         
-          if (0 == strcmp(tmp, "STArray")) {arg1=Setting::TypeArray; goto done1992;}
+          if (0 == strcmp(tmp, "STArray")) {arg1=Setting::TypeArray; goto done1993;}
         
-          if (0 == strcmp(tmp, "STList")) {arg1=Setting::TypeList; goto done1992;}
+          if (0 == strcmp(tmp, "STList")) {arg1=Setting::TypeList; goto done1993;}
         
-          if (0 == strcmp(tmp, "STGroup")) {arg1=Setting::TypeGroup; goto done1992;}
+          if (0 == strcmp(tmp, "STGroup")) {arg1=Setting::TypeGroup; goto done1993;}
          {
         sprintf(staticError, "Unable to convert %s to Setting::Type", tmp);
         scriptError(staticError);
       } 
-done1992:;};
+done1993:;};
 arg1Init=true;
 try {
       
@@ -5650,9 +5650,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
       arg0 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
     };
 arg0Init=true;
-{int gen1994;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1994);
-            arg1=gen1994;
+{int gen1995;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1995);
+            arg1=gen1995;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
