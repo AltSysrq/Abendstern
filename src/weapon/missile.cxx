@@ -149,6 +149,7 @@ bool Missile::update(float et) noth {
     vy += ay*et;
   }
   if (EXPCLOSE(x,y) && !headless && currentVFrameLast
+  &&  xdir != 0 && ydir != 0
   &&  (isRemote || target.ref)) {
     if (!trail.ref) {
       trail.assign(new LightTrail(field, 3000, 64, 4*RADIUS, RADIUS,
