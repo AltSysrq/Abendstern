@@ -22,8 +22,9 @@ verbatimc {
   friend class ENO_Ship;\
   friend class INO_Spectator;\
   friend class ENO_Spectator
+//MSVC++ can't handle fabs(int)
+#define fabs(x) std::fabs((float)(x))
 #endif
-
 #include "xnetobj.hxx"
 }
 
@@ -1289,8 +1290,9 @@ type Ship {
         ss->container = X->networkCells[i];
 
         //Configure system and ensure it is happy there
-        if (const char* error =
-            ss->setOrientation(systemInfo[i*2+s].orientation)) {
+        const char* error;
+        if ((error = ss->setOrientation(systemInfo[i*2+s].orientation))
+        &&  !isFragment) {
           #ifdef DEBUG
           cerr << "Warning: Rejecting ship system with bad orientation: "
                << error << endl;
