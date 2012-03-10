@@ -1719,14 +1719,15 @@ static const char* verify_impl(Ship* ship, bool phys) {
   &&  ship->cells[0]->usage == CellBridge) RETL10N(ship,err_rt_bridge)
 
   for (unsigned i=0; i<ship->cells.size(); ++i) for (int s=0; s<2; ++s) {
-    if (ship->cells[i]->systems[s])
+    if (ship->cells[i]->systems[s] && ship->hasPower())
       if (const char* error=ship->cells[i]->systems[s]->acceptShip())
         return error;
     if (ship->cells[i]->systems[0] && ship->cells[i]->systems[1]) {
       ShipSystem* s0=ship->cells[i]->systems[0], *s1=ship->cells[i]->systems[1];
       if (s0->size==ShipSystem::Large && s1->size==ShipSystem::Large)
         RETL10N(ship,two_large_sys)
-      if (s0->positioning==s1->positioning && s0->positioning != ShipSystem::Standard)
+      if (s0->positioning==s1->positioning
+      &&  s0->positioning != ShipSystem::Standard)
         RETL10N(ship,two_same_loc_sys)
     }
 
