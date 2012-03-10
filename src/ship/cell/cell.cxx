@@ -240,7 +240,25 @@ void Cell::physicsRequire(physics_bits bits) noth {
   //If empty, all the constructor-set values are correct, except possibly
   //location properties
   if (isEmpty) {
-    physics.valid |= PHYS_CELL_ALL & ~PHYS_CELL_LOCATION_PROPERTIES_BIT;
+    if (!(physics.valid & PHYS_CELL_LOCATION_PROPERTIES_BIT)
+    &&  (PHYS_CELL_LOCATION_PROPERTIES_BITS & bits)) {
+      parent->physicsRequire(PHYS_SHIP_COORDS_BIT);
+
+      physics.distance = sqrt(x*x + y*y);
+      if (physics.distance > 0) {
+        physics.cosine = x/physics.distance;
+        physics.sine = y/physics.distance;
+        physics.angle = atan2(y,x);
+      } else {
+        physics.cosine = 1;
+        physics.sine = 0;
+        physics.angle = 0;
+      }
+
+      physics.valid |= PHYS_CELL_LOCATION_PROPERTIES_BIT;
+    }
+
+    physics.valid |= PHYS_CELL_ALL;
     return;
   }
 
