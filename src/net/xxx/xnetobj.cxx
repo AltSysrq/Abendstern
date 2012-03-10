@@ -3312,6 +3312,13 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
           //Free
           delete c;
+
+          if (X->cells.empty()) {
+            #ifdef DEBUG
+            cerr << "Warning: Discarding ship with no cells." << endl;
+            #endif
+            DESTROY(true);
+          }
         } else {
           //Damage the cell by the appropriate amount
           float newdmg = 1.0f - cellDamage[0+ARRAY_OFFSET]/255.0f;
@@ -5485,6 +5492,13 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
           //Free
           delete c;
+
+          if (X->cells.empty()) {
+            #ifdef DEBUG
+            cerr << "Warning: Discarding ship with no cells." << endl;
+            #endif
+            DESTROY(true);
+          }
         } else {
           //Damage the cell by the appropriate amount
           float newdmg = 1.0f - cellDamage[0+ARRAY_OFFSET]/255.0f;
