@@ -76,9 +76,11 @@ proc explodable {clazz} {
 }
 
 prototype GameObject {
-  float vx {default 10000}
-  float vy {default 10000}
-  float x {
+  # Maximum velocity is 32 screen/sec
+  fixed 2 32.0e-3f vx {default 10000}
+  fixed 2 32.0e-3f vy {default 10000}
+  # Maximum coordinate is 128,128
+  fixed u2 128.0f x {
     default 32
     validate {
       if (x == x)
@@ -87,7 +89,7 @@ prototype GameObject {
         x = 0;
     }
   }
-  float y {
+  fixed u2 128.0f y {
     default 32
     validate {
       if (y == y)

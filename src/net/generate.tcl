@@ -112,6 +112,14 @@
 #     If no custom validator is given, an automatic one will be generated which
 #     ensures that the value is non-NaN and between min and max, inclusive
 #     (which default to -1e9 and +1e9, respectively).
+#   fixed BYTES MULT NAME PARMS
+#     Defines a floating-point number represented as a fixed-point value. The
+#     fixed-point is a BYTES-byte signed integer (same allowable values as ui).
+#     The fixed maps to floating as:
+#       FIXED = (inttype)FLOAT/MULT*maxvalue
+#       FLOAT = FIXED/(float)maxvalue*(float)MULT
+#     If BYTES is prefixed with 'u', the integer (and thus the fixed) will
+#     be unsigned.
 #   void PARMS
 #     Does nothing but hold PARMS, which are the common parms (minus encode
 #     and decode).
@@ -557,6 +565,52 @@ proc float {name {parms {}} {save yes}} {
  else if ($name > [dict get $current max]) $name = [dict get $current max];"
   }
   incr byteOffset 4
+  if {$save} save
+}
+proc fixed {bytes mult name {parms {}} {save yes}} {
+  global current byteOffset
+
+  set signed 1
+  if {[string index $bytes 0] eq "u"} {
+    set signed 0
+    set bytes [string range $bytes 1 end]
+  }
+  set inttype [int-type-for $signed $bytes]
+
+  set enct {}
+  if {$bytes == 3} {
+    set enct 24
+  }
+
+  switch -exact "$signed/$bytes" {
+    0/1 { set maxval 0xFF }
+    1/1 { set maxval 0x7F }
+    0/2 { set maxval 0xFFFF }
+    1/2 { set maxval 0x7FFF }
+    0/3 { set maxval 0xFFFFFF }
+    1/3 { set maxval 0x7FFFFF }
+    0/4 { set maxval 0xFFFFFFFF }
+    1/4 { set maxval 0x7FFFFFFF }
+    0/8 { set maxval 0xFFFFFFFFFFFFFFFFLL }
+    1/8 { set maxval 0x7FFFFFFFFFFFFFFFLL }
+    default {
+      error "Bad byte count for fixed: $bytes"
+    }
+  }
+
+  whole-byte
+  new
+  aliases $name
+  dict set current declaration "float $name;"
+  dict set current encode \
+  "{$inttype _$name = $name/$mult*$maxval; io::write${enct}_c(&[data],_$name);}"
+  dict set current decode \
+  "{$inttype _$name;
+    io::read${enct}_c(&[data],_$name);
+    $name=_$name*$mult/$maxval;
+   }"
+  eval-parms $parms $name
+  incr byteOffset $bytes
   if {$save} save
 }
 
