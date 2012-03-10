@@ -29,6 +29,7 @@
 //This hack injects an appropriate friends list into GameObject
 #ifdef WIN32
 #define TclGameObject  TclGameObject;  friend class INO_EnergyCharge; friend class ENO_EnergyCharge; friend class INO_MagnetoBomb; friend class ENO_MagnetoBomb; friend class INO_SemiguidedBomb; friend class ENO_SemiguidedBomb; friend class INO_PlasmaBurst; friend class ENO_PlasmaBurst; friend class INO_Missile; friend class ENO_Missile; friend class INO_ParticleEmitter; friend class ENO_ParticleEmitter; friend class INO_MonophasicEnergyPulse; friend class ENO_MonophasicEnergyPulse; friend class INO_Ship; friend class ENO_Ship; friend class INO_Spectator; friend class ENO_Spectator
+#define fabs(x) std::fabs((float)(x))
 #endif
 
 #include "xnetobj.hxx"
