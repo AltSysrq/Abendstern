@@ -21,6 +21,7 @@
 #include "synchronous_control_geraet.hxx"
 #include "async_ack_geraet.hxx"
 #include "lat_disc_geraet.hxx"
+#include "ship_damage_geraet.hxx"
 #include "anticipatory_channels.hxx"
 
 #include "xxx/xnetobj.hxx"
@@ -64,6 +65,7 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
   scg(new SynchronousControlGeraet(this, incomming)),
   aag(new AsyncAckGeraet(this)),
   ldg(new LatDiscGeraet(this)),
+  sdg(new ShipDamageGeraet(aag)),
   anticipation(new AnticipatoryChannels(this))
 {
   inchannels[0] = scg;
@@ -75,6 +77,7 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
   //Open standard channels
   scg->openChannel(aag, aag->num);
   scg->openChannel(ldg, ldg->num);
+  scg->openChannel(sdg, sdg->num);
 
   parent->getTuner()->connect(endpoint, this);
 }
@@ -109,6 +112,7 @@ NetworkConnection::~NetworkConnection() {
   delete aag;
   delete scg;
   delete ldg;
+  delete sdg;
   delete anticipation;
 
   Uint32 now = SDL_GetTicks(), duration = now-connectionStart;

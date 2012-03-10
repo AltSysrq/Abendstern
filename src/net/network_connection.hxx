@@ -24,6 +24,7 @@ class NetworkAssembly;
 class SynchronousControlGeraet;
 class LatDiscGeraet;
 class AsyncAckGeraet;
+class ShipDamageGeraet;
 class AnticipatoryChannels;
 
 /**
@@ -154,6 +155,8 @@ public:
   AsyncAckGeraet*const aag;
   ///The LDG used with this NetworkConnection
   LatDiscGeraet* const ldg;
+  ///The SDG used with this NetworkConnection
+  ShipDamageGeraet*const sdg;
   ///AnticipatoryChannels service used with this NetworkConnection
   AnticipatoryChannels*const anticipation;
 

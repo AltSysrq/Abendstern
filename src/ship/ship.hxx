@@ -68,6 +68,7 @@ class GatlingPlasmaBurstLauncher;
 class ShipRenderer;
 class Controller;
 class EffectsHandler;
+class ShipDamageGeraet;
 
 typedef AggregateSet<Ship*,Ship*> radar_t;
 
@@ -428,6 +429,11 @@ class Ship: public GameObject {
    * is indicated by the second value.
    */
   void (*shipExistenceFailure)(Ship*, bool death);
+
+  /**
+   * If a remote ship, the ShipDamageGeraet to send damage information through.
+   */
+  ShipDamageGeraet* shipDamageGeraet;
 
   /** Creates a new, empty Ship for the given GameField. */
   Ship(GameField*);

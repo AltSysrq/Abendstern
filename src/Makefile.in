@@ -219,6 +219,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-block_geraet.$(OBJEXT) \
 	abendsternuxgl14-object_geraet.$(OBJEXT) \
 	abendsternuxgl14-anticipatory_channels.$(OBJEXT) \
+	abendsternuxgl14-ship_damage_geraet.$(OBJEXT) \
 	abendsternuxgl14-network_test.$(OBJEXT) \
 	abendsternuxgl14-xnetobj.$(OBJEXT) \
 	abendsternuxgl14-namegen.$(OBJEXT) \
@@ -424,6 +425,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-block_geraet.$(OBJEXT) \
 	abendsternuxgl21-object_geraet.$(OBJEXT) \
 	abendsternuxgl21-anticipatory_channels.$(OBJEXT) \
+	abendsternuxgl21-ship_damage_geraet.$(OBJEXT) \
 	abendsternuxgl21-network_test.$(OBJEXT) \
 	abendsternuxgl21-xnetobj.$(OBJEXT) \
 	abendsternuxgl21-namegen.$(OBJEXT) \
@@ -627,6 +629,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-block_geraet.$(OBJEXT) \
 	abendsternuxgl32-object_geraet.$(OBJEXT) \
 	abendsternuxgl32-anticipatory_channels.$(OBJEXT) \
+	abendsternuxgl32-ship_damage_geraet.$(OBJEXT) \
 	abendsternuxgl32-network_test.$(OBJEXT) \
 	abendsternuxgl32-xnetobj.$(OBJEXT) \
 	abendsternuxgl32-namegen.$(OBJEXT) \
@@ -984,6 +987,7 @@ COMMONSOURCES = \
 ./net/block_geraet.cxx \
 ./net/object_geraet.cxx \
 ./net/anticipatory_channels.cxx \
+./net/ship_damage_geraet.cxx \
 ./net/network_test.cxx \
 ./net/xxx/xnetobj.cxx \
 ./secondary/namegen.cxx \
@@ -1271,6 +1275,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-shield.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-shield_generator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-ship.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-ship_damage_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-ship_effects.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-ship_mixer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-ship_renderer.Po@am__quote@
@@ -1477,6 +1482,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-shield.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-shield_generator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-ship.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-ship_damage_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-ship_effects.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-ship_mixer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-ship_renderer.Po@am__quote@
@@ -1683,6 +1689,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-shield.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-shield_generator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-ship.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-ship_damage_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-ship_effects.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-ship_mixer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-ship_renderer.Po@am__quote@
@@ -4246,6 +4253,20 @@ abendsternuxgl14-anticipatory_channels.obj: ./net/anticipatory_channels.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/anticipatory_channels.cxx' object='abendsternuxgl14-anticipatory_channels.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-anticipatory_channels.obj `if test -f './net/anticipatory_channels.cxx'; then $(CYGPATH_W) './net/anticipatory_channels.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/anticipatory_channels.cxx'; fi`
+
+abendsternuxgl14-ship_damage_geraet.o: ./net/ship_damage_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-ship_damage_geraet.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-ship_damage_geraet.Tpo -c -o abendsternuxgl14-ship_damage_geraet.o `test -f './net/ship_damage_geraet.cxx' || echo '$(srcdir)/'`./net/ship_damage_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-ship_damage_geraet.Tpo $(DEPDIR)/abendsternuxgl14-ship_damage_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/ship_damage_geraet.cxx' object='abendsternuxgl14-ship_damage_geraet.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-ship_damage_geraet.o `test -f './net/ship_damage_geraet.cxx' || echo '$(srcdir)/'`./net/ship_damage_geraet.cxx
+
+abendsternuxgl14-ship_damage_geraet.obj: ./net/ship_damage_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-ship_damage_geraet.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-ship_damage_geraet.Tpo -c -o abendsternuxgl14-ship_damage_geraet.obj `if test -f './net/ship_damage_geraet.cxx'; then $(CYGPATH_W) './net/ship_damage_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/ship_damage_geraet.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-ship_damage_geraet.Tpo $(DEPDIR)/abendsternuxgl14-ship_damage_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/ship_damage_geraet.cxx' object='abendsternuxgl14-ship_damage_geraet.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-ship_damage_geraet.obj `if test -f './net/ship_damage_geraet.cxx'; then $(CYGPATH_W) './net/ship_damage_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/ship_damage_geraet.cxx'; fi`
 
 abendsternuxgl14-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-network_test.Tpo -c -o abendsternuxgl14-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx
@@ -7131,6 +7152,20 @@ abendsternuxgl21-anticipatory_channels.obj: ./net/anticipatory_channels.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-anticipatory_channels.obj `if test -f './net/anticipatory_channels.cxx'; then $(CYGPATH_W) './net/anticipatory_channels.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/anticipatory_channels.cxx'; fi`
 
+abendsternuxgl21-ship_damage_geraet.o: ./net/ship_damage_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-ship_damage_geraet.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-ship_damage_geraet.Tpo -c -o abendsternuxgl21-ship_damage_geraet.o `test -f './net/ship_damage_geraet.cxx' || echo '$(srcdir)/'`./net/ship_damage_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-ship_damage_geraet.Tpo $(DEPDIR)/abendsternuxgl21-ship_damage_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/ship_damage_geraet.cxx' object='abendsternuxgl21-ship_damage_geraet.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-ship_damage_geraet.o `test -f './net/ship_damage_geraet.cxx' || echo '$(srcdir)/'`./net/ship_damage_geraet.cxx
+
+abendsternuxgl21-ship_damage_geraet.obj: ./net/ship_damage_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-ship_damage_geraet.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-ship_damage_geraet.Tpo -c -o abendsternuxgl21-ship_damage_geraet.obj `if test -f './net/ship_damage_geraet.cxx'; then $(CYGPATH_W) './net/ship_damage_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/ship_damage_geraet.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-ship_damage_geraet.Tpo $(DEPDIR)/abendsternuxgl21-ship_damage_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/ship_damage_geraet.cxx' object='abendsternuxgl21-ship_damage_geraet.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-ship_damage_geraet.obj `if test -f './net/ship_damage_geraet.cxx'; then $(CYGPATH_W) './net/ship_damage_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/ship_damage_geraet.cxx'; fi`
+
 abendsternuxgl21-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-network_test.Tpo -c -o abendsternuxgl21-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-network_test.Tpo $(DEPDIR)/abendsternuxgl21-network_test.Po
@@ -10014,6 +10049,20 @@ abendsternuxgl32-anticipatory_channels.obj: ./net/anticipatory_channels.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/anticipatory_channels.cxx' object='abendsternuxgl32-anticipatory_channels.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-anticipatory_channels.obj `if test -f './net/anticipatory_channels.cxx'; then $(CYGPATH_W) './net/anticipatory_channels.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/anticipatory_channels.cxx'; fi`
+
+abendsternuxgl32-ship_damage_geraet.o: ./net/ship_damage_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-ship_damage_geraet.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-ship_damage_geraet.Tpo -c -o abendsternuxgl32-ship_damage_geraet.o `test -f './net/ship_damage_geraet.cxx' || echo '$(srcdir)/'`./net/ship_damage_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-ship_damage_geraet.Tpo $(DEPDIR)/abendsternuxgl32-ship_damage_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/ship_damage_geraet.cxx' object='abendsternuxgl32-ship_damage_geraet.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-ship_damage_geraet.o `test -f './net/ship_damage_geraet.cxx' || echo '$(srcdir)/'`./net/ship_damage_geraet.cxx
+
+abendsternuxgl32-ship_damage_geraet.obj: ./net/ship_damage_geraet.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-ship_damage_geraet.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-ship_damage_geraet.Tpo -c -o abendsternuxgl32-ship_damage_geraet.obj `if test -f './net/ship_damage_geraet.cxx'; then $(CYGPATH_W) './net/ship_damage_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/ship_damage_geraet.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-ship_damage_geraet.Tpo $(DEPDIR)/abendsternuxgl32-ship_damage_geraet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/ship_damage_geraet.cxx' object='abendsternuxgl32-ship_damage_geraet.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-ship_damage_geraet.obj `if test -f './net/ship_damage_geraet.cxx'; then $(CYGPATH_W) './net/ship_damage_geraet.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/ship_damage_geraet.cxx'; fi`
 
 abendsternuxgl32-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-network_test.Tpo -c -o abendsternuxgl32-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx

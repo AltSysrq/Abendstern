@@ -52,6 +52,7 @@
 #include "src/exit_conditions.hxx"
 #include "src/core/lxn.hxx"
 #include "src/control/human_controller.hxx"
+#include "src/net/ship_damage_geraet.hxx"
 
 using namespace std;
 
@@ -126,7 +127,8 @@ Ship::Ship(GameField* field) :
   score(0),
   diedSpontaneously(false),
   damageMultiplier(1.0f),
-  shipExistenceFailure(NULL)
+  shipExistenceFailure(NULL),
+  shipDamageGeraet(NULL)
 {
   insignia=reinterpret_cast<unsigned long>(this);
   classification = GameObject::ClassShip;
@@ -167,7 +169,8 @@ Ship::Ship(const Ship& other)
   score(other.score),
   diedSpontaneously(other.diedSpontaneously),
   damageMultiplier(other.damageMultiplier),
-  shipExistenceFailure(other.shipExistenceFailure)
+  shipExistenceFailure(other.shipExistenceFailure),
+  shipDamageGeraet(NULL)
 {
   classification = GameObject::ClassShip;
   isExportable=true;
@@ -218,6 +221,8 @@ Ship::~Ship() {
   radar->delClient(this);
   radar->superPurge(this);
   if (renderer) delete renderer;
+  if (shipDamageGeraet)
+    shipDamageGeraet->delRemoteShip(this);
 
   disableSoundEffects();
 }

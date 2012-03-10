@@ -320,16 +320,16 @@ See src/net/generate.tcl for a formal description of the file's contents.
 SHIP DAMAGE GERÄT
 Gerät number: (automatic)
 Sends events indicating that one of the receiver's ships is believed to have
-taken damage. Packets are not ordered. Packets relating to nonexistent ships are
+taken damage. Packets are unordered. Packets relating to nonexistent ships are
 silently ignored. See the Blast class for interpretation of Blast-related data.
 Packet structure:
-  uint32        ID of ship being damaged
-  float         X coordinate of ship at time of damage
-  float         Y coordinate of ship at time of damage
-  float         theta of ship at time of damage
-  float         X coordinate of blast centre
-  float         Y coordinate of blast centre
-  float         falloff of blast
-  float         stringth of blast
-  float         size of blast
+  uint16        channel of ship being damaged
+  uint16        512 * X coordinate of ship at time of damage
+  uint16        512 * Y coordinate of ship at time of damage
+  byte          theta of ship at time of damage
+  uint16        512 * X coordinate of blast centre
+  uint16        512 * Y coordinate of blast centre
+  uint16        65536 * falloff of blast
+  uint16        128 * strength of blast
+  uint16        65536 * size of blast
   byte          blame of blast
