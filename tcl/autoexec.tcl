@@ -126,12 +126,15 @@ proc makePlanet {} {
 }
 
 # Convenience network test procs
-proc ntl {} {
-  set ::state [new NetworkTest listen]
+proc ntl {args} {
+  set ::state [new NetworkTest default]
+  foreach {host port} $args {
+    $::state connect $host $port
+  }
 }
 
-proc ntc {{host 192.168.10.199} {port 12544}} {
-  set ::state [new NetworkTest connect $host $port]
+proc ntc {args} {
+  ntl 192.168.10.199 12544 {*}$args
 }
 
 source tcl/boot.tcl

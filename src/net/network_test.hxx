@@ -18,10 +18,11 @@ class NetworkTest: public TestState {
   NetworkAssembly* assembly;
 
 public:
-  NetworkTest(const char* host = 0, unsigned port = 0);
+  NetworkTest();
   virtual ~NetworkTest();
 
   virtual GameState* update(float);
+  virtual void connect(const char* host, unsigned port);
 
 private:
   static test_state::Background init();

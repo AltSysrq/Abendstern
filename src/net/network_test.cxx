@@ -51,16 +51,17 @@ protected:
   }
 };
 
-NetworkTest::NetworkTest(const char* host, unsigned port)
+NetworkTest::NetworkTest()
 : TestState(init()),
   assembly(new NetworkAssembly(env.getField(), &antenna))
 {
   new NetworkTestListener(assembly);
-  if (host) {
-    asio::ip::udp::endpoint dst(
-      asio::ip::address::from_string(host), port);
-    assembly->addConnection(new NetworkConnection(assembly, dst, false));
-  }
+}
+
+void NetworkTest::connect(const char* host, unsigned port) {
+  asio::ip::udp::endpoint dst(
+    asio::ip::address::from_string(host), port);
+  assembly->addConnection(new NetworkConnection(assembly, dst, false));
 }
 
 NetworkTest::~NetworkTest() {
