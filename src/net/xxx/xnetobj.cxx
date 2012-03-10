@@ -23,7 +23,7 @@
   #undef FAR
   #endif
 
-
+#define DEBUG
 
 //MSVC++ doesn't handle inherited members accessed by friends correctly.
 //This hack injects an appropriate friends list into GameObject
@@ -3035,6 +3035,12 @@ gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] >> 7) &
       DESTROY(true);
     }
 
+    //Call detectPhysics() on all systems
+    for (unsigned i=0; i<X->cells.size(); ++i)
+      for (unsigned s=0; s<2; ++s)
+        if (X->cells[i]->systems[s])
+          X->cells[i]->systems[s]->detectPhysics();
+
     //Register with SDG
     #ifndef LOCAL_CLONE
     X->shipDamageGeraet = cxn->sdg;
@@ -3251,6 +3257,7 @@ rootIsBridge = (DATA[296+0] >> 5) & 1;
       X->configureEngines(thrustOn, brakeOn, thrustPercent);
     
 io::read_c(&DATA[297+0], rootTheta);
+ destruction = false; 
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 io::read_c(&(&DATA[0]+25887+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
@@ -3336,6 +3343,15 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
       }
     
 }
+
+    if (destruction) {
+      //Call detectPhysics() on all systems
+      for (unsigned i=0; i<X->cells.size(); ++i)
+        for (unsigned s=0; s<2; ++s)
+          if (X->cells[i]->systems[s])
+            X->cells[i]->systems[s]->detectPhysics();
+    }
+  
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
 systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
 systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
@@ -3922,7 +3938,6 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 io::write_c(&(&DATA[0]+25887+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
- destruction = false; 
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
 
       if (X->networkCells.size() > (0+ARRAY_OFFSET) && X->networkCells[(0+ARRAY_OFFSET)]) {
@@ -4464,7 +4479,6 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
       }
     
 }
- destruction = false; 
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
 
       if (X->networkCells.size() > (0+ARRAY_OFFSET) && X->networkCells[(0+ARRAY_OFFSET)]) {
@@ -4772,6 +4786,12 @@ vx = X->vx;
       DESTROY(true);
     }
 
+    //Call detectPhysics() on all systems
+    for (unsigned i=0; i<X->cells.size(); ++i)
+      for (unsigned s=0; s<2; ++s)
+        if (X->cells[i]->systems[s])
+          X->cells[i]->systems[s]->detectPhysics();
+
     //Register with SDG
     #ifndef LOCAL_CLONE
     X->shipDamageGeraet = cxn->sdg;
@@ -4898,7 +4918,6 @@ stealthMode = X->stealthMode;
 
       rootTheta = X->cells[0]->getT();
     
- destruction = false; 
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
       if ((0+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(0+ARRAY_OFFSET)]) {
@@ -5302,7 +5321,6 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 io::write_c(&(&DATA[0]+25887+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
- destruction = false; 
 
       rootTheta = X->cells[0]->getT();
     
@@ -5434,6 +5452,7 @@ X->insignia = insignia;
 
       X->configureEngines(thrustOn, brakeOn, thrustPercent);
     
+ destruction = false; 
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
       if ((0+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(0+ARRAY_OFFSET)]) {
@@ -5516,6 +5535,15 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
       }
     
 }
+
+    if (destruction) {
+      //Call detectPhysics() on all systems
+      for (unsigned i=0; i<X->cells.size(); ++i)
+        for (unsigned s=0; s<2; ++s)
+          if (X->cells[i]->systems[s])
+            X->cells[i]->systems[s]->detectPhysics();
+    }
+  
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
 
         {
