@@ -81,7 +81,7 @@ prototype GameObject {
   fixed 2 32.0e-3f vy {default 10000}
   # Maximum coordinate is 128,128
   fixed u2 128.0f x {
-    default 32
+    default 128
     validate {
       if (x == x)
         x = max(0.0f, min(field->width, x + T*vx));
@@ -90,7 +90,7 @@ prototype GameObject {
     }
   }
   fixed u2 128.0f y {
-    default 32
+    default 128
     validate {
       if (y == y)
         y = max(0.0f, min(field->height, y + T*vy));
