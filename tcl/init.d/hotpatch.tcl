@@ -31,10 +31,10 @@ if {"none" == [$ str conf.$player1_control.analogue.vert.action]
 # Work around bug in updater relating to DLLs in subdirectories
 # (This is required for smooth upgrading from pre-2011.05.05 versions)
 set dontLoadAbnet no
-if {[file exists tls1.6/tls16.lld] && ![file exists tls1.6/tls16.dll]} {
-  catch {file copy tls1.6/tls16.lld tls1.6/tls16.dll}
-  set dontLoadAbnet yes
-}
+#if {[file exists tls1.6/tls16.lld] && ![file exists tls1.6/tls16.dll]} {
+#  catch {file copy tls1.6/tls16.lld tls1.6/tls16.dll}
+#  set dontLoadAbnet yes
+#}
 
 if {$dontLoadAbnet} {
   # Show a message to the user indicating they must restart Abendstern
