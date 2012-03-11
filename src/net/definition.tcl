@@ -895,7 +895,7 @@ type Ship {
       }
 
       update {
-        {
+        if (false) {
           unsigned cellix = IX/2;
           unsigned sysix = IX&1;
           //Check for system destruction

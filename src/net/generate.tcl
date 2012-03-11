@@ -385,7 +385,7 @@ ENO_${name}::ENO_${name}(NetworkConnection* cxn, $name* obj)
 {
   //Populate initial data
   #define X obj
-  #define field (cxn->field)
+  #define field (cxn->parent->field)
   const unsigned T = cxn->getLatency();
   #define DATA state
   [cxxj declaration]
@@ -446,7 +446,7 @@ bool ENO_${name}::shouldUpdate() const throw() {
 void ENO_${name}::updateRemote() throw() {
   #define T 0
   #define DATA (this->state)
-  #define field (&this->cxn->field)
+  #define field (this->cxn->parent->field)
   #define DESTROY(x) assert(!(x))
   $name* l_local = static_cast<$name*>(this->local.ref);
   $name* l_remote = static_cast<$name*>(this->remote);
@@ -454,7 +454,9 @@ void ENO_${name}::updateRemote() throw() {
   #define X l_local
   [jxxc update-control extract encode]
   #undef X
+  #undef field
   #define X l_remote
+  #define field (&this->cxn->field)
   [cxxj update-control update]
   #undef X
   #undef DATA
