@@ -4856,15 +4856,15 @@ for comp in sha256 aes uuid; do
 done
 
 # Check for Tcl TLS library
-echo -n 'checking for Tcl TLS... '
-if echo 'exit [catch {package require tls}]' | tclsh; then
-  echo 'yes'
-else
-  echo 'no'
-  echo 'Tcl cannot find the tls package.'
-  echo 'Make sure that tcltls (or tcl-tls) is installed.'
-  exit 1
-fi
+#echo -n ['checking for Tcl TLS... ']
+#if echo ['exit [catch {package require tls}]'] | tclsh; then
+#  echo 'yes'
+#else
+#  echo 'no'
+#  echo ['Tcl cannot find the tls package.']
+#  echo 'Make sure that tcltls (or tcl-tls) is installed.'
+#  exit 1
+#fi
 
 # Don't need to check for http, it is part of standard Tcl 8.5
 
