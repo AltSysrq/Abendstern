@@ -344,6 +344,9 @@ class GameObject : public AObject {
   void del() noth;
 
   virtual ~GameObject();
+
+private:
+  void deleteCommon() noth;
 };
 
 #endif /*GAME_OBJECT_HXX_*/
