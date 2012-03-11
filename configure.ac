@@ -91,6 +91,33 @@ else
   exit 1
 fi
 
+# Check for required Tcllib libraries
+# (sha256, aes, uuid)
+for comp in sha256 aes uuid; do
+  echo -n ["checking for Tcllib component $comp... "]
+  if echo ["exit [catch {package require $comp}]"] | tclsh; then
+    echo 'yes'
+  else
+    echo 'no'
+    echo ["Tcl cannot find the $comp package, part of Tcllib."]
+    echo 'Make sure that tcllib is installed.'
+    exit 1
+  fi
+done
+
+# Check for Tcl TLS library
+echo -n ['checking for Tcl TLS... ']
+if echo ['exit [catch {package require tls}]'] | tclsh; then
+  echo 'yes'
+else
+  echo 'no'
+  echo ['Tcl cannot find the tls package.']
+  echo 'Make sure that tcltls (or tcl-tls) is installed.'
+  exit 1
+fi
+
+# Don't need to check for http, it is part of standard Tcl 8.5
+
 # Checks for libraries.
 AC_LANG_PUSH([C++])
 CPPFLAGS="$CPPFLAGS -I/usr/include/tcl8.5"
