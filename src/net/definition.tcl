@@ -870,6 +870,8 @@ type Ship {
   }}
   void { update {
     if (destruction) {
+      X->refreshUpdates();
+
       //Call detectPhysics() on all systems
       for (unsigned i=0; i<X->cells.size(); ++i)
         for (unsigned s=0; s<2; ++s)
@@ -907,8 +909,15 @@ type Ship {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
+      }
+
+      compare {
+        //Only matters nearby (where it is important)
+        if (y.NAME != x.NAME)
+          NEAR += 1;
       }
     }
   }
@@ -986,8 +995,8 @@ type Ship {
     byte maxStrength, currStrengthPercent, currStability, currAlpha;
   }}                  4094  1 shields           {
     float {NAME.radius} {
-      min STD_CELL_SZ*MIN_SHIELD_RAD
-      max STD_CELL_SZ*MAX_SHIELD_RAD
+      min MIN_SHIELD_RAD
+      max MAX_SHIELD_RAD
       extract {
         {
           ShieldGenerator* gen = SHGEN(IX);
@@ -1019,7 +1028,7 @@ type Ship {
           ShieldGenerator* gen = SHGEN(IX);
           if (gen)
             NAME.currStrengthPercent =
-              (byte)(255*min(1.0f,gen->getShieldStrength())/gen->getStrength());
+              (byte)(255*min(1.0f,gen->getShieldStrength()));
           else
             NAME.currStrengthPercent = 0;
         }
@@ -1028,16 +1037,14 @@ type Ship {
         {
           ShieldGenerator* gen = SHGEN(IX);
           if (gen)
-            gen->setShieldStrength(NAME.currStrengthPercent/255.0f *
-                                   gen->getStrength());
+            gen->setShieldStrength(NAME.currStrengthPercent/255.0f);
         }
       }
       post-set {
         {
           ShieldGenerator* gen = SHGEN(IX);
           if (gen)
-            gen->setShieldStrength(NAME.currStrengthPercent/255.0f *
-                                   gen->getStrength());
+            gen->setShieldStrength(NAME.currStrengthPercent/255.0f);
         }
       }
 
@@ -1332,6 +1339,7 @@ type Ship {
       for (unsigned s=0; s<2; ++s)
         if (X->cells[i]->systems[s])
           X->cells[i]->systems[s]->detectPhysics();
+    X->refreshUpdates();
 
     //Register with SDG
     #ifndef LOCAL_CLONE

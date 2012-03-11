@@ -5,6 +5,7 @@
  */
 
 #include <cmath>
+#include <cassert>
 
 #include "empty_cell.hxx"
 #include "src/ship/auxobj/plasma_fire.hxx"
@@ -18,15 +19,12 @@ EmptyCell::EmptyCell(Ship* ship, Cell* neighbour)
   neighbours[0]=neighbour;
   x = neighbour->x;
   y = neighbour->y;
+  oriented = neighbour->oriented;
   netIndex=-1;
   isEmpty = true;
 
   //Fill in the physics
   physics.mass = 0;
-  physics.angle = neighbour->physics.angle;
-  physics.cosine = neighbour->physics.cosine;
-  physics.sine = neighbour->physics.sine;
-  physics.distance = neighbour->physics.distance;
   physics.thrustX = physics.thrustY = 0;
   physics.torque = 0;
   physics.torquePair = NULL;
@@ -41,7 +39,7 @@ EmptyCell::EmptyCell(Ship* ship, Cell* neighbour)
   physics.nextDepDS = NULL;
   physics.distanceDS = -1;
   physics.reinforcement = 1;
-  physics.valid = PHYS_CELL_ALL & ~PHYS_CELL_LOCATION_PROPERTIES_BIT;
+  physics.valid = PHYS_CELL_ALL & ~PHYS_CELL_LOCATION_PROPERTIES_BITS;
 }
 
 EmptyCell::~EmptyCell() {

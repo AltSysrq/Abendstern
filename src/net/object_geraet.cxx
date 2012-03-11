@@ -58,18 +58,21 @@ ExportedGameObject::ExportedGameObject(unsigned sz, NetworkConnection* cxn,
   local(local_),
   remote(remote_)
 {
-  cxn->field.add(remote);
+  if (remote)
+    cxn->field.add(remote);
 }
 
 ExportedGameObject::~ExportedGameObject() {
-  remote->collideWith(remote);
-  cxn->field.remove(remote);
-  remote->del();
+  if (remote) {
+    remote->collideWith(remote);
+    cxn->field.remove(remote);
+    remote->del();
+  }
 }
 
 void ExportedGameObject::update(unsigned et) throw() {
   timeUntilNextUpdate -= et;
-  if (local.ref) {
+  if (local.ref && remote) {
     //Local object still is alive, see if we should update it.
     if (timeUntilNextUpdate <= 0 && shouldUpdate()) {
       updateRemote();

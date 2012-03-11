@@ -10,6 +10,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <cassert>
 
 #include "game_field.hxx"
 #include "game_object.hxx"
@@ -163,10 +164,12 @@ inline bool check_collision(deque<GameObject*>& objects, GameObject* ap, GameObj
   if (!keepA) {
     objects.erase(objects.begin() + aix);
     --aix;
+    assert(!ap->isRemote);
     ap->del();
   }
   if (!keepB) {
     objects.erase(objects.begin() + bix);
+    assert(!bp->isRemote);
     bp->del();
     --aix;
   }
@@ -193,6 +196,7 @@ void GameField::updateImpl_update(float time) noth {
     GameObject* obj=objects[it];
     if (obj->isDecorative() != decor) continue;
     if (!obj->update(time)) {
+      assert(!obj->isRemote);
       obj->del();
       objects.erase(objects.begin() + it--);
       continue;
@@ -201,6 +205,7 @@ void GameField::updateImpl_update(float time) noth {
     if (obj->getX()<0 || obj->getX()>=width ||
         obj->getY()<0 || obj->getY()>=height) {
       obj->collideWith(obj);
+      assert(!obj->isRemote);
       obj->del();
       objects.erase(objects.begin() + it--);
       continue;
@@ -340,12 +345,27 @@ void GameField::addBegin(Explosion* go) noth {
 }
 
 void GameField::remove(GameObject* go) noth {
-  objects.erase(find(objects.begin(), objects.end(), go));
+  deque<GameObject*>::iterator it = find(objects.begin(), objects.end(), go);
+  if (it == objects.end()) {
+    #ifdef DEBUG
+    cerr << "Warning: Ignoring attempt to remove non-added object " << go
+         << " from GameField " << this << endl;
+    #endif
+    return;
+  }
+  objects.erase(it);
+}
+
+void GameField::removeFromInsertQueue(GameObject* go) noth {
+  deque<GameObject*>::iterator it = find(toInsert.begin(), toInsert.end(), go);
+  if (it != toInsert.end())
+    toInsert.erase(it);
 }
 
 void GameField::clear() noth {
   for (iterator it=begin(); it != end(); ++it) {
     (*it)->collideWith(*it);
+    assert(!(*it)->isRemote);
     (*it)->del();
   }
   objects.clear();

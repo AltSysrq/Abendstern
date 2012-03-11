@@ -357,7 +357,7 @@ void INO_${name}::update() throw() {
 
 $name* INO_${name}::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (X) X->del(); return NULL; } while(0)
   const unsigned T = cxn->getLatency();
   $name* X = NULL;
   [cxxj declaration]
@@ -385,7 +385,7 @@ ENO_${name}::ENO_${name}(NetworkConnection* cxn, $name* obj)
 {
   //Populate initial data
   #define X obj
-  #define field (cxn->field)
+  #define field (cxn->parent->field)
   const unsigned T = cxn->getLatency();
   #define DATA state
   [cxxj declaration]
@@ -415,8 +415,10 @@ const throw() {
   [cxxj declaration]
   [jxxc extract]
   #undef X
-  $name* dst;
+  #undef DESTROY
+  $name* dst = NULL;
   #define X dst
+  #define DESTROY(x) do { assert(!(x)); if (X) X->del(); return NULL; } while(0)
   $typeConstructor
   [cxxj post-set]
   #undef LOCAL_CLONE
@@ -444,7 +446,7 @@ bool ENO_${name}::shouldUpdate() const throw() {
 void ENO_${name}::updateRemote() throw() {
   #define T 0
   #define DATA (this->state)
-  #define field (&this->cxn->field)
+  #define field (this->cxn->parent->field)
   #define DESTROY(x) assert(!(x))
   $name* l_local = static_cast<$name*>(this->local.ref);
   $name* l_remote = static_cast<$name*>(this->remote);
@@ -452,7 +454,9 @@ void ENO_${name}::updateRemote() throw() {
   #define X l_local
   [jxxc update-control extract encode]
   #undef X
+  #undef field
   #define X l_remote
+  #define field (&this->cxn->field)
   [cxxj update-control update]
   #undef X
   #undef DATA

@@ -432,6 +432,7 @@ bool Ship::update(float et) noth {
 
   if (this->x != this->x) {
     cerr << "x is NaN!" << endl;
+    assert(false);
     exit(EXIT_THE_SKY_IS_FALLING);
   }
 
@@ -983,7 +984,9 @@ float Ship::getUncontrolledRotationAccel() const noth {
 }
 
 const vector<CollisionRectangle*>* Ship::getCollisionBounds() noth {
-  physicsRequire(PHYS_SHIP_COORDS_BIT | PHYS_CELL_LOCATION_PROPERTIES_BIT | PHYS_SHIP_SHIELD_INVENTORY_BIT);
+  physicsRequire(PHYS_SHIP_COORDS_BIT
+                |PHYS_CELL_LOCATION_PROPERTIES_BIT
+                |PHYS_SHIP_SHIELD_INVENTORY_BIT);
   if (!collisionTree.hasData()) {
     float* tzd = temporaryZero();
     vector<CollisionRectangle*> vec;
@@ -997,7 +1000,8 @@ const vector<CollisionRectangle*>* Ship::getCollisionBounds() noth {
     collisionTree.reset(x, y, cosTheta, sinTheta);
   }
   collisionBounds = collisionTree.get();
-  for (unsigned i=0; i<shields.size(); ++i) shields[i]->addCollisionBounds(collisionBounds);
+  for (unsigned i=0; i<shields.size(); ++i)
+    shields[i]->addCollisionBounds(collisionBounds);
   return &collisionBounds;
 }
 

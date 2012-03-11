@@ -23,18 +23,20 @@ const vector<CollisionRectangle*>* GameObject::getCollisionBounds() noth {
 }
 
 void GameObject::del() noth {
-  ci.isDead=true;
+  ci.isDead = true;
+  deleteCommon();
   field->deleteNextFrame.push_back(this);
-  for (ObjDL* odl=listeners; odl; odl=odl->nxt)
-    odl->ref=NULL;
-  listeners=NULL;
+  field->removeFromInsertQueue(this);
   if (field->networkAssembly)
     field->networkAssembly->objectRemoved(this);
 }
 
-GameObject::~GameObject() {
-  if (listeners)
-    for (ObjDL* odl=listeners; odl; odl=odl->nxt)
-      odl->ref=NULL;
+void GameObject::deleteCommon() noth {
+  for (ObjDL* odl=listeners; odl; odl=odl->nxt)
+    odl->ref=NULL;
   listeners=NULL;
+}
+
+GameObject::~GameObject() {
+  deleteCommon();
 }

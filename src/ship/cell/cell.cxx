@@ -234,6 +234,8 @@ noth {
 }
 
 void Cell::physicsRequire(physics_bits bits) noth {
+  assert(oriented);
+
   //We can do nothing about ship-global bits
   bits &= PHYS_CELL_MASK;
 
@@ -242,23 +244,19 @@ void Cell::physicsRequire(physics_bits bits) noth {
   if (isEmpty) {
     if (!(physics.valid & PHYS_CELL_LOCATION_PROPERTIES_BIT)
     &&  (PHYS_CELL_LOCATION_PROPERTIES_BITS & bits)) {
-      parent->physicsRequire(PHYS_SHIP_COORDS_BIT);
+      neighbours[0]->physicsRequire(PHYS_CELL_LOCATION_PROPERTIES_BIT);
 
-      physics.distance = sqrt(x*x + y*y);
-      if (physics.distance > 0) {
-        physics.cosine = x/physics.distance;
-        physics.sine = y/physics.distance;
-        physics.angle = atan2(y,x);
-      } else {
-        physics.cosine = 1;
-        physics.sine = 0;
-        physics.angle = 0;
-      }
+      physics.distance  = neighbours[0]->physics.distance;
+      physics.sine      = neighbours[0]->physics.sine;
+      physics.cosine    = neighbours[0]->physics.cosine;
+      physics.angle     = neighbours[0]->physics.angle;
+      assert(physics.distance == physics.distance);
 
       physics.valid |= PHYS_CELL_LOCATION_PROPERTIES_BIT;
     }
 
-    physics.valid |= PHYS_CELL_ALL;
+    //All others are already valid
+    physics.valid |= PHYS_CELL_ALL & ~PHYS_CELL_LOCATION_PROPERTIES_BIT;
     return;
   }
 
@@ -286,6 +284,7 @@ void Cell::physicsRequire(physics_bits bits) noth {
     parent->physicsRequire(PHYS_SHIP_COORDS_BIT);
 
     physics.distance = sqrt(x*x + y*y);
+    assert(physics.distance == physics.distance);
     if (physics.distance > 0) {
       physics.cosine = x/physics.distance;
       physics.sine = y/physics.distance;
