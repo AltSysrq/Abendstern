@@ -415,8 +415,10 @@ const throw() {
   [cxxj declaration]
   [jxxc extract]
   #undef X
+  #undef DESTROY
   $name* dst;
   #define X dst
+  #define DESTROY(x) do { assert(!(x)); if (X) delete X; return NULL; } while(0)
   $typeConstructor
   [cxxj post-set]
   #undef LOCAL_CLONE
