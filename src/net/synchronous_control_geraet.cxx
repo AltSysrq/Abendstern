@@ -11,6 +11,7 @@
 
 #include "synchronous_control_geraet.hxx"
 #include "io.hxx"
+#include "network_appinfo.hxx"
 #include "src/exit_conditions.hxx"
 #include "src/core/lxn.hxx"
 
@@ -22,10 +23,6 @@ using namespace std;
 #define SYN ((byte)0x22)
 #define XON ((byte)0x11)
 #define XOF ((byte)0x13)
-
-static const byte applicationName[] = "Abendstern";
-//Just assume the hash is zero for now
-static const byte protocolHash[16] = {0};
 
 SynchronousControlGeraet::SynchronousControlGeraet(NetworkConnection* cxn_,
                                                    bool incomming)

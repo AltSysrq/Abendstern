@@ -8,7 +8,7 @@ if {$PLATFORM == "WINDOWS"} {
 }
 
 package require http
-package require tls
+#package require tls
 package require aes
 package require sha256
 package require uuid

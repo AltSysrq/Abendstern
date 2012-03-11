@@ -333,3 +333,25 @@ Packet structure:
   float         strength of blast
   float         size of blast
   byte          blame of blast
+
+USAGE of SEQUENTIAL TEXT GERÄT
+Each packet consists of one character indicating the type of the message, and is
+followed by up to 250 characters of payload (this prevents the packet from
+hitting 256 bytes in size).
+
+Message types:
+  o     Underling-to-overseer message
+  p     Peer-to-peer message
+  b     Broadcast message
+  g     Global state change
+  d     Peer data state change
+  x     Extension; the payload of this packet is prepended to that of the next
+        before performing the next's operation.
+
+Messages take the form of Tcl lists; the first element identifies the message
+type, while the others are the parameters.
+
+State changes are Tcl lists with an even number of elements. Every even element
+is a Tcl list indicating a path into the appropriate data, and the following
+element is the new value for the datum at that location. Values must pass
+certain validation or will be ignored/edited.
