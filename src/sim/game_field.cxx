@@ -345,7 +345,15 @@ void GameField::addBegin(Explosion* go) noth {
 }
 
 void GameField::remove(GameObject* go) noth {
-  objects.erase(find(objects.begin(), objects.end(), go));
+  deque<GameObject*>::iterator it = find(objects.begin(), objects.end(), go);
+  if (it == objects.end()) {
+    #ifdef DEBUG
+    cerr << "Warning: Ignoring attempt to remove non-added object " << go
+         << " from GameField " << this << endl;
+    #endif
+    return;
+  }
+  objects.erase(it);
 }
 
 void GameField::clear() noth {

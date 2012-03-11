@@ -234,6 +234,8 @@ noth {
 }
 
 void Cell::physicsRequire(physics_bits bits) noth {
+  assert(oriented);
+
   //We can do nothing about ship-global bits
   bits &= PHYS_CELL_MASK;
 
@@ -245,6 +247,7 @@ void Cell::physicsRequire(physics_bits bits) noth {
       parent->physicsRequire(PHYS_SHIP_COORDS_BIT);
 
       physics.distance = sqrt(x*x + y*y);
+      assert(physics.distance == physics.distance);
       if (physics.distance > 0) {
         physics.cosine = x/physics.distance;
         physics.sine = y/physics.distance;
@@ -286,6 +289,7 @@ void Cell::physicsRequire(physics_bits bits) noth {
     parent->physicsRequire(PHYS_SHIP_COORDS_BIT);
 
     physics.distance = sqrt(x*x + y*y);
+    assert(physics.distance == physics.distance);
     if (physics.distance > 0) {
       physics.cosine = x/physics.distance;
       physics.sine = y/physics.distance;
