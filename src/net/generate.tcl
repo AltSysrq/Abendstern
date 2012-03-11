@@ -357,7 +357,7 @@ void INO_${name}::update() throw() {
 
 $name* INO_${name}::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { if (X) delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (X) X->del(); return NULL; } while(0)
   const unsigned T = cxn->getLatency();
   $name* X = NULL;
   [cxxj declaration]
@@ -416,9 +416,9 @@ const throw() {
   [jxxc extract]
   #undef X
   #undef DESTROY
-  $name* dst;
+  $name* dst = NULL;
   #define X dst
-  #define DESTROY(x) do { assert(!(x)); if (X) delete X; return NULL; } while(0)
+  #define DESTROY(x) do { assert(!(x)); if (X) X->del(); return NULL; } while(0)
   $typeConstructor
   [cxxj post-set]
   #undef LOCAL_CLONE

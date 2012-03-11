@@ -870,6 +870,8 @@ type Ship {
   }}
   void { update {
     if (destruction) {
+      X->refreshUpdates();
+
       //Call detectPhysics() on all systems
       for (unsigned i=0; i<X->cells.size(); ++i)
         for (unsigned s=0; s<2; ++s)
@@ -907,6 +909,7 @@ type Ship {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       }
@@ -1330,6 +1333,7 @@ type Ship {
       for (unsigned s=0; s<2; ++s)
         if (X->cells[i]->systems[s])
           X->cells[i]->systems[s]->detectPhysics();
+    X->refreshUpdates();
 
     //Register with SDG
     #ifndef LOCAL_CLONE
