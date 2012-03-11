@@ -1,3 +1,7 @@
+NOTE: This file documents an older protocol which Abendstern used to use. It is
+no longer implemented (besides being a rather poor design), and is included only
+for historical reference.
+
 Abendstern network protocol
 
 OVERVIEW
