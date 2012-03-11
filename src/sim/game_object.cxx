@@ -26,6 +26,7 @@ void GameObject::del() noth {
   ci.isDead = true;
   deleteCommon();
   field->deleteNextFrame.push_back(this);
+  field->removeFromInsertQueue(this);
   if (field->networkAssembly)
     field->networkAssembly->objectRemoved(this);
 }

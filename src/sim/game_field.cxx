@@ -356,6 +356,12 @@ void GameField::remove(GameObject* go) noth {
   objects.erase(it);
 }
 
+void GameField::removeFromInsertQueue(GameObject* go) noth {
+  deque<GameObject*>::iterator it = find(toInsert.begin(), toInsert.end(), go);
+  if (it != toInsert.end())
+    toInsert.erase(it);
+}
+
 void GameField::clear() noth {
   for (iterator it=begin(); it != end(); ++it) {
     (*it)->collideWith(*it);

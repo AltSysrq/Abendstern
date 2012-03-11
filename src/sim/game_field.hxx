@@ -147,6 +147,11 @@ class GameField : public AObject {
    * This function does NOT delete the object.
    */
   void remove(GameObject*) noth;
+  /**
+   * Removes the object from the current insert queue, if present.
+   * Has no effect if not in the insert queue.
+   */
+  void removeFromInsertQueue(GameObject*) noth;
 
   /** Adds an Explosion* to the ExplosionPool.
    * The Explosion will be deleted.
