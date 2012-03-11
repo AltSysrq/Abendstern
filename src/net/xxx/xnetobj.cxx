@@ -80,7 +80,7 @@ void INO_EnergyCharge::update() throw() {
 
 EnergyCharge* INO_EnergyCharge::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (X) X->del(); return NULL; } while(0)
   const unsigned T = cxn->getLatency();
   EnergyCharge* X = NULL;
   float vx;
@@ -183,7 +183,7 @@ ENO_EnergyCharge::ENO_EnergyCharge(NetworkConnection* cxn, EnergyCharge* obj)
 {
   //Populate initial data
   #define X obj
-  #define field (cxn->field)
+  #define field (cxn->parent->field)
   const unsigned T = cxn->getLatency();
   #define DATA state
   float vx;
@@ -244,8 +244,10 @@ x = X->x;
 vy = X->vy;
 vx = X->vx;
   #undef X
-  EnergyCharge* dst;
+  #undef DESTROY
+  EnergyCharge* dst = NULL;
   #define X dst
+  #define DESTROY(x) do { assert(!(x)); if (X) X->del(); return NULL; } while(0)
   
      X = new EnergyCharge(field, x, y, vx, vy,
                           theta*pi*2/255.0f, intensity/127.0f);
@@ -292,7 +294,7 @@ y = X->y;
 void ENO_EnergyCharge::updateRemote() throw() {
   #define T 0
   #define DATA (this->state)
-  #define field (&this->cxn->field)
+  #define field (this->cxn->parent->field)
   #define DESTROY(x) assert(!(x))
   EnergyCharge* l_local = static_cast<EnergyCharge*>(this->local.ref);
   EnergyCharge* l_remote = static_cast<EnergyCharge*>(this->remote);
@@ -319,7 +321,9 @@ vy = X->vy;
 vx = X->vx;
 {signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
+  #undef field
   #define X l_remote
+  #define field (&this->cxn->field)
   X->vx = vx;
 X->vy = vy;
 X->x = x;
@@ -368,7 +372,7 @@ void INO_MagnetoBomb::update() throw() {
 
 MagnetoBomb* INO_MagnetoBomb::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (X) X->del(); return NULL; } while(0)
   const unsigned T = cxn->getLatency();
   MagnetoBomb* X = NULL;
   float vx;
@@ -507,7 +511,7 @@ ENO_MagnetoBomb::ENO_MagnetoBomb(NetworkConnection* cxn, MagnetoBomb* obj)
 {
   //Populate initial data
   #define X obj
-  #define field (cxn->field)
+  #define field (cxn->parent->field)
   const unsigned T = cxn->getLatency();
   #define DATA state
   float vx;
@@ -578,8 +582,10 @@ x = X->x;
 vy = X->vy;
 vx = X->vx;
   #undef X
-  MagnetoBomb* dst;
+  #undef DESTROY
+  MagnetoBomb* dst = NULL;
   #define X dst
+  #define DESTROY(x) do { assert(!(x)); if (X) X->del(); return NULL; } while(0)
   
     X = new MagnetoBomb(field, x, y, vx, vy, power, NULL);
     X->isRemote = true;
@@ -637,7 +643,7 @@ timeAlive = X->timeAlive;
 void ENO_MagnetoBomb::updateRemote() throw() {
   #define T 0
   #define DATA (this->state)
-  #define field (&this->cxn->field)
+  #define field (this->cxn->parent->field)
   #define DESTROY(x) assert(!(x))
   MagnetoBomb* l_local = static_cast<MagnetoBomb*>(this->local.ref);
   MagnetoBomb* l_remote = static_cast<MagnetoBomb*>(this->remote);
@@ -670,7 +676,9 @@ vy = X->vy;
 vx = X->vx;
 {signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
+  #undef field
   #define X l_remote
+  #define field (&this->cxn->field)
   X->vx = vx;
 X->vy = vy;
 X->x = x;
@@ -723,7 +731,7 @@ void INO_SemiguidedBomb::update() throw() {
 
 SemiguidedBomb* INO_SemiguidedBomb::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (X) X->del(); return NULL; } while(0)
   const unsigned T = cxn->getLatency();
   SemiguidedBomb* X = NULL;
   float vx;
@@ -862,7 +870,7 @@ ENO_SemiguidedBomb::ENO_SemiguidedBomb(NetworkConnection* cxn, SemiguidedBomb* o
 {
   //Populate initial data
   #define X obj
-  #define field (cxn->field)
+  #define field (cxn->parent->field)
   const unsigned T = cxn->getLatency();
   #define DATA state
   float vx;
@@ -933,8 +941,10 @@ x = X->x;
 vy = X->vy;
 vx = X->vx;
   #undef X
-  SemiguidedBomb* dst;
+  #undef DESTROY
+  SemiguidedBomb* dst = NULL;
   #define X dst
+  #define DESTROY(x) do { assert(!(x)); if (X) X->del(); return NULL; } while(0)
   
     X = new SemiguidedBomb(field, x, y, vx, vy, power, NULL);
     X->isRemote = true;
@@ -992,7 +1002,7 @@ timeAlive = X->timeAlive;
 void ENO_SemiguidedBomb::updateRemote() throw() {
   #define T 0
   #define DATA (this->state)
-  #define field (&this->cxn->field)
+  #define field (this->cxn->parent->field)
   #define DESTROY(x) assert(!(x))
   SemiguidedBomb* l_local = static_cast<SemiguidedBomb*>(this->local.ref);
   SemiguidedBomb* l_remote = static_cast<SemiguidedBomb*>(this->remote);
@@ -1025,7 +1035,9 @@ vy = X->vy;
 vx = X->vx;
 {signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
+  #undef field
   #define X l_remote
+  #define field (&this->cxn->field)
   X->vx = vx;
 X->vy = vy;
 X->x = x;
@@ -1078,7 +1090,7 @@ void INO_PlasmaBurst::update() throw() {
 
 PlasmaBurst* INO_PlasmaBurst::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (X) X->del(); return NULL; } while(0)
   const unsigned T = cxn->getLatency();
   PlasmaBurst* X = NULL;
   float vx;
@@ -1183,7 +1195,7 @@ ENO_PlasmaBurst::ENO_PlasmaBurst(NetworkConnection* cxn, PlasmaBurst* obj)
 {
   //Populate initial data
   #define X obj
-  #define field (cxn->field)
+  #define field (cxn->parent->field)
   const unsigned T = cxn->getLatency();
   #define DATA state
   float vx;
@@ -1252,8 +1264,10 @@ x = X->x;
 vy = X->vy;
 vx = X->vx;
   #undef X
-  PlasmaBurst* dst;
+  #undef DESTROY
+  PlasmaBurst* dst = NULL;
   #define X dst
+  #define DESTROY(x) do { assert(!(x)); if (X) X->del(); return NULL; } while(0)
   
     X = new PlasmaBurst(field, x, y, vx, vy, direction*pi*2/255.0f, mass);
   
@@ -1304,7 +1318,7 @@ mass = X->mass;
 void ENO_PlasmaBurst::updateRemote() throw() {
   #define T 0
   #define DATA (this->state)
-  #define field (&this->cxn->field)
+  #define field (this->cxn->parent->field)
   #define DESTROY(x) assert(!(x))
   PlasmaBurst* l_local = static_cast<PlasmaBurst*>(this->local.ref);
   PlasmaBurst* l_remote = static_cast<PlasmaBurst*>(this->remote);
@@ -1335,7 +1349,9 @@ vy = X->vy;
 vx = X->vx;
 {signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
+  #undef field
   #define X l_remote
+  #define field (&this->cxn->field)
   X->vx = vx;
 X->vy = vy;
 X->x = x;
@@ -1385,7 +1401,7 @@ void INO_Missile::update() throw() {
 
 Missile* INO_Missile::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (X) X->del(); return NULL; } while(0)
   const unsigned T = cxn->getLatency();
   Missile* X = NULL;
   float vx;
@@ -1533,7 +1549,7 @@ ENO_Missile::ENO_Missile(NetworkConnection* cxn, Missile* obj)
 {
   //Populate initial data
   #define X obj
-  #define field (cxn->field)
+  #define field (cxn->parent->field)
   const unsigned T = cxn->getLatency();
   #define DATA state
   float vx;
@@ -1618,8 +1634,10 @@ x = X->x;
 vy = X->vy;
 vx = X->vx;
   #undef X
-  Missile* dst;
+  #undef DESTROY
+  Missile* dst = NULL;
   #define X dst
+  #define DESTROY(x) do { assert(!(x)); if (X) X->del(); return NULL; } while(0)
   
     X = new Missile(field, level, x, y, vx, vy, ax, ay, timeAlive);
   
@@ -1677,7 +1695,7 @@ ydir = X->ydir;
 void ENO_Missile::updateRemote() throw() {
   #define T 0
   #define DATA (this->state)
-  #define field (&this->cxn->field)
+  #define field (this->cxn->parent->field)
   #define DESTROY(x) assert(!(x))
   Missile* l_local = static_cast<Missile*>(this->local.ref);
   Missile* l_remote = static_cast<Missile*>(this->remote);
@@ -1713,7 +1731,9 @@ vy = X->vy;
 vx = X->vx;
 {signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
+  #undef field
   #define X l_remote
+  #define field (&this->cxn->field)
   X->vx = vx;
 X->vy = vy;
 X->x = x;
@@ -1767,7 +1787,7 @@ void INO_ParticleEmitter::update() throw() {
 
 ParticleEmitter* INO_ParticleEmitter::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (X) X->del(); return NULL; } while(0)
   const unsigned T = cxn->getLatency();
   ParticleEmitter* X = NULL;
   float vx;
@@ -1882,7 +1902,7 @@ ENO_ParticleEmitter::ENO_ParticleEmitter(NetworkConnection* cxn, ParticleEmitter
 {
   //Populate initial data
   #define X obj
-  #define field (cxn->field)
+  #define field (cxn->parent->field)
   const unsigned T = cxn->getLatency();
   #define DATA state
   float vx;
@@ -1958,8 +1978,10 @@ x = X->x;
 vy = X->vy;
 vx = X->vx;
   #undef X
-  ParticleEmitter* dst;
+  #undef DESTROY
+  ParticleEmitter* dst = NULL;
   #define X dst
+  #define DESTROY(x) do { assert(!(x)); if (X) X->del(); return NULL; } while(0)
   
     X = new ParticleEmitter(field, (ParticleBeamType)type,
                             0xFFFFFF, //TODO: Translate to local blame
@@ -2019,7 +2041,7 @@ blame = X->blame;
 void ENO_ParticleEmitter::updateRemote() throw() {
   #define T 0
   #define DATA (this->state)
-  #define field (&this->cxn->field)
+  #define field (this->cxn->parent->field)
   #define DESTROY(x) assert(!(x))
   ParticleEmitter* l_local = static_cast<ParticleEmitter*>(this->local.ref);
   ParticleEmitter* l_remote = static_cast<ParticleEmitter*>(this->remote);
@@ -2055,7 +2077,9 @@ vy = X->vy;
 vx = X->vx;
 {signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
+  #undef field
   #define X l_remote
+  #define field (&this->cxn->field)
   X->vx = vx;
 X->vy = vy;
 X->x = x;
@@ -2100,7 +2124,7 @@ void INO_MonophasicEnergyPulse::update() throw() {
 
 MonophasicEnergyPulse* INO_MonophasicEnergyPulse::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (X) X->del(); return NULL; } while(0)
   const unsigned T = cxn->getLatency();
   MonophasicEnergyPulse* X = NULL;
   float vx;
@@ -2198,7 +2222,7 @@ ENO_MonophasicEnergyPulse::ENO_MonophasicEnergyPulse(NetworkConnection* cxn, Mon
 {
   //Populate initial data
   #define X obj
-  #define field (cxn->field)
+  #define field (cxn->parent->field)
   const unsigned T = cxn->getLatency();
   #define DATA state
   float vx;
@@ -2259,8 +2283,10 @@ x = X->x;
 vy = X->vy;
 vx = X->vx;
   #undef X
-  MonophasicEnergyPulse* dst;
+  #undef DESTROY
+  MonophasicEnergyPulse* dst = NULL;
   #define X dst
+  #define DESTROY(x) do { assert(!(x)); if (X) X->del(); return NULL; } while(0)
   
     X = new MonophasicEnergyPulse(field, x, y, vx, vy, (float)power, timeAlive);
   
@@ -2301,7 +2327,7 @@ y = X->y;
 void ENO_MonophasicEnergyPulse::updateRemote() throw() {
   #define T 0
   #define DATA (this->state)
-  #define field (&this->cxn->field)
+  #define field (this->cxn->parent->field)
   #define DESTROY(x) assert(!(x))
   MonophasicEnergyPulse* l_local = static_cast<MonophasicEnergyPulse*>(this->local.ref);
   MonophasicEnergyPulse* l_remote = static_cast<MonophasicEnergyPulse*>(this->remote);
@@ -2322,7 +2348,9 @@ vy = X->vy;
 vx = X->vx;
 {signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
+  #undef field
   #define X l_remote
+  #define field (&this->cxn->field)
   X->vx = vx;
 X->vy = vy;
 X->x = x;
@@ -2371,7 +2399,7 @@ void INO_Spectator::update() throw() {
 
 Spectator* INO_Spectator::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (X) X->del(); return NULL; } while(0)
   const unsigned T = cxn->getLatency();
   Spectator* X = NULL;
   float vx;
@@ -2453,7 +2481,7 @@ ENO_Spectator::ENO_Spectator(NetworkConnection* cxn, Spectator* obj)
 {
   //Populate initial data
   #define X obj
-  #define field (cxn->field)
+  #define field (cxn->parent->field)
   const unsigned T = cxn->getLatency();
   #define DATA state
   float vx;
@@ -2499,8 +2527,10 @@ x = X->x;
 vy = X->vy;
 vx = X->vx;
   #undef X
-  Spectator* dst;
+  #undef DESTROY
+  Spectator* dst = NULL;
   #define X dst
+  #define DESTROY(x) do { assert(!(x)); if (X) X->del(); return NULL; } while(0)
   
     X = new Spectator(field, x, y, vx, vy);
   
@@ -2539,7 +2569,7 @@ y = X->y;
 void ENO_Spectator::updateRemote() throw() {
   #define T 0
   #define DATA (this->state)
-  #define field (&this->cxn->field)
+  #define field (this->cxn->parent->field)
   #define DESTROY(x) assert(!(x))
   Spectator* l_local = static_cast<Spectator*>(this->local.ref);
   Spectator* l_remote = static_cast<Spectator*>(this->remote);
@@ -2557,7 +2587,9 @@ vy = X->vy;
 vx = X->vx;
 {signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
+  #undef field
   #define X l_remote
+  #define field (&this->cxn->field)
   X->vx = vx;
 X->vy = vy;
 X->x = x;
@@ -2683,7 +2715,7 @@ void INO_Ship::update() throw() {
 
 Ship* INO_Ship::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
-  #define DESTROY(x) do { if (x) delete X; return NULL; } while(0)
+  #define DESTROY(x) do { if (X) X->del(); return NULL; } while(0)
   const unsigned T = cxn->getLatency();
   Ship* X = NULL;
   float vx;
@@ -2841,9 +2873,9 @@ io::read_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].curr
 io::read_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = STD_CELL_SZ*MIN_SHIELD_RAD;
- else if (shields[0+ARRAY_OFFSET].radius < STD_CELL_SZ*MIN_SHIELD_RAD) shields[0+ARRAY_OFFSET].radius = STD_CELL_SZ*MIN_SHIELD_RAD;
- else if (shields[0+ARRAY_OFFSET].radius > STD_CELL_SZ*MAX_SHIELD_RAD) shields[0+ARRAY_OFFSET].radius = STD_CELL_SZ*MAX_SHIELD_RAD;
+if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
+ else if (shields[0+ARRAY_OFFSET].radius < MIN_SHIELD_RAD) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
+ else if (shields[0+ARRAY_OFFSET].radius > MAX_SHIELD_RAD) shields[0+ARRAY_OFFSET].radius = MAX_SHIELD_RAD;
  shields[0+ARRAY_OFFSET].maxStrength = min((byte)MAX_SHIELD_STR,
                                         max((byte)MIN_SHIELD_STR,
                                             shields[0+ARRAY_OFFSET].maxStrength));
@@ -3040,6 +3072,7 @@ gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] >> 7) &
       for (unsigned s=0; s<2; ++s)
         if (X->cells[i]->systems[s])
           X->cells[i]->systems[s]->detectPhysics();
+    X->refreshUpdates();
 
     //Register with SDG
     #ifndef LOCAL_CLONE
@@ -3079,8 +3112,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
-            gen->setShieldStrength(shields[0+ARRAY_OFFSET].currStrengthPercent/255.0f *
-                                   gen->getStrength());
+            gen->setShieldStrength(shields[0+ARRAY_OFFSET].currStrengthPercent/255.0f);
         }
       
 
@@ -3345,6 +3377,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 }
 
     if (destruction) {
+      X->refreshUpdates();
+
       //Call detectPhysics() on all systems
       for (unsigned i=0; i<X->cells.size(); ++i)
         for (unsigned s=0; s<2; ++s)
@@ -3378,6 +3412,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -3396,6 +3431,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -3414,6 +3450,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -3432,6 +3469,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -3450,6 +3488,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -3468,6 +3507,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -3486,6 +3526,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -3504,6 +3545,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -3516,9 +3558,9 @@ io::read_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].curr
 io::read_c(&(&DATA[0]+47381+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = STD_CELL_SZ*MIN_SHIELD_RAD;
- else if (shields[0+ARRAY_OFFSET].radius < STD_CELL_SZ*MIN_SHIELD_RAD) shields[0+ARRAY_OFFSET].radius = STD_CELL_SZ*MIN_SHIELD_RAD;
- else if (shields[0+ARRAY_OFFSET].radius > STD_CELL_SZ*MAX_SHIELD_RAD) shields[0+ARRAY_OFFSET].radius = STD_CELL_SZ*MAX_SHIELD_RAD;
+if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
+ else if (shields[0+ARRAY_OFFSET].radius < MIN_SHIELD_RAD) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
+ else if (shields[0+ARRAY_OFFSET].radius > MAX_SHIELD_RAD) shields[0+ARRAY_OFFSET].radius = MAX_SHIELD_RAD;
  shields[0+ARRAY_OFFSET].maxStrength = min((byte)MAX_SHIELD_STR,
                                         max((byte)MIN_SHIELD_STR,
                                             shields[0+ARRAY_OFFSET].maxStrength));
@@ -3529,8 +3571,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
-            gen->setShieldStrength(shields[0+ARRAY_OFFSET].currStrengthPercent/255.0f *
-                                   gen->getStrength());
+            gen->setShieldStrength(shields[0+ARRAY_OFFSET].currStrengthPercent/255.0f);
         }
       
 
@@ -3558,7 +3599,7 @@ ENO_Ship::ENO_Ship(NetworkConnection* cxn, Ship* obj)
 {
   //Populate initial data
   #define X obj
-  #define field (cxn->field)
+  #define field (cxn->parent->field)
   const unsigned T = cxn->getLatency();
   #define DATA state
   float vx;
@@ -3750,7 +3791,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
             shields[0+ARRAY_OFFSET].currStrengthPercent =
-              (byte)(255*min(1.0f,gen->getShieldStrength())/gen->getStrength());
+              (byte)(255*min(1.0f,gen->getShieldStrength()));
           else
             shields[0+ARRAY_OFFSET].currStrengthPercent = 0;
         }
@@ -4318,7 +4359,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
             shields[0+ARRAY_OFFSET].currStrengthPercent =
-              (byte)(255*min(1.0f,gen->getShieldStrength())/gen->getStrength());
+              (byte)(255*min(1.0f,gen->getShieldStrength()));
           else
             shields[0+ARRAY_OFFSET].currStrengthPercent = 0;
         }
@@ -4608,8 +4649,10 @@ x = X->x;
 vy = X->vy;
 vx = X->vx;
   #undef X
-  Ship* dst;
+  #undef DESTROY
+  Ship* dst = NULL;
   #define X dst
+  #define DESTROY(x) do { assert(!(x)); if (X) X->del(); return NULL; } while(0)
   
     X = new Ship(field);
     //Set fields from GameObject
@@ -4791,6 +4834,7 @@ vx = X->vx;
       for (unsigned s=0; s<2; ++s)
         if (X->cells[i]->systems[s])
           X->cells[i]->systems[s]->detectPhysics();
+    X->refreshUpdates();
 
     //Register with SDG
     #ifndef LOCAL_CLONE
@@ -4830,8 +4874,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
-            gen->setShieldStrength(shields[0+ARRAY_OFFSET].currStrengthPercent/255.0f *
-                                   gen->getStrength());
+            gen->setShieldStrength(shields[0+ARRAY_OFFSET].currStrengthPercent/255.0f);
         }
       
 
@@ -5027,7 +5070,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
             shields[0+ARRAY_OFFSET].currStrengthPercent =
-              (byte)(255*min(1.0f,gen->getShieldStrength())/gen->getStrength());
+              (byte)(255*min(1.0f,gen->getShieldStrength()));
           else
             shields[0+ARRAY_OFFSET].currStrengthPercent = 0;
         }
@@ -5105,6 +5148,48 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
       NEAR += fabs((x.cellDamage[0+ARRAY_OFFSET]-y.cellDamage[0+ARRAY_OFFSET])/25.6f);
     
 }
+for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
+
+        //Only matters nearby (where it is important)
+        if (y.systemExist[0+ARRAY_OFFSET] != x.systemExist[0+ARRAY_OFFSET])
+          NEAR += 1;
+      
+
+        //Only matters nearby (where it is important)
+        if (y.systemExist[1+ARRAY_OFFSET] != x.systemExist[1+ARRAY_OFFSET])
+          NEAR += 1;
+      
+
+        //Only matters nearby (where it is important)
+        if (y.systemExist[2+ARRAY_OFFSET] != x.systemExist[2+ARRAY_OFFSET])
+          NEAR += 1;
+      
+
+        //Only matters nearby (where it is important)
+        if (y.systemExist[3+ARRAY_OFFSET] != x.systemExist[3+ARRAY_OFFSET])
+          NEAR += 1;
+      
+
+        //Only matters nearby (where it is important)
+        if (y.systemExist[4+ARRAY_OFFSET] != x.systemExist[4+ARRAY_OFFSET])
+          NEAR += 1;
+      
+
+        //Only matters nearby (where it is important)
+        if (y.systemExist[5+ARRAY_OFFSET] != x.systemExist[5+ARRAY_OFFSET])
+          NEAR += 1;
+      
+
+        //Only matters nearby (where it is important)
+        if (y.systemExist[6+ARRAY_OFFSET] != x.systemExist[6+ARRAY_OFFSET])
+          NEAR += 1;
+      
+
+        //Only matters nearby (where it is important)
+        if (y.systemExist[7+ARRAY_OFFSET] != x.systemExist[7+ARRAY_OFFSET])
+          NEAR += 1;
+      
+}
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
         //Usually send updates for differences when near
@@ -5126,7 +5211,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 void ENO_Ship::updateRemote() throw() {
   #define T 0
   #define DATA (this->state)
-  #define field (&this->cxn->field)
+  #define field (this->cxn->parent->field)
   #define DESTROY(x) assert(!(x))
   Ship* l_local = static_cast<Ship*>(this->local.ref);
   Ship* l_remote = static_cast<Ship*>(this->remote);
@@ -5191,7 +5276,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
             shields[0+ARRAY_OFFSET].currStrengthPercent =
-              (byte)(255*min(1.0f,gen->getShieldStrength())/gen->getStrength());
+              (byte)(255*min(1.0f,gen->getShieldStrength()));
           else
             shields[0+ARRAY_OFFSET].currStrengthPercent = 0;
         }
@@ -5373,7 +5458,9 @@ vy = X->vy;
 vx = X->vx;
 {signed short _vx = vx/32.0e-3f*0x7FFF; io::write_c(&DATA[0+0],_vx);}
   #undef X
+  #undef field
   #define X l_remote
+  #define field (&this->cxn->field)
   X->vx = vx;
 X->vy = vy;
 X->x = x;
@@ -5537,6 +5624,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 }
 
     if (destruction) {
+      X->refreshUpdates();
+
       //Call detectPhysics() on all systems
       for (unsigned i=0; i<X->cells.size(); ++i)
         for (unsigned s=0; s<2; ++s)
@@ -5560,6 +5649,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -5578,6 +5668,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -5596,6 +5687,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -5614,6 +5706,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -5632,6 +5725,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -5650,6 +5744,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -5668,6 +5763,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -5686,6 +5782,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix] = NULL;
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
+            X->refreshUpdates();
           }
         }
       
@@ -5695,8 +5792,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         {
           ShieldGenerator* gen = SHGEN((0+ARRAY_OFFSET));
           if (gen)
-            gen->setShieldStrength(shields[0+ARRAY_OFFSET].currStrengthPercent/255.0f *
-                                   gen->getStrength());
+            gen->setShieldStrength(shields[0+ARRAY_OFFSET].currStrengthPercent/255.0f);
         }
       
 
