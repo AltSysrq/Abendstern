@@ -8,6 +8,7 @@
   #include <cstring>
 
   #include "../io.hxx"
+  #include "../network_appinfo.hxx"
 
   using namespace std;
   //These diagnostics will happen alot due to the way code is
@@ -23,7 +24,7 @@
   #undef FAR
   #endif
 
-#define DEBUG
+
 
 //MSVC++ doesn't handle inherited members accessed by friends correctly.
 //This hack injects an appropriate friends list into GameObject
@@ -5887,3 +5888,5 @@ else
   ego->init();
   return ego;
 }
+const unsigned char protocolHash[32] =
+{210,158,178,206,169,135,198,91,50,164,209,233,220,123,82,138,230,131,8,81,216,142,21,62,207,84,217,148,191,44,40,209};
