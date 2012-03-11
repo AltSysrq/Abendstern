@@ -1,3 +1,7 @@
+# Identify the logical version of code outside this file, by causing
+# the hash to change appropriately:
+# External version: 2012.03.11
+
 verbatimc {
 //MSVC++ doesn't handle inherited members accessed by friends correctly.
 //This hack injects an appropriate friends list into GameObject

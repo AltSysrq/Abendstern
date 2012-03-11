@@ -12,12 +12,9 @@
 #include "connection_listener.hxx"
 #include "antenna.hxx"
 #include "tuner.hxx"
+#include "network_appinfo.hxx"
 
 using namespace std;
-
-static const byte applicationName[] = "Abendstern";
-//Just assume the hash is zero for now
-static const byte protocolHash[16] = {0};
 
 static const byte header[] = {
   0, 0, //seq

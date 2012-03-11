@@ -3,6 +3,7 @@
 # 2012.02.26
 #
 # Automatic generator for GameObject networking code.
+package require sha256
 
 # After setting up, this prorgam sources definition.tcl, which is to be in
 # the same directory as it.
@@ -205,6 +206,7 @@ puts $cout {
   #include <cstring>
 
   #include "../io.hxx"
+  #include "../network_appinfo.hxx"
 
   using namespace std;
   //These diagnostics will happen alot due to the way code is
@@ -837,6 +839,16 @@ puts $cout "
   ego->init();
   return ego;
 }"
+
+# Generate hash and write it
+set hash [::sha2::sha256 -bin -file net/definition.tcl]
+set hashbytes {}
+for {set i 0} {$i < [string length $hash]} {incr i} {
+  scan [string index $hash $i] %c byte
+  lappend hashbytes $byte
+}
+puts $cout "const unsigned char protocolHash\[[llength $hashbytes]\] ="
+puts $cout "{[join $hashbytes ,]};"
 
 puts $hout "#endif"
 close $hout
