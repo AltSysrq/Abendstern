@@ -986,8 +986,8 @@ type Ship {
     byte maxStrength, currStrengthPercent, currStability, currAlpha;
   }}                  4094  1 shields           {
     float {NAME.radius} {
-      min STD_CELL_SZ*MIN_SHIELD_RAD
-      max STD_CELL_SZ*MAX_SHIELD_RAD
+      min MIN_SHIELD_RAD
+      max MAX_SHIELD_RAD
       extract {
         {
           ShieldGenerator* gen = SHGEN(IX);
@@ -1019,7 +1019,7 @@ type Ship {
           ShieldGenerator* gen = SHGEN(IX);
           if (gen)
             NAME.currStrengthPercent =
-              (byte)(255*min(1.0f,gen->getShieldStrength())/gen->getStrength());
+              (byte)(255*min(1.0f,gen->getShieldStrength()));
           else
             NAME.currStrengthPercent = 0;
         }
@@ -1028,16 +1028,14 @@ type Ship {
         {
           ShieldGenerator* gen = SHGEN(IX);
           if (gen)
-            gen->setShieldStrength(NAME.currStrengthPercent/255.0f *
-                                   gen->getStrength());
+            gen->setShieldStrength(NAME.currStrengthPercent/255.0f);
         }
       }
       post-set {
         {
           ShieldGenerator* gen = SHGEN(IX);
           if (gen)
-            gen->setShieldStrength(NAME.currStrengthPercent/255.0f *
-                                   gen->getStrength());
+            gen->setShieldStrength(NAME.currStrengthPercent/255.0f);
         }
       }
 
