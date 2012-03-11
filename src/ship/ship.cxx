@@ -432,6 +432,7 @@ bool Ship::update(float et) noth {
 
   if (this->x != this->x) {
     cerr << "x is NaN!" << endl;
+    assert(false);
     exit(EXIT_THE_SKY_IS_FALLING);
   }
 
