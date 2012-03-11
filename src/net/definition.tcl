@@ -895,7 +895,7 @@ type Ship {
       }
 
       update {
-        if (false) {
+        {
           unsigned cellix = IX/2;
           unsigned sysix = IX&1;
           //Check for system destruction
@@ -912,6 +912,12 @@ type Ship {
             X->refreshUpdates();
           }
         }
+      }
+
+      compare {
+        //Only matters nearby (where it is important)
+        if (y.NAME != x.NAME)
+          NEAR += 1;
       }
     }
   }
