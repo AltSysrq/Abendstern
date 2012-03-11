@@ -7,6 +7,7 @@
 #include <cmath>
 #include <vector>
 #include <typeinfo>
+#include <cassert>
 
 #include <GL/gl.h>
 
@@ -143,14 +144,16 @@ CollisionResult PlasmaBurst::checkCollision(GameObject* that) noth {
 }
 
 bool PlasmaBurst::collideWith(GameObject* other) noth {
-  if (other==this || !other->isCollideable()) return false;
+  if (other==this) return false;
+  if (!other->isCollideable()) return true;
   if (other==parent && inParentsShields) {
     hitParentsShields=true;
     return true;
   }
 
   explode(other);
-  field->inject(new Blast(field, blame, x, y, STD_CELL_SZ/2, mass, true, RADIUS*sqrt(2.0f)));
+  field->inject(new Blast(field, blame, x, y, STD_CELL_SZ/2, mass, true,
+                          RADIUS*sqrt(2.0f)));
   return false;
 }
 
