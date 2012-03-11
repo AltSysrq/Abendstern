@@ -6,6 +6,9 @@
 #include "network_geraet.hxx"
 #include "synchronous_control_geraet.hxx"
 
+//Maximum number of channels to reserve per Gerät number.
+#define MAX_DESIRED_COUNT 1024
+
 using namespace std;
 
 /* Dummy output Gerät to hold the channel and notify the parent
@@ -47,7 +50,8 @@ throw() {
     //Fall back, then increase reserve
     ret = cxn->scg->openChannel(ong, num);
 
-    ++chan.desiredCount;
+    if (chan.desiredCount < MAX_DESIRED_COUNT)
+      ++chan.desiredCount;
   }
 
   //Reserve new channels
