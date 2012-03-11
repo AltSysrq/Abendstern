@@ -319,6 +319,7 @@
     <ClInclude Include="..\..\..\src\net\globalid.hxx" />
     <ClInclude Include="..\..\..\src\net\io.hxx" />
     <ClInclude Include="..\..\..\src\net\lat_disc_geraet.hxx" />
+    <ClInclude Include="..\..\..\src\net\network_appinfo.hxx" />
     <ClInclude Include="..\..\..\src\net\network_assembly.hxx" />
     <ClInclude Include="..\..\..\src\net\network_connection.hxx" />
     <ClInclude Include="..\..\..\src\net\network_geraet.hxx" />
