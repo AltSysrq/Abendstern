@@ -276,7 +276,7 @@ type ParticleEmitter {
 
   construct {
     X = new ParticleEmitter(field, (ParticleBeamType)type,
-                            0xFFFFFF, //TODO: Translate to local blame
+                            blame | cxn->blameMask,
                             x, y, vx, vy,
                             r, rmajor, rminor,
                             timeAlive);

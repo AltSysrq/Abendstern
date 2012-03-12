@@ -173,6 +173,12 @@ file mkdir net/xxx
 set hout [open net/xxx/xnetobj.hxx w]
 set cout [open net/xxx/xnetobj.cxx w]
 
+# Strings are appended to this to describe the data format. This is not
+# necessarily a precise specification; it is simply used as input to the
+# SHA256 checksum. This is done so that changes to the embedded C++ code that
+# do not affect compatibility do not result in different checksums.
+set compatibilityString {}
+
 puts $hout {
   #ifndef XNETOBJ_HXX_
   #define XNETOBJ_HXX_
@@ -275,6 +281,8 @@ proc whole-byte {} {
 
 proc type {name contents} {
   global byteOffset bitOffset elements typeConstructor hout cout classes
+  global compatibilityString
+  append compatibilityString "type $name"
   # Register the type
   prototype $name $contents
   lappend classes $name
@@ -561,7 +569,7 @@ proc construct code {
 }
 
 proc elt-integer {sign sz name parms} {
-  global byteOffset
+  global byteOffset compatibilityString
 
   whole-byte
   new
@@ -570,6 +578,8 @@ proc elt-integer {sign sz name parms} {
   int-enc $sign $sz $name
   eval-parms $parms $name
   incr byteOffset $sz
+
+  append compatibilityString "integer $sign $sz"
 }
 
 proc ui {sz name {parms {}} {save yes}} {
@@ -581,7 +591,7 @@ proc si {sz name {parms {}} {save yes}} {
   if {$save} save
 }
 proc float {name {parms {}} {save yes}} {
-  global current byteOffset
+  global current byteOffset compatibilityString
 
   whole-byte
   new
@@ -600,9 +610,11 @@ proc float {name {parms {}} {save yes}} {
   }
   incr byteOffset 4
   if {$save} save
+
+    append compatibilityString "float"
 }
 proc fixed {bytes mult name {parms {}} {save yes}} {
-  global current byteOffset
+  global current byteOffset compatibilityString
 
   set signed 1
   if {[string index $bytes 0] eq "u"} {
@@ -646,6 +658,8 @@ proc fixed {bytes mult name {parms {}} {save yes}} {
   eval-parms $parms $name
   incr byteOffset $bytes
   if {$save} save
+
+  append compatibilityString "fixed $bytes $signed $mult"
 }
 
 proc void {parms} {
@@ -655,11 +669,13 @@ proc void {parms} {
 }
 
 proc arr {ctype len stride name contents {parms {}} {save yes}} {
-  global current byteOffset bitOffset elements
+  global current byteOffset bitOffset elements compatibilityString
 
   if {$len%$stride} {
     error "Array length must be a multiple of its stride."
   }
+
+  append compatibilityString "begin array $len $stride"
 
   whole-byte
   set oldByteOffset $byteOffset
@@ -718,6 +734,8 @@ proc arr {ctype len stride name contents {parms {}} {save yes}} {
   # Restore old elements, then possibly save
   set elements $oldElements
   if {$save} save
+
+  append compatibilityString "end array"
 }
 
 proc virtual args {
@@ -732,7 +750,7 @@ proc virtual args {
 }
 
 proc bit {sz name {parms {}} {save yes}} {
-  global bitOffset byteOffset current
+  global bitOffset byteOffset current compatibilityString
   if {$bitOffset+$sz > 8} {
     # Move to next byte
     whole-byte
@@ -757,6 +775,7 @@ proc bit {sz name {parms {}} {save yes}} {
   }
 
   if {$save} save
+  append compatibilityString "bit $sz"
 }
 
 proc nybble {args} {
@@ -764,7 +783,7 @@ proc nybble {args} {
 }
 
 proc str {maxlen name {parms {}} {save yes}} {
-  global byteOffset current
+  global byteOffset current compatibilityString
 
   whole-byte
   new
@@ -778,10 +797,12 @@ proc str {maxlen name {parms {}} {save yes}} {
   incr byteOffset $maxlen
 
   if {$save} save
+
+  append compatibilityString "str $maxlen"
 }
 
 proc dat {len name {parms {}} {save yes}} {
-  global byteOffset current
+  global byteOffset current compatibilityString
 
   whole-byte
   new
@@ -793,6 +814,8 @@ proc dat {len name {parms {}} {save yes}} {
   incr byteOffset $len
 
   if {$save} save
+
+  append compatibilityString "dat $len"
 }
 
 proc toggle {} {
@@ -841,7 +864,7 @@ puts $cout "
 }"
 
 # Generate hash and write it
-set hash [::sha2::sha256 -bin -file net/definition.tcl]
+set hash [::sha2::sha256 -bin $compatibilityString]
 set hashbytes {}
 for {set i 0} {$i < [string length $hash]} {incr i} {
   scan [string index $hash $i] %c byte

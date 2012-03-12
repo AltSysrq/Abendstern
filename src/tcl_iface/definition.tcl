@@ -1037,6 +1037,7 @@ unsafe {
     {NetworkConnection::Ready} {NetworkConnection::Zombie}
   class final NetworkConnection PacketProcessor {
     const parent NetworkAssembly*
+    var blameMask unsigned
     fun void update {} unsigned
     fun NetworkConnection::Status getStatus
     fun string getDisconnectReason

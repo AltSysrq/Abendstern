@@ -341,10 +341,10 @@ hitting 256 bytes in size).
 
 Message types:
   o     Underling-to-overseer message
-  p     Peer-to-peer message
+  m     Peer-to-peer message
   b     Broadcast message
-  g     Global state change
-  d     Peer data state change
+  s     Global state change
+  p     Peer data state change
   x     Extension; the payload of this packet is prepended to that of the next
         before performing the next's operation.
 
