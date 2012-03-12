@@ -78,24 +78,6 @@ class BasicGame {
   variable datsDeltata
   # Similar to datsDeltata except applying to datp.
   variable datpDeltata
-  # List of path prefices (hyphen-terminated; eg, path-to-it-) for which there
-  # are schema validators. Whenever a dats entry is altered (locally or
-  # remotely), if the altered path (hyphen-terminated) is a prefix of an
-  # element, or the element is a prefix of the path, the method ${path}schema
-  # (eg, path-to-it-schema) is called with the path (in normal list format) as
-  # an argument. The dats entry has already been set. The method may alter the
-  # entry, do nothing, or raise an error. If an error is raised, dats is
-  # reverted to what it was before.
-  #
-  # If no validator is found for a certain change, a warning is logged, but
-  # the alteration passes anyway.
-  #
-  # See registerDatsSchema
-  variable datsSchemata
-  # Like datsSchemata, but for datp.
-  # Methods get the arguments peer, path.
-  # See registerDatpSchema
-  variable datpSchemata
 
   # Stack of available vpeer numbers (0..255)
   variable emptyVPeers
@@ -197,8 +179,6 @@ class BasicGame {
 
     set dats {}
     set datp {}
-    set datsSchemata {}
-    set datpSchemata {}
     dict set datp 0 list {}
     set emptyVPeers {}
     for {set i 0} {$i < 256} {incr i} {lappend emptyVPeers $i}
@@ -348,40 +328,23 @@ class BasicGame {
     dict get $datp {*}$args
   }
 
-  # dss path... value
   # Alters the given shared data.
   # This should only be done by overseer methods.
   # The path will be added to all peers' deltata.
-  #
-  # This will result in a call to schema validators
   method dss {args} {
     set path [lrange $args 0 end-1]
     set value [lindex $args end]
-    set oldDats $dats
     dict set dats {*}$path $value
-    if {[catch {validateDss $path} err]} {
-      log "dss failed for $path (to $value): $err"
-      set dats $oldDats
-    } else {
-      lappend datsDeltata $path
-    }
+    lappend datsDeltata $path
   }
 
-  # Alters the given local data in {datp 0}.
-  # The path will be added to the deltata.
-  #
-  # This will result in a call to schema validators.
+  # Alters the given local data in {datp 0}
+  # The path will be added to the deltata
   method dps {args} {
     set path [lrange $args 0 end-1]
     set value [lindex $args end]
-    set oldDatp $datp
     dict set datp 0 {*}$path $value
-    if {[catch {validateDps 0 $path} err]} {
-      log "dps failed for 0 $path (to $value): $err"
-      set datp $oldDatp
-    } else {
-      lappend datpDeltata $path
-    }
+    lappend datpDeltata $path
   }
 
   # Resets all scores. If a mixin defines scores beyond
@@ -389,47 +352,6 @@ class BasicGame {
   method resetScores {} {
     foreach vp [dpg list] {
       dps $vp score 0
-    }
-  }
-
-  # Adds the given path (in standard form) to the dats schema validators list.
-  method registerDatsSchema {args} {
-    lappend datsSchemata "[join $args -]-"
-  }
-  # Adds the given path (in standard form) to the datp schema validators list.
-  method registerDatpSchema {args} {
-    lappend datpSchemata "[join $args -]-"
-  }
-
-  private method validateDss {path} {
-    set hasValidated no
-    set hpath "[join $path -]-"
-    foreach validator $datsSchemata {
-      if {0 == [string first $hpath $validator]
-      ||  0 == [string first $validator $hpath]} {
-        $this ${validator}schema $path
-        set hasValidated yes
-      }
-    }
-
-    if {!$hasValidated} {
-      log "Warning: No validators for dss $path"
-    }
-  }
-
-  private method validateDps {peer path} {
-    set hasValidated no
-    set hpath "[join $path -]-"
-    foreach validator $datpSchemata {
-      if {0 == [string first $hpath $validator]
-      ||  0 == [string first $validator $hpath]} {
-        $this ${validator}schema $peer $path
-        set hasValidated yes
-      }
-    }
-
-    if {!$hasValidated} {
-      log "Warning: No validators for dps $peer $path"
     }
   }
 
