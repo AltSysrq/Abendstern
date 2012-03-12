@@ -465,9 +465,9 @@ arg0Tcl=NULL;
 
       //OK!
 returnValueTcl = Tcl_GetObjResult(interp);
-        {int gen1706;
-            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen1706);
-            returnValue=gen1706;
+        {int gen1709;
+            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen1709);
+            returnValue=gen1709;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -3195,12 +3195,132 @@ static int get1188 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
+static int get1190 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+      SHIFT;
+      #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+      if (objc != 1) {
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1190", TCL_VOLATILE);
+        return TCL_ERROR;
+      }
+      Tcl_Obj* objout;
+      NetworkConnection* parent; {
+       
+      string name(Tcl_GetStringFromObj(objv[0], NULL));
+      if (name != "0") {
+        //Does it exist?
+        InterpInfo* info=interpreters[interp];
+        map<string,Export*>::iterator it=info->exportsByName.find(name);
+        if (it == info->exportsByName.end()) {
+          for (it=info->exportsByName.begin();
+               it != info->exportsByName.end(); ++it) {
+            cout << (*it).first << endl;
+          }
+          sprintf(staticError, "Invalid export passed to C++: %s",
+                  name.c_str());
+          scriptError(staticError);
+        }
+        Export* ex=(*it).second;
+        //OK, is the type correct?
+        if (ex->type->theType != typeid(NetworkConnection)
+        &&  0==ex->type->superclasses.count(&typeid(NetworkConnection))) {
+          //Nope
+          sprintf(staticError, "Wrong type passed to C++ function; expected"
+                               " NetworkConnection, "
+                               "got %s", ex->type->tclClassName.c_str());
+          scriptError(staticError);
+        }
+
+        //All is well, transfer ownership now
+        NetworkConnection* tmp=(NetworkConnection*)ex->ptr;
+        
+        parent = tmp;
+    } else parent=NULL;
+
+      } if (!parent) { scriptError("NULL this passed into C++"); }
+      {objout = Tcl_NewIntObj((int)parent->blameMask);}
+      Tcl_SetObjResult(interp, objout);
+      return TCL_OK;
+
+      error:
+      Tcl_SetResult(interp, scriptingErrorMessage, TCL_VOLATILE);
+      return TCL_ERROR;
+      #undef scriptError
+    }
+static int set1191 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+      SHIFT;
+      #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+      if (objc != 1+1) {
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1191", TCL_VOLATILE);
+        return TCL_ERROR;
+      }
+      unsigned newVal;
+      NetworkConnection* parent; {
+       
+      string name(Tcl_GetStringFromObj(objv[0], NULL));
+      if (name != "0") {
+        //Does it exist?
+        InterpInfo* info=interpreters[interp];
+        map<string,Export*>::iterator it=info->exportsByName.find(name);
+        if (it == info->exportsByName.end()) {
+          for (it=info->exportsByName.begin();
+               it != info->exportsByName.end(); ++it) {
+            cout << (*it).first << endl;
+          }
+          sprintf(staticError, "Invalid export passed to C++: %s",
+                  name.c_str());
+          scriptError(staticError);
+        }
+        Export* ex=(*it).second;
+        //OK, is the type correct?
+        if (ex->type->theType != typeid(NetworkConnection)
+        &&  0==ex->type->superclasses.count(&typeid(NetworkConnection))) {
+          //Nope
+          sprintf(staticError, "Wrong type passed to C++ function; expected"
+                               " NetworkConnection, "
+                               "got %s", ex->type->tclClassName.c_str());
+          scriptError(staticError);
+        }
+
+        //All is well, transfer ownership now
+        NetworkConnection* tmp=(NetworkConnection*)ex->ptr;
+        
+        parent = tmp;
+    } else parent=NULL;
+
+      } if (!parent) { scriptError("NULL this passed into C++"); }
+
+      //Extract value
+      {int tmp;
+            int err = Tcl_GetIntFromObj(interp, objv[1], &tmp);
+            if (err == TCL_ERROR)
+              scriptError(Tcl_GetStringResult(interp));
+            newVal = (unsigned)tmp;}
+
+      //Any necessary checks
+      
+
+      //Transfer ownership of old value if necessary
+      {}
+
+      //Set
+      parent->blameMask = newVal;
+
+      //Return successfully
+      Tcl_SetObjResult(interp, objv[1]);
+      return TCL_OK;
+
+      error:
+      Tcl_SetResult(interp, scriptingErrorMessage, TCL_VOLATILE);
+      return TCL_ERROR;
+      #undef scriptError
+    }
+
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1190 (
+     trampoline1193 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -3282,7 +3402,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1192 (
+     trampoline1195 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -3376,7 +3496,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1194 (
+     trampoline1197 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -3464,7 +3584,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1196 (
+     trampoline1199 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -3550,10 +3670,12 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
 static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ get1188", get1188, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1190", trampoline1190, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1192", trampoline1192, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1194", trampoline1194, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1196", trampoline1196, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1190", get1190, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set1191", set1191, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1193", trampoline1193, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1195", trampoline1195, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1197", trampoline1197, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1199", trampoline1199, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(NetworkConnection)),
                            * ete=new TypeExport(typeid(TclNetworkConnection));
 ste->isAObject=ete->isAObject=true;
@@ -3575,7 +3697,7 @@ void classdec1187(bool safe, Tcl_Interp* interp) throw() {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1395 (
+     trampoline1398 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {

@@ -901,16 +901,16 @@ arg1Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "SILRStrict")) {arg2=SquareIcon::Strict; goto done1902;}
+          if (0 == strcmp(tmp, "SILRStrict")) {arg2=SquareIcon::Strict; goto done1905;}
         
-          if (0 == strcmp(tmp, "SILRLax")) {arg2=SquareIcon::Lax; goto done1902;}
+          if (0 == strcmp(tmp, "SILRLax")) {arg2=SquareIcon::Lax; goto done1905;}
         
-          if (0 == strcmp(tmp, "SILRScale")) {arg2=SquareIcon::Scale; goto done1902;}
+          if (0 == strcmp(tmp, "SILRScale")) {arg2=SquareIcon::Scale; goto done1905;}
          {
         sprintf(staticError, "Unable to convert %s to SquareIcon::LoadReq", tmp);
         scriptError(staticError);
       } 
-done1902:;};
+done1905:;};
 arg2Init=true;
 try {
       ret =
@@ -1287,7 +1287,7 @@ void classdec1114(bool safe, Tcl_Interp* interp) throw() {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1352 (
+     trampoline1355 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -1301,9 +1301,9 @@ Tcl_Interp* arg1; bool arg1Init=false;
 Tcl_Interp* ret; Tcl_Obj* retTcl=NULL;
 PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
 
-{int gen2011;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2011);
-            arg0=gen2011;
+{int gen2015;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2015);
+            arg0=gen2015;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -1353,7 +1353,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1354 (
+     trampoline1357 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -1403,7 +1403,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1356 (
+     trampoline1359 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {

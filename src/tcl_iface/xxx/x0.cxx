@@ -1029,7 +1029,7 @@ static SeqTextOutputGeraet* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1232 (
+     trampoline1235 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -1208,7 +1208,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1234 (
+     trampoline1237 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -1293,8 +1293,8 @@ if (arg0Init) {arg0Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1232", trampoline1232, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1234", trampoline1234, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1235", trampoline1235, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1237", trampoline1237, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(SeqTextOutputGeraet)),
                            * ete=new TypeExport(typeid(TclSeqTextOutputGeraet));
 ste->isAObject=ete->isAObject=true;
@@ -1307,7 +1307,7 @@ typeExports[&typeid(SeqTextOutputGeraet)]=ste;
 typeExports[&typeid(TclSeqTextOutputGeraet)]=ete;
 }
 };
-void classdec1231(bool safe, Tcl_Interp* interp) throw() {
+void classdec1234(bool safe, Tcl_Interp* interp) throw() {
   TclSeqTextOutputGeraet::cppDecCode(safe,interp);
 }
 class TclSeqTextInputGeraet : public SeqTextInputGeraet {
@@ -1355,7 +1355,7 @@ static SeqTextInputGeraet* constructorTcldefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1237 (
+     trampoline1240 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -1652,7 +1652,7 @@ return;
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1239 (
+     trampoline1242 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -1737,8 +1737,8 @@ if (arg0Init) {arg0Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1237", trampoline1237, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1239", trampoline1239, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1240", trampoline1240, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1242", trampoline1242, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(SeqTextInputGeraet)),
                            * ete=new TypeExport(typeid(TclSeqTextInputGeraet));
 ste->isAObject=ete->isAObject=true;
@@ -1751,7 +1751,7 @@ typeExports[&typeid(SeqTextInputGeraet)]=ste;
 typeExports[&typeid(TclSeqTextInputGeraet)]=ete;
 }
 };
-void classdec1236(bool safe, Tcl_Interp* interp) throw() {
+void classdec1239(bool safe, Tcl_Interp* interp) throw() {
   TclSeqTextInputGeraet::cppDecCode(safe,interp);
 }
 

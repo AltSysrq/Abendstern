@@ -87,7 +87,7 @@
       
 
       //Extract value
-      {int gen1455;
+      {int gen1458;
          static Tcl_DString dstr;
          static bool hasDstr=false;
          if (!hasDstr) {
@@ -96,11 +96,11 @@
          } else {
            Tcl_DStringSetLength(&dstr, 0);
          }
-         Tcl_UniChar* tuc = Tcl_GetUnicodeFromObj(objv[0], &gen1455);
-         const char* gen1453 = Tcl_UniCharToUtfDString(tuc, gen1455, &dstr);
-         char* gen1454 = new char[gen1455+1];
-         strcpy(gen1454, gen1453);
-         newVal=gen1454;}
+         Tcl_UniChar* tuc = Tcl_GetUnicodeFromObj(objv[0], &gen1458);
+         const char* gen1456 = Tcl_UniCharToUtfDString(tuc, gen1458, &dstr);
+         char* gen1457 = new char[gen1458+1];
+         strcpy(gen1457, gen1456);
+         newVal=gen1457;}
 
       //Any necessary checks
       
@@ -228,22 +228,22 @@
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "TSMStandardTeam")) {newVal=test_state::StandardTeam; goto done1456;}
+          if (0 == strcmp(tmp, "TSMStandardTeam")) {newVal=test_state::StandardTeam; goto done1459;}
         
-          if (0 == strcmp(tmp, "TSMHomogeneousTeam")) {newVal=test_state::HomogeneousTeam; goto done1456;}
+          if (0 == strcmp(tmp, "TSMHomogeneousTeam")) {newVal=test_state::HomogeneousTeam; goto done1459;}
         
-          if (0 == strcmp(tmp, "TSMHeterogeneousTeam")) {newVal=test_state::HeterogeneousTeam; goto done1456;}
+          if (0 == strcmp(tmp, "TSMHeterogeneousTeam")) {newVal=test_state::HeterogeneousTeam; goto done1459;}
         
-          if (0 == strcmp(tmp, "TSMFreeForAll")) {newVal=test_state::FreeForAll; goto done1456;}
+          if (0 == strcmp(tmp, "TSMFreeForAll")) {newVal=test_state::FreeForAll; goto done1459;}
         
-          if (0 == strcmp(tmp, "TSMLastManStanding")) {newVal=test_state::LastManStanding; goto done1456;}
+          if (0 == strcmp(tmp, "TSMLastManStanding")) {newVal=test_state::LastManStanding; goto done1459;}
         
-          if (0 == strcmp(tmp, "TSMManVsWorld")) {newVal=test_state::ManVsWorld; goto done1456;}
+          if (0 == strcmp(tmp, "TSMManVsWorld")) {newVal=test_state::ManVsWorld; goto done1459;}
          {
         sprintf(staticError, "Unable to convert %s to test_state::Mode", tmp);
         scriptError(staticError);
       } 
-done1456:;}
+done1459:;}
 
       //Any necessary checks
       
@@ -411,16 +411,16 @@ arg1Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "TSBStarField")) {arg2=test_state::StarField; goto done1457;}
+          if (0 == strcmp(tmp, "TSBStarField")) {arg2=test_state::StarField; goto done1460;}
         
-          if (0 == strcmp(tmp, "TSBPlanet")) {arg2=test_state::Planet; goto done1457;}
+          if (0 == strcmp(tmp, "TSBPlanet")) {arg2=test_state::Planet; goto done1460;}
         
-          if (0 == strcmp(tmp, "TSBNebula")) {arg2=test_state::Nebula; goto done1457;}
+          if (0 == strcmp(tmp, "TSBNebula")) {arg2=test_state::Nebula; goto done1460;}
          {
         sprintf(staticError, "Unable to convert %s to test_state::Background", tmp);
         scriptError(staticError);
       } 
-done1457:;};
+done1460:;};
 arg2Init=true;
 try {
       ret =
@@ -1175,9 +1175,9 @@ arg0Tcl=NULL;
 
       //OK!
 returnValueTcl = Tcl_GetObjResult(interp);
-        {int gen1695;
-            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen1695);
-            returnValue=gen1695;
+        {int gen1698;
+            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen1698);
+            returnValue=gen1698;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -2113,7 +2113,7 @@ static NetworkTest* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1387 (
+     trampoline1390 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -2257,7 +2257,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1389 (
+     trampoline1392 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -2350,8 +2350,8 @@ if (arg1Init) {arg1Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1387", trampoline1387, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1389", trampoline1389, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1390", trampoline1390, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1392", trampoline1392, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(NetworkTest)),
                            * ete=new TypeExport(typeid(TclNetworkTest));
 ste->isAObject=ete->isAObject=true;
@@ -2365,7 +2365,7 @@ typeExports[&typeid(NetworkTest)]=ste;
 typeExports[&typeid(TclNetworkTest)]=ete;
 }
 };
-void classdec1386(bool safe, Tcl_Interp* interp) throw() {
+void classdec1389(bool safe, Tcl_Interp* interp) throw() {
   TclNetworkTest::cppDecCode(safe,interp);
 }
 

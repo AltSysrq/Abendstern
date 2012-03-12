@@ -1831,7 +1831,7 @@ memcpy(r, &DATA[11+0], 8);
 io::read_c(&DATA[19+0], blame);
   
     X = new ParticleEmitter(field, (ParticleBeamType)type,
-                            0xFFFFFF, //TODO: Translate to local blame
+                            blame | cxn->blameMask,
                             x, y, vx, vy,
                             r, rmajor, rminor,
                             timeAlive);
@@ -1985,7 +1985,7 @@ vx = X->vx;
   #define DESTROY(x) do { assert(!(x)); if (X) X->del(); return NULL; } while(0)
   
     X = new ParticleEmitter(field, (ParticleBeamType)type,
-                            0xFFFFFF, //TODO: Translate to local blame
+                            blame | cxn->blameMask,
                             x, y, vx, vy,
                             r, rmajor, rminor,
                             timeAlive);
@@ -5889,4 +5889,4 @@ else
   return ego;
 }
 const unsigned char protocolHash[32] =
-{210,158,178,206,169,135,198,91,50,164,209,233,220,123,82,138,230,131,8,81,216,142,21,62,207,84,217,148,191,44,40,209};
+{59,85,46,211,164,98,92,30,254,233,53,227,161,198,150,222,128,103,63,98,25,206,224,127,230,151,239,224,150,50,58,91};

@@ -2319,16 +2319,16 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "ANeutral")) {arg0=Neutral; goto done1682;}
+          if (0 == strcmp(tmp, "ANeutral")) {arg0=Neutral; goto done1685;}
         
-          if (0 == strcmp(tmp, "AAllies")) {arg0=Allies; goto done1682;}
+          if (0 == strcmp(tmp, "AAllies")) {arg0=Allies; goto done1685;}
         
-          if (0 == strcmp(tmp, "AEnemies")) {arg0=Enemies; goto done1682;}
+          if (0 == strcmp(tmp, "AEnemies")) {arg0=Enemies; goto done1685;}
          {
         sprintf(staticError, "Unable to convert %s to Alliance", tmp);
         scriptError(staticError);
       } 
-done1682:;};
+done1685:;};
 arg0Init=true;
 {int tmp;
             int err = Tcl_GetIntFromObj(interp, objv[1], &tmp);
@@ -3320,7 +3320,7 @@ void classdec1154(bool safe, Tcl_Interp* interp) throw() {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1374 (
+     trampoline1377 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -3378,7 +3378,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1376 (
+     trampoline1379 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -3434,7 +3434,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1378 (
+     trampoline1381 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {

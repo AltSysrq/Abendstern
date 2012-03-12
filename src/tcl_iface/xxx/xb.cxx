@@ -660,9 +660,9 @@ static int set320 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {int gen1512;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1512);
-            newVal=gen1512;
+      {int gen1515;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1515);
+            newVal=gen1515;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -2456,7 +2456,7 @@ typeExports[&typeid(ConnectionListener)]=ste;
 typeExports[&typeid(TclConnectionListener)]=ete;
 }
 };
-void classdec1198(bool safe, Tcl_Interp* interp) throw() {
+void classdec1201(bool safe, Tcl_Interp* interp) throw() {
   TclConnectionListener::cppDecCode(safe,interp);
 }
 

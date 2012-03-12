@@ -544,9 +544,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else arg0=NULL;
 };
 arg0Init=true;
-{int gen1727;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1727);
-            arg1=gen1727;
+{int gen1730;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1730);
+            arg1=gen1730;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -2713,7 +2713,7 @@ typeExports[&typeid(InputNetworkGeraet)]=ste;
 typeExports[&typeid(TclInputNetworkGeraet)]=ete;
 }
 };
-void classdec1219(bool safe, Tcl_Interp* interp) throw() {
+void classdec1222(bool safe, Tcl_Interp* interp) throw() {
   TclInputNetworkGeraet::cppDecCode(safe,interp);
 }
 class TclOutputNetworkGeraet : public OutputNetworkGeraet {
@@ -2729,7 +2729,7 @@ typeExports[&typeid(OutputNetworkGeraet)]=ste;
 typeExports[&typeid(TclOutputNetworkGeraet)]=ete;
 }
 };
-void classdec1220(bool safe, Tcl_Interp* interp) throw() {
+void classdec1223(bool safe, Tcl_Interp* interp) throw() {
   TclOutputNetworkGeraet::cppDecCode(safe,interp);
 }
 
@@ -2778,7 +2778,7 @@ static DynFun1<InputNetworkGeraet*,NetworkConnection*>* constructorTcldefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1222 (
+     trampoline1225 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -3128,7 +3128,7 @@ returnValueTcl = Tcl_GetObjResult(interp);
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1224 (
+     trampoline1227 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -3291,7 +3291,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1226 (
+     trampoline1229 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -3457,7 +3457,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1228 (
+     trampoline1231 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -3580,10 +3580,10 @@ error:
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1222", trampoline1222, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1224", trampoline1224, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1226", trampoline1226, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1228", trampoline1228, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1225", trampoline1225, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1227", trampoline1227, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1229", trampoline1229, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1231", trampoline1231, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(DynFun1<InputNetworkGeraet*,NetworkConnection*>)),
                            * ete=new TypeExport(typeid(TclDynFun1_leftangle_InputNetworkGeraet_asterix_u_comma_NetworkConnection_asterix_u_rightangle_));
 ste->isAObject=ete->isAObject=true;
@@ -3595,7 +3595,7 @@ typeExports[&typeid(DynFun1<InputNetworkGeraet*,NetworkConnection*>)]=ste;
 typeExports[&typeid(TclDynFun1_leftangle_InputNetworkGeraet_asterix_u_comma_NetworkConnection_asterix_u_rightangle_)]=ete;
 }
 };
-void classdec1221(bool safe, Tcl_Interp* interp) throw() {
+void classdec1224(bool safe, Tcl_Interp* interp) throw() {
   TclDynFun1_leftangle_InputNetworkGeraet_asterix_u_comma_NetworkConnection_asterix_u_rightangle_::cppDecCode(safe,interp);
 }
 
