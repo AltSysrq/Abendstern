@@ -73,18 +73,14 @@ class BasicGame {
   # It is safe to assume that if any vpeer is a human, it
   # is vpeer zero.
   protected variable datp
+  # When acting as True Overseer, a list of dict paths within
+  # dats that have changed since the last broadcast of deltata.
+  variable datsDeltata
+  # Similar to datsDeltata except applying to datp.
+  variable datpDeltata
+
   # Stack of available vpeer numbers (0..255)
   variable emptyVPeers
-
-  # When acting as True Overseer, a list of dict paths within
-  # dats that have changed, from the perspective of each peer.
-  # (This is a dict of lists keyed to userid.)
-  variable datsDeltata
-
-  # Similar to datsDeltata, but used for all peers, and does
-  # not map per-peer (all deltata get rebroadcast each frame).
-  # This is a list of paths.
-  variable datpDeltata
 
   # Whether networking is enabled.
   variable networkingEnabled
@@ -339,13 +335,7 @@ class BasicGame {
     set path [lrange $args 0 end-1]
     set value [lindex $args end]
     dict set dats {*}$path $value
-    foreach {peer userid} $peers {
-      if {$peer != "0"} {
-        set l [dict get $datsDeltata $peer]
-        lappend l $path
-        dict set datsDeltata $peer $l
-      }
-    }
+    lappend datsDeltata $path
   }
 
   # Alters the given local data in {datp 0}
