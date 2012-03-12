@@ -72,7 +72,8 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
   aag(new AsyncAckGeraet(this)),
   ldg(new LatDiscGeraet(this)),
   sdg(new ShipDamageGeraet(aag)),
-  anticipation(new AnticipatoryChannels(this))
+  anticipation(new AnticipatoryChannels(this)),
+  blameMask(0)
 {
   inchannels[0] = scg;
   outchannels[0] = scg;

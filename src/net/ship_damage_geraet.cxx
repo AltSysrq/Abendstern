@@ -151,8 +151,7 @@ throw() {
 
   float* tempdat = ship->temporaryZero();
   ship->teleport(sx, sy, theta);
-  //TODO: translate blame
-  Blast blast(ship->getField(), blame, bx, by,
+  Blast blast(ship->getField(), blame | cxn->blameMask, bx, by,
               falloff, strength,
               true, size, false, ship->isDecorative(), true);
   if (!ship->collideWith(&blast)) {

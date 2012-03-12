@@ -161,6 +161,18 @@ public:
   AnticipatoryChannels*const anticipation;
 
   /**
+   * Used to translate remote blame values to local.
+   *
+   * Whenever the remote peer indicates a blame value (used to identify who
+   * participated in the destruction of a ship), this value is ORed with it to
+   * translate it into the local blame value.
+   *
+   * This value has no effect on outgoing data; outgoing blames are always
+   * simply the lowest 8 bits.
+   */
+  unsigned blameMask;
+
+  /**
    * Constructs a NetworkConnection within the given assembly.
    * @param assembly the parent NetworkAssembly
    * @param endpoint the remote endpoint
