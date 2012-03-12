@@ -89,17 +89,6 @@ class BasicGame {
   # Whether networking is enabled.
   variable networkingEnabled
 
-  # A dict parallel to dats. If an entry in it exists and an
-  # external event modifies the matching dats entry, the method
-  # specified in the entry is executed, with the new value as
-  # its argument.
-  protected variable datsListeners
-  # A dict parallel to datp's children. If an entry in it exists
-  # and an external event modifies the matching datp entry, the
-  # method specified in the entry is executed, with the userid
-  # of the originating peer and its new value as arguments.
-  protected variable datpListeners
-
   # The time in milliseconds until we next query the Overseer
   # about data changes
   variable timeUntilQuery
@@ -198,8 +187,6 @@ class BasicGame {
     set emptyVPeers {}
     for {set i 0} {$i < 256} {incr i} {lappend emptyVPeers $i}
     set datsDeltata {}
-    set datsListeners {}
-    set datpListeners {}
     set timeUntilQuery 0
     set shipDeathListeners {}
     set shipOwnership {}
