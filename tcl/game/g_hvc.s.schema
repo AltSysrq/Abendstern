@@ -3,6 +3,6 @@ within {
     bool 0
   }
   survivor {
-    strmax +32
+    strmax +48
   }
 }
