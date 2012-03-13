@@ -207,6 +207,14 @@ class BasicGame {
     set mode [new BasicGameMode $this {}]
 
     ship_mixer_init
+
+    # Load schemata
+    ::schema::init
+    loadSchemata p
+    ::schema::define validateDatp
+    ::schema::init
+    loadSchemata s
+    ::schema::define validateDats
   }
 
   destructor {
@@ -311,6 +319,19 @@ class BasicGame {
   # END: BASIC MANAGEMENT AND FORWARDING
 
   # BEGIN: DATA ACCESS AND MODIFICATION
+  # Loads any schemata associated with the class.
+  # The argument indicates either s or p (for dats and datp, respectively).
+  # This may be called before the object is fully constructed, so mixins
+  # cannot rely on any of their constructors having been called.
+  method loadSchemata sec {
+    loadSchema basic_game $sec
+    chain $sec
+  }
+
+  # Loads the schema with the given basename and section.
+  method loadSchema {base sec} {
+    ::schema::addFile tcl/game/$base.$sec.schema
+  }
 
   # Performs a dict lookup within dats and returns the result.
   method dsg {args} {
