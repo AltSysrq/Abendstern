@@ -349,7 +349,7 @@ Message types:
         before performing the next's operation.
   M     Indicates current game mode (see gamemgr.tcl)
   V     Proposes/votes that the next match use the given game mode
-  O     Indicates identity of overseer (lanaddr lanport inaddr inport)
+  O     Indicates identity of overseer (inaddr inport lanaddr lanport)
 
 Messages take the form of Tcl lists; the first element identifies the message
 type, while the others are the parameters.
