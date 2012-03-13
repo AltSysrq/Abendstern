@@ -522,6 +522,7 @@ namespace eval ::abnet {
     while {-1 != [set ix [string first "\n" $::abnet::inputBuffer]]} {
       set msg [string range $::abnet::inputBuffer 0 $ix-1]
       set ::abnet::inputBuffer [string range $::abnet::inputBuffer $ix+1 end]
+      set msg [encoding convertfrom utf-8 $msg]
       if {[llength $msg]} {
         execMsg {*}$msg
         if {!$::abnet::busy} {
@@ -552,7 +553,6 @@ namespace eval ::abnet {
           set hasMore [string length $str]
           if {$hasMore} {
             set str [::aes::Decrypt $::abnet::inputKey $str]
-            set str [encoding convertfrom utf-8 $str]
             append ::abnet::inputBuffer $str
             execInputMsgs
           }
