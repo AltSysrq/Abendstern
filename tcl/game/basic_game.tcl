@@ -323,9 +323,12 @@ class BasicGame {
   # The argument indicates either s or p (for dats and datp, respectively).
   # This may be called before the object is fully constructed, so mixins
   # cannot rely on any of their constructors having been called.
+  #
+  # chain should be called first, so that the schemata are loaded left-to-right
+  # (in the inherit list).
   method loadSchemata sec {
-    loadSchema basic_game $sec
     chain $sec
+    loadSchema basic_game $sec
   }
 
   # Loads the schema with the given basename and section.

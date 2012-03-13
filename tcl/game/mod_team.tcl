@@ -82,7 +82,7 @@ class MixinTeam {
       lappend t [expr {$i < $teamCount}]
     }
     $this dss teams $t
-    $this dss teamScores [lrange {0 0 0 0 0 0} 0 $teamCount-1]
+    $this dss teamScores {0 0 0 0 0 0}
   }
 
   # Places the given vpeer into a random team
@@ -336,5 +336,10 @@ class MixinTeam {
       }
     }
     format [_ A game best_player_fmt] $winner
+  }
+
+  method loadSchemata sec {
+    chain $sec
+    $this loadSchema mod_team $sec
   }
 }

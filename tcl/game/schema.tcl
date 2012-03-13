@@ -293,7 +293,7 @@ namespace eval ::schema {
     } else {
       return \
       "[silfail "Bad $type format"]
-      set curr {$default}"
+      set curr $default"
     }
   }
   proc gen-integer {default} {

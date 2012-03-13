@@ -179,6 +179,11 @@ class MixinMatch {
   # of a match).
   # Default returns true.
   method matchStartsGame {} { return yes }
+
+  method loadSchemata sec {
+    chain $sec
+    $this loadSchema mod_match $sec
+  }
 }
 
 # Extends the SpectatorMode to show a larger message at the centre

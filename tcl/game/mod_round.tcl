@@ -124,4 +124,9 @@ class MixinRound {
   }
 
   method matchStartsGame {} { return no }
+
+  method loadSchemata sec {
+    chain $sec
+    $this loadSchema mod_round $sec
+  }
 }

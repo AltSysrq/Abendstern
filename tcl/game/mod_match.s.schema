@@ -1,0 +1,11 @@
+within {
+  matchRunning {
+    bool 0
+  }
+  matchEndTime {
+    integer {[::abnet::nclock]}
+  }
+  matchStartTime {
+    integer {[expr {15+[::abnet::nclock]}]}
+  }
+}

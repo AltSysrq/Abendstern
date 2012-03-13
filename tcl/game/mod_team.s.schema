@@ -1,0 +1,16 @@
+within {
+  teams {
+    list {
+      bool 0
+    }
+    llmin 6
+    llmax 6
+  }
+  teamScores {
+    list {
+      integer 0
+    }
+    llmin 6
+    llmax 6
+  }
+}
