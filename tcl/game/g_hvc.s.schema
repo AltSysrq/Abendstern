@@ -1,0 +1,8 @@
+within {
+  nextAssimilationIsFirst {
+    bool 0
+  }
+  survivor {
+    strmax +32
+  }
+}
