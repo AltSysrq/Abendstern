@@ -2153,6 +2153,8 @@ proc newFunType {ret args} {
     set rett [resolveType [lindex $ret 0]]
     set retm [lrange $ret 1 [llength $ret]]
     $rett setModifiers $retm
+  } else {
+    set rett void
   }
   set cppType "DynFun[llength $argts]<[expr {$ret != "void"? [$rett getC++Name] : "void"}]"
   for {set i 0} {$i < [llength $argts]} {incr i} {
@@ -2161,12 +2163,12 @@ proc newFunType {ret args} {
     append cppType ",[$at getC++Name]"
   }
   append cppType ">"
-  set tclType "fun<$ret:[join $args ,]>"
+  set tclType "fun<$rett:[join $args ,]>"
   unknowable "${cppType}::fun_t ${tclType}::fun_t"
   class abstract-extendable "$cppType {$tclType}" {} "
     constructor default
-    fun $ret invoke purevirtual $args
-    fun $ret call static ${tclType}::fun_t* $args
+    fun {$ret} invoke purevirtual $args
+    fun {$ret} call static ${tclType}::fun_t* $args
     fun ${tclType}::fun_t* get"
 }
 

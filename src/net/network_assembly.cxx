@@ -63,6 +63,11 @@ void NetworkAssembly::setFieldSize(float w, float h) throw() {
     connections[i]->setFieldSize(w,h);
 }
 
+void NetworkAssembly::changeField(GameField* f) throw() {
+  field = f;
+  setFieldSize(f->width, f->height);
+}
+
 void NetworkAssembly::objectAdded(GameObject* go) throw() {
   if (!go->isExportable || go->isRemote)
     return;

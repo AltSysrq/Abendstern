@@ -1027,16 +1027,20 @@ unsafe {
     fun void addPacketProcessor {} {PacketProcessor* steal}
     fun void update {} unsigned
     fun void setFieldSize {} float float
+    fun void changeField {} GameField*
   }
 }
 
-cxx src/net/network_connection.hxx src/net/network_assembly.hxx
+cxx src/net/network_connection.hxx src/net/network_assembly.hxx \
+    src/net/synchronous_control_geraet.hxx
 unsafe {
+  class final SynchronousControlGeraet {}
   enum NetworkConnection::Status {} \
     {NetworkConnection::Connecting} {NetworkConnection::Established} \
     {NetworkConnection::Ready} {NetworkConnection::Zombie}
   class final NetworkConnection PacketProcessor {
     const parent NetworkAssembly*
+    const scg SynchronousControlGeraet*
     var blameMask unsigned
     fun void update {} unsigned
     fun NetworkConnection::Status getStatus
@@ -1048,6 +1052,23 @@ unsafe {
 cxx src/net/connection_listener.hxx
 unsafe {
   class final ConnectionListener PacketProcessor {
+  }
+}
+
+cxx src/net/network_geraet.hxx src/net/network_connection.hxx
+unsafe {
+  class final InputNetworkGeraet {} {
+  }
+  class final OutputNetworkGeraet {} {
+  }
+
+  newFunType {InputNetworkGeraet* steal} NetworkConnection*
+}
+
+cxx src/net/synchronous_control_geraet.hxx
+unsafe {
+  class final SynchronousControlGeraet {} {
+    fun unsigned openChannel {} {OutputNetworkGeraet* steal} unsigned
   }
 }
 
@@ -1070,16 +1091,6 @@ unsafe {
     fun float progress
     fun void dumpResults
   }
-}
-
-cxx src/net/network_geraet.hxx src/net/network_connection.hxx
-unsafe {
-  class final InputNetworkGeraet {} {
-  }
-  class final OutputNetworkGeraet {} {
-  }
-
-  newFunType InputNetworkGeraet* NetworkConnection*
 }
 
 cxx src/net/async_ack_geraet.hxx
