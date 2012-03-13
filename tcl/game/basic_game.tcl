@@ -102,8 +102,6 @@ class BasicGame {
   # The CommonKeyboardClient subclass that forwards appropriate events
   # to us
   variable ckc
-  # The NetIface used to forward events to us
-  variable netiface
 
   # The current HumanController, or 0 if none exists
   variable human
@@ -165,7 +163,6 @@ class BasicGame {
     set networkingEnabled [expr {0 != [llength $peers]}]
     set shipDeathFun [new BasicGameShipDeathCallback $this]
     set ckc [new BasicGameCKC $this]
-    set netiface [new BasicGameNetIface $this]
     set lastGenAiReportFC [$field cget -fieldClock]
 
     set peersByNumber {}
@@ -221,7 +218,6 @@ class BasicGame {
     delete object $env
     delete object $shipDeathFun
     delete object $ckc
-    delete object $netiface
 
     ship_mixer_end
   }
@@ -990,10 +986,6 @@ class BasicGame {
 
   # END: KEYBOARD CALLBACKS
 
-  # BEGIN: NETIFACE CALLBACKS
-  # TODO
-  # END: NETIFACE CALLBACKS
-
   # BEGIN: DATA EXCHANGE METHODS
 
   # Perform the periodic querying of the overseer for data updates
@@ -1083,27 +1075,6 @@ class BasicGameCKC {
 
   foreach method {exit frameXframe fast halt slow statsOn statsOff} {
     method $method args "\$app ckc_$method {*}\$args"
-  }
-}
-
-# Netiface subclass to forward all_methods to
-# BasicGame::ni_METHOD
-class BasicGameNetIface {
-  #inherit Netiface
-
-  variable app
-
-  constructor a {
-    #super Netiface *default
-  } {
-    set app $a
-  }
-
-  method fqn {} { return $this }
-
-  foreach method {accept disconnect changeState
-                  acceptShip deleteShip chat infodat translateBlame} {
-    method $method args "\$app ni_$method {*}\$args"
   }
 }
 
