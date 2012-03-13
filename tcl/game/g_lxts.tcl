@@ -75,4 +75,9 @@ class G_LXTS {
       return no
     }
   }
+
+  method loadSchemata sec {
+    chain $sec
+    loadSchema g_lxts $sec
+  }
 }
