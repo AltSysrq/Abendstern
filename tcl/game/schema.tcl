@@ -23,6 +23,8 @@
 #     If a listed child begins with '+', the rest of the child is the child's
 #     actual name, and the following element is used as a default if the child
 #     does not exist (silent failure).
+#     If a listed child begins with '?', it is not an error if it does not
+#     exist; simply, no action is taken in this case.
 #     If the current element is not a dictionary, a critical failure results.
 #     If a listed child does not exist, critical failure occurs (unless a
 #     default is given with the + syntax).
@@ -220,15 +222,22 @@ namespace eval ::schema {
           dict set curr {$cname} {$reqs}
         }\n"
       } else {
+        if {[string index $child 0] eq "?"} {
+          set failure {}
+          set child [string range $child 1 end]
+        } else {
+          set failure [critfail "Missing child: $child"]
+        }
         append str \
         "if {!\[dict exists \$curr $child\]} {
-          [critfail "Missing child: $child"]
-         }
-         [pushs "$child"]
-         [generate-reqs $reqs]
-         set v \$curr
-         [pop]
-         dict set curr {$child} \$v\n"
+          $failure
+         } else {
+          [pushs "$child"]
+          [generate-reqs $reqs]
+          set v \$curr
+          [pop]
+          dict set curr {$child} \$v
+        }\n"
       }
     }
     return $str
