@@ -136,6 +136,7 @@ bool CellFragment::collideWith(GameObject* other) noth {
   float dx = blast->getX() - virtX,
         dy = blast->getY() - virtY;
   float dist = sqrt(dx*dx + dy*dy);
+  if (dist < 1.0e-6) dist = 1.0e-6;
   float cosine = dx/dist, sine=dy/dist;
 
   //Divide by 2 since that's how we define the movement effect of a Blast
