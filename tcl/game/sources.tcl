@@ -1,5 +1,6 @@
 # Loads all tcl/game/ files in the correct order.
 foreach base {
+  schema
   basic_game
   spectator
   spawn_manager

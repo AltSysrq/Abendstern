@@ -1,0 +1,55 @@
+subdir {
+  list {
+    list {
+      int10 {}
+      nmin 0
+      nmax 255
+      foreign-key {}
+      foreign-req {
+        subdir {
+          +name unknown
+          name {
+            nchar +control
+            trimmed yes
+            strmin {3 unknown}
+            strmax +32
+          }
+          +score 0
+          score {
+            integer 0
+          }
+          +colour {r 0 g 0 b 0}
+          colour {
+            subdir {
+              +r 0
+              +g 0
+              +b 0
+              r {
+                float 0
+                nmin 0
+                nmax 1
+              }
+              g {
+                float 0
+                nmin 0
+                nmax 1
+              }
+              b {
+                float 0
+                nmin 0
+                nmax 1
+              }
+            }
+          }
+          +alive 0
+          alive {
+            bool 0
+          }
+        }
+        aux vpeer-data
+      }
+    }
+    llmin 1
+    llmax 255
+  }
+}

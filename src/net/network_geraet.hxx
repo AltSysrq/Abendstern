@@ -13,7 +13,7 @@
 /**
  * Defines the interface common to all input network Geräte.
  */
-class InputNetworkGeraet: public AObject {
+class InputNetworkGeraet: public virtual AObject {
   friend class SynchronousControlGeraet;
 protected:
   ///The input channel that packets are received through
@@ -76,7 +76,7 @@ public:
 /**
  * Defines the interface common to all output network Geräte.
  */
-class OutputNetworkGeraet: public AObject {
+class OutputNetworkGeraet: public virtual AObject {
 protected:
   /**
    * The output channel to write to.

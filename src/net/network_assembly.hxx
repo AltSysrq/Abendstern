@@ -40,8 +40,11 @@ class NetworkAssembly: public AObject {
 public:
   /**
    * The GameField used by the networking system.
+   * This should not be directly modified by external code; rather, use
+   * changeField().
+   * @see changeField()
    */
-  GameField*const field;
+  GameField* field;
   /**
    * The Antenna used for communication.
    */
@@ -105,6 +108,12 @@ public:
    * @see GameField::height
    */
   void setFieldSize(float,float) throw();
+
+  /**
+   * Changes the field pointer to the given one, and resizes all
+   * NetworkConnections' fields to the size of the new one.
+   */
+  void changeField(GameField*) throw();
 
   /**
    * Called whenever a new GameObject is inserted into the field.

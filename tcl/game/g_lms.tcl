@@ -75,4 +75,9 @@ class G_LMS {
       return true
     }
   }
+
+  method loadSchemata sec {
+    chain $sec
+    loadSchema g_lms $sec
+  }
 }

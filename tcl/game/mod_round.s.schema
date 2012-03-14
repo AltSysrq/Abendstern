@@ -1,0 +1,15 @@
+within {
+  roundRunning {
+    bool 0
+  }
+  currentRound {
+    integer 0
+    nmin 0
+  }
+  roundEndTime {
+    integer {[::abnet::nclock]}
+  }
+  roundStartTime {
+    integer {[expr {7+[::abnet::nclock]}]}
+  }
+}

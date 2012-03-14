@@ -347,6 +347,9 @@ Message types:
   p     Peer data state change
   x     Extension; the payload of this packet is prepended to that of the next
         before performing the next's operation.
+  M     Indicates current game mode (see gamemgr.tcl)
+  V     Proposes/votes that the next match use the given game mode
+  O     Indicates identity of overseer (inaddr inport lanaddr lanport)
 
 Messages take the form of Tcl lists; the first element identifies the message
 type, while the others are the parameters.

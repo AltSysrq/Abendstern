@@ -1,0 +1,9 @@
+aux-vpeer-data {
+  within {
+    team {
+      integer 0
+      nmin 0
+      nmax 5
+    }
+  }
+}

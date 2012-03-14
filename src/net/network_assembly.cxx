@@ -32,11 +32,13 @@ NetworkAssembly::~NetworkAssembly() {
 }
 
 void NetworkAssembly::removeConnection(unsigned ix) noth {
+  delete connections[ix];
   connections.erase(connections.begin()+ix);
 }
 
 void NetworkAssembly::removeConnection(NetworkConnection* cxn) noth {
   connections.erase(find(connections.begin(), connections.end(), cxn));
+  delete cxn;
 }
 
 void NetworkAssembly::addPacketProcessor(PacketProcessor* proc) noth {
@@ -61,6 +63,11 @@ void NetworkAssembly::update(unsigned et) noth {
 void NetworkAssembly::setFieldSize(float w, float h) throw() {
   for (unsigned i=0; i<connections.size(); ++i)
     connections[i]->setFieldSize(w,h);
+}
+
+void NetworkAssembly::changeField(GameField* f) throw() {
+  field = f;
+  setFieldSize(f->width, f->height);
 }
 
 void NetworkAssembly::objectAdded(GameObject* go) throw() {

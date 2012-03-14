@@ -1,0 +1,12 @@
+aux-vpeer-data {
+  within {
+    assimilated {
+      bool 0
+    }
+    ?team {
+      integer 2
+      nmin 2
+      nmax 2
+    }
+  }
+}

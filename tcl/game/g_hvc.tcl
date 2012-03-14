@@ -180,4 +180,9 @@ class G_HVC {
       return {}
     }
   }
+
+  method loadSchemata sec {
+    chain $sec
+    loadSchema g_hvc $sec
+  }
 }
