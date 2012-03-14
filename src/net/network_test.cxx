@@ -77,5 +77,9 @@ test_state::Background NetworkTest::init() {
 
 GameState* NetworkTest::update(float et) {
   assembly->update((unsigned)et);
+  //Remove dead connections
+  for (unsigned i=0; i<assembly->numConnections(); ++i)
+    if (NetworkConnection::Zombie == assembly->getConnection(i)->getStatus())
+      assembly->removeConnection(i--);
   return TestState::update(et);
 }
