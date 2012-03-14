@@ -162,6 +162,8 @@ package require sha256
 #
 #     If the preprocessor macro LOCAL_CLONE is defined, the code is being
 #     excuted to create a remote mirror instead of an imported object.
+#   version STR
+#     Appends "version-STR" to the compatibility hash input.
 #
 # Additionally, at the top-level, commands
 #   verbatimh CODE
@@ -566,6 +568,11 @@ proc extension section {
 
 proc construct code {
   set ::typeConstructor $code
+}
+
+proc version str {
+  global compatibilityString
+  append compatibilityString "version-$str"
 }
 
 proc elt-integer {sign sz name parms} {
