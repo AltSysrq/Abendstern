@@ -32,11 +32,13 @@ NetworkAssembly::~NetworkAssembly() {
 }
 
 void NetworkAssembly::removeConnection(unsigned ix) noth {
+  delete connections[ix];
   connections.erase(connections.begin()+ix);
 }
 
 void NetworkAssembly::removeConnection(NetworkConnection* cxn) noth {
   connections.erase(find(connections.begin(), connections.end(), cxn));
+  delete cxn;
 }
 
 void NetworkAssembly::addPacketProcessor(PacketProcessor* proc) noth {
