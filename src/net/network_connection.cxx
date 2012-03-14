@@ -42,7 +42,7 @@ using namespace std;
 /* How long to wait without hearing any response before
  * killing the connection.
  */
-#define DISCONNECT_TIME 2048
+#define DISCONNECT_TIME 8192
 
 /* Maximum distance between reference and transient where we
  * still export that transient.
