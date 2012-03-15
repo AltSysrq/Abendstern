@@ -13,7 +13,6 @@
 
 #include "src/core/aobject.hxx"
 #include "globalid.hxx"
-#include "connection_listener.hxx"
 #include "network_assembly.hxx"
 
 class NetworkConnection;
@@ -31,6 +30,10 @@ public:
   unsigned nid;
   ///Whether this peer is ready to perform the role of overseer
   bool overseerReady;
+  ///The cumulative number of times a connection attempt was made. This is
+  ///decremented if non-zero once every so often. Reconnect attempts will not be
+  ///made if this exceeds a certain value.
+  unsigned connectionAttempts;
   ///The current NetworkConnection associated with this peer
   NetworkConnection* cxn;
 };
@@ -75,15 +78,21 @@ public:
   virtual bool useLanAddress(const char* local, const char* remote) = 0;
 };
 
-class NetworkGame: public ConnectionListener {
+class NetworkGame: public AObject {
+  //The reason given (localised) for the most recent disconnect
   std::string lastDisconnectReason;
-  typedef std::map<NetworkConnection*, Peer> peers_t;
+  //Map of NetworkConnection*s to Peer*s.
+  typedef std::map<NetworkConnection*, Peer*> peers_t;
   peers_t peers;
+  //The current overseer
+  Peer* overseer;
+
+  //Peer representing the local system
+  Peer localPeer;
 
   NetworkAssembly assembly;
-  NetIface*const interface;
-
-  unsigned localNid;
+  //The current NetIface to use, or NULL if none
+  NetIface* interface;
 };
 
 #endif /* NETWORK_GAME_HXX_ */
