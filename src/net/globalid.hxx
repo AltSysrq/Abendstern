@@ -15,6 +15,7 @@
 #define GLOBALID_HXX_
 
 #include <string>
+#include <cstring>
 
 #include "src/core/aobject.hxx"
 
@@ -28,7 +29,7 @@ class GlobalID: public AObject {
   public:
   ///Tag for the union below; the IP version in use
   enum IPVersion {
-    IPv4, ///<Internet Protocol version 4
+    IPv4=0, ///<Internet Protocol version 4
     IPv6  ///<Internet Protocol version 6
   } ipv; ///< Determines which struct in the union is in use
   union {
@@ -51,6 +52,10 @@ class GlobalID: public AObject {
   unsigned short iport;
   ///LAN-facing port number
   unsigned short lport;
+
+  GlobalID() {
+    std::memset(this, 0, sizeof(GlobalID));
+  }
 
   /**
    * Returns the string representation of the ID.
