@@ -4,12 +4,12 @@
  * @brief Contains the ShipIO interface
  *
  * ShipIO is the next-generation (replacing ShipParse) method of storing Ships
- * to files. Unlike ShipParse, which uses a custom, non-extensible format, ShipIO
+ * to files. Unlike ShipParse, which used a custom, non-extensible format, this
  * utilizes libconfig++ to allow new features to be added without breaking old
  * files.
  *
  * ShipIO represents the ship as a table of cells with interconnections, instead of
- * a tree with implicit connections. In order to allow the upcomming NG-ShipEditor
+ * a tree with implicit connections. In order to allow the new(er) ShipEditor
  * to easily add and remove cells, cells are given names instead of indices.
  *
  * From the top-level of the file, the format is:
