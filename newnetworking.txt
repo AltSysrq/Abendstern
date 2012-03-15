@@ -300,6 +300,75 @@ For LAN games, every peer knows the plaintext password. Authentication works
 similarly to Internet games, except the base-key is the plaintext password, and
 peers can validate the authentication themselves.
 
+PEER CONNECTIVITY GERÄT
+Gerät number: 5
+Number per connection: 1
+Requires: AAG
+
+Packet structure:
+  byte          Type
+                  0 = positive declaration
+                  1 = negative declaration
+                  2 = specific query
+                  3 = general query (below structure not included for this type)
+  If IPv4:
+  byte[4]       Internet address
+  uint16        Internet port
+  byte[4]       LAN address
+  uint16        LAN port
+  If IPv6:
+  uint16[8]     Internet address
+  uint16        Internet port
+  uint16[8]     LAN address
+  uint16        LAN port
+
+The meanings for the four types:
+  Positive declaration: The peer declares that it has a functioning connection
+    FROM the given remote peer.
+  Negative declaration: The peer declares that it does not have, or no longer
+    has, a functioning connection from the given remote peer, and that it has
+    given up trying to reconnect to it (if applicable).
+  Specific query: The sender requests information regarding the receiver's
+    connection to the given other peer. The receiver should immediately
+    broadcast a positive or negative declaration in response, as appropriate.
+  General query: The sender requests information on all connected peers. The
+    receiver should immediately unicast a positive declaration for every peer it
+    knows about.
+
+Each peer should periodically send a spurious specific query to a random peer
+regarding another random peer (from the local or remote list, randomly). This
+allows all peers to maintain an idea of how fully the all-to-all topology is
+satisfied.
+
+Additionally, positive and negative declarations for specific peers are
+broadcast on connection/disconnection of that peer, respectively.
+
+The PCG provides two facilities:
+1. It allows peers to discover other peers they need to connect to.
+2. It allows peers to determine the true topology of the network.
+
+The first facility works as follows: When a peer receives a positive declaration
+from a remote peer it thinks is the overseer, and it has not yet connected to
+the peer indicated, it will attempt to connect to it. When any peer receives a
+negative declaration regarding a remote peer it is connected to, it answers with
+a positive declaration. Finally, when a connection to a new peer is established,
+a general query on the part of the connection-initiator is performed in order to
+discover the other peers.
+
+The second is accomplished simply by maintaining lists based on the given
+information. To note is the fact that the reports indicate connections FROM, not
+TO. Each positive report gives credit to the peer reported, not the peer
+reporting. To prevent cheating by selective disconnection, any overseer-ready
+peer that lacks three or more known connections that are older than 30 seconds
+will be disconnected. (See the section on STG usage for information on
+overseer-readiness.) This threshhold is reduced to 2 for games of 5 or 6
+players, and to 1 for 4 or fewer.
+(While Abendstern generally takes a let-the-players-vote-on-it approach to
+ cheating, this is a special case --- to the players being cheated, it would
+ appear that the overseer was cheating, as they would have no knowledge of the
+ additional player not connecting to their systems. To those not being cheated,
+ nothing would appear out of the ordinary.)
+
 
 --- Begin: Abendstern-Specific ---
 ABENDSTERN OBJECTS
@@ -349,7 +418,8 @@ Message types:
         before performing the next's operation.
   M     Indicates current game mode (see gamemgr.tcl)
   V     Proposes/votes that the next match use the given game mode
-  O     Indicates identity of overseer (inaddr inport lanaddr lanport)
+  R     Empty payload; indicates that the peer is now ready to become overseer
+        if it has the lowest numeric ID.
 
 Messages take the form of Tcl lists; the first element identifies the message
 type, while the others are the parameters.
@@ -358,3 +428,9 @@ State changes are Tcl lists with an even number of elements. Every even element
 is a Tcl list indicating a path into the appropriate data, and the following
 element is the new value for the datum at that location. Values must pass
 certain validation or will be ignored/edited.
+
+Overseer-readiness indicates that the peer believes it has enough information
+that it can act as the central source of game information. This entails two
+things:
+o It must have received the dats information from the current overseer.
+o It must be connected to all the current peers.
