@@ -43,6 +43,11 @@
  * info.original_filvname       Optional string, name of file before uploading
  * info.guid            Optional string (mandatory on Abendstern Network);
  *                      globally-unique identifier for this ship.
+ * info.enable_sharing  Optional boolean; whether to allow users other than the
+ *                      owner to download the ship on the Abendstern Network.
+ * info.needs_uploading Optional boolean; true if the ship has changed since
+ *                      its last upload to the Abendstern Network.
+ *                      (This is generally meaningless for downloaded ships.)
  * cells                Group
  * cells.<name>         Group for cell <name>
  * cells.*.type         String, type of cell (square, circle, right, equil).
