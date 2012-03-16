@@ -335,6 +335,11 @@ public:
    */
   void transmogrify(channel, OutputNetworkGeraet*) throw();
 
+  /**
+   * Returns the number of milliseconds this NetworkConnection has been open.
+   */
+  unsigned getDuration() const throw();
+
 private:
   //Called by NetworkAssembly when an exportable object is added
   void objectAdded(GameObject*) throw();

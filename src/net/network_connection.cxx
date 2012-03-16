@@ -375,3 +375,7 @@ void NetworkConnection::objectRemoved(GameObject* go) throw() {
   ignoredExports.erase(go);
   unsetReference(go);
 }
+
+unsigned NetworkConnection::getDuration() const throw() {
+  return SDL_GetTicks() - connectionStart;
+}
