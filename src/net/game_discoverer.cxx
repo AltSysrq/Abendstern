@@ -24,7 +24,9 @@ static const byte trigger[] = {
   'A', 'b', 'e', 'n', 'd', 's', 'p', 'i', 'e', 'l',
 };
 
-GameDiscoverer::GameDiscoverer(Tuner* tuner) {
+GameDiscoverer::GameDiscoverer(Tuner* tuner)
+: nextBroadcast(-1 /* max value */), curentTry(CYCLE_COUNT)
+{
   tuner->trigger(trigger, sizeof(trigger), this);
 }
 
@@ -120,18 +122,4 @@ noth {
   res.peerCount = peercnt;
   memcpy(res.gameMode, mode, sizeof(mode));
   results.push_back(res);
-}
-
-void GameDiscoverer::dumpResults() const noth {
-  cout << "GameDiscoverer results:" << endl;
-  cout << "#\toid\tprot?\tcnt\tmode\tpeer" << endl;
-  for (unsigned i=0; i<results.size(); ++i) {
-    const Result& res(results[i]);
-    cout << i << '\t'
-         << res.overseer << '\t'
-         << (res.passwordProtected? "yes" : "no") << '\t'
-         << (unsigned)res.peerCount << '\t'
-         << string(res.gameMode, res.gameMode+4) << '\t'
-         << res.peer << endl;
-  }
 }

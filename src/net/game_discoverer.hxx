@@ -19,13 +19,24 @@
  * range.
  */
 class GameDiscoverer: public PacketProcessor {
+public:
+  /**
+   * Defines a single, unique game discovered on the network.
+   */
   struct Result {
+    ///An arbitrary peer that can be used to connect to the game
     asio::ip::udp::endpoint peer;
+    ///Numeric ID of the overseer
     Uint32 overseer;
+    ///Whether a password is required to access the game
     bool passwordProtected;
+    ///The number of peers connected to the game
     byte peerCount;
+    ///The current game mode; may not be NUL terminated
     char gameMode[4];
   };
+
+private:
   std::vector<Result> results;
 
   Uint32 nextBroadcast;
@@ -52,12 +63,8 @@ public:
    */
   float progress() const noth;
 
-  /**
-   * Dumps the results to stdout.
-   * This function is for debugging; as of 2012.02.06, there are currently no
-   * functions to access the actual results data.
-   */
-  void dumpResults() const noth;
+  /** Returns the results of the scan, sorted descending by peerCount. */
+  const std::vector<Result>& getResults() const noth { return results; }
 
   virtual void process(const Antenna::endpoint& source,
                        Antenna* antenna, Tuner* tuner,
