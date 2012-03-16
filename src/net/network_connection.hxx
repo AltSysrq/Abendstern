@@ -57,7 +57,8 @@ public:
   typedef unsigned short geraet_num;
   ///Type for sequence numbers
   typedef unsigned short seq_t;
-  ///Function pointer to construct InputNetworkGeraete by number
+  ///Function pointer to construct InputNetworkGeraete by number.
+  ///Returns NULL if the creation attempt is rejected.
   typedef InputNetworkGeraet* (*geraet_creator)(NetworkConnection*);
 
   /**

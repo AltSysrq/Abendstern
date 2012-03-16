@@ -220,8 +220,15 @@ throw() {
           return;
         }
 
-        cxn->inchannels[chan] = creator(cxn);
-        cxn->inchannels[chan]->inputChannel = chan;
+        InputNetworkGeraet* geraet = creator(cxn);
+        if (!geraet) {
+          #ifdef DEBUG
+          cerr << "Warning: Ignoring rejected creation of Geraet " << num<<endl;
+          #endif
+        } else {
+          cxn->inchannels[chan] = geraet;
+          cxn->inchannels[chan]->inputChannel = chan;
+        }
       }
 
       //Done processing, acknowledge packet
