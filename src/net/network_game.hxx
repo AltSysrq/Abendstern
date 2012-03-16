@@ -148,7 +148,7 @@ public:
    * Returns whether the current scan has completed.
    * Returns false if no scan has been initiated.
    */
-  bool discoveryScanDone() const throw()
+  bool discoveryScanDone() const throw();
   /**
    * Returns a Tcl list of scan results, suitable for display to the user.
    * To start a game.
@@ -172,6 +172,31 @@ public:
    * Initiates a game to the given la:lp/ia:ip string (ie, an Internet game).
    */
   void connectToInternet(const char*) throw();
+
+  /**
+   * Begins sending UDP hole-punching packets to abendstern.servegame.com.
+   *
+   * On success for a certain protocol, the GlobalID for the appropriate IP
+   * version in the primary antenna is updated appropriately.
+   *
+   * @param lanpatch true if the "LAN-patch" is active; that is, a set of rule
+   * changes that allow networking to function correctly behind the same NAT as
+   * the abendstern.servegame.com server.
+   */
+  void startUdpHolePunch(bool lanpatch) throw();
+  /**
+   * Returns whether IPv4 hole-punching was successful.
+   */
+  bool hasInternet4() const throw();
+  /**
+   * Returns whether IPv6 hole-punching was successful.
+   */
+  bool hasInternet6() const throw();
+
+  /**
+   * Updates the NetworkAssembly and anything else that needs updating.
+   */
+  void update(unsigned) throw();
 };
 
 #endif /* NETWORK_GAME_HXX_ */
