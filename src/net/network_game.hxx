@@ -16,6 +16,9 @@
 #include "network_assembly.hxx"
 
 class NetworkConnection;
+class GameAdvertiser;
+class GameDiscoverer;
+class GameField;
 
 /**
  * Contains the data associated with a single Peer, which is shared across
@@ -57,27 +60,24 @@ public:
   ///Called when a unicast message from the given peer is received
   virtual void receiveUnicast(Peer*, const char*) = 0;
 
+  ///Called when a datp alteration is received from the given Peer.
+  ///Return true if the changes are accepted.
+  virtual bool alterDatp(Peer*, const char* key, const char* val) = 0;
+  ///Called when a dats alteration is received from the current overseer.
+  ///Return true if the changes arv accepted.
+  virtual bool alterDats(const char* key, const char* val) = 0;
+
   ///Called when all network connectivity has been lost, with the given reason.
   virtual void connectionLost(const char*) = 0;
-
-  ///Formats a Peer* into the string format to use for, eg, the O message.
-  virtual const char* formatPeer(Peer*) = 0;
-  ///Extracts the LAN IP address from the given peer string
-  virtual const char* getLanIp(const char*) = 0;
-  ///Extracts the Internet IP address from the given peer string
-  virtual const char* getInetIp(const char*) = 0;
-  ///Extracts the LAN port nmber from the given peer string
-  virtual unsigned getLanPort(const char*) = 0;
-  ///Extracts the Internet port number from the given peer string
-  virtual unsigned getInetPort(const char*) = 0;
-  /**
-   * Given the peer strings for the local host and a remote peer, return
-   * true if the LAN address/port pair should be used, false if the Internet
-   * pair should be used for establishing a connection.
-   */
-  virtual bool useLanAddress(const char* local, const char* remote) = 0;
 };
 
+/**
+ * Provides a façade to the networking system which is easily accessible by Tcl.
+ * While it primarily serves to manage associating Peers with
+ * NetworkConnections (including peer discovery and topology discovery), it also
+ * has some secondary utilities, such as game discovery, which would be hard
+ * for Tcl to use by itself (since it requires manipulation of asio classes).
+ */
 class NetworkGame: public AObject {
   //The reason given (localised) for the most recent disconnect
   std::string lastDisconnectReason;
@@ -93,6 +93,85 @@ class NetworkGame: public AObject {
   NetworkAssembly assembly;
   //The current NetIface to use, or NULL if none
   NetIface* interface;
+
+  GameAdvertiser* advertiser;
+  GameDiscoverer* discoverer;
+
+public:
+  /**
+   * Constructs a NetworkGame with the given initial GameField.
+   */
+  NetworkGame(GameField*);
+
+  /**
+   * Returns a pointer to the Peer object representing the local peer.
+   */
+  Peer* getLocalPeer() throw() { return &localPeer; }
+  /**
+   * Returns the Peer* which is the current overseer, or NULL for the local
+   * peer.
+   */
+  Peer* getOverseer() const throw() { return overseer; }
+  /**
+   * Returns the stated reason for the most recent connection failure.
+   */
+  const std::string& getDisconnectReason() const throw() {
+    return lastDisconnectReason;
+  }
+
+  /**
+   * Alters the NetIface used. May be NULL.
+   */
+  void setNetIface(NetIface*) throw();
+
+  /**
+   * Initiates game advertising if not done already, then sets the gameMode
+   * parm appropriately.
+   */
+  void setAdvertising(const char* gameMode) throw();
+  /**
+   * Terminates any ongoing game advertisement.
+   */
+  void stopAdvertising() throw();
+
+  /**
+   * Begins a scan using a GameDiscoverer. If a scan is currently ongoing,
+   * nothing happens.
+   */
+  void startDiscoveryScan() throw();
+  /**
+   * Returns the current progress of the GameDiscoverer scan, between 0 and 1
+   * inclusive. Returns -1 if no scan is in progress.
+   */
+  float discoveryScanProgress() const throw();
+  /**
+   * Returns whether the current scan has completed.
+   * Returns false if no scan has been initiated.
+   */
+  bool discoveryScanDone() const throw()
+  /**
+   * Returns a Tcl list of scan results, suitable for display to the user.
+   * To start a game.
+   */
+  std::string getDiscoveryResults() throw();
+
+  /**
+   * Begins listining for new connections. This is used to start hosting a game.
+   */
+  void connectToNothing() throw();
+  /**
+   * Initiates a game using the discovery result at the given index.
+   * Begins listening automatically.
+   */
+  void connectToDiscovery(unsigned) throw();
+  /**
+   * Initiates a game to the given LAN IP address/port combination.
+   */
+  void connectToLan(const char*, unsigned) throw();
+  /**
+   * Initiates a game to the given la:lp/ia:ip string (ie, an Internet game).
+   */
+  void connectToInternet(const char*) throw()
 };
 
 #endif /* NETWORK_GAME_HXX_ */
