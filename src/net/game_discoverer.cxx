@@ -7,6 +7,7 @@
 
 #include <cstring>
 #include <iostream>
+#include <algorithm>
 
 #include <SDL.h>
 
@@ -24,8 +25,13 @@ static const byte trigger[] = {
   'A', 'b', 'e', 'n', 'd', 's', 'p', 'i', 'e', 'l',
 };
 
+static bool resultLessThan(const GameDiscoverer::Result& a,
+                           const GameDiscoverer::Result& b) {
+  return a.peerCount > b.peerCount;
+}
+
 GameDiscoverer::GameDiscoverer(Tuner* tuner)
-: nextBroadcast(-1 /* max value */), curentTry(CYCLE_COUNT)
+: nextBroadcast(-1 /* max value */), currentTry(CYCLE_COUNT)
 {
   tuner->trigger(trigger, sizeof(trigger), this);
 }
@@ -122,4 +128,5 @@ noth {
   res.peerCount = peercnt;
   memcpy(res.gameMode, mode, sizeof(mode));
   results.push_back(res);
+  sort(results.begin(), results.end(), resultLessThan);
 }

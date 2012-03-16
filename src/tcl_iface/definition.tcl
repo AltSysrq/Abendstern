@@ -1089,7 +1089,6 @@ unsafe {
     fun void start
     fun void poll {} Antenna*
     fun float progress
-    fun void dumpResults
   }
 }
 
