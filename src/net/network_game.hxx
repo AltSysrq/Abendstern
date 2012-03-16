@@ -171,7 +171,7 @@ public:
   /**
    * Initiates a game to the given la:lp/ia:ip string (ie, an Internet game).
    */
-  void connectToInternet(const char*) throw()
+  void connectToInternet(const char*) throw();
 };
 
 #endif /* NETWORK_GAME_HXX_ */
