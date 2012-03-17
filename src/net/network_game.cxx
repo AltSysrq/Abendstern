@@ -5,4 +5,440 @@
  * @brief Implementation of NetworkGame classes.
  */
 
+#include <map>
+#include <set>
+#include <string>
+#include <cstring>
+#include <iostream>
+#include <cstdlib>
+#include <iterator>
+#include <sstream>
+
+#include <asio.hpp>
+
 #include "network_game.hxx"
+#include "network_geraet.hxx"
+#include "tuner.hxx"
+#include "connection_listener.hxx"
+#include "seq_text_geraet.hxx"
+#include "text_message_geraet.hxx"
+#include "async_ack_geraet.hxx"
+#include "io.hxx"
+#include "globalid.hxx"
+#include "game_advertiser.hxx"
+#include "game_discoverer.hxx"
+
+using namespace std;
+
+namespace network_game {
+  /* Simple ConnectionListener to forward connection attempts to NetworkGame.
+   */
+  class NGConnectionListener: public ConnectionListener {
+    NetworkGame*const game;
+  public:
+    NGConnectionListener(NetworkGame* game_)
+    : ConnectionListener(game_->assembly.getTuner()),
+      game(game_)
+    { }
+
+    virtual bool acceptConnection(const Antenna::endpoint& source,
+                                  Antenna* antenna, Tuner* tuner,
+                                  string& errmsg, string& errl10n)
+    noth {
+      return game->acceptConnection(source, errmsg, errl10n);
+    }
+  };
+
+  /* Handles encoding and decoding of sequential text messages, including
+   * message types and fragmentation, and provides a symbolic interface to
+   * the messaging system.
+   */
+  class NGSeqTextGeraet: public SeqTextInputGeraet, public SeqTextOutputGeraet {
+    //Accumulation of input extensions
+    string extension;
+    //Allow finding the output side associated with each NetworkConnection
+    typedef map<NetworkConnection*,NGSeqTextGeraet*> geraete_t;
+    static geraete_t geraete;
+
+    NetworkGame*const game;
+
+  public:
+    static const NetworkConnection::geraet_num num;
+
+    NGSeqTextGeraet(NetworkGame* game_, NetworkConnection* cxn)
+    : SeqTextInputGeraet(cxn->aag, InputNetworkGeraet::DSEternal),
+      SeqTextOutputGeraet(cxn->aag, OutputNetworkGeraet::DSBidir),
+      game(game_)
+    {
+      geraete[cxn] = this;
+    }
+
+    virtual ~NGSeqTextGeraet() {
+      geraete.erase(cxn);
+    }
+
+    virtual void receiveText(string txt) noth {
+      if (txt.empty()) {
+        #ifdef DEBUG
+        cerr << "Warning: Ignoring empty sequential text message" << endl;
+        #endif
+        return;
+      }
+
+      const char* body = txt.c_str()+1;
+      //Don't let the remote system fill up memory with extensions
+      if (extension.size() < 65536)
+        extension += body;
+      else {
+        #ifdef DEBUG
+        cerr << "Warning: STG ext dropped due to extension size"<< endl;
+        #endif
+      }
+      switch (txt[0]) {
+        case 'x':
+          return; //Nothing further to do, and don't clear extension
+
+        case 'o':
+          if (game->iface)
+            game->iface->receiveOverseer(game->peers[cxn], extension.c_str());
+          break;
+
+        case 'u':
+          if (game->iface)
+            game->iface->receiveUnicast(game->peers[cxn], extension.c_str());
+          break;
+
+        case 'b':
+          if (game->iface)
+            game->iface->receiveBroadcast(game->peers[cxn], extension.c_str());
+          break;
+
+        case 's':
+          if (game->iface && game->overseer == game->peers[cxn])
+            game->iface->alterDats(extension.c_str());
+          break;
+
+        case 'p':
+          if (game->iface)
+            game->iface->alterDatp(game->peers[cxn], extension.c_str());
+          break;
+
+        case 'M':
+          if (game->iface && game->overseer == game->peers[cxn])
+            game->iface->setGameMode(extension.c_str());
+          break;
+
+        case 'V':
+          //TODO
+          break;
+
+        case 'R':
+          game->peerIsOverseerReady(game->peers[cxn]);
+          break;
+
+        default:
+          #ifdef DEBUG
+          cerr << "Warning: Ignoring unknown STG message: " << txt[0] << endl;
+          #endif
+          break;
+      }
+
+      //Clear accumulated text
+      extension.clear();
+    }
+
+    void sendOverseer(const std::string& str) throw() {
+      send(str, 'o');
+    }
+    void sendUnicast(const std::string& str) throw() {
+      send(str, 'u');
+    }
+    void sendBroadcast(const std::string& str) throw() {
+      send(str, 'b');
+    }
+    void sendDats(const std::string& str) throw() {
+      send(str, 's');
+    }
+    void sendDatp(const std::string& str) throw() {
+      send(str, 'p');
+    }
+    void sendMode(const std::string& str) throw() {
+      send(str, 'M');
+    }
+    void sendVote(const std::string& str) throw() {
+      send(str, 'V');
+    }
+    void sendReady() throw() {
+      SeqTextOutputGeraet::send(string("R"));
+    }
+
+  private:
+    void send(const std::string& str, char type) throw() {
+      static const unsigned segsz = 250;
+      for (unsigned i=0; i<str.size(); i += segsz) {
+        //Only the last (where i+segsz >= str.size()) gets the actual type;
+        //other fragments have type x for extension.
+        string msg(1, i+segsz < str.size()? 'x' : type);
+        msg += str.substr(i, segsz);
+        SeqTextOutputGeraet::send(msg);
+      }
+    }
+
+    static InputNetworkGeraet* create(NetworkConnection* cxn) {
+      geraete_t::iterator it = geraete.find(cxn);
+      if (it == geraete.end()) return NULL;
+
+      InputNetworkGeraet* ong = it->second;
+      geraete.erase(it);
+      return ong;
+    }
+  };
+  NGSeqTextGeraet::geraete_t NGSeqTextGeraet::geraete;
+  const NetworkConnection::geraet_num NGSeqTextGeraet::num =
+    NetworkConnection::registerGeraetCreator(&create, 2);
+
+  /* Handles both sides of the PeerConnectivityGeraet (see documentation in
+   * newnetworking.txt).
+   *
+   * Since this has a strong dependency on NetworkGame, it is not placed in
+   * a separate header/implementation file pair.
+   */
+  class PeerConnectivityGeraet: public AAGReceiver, public ReliableSender {
+    //Map NetworkConnection*s to unopened input sides.
+    typedef map<NetworkConnection*,PeerConnectivityGeraet*> geraete_t;
+    static geraete_t geraete;
+
+    NetworkGame*const game;
+
+    //Sizes of GlobalID data for IPv4 and IPv6, respectively
+    static const unsigned ipv4size = 2*(4+2);
+    static const unsigned ipv6size = 2*(8*2+2);
+
+  public:
+
+    static const unsigned positiveDec = 0,
+                          negativeDec = 1,
+                          specificQuery = 2,
+                          generalQuery = 3;
+
+    static const NetworkConnection::geraet_num num;
+
+    PeerConnectivityGeraet(NetworkConnection* cxn, NetworkGame* game_)
+    : AAGReceiver(cxn->aag, InputNetworkGeraet::DSEternal),
+      ReliableSender(cxn->aag, OutputNetworkGeraet::DSBidir),
+      game(game_)
+    {
+      geraete[cxn] = this;
+    }
+
+    virtual ~PeerConnectivityGeraet() {
+      geraete.erase(cxn);
+    }
+
+    void sendPacket(unsigned type, const GlobalID& gid) throw() {
+      byte pack[NetworkConnection::headerSize + 1 + ipv6size];
+      byte* dst = pack+NetworkConnection::headerSize;
+      *dst++ = type;
+      unsigned gidlen = writeGid(dst, gid);
+      send(pack, NetworkConnection::headerSize + 1 + gidlen);
+    }
+
+    void sendGeneralQuery() throw() {
+      byte pack[NetworkConnection::headerSize + 1];
+      pack[NetworkConnection::headerSize] = generalQuery;
+      send(pack, sizeof(pack));
+    }
+
+  protected:
+    virtual void receiveAccepted(NetworkConnection::seq_t seq, const byte* data,
+                                 unsigned len)
+    throw() {
+      if (!len) {
+        #ifdef DEBUG
+        cerr << "Warning: Dropping empty packet to Peer Connectivity Geraet."
+             << endl;
+        #endif
+        return;
+      }
+
+      GlobalID gid;
+      unsigned type = data[0];
+      ++data, --len;
+
+      switch (type) {
+        case positiveDec:
+        case negativeDec:
+          if (len == ipv4size)
+            readGid(gid, data, true);
+          else if (len == ipv6size)
+            readGid(gid, data, false);
+          else {
+            #ifdef DEBUG
+            cerr << "Warning: Dropping packet with bad length to Peer"
+                 << "Connectivity Geraet" << endl;
+            #endif
+            return;
+          }
+
+          game->receivePCGDeclaration(game->peers[cxn], gid,
+                                      type == positiveDec);
+          break;
+
+        case specificQuery:
+          if (len == ipv4size)
+            readGid(gid, data, true);
+          else if (len == ipv6size)
+            readGid(gid, data, false);
+          else {
+            #ifdef DEBUG
+            cerr << "Warning: Dropping packet with bad length to Peer"
+                 << "Connectivity Geraet" << endl;
+            #endif
+            return;
+          }
+
+          game->receivePCGQuery(game->peers[cxn], gid);
+          break;
+
+        case generalQuery:
+          game->receivePCGGeneralQuery(game->peers[cxn]);
+          break;
+
+        default:
+          #ifdef DEBUG
+          cerr << "Warning: Dropping packet of unknown type "
+               << type << " to Peer Connectivity Geraet" << endl;
+          #endif
+          return;
+      }
+      
+    }
+
+  private:
+    static InputNetworkGeraet* create(NetworkConnection* cxn) {
+      geraete_t::iterator it = geraete.find(cxn);
+      if (it == geraete.end()) return NULL;
+
+      InputNetworkGeraet* ing = it->second;
+      geraete.erase(it);
+      return ing;
+    }
+
+    unsigned writeGid(byte* dst, const GlobalID& gid) const throw() {
+      if (gid.ipv == GlobalID::IPv4) {
+        memcpy(dst, gid.ia4, 4);
+        dst += 4;
+        io::write(dst, gid.iport);
+        memcpy(dst, gid.la4, 4);
+        dst += 4;
+        io::write(dst, gid.lport);
+        return ipv4size;
+      } else {
+        for (unsigned i=0; i<8; ++i)
+          io::write(dst, gid.ia6[i]);
+        io::write(dst, gid.iport);
+        for (unsigned i=0; i<8; ++i)
+          io::write(dst, gid.la6[i]);
+        io::write(dst, gid.lport);
+        return ipv6size;
+      }
+    }
+
+    void readGid(GlobalID& gid, const byte* src, bool ipv4) const throw() {
+      if (ipv4) {
+        memcpy(gid.ia4, src, 4);
+        src += 4;
+        io::read(src, gid.iport);
+        memcpy(gid.la4, src, 4);
+        src += 4;
+        io::read(src, gid.lport);
+        gid.ipv = GlobalID::IPv4;
+      } else {
+        for (unsigned i=0; i<8; ++i)
+          io::read(src, gid.ia6[i]);
+        io::read(src, gid.iport);
+        for (unsigned i=0; i<8; ++i)
+          io::read(src, gid.la6[i]);
+        io::read(src, gid.lport);
+        gid.ipv = GlobalID::IPv6;
+      }
+    }
+  };
+  PeerConnectivityGeraet::geraete_t PeerConnectivityGeraet::geraete;
+  const NetworkConnection::geraet_num PeerConnectivityGeraet::num =
+    NetworkConnection::registerGeraetCreator(&create, 5);
+}
+
+NetworkGame::NetworkGame(GameField* field)
+: overseer(NULL), assembly(field, &antenna),
+  iface(NULL), advertiser(NULL), discoverer(NULL),
+  timeSinceSpuriousPCGQuery(0)
+{
+  localPeer.overseerReady=0;
+  localPeer.connectionAttempts=0;
+  localPeer.cxn = NULL;
+}
+
+void NetworkGame::setNetIface(NetIface* ifc) throw() {
+  iface = ifc;
+}
+
+void NetworkGame::setAdvertising(const char* gameMode) throw() {
+  if (advertiser)
+    advertiser->setGameMode(gameMode);
+  else
+    advertiser = new GameAdvertiser(assembly.getTuner(),
+                                    localPeer.gid.ipv == GlobalID::IPv6,
+                                    overseer? overseer->nid : localPeer.nid,
+                                    peers.size()+1, //+1 for self
+                                    false, //TODO
+                                    gameMode);
+}
+
+void NetworkGame::stopAdvertising() throw() {
+  if (advertiser) {
+    delete advertiser;
+    advertiser = NULL;
+  }
+}
+
+void NetworkGame::startDiscoveryScan() throw() {
+  if (!discoverer)
+    discoverer = new GameDiscoverer(assembly.getTuner());
+  discoverer->start();
+}
+
+float NetworkGame::discoveryScanProgress() const throw() {
+  if (discoverer)
+    return discoverer->progress();
+  else
+    return 0;
+}
+
+bool NetworkGame::discoveryScanDone() const throw() {
+  return discoverer && 1.0f == discoverer->progress();
+}
+
+string NetworkGame::getDiscoveryResults() throw() {
+  ostringstream oss;
+  if (!discoverer) return oss.str();
+
+  const vector<GameDiscoverer::Result>& results = discoverer->getResults();
+  for (unsigned i=0; i<results.size(); ++i) {
+    char gameMode[5], buffer[256];
+    string ipa(results[i].peer.address().to_string());
+    //Get NTBS from game mode
+    strncpy(gameMode, results[i].gameMode, sizeof(gameMode));
+    //TODO: localise game mode
+    #ifndef WIN32
+    #warning Game mode not localised in NetworkGame::getDiscoveryResults()
+    #endif
+    sprintf(buffer, "{%4s %02d %c %s} ",
+            gameMode, results[i].peerCount,
+            results[i].passwordProtected? '*' : ' ',
+            ipa.c_str());
+    oss << buffer;
+  }
+
+  return oss.str();
+}

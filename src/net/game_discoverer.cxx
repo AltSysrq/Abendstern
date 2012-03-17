@@ -30,10 +30,14 @@ static bool resultLessThan(const GameDiscoverer::Result& a,
   return a.peerCount > b.peerCount;
 }
 
-GameDiscoverer::GameDiscoverer(Tuner* tuner)
-: nextBroadcast(-1 /* max value */), currentTry(CYCLE_COUNT)
+GameDiscoverer::GameDiscoverer(Tuner* tuner_)
+: tuner(tuner_),  nextBroadcast(-1 /* max value */), currentTry(CYCLE_COUNT)
 {
   tuner->trigger(trigger, sizeof(trigger), this);
+}
+
+GameDiscoverer::~GameDiscoverer() {
+  tuner->untrigger(trigger, sizeof(trigger));
 }
 
 void GameDiscoverer::start() noth {

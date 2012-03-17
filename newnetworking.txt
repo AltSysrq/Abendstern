@@ -410,7 +410,7 @@ hitting 256 bytes in size).
 
 Message types:
   o     Underling-to-overseer message
-  m     Peer-to-peer message
+  u     Peer-to-peer message
   b     Broadcast message
   s     Global state change
   p     Peer data state change

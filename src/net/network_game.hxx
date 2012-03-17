@@ -10,15 +10,25 @@
 
 #include <string>
 #include <map>
+#include <set>
 
 #include "src/core/aobject.hxx"
 #include "globalid.hxx"
 #include "network_assembly.hxx"
+#include "antenna.hxx"
 
 class NetworkConnection;
 class GameAdvertiser;
 class GameDiscoverer;
 class GameField;
+
+#ifndef DOXYGEN
+namespace network_game {
+  class NGConnectionListener;
+  class NGSeqTextGeraet;
+  class PeerConnectivityGeraet;
+}
+#endif /* DOXYGEN */
 
 /**
  * Contains the data associated with a single Peer, which is shared across
@@ -39,6 +49,9 @@ public:
   unsigned connectionAttempts;
   ///The current NetworkConnection associated with this peer
   NetworkConnection* cxn;
+
+  ///The Peers this Peer has a connection FROM
+  std::set<Peer*> connectionsFrom;
 };
 
 /**
@@ -62,10 +75,13 @@ public:
 
   ///Called when a datp alteration is received from the given Peer.
   ///Return true if the changes are accepted.
-  virtual bool alterDatp(Peer*, const char* key, const char* val) = 0;
+  virtual bool alterDatp(Peer*, const char* kv) = 0;
   ///Called when a dats alteration is received from the current overseer.
   ///Return true if the changes arv accepted.
-  virtual bool alterDats(const char* key, const char* val) = 0;
+  virtual bool alterDats(const char* kv) = 0;
+
+  ///Called when a game mode alteration is received
+  virtual void setGameMode(const char*) = 0;
 
   ///Called when all network connectivity has been lost, with the given reason.
   virtual void connectionLost(const char*) = 0;
@@ -79,6 +95,10 @@ public:
  * for Tcl to use by itself (since it requires manipulation of asio classes).
  */
 class NetworkGame: public AObject {
+  friend class network_game::NGConnectionListener;
+  friend class network_game::NGSeqTextGeraet;
+  friend class network_game::PeerConnectivityGeraet;
+
   //The reason given (localised) for the most recent disconnect
   std::string lastDisconnectReason;
   //Map of NetworkConnection*s to Peer*s.
@@ -92,10 +112,16 @@ class NetworkGame: public AObject {
 
   NetworkAssembly assembly;
   //The current NetIface to use, or NULL if none
-  NetIface* interface;
+  NetIface* iface;
 
   GameAdvertiser* advertiser;
   GameDiscoverer* discoverer;
+
+  //All sequential (output) text Geräte associated with this NetworkGame
+  std::set<network_game::NGSeqTextGeraet*> stgs;
+
+  unsigned timeSinceSpuriousPCGQuery;
+  
 
 public:
   /**
@@ -151,7 +177,6 @@ public:
   bool discoveryScanDone() const throw();
   /**
    * Returns a Tcl list of scan results, suitable for display to the user.
-   * To start a game.
    */
   std::string getDiscoveryResults() throw();
 
@@ -197,6 +222,17 @@ public:
    * Updates the NetworkAssembly and anything else that needs updating.
    */
   void update(unsigned) throw();
+
+private:
+  bool acceptConnection(const Antenna::endpoint& source,
+                        std::string&, std::string&)
+  throw();
+
+  void peerIsOverseerReady(Peer*) throw();
+
+  void receivePCGDeclaration(Peer*, const GlobalID&, bool positive) throw();
+  void receivePCGQuery(Peer*, const GlobalID&) throw();
+  void receivePCGGeneralQuery(Peer*) throw();
 };
 
 #endif /* NETWORK_GAME_HXX_ */

@@ -17,6 +17,8 @@
 /**
  * Provides the ability to discover advertised LAN games within broadcast
  * range.
+ *
+ * The destructor automatically deregisters the GameDiscoverer.
  */
 class GameDiscoverer: public PacketProcessor {
 public:
@@ -37,6 +39,8 @@ public:
   };
 
 private:
+  Tuner*const tuner;
+  
   std::vector<Result> results;
 
   Uint32 nextBroadcast;
@@ -47,6 +51,9 @@ public:
    * Creates an empty GameDiscoverer and registers it with the given Tuner.
    */
   GameDiscoverer(Tuner*);
+
+  virtual ~GameDiscoverer();
+
   /**
    * Clears the results list and resets internal data, making it ready for
    * a new scan.
