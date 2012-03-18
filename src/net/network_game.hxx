@@ -129,6 +129,8 @@ public:
    */
   NetworkGame(GameField*);
 
+  virtual ~NetworkGame();
+  
   /**
    * Returns a pointer to the Peer object representing the local peer.
    */

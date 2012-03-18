@@ -379,6 +379,13 @@ NetworkGame::NetworkGame(GameField* field)
   localPeer.cxn = NULL;
 }
 
+NetworkGame::~NetworkGame() {
+  if (advertiser)
+    delete advertiser;
+  if (discoverer)
+    delete discoverer;
+}
+
 void NetworkGame::setNetIface(NetIface* ifc) throw() {
   iface = ifc;
 }
