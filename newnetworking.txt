@@ -423,7 +423,9 @@ In Internet games, the Internet fields of the globalid are relevant; peers may
 use the LAN or Internet address/port pairs based on rules described below. The
 numeric ID is the userid of the user currently logged into the Abendstern
 Network on the sending peer; the peer name must be the current "friendly name"
-of that user. The format of authentication information is discussed below.
+of that user. The authentication information is a (little-endian) 256-bit
+integer whose value is determined by the Abendstern Network server in a method
+described below.
 
 The rules for choosing which address/port pair to connect to is as follows: If
 the Internet addresses (ignoring ports) of two peers match, they will connect
