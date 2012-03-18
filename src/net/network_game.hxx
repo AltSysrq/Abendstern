@@ -127,7 +127,11 @@ class NetworkGame: public AObject {
   pcgs_t pcgs;
 
   unsigned timeSinceSpuriousPCGQuery;
-  
+
+  //If true, operating in LAN-only mode; only the LAN address/port pairs will
+  //be used, and Internet pairs ignored. If false, the Internet addresses are
+  //used unless rules would indicate to use the LAN address pairs instead.
+  bool lanMode;
 
 public:
   /**
@@ -192,8 +196,9 @@ public:
    * Begins listining for new connections. This is used to start hosting a game.
    *
    * @param ipv6 true if IPv6 should be used, false for IPv4
+   * @param lanMode true if a LAN-only game, false if an Internet game
    */
-  void connectToNothing(bool ipv6) throw();
+  void connectToNothing(bool ipv6, bool lanMode) throw();
   /**
    * Initiates a game using the discovery result at the given index.
    * Begins listening automatically.

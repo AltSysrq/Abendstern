@@ -452,11 +452,13 @@ string NetworkGame::getDiscoveryResults() throw() {
   return oss.str();
 }
 
-void NetworkGame::connectToNothing(bool v6) throw() {
+void NetworkGame::connectToNothing(bool v6, bool lanMode) throw() {
   initialiseListener(v6);
+  this->lanMode = lanMode;
 }
 
 void NetworkGame::connectToLan(const char* ipaddress, unsigned port) throw() {
+  lanMode = true;
   asio::ip::address address;
   //It would be nice if Asio's documentation on from_string actually specified
   //what would happen when the address is invalid (I found this out by trial
