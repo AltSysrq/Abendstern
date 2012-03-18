@@ -116,6 +116,7 @@ class NetworkGame: public AObject {
 
   GameAdvertiser* advertiser;
   GameDiscoverer* discoverer;
+  network_game::NGConnectionListener* listener;
 
   //All sequential (output) text Geräte associated with this NetworkGame
   typedef std::map<NetworkConnection*,network_game::NGSeqTextGeraet*> stgs_t;

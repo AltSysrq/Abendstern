@@ -383,6 +383,8 @@ NetworkGame::~NetworkGame() {
     delete advertiser;
   if (discoverer)
     delete discoverer;
+  if (listener)
+    delete listener;
 }
 
 void NetworkGame::setNetIface(NetIface* ifc) throw() {
@@ -566,7 +568,8 @@ void NetworkGame::receivePCGGeneralQuery(Peer* peer) throw() {
 }
 
 void NetworkGame::initialiseListener(bool ipv6) throw() {
-  //TODO
+  localPeer.gid = *(ipv6? antenna.getGlobalID6() : antenna.getGlobalID4());
+  listener = new network_game::NGConnectionListener(this);
 }
 
 Peer* NetworkGame::createPeer(const asio::ip::udp::endpoint&) throw() {
