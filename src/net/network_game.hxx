@@ -182,8 +182,10 @@ public:
 
   /**
    * Begins listining for new connections. This is used to start hosting a game.
+   *
+   * @param ipv6 true if IPv6 should be used, false for IPv4
    */
-  void connectToNothing() throw();
+  void connectToNothing(bool ipv6) throw();
   /**
    * Initiates a game using the discovery result at the given index.
    * Begins listening automatically.
@@ -233,6 +235,11 @@ private:
   void receivePCGDeclaration(Peer*, const GlobalID&, bool positive) throw();
   void receivePCGQuery(Peer*, const GlobalID&) throw();
   void receivePCGGeneralQuery(Peer*) throw();
+
+  void initialiseListener(bool ipv6) throw();
+  void createPeer(const asio::ip::udp::endpoint&) throw();
+  void createPeer(NetworkConnection* cxn) throw();
+  void connectToPeer(Peer*) throw();
 };
 
 #endif /* NETWORK_GAME_HXX_ */

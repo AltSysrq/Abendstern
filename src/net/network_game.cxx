@@ -429,7 +429,8 @@ string NetworkGame::getDiscoveryResults() throw() {
     string ipa(results[i].peer.address().to_string());
     //Get NTBS from game mode
     strncpy(gameMode, results[i].gameMode, sizeof(gameMode));
-    //TODO: localise game mode
+    //TODO: localise game mode (doing so will also sanitise it of characters
+    //such as \} that would otherwise break the list)
     #ifndef WIN32
     #warning Game mode not localised in NetworkGame::getDiscoveryResults()
     #endif
@@ -441,4 +442,107 @@ string NetworkGame::getDiscoveryResults() throw() {
   }
 
   return oss.str();
+}
+
+void NetworkGame::connectToNothing(bool v6) throw() {
+  initialiseListener(v6);
+}
+
+void NetworkGame::connectToLan(const char* ipaddress, unsigned port) throw() {
+  asio::ip::address address;
+  //It would be nice if Asio's documentation on from_string actually specified
+  //what would happen when the address is invalid (I found this out by trial
+  //and error...)
+  try {
+    address = asio::ip::address::from_string(ipaddress);
+  } catch (asio::system_error err) {
+    //Invalid address
+    lastDisconnectReason = err.what();
+    if (iface)
+      iface->connectionLost(lastDisconnectReason.c_str());
+    return;
+  }
+
+  initialiseListener(address.is_v6());
+  createPeer(asio::ip::udp::endpoint(address, port));
+}
+
+bool NetworkGame::acceptConnection(const Antenna::endpoint& source,
+                                   string& errmsg, string& errl10n)
+throw() {
+  /* If there already exists a NetworkConnection to this endpoint, return true
+   * but do nothing else (this could happen if we opened a NetworkConnection
+   * before updating the NetworkAssembly).
+   *
+   * Otherwise, count the number of connections from the given IP address. If
+   * it is already 4 or greater, deny the connection.
+   *
+   * Also deny the connection if the remote host is using a different IP
+   * version than we are expecting.
+   */
+  unsigned addressCount = 0;
+  if (source.address().is_v6() != (localPeer.gid.ipv == GlobalID::IPv6)) {
+    errmsg = "Wrong IP version";
+    errl10n = "wrong_ip_version";
+    return false;
+  }
+
+  for (unsigned i=0; i < assembly.numConnections(); ++i) {
+    const NetworkConnection* cxn = assembly.getConnection(i);
+    if (cxn->endpoint == source) {
+      //Already have this connection
+      return true;
+    }
+
+    if (cxn->endpoint.address() == source.address())
+      ++addressCount;
+  }
+
+  if (addressCount >= 4)
+    return false;
+
+  //All checks passed
+  NetworkConnection* cxn = new NetworkConnection(&assembly, source, true);
+  assembly.addConnection(cxn);
+  createPeer(cxn);
+  return true;
+}
+
+void NetworkGame::peerIsOverseerReady(Peer* peer) throw() {
+  //TODO
+}
+
+void NetworkGame::receivePCGDeclaration(Peer* peer, const GlobalID& gid,
+                                        bool positive)
+throw() {
+  //TODO
+}
+
+void NetworkGame::receivePCGQuery(Peer* peer, const GlobalID& gid)
+throw() {
+  //TODO
+}
+
+void NetworkGame::receivePCGGeneralQuery(Peer* peer) throw() {
+  //TODO
+}
+
+void NetworkGame::initialiseListener(bool ipv6) throw() {
+  //TODO
+}
+
+void NetworkGame::createPeer(const asio::ip::udp::endpoint&) throw() {
+  //TODO
+}
+
+void NetworkGame::createPeer(NetworkConnection* cxn) throw() {
+  //TODO
+}
+
+void NetworkGame::connectToPeer(Peer* peer) throw() {
+  //TODO
+}
+
+void NetworkGame::update(unsigned et) throw() {
+  //TODO
 }
