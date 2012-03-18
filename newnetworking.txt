@@ -11,7 +11,7 @@ only to byte boundaries. In sub-byte structures, lower bits are listed before
 higher. Floats are represented as IEEE 754-2008 single-precision values, in
 little-endian byte order.
 
-Strings are represented as NUL-terminated byte strings.
+Strings are represented as NUL-terminated byte strings, encoded with UTF-8.
 
 TOP-LEVEL
 All packets begin with the following data:
@@ -153,7 +153,8 @@ Each packet it sends is prefixed with a byte indicating the packet's purpose:
 
 Packet format for STX:
   byte[16]      Protocol version hash
-  string        Application name ("Abendstern")
+  char[16]      Application name ("Abendstern      ")
+  (auxiliarry data)
 An STX requests to open two-way communication between peers. An STX is answered
 with an ACK or an EOT, depending on whether the peers are compatible and willing
 to talk to each other.
@@ -255,50 +256,6 @@ Packets have the following structure:
 
 This device passes user text messages, which do not need strong ordering (and
 are handled quite differently from sequential text in Abendstern).
-
-PEER INFORMATION GERÄT
-Gerät number: 4
-Number per connection: 1
-Requires: AAG
-
-Block structure:
-  byte[4]       Internet IPv4 address
-  uint16[8]     Internet IPv6 address
-  uint16        Internet port
-  byte[4]       LAN IPv4 address
-  uint16[8]     LAN IPv6 address
-  uint16        LAN port
-  uint32        Client number (userid for Internet game, part of LAN IP address
-                for LAN game)
-  byte[32]      Authentication information (provided by Abendstern Network
-                for Internet game, hash of game password for LAN game)
-  byte          Flags
-    0           IP version; 0=IPv4, 1=IPv6
-    1           Game type; 0=Internet, 1=LAN
-    2           bool: ready for remote acceptance evaluation?
-    3           bool: has the peer accepted the remote's information?
-
-Only the addresses matching the IP version used are actually filled out.
-
-In order to be considered part of a game, a Peer must pass acceptance with
-all peers in the game. The process is as follows:
-  1. Local peer fills out data
-  2. Local peer sets the ready-for-acceptance bit
-  3. Remote peer notices ready bit, evaluates information
-  4. If accepted, remote peer sets accepted bit; otherwise, terminates
-     connection
-
-For Internet games, the Abendstern Network provides a base key to authenticate
-with. For authentication, the local peer uses a SHA-256 hash of the following
-text:
-  <local-id><remote-id><base-key>
-where local-id and remote-id are textual representations of the local and remote
-global-unique IDs. The remote peer sends this hash, as well as the local and
-remote IDs, to the Abendstern Network, allowing confirmation of the local peer.
-
-For LAN games, every peer knows the plaintext password. Authentication works
-similarly to Internet games, except the base-key is the plaintext password, and
-peers can validate the authentication themselves.
 
 PEER CONNECTIVITY GERÄT
 Gerät number: 5
@@ -434,3 +391,56 @@ that it can act as the central source of game information. This entails two
 things:
 o It must have received the dats information from the current overseer.
 o It must be connected to all the current peers.
+
+AUXILLIARY DATA in STX PACKETS
+Abendstern adds the following information to an STX packet:
+  <globalid>
+  uint32        Peer numeric ID
+  byte[32]      Authentication information
+  string        Peer name (to end of packet)
+If IPv4 is in use, globalid has the form
+  byte[4]       LAN IP address
+  uint16        LAN port
+  byte[4]       Internet IP address
+  uint16        Internet port
+If IPv6 is in use, globalid has the form
+  uint16[8]     LAN IP address
+  uint16        LAN port
+  uint16[8]     Internet IP address
+  uint16        Internet port
+
+In LAN games, the Internet fields of the globalid are ignored. All peers
+connect to each other using the LAN address/port pairs only. For IPv4, the
+numeric ID is the bitwise complement of (the binary representation of the LAN
+IP address XOR 192.168.0.0). For IPv6, the LAN IP address is split into 4
+32-bit integers (ie, i0 = (addr[0]<<16)|addr[1]; i1 = (addr[2]<<16)|addr[2],
+and so forth); these four integers are XORed together to get the numeric ID.
+The authorisation information is the SHA-256 hash of the plaintext password
+(which is "" if not password-protected) concatenated with the UTF-8-encoded
+peer name.
+
+In Internet games, the Internet fields of the globalid are relevant; peers may
+use the LAN or Internet address/port pairs based on rules described below. The
+numeric ID is the userid of the user currently logged into the Abendstern
+Network on the sending peer; the peer name must be the current "friendly name"
+of that user. The format of authentication information is discussed below.
+
+The rules for choosing which address/port pair to connect to is as follows: If
+the Internet addresses (ignoring ports) of two peers match, they will connect
+via the LAN address/port pairs; otherwise, they will connect on the Internet
+address/port pairs. This method properly handles up to one layer of Network
+Address Translation, while working around routers that ignore packets sent to
+their own Internet addresses from within their LAN.
+
+For every Internet game, the Abendstern Network server generates an RSA private
+key, with p and q being about 128 bits long; they are chosen such that pq fits
+within a 256-bit integer. Every peer connecting to a game is given n=pq; the
+exponent is fixed to be 65537. The server uses the private key corresponding to
+n to encrypt the the "peer signature", which results in a 256-bit integer also
+given to the connecting peer. The latter is used for the authentication data in
+the STX. Peers receiving the authentication information can then verify that
+the public-key-decrypted authentication data matches the peer signature. The
+peer signature is the SHA-256 sum of the peer name, XORed with the binary
+representation of the numeric ID. (This scheme is not intended to be extremely
+secure, only to do a good enough job of preventing unauthenticated users from
+connecting to Internet games.)
