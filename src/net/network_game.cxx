@@ -215,7 +215,6 @@ namespace network_game {
     static const unsigned ipv6size = 2*(8*2+2);
 
   public:
-
     static const unsigned positiveDec = 0,
                           negativeDec = 1,
                           specificQuery = 2,
@@ -516,37 +515,85 @@ throw() {
 }
 
 void NetworkGame::peerIsOverseerReady(Peer* peer) throw() {
-  //TODO
+  peer->overseerReady = true;
+  refreshOverseer();
 }
 
 void NetworkGame::receivePCGDeclaration(Peer* peer, const GlobalID& gid,
                                         bool positive)
 throw() {
-  //TODO
+  Peer* referred = getPeerByGid(gid);
+  if (positive) {
+    if (referred)
+      peer->connectionsFrom.insert(referred);
+    else if (overseer == peer)
+      //Newly discovered peer
+      peer->connectionsFrom.insert(createPeer(gid));
+  } else {
+    if (referred) {
+      //If this is comming from the overseer, take it as an instruction to
+      //disconnect. Otherwise, just record the lost connection.
+      if (overseer == peer)
+        closePeer(peer, 15000); //15-second "ban" to prevent reconnect attempts
+      peer->connectionsFrom.erase(referred);
+    }
+    //Else, we know nothing of this peer, so just ignore.
+  }
 }
 
 void NetworkGame::receivePCGQuery(Peer* peer, const GlobalID& gid)
 throw() {
-  //TODO
+  bool positive = (bool)getPeerByGid(gid);
+  //Broadcast answer to all peers
+  unsigned type = positive?
+    /* G++ for some reason wants to externalise these when used here.
+     * But we can't make them proper constants (eg, with effectively extern
+     * linkage) because we need them to be usable in constexprs.
+     * So we're just substituting the values in by hand for now...
+    network_game::PeerConnectivityGeraet::positiveDec :
+    network_game::PeerConnectivityGeraet::negativeDec;
+    */ 0:1;
+  for (pcgs_t::const_iterator it = pcgs.begin(); it != pcgs.end(); ++it)
+    it->second->sendPacket(type, gid);
 }
 
 void NetworkGame::receivePCGGeneralQuery(Peer* peer) throw() {
-  //TODO
+  //Send responses to sender
+  network_game::PeerConnectivityGeraet* pcg = pcgs[peer->cxn];
+  for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it)
+    pcg->sendPacket(network_game::PeerConnectivityGeraet::positiveDec,
+                    it->second->gid);
 }
 
 void NetworkGame::initialiseListener(bool ipv6) throw() {
   //TODO
 }
 
-void NetworkGame::createPeer(const asio::ip::udp::endpoint&) throw() {
+Peer* NetworkGame::createPeer(const asio::ip::udp::endpoint&) throw() {
   //TODO
 }
 
-void NetworkGame::createPeer(NetworkConnection* cxn) throw() {
+Peer* NetworkGame::createPeer(const GlobalID& gid) throw() {
+  //TODO
+}
+
+Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
   //TODO
 }
 
 void NetworkGame::connectToPeer(Peer* peer) throw() {
+  //TODO
+}
+
+void NetworkGame::closePeer(Peer* peer, unsigned banLength) throw() {
+  //TODO
+}
+
+void NetworkGame::refreshOverseer() throw() {
+  //TODO
+}
+
+Peer* NetworkGame::getPeerByGid(const GlobalID& gid) throw() {
   //TODO
 }
 

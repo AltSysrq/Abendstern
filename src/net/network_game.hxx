@@ -118,7 +118,12 @@ class NetworkGame: public AObject {
   GameDiscoverer* discoverer;
 
   //All sequential (output) text Geräte associated with this NetworkGame
-  std::set<network_game::NGSeqTextGeraet*> stgs;
+  typedef std::map<NetworkConnection*,network_game::NGSeqTextGeraet*> stgs_t;
+  stgs_t stgs;
+  //Same, but for PeerConnectivityGeraete
+  typedef std::map<NetworkConnection*,network_game::PeerConnectivityGeraet*>
+          pcgs_t;
+  pcgs_t pcgs;
 
   unsigned timeSinceSpuriousPCGQuery;
   
@@ -238,10 +243,29 @@ private:
   void receivePCGQuery(Peer*, const GlobalID&) throw();
   void receivePCGGeneralQuery(Peer*) throw();
 
+  //Initialises the ConnectionListener for the given IP version.
   void initialiseListener(bool ipv6) throw();
-  void createPeer(const asio::ip::udp::endpoint&) throw();
-  void createPeer(NetworkConnection* cxn) throw();
+  //Creates a Peer with the given endpoint, and then connects to it
+  //(with connectToPeer())
+  Peer* createPeer(const asio::ip::udp::endpoint&) throw();
+  //Creates a Peer with the given already-existing NetworkConnection
+  Peer* createPeer(NetworkConnection* cxn) throw();
+  //Creates a Peer with the given GlobalID, and then connects to it (with
+  //connectToPeer()).
+  Peer* createPeer(const GlobalID&) throw();
+  //Establishes a new NetworkConnection to the given Peer.
   void connectToPeer(Peer*) throw();
+
+  //Rescans the current Peers to find out who is the current overseer.
+  void refreshOverseer() throw();
+  //Returns a current Peer associated with the given GlobalID, or NULL if none
+  //exists.
+  Peer* getPeerByGid(const GlobalID&) throw();
+
+  //Closes any existing connection to the given Peer, removes references to it,
+  //sends disconnect notifications to other peers, and may take measures to
+  //block reconnects from the peer.
+  void closePeer(Peer*, unsigned banLengthMs=0) throw();
 };
 
 #endif /* NETWORK_GAME_HXX_ */
