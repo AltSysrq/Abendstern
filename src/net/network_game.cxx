@@ -13,6 +13,7 @@
 #include <cstdlib>
 #include <iterator>
 #include <sstream>
+#include <cassert>
 
 #include <asio.hpp>
 
@@ -574,8 +575,32 @@ void NetworkGame::initialiseListener(bool ipv6) throw() {
   listener = new network_game::NGConnectionListener(this);
 }
 
-Peer* NetworkGame::createPeer(const asio::ip::udp::endpoint&) throw() {
-  //TODO
+void NetworkGame::endpointToLanGid(GlobalID& gid,
+                                   const asio::ip::udp::endpoint& endpoint)
+throw() {
+  const asio::ip::address& address = endpoint.address();
+  if (address.is_v4()) {
+    gid.ipv = GlobalID::IPv4;
+    const asio::ip::address_v4 addr(address.to_v4());
+    memcpy(gid.la4, &addr.to_bytes()[0], 4);
+  } else {
+    gid.ipv = GlobalID::IPv6;
+    const asio::ip::address_v6 addr(address.to_v6());
+    const asio::ip::address_v6::bytes_type data(addr.to_bytes());
+    for (unsigned i=0; i<8; ++i)
+      gid.la6[i] = data[i*2] + (data[i*2+1] << 8);
+  }
+  gid.lport = endpoint.port();
+}
+
+Peer* NetworkGame::createPeer(const asio::ip::udp::endpoint& endpoint) throw() {
+  //This should only be called in lanMode.
+  assert(lanMode);
+
+  //Convert to a GlobalID and connect to that.
+  GlobalID gid;
+  endpointToLanGid(gid, endpoint);
+  return createPeer(gid);
 }
 
 Peer* NetworkGame::createPeer(const GlobalID& gid) throw() {

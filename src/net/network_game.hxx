@@ -251,6 +251,9 @@ private:
 
   //Initialises the ConnectionListener for the given IP version.
   void initialiseListener(bool ipv6) throw();
+  //Converts an Asio endpoint to a LAN-only GID
+  static void endpointToLanGid(GlobalID&, const asio::ip::udp::endpoint&)
+  throw();
   //Creates a Peer with the given endpoint, and then connects to it
   //(with connectToPeer())
   Peer* createPeer(const asio::ip::udp::endpoint&) throw();
