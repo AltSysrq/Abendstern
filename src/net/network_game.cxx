@@ -588,7 +588,7 @@ throw() {
     const asio::ip::address_v6 addr(address.to_v6());
     const asio::ip::address_v6::bytes_type data(addr.to_bytes());
     for (unsigned i=0; i<8; ++i)
-      gid.la6[i] = data[i*2] + (data[i*2+1] << 8);
+      gid.la6[i] = data[i*2] | (data[i*2+1] << 8);
   }
   gid.lport = endpoint.port();
 }
