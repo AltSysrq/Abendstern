@@ -374,7 +374,7 @@ NetworkGame::NetworkGame(GameField* field)
   iface(NULL), advertiser(NULL), discoverer(NULL),
   timeSinceSpuriousPCGQuery(0)
 {
-  localPeer.overseerReady=0;
+  localPeer.overseerReady=false;
   localPeer.connectionAttempts=0;
   localPeer.cxn = NULL;
 }
@@ -456,6 +456,8 @@ string NetworkGame::getDiscoveryResults() throw() {
 void NetworkGame::connectToNothing(bool v6, bool lanMode) throw() {
   initialiseListener(v6);
   this->lanMode = lanMode;
+  //Since we need no data from anyone, we are immediately overseer-ready
+  localPeer.overseerReady = true;
 }
 
 void NetworkGame::connectToLan(const char* ipaddress, unsigned port) throw() {
