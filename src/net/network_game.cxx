@@ -613,7 +613,20 @@ Peer* NetworkGame::createPeer(const GlobalID& gid) throw() {
 }
 
 Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
-  //TODO
+  Peer* peer = new Peer;
+  //TODO: For now, just infer the gid from the IP address.
+  #ifndef WIN32
+  #warning NetworkGame::createPeer(NetworkConnection*) does not honour provided GID
+  #endif
+  endpointToLanGid(peer->gid, cxn->endpoint);
+  //TODO: Numeric ID
+  #ifndef WIN32
+  #warning NetworkGame::createPeer(NetworkConnection*) does not set NID
+  #endif
+  peer->overseerReady = false;
+  peer->connectionAttempts = 0;
+  peer->cxn = cxn;
+  peers[cxn] = peer;
 }
 
 void NetworkGame::connectToPeer(Peer* peer) throw() {
