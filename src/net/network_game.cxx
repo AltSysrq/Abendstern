@@ -604,7 +604,12 @@ Peer* NetworkGame::createPeer(const asio::ip::udp::endpoint& endpoint) throw() {
 }
 
 Peer* NetworkGame::createPeer(const GlobalID& gid) throw() {
-  //TODO
+  Peer* peer = new Peer;
+  peer->gid = gid;
+  peer->overseerReady = false;
+  peer->connectionAttempts = 0;
+  peer->cxn = NULL;
+  connectToPeer(peer);
 }
 
 Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
