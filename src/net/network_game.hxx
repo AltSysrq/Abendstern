@@ -274,6 +274,7 @@ private:
   //Closes any existing connection to the given Peer, removes references to it,
   //sends disconnect notifications to other peers, and may take measures to
   //block reconnects from the peer.
+  //Does not delete the Peer.
   void closePeer(Peer*, unsigned banLengthMs=0) throw();
 };
 

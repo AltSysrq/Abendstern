@@ -539,8 +539,9 @@ throw() {
       //If this is comming from the overseer, take it as an instruction to
       //disconnect. Otherwise, just record the lost connection.
       if (overseer == peer)
-        closePeer(peer, 15000); //15-second "ban" to prevent reconnect attempts
+        closePeer(referred, 15000); //15-second "ban" to prevent reconnect attempts
       peer->connectionsFrom.erase(referred);
+      delete referred;
     }
     //Else, we know nothing of this peer, so just ignore.
   }
