@@ -655,7 +655,16 @@ void NetworkGame::refreshOverseer() throw() {
 }
 
 Peer* NetworkGame::getPeerByGid(const GlobalID& gid) throw() {
-  //TODO
+  for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it)
+    if (it->second->gid == gid)
+      return it->second;
+
+  //None of the connected peers, but might be self
+  if (localPeer.gid == gid)
+    return &localPeer;
+
+  //None match
+  return NULL;
 }
 
 void NetworkGame::update(unsigned et) throw() {

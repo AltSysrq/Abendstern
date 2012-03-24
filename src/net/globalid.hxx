@@ -70,6 +70,11 @@ class GlobalID: public AObject {
    *   lan-address:lan-port/internet-address:internet-port
    */
   std::string toString() const;
+
+  //What happened to the default operator== ?
+  bool operator==(const GlobalID& that) const {
+    return !std::memcmp(this, &that, sizeof(GlobalID));
+  }
 };
 
 #endif /* GLOBALID_HXX_ */
