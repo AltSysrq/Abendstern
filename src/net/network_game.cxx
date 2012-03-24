@@ -647,11 +647,33 @@ void NetworkGame::closePeer(Peer* peer, unsigned banLength) throw() {
     pcgs[p->cxn]->sendPacket(network_game::PeerConnectivityGeraet::negativeDec,
                              peer->gid);
   }
+  if (peer == overseer)
+    refreshOverseer();
   //TODO: handle banning
 }
 
 void NetworkGame::refreshOverseer() throw() {
-  //TODO
+  unsigned minid = -1 /* max value */;
+  Peer* os = NULL;
+
+  for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it) {
+    Peer* p = it->second;
+    if (p->overseerReady && (p->nid < minid || !os)) {
+      os = p;
+      minid = p->nid;
+    }
+  }
+
+  //Local peer is overseer if it has a lower NID or if no other peer is
+  //ready (in which case os is already NULL).
+  if (localPeer.nid < minid)
+    os = NULL;
+
+  if (os != overseer) {
+    overseer = os;
+    if (iface)
+      iface->setOverseer(os);
+  }
 }
 
 Peer* NetworkGame::getPeerByGid(const GlobalID& gid) throw() {
