@@ -28,6 +28,7 @@
 #include "globalid.hxx"
 #include "game_advertiser.hxx"
 #include "game_discoverer.hxx"
+#include "synchronous_control_geraet.hxx"
 
 using namespace std;
 
@@ -637,7 +638,16 @@ void NetworkGame::connectToPeer(Peer* peer) throw() {
 }
 
 void NetworkGame::closePeer(Peer* peer, unsigned banLength) throw() {
-  //TODO
+  peer->cxn->scg->closeConnection();
+  peers.erase(peer->cxn);
+  //Remove references and send notifications
+  for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it) {
+    Peer* p = it->second;
+    p->connectionsFrom.erase(peer);
+    pcgs[p->cxn]->sendPacket(network_game::PeerConnectivityGeraet::negativeDec,
+                             peer->gid);
+  }
+  //TODO: handle banning
 }
 
 void NetworkGame::refreshOverseer() throw() {
