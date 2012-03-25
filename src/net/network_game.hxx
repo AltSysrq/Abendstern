@@ -99,6 +99,15 @@ class NetworkGame: public AObject {
   friend class network_game::NGSeqTextGeraet;
   friend class network_game::PeerConnectivityGeraet;
 
+  //These must be above the assembly so that they are destroyed later!
+  //All sequential (output) text Geräte associated with this NetworkGame
+  typedef std::map<NetworkConnection*,network_game::NGSeqTextGeraet*> stgs_t;
+  stgs_t stgs;
+  //Same, but for PeerConnectivityGeraete
+  typedef std::map<NetworkConnection*,network_game::PeerConnectivityGeraet*>
+          pcgs_t;
+  pcgs_t pcgs;
+
   //The reason given (localised) for the most recent disconnect
   std::string lastDisconnectReason;
   //Map of NetworkConnection*s to Peer*s.
@@ -117,14 +126,6 @@ class NetworkGame: public AObject {
   GameAdvertiser* advertiser;
   GameDiscoverer* discoverer;
   network_game::NGConnectionListener* listener;
-
-  //All sequential (output) text Geräte associated with this NetworkGame
-  typedef std::map<NetworkConnection*,network_game::NGSeqTextGeraet*> stgs_t;
-  stgs_t stgs;
-  //Same, but for PeerConnectivityGeraete
-  typedef std::map<NetworkConnection*,network_game::PeerConnectivityGeraet*>
-          pcgs_t;
-  pcgs_t pcgs;
 
   unsigned timeSinceSpuriousPCGQuery;
 
@@ -276,6 +277,9 @@ private:
   //block reconnects from the peer.
   //Does not delete the Peer.
   void closePeer(Peer*, unsigned banLengthMs=0) throw();
+
+  //Initialises the given Connection with any needed Geräte.
+  void initCxn(NetworkConnection*) throw();
 };
 
 #endif /* NETWORK_GAME_HXX_ */

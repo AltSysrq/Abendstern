@@ -74,10 +74,12 @@ namespace network_game {
       game(game_)
     {
       geraete[cxn] = this;
+      game->stgs[cxn] = this;
     }
 
     virtual ~NGSeqTextGeraet() {
       geraete.erase(cxn);
+      game->stgs.erase(cxn);
     }
 
     virtual void receiveText(string txt) noth {
@@ -225,16 +227,18 @@ namespace network_game {
 
     static const NetworkConnection::geraet_num num;
 
-    PeerConnectivityGeraet(NetworkConnection* cxn, NetworkGame* game_)
+    PeerConnectivityGeraet(NetworkGame* game_, NetworkConnection* cxn)
     : AAGReceiver(cxn->aag, InputNetworkGeraet::DSEternal),
       ReliableSender(cxn->aag, OutputNetworkGeraet::DSBidir),
       game(game_)
     {
       geraete[cxn] = this;
+      game->pcgs[cxn] = this;
     }
 
     virtual ~PeerConnectivityGeraet() {
       geraete.erase(cxn);
+      game->pcgs.erase(cxn);
     }
 
     void sendPacket(unsigned type, const GlobalID& gid) throw() {
@@ -633,6 +637,7 @@ Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
   peer->connectionAttempts = 0;
   peer->cxn = cxn;
   peers[cxn] = peer;
+  initCxn(cxn);
   return peer;
 }
 
@@ -672,6 +677,7 @@ void NetworkGame::connectToPeer(Peer* peer) throw() {
   NetworkConnection* cxn = new NetworkConnection(&assembly, endpoint, false);
   peer->cxn = cxn;
   peers[cxn] = peer;
+  initCxn(cxn);
 }
 
 void NetworkGame::closePeer(Peer* peer, unsigned banLength) throw() {
@@ -724,6 +730,13 @@ Peer* NetworkGame::getPeerByGid(const GlobalID& gid) throw() {
 
   //None match
   return NULL;
+}
+
+void NetworkGame::initCxn(NetworkConnection* cxn) throw() {
+  cxn->scg->openChannel(new network_game::NGSeqTextGeraet(this, cxn),
+                        network_game::NGSeqTextGeraet::num);
+  cxn->scg->openChannel(new network_game::PeerConnectivityGeraet(this, cxn),
+                        network_game::PeerConnectivityGeraet::num);
 }
 
 void NetworkGame::update(unsigned et) throw() {
