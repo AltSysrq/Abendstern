@@ -14,6 +14,7 @@
 #include <iterator>
 #include <sstream>
 #include <cassert>
+#include <algorithm>
 
 #include <asio.hpp>
 
@@ -634,7 +635,41 @@ Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
 }
 
 void NetworkGame::connectToPeer(Peer* peer) throw() {
-  //TODO
+  assert(peer->gid.ipv == localPeer.gid.ipv);
+  const GlobalID& pgid(peer->gid), & lgid(localPeer.gid);
+  unsigned short port;
+  asio::ip::address addr;
+  if (pgid.ipv == GlobalID::IPv4) {
+    const unsigned char* abytes = (lanMode || !memcmp(pgid.ia4, lgid.ia4,
+                                                      sizeof(pgid.ia4))?
+                                   pgid.la4 : pgid.ia4);
+    port = (lanMode || !memcmp(pgid.ia4, lgid.ia4, sizeof(pgid.ia4))?
+            pgid.lport : pgid.iport);
+    //Why doesn't boost::array have a constructor taking a native array?
+    asio::ip::address_v4::bytes_type ba;
+    memcpy(&ba[0], abytes, 4);
+    addr = asio::ip::address_v4(ba);
+  } else {
+    const unsigned short* abytes = (lanMode || !memcmp(pgid.ia6, lgid.ia6,
+                                                       sizeof(pgid.ia6))?
+                                    pgid.la6 : pgid.ia6);
+    port = (lanMode || !memcmp(pgid.ia6, lgid.ia6, sizeof(pgid.ia6))?
+            pgid.lport : pgid.iport);
+    //Why doesn't boost::array have a constructor taking a native array?
+    asio::ip::address_v6::bytes_type ba;
+    memcpy(&ba[0], abytes, 16);
+    #if SDL_BYTEORDER == SDL_LIL_ENDIAN
+    //Convert to NBO
+    for (unsigned i = 0; i < 16; ++i)
+      swap(ba[i], ba[i+1]);
+    #endif
+    addr = asio::ip::address_v6(ba);
+  }
+
+  asio::ip::udp::endpoint endpoint(addr, port);
+  NetworkConnection* cxn = new NetworkConnection(&assembly, endpoint, false);
+  peer->cxn = cxn;
+  peers[cxn] = peer;
 }
 
 void NetworkGame::closePeer(Peer* peer, unsigned banLength) throw() {
