@@ -615,6 +615,7 @@ Peer* NetworkGame::createPeer(const GlobalID& gid) throw() {
   peer->connectionAttempts = 0;
   peer->cxn = NULL;
   connectToPeer(peer);
+  return peer;
 }
 
 Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
@@ -632,6 +633,7 @@ Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
   peer->connectionAttempts = 0;
   peer->cxn = cxn;
   peers[cxn] = peer;
+  return peer;
 }
 
 void NetworkGame::connectToPeer(Peer* peer) throw() {
