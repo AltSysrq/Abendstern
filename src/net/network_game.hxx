@@ -276,7 +276,8 @@ private:
   //sends disconnect notifications to other peers, and may take measures to
   //block reconnects from the peer.
   //Does not delete the Peer.
-  void closePeer(Peer*, unsigned banLengthMs=0) throw();
+  void closePeer(Peer*, unsigned banLengthMs=0, bool closeConnection = true)
+  throw();
 
   //Initialises the given Connection with any needed Geräte.
   void initCxn(NetworkConnection*) throw();

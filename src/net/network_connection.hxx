@@ -198,6 +198,11 @@ public:
    */
   Status getStatus() const noth { return status; }
 
+  /**
+   * Promotes status from Established to Ready.
+   */
+  void setReady() noth;
+
   virtual void process(const Antenna::endpoint& source,
                        Antenna* antenna, Tuner* tuner,
                        const byte* data, unsigned len) noth;

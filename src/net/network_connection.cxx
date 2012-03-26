@@ -379,3 +379,8 @@ void NetworkConnection::objectRemoved(GameObject* go) throw() {
 unsigned NetworkConnection::getDuration() const throw() {
   return SDL_GetTicks() - connectionStart;
 }
+
+void NetworkConnection::setReady() noth {
+  assert(status == Established);
+  status = Ready;
+}

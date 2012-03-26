@@ -680,8 +680,10 @@ void NetworkGame::connectToPeer(Peer* peer) throw() {
   initCxn(cxn);
 }
 
-void NetworkGame::closePeer(Peer* peer, unsigned banLength) throw() {
-  peer->cxn->scg->closeConnection();
+void NetworkGame::closePeer(Peer* peer, unsigned banLength, bool closeCxn)
+throw() {
+  if (closeCxn)
+    peer->cxn->scg->closeConnection();
   peers.erase(peer->cxn);
   //Remove references and send notifications
   for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it) {
@@ -740,5 +742,31 @@ void NetworkGame::initCxn(NetworkConnection* cxn) throw() {
 }
 
 void NetworkGame::update(unsigned et) throw() {
-  //TODO
+  assembly.update(et);
+
+  //Reap zombies
+  //TODO: Attempt reconnects
+  list<Peer*> zombies;
+  for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it) {
+    if (it->first->getStatus() == NetworkConnection::Zombie) {
+      lastDisconnectReason = it->first->getDisconnectReason();
+      zombies.push_back(it->second);
+    }
+  }
+  while (!zombies.empty()) {
+    closePeer(zombies.front(), 0, false);
+    delete zombies.front();
+    zombies.pop_front();
+  }
+
+  //Promote overseer-ready Peers whose connections are Established to Ready
+  for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it) {
+    if (it->first->getStatus() == NetworkConnection::Established
+    &&  it->second->overseerReady) {
+      it->first->setReady();
+    }
+  }
+
+  //TODO: Spurious PCG requests
+  //TODO: Kick peers that are chronically missing connections
 }
