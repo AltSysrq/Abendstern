@@ -279,8 +279,9 @@ private:
   void closePeer(Peer*, unsigned banLengthMs=0, bool closeConnection = true)
   throw();
 
-  //Initialises the given Connection with any needed Geräte.
-  void initCxn(NetworkConnection*) throw();
+  //Initialises the given Connection with any needed Geräte, and performs any
+  //other needed initial actions.
+  void initCxn(NetworkConnection*, Peer*) throw();
 };
 
 #endif /* NETWORK_GAME_HXX_ */

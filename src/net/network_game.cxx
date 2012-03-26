@@ -637,7 +637,7 @@ Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
   peer->connectionAttempts = 0;
   peer->cxn = cxn;
   peers[cxn] = peer;
-  initCxn(cxn);
+  initCxn(cxn, peer);
   return peer;
 }
 
@@ -677,7 +677,7 @@ void NetworkGame::connectToPeer(Peer* peer) throw() {
   NetworkConnection* cxn = new NetworkConnection(&assembly, endpoint, false);
   peer->cxn = cxn;
   peers[cxn] = peer;
-  initCxn(cxn);
+  initCxn(cxn, peer);
 }
 
 void NetworkGame::closePeer(Peer* peer, unsigned banLength, bool closeCxn)
@@ -734,11 +734,15 @@ Peer* NetworkGame::getPeerByGid(const GlobalID& gid) throw() {
   return NULL;
 }
 
-void NetworkGame::initCxn(NetworkConnection* cxn) throw() {
+void NetworkGame::initCxn(NetworkConnection* cxn, Peer* peer) throw() {
   cxn->scg->openChannel(new network_game::NGSeqTextGeraet(this, cxn),
                         network_game::NGSeqTextGeraet::num);
   cxn->scg->openChannel(new network_game::PeerConnectivityGeraet(this, cxn),
                         network_game::PeerConnectivityGeraet::num);
+  //Send general query to peer to find out who it is connected to.
+  //First, clear the list since we'll be getting a full list.
+  peer->connectionsFrom.clear();
+  pcgs[cxn]->sendGeneralQuery();
 }
 
 void NetworkGame::update(unsigned et) throw() {
