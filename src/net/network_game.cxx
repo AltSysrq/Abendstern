@@ -120,7 +120,8 @@ namespace network_game {
 
         case 's':
           if (game->iface && game->overseer == game->peers[cxn])
-            game->iface->alterDats(extension.c_str());
+            if (game->iface->alterDats(extension.c_str()))
+              game->becomeOverseerReady();
           break;
 
         case 'p':
@@ -743,6 +744,17 @@ void NetworkGame::initCxn(NetworkConnection* cxn, Peer* peer) throw() {
   //First, clear the list since we'll be getting a full list.
   peer->connectionsFrom.clear();
   pcgs[cxn]->sendGeneralQuery();
+  //If overseer-ready, notify them
+  if (localPeer.overseerReady)
+    stgs[cxn]->sendReady();
+}
+
+void NetworkGame::becomeOverseerReady() throw() {
+  if (!localPeer.overseerReady) {
+    localPeer.overseerReady = true;
+    for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it)
+      stgs[it->first]->sendReady();
+  }
 }
 
 void NetworkGame::update(unsigned et) throw() {

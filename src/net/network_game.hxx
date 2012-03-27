@@ -272,6 +272,10 @@ private:
   //exists.
   Peer* getPeerByGid(const GlobalID&) throw();
 
+  //Marks the local peer as overseer-ready and notifies other peers of the
+  //change
+  void becomeOverseerReady() throw();
+  
   //Closes any existing connection to the given Peer, removes references to it,
   //sends disconnect notifications to other peers, and may take measures to
   //block reconnects from the peer.
