@@ -55,7 +55,7 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
                                      const Antenna::endpoint& endpoint_,
                                      bool incomming)
 : field(assembly_->field->width, assembly_->field->height),
-  nextOutSeq(incomming? 0 : 1),
+  nextOutSeq(0),
   greatestSeq(0),
   latency(128),
   lastIncommingTime(SDL_GetTicks()),

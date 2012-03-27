@@ -30,11 +30,11 @@ SynchronousControlGeraet::SynchronousControlGeraet(NetworkConnection* cxn_,
   OutputNetworkGeraet(cxn_, OutputNetworkGeraet::DSIntrinsic),
   lastXonLen(0),
   lastXofLen(0),
-//If outgoing, set timeSinceTxn to a high value so we "retransmit"
-//the STX on the next call to update().
-  timeSinceTxn(incomming? 0 : 99999),
+  //Set timeSinceTxn to a high value so we "retransmit"
+  //the STX on the next call to update().
+  timeSinceTxn(99999),
   lastPackOutSeq(0),
-  lastPackOutType(incomming? 0 : STX)
+  lastPackOutType(STX)
 {
   setChannel(0);
   for (NetworkConnection::channel chan=1; chan != 0; ++chan)
@@ -137,9 +137,6 @@ throw() {
             break;
 
           case STX:
-            //Connection established
-            if (cxn->status == NetworkConnection::Connecting)
-              cxn->status = NetworkConnection::Established;
             lastPackOutType = 0;
             break;
 
@@ -182,6 +179,9 @@ throw() {
     } break;
 
     case STX: {
+      //Connection established
+      if (cxn->status == NetworkConnection::Connecting)
+        cxn->status = NetworkConnection::Established;
       //Already validated if the first packet, so just reacknowledge.
       //(Don't bother checking for it during a connection.)
       transmitAck(seq);
