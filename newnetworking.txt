@@ -154,10 +154,13 @@ Each packet it sends is prefixed with a byte indicating the packet's purpose:
 Packet format for STX:
   byte[16]      Protocol version hash
   char[16]      Application name ("Abendstern      ")
-  (auxiliarry data)
+  (auxiliary data)
 An STX requests to open two-way communication between peers. An STX is answered
 with an ACK or an EOT, depending on whether the peers are compatible and willing
 to talk to each other.
+
+Note that the receiving side ALSO sends a STX packet so that both sides get the
+required auxiliary data.
 
 Packet format for EOT:
   string        Disconnect reason
