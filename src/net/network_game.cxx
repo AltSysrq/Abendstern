@@ -747,6 +747,10 @@ void NetworkGame::initCxn(NetworkConnection* cxn, Peer* peer) throw() {
   //If overseer-ready, notify them
   if (localPeer.overseerReady)
     stgs[cxn]->sendReady();
+
+  //Indicate game mode if appropriate
+  if (iface && !overseer && localPeer.overseerReady)
+    stgs[cxn]->sendMode(iface->getGameMode());
 }
 
 void NetworkGame::becomeOverseerReady() throw() {
@@ -786,4 +790,12 @@ void NetworkGame::update(unsigned et) throw() {
 
   //TODO: Spurious PCG requests
   //TODO: Kick peers that are chronically missing connections
+
+  //Maintain the advertiser, if present.
+  if (advertiser) {
+    advertiser->setPeerCount(peers.size()+1);
+    advertiser->setOverseerId(overseer? overseer->nid : localPeer.nid);
+    if (iface)
+      advertiser->setGameMode(iface->getGameMode());
+  }
 }

@@ -82,6 +82,9 @@ public:
 
   ///Called when a game mode alteration is received
   virtual void setGameMode(const char*) = 0;
+  ///Returns the current game mode string; the first four characters must be a
+  ///string appropriate for the game advertiser.
+  virtual const char* getGameMode() = 0;
 
   ///Called when all network connectivity has been lost, with the given reason.
   virtual void connectionLost(const char*) = 0;
