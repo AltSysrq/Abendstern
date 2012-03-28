@@ -754,6 +754,7 @@ void NetworkGame::becomeOverseerReady() throw() {
     localPeer.overseerReady = true;
     for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it)
       stgs[it->first]->sendReady();
+    refreshOverseer();
   }
 }
 
