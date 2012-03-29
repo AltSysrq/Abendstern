@@ -180,8 +180,12 @@ throw() {
 
     case STX: {
       //Connection established
-      if (cxn->status == NetworkConnection::Connecting)
+      if (cxn->status == NetworkConnection::Connecting) {
         cxn->status = NetworkConnection::Established;
+        if (len > sizeof(protocolHash) + sizeof(applicationName))
+          auxData.assign(data+sizeof(protocolHash)+sizeof(applicationName),
+                         data+len);
+      }
       //Already validated if the first packet, so just reacknowledge.
       //(Don't bother checking for it during a connection.)
       transmitAck(seq);
@@ -345,11 +349,15 @@ void SynchronousControlGeraet::update(unsigned et) throw() {
 
 void SynchronousControlGeraet::transmitStx() throw() {
   //STX must always have a SEQ of zero
-  byte stx[5+sizeof(protocolHash)+sizeof(applicationName)] = {0,0,0,0,STX};
+  byte stx[5+sizeof(protocolHash)+sizeof(applicationName)+256] =
+    {0,0,0,0,STX};
   //For now, assume hash is zero
   memcpy(stx+5, protocolHash, sizeof(protocolHash));
   memcpy(stx+5+sizeof(protocolHash), applicationName, sizeof(applicationName));
-  cxn->send(stx, sizeof(stx));
+  memcpy(stx+5+sizeof(protocolHash)+sizeof(applicationName),
+         &auxDataOut[0], auxDataOut.size());
+  cxn->send(stx,
+            5+sizeof(protocolHash)+sizeof(applicationName)+auxDataOut.size());
   lastPackOutType = STX;
   lastPackOutSeq = 0;
   timeSinceTxn = 0;

@@ -8,6 +8,7 @@
 #define CONNECTION_LISTENER_HXX_
 
 #include <string>
+#include <vector>
 
 #include "packet_processor.hxx"
 
@@ -32,6 +33,11 @@ public:
                        const byte* data, unsigned len) noth;
 
 protected:
+  /**
+   * Contains the auxilliary data contained in the most recent STX received.
+   */
+  std::vector<byte> auxData;
+
   /**
    * Constructs the ConnectionListener, attaching it as a trigger
    * to the given Tuner.
