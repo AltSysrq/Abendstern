@@ -152,7 +152,7 @@ Each packet it sends is prefixed with a byte indicating the packet's purpose:
   0x13  XOF     Close channel(s)
 
 Packet format for STX:
-  byte[16]      Protocol version hash
+  byte[32]      Protocol version hash
   char[16]      Application name ("Abendstern      ")
   (auxiliary data)
 An STX requests to open two-way communication between peers. An STX is answered
