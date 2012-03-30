@@ -88,6 +88,8 @@ class TestMode {
     if {"WINDOWS" == $::PLATFORM} {
       $main add [new gui::Button [_ T a update_abendstern] "$app setMode \[new SelfUpdater\]"]
     }
+    $main add [new gui::Button "E\a&xperimental LAN Game" \
+                   "$app setSubState \[new NetworkTest default\]"]
     set quit [new gui::Button [_ A gui quit] "$app configure -retval \[new BootManager shutdown\]"]
     $quit setCancel
     $main add $quit
