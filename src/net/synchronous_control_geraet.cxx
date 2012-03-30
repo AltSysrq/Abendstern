@@ -182,8 +182,8 @@ throw() {
       //Connection established
       if (cxn->status == NetworkConnection::Connecting) {
         cxn->status = NetworkConnection::Established;
-        if (len > sizeof(protocolHash) + sizeof(applicationName))
-          auxData.assign(data+sizeof(protocolHash)+sizeof(applicationName),
+        if (len > sizeof(protocolHash) + sizeof(applicationName)+1)
+          auxData.assign(data+sizeof(protocolHash)+sizeof(applicationName)+1,
                          data+len);
       }
       //Already validated if the first packet, so just reacknowledge.
