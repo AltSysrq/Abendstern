@@ -488,6 +488,12 @@ void NetworkGame::connectToLan(const char* ipaddress, unsigned port) throw() {
   createPeer(asio::ip::udp::endpoint(address, port));
 }
 
+void NetworkGame::connectToDiscovery(unsigned ix) throw() {
+  asio::ip::udp::endpoint endpoint = discoverer->getResults()[ix].peer;
+  initialiseListener(endpoint.address().is_v6());
+  createPeer(endpoint);
+}
+
 bool NetworkGame::acceptConnection(const Antenna::endpoint& source,
                                    string& errmsg, string& errl10n,
                                    const std::vector<byte>& auxData)

@@ -1222,7 +1222,6 @@ cxx src/net/network_test.hxx
 unsafe {
   class final NetworkTest TestState {
     constructor default
-    fun void connect {} cstr unsigned
   }
 }
 

@@ -60,7 +60,7 @@ public:
 /**
  * Abstract class used to relay events to the Tcl game system.
  */
-class NetIface: public AObject {
+class NetIface/*: public AObject*/ {
 public:
   ///Called when the given Peer has been created
   virtual void addPeer(Peer*) = 0;
