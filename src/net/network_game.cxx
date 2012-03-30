@@ -793,6 +793,8 @@ throw() {
 
 void NetworkGame::update(unsigned et) throw() {
   assembly.update(et);
+  if (discoverer)
+    discoverer->poll(&antenna);
 
   //Reap zombies
   //TODO: Attempt reconnects
