@@ -394,6 +394,10 @@ NetworkGame::~NetworkGame() {
     delete discoverer;
   if (listener)
     delete listener;
+
+  //Close all open connections
+  while (!peers.empty())
+    closePeer(peers.begin()->second);
 }
 
 void NetworkGame::setNetIface(NetIface* ifc) throw() {
@@ -556,10 +560,12 @@ throw() {
     if (referred) {
       //If this is comming from the overseer, take it as an instruction to
       //disconnect. Otherwise, just record the lost connection.
-      if (overseer == peer)
+      if (overseer == peer) {
         closePeer(referred, 15000); //15-second "ban" to prevent reconnects
-      peer->connectionsFrom.erase(referred);
-      delete referred;
+        delete referred;
+      } else {
+        peer->connectionsFrom.erase(referred);
+      }
     }
     //Else, we know nothing of this peer, so just ignore.
   }
@@ -732,6 +738,10 @@ void NetworkGame::refreshOverseer() throw() {
     if (iface)
       iface->setOverseer(os);
   }
+  cout << "Overseer: " << overseer;
+  if (overseer)
+    cout << " (at " << overseer->cxn->endpoint << ")";
+  cout << endl;
 }
 
 Peer* NetworkGame::getPeerByGid(const GlobalID& gid) throw() {
