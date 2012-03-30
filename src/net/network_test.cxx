@@ -53,6 +53,7 @@ NetworkTest::NetworkTest()
     game.connectToNothing(false, true);
 
   game.setAdvertising("TEST");
+  game.becomeOverseerReady();
 }
 
 NetworkTest::~NetworkTest() {

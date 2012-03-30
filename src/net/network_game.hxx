@@ -104,6 +104,7 @@ class NetworkGame: public AObject {
   friend class network_game::NGConnectionListener;
   friend class network_game::NGSeqTextGeraet;
   friend class network_game::PeerConnectivityGeraet;
+  friend class NetworkTest;
 
   //These must be above the assembly so that they are destroyed later!
   //All sequential (output) text Geräte associated with this NetworkGame

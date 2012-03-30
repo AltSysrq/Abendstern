@@ -55,7 +55,7 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
                                      const Antenna::endpoint& endpoint_,
                                      bool incomming)
 : field(assembly_->field->width, assembly_->field->height),
-  nextOutSeq(0),
+  nextOutSeq(1), //The openning STX will have seq 0
   greatestSeq(0),
   latency(128),
   lastIncommingTime(SDL_GetTicks()),
