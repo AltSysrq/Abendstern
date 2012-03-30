@@ -696,6 +696,7 @@ void NetworkGame::closePeer(Peer* peer, unsigned banLength, bool closeCxn)
 throw() {
   if (closeCxn)
     peer->cxn->scg->closeConnection();
+  assembly.removeConnection(peer->cxn);
   peers.erase(peer->cxn);
   //Remove references and send notifications
   for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it) {
