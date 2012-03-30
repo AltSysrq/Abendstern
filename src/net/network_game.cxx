@@ -532,7 +532,6 @@ throw() {
 
   //All checks passed
   NetworkConnection* cxn = new NetworkConnection(&assembly, source, true);
-  assembly.addConnection(cxn);
   Peer* peer = createPeer(cxn);
   acceptStxAux(auxData, peer);
   return true;
@@ -748,6 +747,8 @@ Peer* NetworkGame::getPeerByGid(const GlobalID& gid) throw() {
 }
 
 void NetworkGame::initCxn(NetworkConnection* cxn, Peer* peer) throw() {
+  cout << "Init cxn: " << cxn->endpoint << endl;
+  assembly.addConnection(cxn);
   cxn->scg->openChannel(new network_game::NGSeqTextGeraet(this, cxn),
                         network_game::NGSeqTextGeraet::num);
   cxn->scg->openChannel(new network_game::PeerConnectivityGeraet(this, cxn),
