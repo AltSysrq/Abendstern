@@ -491,6 +491,7 @@ void NetworkGame::connectToLan(const char* ipaddress, unsigned port) throw() {
 void NetworkGame::connectToDiscovery(unsigned ix) throw() {
   asio::ip::udp::endpoint endpoint = discoverer->getResults()[ix].peer;
   initialiseListener(endpoint.address().is_v6());
+  lanMode = true;
   createPeer(endpoint);
 }
 
