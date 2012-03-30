@@ -48,7 +48,7 @@ namespace network_game {
                                   Antenna* antenna, Tuner* tuner,
                                   string& errmsg, string& errl10n)
     noth {
-      return game->acceptConnection(source, errmsg, errl10n);
+      return game->acceptConnection(source, errmsg, errl10n, auxData);
     }
   };
 
@@ -384,6 +384,7 @@ NetworkGame::NetworkGame(GameField* field)
   localPeer.overseerReady=false;
   localPeer.connectionAttempts=0;
   localPeer.cxn = NULL;
+  localPeer.nid = rand() ^ (rand() << 16);
 }
 
 NetworkGame::~NetworkGame() {
@@ -488,7 +489,8 @@ void NetworkGame::connectToLan(const char* ipaddress, unsigned port) throw() {
 }
 
 bool NetworkGame::acceptConnection(const Antenna::endpoint& source,
-                                   string& errmsg, string& errl10n)
+                                   string& errmsg, string& errl10n,
+                                   const std::vector<byte>& auxData)
 throw() {
   /* If there already exists a NetworkConnection to this endpoint, return true
    * but do nothing else (this could happen if we opened a NetworkConnection
@@ -524,7 +526,8 @@ throw() {
   //All checks passed
   NetworkConnection* cxn = new NetworkConnection(&assembly, source, true);
   assembly.addConnection(cxn);
-  createPeer(cxn);
+  Peer* peer = createPeer(cxn);
+  acceptStxAux(auxData, peer);
   return true;
 }
 
@@ -548,7 +551,7 @@ throw() {
       //If this is comming from the overseer, take it as an instruction to
       //disconnect. Otherwise, just record the lost connection.
       if (overseer == peer)
-        closePeer(referred, 15000); //15-second "ban" to prevent reconnect attempts
+        closePeer(referred, 15000); //15-second "ban" to prevent reconnects
       peer->connectionsFrom.erase(referred);
       delete referred;
     }
@@ -619,6 +622,7 @@ Peer* NetworkGame::createPeer(const GlobalID& gid) throw() {
   peer->overseerReady = false;
   peer->connectionAttempts = 0;
   peer->cxn = NULL;
+  peer->receivedStx = false;
   connectToPeer(peer);
   return peer;
 }
@@ -638,6 +642,7 @@ Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
   peer->connectionAttempts = 0;
   peer->cxn = cxn;
   peers[cxn] = peer;
+  peer->receivedStx = true;
   initCxn(cxn, peer);
   return peer;
 }
@@ -751,6 +756,12 @@ void NetworkGame::initCxn(NetworkConnection* cxn, Peer* peer) throw() {
   //Indicate game mode if appropriate
   if (iface && !overseer && localPeer.overseerReady)
     stgs[cxn]->sendMode(iface->getGameMode());
+
+  //Set outgoing STX auxilliary data
+  byte auxdat[4];
+  byte* auxout = auxdat;
+  io::write(auxout, localPeer.nid);
+  cxn->scg->setAuxDataOut(auxdat, auxout);
 }
 
 void NetworkGame::becomeOverseerReady() throw() {
@@ -760,6 +771,18 @@ void NetworkGame::becomeOverseerReady() throw() {
       stgs[it->first]->sendReady();
     refreshOverseer();
   }
+}
+
+void NetworkGame::acceptStxAux(const std::vector<byte>& auxData, Peer* peer)
+throw() {
+  if (auxData.size() != 4) {
+    closePeer(peer);
+    return;
+  }
+
+  const byte* dat = &auxData[0];
+  io::read(dat, peer->nid);
+  peer->receivedStx = true;
 }
 
 void NetworkGame::update(unsigned et) throw() {
@@ -778,6 +801,16 @@ void NetworkGame::update(unsigned et) throw() {
     closePeer(zombies.front(), 0, false);
     delete zombies.front();
     zombies.pop_front();
+  }
+
+  //Ensure that all Established peers have valid STX auxilliary data
+  {
+    //Copy since the acceptStxAux() function may modify peers
+    peers_t peers(this->peers);
+    for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it)
+      if (it->first->getStatus() == NetworkConnection::Established
+      &&  !it->second->receivedStx)
+        acceptStxAux(it->first->scg->getAuxData(), it->second);
   }
 
   //Promote overseer-ready Peers whose connections are Established to Ready

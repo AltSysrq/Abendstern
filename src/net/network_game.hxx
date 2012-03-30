@@ -11,6 +11,7 @@
 #include <string>
 #include <map>
 #include <set>
+#include <vector>
 
 #include "src/core/aobject.hxx"
 #include "globalid.hxx"
@@ -49,6 +50,8 @@ public:
   unsigned connectionAttempts;
   ///The current NetworkConnection associated with this peer
   NetworkConnection* cxn;
+  ///Whether an STX packet has been received and accepted
+  bool receivedStx;
 
   ///The Peers this Peer has a connection FROM
   std::set<Peer*> connectionsFrom;
@@ -244,7 +247,8 @@ public:
 
 private:
   bool acceptConnection(const Antenna::endpoint& source,
-                        std::string&, std::string&)
+                        std::string&, std::string&,
+                        const std::vector<byte>&)
   throw();
 
   void peerIsOverseerReady(Peer*) throw();
@@ -289,6 +293,10 @@ private:
   //Initialises the given Connection with any needed Geräte, and performs any
   //other needed initial actions.
   void initCxn(NetworkConnection*, Peer*) throw();
+
+  //Interprets the STX auxilliary data given; if it is acceptable, sets fields
+  //in the Peer; otherwise, closes the peer.
+  void acceptStxAux(const std::vector<byte>&, Peer*) throw();
 };
 
 #endif /* NETWORK_GAME_HXX_ */
