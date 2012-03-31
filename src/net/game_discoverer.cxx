@@ -7,6 +7,7 @@
 
 #include <cstring>
 #include <iostream>
+#include <algorithm>
 
 #include <SDL.h>
 
@@ -24,8 +25,19 @@ static const byte trigger[] = {
   'A', 'b', 'e', 'n', 'd', 's', 'p', 'i', 'e', 'l',
 };
 
-GameDiscoverer::GameDiscoverer(Tuner* tuner) {
+static bool resultLessThan(const GameDiscoverer::Result& a,
+                           const GameDiscoverer::Result& b) {
+  return a.peerCount > b.peerCount;
+}
+
+GameDiscoverer::GameDiscoverer(Tuner* tuner_)
+: tuner(tuner_),  nextBroadcast(-1 /* max value */), currentTry(CYCLE_COUNT)
+{
   tuner->trigger(trigger, sizeof(trigger), this);
+}
+
+GameDiscoverer::~GameDiscoverer() {
+  tuner->untrigger(trigger, sizeof(trigger));
 }
 
 void GameDiscoverer::start() noth {
@@ -120,18 +132,5 @@ noth {
   res.peerCount = peercnt;
   memcpy(res.gameMode, mode, sizeof(mode));
   results.push_back(res);
-}
-
-void GameDiscoverer::dumpResults() const noth {
-  cout << "GameDiscoverer results:" << endl;
-  cout << "#\toid\tprot?\tcnt\tmode\tpeer" << endl;
-  for (unsigned i=0; i<results.size(); ++i) {
-    const Result& res(results[i]);
-    cout << i << '\t'
-         << res.overseer << '\t'
-         << (res.passwordProtected? "yes" : "no") << '\t'
-         << (unsigned)res.peerCount << '\t'
-         << string(res.gameMode, res.gameMode+4) << '\t'
-         << res.peer << endl;
-  }
+  sort(results.begin(), results.end(), resultLessThan);
 }

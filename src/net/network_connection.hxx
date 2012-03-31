@@ -57,7 +57,8 @@ public:
   typedef unsigned short geraet_num;
   ///Type for sequence numbers
   typedef unsigned short seq_t;
-  ///Function pointer to construct InputNetworkGeraete by number
+  ///Function pointer to construct InputNetworkGeraete by number.
+  ///Returns NULL if the creation attempt is rejected.
   typedef InputNetworkGeraet* (*geraet_creator)(NetworkConnection*);
 
   /**
@@ -197,6 +198,11 @@ public:
    */
   Status getStatus() const noth { return status; }
 
+  /**
+   * Promotes status from Established to Ready.
+   */
+  void setReady() noth;
+
   virtual void process(const Antenna::endpoint& source,
                        Antenna* antenna, Tuner* tuner,
                        const byte* data, unsigned len) noth;
@@ -334,6 +340,11 @@ public:
    * (See the anticipatory channel system.)
    */
   void transmogrify(channel, OutputNetworkGeraet*) throw();
+
+  /**
+   * Returns the number of milliseconds this NetworkConnection has been open.
+   */
+  unsigned getDuration() const throw();
 
 private:
   //Called by NetworkAssembly when an exportable object is added

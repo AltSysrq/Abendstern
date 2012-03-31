@@ -11,7 +11,13 @@
 /**
  * The contents of the application field of STX packets.
  */
-static const unsigned char applicationName[] = "Abendstern";
+static const unsigned char applicationName[16] = {
+  'A', 'b', 'e', 'n',
+  'd', 's', 't', 'e',
+  'r', 'n',  32,  32,
+   32,  32,  32,  32,
+};
+
 /**
  * The hash of the network protocol description used to ensure compatibility,
  * sent in the protocol hash field of STX packets.

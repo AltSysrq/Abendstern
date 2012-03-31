@@ -20,18 +20,6 @@
 # Any peer will respond as an Overseer when queried as such, even if it knows
 # it is an Underling. This allows the network to be more resilient.
 #
-# One of the core game state variables peerList. This list contains sublists
-# of the form
-#   iaddr iport laddr lport
-# where i* are Internet-facing items and l* are LAN (before NAT). Each peer must
-# try its best to connect to all peers in the list (that aren't itself) at all
-# times. Additionally, if any peers are removed from this list, a peer should
-# disconnect from them.
-# This system allows the server to simply give a client a single peer for a
-# game, allowing them to discover the other peers quickly and without need for
-# synchronisation. It also prevents the majority of possible netsplitting
-# issues.
-#
 # This class by itself cannot do much as far as actual gameplay or data logic.
 # Subclasses must determine spawning rules, provide an Overseer interface, and
 # handle data events themselves.

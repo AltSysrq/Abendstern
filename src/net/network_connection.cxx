@@ -55,7 +55,7 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
                                      const Antenna::endpoint& endpoint_,
                                      bool incomming)
 : field(assembly_->field->width, assembly_->field->height),
-  nextOutSeq(incomming? 0 : 1),
+  nextOutSeq(1), //The openning STX will have seq 0
   greatestSeq(0),
   latency(128),
   lastIncommingTime(SDL_GetTicks()),
@@ -374,4 +374,13 @@ void NetworkConnection::objectRemoved(GameObject* go) throw() {
   actualExports.erase(go);
   ignoredExports.erase(go);
   unsetReference(go);
+}
+
+unsigned NetworkConnection::getDuration() const throw() {
+  return SDL_GetTicks() - connectionStart;
+}
+
+void NetworkConnection::setReady() noth {
+  assert(status == Established);
+  status = Ready;
 }

@@ -1089,7 +1089,6 @@ unsafe {
     fun void start
     fun void poll {} Antenna*
     fun float progress
-    fun void dumpResults
   }
 }
 
@@ -1223,7 +1222,6 @@ cxx src/net/network_test.hxx
 unsafe {
   class final NetworkTest TestState {
     constructor default
-    fun void connect {} cstr unsigned
   }
 }
 

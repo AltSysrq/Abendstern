@@ -16,19 +16,23 @@ using namespace std;
 
 static const byte trigger[] = {'A', 'b', 'e', 'n', 'd', 's', 'u', 'c', 'h'};
 
-GameAdvertiser::GameAdvertiser(Tuner* tuner,
+GameAdvertiser::GameAdvertiser(Tuner* tuner_,
                                bool v6_,
                                Uint32 overseerid_,
                                byte peerCount_,
                                bool passwordProtected_,
                                const char* gameMode_)
-: v6(v6_),
+: tuner(tuner_), v6(v6_),
   overseerid(overseerid_),
   peerCount(peerCount_),
   passwordProtected(passwordProtected_)
 {
   setGameMode(gameMode_);
   tuner->trigger(trigger, sizeof(trigger), this);
+}
+
+GameAdvertiser::~GameAdvertiser() {
+  tuner->untrigger(trigger, sizeof(trigger));
 }
 
 void GameAdvertiser::setOverseerId(Uint32 oid) {

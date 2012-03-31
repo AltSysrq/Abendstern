@@ -30,11 +30,11 @@ SynchronousControlGeraet::SynchronousControlGeraet(NetworkConnection* cxn_,
   OutputNetworkGeraet(cxn_, OutputNetworkGeraet::DSIntrinsic),
   lastXonLen(0),
   lastXofLen(0),
-//If outgoing, set timeSinceTxn to a high value so we "retransmit"
-//the STX on the next call to update().
-  timeSinceTxn(incomming? 0 : 99999),
+  //Set timeSinceTxn to a high value so we "retransmit"
+  //the STX on the next call to update().
+  timeSinceTxn(99999),
   lastPackOutSeq(0),
-  lastPackOutType(incomming? 0 : STX)
+  lastPackOutType(STX)
 {
   setChannel(0);
   for (NetworkConnection::channel chan=1; chan != 0; ++chan)
@@ -137,9 +137,6 @@ throw() {
             break;
 
           case STX:
-            //Connection established
-            if (cxn->status == NetworkConnection::Connecting)
-              cxn->status = NetworkConnection::Established;
             lastPackOutType = 0;
             break;
 
@@ -182,6 +179,13 @@ throw() {
     } break;
 
     case STX: {
+      //Connection established
+      if (cxn->status == NetworkConnection::Connecting) {
+        cxn->status = NetworkConnection::Established;
+        if (len > sizeof(protocolHash) + sizeof(applicationName)+1)
+          auxData.assign(data+sizeof(protocolHash)+sizeof(applicationName)+1,
+                         data+len);
+      }
       //Already validated if the first packet, so just reacknowledge.
       //(Don't bother checking for it during a connection.)
       transmitAck(seq);
@@ -220,8 +224,15 @@ throw() {
           return;
         }
 
-        cxn->inchannels[chan] = creator(cxn);
-        cxn->inchannels[chan]->inputChannel = chan;
+        InputNetworkGeraet* geraet = creator(cxn);
+        if (!geraet) {
+          #ifdef DEBUG
+          cerr << "Warning: Ignoring rejected creation of Geraet " << num<<endl;
+          #endif
+        } else {
+          cxn->inchannels[chan] = geraet;
+          cxn->inchannels[chan]->inputChannel = chan;
+        }
       }
 
       //Done processing, acknowledge packet
@@ -338,11 +349,15 @@ void SynchronousControlGeraet::update(unsigned et) throw() {
 
 void SynchronousControlGeraet::transmitStx() throw() {
   //STX must always have a SEQ of zero
-  byte stx[5+sizeof(protocolHash)+sizeof(applicationName)] = {0,0,0,0,STX};
+  byte stx[5+sizeof(protocolHash)+sizeof(applicationName)+256] =
+    {0,0,0,0,STX};
   //For now, assume hash is zero
   memcpy(stx+5, protocolHash, sizeof(protocolHash));
   memcpy(stx+5+sizeof(protocolHash), applicationName, sizeof(applicationName));
-  cxn->send(stx, sizeof(stx));
+  memcpy(stx+5+sizeof(protocolHash)+sizeof(applicationName),
+         &auxDataOut[0], auxDataOut.size());
+  cxn->send(stx,
+            5+sizeof(protocolHash)+sizeof(applicationName)+auxDataOut.size());
   lastPackOutType = STX;
   lastPackOutSeq = 0;
   timeSinceTxn = 0;

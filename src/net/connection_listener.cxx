@@ -47,10 +47,10 @@ noth {
     "protocol_mismatch"
     ;
 
-  //Packet length must be exactly:
+  //Packet length must be at least:
   //  header + hash + application
   //long, and the application names must match exactly
-  if (len != sizeof(header)+sizeof(protocolHash)+sizeof(applicationName)
+  if (len < sizeof(header)+sizeof(protocolHash)+sizeof(applicationName)
   ||  0 != memcmp(data+sizeof(header)+sizeof(protocolHash),
                   applicationName, sizeof(applicationName))) {
     antenna->send(source, reply_wrongApplication,
@@ -64,6 +64,11 @@ noth {
                   sizeof(reply_protocolMismatch));
     return;
   }
+
+  //Copy auxilliary data
+  auxData.assign(data+sizeof(header)+
+                 sizeof(protocolHash)+sizeof(applicationName),
+                 data+len);
 
   //OK
   string errmsg("Connection refused"), errl10n("connection_refused");

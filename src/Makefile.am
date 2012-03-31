@@ -222,6 +222,7 @@ COMMONSOURCES= \
 ./net/object_geraet.cxx \
 ./net/anticipatory_channels.cxx \
 ./net/ship_damage_geraet.cxx \
+./net/network_game.cxx \
 ./net/network_test.cxx \
 ./net/xxx/xnetobj.cxx \
 ./secondary/namegen.cxx \

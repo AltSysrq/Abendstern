@@ -17,8 +17,11 @@
  *
  * The class must be configured for EITHER IPv4 or IPv6, since all games
  * must use the same protocol for all peers.
+ *
+ * The destructor automatically untriggers the GameAdvertiser.
  */
 class GameAdvertiser: public PacketProcessor {
+  Tuner*const tuner;
   bool v6;
   Uint32 overseerid;
   byte peerCount, passwordProtected;
@@ -38,6 +41,8 @@ public:
   GameAdvertiser(Tuner* tuner, bool v6,
                  Uint32 overseerid, byte peerCount,
                  bool passwordProtected, const char* gameMode);
+  virtual ~GameAdvertiser();
+
   /**
    * Alters the overseer peer ID to the given value.
    */

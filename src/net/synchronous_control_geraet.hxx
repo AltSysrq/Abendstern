@@ -52,6 +52,11 @@ public OutputNetworkGeraet {
   //Currently unused channel numbers
   std::deque<NetworkConnection::channel> freeChannels;
 
+  //Auxilliary data received in STX
+  std::vector<byte> auxData;
+  //Auxilliary data to send in STX
+  std::vector<byte> auxDataOut;
+
   /**
    * Constructs a new SynchronousControlGeraet for the given connection.
    * @param cxn the connection to operate on
@@ -92,6 +97,26 @@ public:
   virtual void receive(NetworkConnection::seq_t seq,
                        const byte* data, unsigned len)
   throw();
+
+  /**
+   * Returns the auxilliary data contained in the STX that transitioned the
+   * connection from Connecting to Established.
+   *
+   * The vector will be empty if no such packet has been received; this is the
+   * case when the connection was initiated by a ConnectionListener, or if the
+   * connection is still Connecting.
+   */
+  const std::vector<byte>& getAuxData() const throw() {
+    return auxData;
+  }
+
+  /**
+   * Sets the auxilliary data for outgoing STX packets to the given data.
+   */
+  template<typename InputIterator>
+  void setAuxDataOut(InputIterator begin, InputIterator end) throw() {
+    auxDataOut.assign(begin, end);
+  }
 
   virtual void update(unsigned et) throw();
 
