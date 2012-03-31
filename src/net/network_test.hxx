@@ -27,7 +27,7 @@ public:
 private:
   static test_state::Background init();
 
-  virtual void addPeer(Peer*) {}
+  virtual void addPeer(Peer*);
   virtual void delPeer(Peer*) {}
   virtual void setOverseer(Peer*) {}
   virtual void receiveBroadcast(Peer*, const char*) {}

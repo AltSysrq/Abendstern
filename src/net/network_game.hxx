@@ -104,7 +104,6 @@ class NetworkGame: public AObject {
   friend class network_game::NGConnectionListener;
   friend class network_game::NGSeqTextGeraet;
   friend class network_game::PeerConnectivityGeraet;
-  friend class NetworkTest;
 
   //These must be above the assembly so that they are destroyed later!
   //All sequential (output) text Geräte associated with this NetworkGame
@@ -245,6 +244,11 @@ public:
    * Updates the NetworkAssembly and anything else that needs updating.
    */
   void update(unsigned) throw();
+
+  /**
+   * Sends the given dats alteration string to the given Peer.
+   */
+  void alterDats(const std::string&, Peer*) throw();
 
 private:
   bool acceptConnection(const Antenna::endpoint& source,

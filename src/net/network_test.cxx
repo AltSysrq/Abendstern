@@ -53,7 +53,6 @@ NetworkTest::NetworkTest()
     game.connectToNothing(false, true);
 
   game.setAdvertising("TEST");
-  game.becomeOverseerReady();
 }
 
 NetworkTest::~NetworkTest() {
@@ -69,4 +68,9 @@ test_state::Background NetworkTest::init() {
 GameState* NetworkTest::update(float et) {
   game.update((unsigned)et);
   return TestState::update(et);
+}
+
+void NetworkTest::addPeer(Peer* peer) {
+  if (!game.getOverseer())
+    game.alterDats("", peer);
 }

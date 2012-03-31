@@ -499,6 +499,10 @@ void NetworkGame::connectToDiscovery(unsigned ix) throw() {
   createPeer(endpoint);
 }
 
+void NetworkGame::alterDats(const string& msg, Peer* peer) throw() {
+  stgs[peer->cxn]->sendDats(msg);
+}
+
 bool NetworkGame::acceptConnection(const Antenna::endpoint& source,
                                    string& errmsg, string& errl10n,
                                    const std::vector<byte>& auxData)
@@ -553,7 +557,7 @@ throw() {
   if (positive) {
     if (referred)
       peer->connectionsFrom.insert(referred);
-    else if (overseer == peer)
+    else if (overseer == peer || !localPeer.overseerReady)
       //Newly discovered peer
       peer->connectionsFrom.insert(createPeer(gid));
   } else {
