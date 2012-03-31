@@ -322,6 +322,7 @@
     <ClInclude Include="..\..\..\src\net\network_appinfo.hxx" />
     <ClInclude Include="..\..\..\src\net\network_assembly.hxx" />
     <ClInclude Include="..\..\..\src\net\network_connection.hxx" />
+    <ClInclude Include="..\..\..\src\net\network_game.hxx" />
     <ClInclude Include="..\..\..\src\net\network_geraet.hxx" />
     <ClInclude Include="..\..\..\src\net\network_test.hxx" />
     <ClInclude Include="..\..\..\src\net\object_geraet.hxx" />
@@ -539,6 +540,7 @@
     <ClCompile Include="..\..\..\src\net\lat_disc_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\network_assembly.cxx" />
     <ClCompile Include="..\..\..\src\net\network_connection.cxx" />
+    <ClCompile Include="..\..\..\src\net\network_game.cxx" />
     <ClCompile Include="..\..\..\src\net\network_test.cxx" />
     <ClCompile Include="..\..\..\src\net\object_geraet.cxx" />
     <ClCompile Include="..\..\..\src\net\seq_text_geraet.cxx" />
