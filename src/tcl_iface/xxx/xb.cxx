@@ -660,9 +660,9 @@ static int set320 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {int gen1523;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1523);
-            newVal=gen1523;
+      {int gen1519;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1519);
+            newVal=gen1519;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -2465,7 +2465,7 @@ void classdec1206(bool safe, Tcl_Interp* interp) throw() {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1406 (
+     trampoline1402 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {

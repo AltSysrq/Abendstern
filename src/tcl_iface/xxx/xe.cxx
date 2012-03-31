@@ -544,9 +544,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else arg0=NULL;
 };
 arg0Init=true;
-{int gen1738;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1738);
-            arg1=gen1738;
+{int gen1734;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1734);
+            arg1=gen1734;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -2826,9 +2826,9 @@ arg1Init=true;
     } else arg2=NULL;
 };
 arg2Init=true;
-{int gen1960;
-            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen1960);
-            arg3=gen1960;
+{int gen1956;
+            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen1956);
+            arg3=gen1956;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -2845,9 +2845,9 @@ arg4Init=true;
               scriptError(Tcl_GetStringResult(interp));
             arg5 = (unsigned)tmp;};
 arg5Init=true;
-{int gen1961;
-            int err = Tcl_GetBooleanFromObj(interp, objv[6], (int*)&gen1961);
-            arg6=gen1961;
+{int gen1957;
+            int err = Tcl_GetBooleanFromObj(interp, objv[6], (int*)&gen1957);
+            arg6=gen1957;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
