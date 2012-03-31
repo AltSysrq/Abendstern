@@ -13,6 +13,18 @@
 @protocol
 -error
 +The server sent an invalid or unexpected request
+-protocol_error
++The remote host sent data Abendstern could not understand
+-connection_closed
++The remote host terminated the connection
+-timed_out
++The remote host stopped responding or never responded
+-application_mismatch
++The remote host does not appear to be running Abendstern
+-protocol_mismatch
++The remote host is running an incompatible version of Abendstern
+-connection_refused
++The remote host refused to open a connection
 
 @name
 -too_short
