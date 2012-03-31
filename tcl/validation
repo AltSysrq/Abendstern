@@ -74,10 +74,12 @@ tcl/editor/barsyscopy.tcl
 tcl/editor/initmode.tcl
 tcl/lssinfo.tcl
 tcl/httpa.tcl
+tcl/game/gamemgr.tcl
 tcl/game/mod_perfect_radar.tcl
 tcl/game/mod_stats_ffa.tcl
 tcl/game/mod_match.tcl
 tcl/game/mod_team.tcl
+tcl/game/schema.tcl
 tcl/game/g_xtdm.tcl
 tcl/game/mod_free_spawn.tcl
 tcl/game/spectator.tcl
