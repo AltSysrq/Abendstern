@@ -250,6 +250,30 @@ public:
    */
   void alterDats(const std::string&, Peer*) throw();
 
+  /**
+   * Sends the given datp alteration string to the given Peer.
+   *
+   * If the Peer is NULL, the message is sent to all peers.
+   */
+  void alterDatp(const std::string&, Peer*) throw();
+
+  /**
+   * Sends the given unicast message to the given peer.
+   */
+  void sendUnicast(const std::string&, Peer*) throw();
+  /**
+   * Sends the given overseer message to the given peer.
+   */
+  void sendOverseer(const std::string&, Peer*) throw();
+  /**
+   * Broadcasts the given message to all peers.
+   */
+  void sendBroadcast(const std::string&) throw();
+  /**
+   * Sends a game mode notification to the given peer.
+   */
+  void sendGameMode(Peer*) throw();
+
 private:
   bool acceptConnection(const Antenna::endpoint& source,
                         std::string&, std::string&,

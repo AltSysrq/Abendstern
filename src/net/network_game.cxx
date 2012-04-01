@@ -503,6 +503,32 @@ void NetworkGame::alterDats(const string& msg, Peer* peer) throw() {
   stgs[peer->cxn]->sendDats(msg);
 }
 
+void NetworkGame::alterDatp(const string& msg, Peer* peer) throw() {
+  if (!peer) {
+    for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it)
+      alterDatp(msg, it->second);
+  } else {
+    stgs[peer->cxn]->sendDatp(msg);
+  }
+}
+
+void NetworkGame::sendUnicast(const std::string& msg, Peer* peer) throw() {
+  stgs[peer->cxn]->sendUnicast(msg);
+}
+
+void NetworkGame::sendOverseer(const std::string& msg, Peer* peer) throw() {
+  stgs[peer->cxn]->sendOverseer(msg);
+}
+
+void NetworkGame::sendBroadcast(const std::string& msg) throw() {
+  for (stgs_t::const_iterator it = stgs.begin(); it != stgs.end(); ++it)
+    it->second->sendBroadcast(msg);
+}
+void NetworkGame::sendGameMode(Peer* peer) throw() {
+  if (iface)
+    stgs[peer->cxn]->sendMode(iface->getGameMode());
+}
+
 bool NetworkGame::acceptConnection(const Antenna::endpoint& source,
                                    string& errmsg, string& errl10n,
                                    const std::vector<byte>& auxData)

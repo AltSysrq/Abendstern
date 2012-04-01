@@ -1157,6 +1157,11 @@ unsafe {
     fun void update {} unsigned
 
     fun void alterDats {} string Peer*
+    fun void alterDatp {} string Peer*
+    fun void sendUnicast {} string Peer*
+    fun void sendOverseer {} string Peer*
+    fun void sendBroadcast {} string
+    fun void sendGameMode {} Peer*
   }
 }
 
