@@ -33,39 +33,29 @@
 
 using namespace std;
 
-class NetworkTestListener: public ConnectionListener {
-  NetworkAssembly*const assembly;
-public:
-  NetworkTestListener(NetworkAssembly* nasm)
-  : ConnectionListener(nasm->getTuner()),
-    assembly(nasm)
-  { }
-
-protected:
-  virtual bool acceptConnection(const Antenna::endpoint& source,
-                                Antenna* antenna, Tuner* tuner,
-                                string&, string&)
-  noth {
-    assembly->addConnection(new NetworkConnection(assembly, source, true));
-    return true;
-  }
-};
-
 NetworkTest::NetworkTest()
 : TestState(init()),
-  assembly(new NetworkAssembly(env.getField(), &antenna))
+  game(&env.field)
 {
-  new NetworkTestListener(assembly);
-}
+  game.setNetIface(this);
+  //Connect to the first running game found, or start a new one otherwise
+  game.startDiscoveryScan();
+  while (!game.discoveryScanDone()) {
+    SDL_Delay(5);
+    game.update(5);
+  }
 
-void NetworkTest::connect(const char* host, unsigned port) {
-  asio::ip::udp::endpoint dst(
-    asio::ip::address::from_string(host), port);
-  assembly->addConnection(new NetworkConnection(assembly, dst, false));
+  //If any result was found, connect to it
+  if (!game.getDiscoveryResults().empty())
+    game.connectToDiscovery(0);
+  else
+    //Otherwise, start IPv4 LAN game
+    game.connectToNothing(false, true);
+
+  game.setAdvertising("TEST");
 }
 
 NetworkTest::~NetworkTest() {
-  delete assembly;
 }
 
 test_state::Background NetworkTest::init() {
@@ -76,10 +66,11 @@ test_state::Background NetworkTest::init() {
 }
 
 GameState* NetworkTest::update(float et) {
-  assembly->update((unsigned)et);
-  //Remove dead connections
-  for (unsigned i=0; i<assembly->numConnections(); ++i)
-    if (NetworkConnection::Zombie == assembly->getConnection(i)->getStatus())
-      assembly->removeConnection(i--);
+  game.update((unsigned)et);
   return TestState::update(et);
+}
+
+void NetworkTest::addPeer(Peer* peer) {
+  if (!game.getOverseer())
+    game.alterDats("", peer);
 }

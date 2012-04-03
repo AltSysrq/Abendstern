@@ -13,7 +13,7 @@
 /**
  * Encapsulates the updating, drawing, and input processing for a state of the game.
  */
-class GameState : public AObject {
+class GameState: public virtual AObject {
   public:
   virtual ~GameState();
 

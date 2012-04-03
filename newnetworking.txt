@@ -152,12 +152,15 @@ Each packet it sends is prefixed with a byte indicating the packet's purpose:
   0x13  XOF     Close channel(s)
 
 Packet format for STX:
-  byte[16]      Protocol version hash
+  byte[32]      Protocol version hash
   char[16]      Application name ("Abendstern      ")
-  (auxiliarry data)
+  (auxiliary data)
 An STX requests to open two-way communication between peers. An STX is answered
 with an ACK or an EOT, depending on whether the peers are compatible and willing
 to talk to each other.
+
+Note that the receiving side ALSO sends a STX packet so that both sides get the
+required auxiliary data.
 
 Packet format for EOT:
   string        Disconnect reason
@@ -310,7 +313,9 @@ the peer indicated, it will attempt to connect to it. When any peer receives a
 negative declaration regarding a remote peer it is connected to, it answers with
 a positive declaration. Finally, when a connection to a new peer is established,
 a general query on the part of the connection-initiator is performed in order to
-discover the other peers.
+discover the other peers. For the purposes of connecing to new peers in this
+manner, all other peers are considered overseer if the local peer is not yet
+overseer-ready.
 
 The second is accomplished simply by maintaining lists based on the given
 information. To note is the fact that the reports indicate connections FROM, not

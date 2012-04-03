@@ -13,6 +13,18 @@
 @protocol
 -error
 +Der Server sendet eine ungültige oder unerwartete Nachfrage.
+-protocol_error
++Das ferne Host sendete Daten, die Abendstern nicht verstehen konnte.
+-connection_closed
++Die Verbindung wurde durch dem ferne Host verschlossen.
+-timed_out
++Das ferne Host hörte auf, zu antworten, oder antwortete nie.
+-application_mismatch
++Das ferne Host scheint nicht, Abendstern zu laufen.
+-protocol_mismatch
++Das ferne Host läuft eine unfähige Version Abendsternes.
+-connection_refused
++Das ferne Host lehnte ab, eine Verbindung zu öffnen.
 
 @name
 -too_short

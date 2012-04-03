@@ -48,7 +48,7 @@ namespace network_game {
                                   Antenna* antenna, Tuner* tuner,
                                   string& errmsg, string& errl10n)
     noth {
-      return game->acceptConnection(source, errmsg, errl10n);
+      return game->acceptConnection(source, errmsg, errl10n, auxData);
     }
   };
 
@@ -120,7 +120,8 @@ namespace network_game {
 
         case 's':
           if (game->iface && game->overseer == game->peers[cxn])
-            game->iface->alterDats(extension.c_str());
+            if (game->iface->alterDats(extension.c_str()))
+              game->becomeOverseerReady();
           break;
 
         case 'p':
@@ -383,6 +384,7 @@ NetworkGame::NetworkGame(GameField* field)
   localPeer.overseerReady=false;
   localPeer.connectionAttempts=0;
   localPeer.cxn = NULL;
+  localPeer.nid = rand() ^ (rand() << 16);
 }
 
 NetworkGame::~NetworkGame() {
@@ -392,6 +394,10 @@ NetworkGame::~NetworkGame() {
     delete discoverer;
   if (listener)
     delete listener;
+
+  //Close all open connections
+  while (!peers.empty())
+    closePeer(peers.begin()->second);
 }
 
 void NetworkGame::setNetIface(NetIface* ifc) throw() {
@@ -486,8 +492,46 @@ void NetworkGame::connectToLan(const char* ipaddress, unsigned port) throw() {
   createPeer(asio::ip::udp::endpoint(address, port));
 }
 
+void NetworkGame::connectToDiscovery(unsigned ix) throw() {
+  asio::ip::udp::endpoint endpoint = discoverer->getResults()[ix].peer;
+  initialiseListener(endpoint.address().is_v6());
+  lanMode = true;
+  createPeer(endpoint);
+}
+
+void NetworkGame::alterDats(const string& msg, Peer* peer) throw() {
+  stgs[peer->cxn]->sendDats(msg);
+}
+
+void NetworkGame::alterDatp(const string& msg, Peer* peer) throw() {
+  if (!peer) {
+    for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it)
+      alterDatp(msg, it->second);
+  } else {
+    stgs[peer->cxn]->sendDatp(msg);
+  }
+}
+
+void NetworkGame::sendUnicast(const std::string& msg, Peer* peer) throw() {
+  stgs[peer->cxn]->sendUnicast(msg);
+}
+
+void NetworkGame::sendOverseer(const std::string& msg, Peer* peer) throw() {
+  stgs[peer->cxn]->sendOverseer(msg);
+}
+
+void NetworkGame::sendBroadcast(const std::string& msg) throw() {
+  for (stgs_t::const_iterator it = stgs.begin(); it != stgs.end(); ++it)
+    it->second->sendBroadcast(msg);
+}
+void NetworkGame::sendGameMode(Peer* peer) throw() {
+  if (iface)
+    stgs[peer->cxn]->sendMode(iface->getGameMode());
+}
+
 bool NetworkGame::acceptConnection(const Antenna::endpoint& source,
-                                   string& errmsg, string& errl10n)
+                                   string& errmsg, string& errl10n,
+                                   const std::vector<byte>& auxData)
 throw() {
   /* If there already exists a NetworkConnection to this endpoint, return true
    * but do nothing else (this could happen if we opened a NetworkConnection
@@ -522,8 +566,8 @@ throw() {
 
   //All checks passed
   NetworkConnection* cxn = new NetworkConnection(&assembly, source, true);
-  assembly.addConnection(cxn);
-  createPeer(cxn);
+  Peer* peer = createPeer(cxn);
+  acceptStxAux(auxData, peer);
   return true;
 }
 
@@ -539,17 +583,19 @@ throw() {
   if (positive) {
     if (referred)
       peer->connectionsFrom.insert(referred);
-    else if (overseer == peer)
+    else if (overseer == peer || !localPeer.overseerReady)
       //Newly discovered peer
       peer->connectionsFrom.insert(createPeer(gid));
   } else {
     if (referred) {
       //If this is comming from the overseer, take it as an instruction to
       //disconnect. Otherwise, just record the lost connection.
-      if (overseer == peer)
-        closePeer(referred, 15000); //15-second "ban" to prevent reconnect attempts
-      peer->connectionsFrom.erase(referred);
-      delete referred;
+      if (overseer == peer) {
+        closePeer(referred, 15000); //15-second "ban" to prevent reconnects
+        delete referred;
+      } else {
+        peer->connectionsFrom.erase(referred);
+      }
     }
     //Else, we know nothing of this peer, so just ignore.
   }
@@ -618,6 +664,7 @@ Peer* NetworkGame::createPeer(const GlobalID& gid) throw() {
   peer->overseerReady = false;
   peer->connectionAttempts = 0;
   peer->cxn = NULL;
+  peer->receivedStx = false;
   connectToPeer(peer);
   return peer;
 }
@@ -637,6 +684,7 @@ Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
   peer->connectionAttempts = 0;
   peer->cxn = cxn;
   peers[cxn] = peer;
+  peer->receivedStx = true;
   initCxn(cxn, peer);
   return peer;
 }
@@ -684,6 +732,7 @@ void NetworkGame::closePeer(Peer* peer, unsigned banLength, bool closeCxn)
 throw() {
   if (closeCxn)
     peer->cxn->scg->closeConnection();
+  assembly.removeConnection(peer->cxn);
   peers.erase(peer->cxn);
   //Remove references and send notifications
   for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it) {
@@ -719,6 +768,10 @@ void NetworkGame::refreshOverseer() throw() {
     if (iface)
       iface->setOverseer(os);
   }
+  cout << "Overseer: " << overseer;
+  if (overseer)
+    cout << " (at " << overseer->cxn->endpoint << ")";
+  cout << endl;
 }
 
 Peer* NetworkGame::getPeerByGid(const GlobalID& gid) throw() {
@@ -735,6 +788,8 @@ Peer* NetworkGame::getPeerByGid(const GlobalID& gid) throw() {
 }
 
 void NetworkGame::initCxn(NetworkConnection* cxn, Peer* peer) throw() {
+  cout << "Init cxn: " << cxn->endpoint << endl;
+  assembly.addConnection(cxn);
   cxn->scg->openChannel(new network_game::NGSeqTextGeraet(this, cxn),
                         network_game::NGSeqTextGeraet::num);
   cxn->scg->openChannel(new network_game::PeerConnectivityGeraet(this, cxn),
@@ -743,10 +798,46 @@ void NetworkGame::initCxn(NetworkConnection* cxn, Peer* peer) throw() {
   //First, clear the list since we'll be getting a full list.
   peer->connectionsFrom.clear();
   pcgs[cxn]->sendGeneralQuery();
+  //If overseer-ready, notify them
+  if (localPeer.overseerReady)
+    stgs[cxn]->sendReady();
+
+  //Indicate game mode if appropriate
+  if (iface && !overseer && localPeer.overseerReady)
+    stgs[cxn]->sendMode(iface->getGameMode());
+
+  //Set outgoing STX auxilliary data
+  byte auxdat[4];
+  byte* auxout = auxdat;
+  io::write(auxout, localPeer.nid);
+  cxn->scg->setAuxDataOut(auxdat, auxout);
+}
+
+void NetworkGame::becomeOverseerReady() throw() {
+  if (!localPeer.overseerReady) {
+    localPeer.overseerReady = true;
+    for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it)
+      stgs[it->first]->sendReady();
+    refreshOverseer();
+  }
+}
+
+void NetworkGame::acceptStxAux(const std::vector<byte>& auxData, Peer* peer)
+throw() {
+  if (auxData.size() != 4) {
+    closePeer(peer);
+    return;
+  }
+
+  const byte* dat = &auxData[0];
+  io::read(dat, peer->nid);
+  peer->receivedStx = true;
 }
 
 void NetworkGame::update(unsigned et) throw() {
   assembly.update(et);
+  if (discoverer)
+    discoverer->poll(&antenna);
 
   //Reap zombies
   //TODO: Attempt reconnects
@@ -763,6 +854,16 @@ void NetworkGame::update(unsigned et) throw() {
     zombies.pop_front();
   }
 
+  //Ensure that all Established peers have valid STX auxilliary data
+  {
+    //Copy since the acceptStxAux() function may modify peers
+    peers_t peers(this->peers);
+    for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it)
+      if (it->first->getStatus() == NetworkConnection::Established
+      &&  !it->second->receivedStx)
+        acceptStxAux(it->first->scg->getAuxData(), it->second);
+  }
+
   //Promote overseer-ready Peers whose connections are Established to Ready
   for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it) {
     if (it->first->getStatus() == NetworkConnection::Established
@@ -773,4 +874,12 @@ void NetworkGame::update(unsigned et) throw() {
 
   //TODO: Spurious PCG requests
   //TODO: Kick peers that are chronically missing connections
+
+  //Maintain the advertiser, if present.
+  if (advertiser) {
+    advertiser->setPeerCount(peers.size()+1);
+    advertiser->setOverseerId(overseer? overseer->nid : localPeer.nid);
+    if (iface)
+      advertiser->setGameMode(iface->getGameMode());
+  }
 }

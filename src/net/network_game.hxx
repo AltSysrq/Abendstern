@@ -11,6 +11,7 @@
 #include <string>
 #include <map>
 #include <set>
+#include <vector>
 
 #include "src/core/aobject.hxx"
 #include "globalid.hxx"
@@ -49,6 +50,8 @@ public:
   unsigned connectionAttempts;
   ///The current NetworkConnection associated with this peer
   NetworkConnection* cxn;
+  ///Whether an STX packet has been received and accepted
+  bool receivedStx;
 
   ///The Peers this Peer has a connection FROM
   std::set<Peer*> connectionsFrom;
@@ -57,7 +60,7 @@ public:
 /**
  * Abstract class used to relay events to the Tcl game system.
  */
-class NetIface: public AObject {
+class NetIface: public virtual AObject {
 public:
   ///Called when the given Peer has been created
   virtual void addPeer(Peer*) = 0;
@@ -82,6 +85,9 @@ public:
 
   ///Called when a game mode alteration is received
   virtual void setGameMode(const char*) = 0;
+  ///Returns the current game mode string; the first four characters must be a
+  ///string appropriate for the game advertiser.
+  virtual const char* getGameMode() = 0;
 
   ///Called when all network connectivity has been lost, with the given reason.
   virtual void connectionLost(const char*) = 0;
@@ -239,9 +245,39 @@ public:
    */
   void update(unsigned) throw();
 
+  /**
+   * Sends the given dats alteration string to the given Peer.
+   */
+  void alterDats(const std::string&, Peer*) throw();
+
+  /**
+   * Sends the given datp alteration string to the given Peer.
+   *
+   * If the Peer is NULL, the message is sent to all peers.
+   */
+  void alterDatp(const std::string&, Peer*) throw();
+
+  /**
+   * Sends the given unicast message to the given peer.
+   */
+  void sendUnicast(const std::string&, Peer*) throw();
+  /**
+   * Sends the given overseer message to the given peer.
+   */
+  void sendOverseer(const std::string&, Peer*) throw();
+  /**
+   * Broadcasts the given message to all peers.
+   */
+  void sendBroadcast(const std::string&) throw();
+  /**
+   * Sends a game mode notification to the given peer.
+   */
+  void sendGameMode(Peer*) throw();
+
 private:
   bool acceptConnection(const Antenna::endpoint& source,
-                        std::string&, std::string&)
+                        std::string&, std::string&,
+                        const std::vector<byte>&)
   throw();
 
   void peerIsOverseerReady(Peer*) throw();
@@ -272,6 +308,10 @@ private:
   //exists.
   Peer* getPeerByGid(const GlobalID&) throw();
 
+  //Marks the local peer as overseer-ready and notifies other peers of the
+  //change
+  void becomeOverseerReady() throw();
+  
   //Closes any existing connection to the given Peer, removes references to it,
   //sends disconnect notifications to other peers, and may take measures to
   //block reconnects from the peer.
@@ -282,6 +322,10 @@ private:
   //Initialises the given Connection with any needed Geräte, and performs any
   //other needed initial actions.
   void initCxn(NetworkConnection*, Peer*) throw();
+
+  //Interprets the STX auxilliary data given; if it is acceptable, sets fields
+  //in the Peer; otherwise, closes the peer.
+  void acceptStxAux(const std::vector<byte>&, Peer*) throw();
 };
 
 #endif /* NETWORK_GAME_HXX_ */

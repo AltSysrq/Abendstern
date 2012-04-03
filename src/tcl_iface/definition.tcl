@@ -1111,6 +1111,60 @@ unsafe {
   }
 }
 
+cxx src/net/network_game.hxx src/net/network_connection.hxx
+unsafe {
+  class final Peer {} {
+    const gid GlobalID
+    const nid unsigned
+    const overseerReady bool
+    const connectionAttempts unsigned
+    const cxn NetworkConnection*
+    const receivedStx bool
+  }
+  class abstract-extendable NetIface {} {
+    constructor default
+    fun void addPeer purevirtual Peer*
+    fun void delPeer purevirtual Peer*
+    fun void setOverseer purevirtual Peer*
+    fun void receiveBroadcast purevirtual Peer* cstr
+    fun void receiveOverseer purevirtual Peer* cstr
+    fun void receiveUnicast purevirtual Peer* cstr
+    fun bool alterDatp purevirtual Peer* cstr
+    fun bool alterDats purevirtual cstr
+    fun void setGameMode purevirtual cstr
+    fun cstr getGameMode purevirtual
+    fun void connectionLost purevirtual cstr
+  }
+  class final NetworkGame {} {
+    constructor default GameField*
+    fun Peer* getLocalPeer
+    fun Peer* getOverseer
+    fun string getDisconnectReason
+    fun void setNetIface {} NetIface*
+    fun void setAdvertising {} cstr
+    fun void stopAdvertising
+    fun void startDiscoveryScan
+    fun float discoveryScanProgress
+    fun bool discoveryScanDone
+    fun string getDiscoveryResults
+    fun void connectToNothing {} bool bool
+    fun void connectToDiscovery {} unsigned
+    fun void connectToLan {} cstr unsigned
+    #fun void connectToInternet {} cstr
+    #fun void startUdpHolePunch {} bool
+    #fun bool hasInternet4
+    #fun bool hasInternet6
+    fun void update {} unsigned
+
+    fun void alterDats {} string Peer*
+    fun void alterDatp {} string Peer*
+    fun void sendUnicast {} string Peer*
+    fun void sendOverseer {} string Peer*
+    fun void sendBroadcast {} string
+    fun void sendGameMode {} Peer*
+  }
+}
+
 cxx src/secondary/confreg.hxx
 enum Setting::Type ST {Setting::TypeInt    Int   } {Setting::TypeInt64   Int64} \
                       {Setting::TypeFloat  Float } {Setting::TypeBoolean Bool} \
@@ -1222,7 +1276,6 @@ cxx src/net/network_test.hxx
 unsafe {
   class final NetworkTest TestState {
     constructor default
-    fun void connect {} cstr unsigned
   }
 }
 
