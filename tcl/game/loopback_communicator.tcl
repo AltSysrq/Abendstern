@@ -10,14 +10,14 @@ class LoopbackCommunicator {
   } {
   }
 
-  method set-datp {key val} {
-    dict set datp {*}$key $val
+  method set-datp {keyval} {
+    dict set datp 0 {*}$keyval
   }
-  method set-dats {key val} {
-    dict set dats {*}$key $val
+  method set-dats {keyval} {
+    dict set dats {*}$keyval
   }
 
-  method gat-peers {} {
+  method get-peers {} {
     return 0
   }
 
@@ -45,7 +45,19 @@ class LoopbackCommunicator {
     return 0
   }
 
+  method has-peer-by-number {num} {
+    expr {$num == 0}
+  }
+
+  method get-peer-by-number {num} {
+    return 0
+  }
+
   method delete-with-parent {} {
     return 1
+  }
+
+  method is-networked {} {
+    return 0
   }
 }

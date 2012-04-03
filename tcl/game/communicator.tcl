@@ -15,6 +15,8 @@ class Communicator {
     set datp $datp_
   }
 
+  method fqn {} { return $this }
+
   # Returns the given datp entry; the key includes the Peer as the first path
   # element.
   method get-datp {key} {
@@ -27,10 +29,10 @@ class Communicator {
   }
 
   # Alters the datp entry at the given path for the local peer
-  method set-datp {key val}
+  method set-datp {keyval}
 
   # Alters the dats entry at the given path.
-  method set-dats {key val}
+  method set-dats {keyval}
 
   # Returns a list of Peers, including the local peer.
   method get-peers {}
@@ -55,6 +57,15 @@ class Communicator {
   # be exactly zero for the local peer.)
   method get-peer-number {peer}
 
+  # Returns whether a peer with the given number exists (see get-peer-number)
+  method has-peer-by-number {num}
+
+  # Returns the Peer associated with the given number (see get-peer-number)
+  method get-peer-by-number {num}
+
   # Returns whether the Communicator should be deleted when the BasicGame is.
   method delete-with-parent {}
+
+  # Returns whether the Communicator facilitates a networked game
+  method is-networked {}
 }
