@@ -109,17 +109,14 @@ class BasicGame {
   variable lastGenAiReportFC
 
   # Constructs a BasicGame.
-  # fieldw      Width of field
-  # fieldh      Height of field
-  # background  Script to evaluate to the background to use; $field is the game field.
-  #             Defaults to an empty StarField.
-  # peers       Initial peers; empty list disables networking
-  constructor {fieldw fieldh {background {new StarField default 0 $field 1}} {initpeers {}}} {
+  # env         The GameEnv to use
+  # comm        The Communicator to use
+  constructor {env_ comm} {
     ::gui::Application::constructor
   } {
-    set env [new GameEnv default $fieldw $fieldh]
+    set env $env_
     set field [$env getField]
-    $env configure -stars [eval $background]
+    $field clear
     set shipDeathFun [new BasicGameShipDeathCallback $this]
     set ckc [new BasicGameCKC $this]
     set lastGenAiReportFC [$field cget -fieldClock]
@@ -163,15 +160,10 @@ class BasicGame {
   }
 
   destructor {
-    delete object $env
     delete object $shipDeathFun
     delete object $ckc
 
     ship_mixer_end
-
-    if {[$communicator delete-with-parent]} {
-      delete object $communicator
-    }
   }
 
   method initHuman {} {

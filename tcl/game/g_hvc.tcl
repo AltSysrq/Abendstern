@@ -14,9 +14,9 @@ class G_HVC {
   # and don't check this condition until this hits zero again.
   variable timeUntilZeroCyborgCheck
 
-  constructor {fieldw fieldh background desiredPlayers {initPeers {}}} {
+  constructor {desiredPlayers env comm} {
     MixinAutobot::constructor $desiredPlayers
-    BasicGame::constructor $fieldw $fieldh $background $initPeers
+    BasicGame::constructor $env $comm
   } {
     startOrJoinMatch
     initHuman

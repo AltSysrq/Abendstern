@@ -165,7 +165,7 @@ class GameField : public AObject {
   void addBegin(Explosion*) noth;
 
   /**
-   * Removes and deletes all objects in the GameField.
+   * Removes and deletes all non-remote objects in the GameField.
    */
   void clear() noth;
 

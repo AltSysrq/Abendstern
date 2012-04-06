@@ -362,34 +362,28 @@ class TestMode {
         }
       }
     }
+    set opts [dict create \
+                  fieldw [$ int conf.game.size] \
+                  fieldh [$ int conf.game.size] \
+                  desiredPlayers [expr {[$ int conf.game.nai]+1}]]
     switch -exact -- [$ str conf.game.mode] {
       dm {
-        return [new G_DM [$ int conf.game.size] [$ int conf.game.size] \
-                         $background \
-                         [expr {[$ int conf.game.nai]+1}]]
+        set ms DM__
       }
       xtdm {
-        return [new G_XTDM [$ int conf.game.size] [$ int conf.game.size] \
-                           $background \
-                           [expr {[$ int conf.game.nai]+1}] \
-                           [$ int conf.game.nteams]]
+        set ms [format %dTDM [$ int conf.game.nteams]]
       }
       lms {
-        return [new G_LMS [$ int conf.game.size] [$ int conf.game.size] \
-                          $background \
-                          [expr {[$ int conf.game.nai]+1}]]
+        set ms LMS_
       }
       lxts {
-        return [new G_LXTS [$ int conf.game.size] [$ int conf.game.size] \
-                           $background \
-                           [expr {[$ int conf.game.nai]+1}] \
-                           [$ int conf.game.nteams]]
+        set ms [format L%dTS [$ int conf.game.nteams]]
       }
       hvc {
-        return [new G_HVC [$ int conf.game.size] [$ int conf.game.size] \
-                          $background \
-                          [expr {[$ int conf.game.nai]+1}]]
+        set ms HVC_
       }
     }
+
+    new GameManager 0 [list init-local-game [list "${ms}C0" $opts]] $background
   }
 }

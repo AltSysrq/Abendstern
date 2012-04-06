@@ -363,12 +363,14 @@ void GameField::removeFromInsertQueue(GameObject* go) noth {
 }
 
 void GameField::clear() noth {
-  for (iterator it=begin(); it != end(); ++it) {
-    (*it)->collideWith(*it);
-    assert(!(*it)->isRemote);
-    (*it)->del();
+  deque<GameObject*> ocpy(objects);
+  for (iterator it=ocpy.begin(); it != ocpy.end(); ++it) {
+    if(!(*it)->isRemote) {
+      (*it)->collideWith(*it);
+      (*it)->del();
+      remove(*it);
+    }
   }
-  objects.clear();
   for (unsigned int i=0; i<toInject.size(); ++i) delete toInject[i];
   toInject.clear();
   for (unsigned int i=0; i<toInsert.size(); ++i) delete toInsert[i];

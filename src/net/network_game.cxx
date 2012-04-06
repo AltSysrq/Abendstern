@@ -529,6 +529,10 @@ void NetworkGame::sendGameMode(Peer* peer) throw() {
     stgs[peer->cxn]->sendMode(iface->getGameMode());
 }
 
+void NetworkGame::updateFieldSize() throw() {
+  assembly.setFieldSize(assembly.field->width, assembly.field->height);
+}
+
 bool NetworkGame::acceptConnection(const Antenna::endpoint& source,
                                    string& errmsg, string& errl10n,
                                    const std::vector<byte>& auxData)
@@ -676,10 +680,6 @@ Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
   #warning NetworkGame::createPeer(NetworkConnection*) does not honour provided GID
   #endif
   endpointToLanGid(peer->gid, cxn->endpoint);
-  //TODO: Numeric ID
-  #ifndef WIN32
-  #warning NetworkGame::createPeer(NetworkConnection*) does not set NID
-  #endif
   peer->overseerReady = false;
   peer->connectionAttempts = 0;
   peer->cxn = cxn;

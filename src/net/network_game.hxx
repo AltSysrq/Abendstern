@@ -274,6 +274,11 @@ public:
    */
   void sendGameMode(Peer*) throw();
 
+  /**
+   * Updates all field sizes to match the current.
+   */
+  void updateFieldSize() throw();
+
 private:
   bool acceptConnection(const Antenna::endpoint& source,
                         std::string&, std::string&,

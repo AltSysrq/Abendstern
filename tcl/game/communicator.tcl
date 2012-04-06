@@ -63,9 +63,11 @@ class Communicator {
   # Returns the Peer associated with the given number (see get-peer-number)
   method get-peer-by-number {num}
 
-  # Returns whether the Communicator should be deleted when the BasicGame is.
-  method delete-with-parent {}
-
   # Returns whether the Communicator facilitates a networked game
   method is-networked {}
+
+  # Alters game the Communicator works with
+  method set-game {g} {
+    set game $g
+  }
 }

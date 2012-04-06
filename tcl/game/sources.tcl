@@ -3,6 +3,7 @@ foreach base {
   schema
   communicator
   loopback_communicator
+  game_manager
   basic_game
   spectator
   spawn_manager

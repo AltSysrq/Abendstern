@@ -3,12 +3,12 @@ class G_XTDM {
           MixinStatsTeam MixinPerfectRadar MixinMatch MixinFreeSpawn \
           BasicGame
 
-  constructor {fieldw fieldh background desiredPlayers nteams {initpeers {}}} {
+  constructor {desiredPlayers nteams env comm} {
     MixinAutobot::constructor $desiredPlayers
     MixinTeam::constructor $nteams
-    BasicGame::constructor $fieldw $fieldh $background $initpeers
+    BasicGame::constructor $env $comm
   } {
-    if {[llength $initpeers] < 2} {
+    if {[isOverseer]} {
       initialiseTeams
     }
     startOrJoinMatch
