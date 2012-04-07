@@ -31,29 +31,11 @@ GameField::GameField(float w, float h)
   effects(&nullEffectsHandler), perfectRadar(false),
   networkAssembly(NULL)
 {
-  nw=(int)ceil(w);
-  nh=(int)ceil(h);
-
-  //Boundaries
-  const float l(0.1f);
-  shader::quickV vertices[24] = {
-    {{{0,0}}}, {{{l,h-l}}}, {{{0,h}}},
-    {{{l,l}}}, {{{l,h-l}}}, {{{0,0}}},
-    {{{0,0}}}, {{{w,0}}}, {{{w-l,l}}},
-    {{{0,0}}}, {{{w-l,l}}}, {{{l,l}}},
-    {{{w,0}}}, {{{w,h}}}, {{{w-l,h-l}}},
-    {{{w,0}}}, {{{w-l,h-l}}}, {{{w-l,l}}},
-    {{{0,h}}}, {{{l,h-l}}}, {{{w-l,h-l}}},
-    {{{0,h}}}, {{{w-l,h-l}}}, {{{w,h}}},
-  };
   if (!headless) {
     vao=newVAO();
-    glBindVertexArray(vao);
     vbo=newVBO();
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    shader::quick->setupVBO();
   }
+  updateBoundaries();
 }
 GameField::~GameField() {
   for (unsigned int i=0; i<objects.size(); ++i) delete objects[i];
@@ -71,6 +53,27 @@ GameField::~GameField() {
   if (!headless) {
     glDeleteBuffers(1,&vbo);
     glDeleteVertexArrays(1,&vao);
+  }
+}
+
+void GameField::updateBoundaries() noth {
+  //Boundaries
+  const float l(0.1f), h(height), w(width);
+  shader::quickV vertices[24] = {
+    {{{0,0}}}, {{{l,h-l}}}, {{{0,h}}},
+    {{{l,l}}}, {{{l,h-l}}}, {{{0,0}}},
+    {{{0,0}}}, {{{w,0}}}, {{{w-l,l}}},
+    {{{0,0}}}, {{{w-l,l}}}, {{{l,l}}},
+    {{{w,0}}}, {{{w,h}}}, {{{w-l,h-l}}},
+    {{{w,0}}}, {{{w-l,h-l}}}, {{{w-l,l}}},
+    {{{0,h}}}, {{{l,h-l}}}, {{{w-l,h-l}}},
+    {{{0,h}}}, {{{w-l,h-l}}}, {{{w,h}}},
+  };
+  if (!headless) {
+    glBindVertexArray(vao);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    shader::quick->setupVBO();
   }
 }
 

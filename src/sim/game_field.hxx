@@ -75,8 +75,6 @@ class GameField : public AObject {
   //variables
   std::deque<GameObject*> toInsert;
 
-  int nw, nh;
-
   std::vector<GameObject*> toDelete;
 
   public:
@@ -194,6 +192,14 @@ class GameField : public AObject {
    * detection has completed.
    */
   void inject(GameObject*) noth;
+
+  /**
+   * Redraws the field boundaries in case of a size change.
+   *
+   * If this is not called after altering the size of the field, the displayed
+   * boundaries may not correspond to the actual ones.
+   */
+  void updateBoundaries() noth;
 
   private:
   template<bool decor>

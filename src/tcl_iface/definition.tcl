@@ -358,6 +358,7 @@ class final GameField {} {
   fun void remove {} {GameObject* yield}
   fun void inject {} {GameObject* steal {check ok=val;}}
   fun void clear noth
+  fun void updateBoundaries noth
 }
 
 cxx src/sim/blast.hxx

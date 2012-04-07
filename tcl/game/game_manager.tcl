@@ -126,6 +126,7 @@ class GameManager {
       }
     }
 
+    [$env getField] updateBoundaries
     if {$network != 0} {
       $network updateFieldSize
       $communicator switchMode $modestr
