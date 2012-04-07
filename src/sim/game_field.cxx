@@ -92,8 +92,7 @@ void GameField::update(float time) {
   currentFrameTimeLeft=currentFrameTime=time;
   float subTime=time;
   while (subTime>MAX_FRAME_LENGTH) {
-    currentVFrameLast = (subTime - MAX_FRAME_LENGTH <= 0);
-    currentVFrameLast = (subTime == 0);
+    currentVFrameLast = false;
     updateImpl<false>(MAX_FRAME_LENGTH);
     subTime-=MAX_FRAME_LENGTH;
     currentFrameTimeLeft=subTime;
