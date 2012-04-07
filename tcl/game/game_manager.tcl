@@ -113,20 +113,6 @@ class GameManager {
       set desiredPlayers 0
     }
 
-    set m [string range [lindex $modestr 0] 0 3]
-
-    switch -glob -- $m {
-      NULL      {setsub [new NullNetworkState $network]}
-      DM__      {setsub [new G_DM $desiredPlayers $env $communicator]}
-      [2-6]TDM  {setsub [new G_XTDM $desiredPlayers [string index $m 0] \
-                             $env $communicator]}
-      LMS_      {setsub [new G_LMS $desiredPlayers $env $communicator]}
-      L[2-6]TS  {setsub [new G_LXTS $desiredPlayers [string index $m 1] \
-                             $env $communicator]}
-      HVC_      {setsub [new G_HVC $desiredPlayers $env $communicator]}
-      default   {modeError $modestr; return}
-    }
-
     if {[dict exists $opt fieldw]} {
       set fw [dict get $opt fieldw]
       if {[string is integer -strict $fw] && $fw > 8 && $fw < 2048} {
@@ -143,6 +129,20 @@ class GameManager {
     if {$network != 0} {
       $network updateFieldSize
       $communicator switchMode $modestr
+    }
+
+    set m [string range [lindex $modestr 0] 0 3]
+
+    switch -glob -- $m {
+      NULL      {setsub [new NullNetworkState $network]}
+      DM__      {setsub [new G_DM $desiredPlayers $env $communicator]}
+      [2-6]TDM  {setsub [new G_XTDM $desiredPlayers [string index $m 0] \
+                             $env $communicator]}
+      LMS_      {setsub [new G_LMS $desiredPlayers $env $communicator]}
+      L[2-6]TS  {setsub [new G_LXTS $desiredPlayers [string index $m 1] \
+                             $env $communicator]}
+      HVC_      {setsub [new G_HVC $desiredPlayers $env $communicator]}
+      default   {modeError $modestr; return}
     }
   }
 
