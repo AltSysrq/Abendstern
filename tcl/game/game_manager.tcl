@@ -43,7 +43,7 @@ class GameManager {
     if {$network == 0} {
       set communicator [new LoopbackCommunicator 0]
     } else {
-      set communicator [new NetworkCommunicator $network 0]
+      set communicator [new NetworkCommunicator $network $this 0]
       $network setNetIface $communicator
     }
 
