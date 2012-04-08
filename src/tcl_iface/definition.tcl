@@ -1135,6 +1135,7 @@ unsafe {
     fun void setGameMode purevirtual cstr
     fun cstr getGameMode purevirtual
     fun void connectionLost purevirtual cstr
+    fun string getFullDats purevirtual
   }
   class final NetworkGame {} {
     constructor default GameField*

@@ -379,7 +379,7 @@ Message types:
   x     Extension; the payload of this packet is prepended to that of the next
         before performing the next's operation.
   M     Indicates current game mode (see gamemgr.tcl)
-  V     Proposes/votes that the next match use the given game mode
+  Q     Requests ("Queries") a full refresh of the global shared data.
   R     Empty payload; indicates that the peer is now ready to become overseer
         if it has the lowest numeric ID.
 

@@ -38,6 +38,7 @@ private:
   virtual void setGameMode(const char*) {}
   virtual const char* getGameMode() { return "TEST"; }
   virtual void connectionLost(const char*) {}
+  virtual std::string getFullDats() { return std::string(); }
 };
 
 #endif /* NETWORK_TEST_HXX_ */

@@ -83,6 +83,10 @@ public:
   ///Return true if the changes arv accepted.
   virtual bool alterDats(const char* kv) = 0;
 
+  ///Returns a dats alteration (suitable for passing to alterDats()) which will
+  ///reset the entire dats tree.
+  virtual std::string getFullDats() = 0;
+
   ///Called when a game mode alteration is received
   virtual void setGameMode(const char*) = 0;
   ///Returns the current game mode string; the first four characters must be a

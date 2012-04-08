@@ -134,8 +134,9 @@ namespace network_game {
             game->iface->setGameMode(extension.c_str());
           break;
 
-        case 'V':
-          //TODO
+        case 'Q':
+          if (game->iface)
+            sendDats(game->iface->getFullDats());
           break;
 
         case 'R':
@@ -171,8 +172,8 @@ namespace network_game {
     void sendMode(const std::string& str) throw() {
       send(str, 'M');
     }
-    void sendVote(const std::string& str) throw() {
-      send(str, 'V');
+    void sendQuery() throw() {
+      SeqTextOutputGeraet::send(string("Q"));
     }
     void sendReady() throw() {
       SeqTextOutputGeraet::send(string("R"));
@@ -767,6 +768,8 @@ void NetworkGame::refreshOverseer() throw() {
     overseer = os;
     if (iface)
       iface->setOverseer(os);
+    if (overseer)
+      stgs[overseer->cxn]->sendQuery();
   }
   cout << "Overseer: " << overseer;
   if (overseer)
