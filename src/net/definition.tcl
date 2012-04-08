@@ -1157,6 +1157,15 @@ type Ship {
     }
   }
 
+  # Set the coords again to prevent "jumping" which occurs when the ship is
+  # being damaged.
+  void {
+    update {
+      X->x = max(0.0f,min(field->width -0.0001f,x + vx*T));
+      X->y = max(0.0f,min(field->height-0.0001f,y + vy*T));
+    }
+  }
+
   construct {
     X = new Ship(field);
     //Set fields from GameObject
