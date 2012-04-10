@@ -23,7 +23,7 @@ using namespace std;
 #define PACKET_SIZE (2+8*4+1)
 
 const NetworkConnection::geraet_num ShipDamageGeraet::num =
-    NetworkConnection::registerGeraetCreator(&create);
+  NetworkConnection::registerGeraetCreator(&create, 16384);
 
 ShipDamageGeraet::ShipDamageGeraet(AsyncAckGeraet* aag)
 : ReliableSender(aag, OutputNetworkGeraet::DSIntrinsic),

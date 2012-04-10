@@ -211,13 +211,12 @@ public:
    * Registers the given Gerät creator, returning the Gerät number
    * associated with it.
    * @param fun the geraet_creator to register
-   * @param num the number to use for the Gerät; if equal to ~0 (the default),
-   * a number is chosen automatically. If not ~0, the number must not be in
-   * use already. Automatically-allocated numbers start at 32768.
+   * @param num the number to use for the Gerät; the number must not be in
+   * use already.
    * @return the Gerät number of the creator
    */
   static geraet_num registerGeraetCreator(geraet_creator fun,
-                                          geraet_num num=~0);
+                                          geraet_num num);
   /**
    * Returns the geraet_creator associated with the given Gerät number.
    * The result is NULL if the number is not associated with any

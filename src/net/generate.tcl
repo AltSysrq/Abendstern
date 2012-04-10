@@ -174,6 +174,7 @@ package require sha256
 file mkdir net/xxx
 set hout [open net/xxx/xnetobj.hxx w]
 set cout [open net/xxx/xnetobj.cxx w]
+set geraetnum 32768
 
 # Strings are appended to this to describe the data format. This is not
 # necessarily a precise specification; it is simply used as input to the
@@ -283,7 +284,7 @@ proc whole-byte {} {
 
 proc type {name contents} {
   global byteOffset bitOffset elements typeConstructor hout cout classes
-  global compatibilityString
+  global compatibilityString geraetnum
   append compatibilityString "type $name"
   # Register the type
   prototype $name $contents
@@ -352,7 +353,7 @@ INO_${name}::~INO_${name}() {
 }
 
 const NetworkConnection::geraet_num INO_${name}::num =
-    NetworkConnection::registerGeraetCreator(&create);
+    NetworkConnection::registerGeraetCreator(&create, $geraetnum);
 
 InputNetworkGeraet* INO_${name}::create(NetworkConnection* cxn) throw() {
   return new INO_${name}(cxn);
@@ -478,6 +479,7 @@ void ENO_${name}::updateRemote() throw() {
 }
 [cxxj impl]
 "
+  incr geraetnum
 }
 
 # Expands to DATA[$::byteOffset+$off]
