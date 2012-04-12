@@ -301,7 +301,6 @@ NetworkConnection::geraet_num
 NetworkConnection::registerGeraetCreator(geraet_creator fun,
                                          geraet_num preferred) {
   static bool hasInitialised = false;
-  static geraet_num nextAuto = 32768;
   //Allocate map if not done yet
   if (!hasInitialised) {
     geraetNumMap = new geraetNumMap_t;
@@ -309,9 +308,6 @@ NetworkConnection::registerGeraetCreator(geraet_creator fun,
   }
 
   geraet_num number = preferred;
-
-  if (number == (geraet_num)~(geraet_num)0)
-    number = nextAuto++;
 
   if (geraetNumMap->count(number)) {
     cerr << "FATAL: Duplicate Geraet number: " << number << endl;
