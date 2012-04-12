@@ -365,7 +365,7 @@ class BasicGame {
     broadcastMessage format vpeer_disconnected_fmt \
       [getStatsColour 0 $vp] [dpg $vp name]
 
-    dict set datp 0 [dict remove [dict get $datp 0] $vp]
+    dps $vp {}
     dps list [lsearch -exact -not -all -inline [dpg list] $vp]
     lappend emptyVPeers $vp
   }

@@ -120,8 +120,7 @@ namespace network_game {
 
         case 's':
           if (game->iface && game->overseer == game->peers[cxn])
-            if (game->iface->alterDats(extension.c_str()))
-              game->becomeOverseerReady();
+            game->iface->alterDats(extension.c_str());
           break;
 
         case 'p':
@@ -132,6 +131,7 @@ namespace network_game {
         case 'M':
           if (game->iface && game->overseer == game->peers[cxn])
             game->iface->setGameMode(extension.c_str());
+          game->becomeOverseerReady();
           break;
 
         case 'Q':

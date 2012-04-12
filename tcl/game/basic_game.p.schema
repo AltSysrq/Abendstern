@@ -1,4 +1,5 @@
 subdir {
+  +list {}
   list {
     list {
       int10 {}
@@ -49,7 +50,6 @@ subdir {
         aux vpeer-data
       }
     }
-    llmin 1
-    llmax 255
+    llmax +255
   }
 }

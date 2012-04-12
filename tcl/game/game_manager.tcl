@@ -176,15 +176,16 @@ class GameManager {
 
   # Initialising method which connects to the given discovered LAN game.
   method join-lan-game {advertising ix} {
+    createMode "NULLC0 {}"
+
     $network connectToDiscovery $ix
     if {$advertising} {
       $network setAdvertising NULL
     }
-
-    createMode "NULLC0 {}"
   }
 
   method remote-swich-state {modestr} {
+    log "remote-swich-state $modestr"
     createMode $modestr
   }
 }

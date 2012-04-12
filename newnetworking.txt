@@ -394,8 +394,9 @@ certain validation or will be ignored/edited.
 Overseer-readiness indicates that the peer believes it has enough information
 that it can act as the central source of game information. This entails two
 things:
-o It must have received the dats information from the current overseer.
-o It must be connected to all the current peers.
+o It must have received the game mode from the current overseer.
+o It must be connected to all the current peers (or be in the process of
+  connecting to them).
 
 AUXILLIARY DATA in STX PACKETS
 Abendstern adds the following information to an STX packet:

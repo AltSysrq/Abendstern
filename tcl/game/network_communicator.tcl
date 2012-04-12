@@ -10,6 +10,11 @@ class NetworkCommunicator {
   variable mgr
   variable currMode {}
 
+  # Mirrors of the corresponding dicts, but not passed through the
+  # validator. This allows for non-atomic operations to work properly.
+  variable unvalidatedDatp
+  variable unvalidatedDats
+
   constructor {netw man gam} {
     super NetIface *default
     Communicator::constructor $gam
@@ -23,16 +28,21 @@ class NetworkCommunicator {
     for {set i 1} {$i < 256} {incr i} {
       lappend freeNumbers $i
     }
+
+    set unvalidatedDatp $datp
+    set unvalidatedDats $dats
   }
 
   ### BEGIN: Communicator methods
   method set-datp {keyval} {
     dict set datp 0 {*}$keyval
+    dict set unvalidatedDats 0 {*}$keyval
     $network alterDatp $keyval 0
   }
 
   method set-dats {keyval} {
     dict set dats {*}$keyval
+    dict set unvalidatedDats {*}$keyval
     $network alterDats $keyval 0
   }
 
@@ -103,7 +113,13 @@ class NetworkCommunicator {
     set freeNumbers [lassign $freeNumbers num]
     dict set peersByNumber $num $peer
     dict set peersByNumberRev $peer $num
-    $network alterDatp [dict get $datp 0] $peer
+    if {[dict exists $datp 0]} {
+      $network alterDatp [list [dict get $datp 0]] $peer
+    }
+    set dp {}
+    validateDatp dp
+    dict set datp $peer $dp
+    dict set unvalidatedDatp $peer {}
   }
 
   method delPeer {peer} {
@@ -111,6 +127,8 @@ class NetworkCommunicator {
     set peers [lsearch -not -all -inline -exact $peers $peer]
     dict unset peersByNumber $num
     dict unset peersByNumberRev $peer
+    dict unset datp $peer
+    dict unset unvalidatedDatp $peer
   }
 
   method setOverseer {peer} {}
@@ -129,18 +147,19 @@ class NetworkCommunicator {
       log "Warning: Rejecting non-list alteration of dats"
       return 0
     }
-    set new $dats
+
     if {[catch {
       if {[llength $keyval] > 1} {
-        dict set new {*}$keyval
+        dict set unvalidatedDats {*}$keyval
       } else {
-        set new $keyval
+        set unvalidatedDats [lindex $keyval 0]
       }
+      set new $unvalidatedDats
       if {![validateDats new]} {
         error "Validation failed."
       }
     } err]} {
-      log "Warning: Rejecting dats alteration: $err"
+      #log "Warning: Rejecting dats alteration: $err"
       return 0
     }
 
@@ -154,18 +173,19 @@ class NetworkCommunicator {
       return 0
     }
 
-    set new [dict get $datp $peer]
+    set new [dict get $unvalidatedDatp $peer]
     if {[catch {
       if {[llength $keyval] > 1} {
         dict set new {*}$keyval
       } else {
-        set new $keyval
+        set new [lindex $keyval 0]
       }
+      dict set unvalidatedDatp $peer $new
       if {![validateDatp new]} {
         error "Validation failed."
       }
     } err]} {
-      log "Warning: Rejecting datp alteration: $err"
+      #log "Warning: Rejecting datp alteration: $err"
       return 0
     }
 
@@ -187,7 +207,7 @@ class NetworkCommunicator {
 
     foreach peer $peers {
       if {$peer != 0} {
-        set d [dict get $datp $peer]
+        set d [dict get $unvalidatedDatp $peer]
         validateDatp d
         dict set datp $peer $d
       }
