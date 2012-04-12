@@ -89,7 +89,7 @@ class TestMode {
       $main add [new gui::Button [_ T a update_abendstern] "$app setMode \[new SelfUpdater\]"]
     }
     $main add [new gui::Button "E\a&xperimental LAN Game" \
-                   "$app setSubState \[new NetworkTest default\]"]
+                   "$app setSubState \[$this getGameState 1\]"]
     set quit [new gui::Button [_ A gui quit] "$app configure -retval \[new BootManager shutdown\]"]
     $quit setCancel
     $main add $quit
@@ -328,7 +328,7 @@ class TestMode {
     $root setSize 0 1 $vheight 0
   }
 
-  method getGameState {} {
+  method getGameState {{network 0}} {
     $gameparms save
     switch -exact -- [$ str conf.game.background] {
       StarField {
@@ -384,6 +384,11 @@ class TestMode {
       }
     }
 
-    new GameManager 0 [list init-local-game [list "${ms}C0" $opts]] $background
+    set modestr [list "${ms}C0" $opts]
+    if {$network} {
+      return [networkTest $modestr $background]
+    } else {
+      return [new GameManager 0 [list init-local-game $modestr] $background]
+    }
   }
 }

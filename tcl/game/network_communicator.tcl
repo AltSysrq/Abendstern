@@ -14,7 +14,7 @@ class NetworkCommunicator {
     super NetIface *default
     Communicator::constructor $gam
   } {
-    set network $gam
+    set network $netw
     set mgr $man
     set peers [list 0]
     set peersByNumber [dict create 0 0]
@@ -28,12 +28,12 @@ class NetworkCommunicator {
   ### BEGIN: Communicator methods
   method set-datp {keyval} {
     dict set datp 0 {*}$keyval
-    $network alterDatp $keyval
+    $network alterDatp $keyval 0
   }
 
   method set-dats {keyval} {
     dict set dats {*}$keyval
-    $network alterDats $keyval
+    $network alterDats $keyval 0
   }
 
   method get-peers {} {
@@ -87,9 +87,11 @@ class NetworkCommunicator {
 
   method switchMode {mode} {
     set currMode $mode
-    foreach peer $peers {
-      if {$peer != 0} {
-        $network sendGameMode $peer
+    if {[is-overseer]} {
+      foreach peer $peers {
+        if {$peer != 0} {
+          $network sendGameMode $peer
+        }
       }
     }
   }
@@ -101,6 +103,7 @@ class NetworkCommunicator {
     set freeNumbers [lassign $freeNumbers num]
     dict set peersByNumber $num $peer
     dict set peersByNumberRev $peer $num
+    $network alterDatp [dict get $datp 0] $peer
   }
 
   method delPeer {peer} {
@@ -110,7 +113,7 @@ class NetworkCommunicator {
     dict unset peersByNumberRev $peer
   }
 
-  method setOverseer {} {}
+  method setOverseer {peer} {}
   method receiveBroadcast {peer msg} {
     $game receiveBroadcast $peer $msg
   }
@@ -128,7 +131,11 @@ class NetworkCommunicator {
     }
     set new $dats
     if {[catch {
-      dict set new {*}$keyval
+      if {[llength $keyval] > 1} {
+        dict set new {*}$keyval
+      } else {
+        set new $keyval
+      }
       if {![validateDats new]} {
         error "Validation failed."
       }
@@ -148,8 +155,12 @@ class NetworkCommunicator {
     }
 
     set new [dict get $datp $peer]
-    if {[catcn {
-      dict set new {*}$keyval
+    if {[catch {
+      if {[llength $keyval] > 1} {
+        dict set new {*}$keyval
+      } else {
+        set new $keyval
+      }
       if {![validateDatp new]} {
         error "Validation failed."
       }
@@ -168,6 +179,19 @@ class NetworkCommunicator {
 
   method setGameMode {mode} {
     $mgr remote-swich-state $mode
+    if {![validateDats dats]} {
+      log $dats
+      $mgr networkError [_ N network protocol_error]
+      return
+    }
+
+    foreach peer $peers {
+      if {$peer != 0} {
+        set d [dict get $datp $peer]
+        validateDatp d
+        dict set datp $peer $d
+      }
+    }
   }
 
   method getGameMode {} {

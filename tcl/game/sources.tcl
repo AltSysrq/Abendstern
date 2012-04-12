@@ -24,6 +24,7 @@ foreach base {
   g_lms
   g_lxts
   g_hvc
+  g_null
 } {
   source "tcl/game/$base.tcl"
 }

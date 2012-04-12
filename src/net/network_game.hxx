@@ -279,6 +279,13 @@ public:
   void sendGameMode(Peer*) throw();
 
   /**
+   * Changes to the given new field.
+   */
+  void changeField(GameField* f) throw() {
+    assembly.changeField(f);
+  }
+  
+  /**
    * Updates all field sizes to match the current.
    */
   void updateFieldSize() throw();

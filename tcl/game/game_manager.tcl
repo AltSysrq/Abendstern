@@ -52,19 +52,22 @@ class GameManager {
     $env configure -stars [eval $background]
     $this {*}$initmeth
     set mode [new ::gui::Mode]
+    if {$network != 0} {
+      $network changeField $field
+    }
   }
 
   destructor {
-    delete object $communicator
     if {$network != 0} {
       delete object $network
     }
+    delete object $communicator
     delete object $env
   }
 
   method update {et} {
     if {$network != 0} {
-      $network update $et
+      $network update [expr {int($et)}]
     }
 
     Application::update $et
@@ -91,6 +94,14 @@ class GameManager {
       set network 0
     }
     setsub [new NetworkFailureApp [_ N protocol error]]
+  }
+
+  method networkError {what} {
+    if {0 != $network} {
+      delete object $network
+      set network 0
+    }
+    setsub [new NetworkFailureApp $what]
   }
 
   private method createMode {modestr} {
@@ -127,10 +138,6 @@ class GameManager {
     }
 
     [$env getField] updateBoundaries
-    if {$network != 0} {
-      $network updateFieldSize
-      $communicator switchMode $modestr
-    }
 
     set m [string range [lindex $modestr 0] 0 3]
 
@@ -145,10 +152,39 @@ class GameManager {
       HVC_      {setsub [new G_HVC $desiredPlayers $env $communicator]}
       default   {modeError $modestr; return}
     }
+
+    if {$network != 0} {
+      $network updateFieldSize
+      $communicator switchMode $modestr
+    }
   }
 
   # Initialising method which starts a new local game
   method init-local-game modestr {
+    createMode $modestr
+  }
+
+  # Initialising method which stats a LAN game.
+  method init-lan-game {ipv advertising modestr} {
+    $network connectToNothing [expr {$ipv == 6}] true
+    if {$advertising} {
+      $network setAdvertising $modestr
+    }
+
+    createMode $modestr
+  }
+
+  # Initialising method which connects to the given discovered LAN game.
+  method join-lan-game {advertising ix} {
+    $network connectToDiscovery $ix
+    if {$advertising} {
+      $network setAdvertising NULL
+    }
+
+    createMode "NULLC0 {}"
+  }
+
+  method remote-swich-state {modestr} {
     createMode $modestr
   }
 }

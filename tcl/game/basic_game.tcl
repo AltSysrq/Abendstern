@@ -120,7 +120,8 @@ class BasicGame {
     set shipDeathFun [new BasicGameShipDeathCallback $this]
     set ckc [new BasicGameCKC $this]
     set lastGenAiReportFC [$field cget -fieldClock]
-    set communicator [new LoopbackCommunicator $this]
+    set communicator $comm
+    $comm set-game $this
     dps list {}
 
     set emptyVPeers {}

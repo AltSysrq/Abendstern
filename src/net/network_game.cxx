@@ -501,7 +501,12 @@ void NetworkGame::connectToDiscovery(unsigned ix) throw() {
 }
 
 void NetworkGame::alterDats(const string& msg, Peer* peer) throw() {
-  stgs[peer->cxn]->sendDats(msg);
+  if (!peer) {
+    for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it)
+      alterDats(msg, it->second);
+  } else {
+    stgs[peer->cxn]->sendDats(msg);
+  }
 }
 
 void NetworkGame::alterDatp(const string& msg, Peer* peer) throw() {
@@ -671,6 +676,8 @@ Peer* NetworkGame::createPeer(const GlobalID& gid) throw() {
   peer->cxn = NULL;
   peer->receivedStx = false;
   connectToPeer(peer);
+  if (iface)
+    iface->addPeer(peer);
   return peer;
 }
 
@@ -687,6 +694,8 @@ Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
   peers[cxn] = peer;
   peer->receivedStx = true;
   initCxn(cxn, peer);
+  if (iface)
+    iface->addPeer(peer);
   return peer;
 }
 
@@ -744,6 +753,8 @@ throw() {
   }
   if (peer == overseer)
     refreshOverseer();
+  if (iface)
+    iface->delPeer(peer);
   //TODO: handle banning
 }
 
@@ -761,7 +772,7 @@ void NetworkGame::refreshOverseer() throw() {
 
   //Local peer is overseer if it has a lower NID or if no other peer is
   //ready (in which case os is already NULL).
-  if (localPeer.nid < minid)
+  if (localPeer.nid < minid && localPeer.overseerReady)
     os = NULL;
 
   if (os != overseer) {
@@ -804,6 +815,10 @@ void NetworkGame::initCxn(NetworkConnection* cxn, Peer* peer) throw() {
   //If overseer-ready, notify them
   if (localPeer.overseerReady)
     stgs[cxn]->sendReady();
+
+  //Send dats info
+  if (iface && !overseer && localPeer.overseerReady)
+    stgs[cxn]->sendDats(iface->getFullDats());
 
   //Indicate game mode if appropriate
   if (iface && !overseer && localPeer.overseerReady)

@@ -1157,6 +1157,8 @@ unsafe {
     #fun bool hasInternet4
     #fun bool hasInternet6
     fun void update {} unsigned
+    fun void updateFieldSize
+    fun void changeField {} GameField*
 
     fun void alterDats {} string Peer*
     fun void alterDatp {} string Peer*

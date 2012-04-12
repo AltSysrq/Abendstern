@@ -125,16 +125,22 @@ proc makePlanet {} {
   delete object $parms
 }
 
-# Convenience network test procs
-proc ntl {args} {
-  set ::state [new NetworkTest default]
-  foreach {host port} $args {
-    $::state connect $host $port
+proc networkTest {modestr stars} {
+  set dummy [new GameField default 1 1]
+  set netw [new NetworkGame default $dummy]
+  $netw startDiscoveryScan
+  while {![$netw discoveryScanDone]} {
+    after 5
+    $netw update 5
   }
-}
+  if {[llength [$netw getDiscoveryResults]]} {
+    set ret [new GameManager $netw {join-lan-game true 0} $stars]
+  } else {
+    set ret [new GameManager $netw [list init-lan-game 4 true $modestr] $stars]
+  }
 
-proc ntc {args} {
-  ntl 192.168.10.199 12544 {*}$args
+  delete object $dummy
+  return $ret
 }
 
 source tcl/boot.tcl
