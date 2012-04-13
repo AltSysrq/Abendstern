@@ -20,8 +20,13 @@ class G_HVC {
   } {
     startOrJoinMatch
     initHuman
-    autobotCheckAll
+    if {[isOverseer]} {
+      autobotCheckAll
+    }
     setAlliance ANeutral 1 1
+    if {[isOverseer]} {
+      dss survivor {}
+    }
   }
 
   destructor {

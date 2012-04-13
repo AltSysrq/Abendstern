@@ -10,7 +10,9 @@ class G_DM {
   } {
     startOrJoinMatch
     initHuman
-    autobotCheckAll
+    if {[isOverseer]} {
+      autobotCheckAll
+    }
   }
 
   method getGameModeDescription {} {

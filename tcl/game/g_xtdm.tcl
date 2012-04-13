@@ -13,7 +13,9 @@ class G_XTDM {
     }
     startOrJoinMatch
     initHuman
-    autobotCheckAll
+    if {[isOverseer]} {
+      autobotCheckAll
+    }
   }
 
   method getGameModeDescription {} {

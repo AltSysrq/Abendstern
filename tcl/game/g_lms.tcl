@@ -8,7 +8,9 @@ class G_LMS {
     BasicGame::constructor $env $comm
   } {
     initHuman
-    autobotCheckAll
+    if {[isOverseer]} {
+      autobotCheckAll
+    }
     startOrJoinMatch
     if {[isOverseer]} {dss survivor {}}
   }
