@@ -133,13 +133,25 @@ class NetworkCommunicator {
 
   method setOverseer {peer} {}
   method receiveBroadcast {peer msg} {
-    $game receiveBroadcast $peer $msg
+    if {[catch {
+      $game receiveBroadcast $peer $msg
+    } err]} {
+      log "receiveBroadcast: $err"
+    }
   }
   method receiveOverseer {peer msg} {
-    $game receiveOverseer $peer $msg
+    if {[catch {
+      $game receiveOverseer $peer $msg
+    } err]} {
+      log "receiveOverseer: $err"
+    }
   }
   method receiveUnicast {peer msg} {
-    $game receiveUnicast $peer $msg
+    if {[catch {
+      $game receiveUnicast $peer $msg
+    } err]} {
+      log "receiveUnicast: $err"
+    }
   }
 
   method alterDats {keyval} {

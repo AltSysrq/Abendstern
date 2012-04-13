@@ -12,7 +12,9 @@ class G_LXTS {
       initialiseTeams
     }
     initHuman
-    autobotCheckAll
+    if {[isOverseer]} {
+      autobotCheckAll
+    }
     startOrJoinMatch
     if {[isOverseer]} {dss survivor {}}
   }

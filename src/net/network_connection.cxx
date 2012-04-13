@@ -155,7 +155,6 @@ void NetworkConnection::update(unsigned et) noth {
     channelsToClose.pop();
   }
 
-  //TODO: Only process objects if in Ready status
   timeSinceRetriedTransients += et;
   if (timeSinceRetriedTransients > 128) {
     candidateExports.insert(candidateExports.end(),
@@ -165,7 +164,7 @@ void NetworkConnection::update(unsigned et) noth {
     timeSinceRetriedTransients = 0;
   }
   //Export candidates that are close enough or non-transient
-  while (!candidateExports.empty()) {
+  while (!candidateExports.empty() && status == Ready) {
     GameObject* go = candidateExports.front();
     candidateExports.pop_front();
     if (!go->isTransient || distanceOf(go) < TRANSIENT_DIST*TRANSIENT_DIST) {

@@ -50,11 +50,11 @@ class GameManager {
     set env [new GameEnv default 16 16]
     set field [$env getField]
     $env configure -stars [eval $background]
-    $this {*}$initmeth
-    set mode [new ::gui::Mode]
     if {$network != 0} {
       $network changeField $field
     }
+    $this {*}$initmeth
+    set mode [new ::gui::Mode]
   }
 
   destructor {

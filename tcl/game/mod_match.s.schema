@@ -5,6 +5,7 @@ within {
   matchEndTime {
     integer {[::abnet::nclock]}
   }
+  +matchStartTime 0
   matchStartTime {
     integer {[expr {15+[::abnet::nclock]}]}
   }

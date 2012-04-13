@@ -17,8 +17,11 @@ class MixinRoundSpawn {
   }
 
   method spawnListener {ship del vp} {
-    if {"attachHuman" == [dict get $vpeerMethods $vp]} {
-      roundSpawnUseSpectator
+    # The dict entry will not exist if this is due to a vpeer disconnecting.
+    if {[dict exists $vpeerMethods $vp]} {
+      if {"attachHuman" == [dict get $vpeerMethods $vp]} {
+        roundSpawnUseSpectator
+      }
     }
   }
 
