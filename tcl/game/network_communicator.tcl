@@ -120,6 +120,7 @@ class NetworkCommunicator {
     validateDatp dp
     dict set datp $peer $dp
     dict set unvalidatedDatp $peer {}
+    $network setBlameMask $peer [expr {$num << 8}]
   }
 
   method delPeer {peer} {
@@ -129,6 +130,7 @@ class NetworkCommunicator {
     dict unset peersByNumberRev $peer
     dict unset datp $peer
     dict unset unvalidatedDatp $peer
+    lappend freeNumbers $num
   }
 
   method setOverseer {peer} {}

@@ -626,19 +626,19 @@ class BasicGame {
     set secondary1 [decodeBlame $secondary1]
 
     # Don't show assists if the assister is the one who got killed
-    if {{} == $assist || (0 == [lindex $assist 0] && $vp == [lindex $assist 1])} {
-      set aex {}
-      set fargs [list "\a\[[getStatsColour {*}$killer][dpgp {*}$killer name]\a\]" \
-                      "\a\[[getStatsColour 0 $vp][dpg $vp name]\a\]"]
-    } else {
-      set aex _assist
-      set fargs [list "\a\[[getStatsColour {*}$killer][dpgp {*}$killer name]\a\]" \
-                      "\a\[[getStatsColour {*}$assist][dpgp {*}$assist name]\a\]" \
-                      "\a\[[getStatsColour 0 $vp][dpg $vp name]\a\]"]
-    }
-    set which [expr {int(rand()*5)}]
-
     if {$killer != {}} {
+      if {{} == $assist || (0 == [lindex $assist 0] && $vp == [lindex $assist 1])} {
+        set aex {}
+        set fargs [list "\a\[[getStatsColour {*}$killer][dpgp {*}$killer name]\a\]" \
+                       "\a\[[getStatsColour 0 $vp][dpg $vp name]\a\]"]
+      } else {
+        set aex _assist
+        set fargs [list "\a\[[getStatsColour {*}$killer][dpgp {*}$killer name]\a\]" \
+                       "\a\[[getStatsColour {*}$assist][dpgp {*}$assist name]\a\]" \
+                       "\a\[[getStatsColour 0 $vp][dpg $vp name]\a\]"]
+      }
+      set which [expr {int(rand()*5)}]
+
       shipKilledBy $ship $vp {*}$killer
 
       # Check current kill-streak and possible teams for message type

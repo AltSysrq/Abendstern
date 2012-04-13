@@ -535,6 +535,10 @@ void NetworkGame::sendGameMode(Peer* peer) throw() {
     stgs[peer->cxn]->sendMode(iface->getGameMode());
 }
 
+void NetworkGame::setBlameMask(Peer* peer, unsigned mask) throw() {
+  peer->cxn->blameMask = peer->blameMask = mask;
+}
+
 void NetworkGame::updateFieldSize() throw() {
   assembly.setFieldSize(assembly.field->width, assembly.field->height);
 }
@@ -823,6 +827,9 @@ void NetworkGame::initCxn(NetworkConnection* cxn, Peer* peer) throw() {
   //Indicate game mode if appropriate
   if (iface && !overseer && localPeer.overseerReady)
     stgs[cxn]->sendMode(iface->getGameMode());
+
+  //Copy blame mask
+  cxn->blameMask = peer->blameMask;
 
   //Set outgoing STX auxilliary data
   byte auxdat[4];

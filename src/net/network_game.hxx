@@ -52,6 +52,9 @@ public:
   NetworkConnection* cxn;
   ///Whether an STX packet has been received and accepted
   bool receivedStx;
+  ///The blameMask to copy into the same field of the connection.
+  ///@see NetworkGame::setBlameMask(Peer*)
+  unsigned blameMask;
 
   ///The Peers this Peer has a connection FROM
   std::set<Peer*> connectionsFrom;
@@ -277,6 +280,11 @@ public:
    * Sends a game mode notification to the given peer.
    */
   void sendGameMode(Peer*) throw();
+
+  /**
+   * Sets the blame mask of the given peer and its current connection.
+   */
+  void setBlameMask(Peer*, unsigned) throw();
 
   /**
    * Changes to the given new field.

@@ -1166,6 +1166,7 @@ unsafe {
     fun void sendOverseer {} string Peer*
     fun void sendBroadcast {} string
     fun void sendGameMode {} Peer*
+    fun void setBlameMask {} Peer* unsigned
   }
 }
 
