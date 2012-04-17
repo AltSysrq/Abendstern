@@ -31,29 +31,11 @@ GameField::GameField(float w, float h)
   effects(&nullEffectsHandler), perfectRadar(false),
   networkAssembly(NULL)
 {
-  nw=(int)ceil(w);
-  nh=(int)ceil(h);
-
-  //Boundaries
-  const float l(0.1f);
-  shader::quickV vertices[24] = {
-    {{{0,0}}}, {{{l,h-l}}}, {{{0,h}}},
-    {{{l,l}}}, {{{l,h-l}}}, {{{0,0}}},
-    {{{0,0}}}, {{{w,0}}}, {{{w-l,l}}},
-    {{{0,0}}}, {{{w-l,l}}}, {{{l,l}}},
-    {{{w,0}}}, {{{w,h}}}, {{{w-l,h-l}}},
-    {{{w,0}}}, {{{w-l,h-l}}}, {{{w-l,l}}},
-    {{{0,h}}}, {{{l,h-l}}}, {{{w-l,h-l}}},
-    {{{0,h}}}, {{{w-l,h-l}}}, {{{w,h}}},
-  };
   if (!headless) {
     vao=newVAO();
-    glBindVertexArray(vao);
     vbo=newVBO();
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    shader::quick->setupVBO();
   }
+  updateBoundaries();
 }
 GameField::~GameField() {
   for (unsigned int i=0; i<objects.size(); ++i) delete objects[i];
@@ -74,6 +56,27 @@ GameField::~GameField() {
   }
 }
 
+void GameField::updateBoundaries() noth {
+  //Boundaries
+  const float l(0.1f), h(height), w(width);
+  shader::quickV vertices[24] = {
+    {{{0,0}}}, {{{l,h-l}}}, {{{0,h}}},
+    {{{l,l}}}, {{{l,h-l}}}, {{{0,0}}},
+    {{{0,0}}}, {{{w,0}}}, {{{w-l,l}}},
+    {{{0,0}}}, {{{w-l,l}}}, {{{l,l}}},
+    {{{w,0}}}, {{{w,h}}}, {{{w-l,h-l}}},
+    {{{w,0}}}, {{{w-l,h-l}}}, {{{w-l,l}}},
+    {{{0,h}}}, {{{l,h-l}}}, {{{w-l,h-l}}},
+    {{{0,h}}}, {{{w-l,h-l}}}, {{{w,h}}},
+  };
+  if (!headless) {
+    glBindVertexArray(vao);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    shader::quick->setupVBO();
+  }
+}
+
 void GameField::update(float time) {
   fieldClockMicro += time;
   fieldClock += (Uint32)fieldClockMicro;
@@ -89,8 +92,7 @@ void GameField::update(float time) {
   currentFrameTimeLeft=currentFrameTime=time;
   float subTime=time;
   while (subTime>MAX_FRAME_LENGTH) {
-    currentVFrameLast = (subTime - MAX_FRAME_LENGTH <= 0);
-    currentVFrameLast = (subTime == 0);
+    currentVFrameLast = false;
     updateImpl<false>(MAX_FRAME_LENGTH);
     subTime-=MAX_FRAME_LENGTH;
     currentFrameTimeLeft=subTime;
@@ -363,12 +365,14 @@ void GameField::removeFromInsertQueue(GameObject* go) noth {
 }
 
 void GameField::clear() noth {
-  for (iterator it=begin(); it != end(); ++it) {
-    (*it)->collideWith(*it);
-    assert(!(*it)->isRemote);
-    (*it)->del();
+  deque<GameObject*> ocpy(objects);
+  for (iterator it=ocpy.begin(); it != ocpy.end(); ++it) {
+    if(!(*it)->isRemote) {
+      (*it)->collideWith(*it);
+      (*it)->del();
+      remove(*it);
+    }
   }
-  objects.clear();
   for (unsigned int i=0; i<toInject.size(); ++i) delete toInject[i];
   toInject.clear();
   for (unsigned int i=0; i<toInsert.size(); ++i) delete toInsert[i];

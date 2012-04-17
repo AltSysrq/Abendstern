@@ -6,9 +6,7 @@ within {
     integer 0
     nmin 0
   }
-  roundEndTime {
-    integer {[::abnet::nclock]}
-  }
+  +roundStartTime 0
   roundStartTime {
     integer {[expr {7+[::abnet::nclock]}]}
   }

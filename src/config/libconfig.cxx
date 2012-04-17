@@ -113,6 +113,50 @@ using namespace std;
  * Since file offsets are signed integers in cstdio, and since the logical
  * offsets are multiplied by block size over two, data is split into up to 16
  * files, each limited in size to (1<<(8*sizeof(long)-1))-BLOCK_SZ bytes.
+ *
+ * Originally, setting allocation (ie, selecting an index for a Setting) was
+ * performed with a simple free list. This, however, leads to very poor
+ * behaviour when separate structures are built in parallel, since unrelated
+ * settings will be forced to share lower index blocks. (An example of this is
+ * the undo/history states mingling with the primary data in the Abendstern
+ * ship editor.)
+ *
+ * The new allocation strategy discards the global free index list in exchange
+ * for a free index-BLOCK list. Each lower index block gets the following extra
+ * data:
+ *   next       The next free block if this block is free, or the next block in
+ *              the slab otherwise. Index into the upper index.
+ *   head       If an allocated block, the lower index block for which the
+ *              below fields are valid. Index into the upper index.
+ *   free       First free index within this slab (free index entries maintain
+ *              an invasive linked list to keep track of all free indices).
+ *              Typeless setting.
+ *   alloccnt   Number of index entries within this slab that have been
+ *              allocated. Integer.
+ *
+ * There are cases for setting allocation:
+ * (a) The Setting has no parent (it is the root of a Config).
+ *     A free block is retrieved and initialised as head of a slab.
+ * (b) The Setting has a parent.
+ *     The head entry in its parent's lower index block is followed to retrieve
+ *     the slab in which to allocate the Setting.
+ * When a Setting is allocated in a slab, and the free field is non-NULL, the
+ * setting is given the value of the free field, and the free field is assigned
+ * the next value stored in the formerly-free index entry. If free is NULL, a
+ * free block is initialised and added to the slab, then allocation continues
+ * as described before. In either case, the value of alloccnt is incremented.
+ *
+ * In setting deallocation, the head of the slab is found by following the head
+ * field of the index block in which the Setting is located. The current free
+ * field is copied into the next-free field of the now-free index entry, and
+ * the free field is updated to point to the now-free entry. alloccnt is then
+ * decremented; if it hits zero, the entire slab is added to the free block
+ * list.
+ *
+ * The end result of this strategy is that Settings only share lower index
+ * blocks with others from the same Config tree, preventing the
+ * one-useful-entry-per-block issue the old system could encounter in the
+ * ship editor.
  */
 
 namespace libconfig {
@@ -318,6 +362,20 @@ namespace libconfig {
    * to this one.
    */
   union BString { iptr nxt; unsigned char dat[BLOCK_SZ]; };
+  /* Lower indax storage, part 0.
+   * Points to header and first body segment.
+   */
+  union BLIndexCont {
+    struct { iptr head, body; };
+     char padding[BLOCK_SZ];
+  };
+  /* Lower index storage, part 1.
+   * Contains the four header fields.
+   */
+  union BLIndexHead {
+    struct { iptr next, head, free, alloccnt; };
+    char padding[BLOCK_SZ];
+  };
   /* Lower index storage, part 2
    * Contains three data (0..2) and a pointer to the next BLindex, or 0
    * for none.
@@ -361,6 +419,14 @@ namespace libconfig {
     }
     switch(true) {
       case false:
+      case (sizeof(BLIndexCont)==BLOCK_SZ):;
+    }
+    switch(true) {
+      case false:
+      case (sizeof(BLIndexHead)==BLOCK_SZ):;
+    }
+    switch(true) {
+      case false:
       case (sizeof(BGroup)==BLOCK_SZ):;
     }
     switch(true) {
@@ -376,6 +442,7 @@ namespace libconfig {
    * Size: sizeof(RLIndex)
    */
   struct RLIndex: public Swappable {
+    iptr next, head, free, alloccnt;
     SettingEncoder::LowerIndex dat[LOWER_INDEX_SZ];
   };
   /* 64-bit integer storage.
@@ -674,12 +741,23 @@ namespace libconfig {
   }
   static iptr swapout_lindex(Swappable* swp) {
     RLIndex* rli = (RLIndex*)swp;
+    BLIndexCont blic;
+    BLIndexHead blih;
     BLIndex blk;
 
     iptr base = balloc();
+    blic.head = balloc();
+    blic.body = balloc();
+    bwrite(base, &blic);
+
+    blih.next = rli->next;
+    blih.head = rli->head;
+    blih.free = rli->free;
+    blih.alloccnt = rli->alloccnt;
+    bwrite(blic.head, &blih);
 
     unsigned i=0;
-    for (iptr curr = base; curr; curr = blk.dat[3]) {
+    for (iptr curr = blic.body; curr; curr = blk.dat[3]) {
       for (unsigned j=0; j<3 && i<LOWER_INDEX_SZ; ++i, ++j)
         blk.dat[j] = rli->dat[i].ipt;
 
@@ -695,15 +773,26 @@ namespace libconfig {
     RLIndex* rli = new RLIndex;
     rli->size = sizeof(RLIndex);
     rli->swapout = swapout_lindex;
-    BLIndex blk;
+    BLIndexCont blic;
+    bread(base, &blic);
+    bfree(base);
+    BLIndexHead blih;
+    bread(blic.head, &blih);
+    bfree(blic.head);
+    rli->next = blih.next;
+    rli->head = blih.head;
+    rli->free = blih.free;
+    rli->alloccnt = blih.alloccnt;
 
+    BLIndex blk;
+    iptr curr = blic.body;
     //Read in and free simultaneously
     for (unsigned i=0; i<LOWER_INDEX_SZ; /* i updated in inner loop */) {
-      bread(base, &blk);
+      bread(curr, &blk);
       for (unsigned j=0; j<3 && i<LOWER_INDEX_SZ; ++i, ++j)
         rli->dat[i].ipt = blk.dat[j];
-      bfree(base);
-      base = blk.dat[3];
+      bfree(curr);
+      curr = blk.dat[3];
     }
 
     return rli;

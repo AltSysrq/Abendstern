@@ -40,6 +40,7 @@ class MixinRound {
       $this dss roundRunning yes
       $this broadcastMessage start-round
     }
+    chain
   }
 
   method setupMatch join {

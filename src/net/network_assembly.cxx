@@ -68,6 +68,7 @@ void NetworkAssembly::setFieldSize(float w, float h) throw() {
 void NetworkAssembly::changeField(GameField* f) throw() {
   field = f;
   setFieldSize(f->width, f->height);
+  f->networkAssembly = this;
 }
 
 void NetworkAssembly::objectAdded(GameObject* go) throw() {

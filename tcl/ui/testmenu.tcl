@@ -89,7 +89,7 @@ class TestMode {
       $main add [new gui::Button [_ T a update_abendstern] "$app setMode \[new SelfUpdater\]"]
     }
     $main add [new gui::Button "E\a&xperimental LAN Game" \
-                   "$app setSubState \[new NetworkTest default\]"]
+                   "$app setSubState \[$this getGameState 1\]"]
     set quit [new gui::Button [_ A gui quit] "$app configure -retval \[new BootManager shutdown\]"]
     $quit setCancel
     $main add $quit
@@ -328,7 +328,7 @@ class TestMode {
     $root setSize 0 1 $vheight 0
   }
 
-  method getGameState {} {
+  method getGameState {{network 0}} {
     $gameparms save
     switch -exact -- [$ str conf.game.background] {
       StarField {
@@ -362,34 +362,33 @@ class TestMode {
         }
       }
     }
+    set opts [dict create \
+                  fieldw [$ int conf.game.size] \
+                  fieldh [$ int conf.game.size] \
+                  desiredPlayers [expr {[$ int conf.game.nai]+1}]]
     switch -exact -- [$ str conf.game.mode] {
       dm {
-        return [new G_DM [$ int conf.game.size] [$ int conf.game.size] \
-                         $background \
-                         [expr {[$ int conf.game.nai]+1}]]
+        set ms DM__
       }
       xtdm {
-        return [new G_XTDM [$ int conf.game.size] [$ int conf.game.size] \
-                           $background \
-                           [expr {[$ int conf.game.nai]+1}] \
-                           [$ int conf.game.nteams]]
+        set ms [format %dTDM [$ int conf.game.nteams]]
       }
       lms {
-        return [new G_LMS [$ int conf.game.size] [$ int conf.game.size] \
-                          $background \
-                          [expr {[$ int conf.game.nai]+1}]]
+        set ms LMS_
       }
       lxts {
-        return [new G_LXTS [$ int conf.game.size] [$ int conf.game.size] \
-                           $background \
-                           [expr {[$ int conf.game.nai]+1}] \
-                           [$ int conf.game.nteams]]
+        set ms [format L%dTS [$ int conf.game.nteams]]
       }
       hvc {
-        return [new G_HVC [$ int conf.game.size] [$ int conf.game.size] \
-                          $background \
-                          [expr {[$ int conf.game.nai]+1}]]
+        set ms HVC_
       }
+    }
+
+    set modestr [list "${ms}C0" $opts]
+    if {$network} {
+      return [networkTest $modestr $background]
+    } else {
+      return [new GameManager 0 [list init-local-game $modestr] $background]
     }
   }
 }

@@ -30,6 +30,7 @@
 #include "game_advertiser.hxx"
 #include "game_discoverer.hxx"
 #include "synchronous_control_geraet.hxx"
+#include "text_message_geraet.hxx"
 
 using namespace std;
 
@@ -120,8 +121,7 @@ namespace network_game {
 
         case 's':
           if (game->iface && game->overseer == game->peers[cxn])
-            if (game->iface->alterDats(extension.c_str()))
-              game->becomeOverseerReady();
+            game->iface->alterDats(extension.c_str());
           break;
 
         case 'p':
@@ -132,10 +132,12 @@ namespace network_game {
         case 'M':
           if (game->iface && game->overseer == game->peers[cxn])
             game->iface->setGameMode(extension.c_str());
+          game->becomeOverseerReady();
           break;
 
-        case 'V':
-          //TODO
+        case 'Q':
+          if (game->iface)
+            sendDats(game->iface->getFullDats());
           break;
 
         case 'R':
@@ -171,8 +173,8 @@ namespace network_game {
     void sendMode(const std::string& str) throw() {
       send(str, 'M');
     }
-    void sendVote(const std::string& str) throw() {
-      send(str, 'V');
+    void sendQuery() throw() {
+      SeqTextOutputGeraet::send(string("Q"));
     }
     void sendReady() throw() {
       SeqTextOutputGeraet::send(string("R"));
@@ -402,6 +404,8 @@ NetworkGame::~NetworkGame() {
 
 void NetworkGame::setNetIface(NetIface* ifc) throw() {
   iface = ifc;
+  for (unsigned i = 0; i < assembly.numConnections(); ++i)
+    assembly.getConnection(i)->netiface = ifc;
 }
 
 void NetworkGame::setAdvertising(const char* gameMode) throw() {
@@ -500,7 +504,51 @@ void NetworkGame::connectToDiscovery(unsigned ix) throw() {
 }
 
 void NetworkGame::alterDats(const string& msg, Peer* peer) throw() {
-  stgs[peer->cxn]->sendDats(msg);
+  if (!peer) {
+    for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it)
+      alterDats(msg, it->second);
+  } else {
+    stgs[peer->cxn]->sendDats(msg);
+  }
+}
+
+void NetworkGame::alterDatp(const string& msg, Peer* peer) throw() {
+  if (!peer) {
+    for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it)
+      alterDatp(msg, it->second);
+  } else {
+    stgs[peer->cxn]->sendDatp(msg);
+  }
+}
+
+void NetworkGame::sendUnicast(const std::string& msg, Peer* peer) throw() {
+  stgs[peer->cxn]->sendUnicast(msg);
+}
+
+void NetworkGame::sendOverseer(const std::string& msg, Peer* peer) throw() {
+  stgs[peer->cxn]->sendOverseer(msg);
+}
+
+void NetworkGame::sendBroadcast(const std::string& msg) throw() {
+  for (stgs_t::const_iterator it = stgs.begin(); it != stgs.end(); ++it)
+    it->second->sendBroadcast(msg);
+}
+void NetworkGame::sendGameMode(Peer* peer) throw() {
+  if (iface)
+    stgs[peer->cxn]->sendMode(iface->getGameMode());
+}
+
+void NetworkGame::setBlameMask(Peer* peer, unsigned mask) throw() {
+  peer->cxn->blameMask = peer->blameMask = mask;
+}
+
+void NetworkGame::updateFieldSize() throw() {
+  assembly.setFieldSize(assembly.field->width, assembly.field->height);
+}
+
+Peer* NetworkGame::getPeerByConnection(NetworkConnection* cxn) throw() {
+  assert(peers.count(cxn));
+  return peers[cxn];
 }
 
 bool NetworkGame::acceptConnection(const Antenna::endpoint& source,
@@ -640,6 +688,8 @@ Peer* NetworkGame::createPeer(const GlobalID& gid) throw() {
   peer->cxn = NULL;
   peer->receivedStx = false;
   connectToPeer(peer);
+  if (iface)
+    iface->addPeer(peer);
   return peer;
 }
 
@@ -650,16 +700,14 @@ Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
   #warning NetworkGame::createPeer(NetworkConnection*) does not honour provided GID
   #endif
   endpointToLanGid(peer->gid, cxn->endpoint);
-  //TODO: Numeric ID
-  #ifndef WIN32
-  #warning NetworkGame::createPeer(NetworkConnection*) does not set NID
-  #endif
   peer->overseerReady = false;
   peer->connectionAttempts = 0;
   peer->cxn = cxn;
   peers[cxn] = peer;
   peer->receivedStx = true;
   initCxn(cxn, peer);
+  if (iface)
+    iface->addPeer(peer);
   return peer;
 }
 
@@ -717,6 +765,8 @@ throw() {
   }
   if (peer == overseer)
     refreshOverseer();
+  if (iface)
+    iface->delPeer(peer);
   //TODO: handle banning
 }
 
@@ -734,13 +784,15 @@ void NetworkGame::refreshOverseer() throw() {
 
   //Local peer is overseer if it has a lower NID or if no other peer is
   //ready (in which case os is already NULL).
-  if (localPeer.nid < minid)
+  if (localPeer.nid < minid && localPeer.overseerReady)
     os = NULL;
 
   if (os != overseer) {
     overseer = os;
     if (iface)
       iface->setOverseer(os);
+    if (overseer)
+      stgs[overseer->cxn]->sendQuery();
   }
   cout << "Overseer: " << overseer;
   if (overseer)
@@ -768,6 +820,8 @@ void NetworkGame::initCxn(NetworkConnection* cxn, Peer* peer) throw() {
                         network_game::NGSeqTextGeraet::num);
   cxn->scg->openChannel(new network_game::PeerConnectivityGeraet(this, cxn),
                         network_game::PeerConnectivityGeraet::num);
+  cxn->scg->openChannel(new TextMessageOutputGeraet(cxn->aag),
+                        TextMessageInputGeraet::num);
   //Send general query to peer to find out who it is connected to.
   //First, clear the list since we'll be getting a full list.
   peer->connectionsFrom.clear();
@@ -776,9 +830,17 @@ void NetworkGame::initCxn(NetworkConnection* cxn, Peer* peer) throw() {
   if (localPeer.overseerReady)
     stgs[cxn]->sendReady();
 
+  //Send dats info
+  if (iface && !overseer && localPeer.overseerReady)
+    stgs[cxn]->sendDats(iface->getFullDats());
+
   //Indicate game mode if appropriate
   if (iface && !overseer && localPeer.overseerReady)
     stgs[cxn]->sendMode(iface->getGameMode());
+
+  //Copy blame mask and netiface
+  cxn->blameMask = peer->blameMask;
+  cxn->netiface = iface;
 
   //Set outgoing STX auxilliary data
   byte auxdat[4];

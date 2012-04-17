@@ -111,6 +111,9 @@
 #     element.
 #     This MUST occur as a top-level requirement.
 namespace eval ::schema {
+  # Set to true if schema violations should be logged
+  set verbose no
+
   set nextSymbol 0
 
   # Resets or prepares the schema validator generator for a new schema.
@@ -153,10 +156,16 @@ namespace eval ::schema {
   }
 
   proc critfail msg {
-    format {log "$procname: $path: Critical failure: %s"; return false} $msg
+    format {::schema::log "$procname: $path: Critical failure: %s"; return false} $msg
   }
   proc silfail msg {
-    format {log "$procname: $path: Warning: %s"} $msg
+    format {::schema::log "$procname: $path: Warning: %s"} $msg
+  }
+
+  proc log {msg} {
+    if {$::schema::verbose} {
+      ::log $msg
+    }
   }
 
   proc pusha newpath {

@@ -22,6 +22,7 @@ class NetworkConnection;
 class GameAdvertiser;
 class GameDiscoverer;
 class GameField;
+class Ship;
 
 #ifndef DOXYGEN
 namespace network_game {
@@ -52,6 +53,9 @@ public:
   NetworkConnection* cxn;
   ///Whether an STX packet has been received and accepted
   bool receivedStx;
+  ///The blameMask to copy into the same field of the connection.
+  ///@see NetworkGame::setBlameMask(Peer*)
+  unsigned blameMask;
 
   ///The Peers this Peer has a connection FROM
   std::set<Peer*> connectionsFrom;
@@ -60,7 +64,7 @@ public:
 /**
  * Abstract class used to relay events to the Tcl game system.
  */
-class NetIface/*: public AObject*/ {
+class NetIface: public virtual AObject {
 public:
   ///Called when the given Peer has been created
   virtual void addPeer(Peer*) = 0;
@@ -83,11 +87,18 @@ public:
   ///Return true if the changes arv accepted.
   virtual bool alterDats(const char* kv) = 0;
 
+  ///Returns a dats alteration (suitable for passing to alterDats()) which will
+  ///reset the entire dats tree.
+  virtual std::string getFullDats() = 0;
+
   ///Called when a game mode alteration is received
   virtual void setGameMode(const char*) = 0;
   ///Returns the current game mode string; the first four characters must be a
   ///string appropriate for the game advertiser.
   virtual const char* getGameMode() = 0;
+
+  //Called when the given remote Ship has been created
+  virtual void receiveShip(NetworkConnection*, Ship*) = 0;
 
   ///Called when all network connectivity has been lost, with the given reason.
   virtual void connectionLost(const char*) = 0;
@@ -249,6 +260,53 @@ public:
    * Sends the given dats alteration string to the given Peer.
    */
   void alterDats(const std::string&, Peer*) throw();
+
+  /**
+   * Sends the given datp alteration string to the given Peer.
+   *
+   * If the Peer is NULL, the message is sent to all peers.
+   */
+  void alterDatp(const std::string&, Peer*) throw();
+
+  /**
+   * Sends the given unicast message to the given peer.
+   */
+  void sendUnicast(const std::string&, Peer*) throw();
+  /**
+   * Sends the given overseer message to the given peer.
+   */
+  void sendOverseer(const std::string&, Peer*) throw();
+  /**
+   * Broadcasts the given message to all peers.
+   */
+  void sendBroadcast(const std::string&) throw();
+  /**
+   * Sends a game mode notification to the given peer.
+   */
+  void sendGameMode(Peer*) throw();
+
+  /**
+   * Sets the blame mask of the given peer and its current connection.
+   */
+  void setBlameMask(Peer*, unsigned) throw();
+
+  /**
+   * Returns the Peer associated with the given NetworkConnection.
+   * Behaviour is undefined if so such mapping exists.
+   */
+  Peer* getPeerByConnection(NetworkConnection*) throw();
+
+  /**
+   * Changes to the given new field.
+   */
+  void changeField(GameField* f) throw() {
+    assembly.changeField(f);
+  }
+  
+  /**
+   * Updates all field sizes to match the current.
+   */
+  void updateFieldSize() throw();
 
 private:
   bool acceptConnection(const Antenna::endpoint& source,

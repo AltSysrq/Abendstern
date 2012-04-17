@@ -3,12 +3,14 @@ class G_LMS {
           MixinRound MixinMatch MixinRoundSpawn MixinStatsFFA \
           BasicGame
 
-  constructor {fieldw fieldh background desiredPlayers {initPeers {}}} {
+  constructor {desiredPlayers env comm} {
     MixinAutobot::constructor $desiredPlayers
-    BasicGame::constructor $fieldw $fieldh $background $initPeers
+    BasicGame::constructor $env $comm
   } {
     initHuman
-    autobotCheckAll
+    if {[isOverseer]} {
+      autobotCheckAll
+    }
     startOrJoinMatch
     if {[isOverseer]} {dss survivor {}}
   }

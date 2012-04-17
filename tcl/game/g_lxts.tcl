@@ -3,16 +3,18 @@ class G_LXTS {
           MixinRound MixinMatch MixinRoundSpawn MixinStatsTeam \
           MixinPerfectRadar BasicGame
 
-  constructor {fieldw fieldh background desiredPlayers nteams {initPeers {}}} {
+  constructor {desiredPlayers nteams env comm} {
     MixinAutobot::constructor $desiredPlayers
     MixinTeam::constructor $nteams
-    BasicGame::constructor $fieldw $fieldh $background $initPeers
+    BasicGame::constructor $env $comm
   } {
-    if {[llength $initPeers] < 2} {
+    if {[isOverseer]} {
       initialiseTeams
     }
     initHuman
-    autobotCheckAll
+    if {[isOverseer]} {
+      autobotCheckAll
+    }
     startOrJoinMatch
     if {[isOverseer]} {dss survivor {}}
   }

@@ -349,7 +349,7 @@ The structure for objects themselves is defined in  src/net/definition.tcl .
 See src/net/generate.tcl for a formal description of the file's contents.
 
 SHIP DAMAGE GERÄT
-Gerät number: (automatic)
+Gerät number: 16384
 Sends events indicating that one of the receiver's ships is believed to have
 taken damage. Packets are unordered. Packets relating to nonexistent ships are
 silently ignored. See the Blast class for interpretation of Blast-related data.
@@ -379,7 +379,7 @@ Message types:
   x     Extension; the payload of this packet is prepended to that of the next
         before performing the next's operation.
   M     Indicates current game mode (see gamemgr.tcl)
-  V     Proposes/votes that the next match use the given game mode
+  Q     Requests ("Queries") a full refresh of the global shared data.
   R     Empty payload; indicates that the peer is now ready to become overseer
         if it has the lowest numeric ID.
 
@@ -394,8 +394,9 @@ certain validation or will be ignored/edited.
 Overseer-readiness indicates that the peer believes it has enough information
 that it can act as the central source of game information. This entails two
 things:
-o It must have received the dats information from the current overseer.
-o It must be connected to all the current peers.
+o It must have received the game mode from the current overseer.
+o It must be connected to all the current peers (or be in the process of
+  connecting to them).
 
 AUXILLIARY DATA in STX PACKETS
 Abendstern adds the following information to an STX packet:

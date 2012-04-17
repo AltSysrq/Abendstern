@@ -1,6 +1,10 @@
 # Loads all tcl/game/ files in the correct order.
 foreach base {
   schema
+  communicator
+  loopback_communicator
+  network_communicator
+  game_manager
   basic_game
   spectator
   spawn_manager
@@ -20,6 +24,7 @@ foreach base {
   g_lms
   g_lxts
   g_hvc
+  g_null
 } {
   source "tcl/game/$base.tcl"
 }

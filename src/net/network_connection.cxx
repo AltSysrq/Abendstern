@@ -73,6 +73,7 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
   ldg(new LatDiscGeraet(this)),
   sdg(new ShipDamageGeraet(aag)),
   anticipation(new AnticipatoryChannels(this)),
+  netiface(NULL),
   blameMask(0)
 {
   inchannels[0] = scg;
@@ -155,7 +156,6 @@ void NetworkConnection::update(unsigned et) noth {
     channelsToClose.pop();
   }
 
-  //TODO: Only process objects if in Ready status
   timeSinceRetriedTransients += et;
   if (timeSinceRetriedTransients > 128) {
     candidateExports.insert(candidateExports.end(),
@@ -165,7 +165,7 @@ void NetworkConnection::update(unsigned et) noth {
     timeSinceRetriedTransients = 0;
   }
   //Export candidates that are close enough or non-transient
-  while (!candidateExports.empty()) {
+  while (!candidateExports.empty() && status == Ready) {
     GameObject* go = candidateExports.front();
     candidateExports.pop_front();
     if (!go->isTransient || distanceOf(go) < TRANSIENT_DIST*TRANSIENT_DIST) {
@@ -217,11 +217,13 @@ noth {
   io::read(data, seq);
   io::read(data, chan);
   datlen -= 4;
+  #ifdef DEBUG
   //Suppress messages from channel 1 since it is not interesting
   if (chan != 1)
     cout << "Receive seq=" << seq << " on chan=" << chan
          << " with length=" << datlen << " from " << source
          << " (latency=" << latency << " ms)" << endl;
+  #endif
 
   //Range check
   if (seq-greatestSeq < 1024 || greatestSeq-seq < 1024) {
@@ -301,7 +303,6 @@ NetworkConnection::geraet_num
 NetworkConnection::registerGeraetCreator(geraet_creator fun,
                                          geraet_num preferred) {
   static bool hasInitialised = false;
-  static geraet_num nextAuto = 32768;
   //Allocate map if not done yet
   if (!hasInitialised) {
     geraetNumMap = new geraetNumMap_t;
@@ -309,9 +310,6 @@ NetworkConnection::registerGeraetCreator(geraet_creator fun,
   }
 
   geraet_num number = preferred;
-
-  if (number == (geraet_num)~(geraet_num)0)
-    number = nextAuto++;
 
   if (geraetNumMap->count(number)) {
     cerr << "FATAL: Duplicate Geraet number: " << number << endl;

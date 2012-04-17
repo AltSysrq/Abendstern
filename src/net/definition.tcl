@@ -1,6 +1,6 @@
 # Identify the logical version of code outside this file, by causing
 # the hash to change appropriately:
-version 2012.03.28
+version 2012.04.10
 
 verbatimc {
 //MSVC++ doesn't handle inherited members accessed by friends correctly.
@@ -30,6 +30,7 @@ verbatimc {
 #define fabs(x) std::fabs((float)(x))
 #endif
 #include "xnetobj.hxx"
+#include "../network_game.hxx"
 }
 
 verbatimh {
@@ -558,11 +559,6 @@ type Ship {
   float colourG { default 10 min 0 max 1 }
   float colourB { default 10 min 0 max 1 }
   toggle ;# Reenable updates
-  void {
-    post-set {
-      X->setColour(colourR, colourG, colourB);
-    }
-  }
   float thrustPercent { default 10 min 0 max 1 update {} }
   float reinforcement {
     default 0
@@ -1157,6 +1153,26 @@ type Ship {
     }
   }
 
+  # Set the coords again to prevent "jumping" which occurs when the ship is
+  # being damaged.
+  void {
+    update {
+      X->x = max(0.0f,min(field->width -0.0001f,x + vx*T));
+      X->y = max(0.0f,min(field->height-0.0001f,y + vy*T));
+    }
+  }
+
+  # Notify the netiface only after all other construction
+  void {
+    post-set {
+      #ifndef LOCAL_CLONE
+      //Notify netiface
+      if (cxn->netiface)
+        cxn->netiface->receiveShip(cxn, X);
+      #endif
+    }
+  }
+
   construct {
     X = new Ship(field);
     //Set fields from GameObject
@@ -1345,8 +1361,10 @@ type Ship {
           X->cells[i]->systems[s]->detectPhysics();
     X->refreshUpdates();
 
-    //Register with SDG
+    X->setColour(colourR, colourG, colourB);
+
     #ifndef LOCAL_CLONE
+    //Register with SDG
     X->shipDamageGeraet = cxn->sdg;
     cxn->sdg->addRemoteShip(X, inputChannel);
     #endif /* LOCAL_CLONE */

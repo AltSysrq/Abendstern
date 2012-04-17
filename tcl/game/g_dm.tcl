@@ -4,13 +4,15 @@ class G_DM {
   inherit MixinAutobot MixinScoreFrags MixinMatch MixinFreeSpawn \
           MixinPerfectRadar MixinStatsFFA BasicGame
 
-  constructor {fieldw fieldh background desiredPlayers {initPeers {}}} {
+  constructor {desiredPlayers env comm} {
     MixinAutobot::constructor $desiredPlayers
-    BasicGame::constructor $fieldw $fieldh $background $initPeers
+    BasicGame::constructor $env $comm
   } {
     startOrJoinMatch
     initHuman
-    autobotCheckAll
+    if {[isOverseer]} {
+      autobotCheckAll
+    }
   }
 
   method getGameModeDescription {} {

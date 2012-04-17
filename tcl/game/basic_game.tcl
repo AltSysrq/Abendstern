@@ -41,37 +41,11 @@ class BasicGame {
   # Value returned by [$env cget -field]
   public variable field
 
-  # List of list{peer,userid}s.
-  # Sorted according to ascending userid
-  # Local "peer" is NULL (0).
-  variable peers
-  # The external representation of this peer
-  public variable thisPeer
-
-  # Maps constant numbers to peers.
-  variable peersByNumber ;# num->peer
-  variable peersByNumberRev ;# peer->num
-
-  # Dict of shared data (ie, data not specific to any peer)
-  protected variable dats
-  # Dict of per-peer data (first level is userid of peer).
-  # The second level consists of "virtual peers" (numeric)
-  # and list, which lists entries under virtual peers
-  # to be considered.
-  # It is safe to assume that if any vpeer is a human, it
-  # is vpeer zero.
-  protected variable datp
-  # When acting as True Overseer, a list of dict paths within
-  # dats that have changed since the last broadcast of deltata.
-  variable datsDeltata
-  # Similar to datsDeltata except applying to datp.
-  variable datpDeltata
+  # The Communicator to use
+  variable communicator
 
   # Stack of available vpeer numbers (0..255)
   variable emptyVPeers
-
-  # Whether networking is enabled.
-  variable networkingEnabled
 
   # The time in milliseconds until we next query the Overseer
   # about data changes
@@ -135,39 +109,23 @@ class BasicGame {
   variable lastGenAiReportFC
 
   # Constructs a BasicGame.
-  # fieldw      Width of field
-  # fieldh      Height of field
-  # background  Script to evaluate to the background to use; $field is the game field.
-  #             Defaults to an empty StarField.
-  # peers       Initial peers; empty list disables networking
-  constructor {fieldw fieldh {background {new StarField default 0 $field 1}} {initpeers {}}} {
+  # env         The GameEnv to use
+  # comm        The Communicator to use
+  constructor {env_ comm} {
     ::gui::Application::constructor
   } {
-    set env [new GameEnv default $fieldw $fieldh]
+    set env $env_
     set field [$env getField]
-    $env configure -stars [eval $background]
-    set peers $initpeers
-    set thisPeer 0
-    set networkingEnabled [expr {0 != [llength $peers]}]
+    $field clear
     set shipDeathFun [new BasicGameShipDeathCallback $this]
     set ckc [new BasicGameCKC $this]
     set lastGenAiReportFC [$field cget -fieldClock]
+    set communicator $comm
+    $comm set-game $this
+    dps list {}
 
-    set peersByNumber {}
-    set peersByNumberRev {}
-    set i 0
-    foreach peer [getPeers] {
-      dict set peersByNumber $i $peer
-      dict set peersByNumberRev $peer $i
-      incr i
-    }
-
-    set dats {}
-    set datp {}
-    dict set datp 0 list {}
     set emptyVPeers {}
     for {set i 0} {$i < 256} {incr i} {lappend emptyVPeers $i}
-    set datsDeltata {}
     set timeUntilQuery 0
     set shipDeathListeners {}
     set shipOwnership {}
@@ -203,7 +161,6 @@ class BasicGame {
   }
 
   destructor {
-    delete object $env
     delete object $shipDeathFun
     delete object $ckc
 
@@ -268,14 +225,13 @@ class BasicGame {
       }
     }
 
-    set timeUntilQuery [expr {$timeUntilQuery-$et}]
-    if {$timeUntilQuery < 0} {
-      set timeUntilQuery [expr {1024+1024*rand()}]
-      queryOverseer
+    # Maintain the chat prefix.
+    # While this is far from necessary to do every frame, this way we don't
+    # have to wory about defining the events that could change it.
+    if {![catch {dpg 0 name}]} {
+      set ::compositionBufferPrefix "\a\[[getStatsColour 0 0][dpg 0 name]\a\]: "
     }
-    if {[llength $datpDeltata]} {
-      broadcastDatp
-    }
+
     return $retval
   }
 
@@ -298,7 +254,9 @@ class BasicGame {
 
   # For mixin access.
   # Will never return an empty list
-  method getPeers {} { if {{} != $peers} { return $peers } else { return 0 } }
+  method getPeers {} {
+    $communicator get-peers
+  }
 
   # END: BASIC MANAGEMENT AND FORWARDING
 
@@ -322,37 +280,31 @@ class BasicGame {
 
   # Performs a dict lookup within dats and returns the result.
   method dsg {args} {
-    dict get $dats {*}$args
+    $communicator get-dats $args
   }
 
   # Performs a dict lookup within {datp 0} and returns the result.
   # (ie, it returns the data for this peer)
   method dpg {args} {
-    dict get $datp 0 {*}$args
+    $communicator get-datp [list 0 {*}$args]
   }
 
   # Performs a dict lookup within datp and returns the result.
   method dpgp {args} {
-    dict get $datp {*}$args
+    $communicator get-datp $args
   }
 
   # Alters the given shared data.
   # This should only be done by overseer methods.
   # The path will be added to all peers' deltata.
   method dss {args} {
-    set path [lrange $args 0 end-1]
-    set value [lindex $args end]
-    dict set dats {*}$path $value
-    lappend datsDeltata $path
+    $communicator set-dats $args
   }
 
   # Alters the given local data in {datp 0}
   # The path will be added to the deltata
   method dps {args} {
-    set path [lrange $args 0 end-1]
-    set value [lindex $args end]
-    dict set datp 0 {*}$path $value
-    lappend datpDeltata $path
+    $communicator set-datp $args
   }
 
   # Resets all scores. If a mixin defines scores beyond
@@ -420,7 +372,7 @@ class BasicGame {
     broadcastMessage format vpeer_disconnected_fmt \
       [getStatsColour 0 $vp] [dpg $vp name]
 
-    dict set datp 0 [dict remove [dict get $datp 0] $vp]
+    dps $vp {}
     dps list [lsearch -exact -not -all -inline [dpg list] $vp]
     lappend emptyVPeers $vp
   }
@@ -515,6 +467,7 @@ class BasicGame {
   # Perorm post-reception modification of a locally- or remotely-spawned
   # ship. This is called after postSpawn for local ships.
   # Default sets the colour to the vpeer's.
+  # The vpeer might not necessarily exist.
   method modifyIncomming {peer vpeer ship} {
     if {$peer == 0} {
       $ship setColour [dpg $vpeer colour r] \
@@ -542,7 +495,7 @@ class BasicGame {
     if {$ship != "0"} {
       $ship configure -controller $human
       # Set difficulty
-      if {!$networkingEnabled} {
+      if {![$communicator is-networked]} {
         $ship configure -damageMultiplier [$ float conf.game.dmgmul]
       }
     }
@@ -681,19 +634,19 @@ class BasicGame {
     set secondary1 [decodeBlame $secondary1]
 
     # Don't show assists if the assister is the one who got killed
-    if {{} == $assist || (0 == [lindex $assist 0] && $vp == [lindex $assist 1])} {
-      set aex {}
-      set fargs [list "\a\[[getStatsColour {*}$killer][dpgp {*}$killer name]\a\]" \
-                      "\a\[[getStatsColour 0 $vp][dpg $vp name]\a\]"]
-    } else {
-      set aex _assist
-      set fargs [list "\a\[[getStatsColour {*}$killer][dpgp {*}$killer name]\a\]" \
-                      "\a\[[getStatsColour {*}$assist][dpgp {*}$assist name]\a\]" \
-                      "\a\[[getStatsColour 0 $vp][dpg $vp name]\a\]"]
-    }
-    set which [expr {int(rand()*5)}]
-
     if {$killer != {}} {
+      if {{} == $assist || (0 == [lindex $assist 0] && $vp == [lindex $assist 1])} {
+        set aex {}
+        set fargs [list "\a\[[getStatsColour {*}$killer][dpgp {*}$killer name]\a\]" \
+                       "\a\[[getStatsColour 0 $vp][dpg $vp name]\a\]"]
+      } else {
+        set aex _assist
+        set fargs [list "\a\[[getStatsColour {*}$killer][dpgp {*}$killer name]\a\]" \
+                       "\a\[[getStatsColour {*}$assist][dpgp {*}$assist name]\a\]" \
+                       "\a\[[getStatsColour 0 $vp][dpg $vp name]\a\]"]
+      }
+      set which [expr {int(rand()*5)}]
+
       shipKilledBy $ship $vp {*}$killer
 
       # Check current kill-streak and possible teams for message type
@@ -748,8 +701,8 @@ class BasicGame {
     if {$blame == {}} return {}
     set peern [expr {$blame >> 8}]
     set vpeer [expr {$blame & 0xFF}]
-    if {[dict exists $peersByNumber $peern]} {
-      set peer [dict get $peersByNumber $peern]
+    if {[$communicator has-peer-by-number $peern]} {
+      set peer [$communicator get-peer-by-number $peern]
       # If the vpeer doesn't exist, give to first vpeer
       if {-1 == [lsearch -exact [dpgp $peer list] $vpeer]} {
         log "Warning: Unable to interpret blame: $blame (missing vpeer $vpeer)"
@@ -768,26 +721,18 @@ class BasicGame {
   # Returns the peer that is the overseer.
   # 0 indicates local.
   method getOverseer {} {
-    if {$networkingEnabled} {
-      error "Networking not yet supported for getOverseer"
-    }
-
-    return 0
+    $communicator get-overseer
   }
 
   # Returns true if we are the overseer.
   method isOverseer {} {
-    expr {0 == [getOverseer]}
+    $communicator is-overseer
   }
 
   # Broadcasts the given high-level message to all peers.
   # This will also pass the message to receiveBroadcast.
   method broadcastMessage args {
-    if {$networkingEnabled} {
-      error "Networking not yet supported for broadcastMessage"
-    }
-
-    receiveBroadcast 0 $args
+    $communicator send-broadcast $args
   }
 
   # Called when a broadcast message is received from the given peer.
@@ -811,11 +756,7 @@ class BasicGame {
   # Sends the given high-level message to the given peer.
   # If peer is 0, calls receiveUnicast.
   method unicastMessage {dst args} {
-    if {$dst != 0} {
-      error "Networking not yet supported for unicastMessage"
-    }
-
-    receiveUnicast 0 $args
+    $communicator send-unicast $dst $args
   }
 
   # Called when a unicast message is received from the given peer.
@@ -870,11 +811,7 @@ class BasicGame {
   # Sends the given high-level message to the overseer.
   # If we are the overseer, receiveOverseer is called.
   method overseerMessage args {
-    if {0 != [getOverseer]} {
-      error "Networking not yet supported for overseerMessage"
-    }
-
-    receiveOverseer 0 $args
+    $communicator send-overseer $args
   }
 
   # Called when we are the overseer and receive an overseer-unicast
@@ -920,7 +857,7 @@ class BasicGame {
   # BEGIN: KEYBOARD CALLBACKS
 
   method ckc_exit {} {
-    if {!$networkingEnabled} {
+    if {![$communicator is-networked]} {
       set paused yes
     }
     # If unpauseMode is not empty, we have stats open.
@@ -935,7 +872,7 @@ class BasicGame {
 
   # Toggles the given boolean variable if not networked
   private method toggleNotNetworked var {
-    if {!$networkingEnabled} {
+    if {![$communicator is-networked]} {
       set $var [expr "!$$var"]
     }
   }
@@ -973,27 +910,6 @@ class BasicGame {
   }
 
   # END: KEYBOARD CALLBACKS
-
-  # BEGIN: DATA EXCHANGE METHODS
-
-  # Perform the periodic querying of the overseer for data updates
-  method queryOverseer {} {
-    if {$networkingEnabled} {
-      error "Networking not yet supported in queryOverseer"
-    }
-    # Currently does nothing
-  }
-
-  # Broadcast the datp deltata to all peers.
-  method broadcastDatp {} {
-    if {$networkingEnabled} {
-      error "Networking not yet supported in broadcastDatp"
-    }
-    # Currently does nothing but clear the deltata
-    set datpDeltata {}
-  }
-
-  # END: DATA EXCHANGE METHODS
 
   # BEGIN: RAW INPUT FORWARDING
   method keyboard evt {

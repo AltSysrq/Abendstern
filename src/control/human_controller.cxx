@@ -287,6 +287,7 @@ static void saveEnergyLevels(Ship* s) noth {
 char compositionBuffer[COMPOSITION_BUFFER_SZ] = {0};
 bool isCompositionBufferInUse = false;
 unsigned compositionBufferIndex = 0;
+string compositionBufferPrefix;
 
 HumanController::HumanController(Ship* s)
 : Controller(s), spunThisFrame(false),
@@ -411,10 +412,13 @@ void HumanController::key(SDL_KeyboardEvent* e) noth {
     //Composing
     if (e->state != SDL_PRESSED) return;
     switch (e->keysym.sym) {
-      case SDLK_RETURN:
+      case SDLK_RETURN: {
+        string msg(compositionBufferPrefix);
+        msg += compositionBuffer;
         //Post message
-        global_chat::post(compositionBuffer);
+        global_chat::post(msg.c_str());
         //fall through
+      }
       case SDLK_ESCAPE:
         //Discard message
         isCompositionBufferInUse=false;

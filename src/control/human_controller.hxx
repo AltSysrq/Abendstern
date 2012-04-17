@@ -7,6 +7,7 @@
 #ifndef HUMAN_CONTROLLER_HXX_
 #define HUMAN_CONTROLLER_HXX_
 #include <vector>
+#include <string>
 
 #include <SDL.h>
 //Some older SDL libraries don't have X2, so just define it as
@@ -97,6 +98,11 @@ extern bool isCompositionBufferInUse;
  * Only defined when isCompositionBufferInUse is true.
  */
 extern unsigned compositionBufferIndex;
+
+/**
+ * Prefix to place before any chat messages posted by the user.
+ */
+extern std::string compositionBufferPrefix;
 
 /** The HumanController takes key, button, and motion inputs and translates
  * them to actions. Rotation and engine power are considered "analogue" actions,

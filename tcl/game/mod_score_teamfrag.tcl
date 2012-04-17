@@ -7,7 +7,7 @@ class MixinScoreTeamfrag {
       lassign $msg type vpeer killer
       if {$killer != {}} {
         lassign $killer kp kvp
-        if {$kp == [cget -thisPeer]} { set kp 0 }
+        if {$kp == 0} { set kp 0 }
 
         set ok yes
         if {$kp == $peer && $kvp == $vpeer} {
