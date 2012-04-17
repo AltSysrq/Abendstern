@@ -30,6 +30,7 @@
 #include "game_advertiser.hxx"
 #include "game_discoverer.hxx"
 #include "synchronous_control_geraet.hxx"
+#include "text_message_geraet.hxx"
 
 using namespace std;
 
@@ -812,6 +813,8 @@ void NetworkGame::initCxn(NetworkConnection* cxn, Peer* peer) throw() {
                         network_game::NGSeqTextGeraet::num);
   cxn->scg->openChannel(new network_game::PeerConnectivityGeraet(this, cxn),
                         network_game::PeerConnectivityGeraet::num);
+  cxn->scg->openChannel(new TextMessageOutputGeraet(cxn->aag),
+                        TextMessageInputGeraet::num);
   //Send general query to peer to find out who it is connected to.
   //First, clear the list since we'll be getting a full list.
   peer->connectionsFrom.clear();
