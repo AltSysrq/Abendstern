@@ -22,6 +22,7 @@ class NetworkConnection;
 class GameAdvertiser;
 class GameDiscoverer;
 class GameField;
+class Ship;
 
 #ifndef DOXYGEN
 namespace network_game {
@@ -95,6 +96,9 @@ public:
   ///Returns the current game mode string; the first four characters must be a
   ///string appropriate for the game advertiser.
   virtual const char* getGameMode() = 0;
+
+  //Called when the given remote Ship has been created
+  virtual void receiveShip(NetworkConnection*, Ship*) = 0;
 
   ///Called when all network connectivity has been lost, with the given reason.
   virtual void connectionLost(const char*) = 0;
@@ -285,6 +289,12 @@ public:
    * Sets the blame mask of the given peer and its current connection.
    */
   void setBlameMask(Peer*, unsigned) throw();
+
+  /**
+   * Returns the Peer associated with the given NetworkConnection.
+   * Behaviour is undefined if so such mapping exists.
+   */
+  Peer* getPeerByConnection(NetworkConnection*) throw();
 
   /**
    * Changes to the given new field.

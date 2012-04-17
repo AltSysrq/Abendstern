@@ -460,6 +460,7 @@ class BasicGame {
   # Perorm post-reception modification of a locally- or remotely-spawned
   # ship. This is called after postSpawn for local ships.
   # Default sets the colour to the vpeer's.
+  # The vpeer might not necessarily exist.
   method modifyIncomming {peer vpeer ship} {
     if {$peer == 0} {
       $ship setColour [dpg $vpeer colour r] \

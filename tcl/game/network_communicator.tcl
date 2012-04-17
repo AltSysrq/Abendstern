@@ -235,5 +235,12 @@ class NetworkCommunicator {
   method connectionLost {why} {
     log "Connection lost: $why"
   }
+
+  method receiveShip {cxn ship} {
+    $game modifyIncomming \
+        [$network getPeerByConnection $cxn] \
+        [expr {[$ship cget -blame] & 8}] \
+        $ship
+  }
   ### END: NetIface functions
 }

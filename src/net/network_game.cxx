@@ -546,6 +546,11 @@ void NetworkGame::updateFieldSize() throw() {
   assembly.setFieldSize(assembly.field->width, assembly.field->height);
 }
 
+Peer* NetworkGame::getPeerByConnection(NetworkConnection* cxn) throw() {
+  assert(peers.count(cxn));
+  return peers[cxn];
+}
+
 bool NetworkGame::acceptConnection(const Antenna::endpoint& source,
                                    string& errmsg, string& errl10n,
                                    const std::vector<byte>& auxData)

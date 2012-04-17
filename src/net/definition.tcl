@@ -30,6 +30,7 @@ verbatimc {
 #define fabs(x) std::fabs((float)(x))
 #endif
 #include "xnetobj.hxx"
+#include "../network_game.hxx"
 }
 
 verbatimh {
@@ -558,11 +559,6 @@ type Ship {
   float colourG { default 10 min 0 max 1 }
   float colourB { default 10 min 0 max 1 }
   toggle ;# Reenable updates
-  void {
-    post-set {
-      X->setColour(colourR, colourG, colourB);
-    }
-  }
   float thrustPercent { default 10 min 0 max 1 update {} }
   float reinforcement {
     default 0
@@ -1166,6 +1162,17 @@ type Ship {
     }
   }
 
+  # Notify the netiface only after all other construction
+  void {
+    post-set {
+      #ifndef LOCAL_CLONE
+      //Notify netiface
+      if (cxn->netiface)
+        cxn->netiface->receiveShip(cxn, X);
+      #endif
+    }
+  }
+
   construct {
     X = new Ship(field);
     //Set fields from GameObject
@@ -1354,8 +1361,10 @@ type Ship {
           X->cells[i]->systems[s]->detectPhysics();
     X->refreshUpdates();
 
-    //Register with SDG
+    X->setColour(colourR, colourG, colourB);
+
     #ifndef LOCAL_CLONE
+    //Register with SDG
     X->shipDamageGeraet = cxn->sdg;
     cxn->sdg->addRemoteShip(X, inputChannel);
     #endif /* LOCAL_CLONE */

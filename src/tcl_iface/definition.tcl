@@ -1136,11 +1136,13 @@ unsafe {
     fun cstr getGameMode purevirtual
     fun void connectionLost purevirtual cstr
     fun string getFullDats purevirtual
+    fun void receiveShip purevirtual NetworkConnection* Ship*
   }
   class final NetworkGame {} {
     constructor default GameField*
     fun Peer* getLocalPeer
     fun Peer* getOverseer
+    fun Peer* getPeerByConnection {} NetworkConnection*
     fun string getDisconnectReason
     fun void setNetIface {} NetIface*
     fun void setAdvertising {} cstr
