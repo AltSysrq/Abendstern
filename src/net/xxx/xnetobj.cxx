@@ -34,6 +34,7 @@
 #define fabs(x) std::fabs((float)(x))
 #endif
 #include "xnetobj.hxx"
+#include "../network_game.hxx"
 
 
   #include <cassert>
@@ -64,7 +65,7 @@ INO_EnergyCharge::~INO_EnergyCharge() {
 }
 
 const NetworkConnection::geraet_num INO_EnergyCharge::num =
-    NetworkConnection::registerGeraetCreator(&create);
+    NetworkConnection::registerGeraetCreator(&create, 32768);
 
 InputNetworkGeraet* INO_EnergyCharge::create(NetworkConnection* cxn) throw() {
   return new INO_EnergyCharge(cxn);
@@ -356,7 +357,7 @@ INO_MagnetoBomb::~INO_MagnetoBomb() {
 }
 
 const NetworkConnection::geraet_num INO_MagnetoBomb::num =
-    NetworkConnection::registerGeraetCreator(&create);
+    NetworkConnection::registerGeraetCreator(&create, 32769);
 
 InputNetworkGeraet* INO_MagnetoBomb::create(NetworkConnection* cxn) throw() {
   return new INO_MagnetoBomb(cxn);
@@ -715,7 +716,7 @@ INO_SemiguidedBomb::~INO_SemiguidedBomb() {
 }
 
 const NetworkConnection::geraet_num INO_SemiguidedBomb::num =
-    NetworkConnection::registerGeraetCreator(&create);
+    NetworkConnection::registerGeraetCreator(&create, 32770);
 
 InputNetworkGeraet* INO_SemiguidedBomb::create(NetworkConnection* cxn) throw() {
   return new INO_SemiguidedBomb(cxn);
@@ -1074,7 +1075,7 @@ INO_PlasmaBurst::~INO_PlasmaBurst() {
 }
 
 const NetworkConnection::geraet_num INO_PlasmaBurst::num =
-    NetworkConnection::registerGeraetCreator(&create);
+    NetworkConnection::registerGeraetCreator(&create, 32771);
 
 InputNetworkGeraet* INO_PlasmaBurst::create(NetworkConnection* cxn) throw() {
   return new INO_PlasmaBurst(cxn);
@@ -1385,7 +1386,7 @@ INO_Missile::~INO_Missile() {
 }
 
 const NetworkConnection::geraet_num INO_Missile::num =
-    NetworkConnection::registerGeraetCreator(&create);
+    NetworkConnection::registerGeraetCreator(&create, 32772);
 
 InputNetworkGeraet* INO_Missile::create(NetworkConnection* cxn) throw() {
   return new INO_Missile(cxn);
@@ -1771,7 +1772,7 @@ INO_ParticleEmitter::~INO_ParticleEmitter() {
 }
 
 const NetworkConnection::geraet_num INO_ParticleEmitter::num =
-    NetworkConnection::registerGeraetCreator(&create);
+    NetworkConnection::registerGeraetCreator(&create, 32773);
 
 InputNetworkGeraet* INO_ParticleEmitter::create(NetworkConnection* cxn) throw() {
   return new INO_ParticleEmitter(cxn);
@@ -2108,7 +2109,7 @@ INO_MonophasicEnergyPulse::~INO_MonophasicEnergyPulse() {
 }
 
 const NetworkConnection::geraet_num INO_MonophasicEnergyPulse::num =
-    NetworkConnection::registerGeraetCreator(&create);
+    NetworkConnection::registerGeraetCreator(&create, 32774);
 
 InputNetworkGeraet* INO_MonophasicEnergyPulse::create(NetworkConnection* cxn) throw() {
   return new INO_MonophasicEnergyPulse(cxn);
@@ -2383,7 +2384,7 @@ INO_Spectator::~INO_Spectator() {
 }
 
 const NetworkConnection::geraet_num INO_Spectator::num =
-    NetworkConnection::registerGeraetCreator(&create);
+    NetworkConnection::registerGeraetCreator(&create, 32775);
 
 InputNetworkGeraet* INO_Spectator::create(NetworkConnection* cxn) throw() {
   return new INO_Spectator(cxn);
@@ -2699,7 +2700,7 @@ INO_Ship::~INO_Ship() {
 }
 
 const NetworkConnection::geraet_num INO_Ship::num =
-    NetworkConnection::registerGeraetCreator(&create);
+    NetworkConnection::registerGeraetCreator(&create, 32776);
 
 InputNetworkGeraet* INO_Ship::create(NetworkConnection* cxn) throw() {
   return new INO_Ship(cxn);
@@ -3075,8 +3076,10 @@ gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] >> 7) &
           X->cells[i]->systems[s]->detectPhysics();
     X->refreshUpdates();
 
-    //Register with SDG
+    X->setColour(colourR, colourG, colourB);
+
     #ifndef LOCAL_CLONE
+    //Register with SDG
     X->shipDamageGeraet = cxn->sdg;
     cxn->sdg->addRemoteShip(X, inputChannel);
     #endif /* LOCAL_CLONE */
@@ -3088,9 +3091,6 @@ gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+80133+ARRAY_OFFSET*1/8)[0+0] >> 7) &
       X->sinTheta = sin(X->theta);
     
  if (!X->ignoreNetworkTag) X->tag = tag; 
-
-      X->setColour(colourR, colourG, colourB);
-    
 
       X->setReinforcement(reinforcement);
     
@@ -3131,6 +3131,13 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         }
       
 }
+
+      #ifndef LOCAL_CLONE
+      //Notify netiface
+      if (cxn->netiface)
+        cxn->netiface->receiveShip(cxn, X);
+      #endif
+    
    if (!X->isFragment) cxn->setReference(X); 
   return X;
   #undef DESTROY
@@ -3590,6 +3597,10 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         }
       
 }
+
+      X->x = max(0.0f,min(field->width -0.0001f,x + vx*T));
+      X->y = max(0.0f,min(field->height-0.0001f,y + vy*T));
+    
   return false;
   #undef DESTROY
 }
@@ -4837,8 +4848,10 @@ vx = X->vx;
           X->cells[i]->systems[s]->detectPhysics();
     X->refreshUpdates();
 
-    //Register with SDG
+    X->setColour(colourR, colourG, colourB);
+
     #ifndef LOCAL_CLONE
+    //Register with SDG
     X->shipDamageGeraet = cxn->sdg;
     cxn->sdg->addRemoteShip(X, inputChannel);
     #endif /* LOCAL_CLONE */
@@ -4850,9 +4863,6 @@ vx = X->vx;
       X->sinTheta = sin(X->theta);
     
  if (!X->ignoreNetworkTag) X->tag = tag; 
-
-      X->setColour(colourR, colourG, colourB);
-    
 
       X->setReinforcement(reinforcement);
     
@@ -4893,6 +4903,13 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         }
       
 }
+
+      #ifndef LOCAL_CLONE
+      //Notify netiface
+      if (cxn->netiface)
+        cxn->netiface->receiveShip(cxn, X);
+      #endif
+    
   #undef LOCAL_CLONE
   #undef X
   #undef field
@@ -5811,6 +5828,10 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
         }
       
 }
+
+      X->x = max(0.0f,min(field->width -0.0001f,x + vx*T));
+      X->y = max(0.0f,min(field->height-0.0001f,y + vy*T));
+    
   #undef X
   #undef DATA
   #undef T
@@ -5889,4 +5910,4 @@ else
   return ego;
 }
 const unsigned char protocolHash[32] =
-{144,74,221,45,104,115,217,46,5,8,162,100,30,68,162,116,6,36,212,153,101,1,42,79,207,35,137,43,154,32,158,243};
+{209,75,207,250,204,141,218,98,92,75,229,39,51,24,79,161,232,156,190,53,197,131,99,161,107,125,132,118,87,92,151,108};

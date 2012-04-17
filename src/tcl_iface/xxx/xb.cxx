@@ -46,6 +46,7 @@
 #include "src/sim/game_field.hxx"
 #include "src/camera/forwarding_effects_handler.hxx"
 #include "src/net/connection_listener.hxx"
+#include "src/audio/ship_mixer.hxx"
 class TclGameField : public GameField {
       public:
 static int get308 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
@@ -660,9 +661,9 @@ static int set320 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {int gen1519;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1519);
-            newVal=gen1519;
+      {int gen1617;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1617);
+            newVal=gen1617;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -1854,6 +1855,80 @@ error:
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
+
+#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+
+#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+static int
+     trampoline342 (
+     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+       SHIFT;
+       if (objc != 1) {
+         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
+         return TCL_ERROR;
+       }
+       invokingInterpreter=interp;
+       GameField* parent=NULL;
+PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
+{
+      string name(Tcl_GetStringFromObj(objv[0], NULL));
+      if (name != "0") {
+        //Does it exist?
+        InterpInfo* info=interpreters[interp];
+        map<string,Export*>::iterator it=info->exportsByName.find(name);
+        if (it == info->exportsByName.end()) {
+          for (it=info->exportsByName.begin();
+               it != info->exportsByName.end(); ++it) {
+            cout << (*it).first << endl;
+          }
+          sprintf(staticError, "Invalid export passed to C++: %s",
+                  name.c_str());
+          scriptError(staticError);
+        }
+        Export* ex=(*it).second;
+        //OK, is the type correct?
+        if (ex->type->theType != typeid(GameField)
+        &&  0==ex->type->superclasses.count(&typeid(GameField))) {
+          //Nope
+          sprintf(staticError, "Wrong type passed to C++ function; expected"
+                               " GameField, "
+                               "got %s", ex->type->tclClassName.c_str());
+          scriptError(staticError);
+        }
+
+        //All is well, transfer ownership now
+        GameField* tmp=(GameField*)ex->ptr;
+        
+        parent = tmp;
+    } else parent=NULL;
+}
+      if (!parent) { scriptError("NULL this passed into C++"); }
+try {
+      
+     parent->
+     
+     updateBoundaries();
+
+    } catch (exception& ex) {
+      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
+      scriptError(staticError);
+    }
+POP_TCL_ERROR_HANDLER;
+      return TCL_OK;
+error:
+      POP_TCL_ERROR_HANDLER;
+      double_error:
+      #undef scriptError
+      #define scriptError(msg) { \
+        cerr << "Double-error; old message: " << scriptingErrorMessage << \
+        ", new message: " << msg << endl; \
+        scriptingErrorMessage = msg; goto double_error; \
+      }
+      if (parent) {}
+#undef scriptError
+Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
+#undef scriptError
+
 static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ get308", get308, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ get310", get310, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ set311", set311, 0, NULL);
@@ -1873,6 +1948,7 @@ Tcl_CreateObjCommand(interp, "c++ trampoline334", trampoline334, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline336", trampoline336, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline338", trampoline338, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline340", trampoline340, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline342", trampoline342, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(GameField)),
                            * ete=new TypeExport(typeid(TclGameField));
 ste->isAObject=ete->isAObject=true;
@@ -1932,7 +2008,7 @@ static MonophasicEnergyPulse* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline656 (
+     trampoline658 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 8) {
@@ -2191,7 +2267,7 @@ if (arg7Init) {arg7Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline656", trampoline656, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline658", trampoline658, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(MonophasicEnergyPulse)),
                            * ete=new TypeExport(typeid(TclMonophasicEnergyPulse));
 ste->isAObject=ete->isAObject=true;
@@ -2204,7 +2280,7 @@ typeExports[&typeid(MonophasicEnergyPulse)]=ste;
 typeExports[&typeid(TclMonophasicEnergyPulse)]=ete;
 }
 };
-void classdec655(bool safe, Tcl_Interp* interp) throw() {
+void classdec657(bool safe, Tcl_Interp* interp) throw() {
   TclMonophasicEnergyPulse::cppDecCode(safe,interp);
 }
 class TclForwardingEffectsHandler : public ForwardingEffectsHandler {
@@ -2252,7 +2328,7 @@ static ForwardingEffectsHandler* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline835 (
+     trampoline840 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -2426,7 +2502,7 @@ if (arg2Init) {arg2Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline835", trampoline835, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline840", trampoline840, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(ForwardingEffectsHandler)),
                            * ete=new TypeExport(typeid(TclForwardingEffectsHandler));
 ste->isAObject=ete->isAObject=true;
@@ -2439,7 +2515,7 @@ typeExports[&typeid(ForwardingEffectsHandler)]=ste;
 typeExports[&typeid(TclForwardingEffectsHandler)]=ete;
 }
 };
-void classdec834(bool safe, Tcl_Interp* interp) throw() {
+void classdec839(bool safe, Tcl_Interp* interp) throw() {
   TclForwardingEffectsHandler::cppDecCode(safe,interp);
 }
 class TclConnectionListener : public ConnectionListener {
@@ -2456,7 +2532,7 @@ typeExports[&typeid(ConnectionListener)]=ste;
 typeExports[&typeid(TclConnectionListener)]=ete;
 }
 };
-void classdec1206(bool safe, Tcl_Interp* interp) throw() {
+void classdec1211(bool safe, Tcl_Interp* interp) throw() {
   TclConnectionListener::cppDecCode(safe,interp);
 }
 
@@ -2465,7 +2541,7 @@ void classdec1206(bool safe, Tcl_Interp* interp) throw() {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1402 (
+     trampoline1496 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -2480,7 +2556,49 @@ try {
       
      
      
-     debugTclExports();
+     audio::ShipMixer::init();
+
+    } catch (exception& ex) {
+      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
+      scriptError(staticError);
+    }
+POP_TCL_ERROR_HANDLER;
+      return TCL_OK;
+error:
+      POP_TCL_ERROR_HANDLER;
+      double_error:
+      #undef scriptError
+      #define scriptError(msg) { \
+        cerr << "Double-error; old message: " << scriptingErrorMessage << \
+        ", new message: " << msg << endl; \
+        scriptingErrorMessage = msg; goto double_error; \
+      }
+      
+#undef scriptError
+Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
+#undef scriptError
+
+
+#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+
+#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+ int
+     trampoline1498 (
+     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+       SHIFT;
+       if (objc != 0) {
+         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
+         return TCL_ERROR;
+       }
+       invokingInterpreter=interp;
+       
+PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
+
+try {
+      
+     
+     
+     audio::ShipMixer::end();
 
     } catch (exception& ex) {
       sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());

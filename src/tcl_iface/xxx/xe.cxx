@@ -54,7 +54,7 @@ class TclPlasmaFire : public PlasmaFire {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline385 (
+     trampoline387 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -139,7 +139,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline387 (
+     trampoline389 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -213,7 +213,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline389 (
+     trampoline391 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -285,9 +285,9 @@ error:
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline385", trampoline385, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline387", trampoline387, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline387", trampoline387, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline389", trampoline389, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline391", trampoline391, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(PlasmaFire)),
                            * ete=new TypeExport(typeid(TclPlasmaFire));
 ste->isAObject=ete->isAObject=true;
@@ -300,7 +300,7 @@ typeExports[&typeid(PlasmaFire)]=ste;
 typeExports[&typeid(TclPlasmaFire)]=ete;
 }
 };
-void classdec384(bool safe, Tcl_Interp* interp) throw() {
+void classdec386(bool safe, Tcl_Interp* interp) throw() {
   TclPlasmaFire::cppDecCode(safe,interp);
 }
 class TclBackground : public Background {
@@ -310,7 +310,7 @@ class TclBackground : public Background {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline673 (
+     trampoline675 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -384,7 +384,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline675 (
+     trampoline677 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -466,7 +466,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline677 (
+     trampoline679 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -544,9 +544,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else arg0=NULL;
 };
 arg0Init=true;
-{int gen1734;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1734);
-            arg1=gen1734;
+{int gen1833;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1833);
+            arg1=gen1833;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -584,7 +584,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline679 (
+     trampoline681 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -653,10 +653,10 @@ error:
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline673", trampoline673, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline675", trampoline675, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline675", trampoline675, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline677", trampoline677, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline679", trampoline679, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline681", trampoline681, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(Background)),
                            * ete=new TypeExport(typeid(TclBackground));
 ste->isAObject=ete->isAObject=true;
@@ -669,7 +669,7 @@ typeExports[&typeid(Background)]=ste;
 typeExports[&typeid(TclBackground)]=ete;
 }
 };
-void classdec672(bool safe, Tcl_Interp* interp) throw() {
+void classdec674(bool safe, Tcl_Interp* interp) throw() {
   TclBackground::cppDecCode(safe,interp);
 }
 
@@ -718,7 +718,7 @@ static Manipulator* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline874 (
+     trampoline879 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -862,7 +862,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline876 (
+     trampoline881 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -936,7 +936,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline878 (
+     trampoline883 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -1010,7 +1010,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline880 (
+     trampoline885 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -1100,7 +1100,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline882 (
+     trampoline887 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -1190,7 +1190,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline884 (
+     trampoline889 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -1280,7 +1280,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline886 (
+     trampoline891 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -1370,7 +1370,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline888 (
+     trampoline893 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -1460,7 +1460,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline890 (
+     trampoline895 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -1550,7 +1550,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline892 (
+     trampoline897 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 5) {
@@ -1656,7 +1656,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline894 (
+     trampoline899 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -1730,7 +1730,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline896 (
+     trampoline901 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -1804,7 +1804,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline898 (
+     trampoline903 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -1878,7 +1878,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline900 (
+     trampoline905 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -1952,7 +1952,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline902 (
+     trampoline907 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -2026,7 +2026,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline904 (
+     trampoline909 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -2100,7 +2100,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline906 (
+     trampoline911 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -2174,7 +2174,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline908 (
+     trampoline913 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -2256,7 +2256,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline910 (
+     trampoline915 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -2344,7 +2344,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline912 (
+     trampoline917 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -2418,7 +2418,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline914 (
+     trampoline919 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -2524,7 +2524,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline916 (
+     trampoline921 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -2663,28 +2663,28 @@ if (arg1Init) {arg1Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline874", trampoline874, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline876", trampoline876, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline878", trampoline878, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline880", trampoline880, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline882", trampoline882, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline884", trampoline884, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline886", trampoline886, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline888", trampoline888, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline890", trampoline890, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline892", trampoline892, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline894", trampoline894, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline896", trampoline896, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline898", trampoline898, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline900", trampoline900, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline902", trampoline902, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline904", trampoline904, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline906", trampoline906, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline908", trampoline908, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline910", trampoline910, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline912", trampoline912, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline914", trampoline914, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline916", trampoline916, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline879", trampoline879, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline881", trampoline881, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline883", trampoline883, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline885", trampoline885, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline887", trampoline887, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline889", trampoline889, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline891", trampoline891, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline893", trampoline893, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline895", trampoline895, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline897", trampoline897, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline899", trampoline899, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline901", trampoline901, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline903", trampoline903, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline905", trampoline905, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline907", trampoline907, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline909", trampoline909, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline911", trampoline911, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline913", trampoline913, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline915", trampoline915, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline917", trampoline917, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline919", trampoline919, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline921", trampoline921, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(Manipulator)),
                            * ete=new TypeExport(typeid(TclManipulator));
 ste->isAObject=ete->isAObject=true;
@@ -2696,7 +2696,7 @@ typeExports[&typeid(Manipulator)]=ste;
 typeExports[&typeid(TclManipulator)]=ete;
 }
 };
-void classdec873(bool safe, Tcl_Interp* interp) throw() {
+void classdec878(bool safe, Tcl_Interp* interp) throw() {
   TclManipulator::cppDecCode(safe,interp);
 }
 
@@ -2745,7 +2745,7 @@ static GameAdvertiser* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1222 (
+     trampoline1227 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 8) {
@@ -2826,9 +2826,9 @@ arg1Init=true;
     } else arg2=NULL;
 };
 arg2Init=true;
-{int gen1956;
-            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen1956);
-            arg3=gen1956;
+{int gen2055;
+            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen2055);
+            arg3=gen2055;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -2845,9 +2845,9 @@ arg4Init=true;
               scriptError(Tcl_GetStringResult(interp));
             arg5 = (unsigned)tmp;};
 arg5Init=true;
-{int gen1957;
-            int err = Tcl_GetBooleanFromObj(interp, objv[6], (int*)&gen1957);
-            arg6=gen1957;
+{int gen2056;
+            int err = Tcl_GetBooleanFromObj(interp, objv[6], (int*)&gen2056);
+            arg6=gen2056;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -2974,7 +2974,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1224 (
+     trampoline1229 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -3056,7 +3056,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1226 (
+     trampoline1231 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -3138,7 +3138,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1228 (
+     trampoline1233 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -3223,10 +3223,10 @@ if (arg0Init) {arg0Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1222", trampoline1222, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1224", trampoline1224, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1226", trampoline1226, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1228", trampoline1228, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1227", trampoline1227, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1229", trampoline1229, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1231", trampoline1231, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1233", trampoline1233, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(GameAdvertiser)),
                            * ete=new TypeExport(typeid(TclGameAdvertiser));
 ste->isAObject=ete->isAObject=true;
@@ -3239,7 +3239,7 @@ typeExports[&typeid(GameAdvertiser)]=ste;
 typeExports[&typeid(TclGameAdvertiser)]=ete;
 }
 };
-void classdec1221(bool safe, Tcl_Interp* interp) throw() {
+void classdec1226(bool safe, Tcl_Interp* interp) throw() {
   TclGameAdvertiser::cppDecCode(safe,interp);
 }
 
