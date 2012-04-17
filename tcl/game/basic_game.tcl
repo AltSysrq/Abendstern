@@ -228,7 +228,9 @@ class BasicGame {
     # Maintain the chat prefix.
     # While this is far from necessary to do every frame, this way we don't
     # have to wory about defining the events that could change it.
-    set ::compositionBufferPrefix "\a\[[getStatsColour 0 0][dpg 0 name]\a\]: "
+    if {![catch {dpg 0 name}]} {
+      set ::compositionBufferPrefix "\a\[[getStatsColour 0 0][dpg 0 name]\a\]: "
+    }
 
     return $retval
   }
