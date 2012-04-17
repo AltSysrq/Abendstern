@@ -216,11 +216,13 @@ noth {
   io::read(data, seq);
   io::read(data, chan);
   datlen -= 4;
+  #ifdef DEBUG
   //Suppress messages from channel 1 since it is not interesting
   if (chan != 1)
     cout << "Receive seq=" << seq << " on chan=" << chan
          << " with length=" << datlen << " from " << source
          << " (latency=" << latency << " ms)" << endl;
+  #endif
 
   //Range check
   if (seq-greatestSeq < 1024 || greatestSeq-seq < 1024) {
