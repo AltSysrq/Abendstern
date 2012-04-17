@@ -26,6 +26,7 @@ class LatDiscGeraet;
 class AsyncAckGeraet;
 class ShipDamageGeraet;
 class AnticipatoryChannels;
+class NetIface;
 
 /**
  * Encapsulates all information pertaining to a connection to another peer.
@@ -160,6 +161,13 @@ public:
   ShipDamageGeraet*const sdg;
   ///AnticipatoryChannels service used with this NetworkConnection
   AnticipatoryChannels*const anticipation;
+  /**
+   * The NetIface used with this connection.
+   * This is intended only so that GameObjects which must trigger events on
+   * import can do so.
+   * This may me NULL.
+   */
+  NetIface* netiface;
 
   /**
    * Used to translate remote blame values to local.

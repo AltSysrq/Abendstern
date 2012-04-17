@@ -73,6 +73,7 @@ NetworkConnection::NetworkConnection(NetworkAssembly* assembly_,
   ldg(new LatDiscGeraet(this)),
   sdg(new ShipDamageGeraet(aag)),
   anticipation(new AnticipatoryChannels(this)),
+  netiface(NULL),
   blameMask(0)
 {
   inchannels[0] = scg;

@@ -404,6 +404,8 @@ NetworkGame::~NetworkGame() {
 
 void NetworkGame::setNetIface(NetIface* ifc) throw() {
   iface = ifc;
+  for (unsigned i = 0; i < assembly.numConnections(); ++i)
+    assembly.getConnection(i)->netiface = ifc;
 }
 
 void NetworkGame::setAdvertising(const char* gameMode) throw() {
@@ -831,8 +833,9 @@ void NetworkGame::initCxn(NetworkConnection* cxn, Peer* peer) throw() {
   if (iface && !overseer && localPeer.overseerReady)
     stgs[cxn]->sendMode(iface->getGameMode());
 
-  //Copy blame mask
+  //Copy blame mask and netiface
   cxn->blameMask = peer->blameMask;
+  cxn->netiface = iface;
 
   //Set outgoing STX auxilliary data
   byte auxdat[4];
