@@ -22,6 +22,16 @@ class NullNetworkState {
       return $this
     }
   }
+
+  # Do-nothing methods that may be called by the NetworkCommunicator
+  foreach meth {
+    receiveBroadcast
+    receiveUnicast
+    receiveOverseer
+    modifyIncomming
+  } {
+    method $meth args {}
+  }
 }
 
 class NullNetworkMode {
