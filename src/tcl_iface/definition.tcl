@@ -748,6 +748,7 @@ unsafe {
     fun void key    {} SDL_KeyboardEvent*
   }
   const isCompositionBufferInUse bool
+  var compositionBufferPrefix string
 }
 
 cxx src/control/hc_conf.hxx
