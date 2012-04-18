@@ -74,6 +74,7 @@ tcl/editor/barsyscopy.tcl
 tcl/editor/initmode.tcl
 tcl/lssinfo.tcl
 tcl/httpa.tcl
+tcl/game/game_manager.tcl
 tcl/game/mod_perfect_radar.tcl
 tcl/game/mod_stats_ffa.tcl
 tcl/game/mod_match.tcl
@@ -84,15 +85,19 @@ tcl/game/mod_free_spawn.tcl
 tcl/game/spectator.tcl
 tcl/game/g_lxts.tcl
 tcl/game/spawn_manager.tcl
+tcl/game/g_null.tcl
 tcl/game/mod_score_frags.tcl
 tcl/game/mod_round_spawn.tcl
 tcl/game/mod_stats_team.tcl
 tcl/game/basic_game.tcl
 tcl/game/g_dm.tcl
 tcl/game/g_lms.tcl
+tcl/game/communicator.tcl
 tcl/game/mod_autobot.tcl
+tcl/game/network_communicator.tcl
 tcl/game/mod_round.tcl
 tcl/game/sources.tcl
 tcl/game/g_hvc.tcl
+tcl/game/loopback_communicator.tcl
 tcl/game/mod_score_teamfrag.tcl
 tcl/init.d/rc
