@@ -6,7 +6,7 @@
 
 in vec4 vertex;
 in vec4 colour;
-varying out vec4 varyingColour;
+varying /* out */ vec4 varyingColour;
 uniform mat4 transform;
 
 void main(void) {

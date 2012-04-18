@@ -9,7 +9,7 @@ layout (triangle_strip, max_vertices=4) out;
 uniform mat4 transform;
 uniform float elapsedTime, sizeAt1Sec;
 uniform float ex, ey;
-smooth out vec2 expCoord;
+/* smooth */ varying out vec2 expCoord;
 
 void main(void) {
   vec4 centre = vec4(ex,ey,0,1);

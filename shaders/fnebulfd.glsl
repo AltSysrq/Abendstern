@@ -5,7 +5,7 @@ uniform vec3 colour;
 
 const float maxViewDist = 8;
 
-smooth in vec2 varyingTexCoord;
+/* smooth */ in vec2 varyingTexCoord;
 out vec4 dst;
 
 void main(void) {

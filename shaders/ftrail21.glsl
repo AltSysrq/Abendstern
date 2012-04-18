@@ -3,8 +3,8 @@
  * colour, and just use that.
  */
 
-varying in vec4 varyingColour;
-varying in float dist;
+/* varying */ in vec4 varyingColour;
+/* varying */ in float dist;
 varying out vec4 dst;
 
 void main(void) {

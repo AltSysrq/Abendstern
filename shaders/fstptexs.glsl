@@ -1,8 +1,8 @@
 #version 120
 /* Stensiling texture stiple frag shader. */
 
-varying in vec2 varyingTexCoords;
-varying in vec2 screenCoord;
+/* varying */ in vec2 varyingTexCoords;
+/* varying */ in vec2 screenCoord;
 
 uniform int screenW, screenH;
 uniform sampler2D colourMap;

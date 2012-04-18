@@ -2,7 +2,7 @@
 /* "Texture" frag shader for shields. */
 
 uniform vec4 colour;
-varying in vec2 varyingTexCoord;
+/* varying */ in vec2 varyingTexCoord;
 varying out vec4 dst;
 
 void main(void) {

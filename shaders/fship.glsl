@@ -9,7 +9,7 @@ uniform vec3 shipColour;
 uniform float highColour[128*3];
 uniform sampler2D mainTex, damTex;
 uniform float cloak;
-varying in vec2 varyingTexCoord;
+/* varying */ in vec2 varyingTexCoord;
 varying out vec4 dst;
 
 void main(void) {

@@ -3,7 +3,7 @@
  * by the alpha component of the texture.
  */
 
-varying in vec2 varyingTexCoord;
+/* varying */ in vec2 varyingTexCoord;
 uniform sampler2D colourMap;
 uniform vec4 modColour;
 varying out vec4 dst;

@@ -8,8 +8,8 @@ in vec2 texCoord;
 in vec2 vertex;
 in float isLeft;
 uniform float dayNightLeft, dayNightRight;
-varying out vec2 varyingTexCoord;
-varying out float varyingDayNight;
+varying /* out */ vec2 varyingTexCoord;
+varying /* out */ float varyingDayNight;
 
 void main(void) {
   varyingDayNight=(isLeft==1? dayNightLeft : dayNightRight);

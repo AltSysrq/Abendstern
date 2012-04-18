@@ -6,7 +6,7 @@ uniform sampler2D d;
 
 const float simSideSz = 8*128, px = 1.0/simSideSz;
 
-varying in vec2 varyingTexCoord;
+/* varying */ in vec2 varyingTexCoord;
 varying out vec4 dst;
 
 void main(void) {

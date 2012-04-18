@@ -5,7 +5,7 @@
 
 uniform mat4 transform;
 in vec4 vertex;
-varying out vec2 screenCoord;
+varying /* out */ vec2 screenCoord;
 
 void main(void) {
   vec4 dst = vertex*transform;

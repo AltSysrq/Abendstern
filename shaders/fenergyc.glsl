@@ -7,7 +7,7 @@
  */
 
 uniform vec4 colour;
-varying in vec4 varyingTexCoord;
+/*varying*/ in vec2 varyingTexCoord;
 varying out vec4 dst;
 
 void main(void) {

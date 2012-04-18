@@ -5,7 +5,7 @@ uniform vec4 colour;
 uniform float elapsedTime;
 uniform int id;
 
-varying in vec2 expCoord;
+/* varying */ in vec2 expCoord;
 
 varying out vec4 dst;
 

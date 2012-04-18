@@ -5,7 +5,7 @@
  */
 
 uniform vec4 colour;
-varying in vec2 expCoord;
+/* varying */ in vec2 expCoord;
 
 varying out vec4 dst;
 

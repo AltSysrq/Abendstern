@@ -6,7 +6,7 @@
  * greyscale, and therefore also ignores G and B).
  */
 
-varying in vec2 varyingTexCoord;
+/* varying */ in vec2 varyingTexCoord;
 uniform sampler2D colourMap;
 
 varying out vec4 dst;
