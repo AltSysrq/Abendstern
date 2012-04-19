@@ -1,7 +1,7 @@
 #version 120
 /* Basic texture fragment shader, replace mode. */
 
-varying in vec2 varyingTexCoord;
+/* varying */ in vec2 varyingTexCoord;
 uniform sampler2D colourMap;
 varying out vec4 dst;
 

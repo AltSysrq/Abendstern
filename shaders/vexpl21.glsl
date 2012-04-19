@@ -5,7 +5,7 @@ in vec2 vertex;
 uniform mat4 transform;
 uniform float elapsedTime, sizeAt1Sec;
 uniform float ex, ey;
-varying out vec2 expCoord;
+varying /* out */ vec2 expCoord;
 
 void main(void) {
   expCoord = vertex;

@@ -4,8 +4,8 @@
 uniform mat4 transform;
 in vec4 vertex;
 in vec2 texCoord;
-varying out vec2 varyingTexCoords;
-varying out vec2 screenCoord;
+varying /* out*/ vec2 varyingTexCoords;
+varying /* out */ vec2 screenCoord;
 
 void main(void) {
   varyingTexCoords=texCoord;

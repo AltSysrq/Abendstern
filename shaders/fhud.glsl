@@ -6,8 +6,8 @@
 uniform float topBarVal, botBarVal, leftBarVal, rightBarVal;
 uniform vec3  topBarCol, botBarCol, leftBarCol, rightBarCol;
 
-varying in vec2 varyingTexCoord;
-varying in vec2 screenCoord;
+/* varying */ in vec2 varyingTexCoord;
+/* varying */ in vec2 screenCoord;
 varying out vec4 dst;
 
 const float pi = 3.1415926;

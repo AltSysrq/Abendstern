@@ -18,8 +18,8 @@ uniform float currentTime;
 uniform float baseWidth;
 uniform mat4 transform;
 
-varying out float dist;
-varying out vec4 varyingColour;
+varying /* out */ float dist;
+varying /* out */ vec4 varyingColour;
 
 void main(void) {
   dist = ix;

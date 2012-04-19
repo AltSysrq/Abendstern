@@ -8,7 +8,7 @@ uniform float elapsedTime;
 uniform vec4 colour;
 uniform float density;
 
-varying in vec2 expCoord;
+/* varying */ in vec2 expCoord;
 
 varying out vec4 dst;
 

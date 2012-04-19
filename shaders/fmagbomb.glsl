@@ -6,7 +6,7 @@
 
 uniform vec4 modColour;
 uniform float rotation;
-varying in vec2 varyingTexCoord;
+/* varying */ in vec2 varyingTexCoord;
 
 varying out vec4 dst;
 

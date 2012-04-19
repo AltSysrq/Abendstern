@@ -2,7 +2,7 @@
 /* Simple colour-only stipler. */
 
 uniform vec4 colour;
-varying in vec2 screenCoord;
+/* varying */ in vec2 screenCoord;
 
 uniform int screenW, screenH;
 

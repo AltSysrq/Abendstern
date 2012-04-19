@@ -221,6 +221,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-anticipatory_channels.$(OBJEXT) \
 	abendsternuxgl14-ship_damage_geraet.$(OBJEXT) \
 	abendsternuxgl14-network_game.$(OBJEXT) \
+	abendsternuxgl14-windows_firewall_opener.$(OBJEXT) \
 	abendsternuxgl14-network_test.$(OBJEXT) \
 	abendsternuxgl14-xnetobj.$(OBJEXT) \
 	abendsternuxgl14-namegen.$(OBJEXT) \
@@ -428,6 +429,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-anticipatory_channels.$(OBJEXT) \
 	abendsternuxgl21-ship_damage_geraet.$(OBJEXT) \
 	abendsternuxgl21-network_game.$(OBJEXT) \
+	abendsternuxgl21-windows_firewall_opener.$(OBJEXT) \
 	abendsternuxgl21-network_test.$(OBJEXT) \
 	abendsternuxgl21-xnetobj.$(OBJEXT) \
 	abendsternuxgl21-namegen.$(OBJEXT) \
@@ -633,6 +635,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-anticipatory_channels.$(OBJEXT) \
 	abendsternuxgl32-ship_damage_geraet.$(OBJEXT) \
 	abendsternuxgl32-network_game.$(OBJEXT) \
+	abendsternuxgl32-windows_firewall_opener.$(OBJEXT) \
 	abendsternuxgl32-network_test.$(OBJEXT) \
 	abendsternuxgl32-xnetobj.$(OBJEXT) \
 	abendsternuxgl32-namegen.$(OBJEXT) \
@@ -808,7 +811,7 @@ top_srcdir = @top_srcdir@
 @ENABLE_GL21_TRUE@GL21PROG = abendsternuxgl21
 @ENABLE_GL32_FALSE@GL32PROG = 
 @ENABLE_GL32_TRUE@GL32PROG = abendsternuxgl32
-COMMONCXXFLAGS = -Wall -I./config $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PNG_CFLAGS) -I/usr/include/tcl8.5
+COMMONCXXFLAGS = -Wall -I./config $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PNG_CFLAGS) -I/usr/include/tcl8.5 -I/usr/local/tcl8.5 -L/usr/lib/itcl3.4 -L/usr/local/lib/itcl3.4
 COMMONLDADD = $(SDL_LIBS) $(SDLIMG_LIBS) $(GL_LIBS) $(PNG_LIBS)
 COMMONSOURCES = \
 ./tcl_iface/bridge.cxx \
@@ -992,6 +995,7 @@ COMMONSOURCES = \
 ./net/anticipatory_channels.cxx \
 ./net/ship_damage_geraet.cxx \
 ./net/network_game.cxx \
+./net/windows_firewall_opener.cxx \
 ./net/network_test.cxx \
 ./net/xxx/xnetobj.cxx \
 ./secondary/namegen.cxx \
@@ -1307,6 +1311,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-vaoemu.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-vec.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-wavload.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-windows_firewall_opener.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-x0.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-x1.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-x2.Po@am__quote@
@@ -1515,6 +1520,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-vaoemu.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-vec.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-wavload.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-windows_firewall_opener.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-x0.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-x1.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-x2.Po@am__quote@
@@ -1723,6 +1729,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-vaoemu.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-vec.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-wavload.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-windows_firewall_opener.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-x0.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-x1.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-x2.Po@am__quote@
@@ -4288,6 +4295,20 @@ abendsternuxgl14-network_game.obj: ./net/network_game.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/network_game.cxx' object='abendsternuxgl14-network_game.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-network_game.obj `if test -f './net/network_game.cxx'; then $(CYGPATH_W) './net/network_game.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_game.cxx'; fi`
+
+abendsternuxgl14-windows_firewall_opener.o: ./net/windows_firewall_opener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-windows_firewall_opener.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-windows_firewall_opener.Tpo -c -o abendsternuxgl14-windows_firewall_opener.o `test -f './net/windows_firewall_opener.cxx' || echo '$(srcdir)/'`./net/windows_firewall_opener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-windows_firewall_opener.Tpo $(DEPDIR)/abendsternuxgl14-windows_firewall_opener.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/windows_firewall_opener.cxx' object='abendsternuxgl14-windows_firewall_opener.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-windows_firewall_opener.o `test -f './net/windows_firewall_opener.cxx' || echo '$(srcdir)/'`./net/windows_firewall_opener.cxx
+
+abendsternuxgl14-windows_firewall_opener.obj: ./net/windows_firewall_opener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-windows_firewall_opener.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-windows_firewall_opener.Tpo -c -o abendsternuxgl14-windows_firewall_opener.obj `if test -f './net/windows_firewall_opener.cxx'; then $(CYGPATH_W) './net/windows_firewall_opener.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/windows_firewall_opener.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-windows_firewall_opener.Tpo $(DEPDIR)/abendsternuxgl14-windows_firewall_opener.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/windows_firewall_opener.cxx' object='abendsternuxgl14-windows_firewall_opener.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-windows_firewall_opener.obj `if test -f './net/windows_firewall_opener.cxx'; then $(CYGPATH_W) './net/windows_firewall_opener.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/windows_firewall_opener.cxx'; fi`
 
 abendsternuxgl14-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-network_test.Tpo -c -o abendsternuxgl14-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx
@@ -7201,6 +7222,20 @@ abendsternuxgl21-network_game.obj: ./net/network_game.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-network_game.obj `if test -f './net/network_game.cxx'; then $(CYGPATH_W) './net/network_game.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_game.cxx'; fi`
 
+abendsternuxgl21-windows_firewall_opener.o: ./net/windows_firewall_opener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-windows_firewall_opener.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-windows_firewall_opener.Tpo -c -o abendsternuxgl21-windows_firewall_opener.o `test -f './net/windows_firewall_opener.cxx' || echo '$(srcdir)/'`./net/windows_firewall_opener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-windows_firewall_opener.Tpo $(DEPDIR)/abendsternuxgl21-windows_firewall_opener.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/windows_firewall_opener.cxx' object='abendsternuxgl21-windows_firewall_opener.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-windows_firewall_opener.o `test -f './net/windows_firewall_opener.cxx' || echo '$(srcdir)/'`./net/windows_firewall_opener.cxx
+
+abendsternuxgl21-windows_firewall_opener.obj: ./net/windows_firewall_opener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-windows_firewall_opener.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-windows_firewall_opener.Tpo -c -o abendsternuxgl21-windows_firewall_opener.obj `if test -f './net/windows_firewall_opener.cxx'; then $(CYGPATH_W) './net/windows_firewall_opener.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/windows_firewall_opener.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-windows_firewall_opener.Tpo $(DEPDIR)/abendsternuxgl21-windows_firewall_opener.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/windows_firewall_opener.cxx' object='abendsternuxgl21-windows_firewall_opener.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-windows_firewall_opener.obj `if test -f './net/windows_firewall_opener.cxx'; then $(CYGPATH_W) './net/windows_firewall_opener.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/windows_firewall_opener.cxx'; fi`
+
 abendsternuxgl21-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-network_test.Tpo -c -o abendsternuxgl21-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-network_test.Tpo $(DEPDIR)/abendsternuxgl21-network_test.Po
@@ -10112,6 +10147,20 @@ abendsternuxgl32-network_game.obj: ./net/network_game.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/network_game.cxx' object='abendsternuxgl32-network_game.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-network_game.obj `if test -f './net/network_game.cxx'; then $(CYGPATH_W) './net/network_game.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/network_game.cxx'; fi`
+
+abendsternuxgl32-windows_firewall_opener.o: ./net/windows_firewall_opener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-windows_firewall_opener.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-windows_firewall_opener.Tpo -c -o abendsternuxgl32-windows_firewall_opener.o `test -f './net/windows_firewall_opener.cxx' || echo '$(srcdir)/'`./net/windows_firewall_opener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-windows_firewall_opener.Tpo $(DEPDIR)/abendsternuxgl32-windows_firewall_opener.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/windows_firewall_opener.cxx' object='abendsternuxgl32-windows_firewall_opener.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-windows_firewall_opener.o `test -f './net/windows_firewall_opener.cxx' || echo '$(srcdir)/'`./net/windows_firewall_opener.cxx
+
+abendsternuxgl32-windows_firewall_opener.obj: ./net/windows_firewall_opener.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-windows_firewall_opener.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-windows_firewall_opener.Tpo -c -o abendsternuxgl32-windows_firewall_opener.obj `if test -f './net/windows_firewall_opener.cxx'; then $(CYGPATH_W) './net/windows_firewall_opener.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/windows_firewall_opener.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-windows_firewall_opener.Tpo $(DEPDIR)/abendsternuxgl32-windows_firewall_opener.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/windows_firewall_opener.cxx' object='abendsternuxgl32-windows_firewall_opener.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-windows_firewall_opener.obj `if test -f './net/windows_firewall_opener.cxx'; then $(CYGPATH_W) './net/windows_firewall_opener.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/windows_firewall_opener.cxx'; fi`
 
 abendsternuxgl32-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-network_test.Tpo -c -o abendsternuxgl32-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx

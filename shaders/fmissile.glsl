@@ -5,7 +5,7 @@
 
 uniform float green;
 
-varying in vec2 varyingTexCoord;
+/* varying */ in vec2 varyingTexCoord;
 varying out vec4 dst;
 
 void main(void) {

@@ -4,7 +4,7 @@
 uniform vec3 baseColour;
 uniform float visibility;
 
-varying in vec2 varyingTexCoord;
+/* varying */ in vec2 varyingTexCoord;
 
 varying out vec4 dst;
 
