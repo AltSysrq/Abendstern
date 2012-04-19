@@ -4875,7 +4875,7 @@ ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
 ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
 ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 
-CPPFLAGS="$CPPFLAGS -I/usr/include/tcl8.5"
+CPPFLAGS="$CPPFLAGS -I/usr/include/tcl8.5 -I/usr/local/tcl8.5 -L/usr/lib/itcl3.4 -L/usr/local/lib/itcl3.4"
 
 pkg_failed=no
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for SDL" >&5
@@ -5299,6 +5299,8 @@ else
   as_fn_error $? "unable to locate a Tcl library" "$LINENO" 5
 fi
 
+#For whatever reason, some distros place itcl somewhere outside the lib path,
+#so check everywhere it could be
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for library containing Itcl_Init" >&5
 $as_echo_n "checking for library containing Itcl_Init... " >&6; }
 if ${ac_cv_search_Itcl_Init+:} false; then :
@@ -5323,7 +5325,7 @@ return Itcl_Init ();
   return 0;
 }
 _ACEOF
-for ac_lib in '' itcl3.4; do
+for ac_lib in '' itcl3.4 ictl3.4/itcl3.4 itcl/itcl3.4 tcl8.5/itcl/itcl3.4 tcl8.5/itcl3.4/itcl3.4; do
   if test -z "$ac_lib"; then
     ac_res="none required"
   else

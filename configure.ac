@@ -120,14 +120,16 @@ done
 
 # Checks for libraries.
 AC_LANG_PUSH([C++])
-CPPFLAGS="$CPPFLAGS -I/usr/include/tcl8.5"
+CPPFLAGS="$CPPFLAGS -I/usr/include/tcl8.5 -I/usr/local/tcl8.5 -L/usr/lib/itcl3.4 -L/usr/local/lib/itcl3.4"
 PKG_CHECK_MODULES([SDL], [sdl])
 PKG_CHECK_MODULES([SDLIMG], [SDL_image])
 PKG_CHECK_MODULES([GL], [gl])
 PKG_CHECK_MODULES([PNG], [libpng])
 AC_SEARCH_LIBS(Tcl_Init, [tcl8.5], [],
 [AC_MSG_ERROR([unable to locate a Tcl library])])
-AC_SEARCH_LIBS(Itcl_Init, [itcl3.4], [],
+#For whatever reason, some distros place itcl somewhere outside the lib path,
+#so check everywhere it could be
+AC_SEARCH_LIBS(Itcl_Init, [itcl3.4 ictl3.4/itcl3.4 itcl/itcl3.4 tcl8.5/itcl/itcl3.4 tcl8.5/itcl3.4/itcl3.4], [],
 [AC_MSG_ERROR([unable to locate an Itcl library])])
 AC_SEARCH_LIBS(__gmpz_powm, [gmp mpir], [],
 [AC_MSG_ERROR([unable to locate a GMP or MPIR library])])
