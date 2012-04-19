@@ -17,7 +17,7 @@
 using namespace std;;
 
 NetworkAssembly::NetworkAssembly(GameField* field_, Antenna* antenna_)
-: tuner(new Tuner), field(field_), antenna(antenna_)
+: tuner(new Tuner), wfo(antenna_), field(field_), antenna(antenna_)
 {
   antenna->tuner = tuner;
   field->networkAssembly = this;
@@ -55,6 +55,7 @@ void NetworkAssembly::addConnection(NetworkConnection* cxn) noth {
 }
 
 void NetworkAssembly::update(unsigned et) noth {
+  wfo.update(et);
   antenna->processIncomming();
   for (unsigned i=0; i<connections.size(); ++i)
     connections[i]->update(et);

@@ -11,6 +11,7 @@
 #include <set>
 
 #include "src/core/aobject.hxx"
+#include "windows_firewall_opener.hxx"
 
 class Antenna;
 class Tuner;
@@ -30,6 +31,7 @@ class NetworkAssembly: public AObject {
   std::vector<NetworkConnection*> connections;
   std::vector<PacketProcessor*> packetProcessors;
   Tuner* tuner;
+  WindowsFirewallOpener wfo;
 
   /* Contains all local, exportable GameObjects known to the assembly. */
   std::set<GameObject*> knownObjects;

@@ -223,6 +223,7 @@ COMMONSOURCES= \
 ./net/anticipatory_channels.cxx \
 ./net/ship_damage_geraet.cxx \
 ./net/network_game.cxx \
+./net/windows_firewall_opener.cxx \
 ./net/network_test.cxx \
 ./net/xxx/xnetobj.cxx \
 ./secondary/namegen.cxx \
