@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <cassert>
 #include <algorithm>
+#include <set>
 
 #include <SDL.h>
 
@@ -110,11 +111,11 @@ NetworkConnection::~NetworkConnection() {
 
   for (inchannels_t::const_iterator it = inchannels.begin();
        it != inchannels.end(); ++it)
-    if (it->second->deletionStrategy != InputNetworkGeraet::DSIntrinsic)
+    if (it->second->deletionStrategy == InputNetworkGeraet::DSNormal)
       delete it->second;
   for (outchannels_t::const_iterator it = outchannels.begin();
        it != outchannels.end(); ++it)
-    if (it->second->deletionStrategy == OutputNetworkGeraet::DSNormal)
+    if (it->second->deletionStrategy != OutputNetworkGeraet::DSIntrinsic)
       delete it->second;
 
   delete aag;
