@@ -22,8 +22,20 @@ verbatimc {
   friend class ENO_ParticleEmitter;\
   friend class INO_MonophasicEnergyPulse;\
   friend class ENO_MonophasicEnergyPulse;\
-  friend class INO_Ship;\
-  friend class ENO_Ship;\
+  friend class INO_Ship4;\
+  friend class ENO_Ship4;\
+  friend class INO_Ship8;\
+  friend class ENO_Ship8;\
+  friend class INO_Ship16;\
+  friend class ENO_Ship16;\
+  friend class INO_Ship64;\
+  friend class ENO_Ship64;\
+  friend class INO_Ship256;\
+  friend class ENO_Ship256;\
+  friend class INO_Ship1024;\
+  friend class ENO_Ship1024;\
+  friend class INO_Ship4094;\
+  friend class ENO_Ship4094;\
   friend class INO_Spectator;\
   friend class ENO_Spectator
 //MSVC++ can't handle fabs(int)
@@ -432,7 +444,9 @@ verbatimc {
   };
 }
 
-type Ship {
+foreach ssize $::SHIP_SIZES {
+  set base {
+vtype Ship$ssize Ship {
   extension GameObject
 
   void {
@@ -442,7 +456,7 @@ type Ship {
     }
     enoheader {
       static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
-        return INO_Ship::getShieldGenerator(c);
+        return INO_Ship_4094::getShieldGenerator(c);
       }
     }
     init {
@@ -452,7 +466,7 @@ type Ship {
       cxn->sdg->delLocalShip(channel);
     }
     impl {
-      ShieldGenerator* INO_Ship::getShieldGenerator(const Cell* c) throw() {
+      ShieldGenerator* INO_Ship_4094::getShieldGenerator(const Cell* c) throw() {
         if (!c) return NULL;
         if (c->systems[0]
         &&  c->systems[0]->clazz == Classification_Shield)
@@ -705,10 +719,10 @@ type Ship {
   #   bit    gatPlasmaTurbo[4094]
 
   toggle ;# Do not modify these data or expect them to be modifyed
-  arr {unsigned char} 16376 2 neighboursBits03  {nybble {NAME}}
-  arr {unsigned char} 16376 2 neighboursBits47  {nybble {NAME}}
-  arr {unsigned char} 16376 2 neighboursBits8B  {nybble {NAME}}
-  arr {unsigned int}  16376 1 neighbours {
+  arr {unsigned char} _16376 2 neighboursBits03  {nybble {NAME}}
+  arr {unsigned char} _16376 2 neighboursBits47  {nybble {NAME}}
+  arr {unsigned char} _16376 2 neighboursBits8B  {nybble {NAME}}
+  arr {unsigned int}  _16376 1 neighbours {
     void {
       decode {
         NAME = (neighboursBits03[IX] << 0)
@@ -745,7 +759,7 @@ type Ship {
   }
 
   # 4096 because len%stride must be zero.
-  arr {unsigned char} 4096  4 cellType          {bit 2 {NAME} {
+  arr {unsigned char} _4096  4 cellType          {bit 2 {NAME} {
     extract {
       if (X->networkCells.size() > IX && X->networkCells[IX]) {
         Cell* c = X->networkCells[IX];
@@ -769,7 +783,7 @@ type Ship {
     declaration { bool destruction; }
     update { destruction = false; }
   }
-  arr {unsigned char} 4094  1 cellDamage        {ui 1 {NAME} {
+  arr {unsigned char} _4094  1 cellDamage        {ui 1 {NAME} {
     extract {
       if (IX < X->networkCells.size() && X->networkCells[IX]) {
         Cell*const c = X->networkCells[IX];
@@ -881,7 +895,7 @@ type Ship {
   }}
 
   # 8192 so that len%stride == 0
-  arr bool            8192  8 systemExist       {
+  arr bool            _8192  8 systemExist       {
     bit 1 {NAME} {
       type bool
       extract {
@@ -925,7 +939,7 @@ type Ship {
   toggle ;# Disable updates
   arr {struct {
     unsigned char orientation, type;
-  }}                  8188  1 systemInfo        {
+  }}                  _8192  1 systemInfo        {
     bit 2 {NAME.orientation} {
       extract {
         unsigned cellix = IX/2, sysix = IX&1;
@@ -967,7 +981,7 @@ type Ship {
       }
     }
   }
-  arr {unsigned char} 8188  1 capacitors        {
+  arr {unsigned char} _8192  1 capacitors        {
     ui 1 {NAME} {
       extract {
         {
@@ -993,7 +1007,7 @@ type Ship {
   arr {struct {
     float radius;
     byte maxStrength, currStrengthPercent, currStability, currAlpha;
-  }}                  4094  1 shields           {
+  }}                  _4094  1 shields           {
     float {NAME.radius} {
       min MIN_SHIELD_RAD
       max MAX_SHIELD_RAD
@@ -1118,7 +1132,7 @@ type Ship {
   }
   toggle ;# Disable updates
   # 4096 because len%stride must be zero.
-  arr {bool}          4096 8 gatPlasmaTurbo     {bit 1 {NAME} {
+  arr {bool}          _m84096 8 gatPlasmaTurbo     {bit 1 {NAME} {
     type bool
     extract {
       if (IX < X->networkCells.size() && X->networkCells[IX]) {
@@ -1138,20 +1152,6 @@ type Ship {
   toggle ;# Reenable updates
 
   void { set-reference { if (!X->isFragment) cxn->setReference(X); } }
-  # Ensure that the ship's cells have been numbered
-  # (This is at the end since extraction runs in reverse order)
-  void {
-    extract {
-      if (X->networkCells.empty()) {
-        for (unsigned i = 0; i < X->cells.size(); ++i) {
-          if (!X->cells[i]->isEmpty) {
-            X->cells[i]->netIndex = X->networkCells.size();
-            const_cast<Ship*>(X)->networkCells.push_back(X->cells[i]);
-          }
-        }
-      }
-    }
-  }
 
   # Set the coords again to prevent "jumping" which occurs when the ship is
   # being damaged.
@@ -1369,4 +1369,16 @@ type Ship {
     cxn->sdg->addRemoteShip(X, inputChannel);
     #endif /* LOCAL_CLONE */
   }
+}}
+if {$ssize == 4094} {
+  set ssizefull 4096
+} else {
+  set ssizefull $ssize
+}
+set ssizen [expr {$ssize*4}]
+set ssize2 [expr {$ssizefull*2}]
+set ssizemin8 [expr {max($ssizefull,8)}]
+set base [string map [list _4094 $ssize _4096 $ssizefull _8192 \
+                          $ssize2 _16376 $ssizen _m84096 $ssizemin8] $base]
+eval $base
 }

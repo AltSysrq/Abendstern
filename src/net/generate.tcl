@@ -176,6 +176,8 @@ set hout [open net/xxx/xnetobj.hxx w]
 set cout [open net/xxx/xnetobj.cxx w]
 set geraetnum 32768
 
+set SHIP_SIZES [list 4 8 16 64 256 1024 4094]
+
 # Strings are appended to this to describe the data format. This is not
 # necessarily a precise specification; it is simply used as input to the
 # SHA256 checksum. This is done so that changes to the embedded C++ code that
@@ -283,6 +285,10 @@ proc whole-byte {} {
 }
 
 proc type {name contents} {
+  vtype $name $name $contents
+}
+
+proc vtype {name cname contents} {
   global byteOffset bitOffset elements typeConstructor hout cout classes
   global compatibilityString geraetnum
   append compatibilityString "type $name"
@@ -301,7 +307,7 @@ proc type {name contents} {
 
   # Produce output
   puts $hout \
-"class $name;
+"class $cname;
 
 class INO_$name: public ImportedGameObject {
   NetworkConnection* cxn;
@@ -315,8 +321,8 @@ protected:
   virtual void update() throw();
 
 private:
-  $name* decodeConstruct(const std::vector<byte>&) const throw();
-  bool decodeUpdate(const std::vector<byte>&, $name*) throw();
+  $cname* decodeConstruct(const std::vector<byte>&) const throw();
+  bool decodeUpdate(const std::vector<byte>&, $cname*) throw();
 
   static InputNetworkGeraet* create(NetworkConnection*) throw();
 
@@ -325,7 +331,7 @@ private:
 
 class ENO_$name: public ExportedGameObject {
 public:
-  ENO_${name}(NetworkConnection*, $name*);
+  ENO_${name}(NetworkConnection*, $cname*);
   virtual ~ENO_${name}();
 
   virtual void init() throw();
@@ -336,7 +342,7 @@ protected:
 
 private:
   void encode() throw();
-  $name* clone(const $name*, NetworkConnection*) const throw();
+  $cname* clone(const $cname*, NetworkConnection*) const throw();
 
   [cxxj enoheader]
 };
@@ -364,15 +370,15 @@ void INO_${name}::construct() throw() {
 }
 
 void INO_${name}::update() throw() {
-  if (decodeUpdate(state, static_cast<$name*>(object)))
+  if (decodeUpdate(state, static_cast<$cname*>(object)))
     destroy(false);
 }
 
-$name* INO_${name}::decodeConstruct(const std::vector<byte>& DATA)
+$cname* INO_${name}::decodeConstruct(const std::vector<byte>& DATA)
 const throw() {
   #define DESTROY(x) do { if (X) X->del(); return NULL; } while(0)
   const unsigned T = cxn->getLatency();
-  $name* X = NULL;
+  $cname* X = NULL;
   [cxxj declaration]
   [cxxj decode validate]
   $typeConstructor
@@ -382,7 +388,7 @@ const throw() {
   #undef DESTROY
 }
 
-bool INO_${name}::decodeUpdate(const std::vector<byte>& DATA, $name* X)
+bool INO_${name}::decodeUpdate(const std::vector<byte>& DATA, $cname* X)
 throw () {
   #define DESTROY(x) return true
   const unsigned T = cxn->getLatency();
@@ -392,7 +398,7 @@ throw () {
   #undef DESTROY
 }
 
-ENO_${name}::ENO_${name}(NetworkConnection* cxn, $name* obj)
+ENO_${name}::ENO_${name}(NetworkConnection* cxn, $cname* obj)
 : ExportedGameObject($byteOffset, cxn, obj, clone(obj, cxn))
   [cxxj enoconstructor]
 {
@@ -414,11 +420,11 @@ ENO_${name}::~ENO_${name}() {
 }
 
 void ENO_${name}::init() throw() {
-  $name*const X = ($name*)local.ref;
+  $cname*const X = ($cname*)local.ref;
   [cxxj init]
 }
 
-$name* ENO_${name}::clone(const $name* src, NetworkConnection* cxn)
+$cname* ENO_${name}::clone(const $cname* src, NetworkConnection* cxn)
 const throw() {
   #define X src
   #define field (&cxn->field)
@@ -429,7 +435,7 @@ const throw() {
   [jxxc extract]
   #undef X
   #undef DESTROY
-  $name* dst = NULL;
+  $cname* dst = NULL;
   #define X dst
   #define DESTROY(x) do { assert(!(x)); if (X) X->del(); return NULL; } while(0)
   $typeConstructor
@@ -445,10 +451,10 @@ bool ENO_${name}::shouldUpdate() const throw() {
   float NEAR = 0, FAR = 0;
   struct S {
     [cxxj compare-control declaration]
-    S(const $name* X) {
+    S(const $cname* X) {
       [cxxj compare-control extract]
     }
-  } x(static_cast<$name*>(local.ref)), y(static_cast<$name*>(remote));
+  } x(static_cast<$cname*>(local.ref)), y(static_cast<$cname*>(remote));
 
   [cxxj compare-control compare]
 
@@ -461,8 +467,8 @@ void ENO_${name}::updateRemote() throw() {
   #define DATA (this->state)
   #define field (this->cxn->parent->field)
   #define DESTROY(x) assert(!(x))
-  $name* l_local = static_cast<$name*>(this->local.ref);
-  $name* l_remote = static_cast<$name*>(this->remote);
+  $cname* l_local = static_cast<$cname*>(this->local.ref);
+  $cname* l_remote = static_cast<$cname*>(this->remote);
   [cxxj update-control declaration]
   #define X l_local
   [jxxc update-control extract encode]
@@ -852,11 +858,37 @@ puts $cout "
     NetworkConnection::geraet_num num;
 "
 foreach class $classes {
-  puts $cout "if (typeid(*object) == typeid($class))"
-  puts $cout "  ego = new ENO_${class}(cxn, ($class*)object),"
-  puts $cout "  num = INO_${class}::num;"
-  puts $cout "else"
+  # Special handling for ships
+  if {![string match Ship* $class]} {
+    puts $cout "if (typeid(*object) == typeid($class))"
+    puts $cout "  ego = new ENO_${class}(cxn, ($class*)object),"
+    puts $cout "  num = INO_${class}::num;"
+    puts $cout "else"
+  }
 }
+
+puts $cout "if (typeid(*object) == typeid(Ship)) {"
+puts $cout "Ship* s = (Ship*)object;"
+# Ensure that the cells are ready for networking
+puts $cout {
+  if (s->networkCells.empty()) {
+    for (unsigned i = 0; i < s->cells.size(); ++i) {
+      if (!s->cells[i]->isEmpty) {
+        s->cells[i]->netIndex = s->networkCells.size();
+        const_cast<Ship*>(s)->networkCells.push_back(s->cells[i]);
+      }
+    }
+  }
+}
+
+foreach ssize $SHIP_SIZES {
+  puts $cout "if (s->networkCells.size() <= $ssize)"
+  puts $cout "  ego = new ENO_Ship${ssize}(cxn, s),"
+  puts $cout "  num = INO_Ship${ssize}::num;"
+  puts $cout "else";
+}
+puts $cout "{ assert(false); }"
+puts $cout "} else"
 
 puts $cout "
   {

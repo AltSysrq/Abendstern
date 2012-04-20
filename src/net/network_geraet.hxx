@@ -33,7 +33,7 @@ public:
     DSNormal,
     /**
      * The InputNetworkGeraet is bidirectional, and cannot be closed after
-     * being opened. It is deleted when the NetworkConnection frees its
+     * being opened. It is not deleted when the NetworkConnection frees its
      * input Geräte.
      */
     DSEternal,
@@ -100,9 +100,8 @@ public:
      */
     DSNormal,
     /**
-     * The OutputNetworkGeraet is also an input Gerät. It will not be deleted
-     * when the parent NetworkConnection frees its output Geräte, as this is
-     * assumed to happen when the input Geräte are freed.
+     * The OutputNetworkGeraet is also an input Gerät. It will be deleted
+     * when the parent NetworkConnection frees its output Geräte.
      */
     DSBidir,
     /**

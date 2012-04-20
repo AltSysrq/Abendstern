@@ -32,6 +32,8 @@ public:
     if (attachTo) {
       prv = &attachTo->explodeListeners;
       nxt = *prv;
+      if (nxt)
+        nxt->prv = &nxt;
       attachTo->explodeListeners = this;
     }
   }
