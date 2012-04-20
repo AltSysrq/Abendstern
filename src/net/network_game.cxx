@@ -908,7 +908,30 @@ void NetworkGame::update(unsigned et) throw() {
     }
   }
 
-  //TODO: Spurious PCG requests
+  timeSinceSpuriousPCGQuery += et;
+  if (timeSinceSpuriousPCGQuery > 1024) {
+    timeSinceSpuriousPCGQuery = 0;
+    //25% chance: send general query to the overseer (only if we aren't
+    //overseer).
+    if (overseer && (rand()&3) == 0) {
+      pcgs[overseer->cxn]->sendGeneralQuery();
+    } else if (peers.size()) {
+      //Pick a random peer to query
+      unsigned ix = rand() % assembly.numConnections();
+      Peer* peer = peers[assembly.getConnection(ix)];
+      //Pick a random peer we are connected to and send both a positive
+      //declaration with a specific query
+      ix = rand() % assembly.numConnections();
+      Peer* other = peers[assembly.getConnection(ix)];
+      pcgs[other->cxn]->sendPacket(
+        network_game::PeerConnectivityGeraet::positiveDec,
+        other->gid);
+      pcgs[other->cxn]->sendPacket(
+        network_game::PeerConnectivityGeraet::specificQuery,
+        other->gid);
+    }
+  }
+
   //TODO: Kick peers that are chronically missing connections
 
   //Maintain the advertiser, if present.
