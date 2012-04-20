@@ -5,7 +5,7 @@ aux-vpeer-data {
     }
     ?team {
       integer 2
-      nmin 2
+      nmin 1
       nmax 2
     }
   }
