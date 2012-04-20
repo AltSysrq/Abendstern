@@ -81,8 +81,21 @@ typedef AggregateSet<Ship*,Ship*> radar_t;
  */
 class Ship: public GameObject {
   friend void audio::shipSoundEffects(float,Ship*);
-  friend class INO_Ship;
-  friend class ENO_Ship;
+  friend class INO_Ship4;
+  friend class ENO_Ship4;
+  friend class INO_Ship8;
+  friend class ENO_Ship8;
+  friend class INO_Ship16;
+  friend class ENO_Ship16;
+  friend class INO_Ship64;
+  friend class ENO_Ship64;
+  friend class INO_Ship256;
+  friend class ENO_Ship256;
+  friend class INO_Ship1024;
+  friend class ENO_Ship1024;
+  friend class INO_Ship4094;
+  friend class ENO_Ship4094;
+  public:
   /** Cells arranged according to network indices.
    * If this is empty, this operation has not yet been done.
    *
@@ -90,7 +103,6 @@ class Ship: public GameObject {
    */
   std::vector<Cell*> networkCells;
 
-  public:
   /** All Cells present in the Ship */
   std::vector<Cell*> cells;
   /** The current Controller, which may be NULL. */
