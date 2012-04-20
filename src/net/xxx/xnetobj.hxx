@@ -407,11 +407,11 @@ private:
 
 class Ship;
 
-class INO_Ship: public ImportedGameObject {
+class INO_Ship4: public ImportedGameObject {
   NetworkConnection* cxn;
 public:
-  INO_Ship(NetworkConnection* cxn);
-  virtual ~INO_Ship();
+  INO_Ship4(NetworkConnection* cxn);
+  virtual ~INO_Ship4();
   static const NetworkConnection::geraet_num num;
 
 protected:
@@ -430,10 +430,10 @@ private:
     
 };
 
-class ENO_Ship: public ExportedGameObject {
+class ENO_Ship4: public ExportedGameObject {
 public:
-  ENO_Ship(NetworkConnection*, Ship*);
-  virtual ~ENO_Ship();
+  ENO_Ship4(NetworkConnection*, Ship*);
+  virtual ~ENO_Ship4();
 
   virtual void init() throw();
 
@@ -447,7 +447,289 @@ private:
 
   
       static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
-        return INO_Ship::getShieldGenerator(c);
+        return INO_Ship4::getShieldGenerator(c);
+      }
+    
+};
+
+class Ship;
+
+class INO_Ship8: public ImportedGameObject {
+  NetworkConnection* cxn;
+public:
+  INO_Ship8(NetworkConnection* cxn);
+  virtual ~INO_Ship8();
+  static const NetworkConnection::geraet_num num;
+
+protected:
+  virtual void construct() throw();
+  virtual void update() throw();
+
+private:
+  Ship* decodeConstruct(const std::vector<byte>&) const throw();
+  bool decodeUpdate(const std::vector<byte>&, Ship*) throw();
+
+  static InputNetworkGeraet* create(NetworkConnection*) throw();
+
+  
+      public:
+      static ShieldGenerator* getShieldGenerator(const Cell*) throw();
+    
+};
+
+class ENO_Ship8: public ExportedGameObject {
+public:
+  ENO_Ship8(NetworkConnection*, Ship*);
+  virtual ~ENO_Ship8();
+
+  virtual void init() throw();
+
+protected:
+  virtual bool shouldUpdate() const throw();
+  virtual void updateRemote() throw();
+
+private:
+  void encode() throw();
+  Ship* clone(const Ship*, NetworkConnection*) const throw();
+
+  
+      static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
+        return INO_Ship8::getShieldGenerator(c);
+      }
+    
+};
+
+class Ship;
+
+class INO_Ship16: public ImportedGameObject {
+  NetworkConnection* cxn;
+public:
+  INO_Ship16(NetworkConnection* cxn);
+  virtual ~INO_Ship16();
+  static const NetworkConnection::geraet_num num;
+
+protected:
+  virtual void construct() throw();
+  virtual void update() throw();
+
+private:
+  Ship* decodeConstruct(const std::vector<byte>&) const throw();
+  bool decodeUpdate(const std::vector<byte>&, Ship*) throw();
+
+  static InputNetworkGeraet* create(NetworkConnection*) throw();
+
+  
+      public:
+      static ShieldGenerator* getShieldGenerator(const Cell*) throw();
+    
+};
+
+class ENO_Ship16: public ExportedGameObject {
+public:
+  ENO_Ship16(NetworkConnection*, Ship*);
+  virtual ~ENO_Ship16();
+
+  virtual void init() throw();
+
+protected:
+  virtual bool shouldUpdate() const throw();
+  virtual void updateRemote() throw();
+
+private:
+  void encode() throw();
+  Ship* clone(const Ship*, NetworkConnection*) const throw();
+
+  
+      static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
+        return INO_Ship16::getShieldGenerator(c);
+      }
+    
+};
+
+class Ship;
+
+class INO_Ship64: public ImportedGameObject {
+  NetworkConnection* cxn;
+public:
+  INO_Ship64(NetworkConnection* cxn);
+  virtual ~INO_Ship64();
+  static const NetworkConnection::geraet_num num;
+
+protected:
+  virtual void construct() throw();
+  virtual void update() throw();
+
+private:
+  Ship* decodeConstruct(const std::vector<byte>&) const throw();
+  bool decodeUpdate(const std::vector<byte>&, Ship*) throw();
+
+  static InputNetworkGeraet* create(NetworkConnection*) throw();
+
+  
+      public:
+      static ShieldGenerator* getShieldGenerator(const Cell*) throw();
+    
+};
+
+class ENO_Ship64: public ExportedGameObject {
+public:
+  ENO_Ship64(NetworkConnection*, Ship*);
+  virtual ~ENO_Ship64();
+
+  virtual void init() throw();
+
+protected:
+  virtual bool shouldUpdate() const throw();
+  virtual void updateRemote() throw();
+
+private:
+  void encode() throw();
+  Ship* clone(const Ship*, NetworkConnection*) const throw();
+
+  
+      static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
+        return INO_Ship64::getShieldGenerator(c);
+      }
+    
+};
+
+class Ship;
+
+class INO_Ship256: public ImportedGameObject {
+  NetworkConnection* cxn;
+public:
+  INO_Ship256(NetworkConnection* cxn);
+  virtual ~INO_Ship256();
+  static const NetworkConnection::geraet_num num;
+
+protected:
+  virtual void construct() throw();
+  virtual void update() throw();
+
+private:
+  Ship* decodeConstruct(const std::vector<byte>&) const throw();
+  bool decodeUpdate(const std::vector<byte>&, Ship*) throw();
+
+  static InputNetworkGeraet* create(NetworkConnection*) throw();
+
+  
+      public:
+      static ShieldGenerator* getShieldGenerator(const Cell*) throw();
+    
+};
+
+class ENO_Ship256: public ExportedGameObject {
+public:
+  ENO_Ship256(NetworkConnection*, Ship*);
+  virtual ~ENO_Ship256();
+
+  virtual void init() throw();
+
+protected:
+  virtual bool shouldUpdate() const throw();
+  virtual void updateRemote() throw();
+
+private:
+  void encode() throw();
+  Ship* clone(const Ship*, NetworkConnection*) const throw();
+
+  
+      static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
+        return INO_Ship256::getShieldGenerator(c);
+      }
+    
+};
+
+class Ship;
+
+class INO_Ship1024: public ImportedGameObject {
+  NetworkConnection* cxn;
+public:
+  INO_Ship1024(NetworkConnection* cxn);
+  virtual ~INO_Ship1024();
+  static const NetworkConnection::geraet_num num;
+
+protected:
+  virtual void construct() throw();
+  virtual void update() throw();
+
+private:
+  Ship* decodeConstruct(const std::vector<byte>&) const throw();
+  bool decodeUpdate(const std::vector<byte>&, Ship*) throw();
+
+  static InputNetworkGeraet* create(NetworkConnection*) throw();
+
+  
+      public:
+      static ShieldGenerator* getShieldGenerator(const Cell*) throw();
+    
+};
+
+class ENO_Ship1024: public ExportedGameObject {
+public:
+  ENO_Ship1024(NetworkConnection*, Ship*);
+  virtual ~ENO_Ship1024();
+
+  virtual void init() throw();
+
+protected:
+  virtual bool shouldUpdate() const throw();
+  virtual void updateRemote() throw();
+
+private:
+  void encode() throw();
+  Ship* clone(const Ship*, NetworkConnection*) const throw();
+
+  
+      static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
+        return INO_Ship1024::getShieldGenerator(c);
+      }
+    
+};
+
+class Ship;
+
+class INO_Ship4094: public ImportedGameObject {
+  NetworkConnection* cxn;
+public:
+  INO_Ship4094(NetworkConnection* cxn);
+  virtual ~INO_Ship4094();
+  static const NetworkConnection::geraet_num num;
+
+protected:
+  virtual void construct() throw();
+  virtual void update() throw();
+
+private:
+  Ship* decodeConstruct(const std::vector<byte>&) const throw();
+  bool decodeUpdate(const std::vector<byte>&, Ship*) throw();
+
+  static InputNetworkGeraet* create(NetworkConnection*) throw();
+
+  
+      public:
+      static ShieldGenerator* getShieldGenerator(const Cell*) throw();
+    
+};
+
+class ENO_Ship4094: public ExportedGameObject {
+public:
+  ENO_Ship4094(NetworkConnection*, Ship*);
+  virtual ~ENO_Ship4094();
+
+  virtual void init() throw();
+
+protected:
+  virtual bool shouldUpdate() const throw();
+  virtual void updateRemote() throw();
+
+private:
+  void encode() throw();
+  Ship* clone(const Ship*, NetworkConnection*) const throw();
+
+  
+      static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
+        return INO_Ship4094::getShieldGenerator(c);
       }
     
 };
