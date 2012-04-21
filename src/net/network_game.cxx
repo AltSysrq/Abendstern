@@ -923,10 +923,10 @@ void NetworkGame::update(unsigned et) throw() {
       //declaration with a specific query
       ix = rand() % assembly.numConnections();
       Peer* other = peers[assembly.getConnection(ix)];
-      pcgs[other->cxn]->sendPacket(
+      pcgs[peer->cxn]->sendPacket(
         network_game::PeerConnectivityGeraet::positiveDec,
         other->gid);
-      pcgs[other->cxn]->sendPacket(
+      pcgs[peer->cxn]->sendPacket(
         network_game::PeerConnectivityGeraet::specificQuery,
         other->gid);
     }
