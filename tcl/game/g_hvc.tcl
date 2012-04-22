@@ -60,7 +60,7 @@ class G_HVC {
     dps $vp assimilated 0
     catch {
       set dp [dpg $vp]
-      dict unset vp team
+      dict unset dp team
       dps $vp $dp
     }
   }
