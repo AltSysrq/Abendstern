@@ -20,6 +20,15 @@
 
 class MixinFreeSpawn {
   inherit SpawnManager
+
+  # Keep track of vpeers for which we currently have a timer.
+  # This is needed in case a vpeer is disconnected and then reconnected while
+  # there is still a timer on it; it will get stuck in an endless respawn loop.
+  # When a timer is added, set this; do not add a timer if set. When the timer
+  # fires, unset that vpeer regardless of what happens next.
+  # This is a dict (set) keyed on the vpeer.
+  variable spawnPendingTimers {}
+
   method connectVPeer args {
     set vp [chain {*}$args]
     initRespawn $vp
@@ -30,6 +39,7 @@ class MixinFreeSpawn {
   # If the peer is human, will use setMainMode to
   # use a SpectatorMode.
   private method initRespawn vp {
+    if {[dict exists $spawnPendingTimers $vp]} return
     if {[dict exists $pendingSpawn $vp]} return ;# Already pending
 
     set method [dict get $vpeerMethods $vp]
@@ -42,13 +52,19 @@ class MixinFreeSpawn {
       set resetOnSpectator no
     }
 
+    dict set spawnPendingTimers $vp {}
     set delay [getRespawnTime $vp [dict get $vpeerShips $vp]]
-    $this after $delay $this spawnDoSpawn $vp
+    $this after $delay $this spawnTrigger $vp
     dict set $pendingSpawn $vp {}
 
     if {"attachHuman" == $method} {
       set humanRespawnTime [expr {[[cget -field] cget -fieldClock]+$delay}]
     }
+  }
+
+  method spawnTrigger vp {
+    dict unset spawnPendingTimers $vp
+    $this spawnDoSpawn $vp
   }
 
   # Called when a ship dies.

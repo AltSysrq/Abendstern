@@ -1,12 +1,12 @@
 # Adds general teams to the game.
 # Up to six teams are supported:
 #   #   Name    Colour          Long name
-#   0   WUDR    Red             Werstern Union of Democratic Republics
+#   0   WDA     Red             Werstern Democratic Aliance
 #   1   EVF     Blue            Europäche Vereignete Föderation
 #   2   РКФ     Green           Российская Космическая Федерация (Russian Cosmic Federation)
 #   3   CNSA    Yellow          China National Space Administration
-#   4   JAXA    Magenta         Japan Ærospace Expsoration Agency
-#   5   AEB     Cyan            Brazilian Space Agency
+#   4   ES      Magenta         Empira Solarza
+#   5   LR      Cyan            Lunar Republic
 #
 # Ships and player names are coloured according to their team; a player's
 # colour component is 0.6*team+0.4*player.
@@ -33,8 +33,8 @@ set teamName(0) WUDR
 set teamName(1) EVF
 set teamName(2) РКФ
 set teamName(3) CNSA
-set teamName(4) JAXA
-set teamName(5) AEB
+set teamName(4) ES
+set teamName(5) LR
 
 set teamColour(0,r) 1
 set teamColour(0,g) 0

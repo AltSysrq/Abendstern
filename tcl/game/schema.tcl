@@ -110,6 +110,8 @@
 #     The REQS are added to the hook with name NAME instead of on the current
 #     element.
 #     This MUST occur as a top-level requirement.
+#   rem ...
+#     Does nothing
 namespace eval ::schema {
   # Set to true if schema violations should be logged
   set verbose no
@@ -456,4 +458,6 @@ namespace eval ::schema {
     }
     return $str
   }
+
+  proc gen-rem {args} { return "" }
 }

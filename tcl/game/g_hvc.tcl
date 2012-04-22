@@ -27,6 +27,13 @@ class G_HVC {
     if {[isOverseer]} {
       dss survivor {}
     }
+
+    # If we are the only peer, any created vpeers are not assimilated
+    if {1 == [llength [getPeers]]} {
+      foreach vp [dpg list] {
+        unassimilate $vp
+      }
+    }
   }
 
   destructor {
@@ -35,7 +42,8 @@ class G_HVC {
 
   method initVPeer vp {
     chain $vp
-    dps $vp assimilated 0
+    dps $vp assimilated 1
+    dps $vp team 2
   }
 
   method getGameModeDescription {} {
@@ -48,12 +56,18 @@ class G_HVC {
     return "[_ A game g_hvc_long] ([_ A game g_hvc]): $rnd"
   }
 
+  method unassimilate {vp} {
+    dps $vp assimilated 0
+    catch {
+      set dp [dpg $vp]
+      dict unset dp team
+      dps $vp $dp
+    }
+  }
+
   method setupRound join {
     foreach vp [dpg list] {
-      dps $vp assimilated 0
-      catch {
-        dict unset datp 0 $vp team
-      }
+      unassimilate $vp
     }
 
     set timeUntilZeroCyborgCheck 2048
@@ -105,7 +119,9 @@ class G_HVC {
   }
 
   method shipKilledBy {ship lvp peer rvp} {
-    if {![dpg $lvp assimilated] && [dpgp $peer $rvp assimilated]} {
+    # Assimilate if killed by cyborg or suicide
+    if {![dpg $lvp assimilated] &&
+        ([dpgp $peer $rvp assimilated] || ($peer == 0 && $lvp == $rvp))} {
       $this after 2048 $this assimilate $lvp
     }
   }
