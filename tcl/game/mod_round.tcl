@@ -25,6 +25,10 @@ class MixinRound {
     expr {[$this dsg currentRound] < $::ROUNDS_IN_MATCH}
   }
 
+  method isMatchTimed {} {
+    return no
+  }
+
   method getRespawnTime {vp ship} {
     if {$justStartedRound} {
       return 0

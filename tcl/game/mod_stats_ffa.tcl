@@ -66,7 +66,7 @@ class MixinStatsFFA {
     catch {
       set endTime [$this dsg matchEndTime]
       set timeLeft [expr {$endTime-[::abnet::nclock]}]
-      if {$timeLeft >= 0} {
+      if {$timeLeft >= 0 && [$this isMatchTimed]} {
         set timeLeftNote \
           [format ": [_ A game time_left_fmt]" \
             [expr {$timeLeft/60}] [expr {$timeLeft%60}]]

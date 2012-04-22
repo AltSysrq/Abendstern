@@ -77,6 +77,12 @@ class MixinMatch {
     expr {[$this dsg matchEndTime] > [::abnet::nclock]}
   }
 
+  # Returns true if the match's duration is actually contlolled by
+  # dats.matchEndTime.
+  method isMatchTimed {} {
+    return 1
+  }
+
   method getRespawnTime {vp ship} {
     if {$matchJustStarted} {
       return 0
