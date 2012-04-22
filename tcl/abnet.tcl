@@ -585,7 +585,7 @@ namespace eval ::abnet {
       plain {
         if {[catch {
           puts $::abnet::sock $args
-          flush $::abnet::sock
+          #flush $::abnet::sock
         } err]} {
           log "Failure writing to server: $err"
           set ::abnet::success no
@@ -604,7 +604,7 @@ namespace eval ::abnet {
         }
         if {[catch {
           puts -nonewline $::abnet::sock [::aes::Encrypt $::abnet::outputKey $str]
-          flush $::abnet::sock
+          #flush $::abnet::sock
         } err]} {
           log "Failure writing to server: $err"
           set ::abnet::success no
@@ -669,7 +669,7 @@ namespace eval ::abnet {
 
     if {[catch {
       set ::abnet::sock [socket -async $::abnet::SERVER $::abnet::PORT]
-      fconfigure $::abnet::sock -blocking 0
+      fconfigure $::abnet::sock -blocking 0 -buffering none
       writeServer abendstern $::abnet::NETWVERS $::abnet::ABVERS
     }]} {
       # Immediate failure
