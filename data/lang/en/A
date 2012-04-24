@@ -45,9 +45,15 @@
  as internal colour specifiers (eg, translating \a[(danger)Danger!\a] to Spanish
  should yield \a[(danger)¡Cuidado!\a]).
 
- Occurrances of string-format specifiers (eg, %s, %.1f) MUST occur in the translated
- text, and currently MUST occur in the same order as in the English if there are
- more than one.
+ Occurrances of string-format specifiers (eg, %s, %.1f) MUST occur in the
+ translated text, and without specifying otherwise, must occur in the same
+ order as in the English if there are more than one. They can be reordered
+ using the syntax shown below:
+   English: %s likes %s.
+   German: %2$s gefällt %1$s.
+ That is, specify the index of the format specifier (the first is 1) followed
+ by a dollar sign. Note that some English formats already use this.
+ A format element can be deleted (ie, skipped) by using %0.0s .
 
  In general, preserving the spirit of the text is more important than a literal
  translation. This especially applies to science-fiction terms specific to the
