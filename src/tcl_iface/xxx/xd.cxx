@@ -2056,9 +2056,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else arg0=NULL;
 };
 arg0Init=true;
-{int gen1939;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1939);
-            arg1=gen1939;
+{int gen1941;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1941);
+            arg1=gen1941;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -2858,7 +2858,7 @@ class TclSynchronousControlGeraet : public SynchronousControlGeraet {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1224 (
+     trampoline1226 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -2986,7 +2986,7 @@ if (arg1Init) {arg1Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1224", trampoline1224, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1226", trampoline1226, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(SynchronousControlGeraet)),
                            * ete=new TypeExport(typeid(TclSynchronousControlGeraet));
 ste->isAObject=ete->isAObject=true;
@@ -2998,7 +2998,7 @@ typeExports[&typeid(SynchronousControlGeraet)]=ste;
 typeExports[&typeid(TclSynchronousControlGeraet)]=ete;
 }
 };
-void classdec1223(bool safe, Tcl_Interp* interp) throw() {
+void classdec1225(bool safe, Tcl_Interp* interp) throw() {
   TclSynchronousControlGeraet::cppDecCode(safe,interp);
 }
 
