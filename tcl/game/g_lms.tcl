@@ -1,6 +1,8 @@
 class G_LMS {
   inherit MixinPerfectRadar MixinAutobot MixinScoreFrags \
           MixinRound MixinMatch MixinRoundSpawn MixinStatsFFA \
+          MixinSAWClock MixinSAWBestPlayer MixinSAWLocalPlayer \
+          MixinSAWPlayersLeft MixinSAWRoundsOfMatch \
           BasicGame
 
   constructor {desiredPlayers env comm} {

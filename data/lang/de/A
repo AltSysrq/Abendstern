@@ -821,6 +821,8 @@
 
 -time_left_fmt
 +noch %02d:%02d
+-players_left_fmt
++Übrigen Spieler: %d
 -round_fmt
 +Runde %d von %d
 -match_over

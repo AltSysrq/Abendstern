@@ -897,6 +897,8 @@
 
 -time_left_fmt
 +%02d:%02d left
+-players_left_fmt
++Players left: %d
 -round_fmt
 +Round %d of %d
 -match_over
