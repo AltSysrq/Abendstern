@@ -28,6 +28,7 @@ mkdir /tmp/$APP
 for f in $FILES hangar.default *.dll version patchlevel.rc dna; do
   cp -R $f /tmp/$APP
 done
+cp $SRVDIR/manifest /tmp/$APP
 pushd /tmp/
 zip -r9q $SRVDIR/$APP.zip $APP
 popd
