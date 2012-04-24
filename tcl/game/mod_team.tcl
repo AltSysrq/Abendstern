@@ -29,7 +29,7 @@
 #     Commands that the given vpeer be moved to the given team on the
 #     next spawn.
 
-set teamName(0) WUDR
+set teamName(0) WDA
 set teamName(1) EVF
 set teamName(2) РКФ
 set teamName(3) CNSA
