@@ -232,6 +232,24 @@ class BasicGame {
       set ::compositionBufferPrefix "\a\[[getStatsColour 0 0][dpg 0 name]\a\]: "
     }
 
+    # Maintain the status area
+    foreach ix {0 1 2 3} {
+      set status($ix) {}
+    }
+    foreach {ix msg} [getStatusAreaElements] {
+      lappend status($ix) $msg
+    }
+    foreach ix {0 1 2 3} {
+      if {0 == [llength $status($ix)]} {
+        set msg {}
+      } else {
+        # Pick one of the possibilities, rotating once per second.
+        set msg [lindex $status($ix) \
+                     [expr {[clock seconds]%[llength $status($ix)]}]]
+      }
+      set_hud_message $ix $msg
+    }
+
     return $retval
   }
 
@@ -852,6 +870,14 @@ class BasicGame {
     new ::gui::AWidget
   }
 
+  # Returns a integer-string pair list (ie, 0 uiae 1 foo 0 bar ...) which
+  # describes the items to place into the status area. The integer is the line
+  # (0..3); the string is what to display. Multiple items may have the same
+  # line; they will be cycled through.
+  # Default chains.
+  method getStatusAreaElements {} {
+    chain
+  }
   # END: GUI EXTENSION
 
   # BEGIN: KEYBOARD CALLBACKS

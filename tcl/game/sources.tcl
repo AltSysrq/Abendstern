@@ -19,6 +19,7 @@ foreach base {
   mod_match
   mod_round
   mod_round_spawn
+  mod_saw_clock
   g_dm
   g_xtdm
   g_lms

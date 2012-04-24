@@ -2,7 +2,9 @@
 
 class G_DM {
   inherit MixinAutobot MixinScoreFrags MixinMatch MixinFreeSpawn \
-          MixinPerfectRadar MixinStatsFFA BasicGame
+          MixinPerfectRadar MixinStatsFFA \
+          MixinSAWClock \
+          BasicGame
 
   constructor {desiredPlayers env comm} {
     MixinAutobot::constructor $desiredPlayers
