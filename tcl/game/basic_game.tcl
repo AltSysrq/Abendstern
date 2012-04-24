@@ -243,9 +243,9 @@ class BasicGame {
       if {0 == [llength $status($ix)]} {
         set msg {}
       } else {
-        # Pick one of the possibilities, rotating once per second.
+        # Pick one of the possibilities, rotating once per four seconds.
         set msg [lindex $status($ix) \
-                     [expr {[clock seconds]%[llength $status($ix)]}]]
+                     [expr {[clock seconds]/4%[llength $status($ix)]}]]
       }
       set_hud_message $ix $msg
     }
