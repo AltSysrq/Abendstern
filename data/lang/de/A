@@ -834,7 +834,9 @@
 -hvc_assimilated_fmt
 +\a[(white)%s WURDE ASSIMILIERT
 -hvc_resistance_was_futile
-+Widerstand war sinnlos
++Widerstand war sinnlos!
+-hvc_humans_cyborgs_cnt_fmt
++Mensch: %d   Cyborg: %d
 
 -kill_kill0
 +%s hat %s getötet

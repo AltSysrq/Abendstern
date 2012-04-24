@@ -1,6 +1,8 @@
 class G_HVC {
   inherit MixinPerfectRadar MixinAutobot MixinRound MixinMatch \
           MixinFreeSpawn MixinScoreFrags MixinStatsFFA \
+          MixinSAWBestPlayer MixinSAWLocalPlayer MixinSAWRoundsOfMatch \
+          MixinSAWClock \
           BasicGame
 
   # Humans are team 1 (neutral with each other) and
@@ -183,6 +185,24 @@ class G_HVC {
       }
     }
     chain
+  }
+
+  method getStatusAreaElements {} {
+    set l [chain]
+    set humans 0
+    set cyborgs 0
+    foreach peer [getPeers] {
+      foreach vp [dpgp $peer list] {
+        if {[dpgp $peer $vp assimilated]} {
+          incr cyborgs
+        } else {
+          incr humans
+        }
+      }
+    }
+
+    lappend l 2 [format [_ A game hvc_humans_cyborgs_cnt_fmt] $humans $cyborgs]
+    return $l
   }
 
   method getRoundIntermissionMainText {} {

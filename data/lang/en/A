@@ -910,7 +910,9 @@
 -hvc_assimilated_fmt
 +\a[(white)%s HAS BEEN ASSIMILATED\a]
 -hvc_resistance_was_futile
-+Resistance was futile.
++Resistance was futile!
+-hvc_humans_cyborgs_cnt_fmt
++Humans: %d   Cyborgs: %d
 
 -kill_kill0
 +%s killed %s
