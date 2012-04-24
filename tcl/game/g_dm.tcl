@@ -3,7 +3,7 @@
 class G_DM {
   inherit MixinAutobot MixinScoreFrags MixinMatch MixinFreeSpawn \
           MixinPerfectRadar MixinStatsFFA \
-          MixinSAWClock \
+          MixinSAWClock MixinSAWBestPlayer MixinSAWLocalPlayer \
           BasicGame
 
   constructor {desiredPlayers env comm} {

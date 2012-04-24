@@ -413,6 +413,12 @@ class BasicGame {
                  [expr {max(0.3, [dpgp $peer $vpeer colour b])}]
   }
 
+  # Returns the name of the given peer/vpeer formatted to have that player's
+  # colour.
+  method getStatsFormat {peer vpeer} {
+    return "\a\[[getStatsColour $peer $vpeer][dpgp $peer $vpeer name]\a\]"
+  }
+
   # END: VIRTUAL PEER MANAGEMENT
 
   # BEGIN: SHIPS AND CONTROLLERS

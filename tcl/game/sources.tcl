@@ -20,6 +20,8 @@ foreach base {
   mod_round
   mod_round_spawn
   mod_saw_clock
+  mod_saw_best_player
+  mod_saw_local_player
   g_dm
   g_xtdm
   g_lms
