@@ -1,6 +1,8 @@
 class G_XTDM {
   inherit MixinAutobot MixinScoreFrags MixinScoreTeamfrag MixinTeam \
           MixinStatsTeam MixinPerfectRadar MixinMatch MixinFreeSpawn \
+          MixinSAWBestPlayer MixinSAWLocalPlayer MixinSAWBestTeam \
+          MixinSAWLocalTeam MixinSAWMatchTimeLeft MixinSAWClock \
           BasicGame
 
   constructor {desiredPlayers nteams env comm} {
