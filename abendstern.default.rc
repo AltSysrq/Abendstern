@@ -39,6 +39,7 @@ hud	{
   danger	[1.0	0.1000000015	0.0	0.6499999762]
   special	[0.150000006	0.349999994	1.0	0.400000006]
  }
+ show_fps	f
 }
 network_accounts	()
 control_scheme	"default_control",

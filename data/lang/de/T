@@ -110,6 +110,8 @@
 +Kontrolle
 -settings_colours
 +Farben
+-show_fps
++FPS anzeigen
 
 -tab_main
 +Haupt

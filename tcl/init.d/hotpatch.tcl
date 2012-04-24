@@ -28,6 +28,11 @@ if {"none" == [$ str conf.$player1_control.analogue.vert.action]
   $ setb conf.$player1_control.analogue.vert.recentre yes
 }
 
+# Add FPS setting if not present
+if {![$ exists conf.hud.show_fps]} {
+  $ addb conf.hud show_fps 0
+}
+
 # Work around bug in updater relating to DLLs in subdirectories
 # (This is required for smooth upgrading from pre-2011.05.05 versions)
 set dontLoadAbnet no

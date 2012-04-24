@@ -948,6 +948,7 @@ unsafe {
 const currentFrameTime float
 const currentFrameTimeLeft float
 const currentVFrameLast bool
+const frameRate unsigned
 const sparkCountMultiplier float
 const gameClock unsigned
 

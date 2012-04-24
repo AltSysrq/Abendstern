@@ -1,7 +1,11 @@
 class G_LXTS {
   inherit MixinAutobot MixinScoreFrags MixinScoreTeamfrag MixinTeam \
           MixinRound MixinMatch MixinRoundSpawn MixinStatsTeam \
-          MixinPerfectRadar BasicGame
+          MixinPerfectRadar \
+          MixinSAWBestPlayer MixinSAWLocalPlayer MixinSAWBestTeam \
+          MixinSAWLocalTeam MixinSAWRoundsOfMatch MixinSAWPlayersLeft \
+          MixinSAWClock \
+          BasicGame
 
   constructor {desiredPlayers nteams env comm} {
     MixinAutobot::constructor $desiredPlayers
