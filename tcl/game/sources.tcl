@@ -22,6 +22,7 @@ foreach base {
   mod_saw_clock
   mod_saw_best_player
   mod_saw_local_player
+  mod_saw_match_time_left
   g_dm
   g_xtdm
   g_lms
