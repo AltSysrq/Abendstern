@@ -110,6 +110,8 @@
 +Controls
 -settings_colours
 +Colours
+-show_fps
++Show FPS
 
 -tab_main
 +Main

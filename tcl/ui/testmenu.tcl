@@ -272,6 +272,7 @@ class TestMode {
                         {$ int conf.graphics.low_res_textures} \
                         setLowResTex]
     $graphSettings add [boolSetCheckbox [_ T a high_quality] conf.graphics.high_quality]
+    $graphSettings add [boolSetCheckbox [_ T a show_fps] conf.hud.show_fps]
     $graphSettings add [new gui::Slider [_ T a font_size] float \
                         {$ float conf.hud.font_size} \
                         {$ setf conf.hud.font_size} \

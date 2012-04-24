@@ -880,9 +880,13 @@ class BasicGame {
   # describes the items to place into the status area. The integer is the line
   # (0..3); the string is what to display. Multiple items may have the same
   # line; they will be cycled through.
-  # Default chains.
+  # Default chains, possibly adding FPS to the third line.
   method getStatusAreaElements {} {
-    chain
+    set l [chain]
+    if {[$ bool conf.hud.show_fps]} {
+      lappend l 3 "FPS: $::frameRate"
+    }
+    return $l
   }
   # END: GUI EXTENSION
 
