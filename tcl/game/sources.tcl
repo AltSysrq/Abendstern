@@ -26,6 +26,7 @@ foreach base {
   mod_saw_players_left
   mod_saw_rounds_of_match
   mod_saw_best_team
+  mod_saw_local_team
   g_dm
   g_xtdm
   g_lms

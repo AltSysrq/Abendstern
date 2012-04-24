@@ -3,7 +3,7 @@ class G_LXTS {
           MixinRound MixinMatch MixinRoundSpawn MixinStatsTeam \
           MixinPerfectRadar \
           MixinSAWBestPlayer MixinSAWLocalPlayer MixinSAWBestTeam \
-          MixinSAWRoundsOfMatch MixinSAWClock \
+          MixinSAWLocalTeam MixinSAWRoundsOfMatch MixinSAWClock \
           BasicGame
 
   constructor {desiredPlayers nteams env comm} {
