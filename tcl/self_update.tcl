@@ -265,13 +265,13 @@ class SelfUpdater {
     }
 
     switch -glob -- $filename {
-      abendstern.rc {
-        set needMergeConfigs yes
-        lappend temporaryFiles "abendstern.rc.new"
-        set f [open "abendstern.rc.new" w]
-        puts $f [::http::data $tok]
-        close $f
-      }
+#      abendstern.rc {
+#        set needMergeConfigs yes
+#        lappend temporaryFiles "abendstern.rc.new"
+#        set f [open "abendstern.rc.new" w]
+#        puts $f [::http::data $tok]
+#        close $f
+#      }
       *.exe -
       *.dll {
         set needRunApplyUpdate yes
@@ -289,6 +289,9 @@ class SelfUpdater {
         close $f
 
         lappend filesToMove $tf $filename
+        if {$filename == abendstern.default.rc} {
+          set needMergeConfigs yes
+        }
       }
     }
 
@@ -297,7 +300,7 @@ class SelfUpdater {
   }
 
   method mergeConfigs {} {
-    $ open abendstern.rc.new confnew
+    $ open abendstern.rc.default confnew
 
     doMergeConfigs conf confnew
 

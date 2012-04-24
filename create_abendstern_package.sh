@@ -17,7 +17,7 @@ rm -f $BASEDIR/bin/*.exp $BASEDIR/bin/*.lib
 cd $BASEDIR
 find -name '*~' | xargs rm -f
 
-for top in $FILES *.dll abendstern.rc version; do
+for top in $FILES *.dll version; do
   echo $top
   find $top -type f | grep -v tls16.dll | xargs md5sum >>$SRVDIR/manifest
   cp -R $top $SRVDIR/
