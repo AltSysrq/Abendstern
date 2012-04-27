@@ -63,6 +63,13 @@ class GameObject : public AObject {
    * Defaults to true.
    */
   bool isTransient;
+  /**
+   * If true, this object will be unaffected by calles to GameField::clear()
+   * regardless of whether it is remote.
+   *
+   * By default, false.
+   */
+  bool skipOnClear;
 
   /** Keeps track of the head listener. */
   ObjDL* listeners;
@@ -213,6 +220,7 @@ class GameObject : public AObject {
   GameObject(GameField* _field, float _x=0.0f, float _y=0.0f,
              float _vx=0.0f, float _vy=0.0f)
   : isRemote(false), isExportable(false), isTransient(true),
+    skipOnClear(false),
     listeners(NULL),
     ignoreNetworkTag(false),
     nebulaInteraction(false), nebulaCache(false),

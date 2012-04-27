@@ -36,6 +36,7 @@ Spectator::Spectator(Ship* s, bool insta)
 
   isExportable = true;
   isTransient = false;
+  skipOnClear = true;
 }
 
 Spectator::Spectator(GameField* f)
@@ -53,6 +54,7 @@ Spectator::Spectator(GameField* f)
 
   isExportable = true;
   isTransient = false;
+  skipOnClear = true;
 }
 
 Spectator::Spectator(GameField* f, float x, float y, float vx, float vy)
@@ -71,6 +73,7 @@ Spectator::Spectator(GameField* f, float x, float y, float vx, float vy)
   isExportable = true;
   isTransient = false;
   isRemote = true;
+  skipOnClear = true;
 }
 
 bool Spectator::update(float et) noth {

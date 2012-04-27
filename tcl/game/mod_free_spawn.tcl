@@ -103,4 +103,10 @@ class MixinFreeSpawn {
       initRespawn $vp
     }
   }
+
+  # Detect clearAfters so we can remove our trackers
+  method clearAfters args {
+    set spawnPendingTimers {}
+    chain {*}$args
+  }
 }

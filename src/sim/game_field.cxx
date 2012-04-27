@@ -349,13 +349,21 @@ void GameField::addBegin(Explosion* go) noth {
 void GameField::remove(GameObject* go) noth {
   deque<GameObject*>::iterator it = find(objects.begin(), objects.end(), go);
   if (it == objects.end()) {
-    #ifdef DEBUG
-    cerr << "Warning: Ignoring attempt to remove non-added object " << go
-         << " from GameField " << this << endl;
-    #endif
-    return;
-  }
-  objects.erase(it);
+    it = find(toInsert.begin(), toInsert.end(), go);
+    if (it == toInsert.end()) {
+      it = find(toInject.begin(), toInject.end(), go);
+      if (it == toInject.end()) {
+        #ifdef DEBUG
+        cerr << "Warning: Ignoring attempt to remove non-added object " << go
+             << " from GameField " << this << endl;
+        #endif
+        return;
+      } else
+        toInject.erase(it);
+    } else
+      toInsert.erase(it);
+  } else
+    objects.erase(it);
 }
 
 void GameField::removeFromInsertQueue(GameObject* go) noth {
@@ -367,16 +375,24 @@ void GameField::removeFromInsertQueue(GameObject* go) noth {
 void GameField::clear() noth {
   deque<GameObject*> ocpy(objects);
   for (iterator it=ocpy.begin(); it != ocpy.end(); ++it) {
-    if(!(*it)->isRemote) {
+    if(!(*it)->isRemote && !(*it)->skipOnClear) {
       (*it)->collideWith(*it);
       (*it)->del();
       remove(*it);
     }
   }
-  for (unsigned int i=0; i<toInject.size(); ++i) delete toInject[i];
-  toInject.clear();
-  for (unsigned int i=0; i<toInsert.size(); ++i) delete toInsert[i];
-  toInsert.clear();
+  for (unsigned int i=0; i<toInject.size(); ++i) {
+    if (!toInject[i]->isRemote && !toInject[i]->skipOnClear) {
+      delete toInject[i];
+      toInject.erase(toInject.begin() + (i--));
+    }
+  }
+  for (unsigned int i=0; i<toInsert.size(); ++i) {
+    if (!toInsert[i]->isRemote && !toInsert[i]->skipOnClear) {
+      delete toInsert[i];
+      toInsert.erase(toInsert.begin() + (i--));
+    }
+  }
 }
 
 void GameField::inject(GameObject* go) noth {
