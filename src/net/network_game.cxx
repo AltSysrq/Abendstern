@@ -400,8 +400,11 @@ NetworkGame::~NetworkGame() {
     delete listener;
 
   //Close all open connections
-  while (!peers.empty())
-    closePeer(peers.begin()->second);
+  while (!peers.empty()) {
+    Peer* peer = peers.begin()->second;
+    closePeer(peer);
+    delete peer;
+  }
 }
 
 void NetworkGame::setNetIface(NetIface* ifc) throw() {
@@ -898,6 +901,7 @@ throw() {
   if (auxData.size() < 4 + gidlen + 1) {
     //Too short
     closePeer(peer);
+    delete peer;
     return;
   }
 
