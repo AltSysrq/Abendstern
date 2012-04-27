@@ -31,6 +31,7 @@
 #include "game_discoverer.hxx"
 #include "synchronous_control_geraet.hxx"
 #include "text_message_geraet.hxx"
+#include "src/core/lxn.hxx"
 
 using namespace std;
 
@@ -455,17 +456,18 @@ string NetworkGame::getDiscoveryResults() throw() {
 
   const vector<GameDiscoverer::Result>& results = discoverer->getResults();
   for (unsigned i=0; i<results.size(); ++i) {
-    char gameMode[5], buffer[256];
+    char gameMode[5] = {0}, buffer[256];
+    string realGameMode;
     string ipa(results[i].peer.address().to_string());
     //Get NTBS from game mode
-    strncpy(gameMode, results[i].gameMode, sizeof(gameMode));
-    //TODO: localise game mode (doing so will also sanitise it of characters
-    //such as \} that would otherwise break the list)
-    #ifndef WIN32
-    #warning Game mode not localised in NetworkGame::getDiscoveryResults()
-    #endif
+    strncpy(gameMode, results[i].gameMode, 4);
+    realGameMode = l10n::lookup('N', "modes", gameMode);
+    //Reject if the result contains a #
+    if (string::npos != realGameMode.find('#'))
+      continue; //Mode not recognised
+
     sprintf(buffer, "{%4s %02d %c %s} ",
-            gameMode, results[i].peerCount,
+            realGameMode.c_str(), results[i].peerCount,
             results[i].passwordProtected? '*' : ' ',
             ipa.c_str());
     oss << buffer;
