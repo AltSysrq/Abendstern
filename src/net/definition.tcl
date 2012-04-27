@@ -1,6 +1,6 @@
 # Identify the logical version of code outside this file, by causing
 # the hash to change appropriately:
-version 2012.04.10
+version 2012.04.27
 
 verbatimc {
 //MSVC++ doesn't handle inherited members accessed by friends correctly.
