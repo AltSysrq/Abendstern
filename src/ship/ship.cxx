@@ -74,7 +74,7 @@ struct ShipRenderer {
 
 //Multiply damage absorption by this amount to find
 //the capacitance requirement for dispersion shielding
-#define DAM_DISP_CAP_MUL 10000.0f
+#define DAM_DISP_CAP_MUL 15000.0f
 
 //The maximum damage that dispersion shielding can
 //absorb, when the distance is zero cells
@@ -82,7 +82,7 @@ struct ShipRenderer {
 
 //The multiplier for distance when determining effectiveness
 //of the dispersion shield.
-#define DAM_DISP_DIST_MUL 1.5f
+#define DAM_DISP_DIST_MUL 1.2f
 
 //The per-cell power requirements of being cloaked
 #define CLOAK_POWER_REQ 2.5f
