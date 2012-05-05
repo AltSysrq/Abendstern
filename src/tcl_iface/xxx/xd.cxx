@@ -2056,9 +2056,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else arg0=NULL;
 };
 arg0Init=true;
-{int gen1941;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1941);
-            arg1=gen1941;
+{int gen1949;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1949);
+            arg1=gen1949;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
