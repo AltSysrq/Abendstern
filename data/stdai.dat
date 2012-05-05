@@ -17,13 +17,13 @@ test = {
       weight = 1;
       cruising_speed = 2.0;
     },
-    { module = "state/target_distance";
+    { reflex = "state/target_distance";
       weight = 1;
       consider_this_close = 4.0;
       close_state = "attack";
       far_state = "navigate";
     },
-    { module = "state/edge_detect"; scared = "avoid_edge"; weight = 1; },
+    { reflex = "state/edge_detect"; scared = "avoid_edge"; weight = 1; },
     { module = "introspection/throttle"; weight = 1; },
     { module = "introspection/weapons"; weight = 1; },
     { module = "target/nearest"; weight = 1; },
@@ -42,7 +42,7 @@ test = {
         { module = "attack/veto_fire" }
         { module = "attack/fire"; }
       ); },
-    { module = "state/edge_detect";
+    { reflex = "state/edge_detect";
       scared = "avoid_edge";
       otherwise = "attack"; weight = 1; },
     { module = "target/nearest"; weight = 1; },
@@ -52,7 +52,7 @@ test = {
       close_state = "attack";
       far_state = "navigate";
     },
-    { module = "state/detect_overlap";
+    { reflex = "state/detect_overlap";
       weight = 1;
       overlap = "overlap";
     }
@@ -70,7 +70,7 @@ test = {
     { module = "navigation/run_away_simple"; weight = 1; },
     { module = "state/detect_overlap"; weight = 1;
       otherwise = "navigate"; }
-    { module = "state/edge_detect"; weight = 1;
+    { reflex = "state/edge_detect"; weight = 1;
       scared = "avoid_edge";
       otherwise = "overlap";
     }
