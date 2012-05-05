@@ -23,7 +23,7 @@
 class Ship;
 
 /// The additional speed a Missile gets on launch
-#define MISSILE_LAUNCH_SPEED 0.002f
+#define MISSILE_LAUNCH_SPEED 0.001f
 
 /** The Missile is a fully-guided class A weapon.
  *

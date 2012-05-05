@@ -38,14 +38,16 @@
 
 //All level-related constants based on level 1
 
-#define LIFETIME 10000.0f
-#define DAMAGE_MUL 10.0f
+#define LIFETIME 5000.0f
+#define ACCEL_BIAS (0)
+#define DAMAGE_MUL 2.0f
 #define ACCELERATION 0.000002f //2 screen/sec/sec
 //Lose 3% of speed per second
 #define FRICTION 0.00003f
 #define RADIUS (STD_CELL_SZ)
 #define HOMING_THRESHHOLD 0.95f
 #define SQRT2 1.4142136f
+#define MAX_DIST 3.5f
 
 using namespace std;
 
@@ -113,7 +115,12 @@ bool Missile::update(float et) noth {
 
   if (target.ref && currentVFrameLast && !isRemote) {
     GameObject* t=target.ref;
-    float accel=ACCELERATION/level*(LIFETIME-timeAlive)/LIFETIME;
+    //Acceleration increases until halfway through the life, then falls off
+    //again, according to a sine curve.
+    //For the purposes of this calculations, all times are increased by
+    //ACCEL_BIAS
+    float accel=ACCELERATION/level*sin((timeAlive+ACCEL_BIAS)*pi/
+                                       (LIFETIME+ACCEL_BIAS));
     /*
     float dx = x-t->getX()+(vx-t->getVX())*512,
           dy = y-t->getY()+(vy-t->getVY())*512;
@@ -144,6 +151,18 @@ bool Missile::update(float et) noth {
 
     xdir = dx/dist*accel;
     ydir = dy/dist*accel;
+
+    //Die if more than MAX_DIST from source, or if the source no longer exists
+    if (!parent.ref) {
+      explode(this);
+      return false;
+    }
+    float pdx = x - parent.ref->getX();
+    float pdy = y - parent.ref->getY();
+    if (pdx*pdx + pdy*pdy > MAX_DIST*MAX_DIST) {
+      explode(this);
+      return false;
+    }
   } else if (isRemote) {
     vx += ax*et;
     vy += ay*et;
