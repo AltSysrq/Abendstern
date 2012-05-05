@@ -32,7 +32,7 @@
 
 using namespace std;
 
-#define MAX_LIFE_WAVES 512
+#define MAX_LIFE_WAVES 256
 #define POWER_MUL MONO_POWER_MUL
 #define FREQUENCY 0.12f
 #define SIZE 0.01f
