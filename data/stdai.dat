@@ -30,6 +30,9 @@ test = {
     { module = "state/check_has_weapons"; weight = 1;
       unarmed = "runaway"
     }
+    { reflex = "target/check_targetless";
+      targetless = "no_target"
+    }
   );
   attack = (
     { module = "introspection/weapons"; weight = 1; },
@@ -60,6 +63,9 @@ test = {
       weight = 1;
       unarmed = "runaway"
     }
+    { reflex = "target/check_targetless";
+      targetless = "no_target"
+    }
   );
   avoid_edge = (
     { module = "navigation/avoid_edge"; weight = 3; },
@@ -69,12 +75,18 @@ test = {
   overlap = (
     { module = "navigation/run_away_simple"; weight = 1; },
     { module = "state/detect_overlap"; weight = 1;
-      otherwise = "navigate"; }
+      otherwise = "attack"; }
     { reflex = "state/edge_detect"; weight = 1;
       scared = "avoid_edge";
-      otherwise = "overlap";
+      otherwise = "";
     }
   );
+  no_target = (
+    { reflex = "state/edge_detect"; scared = "avoid_edge" }
+    { reflex = "target/check_targetless"; otherwise = "navigate" }
+    { module = "target/nearest"; weight = 1 }
+    { module = "navigation/park"; weight = 1 }
+  )
   runaway = (
     { module = "navigation/run_away_simple"; weight = 16; }
     { module = "misc/self_destruct"; weight = 1; }
