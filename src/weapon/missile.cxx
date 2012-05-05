@@ -47,7 +47,7 @@
 #define RADIUS (STD_CELL_SZ)
 #define HOMING_THRESHHOLD 0.95f
 #define SQRT2 1.4142136f
-#define MAX_DIST 3.5f
+#define MAX_DIST 4.5f
 
 using namespace std;
 
