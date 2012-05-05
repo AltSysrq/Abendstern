@@ -110,7 +110,7 @@ void AIM_SelectWeapon::action() {
         break;
       case Weapon_Missile:
         angleBonus=pi/3;
-        damageBonus=8;
+        damageBonus=4;
         accPenalty=0.4f;
         distPenalty=0;
         break;
