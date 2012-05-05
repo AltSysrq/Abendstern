@@ -1627,23 +1627,19 @@ void Ship::preremove(Cell* cell) noth {
   //PHYS_CELL_DS_EXIST_BIT: if exists, unlink, remove from inventory,
   //unset PHYS_CELL_DS_NEAREST_BIT for all formerly linked cells
   if (!isFragment) {
-    if (cell->physics.hasDispersionShield) {
-      for (Cell* c = cell, *d; c; c = d) {
-        c->physicsClear(PHYS_CELL_DS_NEAREST_BITS);
-        c->physics.nearestDS = NULL;
-        d = c->physics.nextDepDS;
-        c->physics.nextDepDS = NULL;
-      }
+    if ((cell->physics.valid & PHYS_CELL_DS_EXIST_BIT) &&
+        cell->physics.hasDispersionShield) {
+      cell->clearDSChain();
       cellsWithDispersionShields.erase(find(cellsWithDispersionShields.begin(),
-                                            cellsWithDispersionShields.end(), cell));
+                                            cellsWithDispersionShields.end(),
+                                            cell));
     } else if (cell->physics.nearestDS) {
       //PHYS_CELL_DS_NEAREST_BIT: remove from list
-      Cell* c = cell->physics.nearestDS;
-      while (c->physics.nextDepDS != cell)
-        c = c->physics.nextDepDS;
-      //Remove link
-      if (c)
-        c->physics.nextDepDS = cell->physics.nextDepDS;
+      Cell* prev = cell->physics.prevDepDS, * next = cell->physics.nextDepDS;
+      if (prev)
+        prev->physics.nextDepDS = next;
+      if (next)
+        next->physics.prevDepDS = prev;
     }
   }
 
