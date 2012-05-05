@@ -416,14 +416,10 @@ If IPv6 is in use, globalid has the form
   uint16        Internet port
 
 In LAN games, the Internet fields of the globalid are ignored. All peers
-connect to each other using the LAN address/port pairs only. For IPv4, the
-numeric ID is the bitwise complement of (the binary representation of the LAN
-IP address XOR 192.168.0.0). For IPv6, the LAN IP address is split into 4
-32-bit integers (ie, i0 = (addr[0]<<16)|addr[1]; i1 = (addr[2]<<16)|addr[2],
-and so forth); these four integers are XORed together to get the numeric ID.
-The authorisation information is the SHA-256 hash of the plaintext password
-(which is "" if not password-protected) concatenated with the UTF-8-encoded
-peer name.
+connect to each other using the LAN address/port pairs only. The numeric ID is
+derived from the LAN address.  The authorisation information is the SHA-256
+hash of the plaintext password (which is "" if not password-protected)
+concatenated with the UTF-8-encoded peer name.
 
 In Internet games, the Internet fields of the globalid are relevant; peers may
 use the LAN or Internet address/port pairs based on rules described below. The

@@ -55,7 +55,7 @@ class NullNetworkMode {
     $cent load images/acen.png 256 SILRScale
     $cent dupeMinWidth 0.08
     $main setElt right $cent
-    $main setElt centre [new gui::Label [_ A network waiting] centre]
+    $main setElt centre [new gui::Label [_ N network waiting] centre]
     set buttons [new gui::HorizontalContainer 0.01 right]
     set can [new gui::Button [_ A gui cancel] "$app cancel"]
     $can setCancel

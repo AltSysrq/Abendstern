@@ -244,6 +244,8 @@ class Cell: public AObject {
     /** @see nearestDS */
     Cell* nextDepDS;
     /** @see nearestDS */
+    Cell* prevDepDS;
+    /** @see nearestDS */
     float distanceDS;
     /** Stores the internal reinforcement of this cell. <br>
      * Invalidated by: Nothing <br>

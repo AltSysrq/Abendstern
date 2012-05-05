@@ -63,3 +63,38 @@
 @session
 -timeout
 +The session has expired
+
+@modes
+ Translates from network mode specifiers to what to display to the user.
+-DM__
++DM
+-2TDM
++2DTM
+-3TDM
++3TDM
+-4TDM
++4TDM
+-5TDM
++5TDM
+-6TDM
++6TDM
+-LMS_
++LMS
+-L2TS
++L2TS
+-L3TS
++L3TS
+-L4TS
++L4TS
+-L5TS
++L5TS
+-L6TS
++L6TS
+-HVC_
++HVC
+-VOID
++Waiting
+
+@network
+-waiting
++Waiting for network...

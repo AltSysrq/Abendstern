@@ -56,6 +56,8 @@ public:
   ///The blameMask to copy into the same field of the connection.
   ///@see NetworkGame::setBlameMask(Peer*)
   unsigned blameMask;
+  ///The screen name of this peer
+  std::string screenName;
 
   ///The Peers this Peer has a connection FROM
   std::set<Peer*> connectionsFrom;
@@ -158,7 +160,7 @@ public:
   NetworkGame(GameField*);
 
   virtual ~NetworkGame();
-  
+
   /**
    * Returns a pointer to the Peer object representing the local peer.
    */
@@ -209,6 +211,21 @@ public:
    * Returns a Tcl list of scan results, suitable for display to the user.
    */
   std::string getDiscoveryResults() throw();
+
+  /**
+   * Sets the local peer's screen name to that given.
+   */
+  void setLocalPeerName(const char*) throw();
+
+  /**
+   * Sets the local peer's NID to the integer given.
+   */
+  void setLocalPeerNID(unsigned) throw();
+
+  /**
+   * Sets the local peer's NID using the LAN IP address and port.
+   */
+  void setLocalPeerNIDAuto() throw();
 
   /**
    * Begins listining for new connections. This is used to start hosting a game.

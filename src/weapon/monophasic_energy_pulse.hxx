@@ -19,7 +19,7 @@
 
 class Ship;
 
-#define MONO_POWER_MUL 2.0f ///< Damage multiplier for MonophasicEnergyPulse
+#define MONO_POWER_MUL 1.0f ///< Damage multiplier for MonophasicEnergyPulse
 
 /** The MonophasicEnergyPulse is a precise, unguided weapon which phases in
  * and out of reality.
