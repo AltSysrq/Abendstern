@@ -1121,7 +1121,7 @@ bool Ship::collideWith(GameObject* other) noth {
     //Remove duplicates and non-cells
     {
       set<void*> found;
-      found.insert(NULL);
+      found.insert((void*)NULL);
       for (unsigned i = 0; i < collidedRaw.size(); ++i) {
         if (!found.count(collidedRaw[i]->data)) {
           found.insert(collidedRaw[i]->data);
