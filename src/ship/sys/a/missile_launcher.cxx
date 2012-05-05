@@ -22,7 +22,7 @@
 
 #define RELOAD_TIME 1024.0f
 #define SLOW_FIRE_TIME 500.0f
-#define POWER_MUL 250.0f
+#define POWER_MUL 50.0f
 #define POWER_USE 50.0f
 
 using namespace std;
@@ -85,7 +85,7 @@ float MissileLauncher::getArmTime() const noth {
 }
 
 float MissileLauncher::getFirePower() const noth {
-  return POWER_MUL*energyLevel*energyLevel;
+  return POWER_MUL*pow((float)energyLevel, 1.5f);
 }
 
 void MissileLauncher::audio_register() const noth {
