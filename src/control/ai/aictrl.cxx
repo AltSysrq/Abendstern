@@ -53,16 +53,34 @@ void AIControl::init(const Setting& conf) {
     s.totalWeight=0;
 
     for (unsigned j=0; j<state.getLength(); ++j) {
-      const char* modname=state[j]["module"];
-      int weight = state[j]["weight"];
-      if (weight <= 0)
-        throw runtime_error("Negative weight for module");
+      const char* namesrc;
+      bool isModule;
+      if (state[j].exists("module")) {
+        isModule = true;
+        namesrc = "module";
+      } else {
+        isModule = false;
+        namesrc = "reflex";
+      }
+      const char* modname=state[j][namesrc];
+      int weight;
+      if (isModule) {
+        weight = state[j]["weight"];
+        if (weight <= 0)
+          throw runtime_error("Negative weight for module");
+      }
       AIModule* module = createAIModule(modname, state[j]);
       if (!module)
         throw runtime_error("Unrecognised module name");
-      Module mod = { module, weight };
-      s.modules.push_back(mod);
-      s.totalWeight += weight;
+      if (isModule) {
+        Module mod = { module, weight };
+        s.modules.push_back(mod);
+        s.totalWeight += weight;
+      } else {
+        if (s.reflexes.size() == 4)
+          throw runtime_error("State has more than 4 reflexes");
+        s.reflexes.push_back(module);
+      }
     }
 
     if (s.modules.empty())
@@ -219,6 +237,10 @@ void AIControl::update(float et) noth {
 
   timeSinceLastAction += et;
   while (timeSinceLastAction >= TIME_BETWEEN_ACTIONS) {
+    //Run reflexes
+    for (unsigned i = 0; i < currentState->reflexes.size(); ++i)
+      currentState->reflexes[i]->action();
+
     //If there is currently a proceedure, run that
     if (!currentProcedure.empty()) {
       currentProcedure.front()->action();

@@ -31,6 +31,7 @@
 #include "game_discoverer.hxx"
 #include "synchronous_control_geraet.hxx"
 #include "text_message_geraet.hxx"
+#include "src/core/lxn.hxx"
 
 using namespace std;
 
@@ -218,11 +219,12 @@ namespace network_game {
 
     NetworkGame*const game;
 
-    //Sizes of GlobalID data for IPv4 and IPv6, respectively
+  public:
+    ///Size of GlobalID data for IPv4
     static const unsigned ipv4size = 2*(4+2);
+    ///Size of GlobalID data for IPv6
     static const unsigned ipv6size = 2*(8*2+2);
 
-  public:
     static const unsigned positiveDec = 0,
                           negativeDec = 1,
                           specificQuery = 2,
@@ -320,7 +322,6 @@ namespace network_game {
           #endif
           return;
       }
-      
     }
 
   private:
@@ -333,7 +334,8 @@ namespace network_game {
       return ing;
     }
 
-    unsigned writeGid(byte* dst, const GlobalID& gid) const throw() {
+  public:
+    static unsigned writeGid(byte* dst, const GlobalID& gid) throw() {
       if (gid.ipv == GlobalID::IPv4) {
         memcpy(dst, gid.ia4, 4);
         dst += 4;
@@ -353,7 +355,7 @@ namespace network_game {
       }
     }
 
-    void readGid(GlobalID& gid, const byte* src, bool ipv4) const throw() {
+    static void readGid(GlobalID& gid, const byte* src, bool ipv4) throw() {
       if (ipv4) {
         memcpy(gid.ia4, src, 4);
         src += 4;
@@ -378,6 +380,8 @@ namespace network_game {
     NetworkConnection::registerGeraetCreator(&create, 5);
 }
 
+using network_game::PeerConnectivityGeraet;
+
 NetworkGame::NetworkGame(GameField* field)
 : overseer(NULL), assembly(field, &antenna),
   iface(NULL), advertiser(NULL), discoverer(NULL),
@@ -386,7 +390,6 @@ NetworkGame::NetworkGame(GameField* field)
   localPeer.overseerReady=false;
   localPeer.connectionAttempts=0;
   localPeer.cxn = NULL;
-  localPeer.nid = rand() ^ (rand() << 16);
 }
 
 NetworkGame::~NetworkGame() {
@@ -398,8 +401,11 @@ NetworkGame::~NetworkGame() {
     delete listener;
 
   //Close all open connections
-  while (!peers.empty())
-    closePeer(peers.begin()->second);
+  while (!peers.empty()) {
+    Peer* peer = peers.begin()->second;
+    closePeer(peer);
+    delete peer;
+  }
 }
 
 void NetworkGame::setNetIface(NetIface* ifc) throw() {
@@ -450,23 +456,53 @@ string NetworkGame::getDiscoveryResults() throw() {
 
   const vector<GameDiscoverer::Result>& results = discoverer->getResults();
   for (unsigned i=0; i<results.size(); ++i) {
-    char gameMode[5], buffer[256];
+    char gameMode[5] = {0}, buffer[256];
+    string realGameMode;
     string ipa(results[i].peer.address().to_string());
     //Get NTBS from game mode
-    strncpy(gameMode, results[i].gameMode, sizeof(gameMode));
-    //TODO: localise game mode (doing so will also sanitise it of characters
-    //such as \} that would otherwise break the list)
-    #ifndef WIN32
-    #warning Game mode not localised in NetworkGame::getDiscoveryResults()
-    #endif
+    strncpy(gameMode, results[i].gameMode, 4);
+    realGameMode = l10n::lookup('N', "modes", gameMode);
+    //Reject if the result contains a #
+    if (string::npos != realGameMode.find('#'))
+      continue; //Mode not recognised
+
     sprintf(buffer, "{%4s %02d %c %s} ",
-            gameMode, results[i].peerCount,
+            realGameMode.c_str(), results[i].peerCount,
             results[i].passwordProtected? '*' : ' ',
             ipa.c_str());
     oss << buffer;
   }
 
   return oss.str();
+}
+
+void NetworkGame::setLocalPeerName(const char* name) throw() {
+  localPeer.screenName = name;
+}
+
+void NetworkGame::setLocalPeerNID(unsigned nid) throw() {
+  localPeer.nid = nid;
+}
+
+void NetworkGame::setLocalPeerNIDAuto() throw() {
+  if (antenna.hasV4()) {
+    const GlobalID& gid(*antenna.getGlobalID4());
+    localPeer.nid = 0;
+    for (int i=0; i < 4; ++i) {
+      localPeer.nid <<= 8;
+      localPeer.nid |= gid.la4[i];
+    }
+    localPeer.nid ^= ((unsigned)gid.lport) << 16;
+  } else if (antenna.hasV6()) {
+    const GlobalID& gid(*antenna.getGlobalID6());
+    localPeer.nid = 0;
+    for (int i=0; i < 8; ++i) {
+      unsigned v = gid.la6[i];
+      if (i&1) v <<= 16;
+      localPeer.nid ^= v;
+    }
+    localPeer.nid ^= gid.lport;
+  }
 }
 
 void NetworkGame::connectToNothing(bool v6, bool lanMode) throw() {
@@ -695,11 +731,6 @@ Peer* NetworkGame::createPeer(const GlobalID& gid) throw() {
 
 Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
   Peer* peer = new Peer;
-  //TODO: For now, just infer the gid from the IP address.
-  #ifndef WIN32
-  #warning NetworkGame::createPeer(NetworkConnection*) does not honour provided GID
-  #endif
-  endpointToLanGid(peer->gid, cxn->endpoint);
   peer->overseerReady = false;
   peer->connectionAttempts = 0;
   peer->cxn = cxn;
@@ -843,9 +874,12 @@ void NetworkGame::initCxn(NetworkConnection* cxn, Peer* peer) throw() {
   cxn->netiface = iface;
 
   //Set outgoing STX auxilliary data
-  byte auxdat[4];
+  byte auxdat[1024];
   byte* auxout = auxdat;
   io::write(auxout, localPeer.nid);
+  auxout += PeerConnectivityGeraet::writeGid(auxout, localPeer.gid);
+  strcpy((char*)auxout, localPeer.screenName.c_str());
+  auxout += localPeer.screenName.size(); //Omits terminating NUL
   cxn->scg->setAuxDataOut(auxdat, auxout);
 }
 
@@ -860,13 +894,25 @@ void NetworkGame::becomeOverseerReady() throw() {
 
 void NetworkGame::acceptStxAux(const std::vector<byte>& auxData, Peer* peer)
 throw() {
-  if (auxData.size() != 4) {
+  //Force the compiler to inline these, since it wants to extenralise them for
+  //some reason
+  static char ipv4[PeerConnectivityGeraet::ipv4size],
+              ipv6[PeerConnectivityGeraet::ipv6size];
+  unsigned gidlen = (localPeer.gid.ipv == GlobalID::IPv4?
+                     sizeof(ipv4) : sizeof(ipv6));
+  if (auxData.size() < 4 + gidlen + 1) {
+    //Too short
     closePeer(peer);
+    delete peer;
     return;
   }
 
   const byte* dat = &auxData[0];
   io::read(dat, peer->nid);
+  PeerConnectivityGeraet::readGid(peer->gid, dat,
+                                  localPeer.gid.ipv == GlobalID::IPv4);
+  dat += gidlen;
+  peer->screenName.assign((const char*)dat, auxData.size() - 4 - gidlen);
   peer->receivedStx = true;
 }
 

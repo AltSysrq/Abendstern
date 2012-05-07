@@ -1122,6 +1122,7 @@ unsafe {
     const overseerReady bool
     const connectionAttempts unsigned
     const cxn NetworkConnection*
+    const screenName string
     const receivedStx bool
   }
   class abstract-extendable NetIface {} {
@@ -1153,6 +1154,9 @@ unsafe {
     fun float discoveryScanProgress
     fun bool discoveryScanDone
     fun string getDiscoveryResults
+    fun void setLocalPeerName {} cstr
+    fun void setLocalPeerNID {} unsigned
+    fun void setLocalPeerNIDAuto {}
     fun void connectToNothing {} bool bool
     fun void connectToDiscovery {} unsigned
     fun void connectToLan {} cstr unsigned

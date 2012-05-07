@@ -73,6 +73,7 @@ class AIControl: public Controller {
 
   struct State {
     std::vector<Module> modules;
+    std::vector<AIModule*> reflexes;
     unsigned totalWeight;
   };
 

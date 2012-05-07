@@ -159,6 +159,11 @@ class GameManager {
     }
   }
 
+  method init-lan {} {
+    $network setLocalPeerNIDAuto
+    $network setLocalPeerName $::abnet::username
+  }
+
   # Initialising method which starts a new local game
   method init-local-game modestr {
     createMode $modestr
@@ -166,6 +171,7 @@ class GameManager {
 
   # Initialising method which stats a LAN game.
   method init-lan-game {ipv advertising modestr} {
+    init-lan
     $network connectToNothing [expr {$ipv == 6}] true
     if {$advertising} {
       $network setAdvertising $modestr
@@ -178,6 +184,7 @@ class GameManager {
   method join-lan-game {advertising ix} {
     createMode "NULLC0 {}"
 
+    init-lan
     $network connectToDiscovery $ix
     if {$advertising} {
       $network setAdvertising NULL

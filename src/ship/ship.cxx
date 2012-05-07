@@ -74,7 +74,7 @@ struct ShipRenderer {
 
 //Multiply damage absorption by this amount to find
 //the capacitance requirement for dispersion shielding
-#define DAM_DISP_CAP_MUL 10000.0f
+#define DAM_DISP_CAP_MUL 15000.0f
 
 //The maximum damage that dispersion shielding can
 //absorb, when the distance is zero cells
@@ -82,7 +82,7 @@ struct ShipRenderer {
 
 //The multiplier for distance when determining effectiveness
 //of the dispersion shield.
-#define DAM_DISP_DIST_MUL 1.5f
+#define DAM_DISP_DIST_MUL 1.2f
 
 //The per-cell power requirements of being cloaked
 #define CLOAK_POWER_REQ 2.5f
@@ -1114,9 +1114,26 @@ bool Ship::collideWith(GameObject* other) noth {
     pair<float,float> edge;
     Cell* maxStrengthCell=NULL;
     float maxStrength=0, totalStrength=0;
+    vector<const CollisionRectangle*> collidedRaw;
+    vector<Cell*> collided;
+    set<Cell*> possiblyOrphaned;
+    accumulateCollision(this, other, collidedRaw);
+    //Remove duplicates and non-cells
+    {
+      set<void*> found;
+      found.insert(NULL);
+      for (unsigned i = 0; i < collidedRaw.size(); ++i) {
+        if (!found.count(collidedRaw[i]->data)) {
+          found.insert(collidedRaw[i]->data);
+          collided.push_back((Cell*)collidedRaw[i]->data);
+        }
+      }
+    }
 
-    for (unsigned int i=0; i<cells.size(); ++i) {
-      if (cells[i]->isEmpty) continue;
+    for (unsigned int cix=0; cix<collided.size(); ++cix) {
+      //Find the cell's index
+      unsigned i;
+      for (i=0; cells[i] != collided[cix]; ++i);
       pair<float,float> cc=cellCoord(this, cells[i]);
 
       edge=closestEdgePoint(*cells[i]->getCollisionBounds(),
@@ -1169,8 +1186,10 @@ bool Ship::collideWith(GameObject* other) noth {
     bool destruction=false;
     float damageXOff=0, damageYOff=0;
     float maxCellDamage = 0;
-    for (unsigned int i=0; i<cells.size() && blast->causesDamage(); ++i) {
-      if (cells[i]->isEmpty) continue;
+    for (unsigned cix=0; cix<collided.size() && blast->causesDamage(); ++cix) {
+      //Find the index of this cell
+      unsigned i;
+      for (i=0; cells[i] != collided[cix]; ++i) assert(i < cells.size());
       pair<float,float> cc=closestEdgePoint(*cells[i]->getCollisionBounds(),
                                             make_pair(blast->getX(),
                                                       blast->getY()));
@@ -1217,6 +1236,7 @@ bool Ship::collideWith(GameObject* other) noth {
           destruction=true;
           for (unsigned n=0; n<cells[i]->numNeighbours(); ++n) {
             if (cells[i]->neighbours[n]) {
+              possiblyOrphaned.insert(cells[i]->neighbours[n]);
               int index=cells[i]->neighbours[n]->getNeighbour(cells[i]);
               EmptyCell* ec=new EmptyCell(this, cells[i]->neighbours[n]);
               if (highQuality && !isFragment) field->add(new PlasmaFire(ec));
@@ -1238,6 +1258,7 @@ bool Ship::collideWith(GameObject* other) noth {
           //Remove cell
           delete cells[i];
           if (renderer) renderer->cellRemoved(cells[i]);
+          possiblyOrphaned.erase(cells[i]);
           cells.erase(cells.begin() + i--);
         }
       }
@@ -1267,21 +1288,32 @@ bool Ship::collideWith(GameObject* other) noth {
 
     if (destruction) {
       //Handle possible fragments
-      vector<Cell*> bridgeAttached;
+      vector<Cell*> bridgeAttachedRaw;
       //If the root was destroyed, create an entirely
       //new ship, by making bridgeAttached be empty
       if (!rootDestroyed)
-        cells[0]->getAdjoined(bridgeAttached);
-      if (bridgeAttached.size()!=cells.size()) {
+        cells[0]->getAdjoined(bridgeAttachedRaw);
+      if (bridgeAttachedRaw.size()!=cells.size()) {
+        set<Cell*> bridgeAttached(bridgeAttachedRaw.begin(),
+                                  bridgeAttachedRaw.end());
         //We've split...
         //Use a non-damaging blast to blow fragments apart
         Blast blowUp(blast, false);
+        //Keep track of cells removed.
+        //We can't modify possiblyOrphaned since that invalidates the
+        //iterator.
+        set<Cell*> toSkip;
         //Isolate each fragment and create new ships
-        for (unsigned int i=0; i<cells.size(); ++i) {
-          bool attached=false;
-          for (unsigned int j=0; j<bridgeAttached.size() && !attached; ++j)
-            if (bridgeAttached[j]==cells[i])
-              attached=true;
+        for (set<Cell*>::const_iterator it = possiblyOrphaned.begin();
+             it != possiblyOrphaned.end(); ++it) {
+          //If has been removed, move to next
+          if (toSkip.count(*it))
+            continue;
+
+          //Find the cell's index
+          unsigned i;
+          for (i=0; cells[i] != *it; ++i) assert(i < cells.size());
+          bool attached=bridgeAttached.count(cells[i]);
           if (attached) continue;
 
           //Fragment
@@ -1319,9 +1351,12 @@ bool Ship::collideWith(GameObject* other) noth {
                 if (renderer) renderer->cellRemoved(cells[k]);
                 if (networkCells.size() && !cells[k]->isEmpty)
                   networkCells[cells[k]->netIndex] = NULL;
+                toSkip.insert(cells[k]);
                 cells.erase(cells.begin() + k);
 
                 //Looks odd, but i is unsigned...
+                //(This is actually testing that i is not the maximum value for
+                //unsigned int, which indicates it has passed zero.)
                 if (k<=i && i<(((unsigned int)0)-1)) --i;
                 --k;
                 goto cellRemoved;
@@ -1382,14 +1417,17 @@ bool Ship::collideWith(GameObject* other) noth {
           field->addBegin(frag);
         }
       }
-      if (cells.size()!=bridgeAttached.size()) {
+      if (cells.size()!=bridgeAttachedRaw.size()) {
         cerr << "FATAL: Not all detached cells accounted for.\n"
-        "We have " << cells.size() << ", but should have " << bridgeAttached.size() << endl;
+          "We have " << cells.size() << ", but should have " <<
+          bridgeAttachedRaw.size() << endl;
         cerr << "Us=" << this << endl;
-        for (unsigned int i=0; i<cells.size(); ++i) cout << i << " " << cells[i] << ' ' <<
-                                                            cells[i]->getX() << ' ' <<
-                                                            cells[i]->parent << endl;
-        for (unsigned int i=0; i<bridgeAttached.size(); ++i) cout << i << " " << bridgeAttached[i] << endl;
+        for (unsigned int i=0; i<cells.size(); ++i)
+          cout << i << " " << cells[i] << ' ' <<
+            cells[i]->getX() << ' ' <<
+            cells[i]->parent << endl;
+        for (unsigned i=0; i<bridgeAttachedRaw.size(); ++i)
+          cout << i << " " << bridgeAttachedRaw[i] << endl;
         exit(EXIT_PROGRAM_BUG);
       }
       //See if we should exist
@@ -1627,23 +1665,19 @@ void Ship::preremove(Cell* cell) noth {
   //PHYS_CELL_DS_EXIST_BIT: if exists, unlink, remove from inventory,
   //unset PHYS_CELL_DS_NEAREST_BIT for all formerly linked cells
   if (!isFragment) {
-    if (cell->physics.hasDispersionShield) {
-      for (Cell* c = cell, *d; c; c = d) {
-        c->physicsClear(PHYS_CELL_DS_NEAREST_BITS);
-        c->physics.nearestDS = NULL;
-        d = c->physics.nextDepDS;
-        c->physics.nextDepDS = NULL;
-      }
+    if ((cell->physics.valid & PHYS_CELL_DS_EXIST_BIT) &&
+        cell->physics.hasDispersionShield) {
+      cell->clearDSChain();
       cellsWithDispersionShields.erase(find(cellsWithDispersionShields.begin(),
-                                            cellsWithDispersionShields.end(), cell));
+                                            cellsWithDispersionShields.end(),
+                                            cell));
     } else if (cell->physics.nearestDS) {
       //PHYS_CELL_DS_NEAREST_BIT: remove from list
-      Cell* c = cell->physics.nearestDS;
-      while (c->physics.nextDepDS != cell)
-        c = c->physics.nextDepDS;
-      //Remove link
-      if (c)
-        c->physics.nextDepDS = cell->physics.nextDepDS;
+      Cell* prev = cell->physics.prevDepDS, * next = cell->physics.nextDepDS;
+      if (prev)
+        prev->physics.nextDepDS = next;
+      if (next)
+        next->physics.prevDepDS = prev;
     }
   }
 

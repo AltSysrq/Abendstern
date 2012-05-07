@@ -79,7 +79,7 @@ float MonophasicEnergyEmitter::getArmTime() const noth {
 }
 
 float MonophasicEnergyEmitter::getFirePower() const noth {
-  return energyLevel*25.0f;
+  return energyLevel*12.5f;
 }
 
 unsigned MonophasicEnergyEmitter::mass() const noth {

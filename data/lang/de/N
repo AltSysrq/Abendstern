@@ -64,3 +64,37 @@
 -timeout
 +Die Sitzung erlosch.
 
+@modes
+ Translates from network mode specifiers to what to display to the user.
+-DM__
++DM
+-2TDM
++TK2M
+-3TDM
++TK3M
+-4TDM
++TK4M
+-5TDM
++TK5M
+-6TDM
++TK6M
+-LMS_
++LÜS
+-L2TS
++LÜ2M
+-L3TS
++LÜ3M
+-L4TS
++LÜ4M
+-L5TS
++LÜ5M
+-L6TS
++LÜ6M
+-HVC_
++MGC
+-VOID
++WART
+
+@network
+-waiting
++Warte auf das Netzwerk...

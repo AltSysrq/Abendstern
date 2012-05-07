@@ -94,6 +94,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-aim_indgoto.$(OBJEXT) \
 	abendsternuxgl14-aim_check_has_weapons.$(OBJEXT) \
 	abendsternuxgl14-aim_target_nearest.$(OBJEXT) \
+	abendsternuxgl14-aim_check_targetless.$(OBJEXT) \
 	abendsternuxgl14-aimod.$(OBJEXT) \
 	abendsternuxgl14-aim_park.$(OBJEXT) \
 	abendsternuxgl14-aim_nav_to_target.$(OBJEXT) \
@@ -302,6 +303,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-aim_indgoto.$(OBJEXT) \
 	abendsternuxgl21-aim_check_has_weapons.$(OBJEXT) \
 	abendsternuxgl21-aim_target_nearest.$(OBJEXT) \
+	abendsternuxgl21-aim_check_targetless.$(OBJEXT) \
 	abendsternuxgl21-aimod.$(OBJEXT) \
 	abendsternuxgl21-aim_park.$(OBJEXT) \
 	abendsternuxgl21-aim_nav_to_target.$(OBJEXT) \
@@ -508,6 +510,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-aim_indgoto.$(OBJEXT) \
 	abendsternuxgl32-aim_check_has_weapons.$(OBJEXT) \
 	abendsternuxgl32-aim_target_nearest.$(OBJEXT) \
+	abendsternuxgl32-aim_check_targetless.$(OBJEXT) \
 	abendsternuxgl32-aimod.$(OBJEXT) \
 	abendsternuxgl32-aim_park.$(OBJEXT) \
 	abendsternuxgl32-aim_nav_to_target.$(OBJEXT) \
@@ -868,6 +871,7 @@ COMMONSOURCES = \
 ./control/ai/mod_state/aim_indgoto.cxx \
 ./control/ai/mod_state/aim_check_has_weapons.cxx \
 ./control/ai/mod_target/aim_target_nearest.cxx \
+./control/ai/mod_target/aim_check_targetless.cxx \
 ./control/ai/aimod.cxx \
 ./control/ai/mod_navigation/aim_park.cxx \
 ./control/ai/mod_navigation/aim_nav_to_target.cxx \
@@ -1127,6 +1131,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_avoid_edge.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_basic_aim.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_check_has_weapons.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_check_targetless.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_detect_overlap.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_edge_detect.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_fire_weapon.Po@am__quote@
@@ -1336,6 +1341,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_avoid_edge.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_basic_aim.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_check_has_weapons.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_check_targetless.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_detect_overlap.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_edge_detect.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_fire_weapon.Po@am__quote@
@@ -1545,6 +1551,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_avoid_edge.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_basic_aim.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_check_has_weapons.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_check_targetless.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_detect_overlap.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_edge_detect.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_fire_weapon.Po@am__quote@
@@ -2517,6 +2524,20 @@ abendsternuxgl14-aim_target_nearest.obj: ./control/ai/mod_target/aim_target_near
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_target_nearest.cxx' object='abendsternuxgl14-aim_target_nearest.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-aim_target_nearest.obj `if test -f './control/ai/mod_target/aim_target_nearest.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_target_nearest.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_target_nearest.cxx'; fi`
+
+abendsternuxgl14-aim_check_targetless.o: ./control/ai/mod_target/aim_check_targetless.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-aim_check_targetless.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-aim_check_targetless.Tpo -c -o abendsternuxgl14-aim_check_targetless.o `test -f './control/ai/mod_target/aim_check_targetless.cxx' || echo '$(srcdir)/'`./control/ai/mod_target/aim_check_targetless.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-aim_check_targetless.Tpo $(DEPDIR)/abendsternuxgl14-aim_check_targetless.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_check_targetless.cxx' object='abendsternuxgl14-aim_check_targetless.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-aim_check_targetless.o `test -f './control/ai/mod_target/aim_check_targetless.cxx' || echo '$(srcdir)/'`./control/ai/mod_target/aim_check_targetless.cxx
+
+abendsternuxgl14-aim_check_targetless.obj: ./control/ai/mod_target/aim_check_targetless.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-aim_check_targetless.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-aim_check_targetless.Tpo -c -o abendsternuxgl14-aim_check_targetless.obj `if test -f './control/ai/mod_target/aim_check_targetless.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_check_targetless.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_check_targetless.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-aim_check_targetless.Tpo $(DEPDIR)/abendsternuxgl14-aim_check_targetless.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_check_targetless.cxx' object='abendsternuxgl14-aim_check_targetless.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-aim_check_targetless.obj `if test -f './control/ai/mod_target/aim_check_targetless.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_check_targetless.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_check_targetless.cxx'; fi`
 
 abendsternuxgl14-aimod.o: ./control/ai/aimod.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-aimod.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-aimod.Tpo -c -o abendsternuxgl14-aimod.o `test -f './control/ai/aimod.cxx' || echo '$(srcdir)/'`./control/ai/aimod.cxx
@@ -5444,6 +5465,20 @@ abendsternuxgl21-aim_target_nearest.obj: ./control/ai/mod_target/aim_target_near
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-aim_target_nearest.obj `if test -f './control/ai/mod_target/aim_target_nearest.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_target_nearest.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_target_nearest.cxx'; fi`
 
+abendsternuxgl21-aim_check_targetless.o: ./control/ai/mod_target/aim_check_targetless.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-aim_check_targetless.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-aim_check_targetless.Tpo -c -o abendsternuxgl21-aim_check_targetless.o `test -f './control/ai/mod_target/aim_check_targetless.cxx' || echo '$(srcdir)/'`./control/ai/mod_target/aim_check_targetless.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-aim_check_targetless.Tpo $(DEPDIR)/abendsternuxgl21-aim_check_targetless.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_check_targetless.cxx' object='abendsternuxgl21-aim_check_targetless.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-aim_check_targetless.o `test -f './control/ai/mod_target/aim_check_targetless.cxx' || echo '$(srcdir)/'`./control/ai/mod_target/aim_check_targetless.cxx
+
+abendsternuxgl21-aim_check_targetless.obj: ./control/ai/mod_target/aim_check_targetless.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-aim_check_targetless.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-aim_check_targetless.Tpo -c -o abendsternuxgl21-aim_check_targetless.obj `if test -f './control/ai/mod_target/aim_check_targetless.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_check_targetless.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_check_targetless.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-aim_check_targetless.Tpo $(DEPDIR)/abendsternuxgl21-aim_check_targetless.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_check_targetless.cxx' object='abendsternuxgl21-aim_check_targetless.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-aim_check_targetless.obj `if test -f './control/ai/mod_target/aim_check_targetless.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_check_targetless.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_check_targetless.cxx'; fi`
+
 abendsternuxgl21-aimod.o: ./control/ai/aimod.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-aimod.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-aimod.Tpo -c -o abendsternuxgl21-aimod.o `test -f './control/ai/aimod.cxx' || echo '$(srcdir)/'`./control/ai/aimod.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-aimod.Tpo $(DEPDIR)/abendsternuxgl21-aimod.Po
@@ -8369,6 +8404,20 @@ abendsternuxgl32-aim_target_nearest.obj: ./control/ai/mod_target/aim_target_near
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_target_nearest.cxx' object='abendsternuxgl32-aim_target_nearest.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-aim_target_nearest.obj `if test -f './control/ai/mod_target/aim_target_nearest.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_target_nearest.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_target_nearest.cxx'; fi`
+
+abendsternuxgl32-aim_check_targetless.o: ./control/ai/mod_target/aim_check_targetless.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-aim_check_targetless.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-aim_check_targetless.Tpo -c -o abendsternuxgl32-aim_check_targetless.o `test -f './control/ai/mod_target/aim_check_targetless.cxx' || echo '$(srcdir)/'`./control/ai/mod_target/aim_check_targetless.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-aim_check_targetless.Tpo $(DEPDIR)/abendsternuxgl32-aim_check_targetless.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_check_targetless.cxx' object='abendsternuxgl32-aim_check_targetless.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-aim_check_targetless.o `test -f './control/ai/mod_target/aim_check_targetless.cxx' || echo '$(srcdir)/'`./control/ai/mod_target/aim_check_targetless.cxx
+
+abendsternuxgl32-aim_check_targetless.obj: ./control/ai/mod_target/aim_check_targetless.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-aim_check_targetless.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-aim_check_targetless.Tpo -c -o abendsternuxgl32-aim_check_targetless.obj `if test -f './control/ai/mod_target/aim_check_targetless.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_check_targetless.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_check_targetless.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-aim_check_targetless.Tpo $(DEPDIR)/abendsternuxgl32-aim_check_targetless.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_check_targetless.cxx' object='abendsternuxgl32-aim_check_targetless.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-aim_check_targetless.obj `if test -f './control/ai/mod_target/aim_check_targetless.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_check_targetless.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_check_targetless.cxx'; fi`
 
 abendsternuxgl32-aimod.o: ./control/ai/aimod.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-aimod.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-aimod.Tpo -c -o abendsternuxgl32-aimod.o `test -f './control/ai/aimod.cxx' || echo '$(srcdir)/'`./control/ai/aimod.cxx
