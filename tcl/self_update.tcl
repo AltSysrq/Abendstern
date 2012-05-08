@@ -265,13 +265,6 @@ class SelfUpdater {
     }
 
     switch -glob -- $filename {
-#      abendstern.rc {
-#        set needMergeConfigs yes
-#        lappend temporaryFiles "abendstern.rc.new"
-#        set f [open "abendstern.rc.new" w]
-#        puts $f [::http::data $tok]
-#        close $f
-#      }
       *.exe -
       *.dll {
         set needRunApplyUpdate yes

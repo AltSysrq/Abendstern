@@ -5,7 +5,7 @@ The new AI is intended to be:
 + Modular, simplifying development and extension;
 + Adaptable, able to have new features added easily;
 + Configurable, so that scripts can describe certain behaviour;
-+ Intelligent, enable to learn new behaviour from experience when so enabled;
++ Intelligent, able to learn new behaviour from experience when so enabled;
 + Extendable by Tcl
 
 The AI controller itself is only a mere high-level manager whose primary
@@ -22,11 +22,11 @@ properties:
 The last is stored by the controller because it is very important, but would be
 awkward and inefficient to store within the inter-module variable system.
 
-The AI system is organised into states and modules. A state is merely a collection
-of modules, and their weights and properties. For example, an emulation of the
-TestAI would have Navigation, Attack, Kamikaze, and RunAway states. States are
-not represented by C++ code, but described by normal configuration, which is
-interpreted by the controller.
+The AI system is organised into states and modules. A state is merely a
+collection of modules, and their weights and properties. For example, an
+emulation of the TestAI would have Navigation, Attack, Kamikaze, and RunAway
+states. States are not represented by C++ code, but described by normal
+configuration, which is interpreted by the controller.
 
 Modules are what actually control the ship. Each module must at least define its
 action event. Ten times per second, one module has its action invoked. Exactly
@@ -35,18 +35,20 @@ a reasonable amount of work in a module, something which should be considered
 an atomic "work unit". Exactly what this is is up to the module.
 
 There are four other events modules may respond to:
-+ Activation. This is called when the module is present in a state being activated.
-  The module is provided with access to the configuration information in which it
-  is found.
++ Activation. This is called when the module is present in a state being
+  activated.  The module is provided with access to the configuration
+  information in which it is found.
 + Deactivation. This is called when the module is in a state being deactivated.
-+ IAIC interrupt. The module may request to be notified whenever an IAIC variable
-  is modified. This is checked immediately before invoking the action of a module.
-  IAIC interrupts are cleared on state change.
++ IAIC interrupt. The module may request to be notified whenever an IAIC
+  variable is modified. This is checked immediately before invoking the action
+  of a module.  IAIC interrupts are cleared on state change.
 + Auto-repeat. A module may request that its auto-repeat event is called every
   frame for a limited amount of time. This is used by modules that need to
   perform a short task repeadidly and rapidly, such as firing a rapid-fire
   weapon.
 
-The controller also supports "proceedures", which are simply lists of modules that
-are to be actioned in order before resuming normal operation.
+The controller also supports "proceedures", which are simply lists of modules
+that are to be actioned in order before resuming normal operation.
 
+Each state may define up to 4 reflexes. A reflex is like a normal module, but is
+executed every time a random state module is to be executed.
