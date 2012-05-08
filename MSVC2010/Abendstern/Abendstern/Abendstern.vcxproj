@@ -259,6 +259,7 @@
     <ClInclude Include="..\..\..\src\control\ai\mod_state\aim_goto.hxx" />
     <ClInclude Include="..\..\..\src\control\ai\mod_state\aim_indgoto.hxx" />
     <ClInclude Include="..\..\..\src\control\ai\mod_state\aim_state_by_target_dist.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_target\aim_check_targetless.hxx" />
     <ClInclude Include="..\..\..\src\control\ai\mod_target\aim_target_nearest.hxx" />
     <ClInclude Include="..\..\..\src\control\controller.hxx" />
     <ClInclude Include="..\..\..\src\control\genai\ci_cellex.hxx" />
@@ -480,6 +481,7 @@
     <ClCompile Include="..\..\..\src\control\ai\mod_state\aim_goto.cxx" />
     <ClCompile Include="..\..\..\src\control\ai\mod_state\aim_indgoto.cxx" />
     <ClCompile Include="..\..\..\src\control\ai\mod_state\aim_state_by_target_dist.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_target\aim_check_targetless.cxx" />
     <ClCompile Include="..\..\..\src\control\ai\mod_target\aim_target_nearest.cxx" />
     <ClCompile Include="..\..\..\src\control\genai\ci_cellex.cxx" />
     <ClCompile Include="..\..\..\src\control\genai\ci_cellt.cxx" />
