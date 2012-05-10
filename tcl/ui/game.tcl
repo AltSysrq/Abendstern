@@ -35,7 +35,6 @@ class GameGUIMode {
   variable fipAddress
   variable fport
   variable lstlanGames
-  variable gameparms
 
   variable app
   variable network
@@ -165,17 +164,20 @@ class GameGUIMode {
   }
 
   method update et {
-    $network update [expr {int($et)}]
-    set sel [$lstlanGames getSelection]
-    set items [$network getDiscoveryResults]
-    $lstlanGames setItems $items
-    if {[llength $sel] > 0 && $sel >= 0 && $sel < [llength $items]} {
-      $lstlanGames setSelection $sel
+    if {$network != 0} {
+      $network update [expr {int($et)}]
+      set sel [$lstlanGames getSelection]
+      set items [$network getDiscoveryResults]
+      $lstlanGames setItems $items
+      if {[llength $sel] > 0 && $sel >= 0 && $sel < [llength $items]} {
+        $lstlanGames setSelection $sel
+      }
     }
   }
 
   method startLocal {} {
     delete object $network
+    set network 0
     changeScreenName
     lassign [getGameStateArgs 0] modestr background
     $app setRet [new GameManager 0 \
@@ -215,7 +217,7 @@ class GameGUIMode {
 
   # Returns a two-item list of the modestr,background to use
   private method getGameStateArgs {network} {
-    $gameparms save
+    $root save
     if {$network eq 0} {
       set bkgr [$ str conf.game.background]
     } else {
