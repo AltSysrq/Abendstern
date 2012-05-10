@@ -1537,7 +1537,7 @@ namespace eval gui {
       BorderContainer::constructor 0.01
     } {
       if {$tabsOnTop} {
-        set buttonBar [new ::gui::HorizontalContainer 0.005 left]
+        set buttonBar [new ::gui::HorizontalContainer 0 left]
         setElt top $buttonBar
       } else {
         set buttonBar [new ::gui::VerticalContainer 0 grid]

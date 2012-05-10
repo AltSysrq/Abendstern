@@ -74,7 +74,7 @@ class TestMode {
     set supermain [new gui::BorderContainer]
     set main [new gui::VerticalContainer 0.01]
     $main add [new gui::Button [_ T a begin_game] \
-      "$app setSubState \[$this getGameState\]"]
+                   "$app setSubState \[new GameGUI\]"]
     $main add [new gui::Button [_ T a ship_mgmt] "$app setSubState \[new ShipEditor\]"]
     if {[string length $::abnet::userid]} {
       # Logged in to network, give appropriate options

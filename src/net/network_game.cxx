@@ -384,7 +384,7 @@ using network_game::PeerConnectivityGeraet;
 
 NetworkGame::NetworkGame(GameField* field)
 : overseer(NULL), assembly(field, &antenna),
-  iface(NULL), advertiser(NULL), discoverer(NULL),
+  iface(NULL), advertiser(NULL), discoverer(NULL), listener(NULL),
   timeSinceSpuriousPCGQuery(0)
 {
   localPeer.overseerReady=false;
