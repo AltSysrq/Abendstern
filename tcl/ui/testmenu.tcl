@@ -88,8 +88,6 @@ class TestMode {
     if {"WINDOWS" == $::PLATFORM} {
       $main add [new gui::Button [_ T a update_abendstern] "$app setMode \[new SelfUpdater\]"]
     }
-    $main add [new gui::Button "E\a&xperimental LAN Game" \
-                   "$app setSubState \[$this getGameState 1\]"]
     set quit [new gui::Button [_ A gui quit] "$app configure -retval \[new BootManager shutdown\]"]
     $quit setCancel
     $main add $quit
@@ -106,66 +104,6 @@ class TestMode {
       new gui::Frame $tabs
     ] 0.8 ]
     $tabs add [_ T a tab_main] $supermain
-
-    # Game parameters
-    set gameparms [new ::gui::VerticalContainer 0.01]
-    set prevbox none
-    foreach mode {dm xtdm lms lxts hvc} {
-      set box [new ::gui::RadioButton [format [_ A game "g_${mode}_long"] X] \
-               "expr {\[$ str conf.game.mode\] == {$mode}}" \
-               "$ sets conf.game.mode $mode" \
-               $prevbox]
-      $gameparms add $box
-      set prevbox $box
-    }
-    $gameparms add [new ::gui::Slider [_ T a size] int \
-                    "$ int conf.game.size" \
-                    "$ seti conf.game.size" \
-                    16 256 \
-                    8 {} \
-                    "format %d" [$::gui::font width 9999]]
-    $gameparms add [new ::gui::Slider [_ T a numais] int \
-                    "$ int conf.game.nai" \
-                    "$ seti conf.game.nai" \
-                    1 128 \
-                    1 {} \
-                    "format %d" [$::gui::font width 199]]
-    $gameparms add [new ::gui::Slider [_ T a nteams] int \
-                    "$ int conf.game.nteams" \
-                    "$ seti conf.game.nteams" \
-                    2 6 \
-                    1 {} \
-                    "format %d" [$::gui::font width 6]]
-
-    set bgdp [new ::gui::HorizontalContainer 0.01 grid]
-    set bgp [new ::gui::VerticalContainer 0.01 top]
-    $bgp add [new ::gui::Label [_ T a background] left]
-    set prevbox none
-    foreach bg {StarField Planet Nebula} {
-      set box [new ::gui::RadioButton [_ T a $bg] \
-               "expr {\[$ str conf.game.background\] == {$bg}}" \
-               "$ sets conf.game.background $bg" \
-               $prevbox]
-      $bgp add $box
-      set prevbox $box
-    }
-    $bgdp add $bgp
-    set dp [new ::gui::VerticalContainer 0.01 top]
-    $dp add [new ::gui::Label [_ T a difficulty] left]
-    set prevbox none
-    foreach {ix val} {0 0.25 1 0.5 2 1.0 3 2.5 4 10.0} {
-      set box [new ::gui::RadioButton [_ T a difficulty_$ix] \
-               "expr {\[$ float conf.game.dmgmul\] == {$val}}" \
-               "$ setf conf.game.dmgmul $val" \
-               $prevbox]
-      $dp add $box
-      set prevbox $box
-    }
-    $bgdp add $dp
-    $gameparms add $bgdp
-
-    $tabs add [_ T a tab_game] $gameparms
-
     # Produce list of hangar names
     set hangarNames {}
     for {set i 0} {$i < [$ length hangar.user]} {incr i} {
@@ -327,69 +265,5 @@ class TestMode {
     refreshAccelerators
     global vheight
     $root setSize 0 1 $vheight 0
-  }
-
-  method getGameState {{network 0}} {
-    $gameparms save
-    switch -exact -- [$ str conf.game.background] {
-      StarField {
-        set background {new StarField default 0 $field 1000}
-      }
-      Planet {
-        set background {new Planet default 0 $field \
-                        "images/earthday_post.png" \
-                        "images/earthnight_post.png" \
-                        -900000 -180000 2.5 0.1}
-      }
-      Nebula {
-        set background {
-          set r [expr {rand()}]
-          set g [expr {rand()}]
-          set b [expr {rand()}]
-          set viscosity [expr {rand()*rand()}]
-          set density [expr {20*rand()}]
-          set nebula [new Nebula default 0 $field $r $g $b $viscosity $density]
-          set xxc [expr {20*rand()}]
-          set xyc [expr {20*rand()}]
-          set yxc [expr {20*rand()}]
-          set yyc [expr {20*rand()}]
-          set xf [expr {rand()}]
-          set yf [expr {rand()}]
-          $nebula setFlowEquation "* $xf + cos * x $xxc cos * y $yyc" \
-                                  "* $yf + cos * x $yxc cos * y $yyc" yes
-          $nebula setVelocityResetTime [expr {200*rand()}]
-          $nebula setForceMultiplier [expr {rand()}]
-          expr {$nebula}
-        }
-      }
-    }
-    set opts [dict create \
-                  fieldw [$ int conf.game.size] \
-                  fieldh [$ int conf.game.size] \
-                  desiredPlayers [expr {[$ int conf.game.nai]+1}]]
-    switch -exact -- [$ str conf.game.mode] {
-      dm {
-        set ms DM__
-      }
-      xtdm {
-        set ms [format %dTDM [$ int conf.game.nteams]]
-      }
-      lms {
-        set ms LMS_
-      }
-      lxts {
-        set ms [format L%dTS [$ int conf.game.nteams]]
-      }
-      hvc {
-        set ms HVC_
-      }
-    }
-
-    set modestr [list "${ms}C0" $opts]
-    if {$network} {
-      return [networkTest $modestr $background]
-    } else {
-      return [new GameManager 0 [list init-local-game $modestr] $background]
-    }
   }
 }
