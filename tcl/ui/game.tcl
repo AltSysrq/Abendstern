@@ -176,9 +176,41 @@ class GameGUIMode {
 
   method startLocal {} {
     delete object $network
+    changeScreenName
     lassign [getGameStateArgs 0] modestr background
     $app setRet [new GameManager 0 \
                      [list init-local-game $modestr] $background]
+  }
+
+  method joinLanGameFromList {} {
+    if {![llength [$lstlanGames getSelection]]} return
+    changeScreenName
+    lassign [getGameStateArgs $network] modestr background
+    $app setRet [new GameManager $network \
+                     [list join-lan-game 1 [$lstlanGames getSelection]] \
+                     $background]
+  }
+
+  method joinLanSpecified {} {
+    changeScreenName
+    set addr [$fipAddress getText]
+    set addr [string trim $addr]
+    if {$addr eq ""} return
+    set port [string trim [$fport getText]]
+    if {![string is integer -strict $port]} return
+    lassign [getGameStateArgs $network] modestr background
+    $app setRet [new GameManager $network \
+                     [list join-private-game 0 $addr $port] \
+                     $background]
+  }
+
+  method startLanGame {} {
+    changeScreenName
+
+    lassign [getGameStateArgs $network] modestr background
+    $app setRet [new GameManager $network \
+                     [list init-lan-game 4 1 $modestr] \
+                     $background]
   }
 
   # Returns a two-item list of the modestr,background to use
@@ -252,5 +284,21 @@ class GameGUIMode {
     if {[$network discoveryScanProgress] < 0 || [$network discoveryScanDone]} {
       $network startDiscoveryScan
     }
+  }
+
+  # Changes the screen name if the current user is local.
+  # The new name will always start with ~.
+  method changeScreenName {} {
+    if {"~" ne [string index $::abnet::username 0]} {
+      return ;# Logged in, cannot rename
+    }
+
+    set name [string trim [$fscreenName getText]]
+    if {"~" ne [string index $name 0]} {
+      set name "~$name"
+    }
+    if {[string length $name] < 4} return
+
+    set ::abnet::username $name
   }
 }
