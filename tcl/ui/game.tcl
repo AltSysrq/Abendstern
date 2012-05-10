@@ -156,10 +156,22 @@ class GameGUIMode {
     set root [new ::gui::ComfyContainer [new ::gui::Frame $top]]
     refreshAccelerators
     $root setSize 0 1 $::vheight 0
+
+    refreshLan
   }
 
   destructor {
     delete object $dummyField
+  }
+
+  method update et {
+    $network update [expr {int($et)}]
+    set sel [$lstlanGames getSelection]
+    set items [$network getDiscoveryResults]
+    $lstlanGames setItems $items
+    if {[llength $sel] > 0 && $sel >= 0 && $sel < [llength $items]} {
+      $lstlanGames setSelection $sel
+    }
   }
 
   method startLocal {} {
@@ -234,5 +246,11 @@ class GameGUIMode {
 
     set modestr [list "${ms}C0" $opts]
     return [list $modestr $background]
+  }
+
+  method refreshLan {} {
+    if {[$network discoveryScanProgress] < 0 || [$network discoveryScanDone]} {
+      $network startDiscoveryScan
+    }
   }
 }

@@ -2942,6 +2942,7 @@ namespace eval gui {
       set loader $ld
       set saver $sv
       set onChange $oc
+      set view 1 ;# In case not sized yet
     }
 
     method resetSelection {} {

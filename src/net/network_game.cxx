@@ -443,7 +443,7 @@ float NetworkGame::discoveryScanProgress() const throw() {
   if (discoverer)
     return discoverer->progress();
   else
-    return 0;
+    return -1;
 }
 
 bool NetworkGame::discoveryScanDone() const throw() {
