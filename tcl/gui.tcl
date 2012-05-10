@@ -1525,17 +1525,24 @@ namespace eval gui {
   # The TabPanel is an AWidget that holds one or more AWidgets, each
   # assigned names. Only one of these AWidgets is shown at a time;
   # the user can select them via the buttons to the left.
+  # A TabPanel may also have its tabs along the top, by passing the tabsOnTop
+  # parameter to the constructor as true.
   class TabPanel {
     inherit BorderContainer
 
     variable buttonBar
     variable viewPane
 
-    constructor {} {
+    constructor {{tabsOnTop no}} {
       BorderContainer::constructor 0.01
     } {
-      set buttonBar [new ::gui::VerticalContainer 0 grid]
-      setElt left $buttonBar
+      if {$tabsOnTop} {
+        set buttonBar [new ::gui::HorizontalContainer 0 left]
+        setElt top $buttonBar
+      } else {
+        set buttonBar [new ::gui::VerticalContainer 0 grid]
+        setElt left $buttonBar
+      }
       set viewPane [new ::gui::TabPanelViewer]
       setElt centre $viewPane
     }
@@ -2935,6 +2942,7 @@ namespace eval gui {
       set loader $ld
       set saver $sv
       set onChange $oc
+      set view 1 ;# In case not sized yet
     }
 
     method resetSelection {} {

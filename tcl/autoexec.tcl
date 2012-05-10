@@ -68,28 +68,6 @@ proc mktemp {var {pfx temp}} {
   return [open $name wb+]
 }
 
-# Test the GameAdvertiser and GameDiscoverer classes.
-# This proc does not return; it loops until the program
-# is killed.
-proc testGameDiscovery {} {
-  set asm [new NetworkAssembly default 0 $::antenna]
-  set oid [expr {int(rand()*1000)}]
-  $asm addPacketProcessor \
-    [new GameAdvertiser default [$asm getTuner] no $oid 10 no TEST]
-  $asm addPacketProcessor \
-    [set disc [new GameDiscoverer default [$asm getTuner]]]
-  $disc start
-  while {true} {
-    $asm update 5
-    $disc poll $::antenna
-    if {1.0 == [$disc progress]} {
-      $disc dumpResults
-      $disc start
-    }
-    after 5
-  }
-}
-
 proc makePlanet {} {
   set parms [new PlanetGeneratorParms default]
   #$parms configure -continents 16 -oceans 32 -largeIslands 4 -seas 2 -smallIslands 32 -lakes 32 \
@@ -123,24 +101,6 @@ proc makePlanet {} {
   #                 -seed 0
   planetgen_begin $parms
   delete object $parms
-}
-
-proc networkTest {modestr stars} {
-  set dummy [new GameField default 1 1]
-  set netw [new NetworkGame default $dummy]
-  $netw startDiscoveryScan
-  while {![$netw discoveryScanDone]} {
-    after 5
-    $netw update 5
-  }
-  if {[llength [$netw getDiscoveryResults]]} {
-    set ret [new GameManager $netw {join-lan-game true 0} $stars]
-  } else {
-    set ret [new GameManager $netw [list init-lan-game 4 true $modestr] $stars]
-  }
-
-  delete object $dummy
-  return $ret
 }
 
 source tcl/boot.tcl

@@ -191,6 +191,17 @@ class GameManager {
     }
   }
 
+  # Initialising method which connects to the given IP address/port combo
+  method join-private-game {advertising addr port} {
+    createMode "NULLC0 {}"
+
+    init-lan
+    $network connectToLan $addr $port
+    if {$advertising} {
+      $network setAdvertising NULL
+    }
+  }
+
   method remote-swich-state {modestr} {
     log "remote-swich-state $modestr"
     createMode $modestr

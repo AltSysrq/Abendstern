@@ -995,6 +995,64 @@
 -killing_spree
 +%s \a[(white)läuft Amok\a]!
 
+@gamegui
+-tab_local
++Lokales
+-tab_lan
++LAN
+-tab_internet
++Internet
+-tab_parm
++Eigenschaften
+
+-background
++Hintergrund:
+-StarField
++Sternesfeld
+-Planet
++Erde
+-Nebula
++Nebula
+-startlocal
++Lokalles Spiel starten
+
+-screenname
++Anzeigename
+-langamelist
++Entdeckte Spiele
+-refresh
++Erneut suchen
+-join_from_list
++Gewählt teilnehmen
+-ip_address
++IP-Addresse
+-port
++Port
+-join_specified
++Verbinden
+-startlan
++Neues LAN-Spiel starten
+
+-size
++Feldgroße
+-numais
++Min Spieler
+-nteams
++Mannschaften
+
+-difficulty
++Schwerigkeit:
+-difficulty_0
++Sehr schwach
+-difficulty_1
++Schwach
+-difficulty_2
++Faire Schlacht
+-difficulty_3
++Experte
+-difficulty_4
++Der Tod schmeckt mir gut!
+
 @boot
 -hotpatch
 +Anwende Abwärtskompatibilität-Änderungen

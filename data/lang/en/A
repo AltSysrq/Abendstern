@@ -1071,6 +1071,65 @@
 -killing_spree
 +%s is on a \a[(white)killing spree\a]!
 
+@gamegui
+-tab_local
++Local
+-tab_lan
++LAN
+-tab_internet
++Internet
+-tab_parm
++Parameters
+
+-background
++Background:
+-StarField
++Star field
+-Planet
++Earth
+-Nebula
++Nebula
+-startlocal
++Start Local Game
+
+-screenname
++Screen name
+-langamelist
++Discovered games
+-refresh
++Refresh
+-join_from_list
++Join selected
+-ip_address
++IP Address
+-port
++Port
+-join_specified
++Connect
+-startlan
++Start \a&New LAN Game
+
+-size
++Field size
+-numais
++Min players
+-nteams
++Num teams
+
+-difficulty
++Difficulty:
+-difficulty_0
++Very Easy
+-difficulty_1
++Beginner
+-difficulty_2
++Fair fight
+-difficulty_3
++Expert
+-difficulty_4
++I love the taste of death!
+
+
 @boot
 -hotpatch
 +Applying backwards-compatibility patches
