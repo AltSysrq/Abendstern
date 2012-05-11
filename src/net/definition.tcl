@@ -1145,7 +1145,7 @@ vtype Ship$ssize Ship {
         } else {
           NAME = false;
         }
-      }
+      } else NAME = false;
     }
   }}
 
