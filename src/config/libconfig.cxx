@@ -16,6 +16,7 @@
 #include <cstdlib>
 #include <cassert>
 #include <cerrno>
+#include <ctime>
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -125,7 +126,7 @@ using namespace std;
  * for a free index-BLOCK list. Each lower index block gets the following extra
  * data:
  *   next       The next free block if this block is free, or the next block in
- *              the slab otherwise. Index into the upper index.
+ *              the slab otherwise. Index into the upper index plus one.
  *   head       If an allocated block, the lower index block for which the
  *              below fields are valid. Index into the upper index.
  *   free       First free index within this slab (free index entries maintain
@@ -334,8 +335,10 @@ namespace libconfig {
   static FILE* swapfile[16] = {0};
   //Index of next free block in the swapfile, or zero for none
   static iptr nextFreeBlock=0;
-  //Location of next free Setting, or NULL for none
-  static Setting* nextFreeSetting=0;
+  //The upper index, plus one, of the next free lower index block, or zero if
+  //none are free.
+  static unsigned nextFreeLIndexBlock = 0;
+
   /* The upper index.
    * This has an extra pointer so that any SwapPointer* will survive
    * resizing of the vector.
@@ -992,16 +995,21 @@ namespace libconfig {
   /* END: Data management functions */
 
   /* BEGIN: Memory management function */
-  /* Ensures that current memory usage is below the requested maximum. */
+  /* Swaps the last item in the swappable list out. */
+  static void swapOneItemOut() {
+    Swappable* swp = rutail.prv;
+    iptr loc = swp->swapout(swp);
+    swp->parent->dsk = loc | 1;
+    primaryUsed -= swp->size;
+    rutail.prv = swp->prv;
+    rutail.prv->nxt = &rutail;
+    delete swp;
+  }
+
+  /* Ensures that current memory usage is below twice the requested maximum. */
   static void checkMemoryLimit() {
-    while (primaryUsed > maxPrimary) {
-      Swappable* swp = rutail.prv;
-      iptr loc = swp->swapout(swp);
-      swp->parent->dsk = loc | 1;
-      primaryUsed -= swp->size;
-      rutail.prv = swp->prv;
-      rutail.prv->nxt = &rutail;
-      delete swp;
+    while (primaryUsed > maxPrimary*2) {
+      swapOneItemOut();
     }
   }
 
@@ -1104,6 +1112,12 @@ namespace libconfig {
     #endif
   }
 
+  /* Returns the RLIndex to use with the given upper index. */
+  static RLIndex* sgetrli(unsigned uix,
+                          const vector<SwapPointer*>& uIndex = upperIndex) {
+    return (RLIndex*)rget(*uIndex[uix], swapin_lindex);
+  }
+
   /* Decodes the given Setting* and returns a SettingEncoder::LowerIndex*
    * that the Setting* points to.
    */
@@ -1116,67 +1130,141 @@ namespace libconfig {
     return &li->dat[lix];
   }
 
-  /* Extends the lower indices with another block and sets them up as
-   * free Settings.
+  /* Returns the upper index of a free, uninitialised lower index block. If
+   * none is found, a new one is allocated and added to the upper indices.
    */
-  static void sextend() {
-    RLIndex* rli = new RLIndex;
-    RLIndex* rpli = new RLIndex;
-    for (unsigned i=0; i<LOWER_INDEX_SZ; ++i)
-      rli->dat[i].nxt = (i < LOWER_INDEX_SZ-1?
-                         SR(SettingEncoder::create((Setting::Type)0,
-                                                   upperIndex.size(), i+1))
-                         : nextFreeSetting);
-    nextFreeSetting = SR(SettingEncoder::create((Setting::Type)0,
-                                                upperIndex.size(), 0));
-    rli->size = sizeof(RLIndex);
-    rpli->size = sizeof(RLIndex);
-    rli->swapout = swapout_lindex;
-    rpli->swapout = swapout_lindex;
+  static unsigned sallocLIndexBlock() {
+    if (nextFreeLIndexBlock) {
+      unsigned ret = nextFreeLIndexBlock - 1;
+      //Update the free head
+      nextFreeLIndexBlock = sgetrli(ret)->next;
+      //Done
+      return ret;
+    } else {
+      //Need a new one
+      unsigned ret = upperIndex.size();
+      RLIndex* main, * parent;
+      main = new RLIndex;
+      parent = new RLIndex;
+      main->size = parent->size = sizeof(RLIndex);
+      main->swapout = parent->swapout = swapout_lindex;
+      SwapPointer* mp = new SwapPointer, * pp = new SwapPointer;
+      mp->ptr = main;
+      pp->ptr = parent;
+      main->parent = mp;
+      parent->parent = pp;
+      upperIndex.push_back(mp);
+      parentUpperIndex.push_back(pp);
+      radd(main);
+      radd(parent);
 
-    //Besides this, rpli can be left uninitialised (and besides the parent,
-    //below)
-
-    SwapPointer* rliptr = new SwapPointer, * rpliptr = new SwapPointer;
-    rliptr->ptr = rli;
-    rpliptr->ptr = rpli;
-    rli->parent = rliptr;
-    rpli->parent = rpliptr;
-    upperIndex.push_back(rliptr);
-    parentUpperIndex.push_back(rpliptr);
-    radd(rli);
-    radd(rpli);
+      return ret;
+    }
   }
 
-  /* Allocates and returns a new Setting* of the given type and parent.
-   * The value is NOT initialised.
+  /* Adds the lower index block at the given upper index to the free list. */
+  static void sfreeLIndexBlock(unsigned uix) {
+    RLIndex* li = sgetrli(uix);
+    li->next = nextFreeLIndexBlock;
+    nextFreeLIndexBlock = uix + 1;
+  }
+
+  /* Initialises the lower index block at the given upper index as entirely
+   * free.
    *
-   * This will return the most recently freed Setting if there is one;
-   * the parsing functions, in particular, depend on this behaviour.
+   * RLIndex::free will be set appropriately.
    */
-  static Setting* salloc(Setting::Type t, Setting* parent) {
-    //Allocate more if none free
-    if (!nextFreeSetting) sextend();
-    //Get information on the first free one
+  static void slindexBlockInit(unsigned uix) {
+    RLIndex* li = sgetrli(uix);
+    for (unsigned i = 0; i < LOWER_INDEX_SZ; ++i)
+      li->dat[i].nxt = SR(SettingEncoder::create((Setting::Type)0, uix, i+1));
+    li->dat[LOWER_INDEX_SZ-1].nxt = NULL;
+    li->free = SettingEncoder::create((Setting::Type)0, uix, 0);
+  }
+
+  /* Creates and returns a new LIndex slab. */
+  static RLIndex* screateSlab() {
+    unsigned uix = sallocLIndexBlock();
+    slindexBlockInit(uix);
+    RLIndex* li = sgetrli(uix);
+    li->head = uix;
+    li->next = 0;
+    li->alloccnt = 0;
+    return li;
+  }
+
+  /* Appends a new LIndex block to the given slab head.
+   */
+  static void sextendSlab(RLIndex* slab) {
+    unsigned uix = sallocLIndexBlock();
+    slindexBlockInit(uix);
+    //Add to slab
+    RLIndex* li = sgetrli(uix);
+    li->head = slab->head;
+    slab->free = li->free;
+    //Insert between head and second item, since order doesn't matter (except
+    //for the head itself)
+    li->next = slab->next;
+    slab->next = uix + 1;
+  }
+
+  /* Frees the entirety of the slab starting at the given root. */
+  static void sfreeSlab(RLIndex* slab) {
+    unsigned uix = slab->head + 1;
+    assert(!slab->alloccnt);
+    while (uix) {
+      slab = sgetrli(uix-1);
+      unsigned nxtix = slab->next;
+      sfreeLIndexBlock(uix-1);
+      uix = nxtix;
+    }
+  }
+
+  /* Allocates a new Setting of the given type and parent.
+   * The value itself is NOT initialised.
+   *
+   * This will return the most recently freed Setting within the same Config
+   * object, if applicable. The parsing functions, in particular, rely on this
+   * behaviour.
+   */
+  static Setting* salloc(Setting::Type type, Setting* parent) {
+    RLIndex* slab;
+    if (parent) {
+      unsigned uix, lix;
+      SettingEncoder::indices(parent, uix, lix);
+      //Allocate within same slab
+      slab = sgetrli(uix);
+      slab = sgetrli(slab->head);
+
+      //Extend slab if no free slots remain
+      if (!slab->free)
+        sextendSlab(slab);
+    } else {
+      //Allocate within new slab
+      slab = screateSlab();
+    }
+
+    //The above code should guarantee that a free slot exists within the slab.
+    assert(slab->free);
+
     unsigned uix, lix;
-    SettingEncoder::indices(nextFreeSetting, uix, lix);
-    SwapPointer* uptr = upperIndex[uix];
-    RLIndex* rli = (RLIndex*)rget(*uptr, swapin_lindex);
-    //Point free to next
-    nextFreeSetting = rli->dat[lix].nxt;
+    SettingEncoder::indices(slab->free, uix, lix);
+    Setting* ret = SR(SettingEncoder::create(type, uix, lix));
 
-    //Find parent pointer and set
-    uptr = parentUpperIndex[uix];
-    rli = (RLIndex*)rget(*uptr, swapin_lindex);
-    rli->dat[lix].parent = parent;
+    //Mark as allocated and update free pointer
+    SettingEncoder::LowerIndex* entry = sgetli(ret, upperIndex);
+    ++slab->alloccnt;
+    slab->free = RS(entry->nxt);
 
-    //Return new setting
-    return SR(SettingEncoder::create(t, uix, lix));
+    //Set the parent
+    sgetli(ret, parentUpperIndex)->parent = parent;
+
+    return ret;
   }
 
   /* Immediately frees a Setting. This should only be used from
    * garbageCollection() and parsing functions;
-   * normally, one should add the Setting* to toDelete.
+   * normally, one sould add the Setting* to toDelete.
    */
   static void sfree(Setting* s) {
     Setting::Type type = s->getType();
@@ -1185,30 +1273,30 @@ namespace libconfig {
     void (*diskfree)(iptr) = NULL;
     void (*ramfree)(Swappable*) = NULL;
     switch (type) {
-      case Setting::TypeInt64:
-        if (!SettingEncoder::canEmbedInt64()) {
-          if (sdat->ptr.dsk & 1) diskfree = diskfree_int64;
-          else                   ramfree  = ramfree_int64;
-          break;
-        } //else fallthrough and treat like other primitives
-      case Setting::TypeInt:
-      case Setting::TypeFloat:
-      case Setting::TypeBoolean:
-        //do nothing
+    case Setting::TypeInt64:
+      if (!SettingEncoder::canEmbedInt64()) {
+        if (sdat->ptr.dsk & 1) diskfree = diskfree_int64;
+        else ramfree = ramfree_int64;
         break;
-      case Setting::TypeString:
-        if (sdat->ptr.dsk & 1) diskfree = diskfree_string;
-        else                   ramfree  = ramfree_string;
-        break;
-      case Setting::TypeList:
-      case Setting::TypeArray:
-        if (sdat->ptr.dsk & 1) diskfree = diskfree_array;
-        else                   ramfree  = ramfree_array;
-        break;
-      case Setting::TypeGroup:
-        if (sdat->ptr.dsk & 1) diskfree = diskfree_group;
-        else                   ramfree  = ramfree_group;
-        break;
+      } //else fallthrough and treat like other primitives
+    case Setting::TypeInt:
+    case Setting::TypeFloat:
+    case Setting::TypeBoolean:
+      //do nothing
+      break;
+    case Setting::TypeString:
+      if (sdat->ptr.dsk & 1) diskfree = diskfree_string;
+      else ramfree = ramfree_string;
+      break;
+    case Setting::TypeList:
+    case Setting::TypeArray:
+      if (sdat->ptr.dsk & 1) diskfree = diskfree_array;
+      else ramfree = ramfree_array;
+      break;
+    case Setting::TypeGroup:
+      if (sdat->ptr.dsk & 1) diskfree = diskfree_group;
+      else ramfree = ramfree_group;
+      break;
     }
 
     if (diskfree) {
@@ -1218,12 +1306,20 @@ namespace libconfig {
       rfree(sdat->ptr.ptr);
     }
 
-    //Add to head of list
-    sdat->nxt = nextFreeSetting;
+    //Add to head of slab's free list
+    RLIndex* slab;
     unsigned uix, lix;
     SettingEncoder::indices(s, uix, lix);
-    nextFreeSetting = SR(SettingEncoder::create((Setting::Type)0, uix, lix));
+    slab = sgetrli(uix);
+    slab = sgetrli(slab->head);
+    sdat->nxt = SR(slab->free);
+    slab->free = SettingEncoder::create((Setting::Type)0, uix, lix);
+
+    //Free slab if empty
+    if (!--slab->alloccnt)
+      sfreeSlab(slab);
   }
+
   /* END: Memory management functions */
 
   //Setting initialisation functions
@@ -2785,9 +2881,14 @@ namespace libconfig {
   }
   void garbageCollection() {
     rsanity();
-    for (unsigned i=0; i<1024 && !toDelete.empty(); ++i) {
+    clock_t end = clock() + CLOCKS_PER_SEC/100;
+    while (clock() < end && !toDelete.empty()) {
       sfree(toDelete.front());
       toDelete.pop();
     }
+
+    end = clock() + CLOCKS_PER_SEC/100;
+    while (clock() < end && primaryUsed > maxPrimary)
+      swapOneItemOut();
   }
 }

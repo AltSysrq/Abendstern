@@ -897,6 +897,10 @@ namespace libconfig {
    * well as top-level indices cannot be swapped out and do not count toward
    * the storage usage amount.
    *
+   * Note that the HARD limit is twice this value. When the usage is between
+   * the soft and hard limits, items are progressively swapped out by
+   * garbageCollection().
+   *
    * The default value is one megabyte.
    */
   std::size_t getMaxPriStorage();
@@ -924,7 +928,9 @@ namespace libconfig {
    */
   unsigned long long getSwapFileSize();
 
-  /** Deletes up to 1024 Settings queued for deletion and returns.
+  /**
+   * Deletes up to Settings queued for deletion for up to 10 ms, and swaps data
+   * out if necessary for up to 10 ms.
    *
    * This must be called to reclaim memory used by Settings.
    *
