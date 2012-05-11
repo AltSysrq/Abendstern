@@ -16,6 +16,7 @@
 #include <cstdlib>
 #include <cassert>
 #include <cerrno>
+#include <ctime>
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -994,16 +995,21 @@ namespace libconfig {
   /* END: Data management functions */
 
   /* BEGIN: Memory management function */
-  /* Ensures that current memory usage is below the requested maximum. */
+  /* Swaps the last item in the swappable list out. */
+  static void swapOneItemOut() {
+    Swappable* swp = rutail.prv;
+    iptr loc = swp->swapout(swp);
+    swp->parent->dsk = loc | 1;
+    primaryUsed -= swp->size;
+    rutail.prv = swp->prv;
+    rutail.prv->nxt = &rutail;
+    delete swp;
+  }
+
+  /* Ensures that current memory usage is below twice the requested maximum. */
   static void checkMemoryLimit() {
-    while (primaryUsed > maxPrimary) {
-      Swappable* swp = rutail.prv;
-      iptr loc = swp->swapout(swp);
-      swp->parent->dsk = loc | 1;
-      primaryUsed -= swp->size;
-      rutail.prv = swp->prv;
-      rutail.prv->nxt = &rutail;
-      delete swp;
+    while (primaryUsed > maxPrimary*2) {
+      swapOneItemOut();
     }
   }
 
@@ -2875,9 +2881,14 @@ namespace libconfig {
   }
   void garbageCollection() {
     rsanity();
-    for (unsigned i=0; i<1024 && !toDelete.empty(); ++i) {
+    clock_t end = clock() + CLOCKS_PER_SEC/100;
+    while (clock() < end && !toDelete.empty()) {
       sfree(toDelete.front());
       toDelete.pop();
     }
+
+    end = clock() + CLOCKS_PER_SEC/100;
+    while (clock() < end && primaryUsed > maxPrimary)
+      swapOneItemOut();
   }
 }
