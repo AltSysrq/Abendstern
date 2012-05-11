@@ -79,7 +79,7 @@ class TestMode {
     if {[string length $::abnet::userid]} {
       # Logged in to network, give appropriate options
       $main add [new gui::Button [_ T a acct_mgmt] \
-        "$app configure -retval \[new AccountManager\]"]
+        "$app setSubState \[new AccountManager\]"]
       $main add [new gui::Button [_ T a shipbrowse] \
         "$app configure -retval \[new ShipBrowser\]"]
     }
