@@ -41,6 +41,7 @@ tcl/ui/login.tcl
 tcl/ui/acctmgr.tcl
 tcl/ui/shipbrowse.tcl
 tcl/ui/testmenu.tcl
+tcl/ui/game.tcl
 tcl/autosource.tcl
 tcl/self_update.tcl
 tcl/ship_edit.tcl
