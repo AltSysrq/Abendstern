@@ -408,8 +408,9 @@ TclInterpType tclinterp
 
 # Enumerated types
 # An enumeration may be made "open"; in this case,
-# unknown C++ values are mapped to the zeroth
-# name
+# unknown C++ values are mapped to an integer corresponding to the enum's
+# integer representation, and integers are understood to be enum values (this
+# is unchecked)
 class EnumType {
   inherit Type
   variable cppType
@@ -453,12 +454,25 @@ class EnumType {
         } [[lindex $identifierList $i] inTcl] $valueOut [[lindex $identifierList $i] inCpp] $doneLabel
       ]
     }
-    append build [
-      format { {
-        sprintf(staticError, "Unable to convert %%s to %s", tmp);
-        scriptError(staticError);
-      } } $cppType
-    ]
+    if {$isOpen} {
+      append bulid [
+        format { {
+          const char* end;
+          %s = (%s)atol(tmp, &end, 10);
+          if (*end) {
+            sprintf(staticError, "Unable to convert %%s to %s", tmp);
+            scriptError(staticError);
+          }
+        } } $valueOut $cppType $cppType
+      ]
+    } else {
+      append build [
+        format { {
+          sprintf(staticError, "Unable to convert %%s to %s", tmp);
+          scriptError(staticError);
+        } } $cppType
+      ]
+    }
     append build "\n$doneLabel:;"
     return $build
   }

@@ -219,6 +219,8 @@ class foreign SDL_MouseButtonEvent {} {
   var y Uint16
 }
 
+fun cstr SDL_GetKeyName SDLKey
+
 ##END -- SDL Events
 
 ##BEGIN -- Misc SDL stuff
