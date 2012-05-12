@@ -282,6 +282,21 @@
 -class_prefix
 +Class\x20
 
+-category
++Category
+-cat0
++Swarm
+-cat1
++Interceptor
+-cat2
++Fighter
+-cat3
++Attacker
+-cat4
++Frigate
+-cat5
++Defender
+
 -anonymous
 +Anonymous
 
@@ -705,6 +720,8 @@
 +Default control scheme
 -*spacecadet
 +Advanced keyboard scheme
+-*custom
++User-defined
 
 @login
 -tlogin

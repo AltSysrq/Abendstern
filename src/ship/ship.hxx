@@ -96,6 +96,56 @@ class Ship: public GameObject {
   friend class INO_Ship4094;
   friend class ENO_Ship4094;
   public:
+  /** The possible categories returned by Ship::categorise().
+   *
+   * Each category is defined to be effective against two other categories; it
+   * by this definition that ship quality is judged.
+   */
+  enum Category {
+    /**
+     * Swarm ships are small and agile, but weak. They are effective when
+     * working together.
+     *
+     * Effective against: Fighter, Attacker
+     */
+    Swarm=0,
+    /**
+     * Interceptors are fighters with an emphasis on acceleration, intended to
+     * eliminate escort fighters and swarms.
+     *
+     * Effective against: Swarm, Fighter
+     */
+    Interceptor,
+    /**
+     * General-purpose fighters, usable as escorts and for removing heavier
+     * craft.
+     *
+     * Effective against: Defender, Attacker
+     */
+    Fighter,
+    /**
+     * Heavier than fighters, and armed enough to be effective against larger
+     * ships, but still manoeuverable enough to defend themselves.
+     *
+     * Effective against: Defender, Subcapital
+     */
+    Attacker,
+    /**
+     * Very large, but non-capital, ships which have large amounts of
+     * fire-power, but can still get around well enough. Their strength must
+     * render lighter craft ineffective.
+     *
+     * Effective against: Swarm, Interceptor
+     */
+    Subcapital,
+    /**
+     * Larger craft with a focus on fire-power and rotation instead of movement.
+     *
+     * Effective against: Attacker, Subcapital
+     */
+    Defender
+  };
+
   /** Cells arranged according to network indices.
    * If this is empty, this operation has not yet been done.
    *
@@ -880,6 +930,9 @@ class Ship: public GameObject {
   unsigned cellCount() const noth {
     return cells.size();
   }
+
+  /** Returns the category into which this Ship falls. */
+  Category categorise() const noth;
 
   private:
   /* Subtract the given Cell's information from the ship, and perform any

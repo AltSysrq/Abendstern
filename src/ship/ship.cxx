@@ -1860,3 +1860,18 @@ const char* verify(Ship* ship, bool phys) {
   return ret;
 }
 
+Ship::Category Ship::categorise() const noth {
+  //Swarm: Fewer than 25 cells
+  if (cells.size() < 25) return Swarm;
+  //Subcapital: >= 256 cells, reinforcement >= 3
+  if (cells.size() >= 256 && reinforcement >= 3) return Subcapital;
+  //Defender: Anything else >= 256 cells
+  if (cells.size() >= 256) return Defender;
+
+  //Attacker: Reinforcement >= 3
+  if (reinforcement >= 3) return Attacker;
+  //Interceptor: Reinforcement < 1
+  if (reinforcement < 1) return Interceptor;
+  //Anything else: Fighter
+  return Fighter;
+}

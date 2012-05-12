@@ -219,6 +219,8 @@ class foreign SDL_MouseButtonEvent {} {
   var y Uint16
 }
 
+fun cstr SDL_GetKeyName SDLKey
+
 ##END -- SDL Events
 
 ##BEGIN -- Misc SDL stuff
@@ -465,6 +467,13 @@ class final radar_t {} {
 
 cxx src/ship/ship.hxx src/sim/game_field.hxx src/control/controller.hxx \
     src/camera/effects_handler.hxx src/ship/cell/cell.hxx
+enum Ship::Category {} \
+    {Ship::Swarm 	Swarm} \
+    {Ship::Interceptor	Interceptor} \
+    {Ship::Fighter	Fighter} \
+    {Ship::Attacker	Attacker} \
+    {Ship::Subcapital	Subcapital} \
+    {Ship::Defender	Defender}
 class final Ship GameObject {
   unsafe {
     var controller Controller* steal
@@ -543,6 +552,7 @@ class final Ship GameObject {
   fun void setRadar {} radar_t*
 
   fun cstr getDeathAttributions
+  fun Ship::Category categorise
 }
 
 cxx src/ship/ship.hxx src/ship/shipio.hxx src/ship/cell/cell.hxx \

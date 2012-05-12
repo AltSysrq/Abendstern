@@ -52,3 +52,4 @@ ship_class="C";
 ship_name="";
 ship_author="";
 ship_alliances=["EUF","WUDR"];
+ship_category="";

@@ -139,7 +139,7 @@ class AccountManagerMode {
     set buttons [new ::gui::HorizontalContainer 0 grid]
     set mainButtons [new ::gui::HorizontalContainer 0.01 left]
     $mainButtons add [new ::gui::Button [_ A login alter] [list $this alter]]
-    set cancel [new ::gui::Button [_ A gui close] [list source tcl/init.d/mainmenu.tcl]]
+    set cancel [new ::gui::Button [_ A gui close] "$app setReturn $app"]
     $cancel setCancel
     $mainButtons add $cancel
     $buttons add $mainButtons

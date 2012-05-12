@@ -170,3 +170,10 @@ if {![file exists hangar/local]} {
 if {![$ exists conf.game.use_geneticai]} {
   $ addb conf.game use_geneticai no
 }
+
+# Create custom control set if none exists
+if {![$ exists conf.custom_control]} {
+  $ add conf custom_control STGroup
+  confcpy conf.custom_control conf.default_control
+  $ sets conf.custom_control.comment "*custom"
+}

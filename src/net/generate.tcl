@@ -887,7 +887,7 @@ foreach ssize $SHIP_SIZES {
   puts $cout "  num = INO_Ship${ssize}::num;"
   puts $cout "else";
 }
-puts $cout "{ assert(false); }"
+puts $cout "{ assert(false); exit(EXIT_PROGRAM_BUG); }"
 puts $cout "} else"
 
 puts $cout "

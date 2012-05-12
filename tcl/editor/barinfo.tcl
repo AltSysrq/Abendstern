@@ -7,6 +7,7 @@ if {[$ exists $mount.info.author]} {
   fmtlbl $panel "[_ A editor author]: %s" [$ str $mount.info.author]
 }
 fmtlbl $panel "[_ A editor class]: %s" [$ str $mount.info.class]
+fmtlbl $panel "[_ A editor category]: %s"      [$ str edit.ship_category]
 
 $panel add [new ::gui::Label "--\a\[(special)[_ A editor physical_header]\a\]--" centre]
 fmtlbl $panel "[_ A editor cells]: %d"     [$ int edit.ship_cell_count]
