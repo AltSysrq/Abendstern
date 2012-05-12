@@ -644,6 +644,8 @@
 +Standardkontrollschema
 -*spacecadet
 +Spezielles Tastaturschema
+-*custom
++Benutzer-definiert
 
 @login
 -tlogin

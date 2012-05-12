@@ -720,6 +720,8 @@
 +Default control scheme
 -*spacecadet
 +Advanced keyboard scheme
+-*custom
++User-defined
 
 @login
 -tlogin
