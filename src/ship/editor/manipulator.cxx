@@ -279,14 +279,20 @@ const char* Manipulator::reloadShip() {
 
   ship->teleport(0.5f,vheight/2,0);
 
+  ostringstream cat;
+  cat << "cat" << (unsigned)ship->categorise();
+
   //Determine ship properties
   string mountname((const char*)conf["edit"]["mountname"]);
   conf["edit"]["ship_mass"]=ship->getMass();
   conf["edit"]["ship_reinforcement"] = ship->getReinforcement();
   conf["edit"]["ship_name"] = (const char*)conf[mountname]["info"]["name"];
   conf["edit"]["ship_class"] = (const char*)conf[mountname]["info"]["class"];
+  conf["edit"]["ship_category"] =
+    l10n::lookup('A', "editor", cat.str().c_str());
   if (conf[mountname]["info"].exists("author"))
-    conf["edit"]["ship_author"] = (const char*)conf[mountname]["info"]["author"];
+    conf["edit"]["ship_author"] =
+      (const char*)conf[mountname]["info"]["author"];
   else
     conf["edit"]["ship_author"] = "Anonymous";
   //Clear alliances, then copy

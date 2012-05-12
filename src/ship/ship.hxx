@@ -108,7 +108,7 @@ class Ship: public GameObject {
      *
      * Effective against: Fighter, Attacker
      */
-    Swarm,
+    Swarm=0,
     /**
      * Interceptors are fighters with an emphasis on acceleration, intended to
      * eliminate escort fighters and swarms.

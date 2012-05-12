@@ -207,6 +207,21 @@
 -class_prefix
 +Klasse-
 
+-category
++Kategorie
+-cat0
++Schwarm
+-cat1
++Abfangjäger
+-cat2
++Kämpfer
+-cat3
++Schlacht
+-cat4
++Freggate
+-cat5
++Verteidiger
+
 -anonymous
 +Namenlos
 
