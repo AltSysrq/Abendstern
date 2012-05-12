@@ -3665,7 +3665,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
     
 
       if ((1+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(1+ARRAY_OFFSET)]) {
@@ -3678,7 +3678,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
     
 
       if ((2+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(2+ARRAY_OFFSET)]) {
@@ -3691,7 +3691,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
     
 
       if ((3+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(3+ARRAY_OFFSET)]) {
@@ -3704,7 +3704,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
     
 
       if ((4+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(4+ARRAY_OFFSET)]) {
@@ -3717,7 +3717,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
     
 
       if ((5+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(5+ARRAY_OFFSET)]) {
@@ -3730,7 +3730,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
     
 
       if ((6+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(6+ARRAY_OFFSET)]) {
@@ -3743,7 +3743,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
     
 
       if ((7+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(7+ARRAY_OFFSET)]) {
@@ -3756,7 +3756,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
@@ -4233,7 +4233,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
     
 
       if ((1+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(1+ARRAY_OFFSET)]) {
@@ -4246,7 +4246,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
     
 
       if ((2+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(2+ARRAY_OFFSET)]) {
@@ -4259,7 +4259,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
     
 
       if ((3+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(3+ARRAY_OFFSET)]) {
@@ -4272,7 +4272,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
     
 
       if ((4+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(4+ARRAY_OFFSET)]) {
@@ -4285,7 +4285,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
     
 
       if ((5+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(5+ARRAY_OFFSET)]) {
@@ -4298,7 +4298,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
     
 
       if ((6+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(6+ARRAY_OFFSET)]) {
@@ -4311,7 +4311,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
     
 
       if ((7+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(7+ARRAY_OFFSET)]) {
@@ -4324,7 +4324,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
@@ -6786,7 +6786,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
     
 
       if ((1+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(1+ARRAY_OFFSET)]) {
@@ -6799,7 +6799,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
     
 
       if ((2+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(2+ARRAY_OFFSET)]) {
@@ -6812,7 +6812,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
     
 
       if ((3+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(3+ARRAY_OFFSET)]) {
@@ -6825,7 +6825,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
     
 
       if ((4+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(4+ARRAY_OFFSET)]) {
@@ -6838,7 +6838,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
     
 
       if ((5+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(5+ARRAY_OFFSET)]) {
@@ -6851,7 +6851,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
     
 
       if ((6+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(6+ARRAY_OFFSET)]) {
@@ -6864,7 +6864,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
     
 
       if ((7+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(7+ARRAY_OFFSET)]) {
@@ -6877,7 +6877,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
@@ -7354,7 +7354,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
     
 
       if ((1+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(1+ARRAY_OFFSET)]) {
@@ -7367,7 +7367,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
     
 
       if ((2+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(2+ARRAY_OFFSET)]) {
@@ -7380,7 +7380,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
     
 
       if ((3+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(3+ARRAY_OFFSET)]) {
@@ -7393,7 +7393,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
     
 
       if ((4+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(4+ARRAY_OFFSET)]) {
@@ -7406,7 +7406,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
     
 
       if ((5+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(5+ARRAY_OFFSET)]) {
@@ -7419,7 +7419,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
     
 
       if ((6+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(6+ARRAY_OFFSET)]) {
@@ -7432,7 +7432,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
     
 
       if ((7+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(7+ARRAY_OFFSET)]) {
@@ -7445,7 +7445,7 @@ bool gatPlasmaTurbo[8];
         } else {
           gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
@@ -9907,7 +9907,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
     
 
       if ((1+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(1+ARRAY_OFFSET)]) {
@@ -9920,7 +9920,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
     
 
       if ((2+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(2+ARRAY_OFFSET)]) {
@@ -9933,7 +9933,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
     
 
       if ((3+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(3+ARRAY_OFFSET)]) {
@@ -9946,7 +9946,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
     
 
       if ((4+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(4+ARRAY_OFFSET)]) {
@@ -9959,7 +9959,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
     
 
       if ((5+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(5+ARRAY_OFFSET)]) {
@@ -9972,7 +9972,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
     
 
       if ((6+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(6+ARRAY_OFFSET)]) {
@@ -9985,7 +9985,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
     
 
       if ((7+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(7+ARRAY_OFFSET)]) {
@@ -9998,7 +9998,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
@@ -10475,7 +10475,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
     
 
       if ((1+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(1+ARRAY_OFFSET)]) {
@@ -10488,7 +10488,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
     
 
       if ((2+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(2+ARRAY_OFFSET)]) {
@@ -10501,7 +10501,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
     
 
       if ((3+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(3+ARRAY_OFFSET)]) {
@@ -10514,7 +10514,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
     
 
       if ((4+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(4+ARRAY_OFFSET)]) {
@@ -10527,7 +10527,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
     
 
       if ((5+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(5+ARRAY_OFFSET)]) {
@@ -10540,7 +10540,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
     
 
       if ((6+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(6+ARRAY_OFFSET)]) {
@@ -10553,7 +10553,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
     
 
       if ((7+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(7+ARRAY_OFFSET)]) {
@@ -10566,7 +10566,7 @@ bool gatPlasmaTurbo[16];
         } else {
           gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
@@ -13028,7 +13028,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
     
 
       if ((1+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(1+ARRAY_OFFSET)]) {
@@ -13041,7 +13041,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
     
 
       if ((2+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(2+ARRAY_OFFSET)]) {
@@ -13054,7 +13054,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
     
 
       if ((3+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(3+ARRAY_OFFSET)]) {
@@ -13067,7 +13067,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
     
 
       if ((4+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(4+ARRAY_OFFSET)]) {
@@ -13080,7 +13080,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
     
 
       if ((5+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(5+ARRAY_OFFSET)]) {
@@ -13093,7 +13093,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
     
 
       if ((6+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(6+ARRAY_OFFSET)]) {
@@ -13106,7 +13106,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
     
 
       if ((7+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(7+ARRAY_OFFSET)]) {
@@ -13119,7 +13119,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=8) {
@@ -13596,7 +13596,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
     
 
       if ((1+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(1+ARRAY_OFFSET)]) {
@@ -13609,7 +13609,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
     
 
       if ((2+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(2+ARRAY_OFFSET)]) {
@@ -13622,7 +13622,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
     
 
       if ((3+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(3+ARRAY_OFFSET)]) {
@@ -13635,7 +13635,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
     
 
       if ((4+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(4+ARRAY_OFFSET)]) {
@@ -13648,7 +13648,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
     
 
       if ((5+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(5+ARRAY_OFFSET)]) {
@@ -13661,7 +13661,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
     
 
       if ((6+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(6+ARRAY_OFFSET)]) {
@@ -13674,7 +13674,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
     
 
       if ((7+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(7+ARRAY_OFFSET)]) {
@@ -13687,7 +13687,7 @@ bool gatPlasmaTurbo[64];
         } else {
           gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
@@ -16149,7 +16149,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
     
 
       if ((1+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(1+ARRAY_OFFSET)]) {
@@ -16162,7 +16162,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
     
 
       if ((2+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(2+ARRAY_OFFSET)]) {
@@ -16175,7 +16175,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
     
 
       if ((3+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(3+ARRAY_OFFSET)]) {
@@ -16188,7 +16188,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
     
 
       if ((4+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(4+ARRAY_OFFSET)]) {
@@ -16201,7 +16201,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
     
 
       if ((5+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(5+ARRAY_OFFSET)]) {
@@ -16214,7 +16214,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
     
 
       if ((6+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(6+ARRAY_OFFSET)]) {
@@ -16227,7 +16227,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
     
 
       if ((7+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(7+ARRAY_OFFSET)]) {
@@ -16240,7 +16240,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=8) {
@@ -16717,7 +16717,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
     
 
       if ((1+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(1+ARRAY_OFFSET)]) {
@@ -16730,7 +16730,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
     
 
       if ((2+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(2+ARRAY_OFFSET)]) {
@@ -16743,7 +16743,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
     
 
       if ((3+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(3+ARRAY_OFFSET)]) {
@@ -16756,7 +16756,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
     
 
       if ((4+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(4+ARRAY_OFFSET)]) {
@@ -16769,7 +16769,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
     
 
       if ((5+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(5+ARRAY_OFFSET)]) {
@@ -16782,7 +16782,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
     
 
       if ((6+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(6+ARRAY_OFFSET)]) {
@@ -16795,7 +16795,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
     
 
       if ((7+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(7+ARRAY_OFFSET)]) {
@@ -16808,7 +16808,7 @@ bool gatPlasmaTurbo[256];
         } else {
           gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
@@ -19270,7 +19270,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
     
 
       if ((1+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(1+ARRAY_OFFSET)]) {
@@ -19283,7 +19283,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
     
 
       if ((2+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(2+ARRAY_OFFSET)]) {
@@ -19296,7 +19296,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
     
 
       if ((3+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(3+ARRAY_OFFSET)]) {
@@ -19309,7 +19309,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
     
 
       if ((4+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(4+ARRAY_OFFSET)]) {
@@ -19322,7 +19322,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
     
 
       if ((5+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(5+ARRAY_OFFSET)]) {
@@ -19335,7 +19335,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
     
 
       if ((6+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(6+ARRAY_OFFSET)]) {
@@ -19348,7 +19348,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
     
 
       if ((7+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(7+ARRAY_OFFSET)]) {
@@ -19361,7 +19361,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=8) {
@@ -19838,7 +19838,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
     
 
       if ((1+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(1+ARRAY_OFFSET)]) {
@@ -19851,7 +19851,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
     
 
       if ((2+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(2+ARRAY_OFFSET)]) {
@@ -19864,7 +19864,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
     
 
       if ((3+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(3+ARRAY_OFFSET)]) {
@@ -19877,7 +19877,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
     
 
       if ((4+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(4+ARRAY_OFFSET)]) {
@@ -19890,7 +19890,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
     
 
       if ((5+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(5+ARRAY_OFFSET)]) {
@@ -19903,7 +19903,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
     
 
       if ((6+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(6+ARRAY_OFFSET)]) {
@@ -19916,7 +19916,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
     
 
       if ((7+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(7+ARRAY_OFFSET)]) {
@@ -19929,7 +19929,7 @@ bool gatPlasmaTurbo[1024];
         } else {
           gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
@@ -22391,7 +22391,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
     
 
       if ((1+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(1+ARRAY_OFFSET)]) {
@@ -22404,7 +22404,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
     
 
       if ((2+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(2+ARRAY_OFFSET)]) {
@@ -22417,7 +22417,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
     
 
       if ((3+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(3+ARRAY_OFFSET)]) {
@@ -22430,7 +22430,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
     
 
       if ((4+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(4+ARRAY_OFFSET)]) {
@@ -22443,7 +22443,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
     
 
       if ((5+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(5+ARRAY_OFFSET)]) {
@@ -22456,7 +22456,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
     
 
       if ((6+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(6+ARRAY_OFFSET)]) {
@@ -22469,7 +22469,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
     
 
       if ((7+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(7+ARRAY_OFFSET)]) {
@@ -22482,7 +22482,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=8) {
@@ -22959,7 +22959,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[0+ARRAY_OFFSET] = false;
     
 
       if ((1+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(1+ARRAY_OFFSET)]) {
@@ -22972,7 +22972,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[1+ARRAY_OFFSET] = false;
     
 
       if ((2+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(2+ARRAY_OFFSET)]) {
@@ -22985,7 +22985,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[2+ARRAY_OFFSET] = false;
     
 
       if ((3+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(3+ARRAY_OFFSET)]) {
@@ -22998,7 +22998,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[3+ARRAY_OFFSET] = false;
     
 
       if ((4+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(4+ARRAY_OFFSET)]) {
@@ -23011,7 +23011,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[4+ARRAY_OFFSET] = false;
     
 
       if ((5+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(5+ARRAY_OFFSET)]) {
@@ -23024,7 +23024,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[5+ARRAY_OFFSET] = false;
     
 
       if ((6+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(6+ARRAY_OFFSET)]) {
@@ -23037,7 +23037,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[6+ARRAY_OFFSET] = false;
     
 
       if ((7+ARRAY_OFFSET) < X->networkCells.size() && X->networkCells[(7+ARRAY_OFFSET)]) {
@@ -23050,7 +23050,7 @@ bool gatPlasmaTurbo[4096];
         } else {
           gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
         }
-      }
+      } else gatPlasmaTurbo[7+ARRAY_OFFSET] = false;
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
@@ -24618,7 +24618,7 @@ if (s->networkCells.size() <= 4094)
   ego = new ENO_Ship4094(cxn, s),
   num = INO_Ship4094::num;
 else
-{ assert(false); }
+{ assert(false); exit(EXIT_PROGRAM_BUG); }
 } else
 
   {

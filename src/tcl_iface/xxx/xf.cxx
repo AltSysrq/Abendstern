@@ -48,11 +48,11 @@
 #include "src/net/antenna.hxx"
 class TclExplosion : public Explosion {
       public:
-static int get394 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get396 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get394", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get396", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -99,11 +99,11 @@ static int get394 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set395 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set397 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set395", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set397", TCL_VOLATILE);
         return TCL_ERROR;
       }
       bool newVal;
@@ -143,9 +143,9 @@ static int set395 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {int gen1679;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1679);
-            newVal=gen1679;
+      {int gen1684;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1684);
+            newVal=gen1684;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -212,7 +212,7 @@ static Explosion* constructorstationary
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline397 (
+     trampoline399 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 12) {
@@ -302,24 +302,24 @@ arg2Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1681;}
+          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1686;}
         
-          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1681;}
+          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1686;}
         
-          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1681;}
+          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1686;}
         
-          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1681;}
+          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1686;}
         
-          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1681;}
+          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1686;}
         
-          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1681;}
+          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1686;}
         
-          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1681;}
+          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1686;}
          {
-        sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
-        scriptError(staticError);
-      } 
-done1681:;};
+          sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
+          scriptError(staticError);
+        } 
+done1686:;};
 arg3Init=true;
 {double tmp;
             int err = Tcl_GetDoubleFromObj(interp, objv[4], &tmp);
@@ -519,7 +519,7 @@ static Explosion* constructorvelocity
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline399 (
+     trampoline401 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 14) {
@@ -611,24 +611,24 @@ arg2Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1683;}
+          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1688;}
         
-          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1683;}
+          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1688;}
         
-          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1683;}
+          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1688;}
         
-          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1683;}
+          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1688;}
         
-          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1683;}
+          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1688;}
         
-          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1683;}
+          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1688;}
         
-          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1683;}
+          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1688;}
          {
-        sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
-        scriptError(staticError);
-      } 
-done1683:;};
+          sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
+          scriptError(staticError);
+        } 
+done1688:;};
 arg3Init=true;
 {double tmp;
             int err = Tcl_GetDoubleFromObj(interp, objv[4], &tmp);
@@ -842,7 +842,7 @@ static Explosion* constructorsmeared
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline401 (
+     trampoline403 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 16) {
@@ -936,24 +936,24 @@ arg2Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1685;}
+          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1690;}
         
-          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1685;}
+          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1690;}
         
-          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1685;}
+          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1690;}
         
-          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1685;}
+          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1690;}
         
-          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1685;}
+          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1690;}
         
-          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1685;}
+          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1690;}
         
-          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1685;}
+          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1690;}
          {
-        sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
-        scriptError(staticError);
-      } 
-done1685:;};
+          sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
+          scriptError(staticError);
+        } 
+done1690:;};
 arg3Init=true;
 {double tmp;
             int err = Tcl_GetDoubleFromObj(interp, objv[4], &tmp);
@@ -1181,7 +1181,7 @@ static Explosion* constructorby
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline403 (
+     trampoline405 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 11) {
@@ -1270,24 +1270,24 @@ arg2Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1687;}
+          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1692;}
         
-          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1687;}
+          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1692;}
         
-          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1687;}
+          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1692;}
         
-          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1687;}
+          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1692;}
         
-          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1687;}
+          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1692;}
         
-          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1687;}
+          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1692;}
         
-          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1687;}
+          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1692;}
          {
-        sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
-        scriptError(staticError);
-      } 
-done1687:;};
+          sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
+          scriptError(staticError);
+        } 
+done1692:;};
 arg3Init=true;
 {double tmp;
             int err = Tcl_GetDoubleFromObj(interp, objv[4], &tmp);
@@ -1469,7 +1469,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline405 (
+     trampoline407 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -1551,7 +1551,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline407 (
+     trampoline409 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -1628,7 +1628,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline409 (
+     trampoline411 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -1705,7 +1705,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline411 (
+     trampoline413 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -1782,7 +1782,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline413 (
+     trampoline415 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -1859,7 +1859,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline415 (
+     trampoline417 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -1931,9 +1931,8 @@ error:
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ get394", get394, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set395", set395, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline397", trampoline397, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ get396", get396, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set397", set397, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline399", trampoline399, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline401", trampoline401, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline403", trampoline403, 0, NULL);
@@ -1943,6 +1942,7 @@ Tcl_CreateObjCommand(interp, "c++ trampoline409", trampoline409, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline411", trampoline411, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline413", trampoline413, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline415", trampoline415, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline417", trampoline417, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(Explosion)),
                            * ete=new TypeExport(typeid(TclExplosion));
 ste->isAObject=ete->isAObject=true;
@@ -1955,7 +1955,7 @@ typeExports[&typeid(Explosion)]=ste;
 typeExports[&typeid(TclExplosion)]=ete;
 }
 };
-void classdec393(bool safe, Tcl_Interp* interp) throw() {
+void classdec395(bool safe, Tcl_Interp* interp) throw() {
   TclExplosion::cppDecCode(safe,interp);
 }
 
@@ -2004,7 +2004,7 @@ static Planet* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline684 (
+     trampoline688 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 10) {
@@ -2277,7 +2277,7 @@ if (arg9Init) {arg9Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline684", trampoline684, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline688", trampoline688, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(Planet)),
                            * ete=new TypeExport(typeid(TclPlanet));
 ste->isAObject=ete->isAObject=true;
@@ -2291,15 +2291,15 @@ typeExports[&typeid(Planet)]=ste;
 typeExports[&typeid(TclPlanet)]=ete;
 }
 };
-void classdec683(bool safe, Tcl_Interp* interp) throw() {
+void classdec687(bool safe, Tcl_Interp* interp) throw() {
   TclPlanet::cppDecCode(safe,interp);
 }
 
- int get923 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get927 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get923", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get927", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -2314,11 +2314,11 @@ void classdec683(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get925 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get929 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get925", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get929", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -2378,7 +2378,7 @@ static planetgen::Parameters* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline928 (
+     trampoline932 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -2517,11 +2517,11 @@ if (arg1Init) {arg1Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static int get930 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get934 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get930", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get934", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -2568,11 +2568,11 @@ static int get930 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set931 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set935 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set931", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set935", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -2637,11 +2637,11 @@ static int set931 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get933 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get937 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get933", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get937", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -2688,11 +2688,11 @@ static int get933 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set934 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set938 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set934", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set938", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -2757,11 +2757,11 @@ static int set934 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get936 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get940 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get936", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get940", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -2808,11 +2808,11 @@ static int get936 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set937 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set941 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set937", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set941", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -2877,11 +2877,11 @@ static int set937 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get939 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get943 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get939", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get943", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -2928,11 +2928,11 @@ static int get939 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set940 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set944 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set940", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set944", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -2997,11 +2997,11 @@ static int set940 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get942 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get946 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get942", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get946", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -3048,11 +3048,11 @@ static int get942 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set943 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set947 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set943", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set947", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -3117,11 +3117,11 @@ static int set943 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get945 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get949 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get945", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get949", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -3168,11 +3168,11 @@ static int get945 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set946 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set950 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set946", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set950", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -3237,11 +3237,11 @@ static int set946 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get948 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get952 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get948", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get952", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -3288,11 +3288,11 @@ static int get948 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set949 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set953 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set949", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set953", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -3357,11 +3357,11 @@ static int set949 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get951 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get955 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get951", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get955", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -3408,11 +3408,11 @@ static int get951 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set952 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set956 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set952", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set956", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -3477,11 +3477,11 @@ static int set952 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get954 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get958 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get954", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get958", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -3528,11 +3528,11 @@ static int get954 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set955 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set959 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set955", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set959", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -3597,11 +3597,11 @@ static int set955 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get957 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get961 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get957", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get961", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -3648,11 +3648,11 @@ static int get957 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set958 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set962 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set958", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set962", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -3717,11 +3717,11 @@ static int set958 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get960 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get964 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get960", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get964", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -3768,11 +3768,11 @@ static int get960 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set961 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set965 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set961", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set965", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -3837,11 +3837,11 @@ static int set961 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get963 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get967 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get963", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get967", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -3888,11 +3888,11 @@ static int get963 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set964 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set968 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set964", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set968", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -3957,11 +3957,11 @@ static int set964 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get966 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get970 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get966", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get970", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -4008,11 +4008,11 @@ static int get966 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set967 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set971 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set967", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set971", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -4077,11 +4077,11 @@ static int set967 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get969 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get973 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get969", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get973", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -4128,11 +4128,11 @@ static int get969 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set970 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set974 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set970", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set974", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -4197,11 +4197,11 @@ static int set970 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get972 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get976 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get972", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get976", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -4248,11 +4248,11 @@ static int get972 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set973 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set977 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set973", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set977", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -4317,11 +4317,11 @@ static int set973 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get975 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get979 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get975", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get979", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -4368,11 +4368,11 @@ static int get975 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set976 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set980 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set976", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set980", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -4437,11 +4437,11 @@ static int set976 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get978 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get982 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get978", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get982", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -4488,11 +4488,11 @@ static int get978 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set979 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set983 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set979", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set983", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -4557,11 +4557,11 @@ static int set979 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get981 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get985 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get981", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get985", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -4608,11 +4608,11 @@ static int get981 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set982 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set986 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set982", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set986", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -4677,11 +4677,11 @@ static int set982 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get984 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get988 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get984", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get988", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -4728,11 +4728,11 @@ static int get984 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set985 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set989 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set985", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set989", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -4797,11 +4797,11 @@ static int set985 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get987 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get991 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get987", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get991", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -4848,11 +4848,11 @@ static int get987 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set988 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set992 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set988", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set992", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -4917,11 +4917,11 @@ static int set988 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get990 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get994 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get990", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get994", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -4968,11 +4968,11 @@ static int get990 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set991 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set995 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set991", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set995", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -5037,11 +5037,11 @@ static int set991 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get993 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get997 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get993", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get997", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -5088,11 +5088,11 @@ static int get993 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set994 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set998 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set994", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set998", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -5157,11 +5157,11 @@ static int set994 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get996 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1000 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get996", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1000", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -5208,11 +5208,11 @@ static int get996 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set997 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set1001 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set997", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1001", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -5277,11 +5277,11 @@ static int set997 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get999 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1003 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get999", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1003", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -5328,11 +5328,11 @@ static int get999 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set1000 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set1004 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1000", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1004", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -5397,11 +5397,11 @@ static int set1000 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static int get1002 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1006 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1002", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1006", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -5448,11 +5448,11 @@ static int get1002 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       return TCL_ERROR;
       #undef scriptError
     }
-static int set1003 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set1007 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1003", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1007", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -5517,11 +5517,11 @@ static int set1003 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static int get1005 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1009 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1005", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1009", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -5568,11 +5568,11 @@ static int get1005 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       return TCL_ERROR;
       #undef scriptError
     }
-static int set1006 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set1010 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1006", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1010", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -5637,11 +5637,11 @@ static int set1006 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static int get1008 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1012 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1008", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1012", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -5688,11 +5688,11 @@ static int get1008 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       return TCL_ERROR;
       #undef scriptError
     }
-static int set1009 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set1013 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1009", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1013", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -5757,11 +5757,11 @@ static int set1009 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static int get1011 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1015 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1011", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1015", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -5808,11 +5808,11 @@ static int get1011 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       return TCL_ERROR;
       #undef scriptError
     }
-static int set1012 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set1016 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1012", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1016", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -5877,11 +5877,11 @@ static int set1012 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static int get1014 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1018 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1014", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1018", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -5928,11 +5928,11 @@ static int get1014 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       return TCL_ERROR;
       #undef scriptError
     }
-static int set1015 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set1019 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1015", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1019", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -5997,11 +5997,11 @@ static int set1015 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static int get1017 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1021 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1017", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1021", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -6048,11 +6048,11 @@ static int get1017 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       return TCL_ERROR;
       #undef scriptError
     }
-static int set1018 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set1022 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1018", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1022", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -6117,11 +6117,11 @@ static int set1018 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static int get1020 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1024 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1020", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1024", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -6168,11 +6168,11 @@ static int get1020 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       return TCL_ERROR;
       #undef scriptError
     }
-static int set1021 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set1025 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1021", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1025", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -6237,11 +6237,11 @@ static int set1021 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static int get1023 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1027 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1023", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1027", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -6288,11 +6288,11 @@ static int get1023 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       return TCL_ERROR;
       #undef scriptError
     }
-static int set1024 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set1028 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1024", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1028", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -6357,71 +6357,71 @@ static int set1024 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline928", trampoline928, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get930", get930, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set931", set931, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get933", get933, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set934", set934, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get936", get936, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set937", set937, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get939", get939, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set940", set940, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get942", get942, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set943", set943, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get945", get945, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set946", set946, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get948", get948, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set949", set949, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get951", get951, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set952", set952, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get954", get954, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set955", set955, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get957", get957, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set958", set958, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get960", get960, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set961", set961, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get963", get963, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set964", set964, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get966", get966, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set967", set967, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get969", get969, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set970", set970, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get972", get972, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set973", set973, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get975", get975, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set976", set976, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get978", get978, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set979", set979, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get981", get981, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set982", set982, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get984", get984, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set985", set985, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get987", get987, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set988", set988, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get990", get990, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set991", set991, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get993", get993, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set994", set994, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get996", get996, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set997", set997, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get999", get999, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set1000", set1000, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get1002", get1002, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set1003", set1003, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get1005", get1005, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set1006", set1006, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get1008", get1008, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set1009", set1009, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get1011", get1011, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set1012", set1012, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get1014", get1014, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set1015", set1015, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get1017", get1017, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set1018", set1018, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get1020", get1020, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set1021", set1021, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get1023", get1023, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set1024", set1024, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline932", trampoline932, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get934", get934, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set935", set935, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get937", get937, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set938", set938, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get940", get940, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set941", set941, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get943", get943, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set944", set944, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get946", get946, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set947", set947, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get949", get949, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set950", set950, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get952", get952, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set953", set953, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get955", get955, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set956", set956, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get958", get958, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set959", set959, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get961", get961, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set962", set962, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get964", get964, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set965", set965, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get967", get967, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set968", set968, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get970", get970, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set971", set971, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get973", get973, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set974", set974, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get976", get976, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set977", set977, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get979", get979, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set980", set980, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get982", get982, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set983", set983, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get985", get985, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set986", set986, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get988", get988, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set989", set989, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get991", get991, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set992", set992, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get994", get994, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set995", set995, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get997", get997, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set998", set998, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1000", get1000, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set1001", set1001, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1003", get1003, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set1004", set1004, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1006", get1006, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set1007", set1007, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1009", get1009, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set1010", set1010, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1012", get1012, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set1013", set1013, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1015", get1015, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set1016", set1016, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1018", get1018, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set1019", set1019, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1021", get1021, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set1022", set1022, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1024", get1024, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set1025", set1025, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1027", get1027, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set1028", set1028, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(planetgen::Parameters)),
                            * ete=new TypeExport(typeid(Tclplanetgen_colon_u_colon_Parameters));
 ste->isAObject=ete->isAObject=true;
@@ -6433,7 +6433,7 @@ typeExports[&typeid(planetgen::Parameters)]=ste;
 typeExports[&typeid(Tclplanetgen_colon_u_colon_Parameters)]=ete;
 }
 };
-void classdec927(bool safe, Tcl_Interp* interp) throw() {
+void classdec931(bool safe, Tcl_Interp* interp) throw() {
   Tclplanetgen_colon_u_colon_Parameters::cppDecCode(safe,interp);
 }
 
@@ -6441,7 +6441,7 @@ void classdec927(bool safe, Tcl_Interp* interp) throw() {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1026 (
+     trampoline1030 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -6518,7 +6518,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1028 (
+     trampoline1032 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -6574,7 +6574,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1030 (
+     trampoline1034 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -6619,7 +6619,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1032 (
+     trampoline1036 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -6664,7 +6664,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1034 (
+     trampoline1038 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -6706,7 +6706,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1036 (
+     trampoline1040 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -6821,7 +6821,7 @@ static GameDiscoverer* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1238 (
+     trampoline1242 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -7000,7 +7000,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1240 (
+     trampoline1244 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -7074,7 +7074,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1242 (
+     trampoline1246 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -7183,7 +7183,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1244 (
+     trampoline1248 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -7255,10 +7255,10 @@ error:
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1238", trampoline1238, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1240", trampoline1240, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1242", trampoline1242, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1242", trampoline1242, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1244", trampoline1244, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1246", trampoline1246, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1248", trampoline1248, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(GameDiscoverer)),
                            * ete=new TypeExport(typeid(TclGameDiscoverer));
 ste->isAObject=ete->isAObject=true;
@@ -7271,7 +7271,7 @@ typeExports[&typeid(GameDiscoverer)]=ste;
 typeExports[&typeid(TclGameDiscoverer)]=ete;
 }
 };
-void classdec1237(bool safe, Tcl_Interp* interp) throw() {
+void classdec1241(bool safe, Tcl_Interp* interp) throw() {
   TclGameDiscoverer::cppDecCode(safe,interp);
 }
 
