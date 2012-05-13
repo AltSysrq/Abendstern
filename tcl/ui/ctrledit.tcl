@@ -92,6 +92,10 @@ class ControlEditor {
     set mode [new ControlEditorDeviceSelector $this]
   }
 
+  destructor {
+    $ sync conf
+  }
+
   method setMode m {
     lappend ::gui::autodelete $mode
     set mode $m
