@@ -170,6 +170,8 @@
 +(NONE)
 
 @ctrledit
+-edit_custom_dots
++Edit custom...
 -title
 +Edit Control Schema
 -select_device
