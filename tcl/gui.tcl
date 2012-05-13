@@ -373,7 +373,6 @@ namespace eval gui {
         return
       }
       if {$isWarpingMouse} return
-      if {[disableMouseInput]} return
       global cursorX cursorY oldCursorX oldCursorY screenW screenH vheight
       # If the X or Y axes are locked, warp the mouse and ignore this
       # particular event
@@ -413,8 +412,10 @@ namespace eval gui {
       foreach {ix ch} {1 L 2 M 3 R 4 U 5 D} {
         append states [global SDL_BUTTON_$ix; expr {$buttonState & [set SDL_BUTTON_$ix]? $ch:"-"}]
       }
-      motionThis $xarg $yarg $states
-      $mode motion $xarg $yarg $states
+      if {![disableMouseInput]} {
+        motionThis $xarg $yarg $states
+        $mode motion $xarg $yarg $states
+      }
       set needWarpMouseX [$mode xWarpMouse]
       set needWarpMouseY [$mode yWarpMouse]
     }
