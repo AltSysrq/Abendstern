@@ -308,6 +308,18 @@ namespace eval gui {
     # Default returns crosshair.
     method getCursor {} { return crosshair }
 
+    # Returns whether to disable keyboard input.
+    # By default, returns true if the cursor is "busy".
+    method disableKeyboardInput {} {
+      expr {[getCursor] eq "busy"}
+    }
+
+    # Returns whether to disable mouse input.
+    # By default, returns true if the cursor is "busy".
+    method disableMouseInput {} {
+      expr {[getCursor] eq "busy"}
+    }
+
     method configureGL {} {
       if {$subapp != "none"} {$subapp configureGL} \
       else configureGLThis
@@ -328,7 +340,7 @@ namespace eval gui {
         $subapp keyboard $evt
         return
       }
-      if {"busy" == [getCursor]} return
+      if {[disableKeyboardInput]} return
       global lshift rshift lctrl rctrl lalt ralt lmeta rmeta
       global currentKBMods
       global currentMode
@@ -361,6 +373,7 @@ namespace eval gui {
         return
       }
       if {$isWarpingMouse} return
+      if {[disableMouseInput]} return
       global cursorX cursorY oldCursorX oldCursorY screenW screenH vheight
       # If the X or Y axes are locked, warp the mouse and ignore this
       # particular event
@@ -413,6 +426,7 @@ namespace eval gui {
         $subapp mouseButton $evt
         return
       }
+      if {[disableMouseInput]} return
       global cursorX cursorY screenW screenH vheight
       global currentMode
       set currentMode $mode
@@ -1717,6 +1731,11 @@ namespace eval gui {
       return $checked
     }
 
+    # Directly alters the checked state, without triggering any kind of events.
+    method forceChecked {c} {
+      set checked $c
+    }
+
     # Subclasses must override this to draw the box and
     # then call this method. The current GL colour is
     # used for drawing the text, so the subclass must
@@ -2870,7 +2889,7 @@ namespace eval gui {
 
     constructor {name {items {}} {multiselect no}
                  {onChange {}} {loader {}} {saver {}}} {
-      BorderContainer::constructor 0.01
+      BorderContainer::constructor 0 0.001
     } {
       set impl [new ::gui::ListImpl $items $multiselect $onChange $loader $saver]
       set labl [new ::gui::ActivatorLabel $name $impl]
@@ -2901,6 +2920,11 @@ namespace eval gui {
     # Sets the items in the List, and clears the selection
     method setItems items {
       $centre setItems $items
+    }
+
+    # Scrolls the list so that the specified index is visible
+    method scrollTo ix {
+      $centre setIndex $ix
     }
   }
 
@@ -2984,7 +3008,9 @@ namespace eval gui {
     method setSelection sel {
       resetSelection
       foreach i $sel {
-        set selected [lreplace $selected $i $i yes]
+        if {$i >= 0 && $i < [llength $selected]} {
+          set selected [lreplace $selected $i $i yes]
+        }
       }
     }
 

@@ -22,6 +22,11 @@
 
 #include "bridge.hxx"
 
+///Helper function for Tcl, here since it doens't fit anywhere else
+static inline int SDLKeyToInt(SDLKey k) {
+  return (int)k;
+}
+
 #ifndef DOXYGEN
 void scriptError(const char*);
 namespace tcl_glue_implementation {

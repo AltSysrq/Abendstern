@@ -157,6 +157,8 @@ for {set i 0} {$i <= 95} {incr i} {
 }
 
 eval "openenum SDLKey {} $sdlklist"
+const SDLK_LAST unsigned
+fun unsigned SDLKeyToInt SDLKey
 
 # We unfortunately have no choice but to treate the
 # SDLMod enum as an integer, since it's ORed
