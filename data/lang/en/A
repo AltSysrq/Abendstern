@@ -173,7 +173,7 @@
 -edit_custom_dots
 +Edit custom...
 -title
-+Edit Control Schema
++Edit Control Scheme
 -select_device
 +Select input device to configure.
 -keyboard
