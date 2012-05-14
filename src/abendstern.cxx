@@ -43,15 +43,16 @@
 #endif /* ENABLE_X11_VSYNC */
 
 #include "globals.hxx"
+#include "audio/audio.hxx"
+#include "control/joystick.hxx"
 #include "core/game_state.hxx"
 #include "core/init_state.hxx"
-#include "graphics/matops.hxx"
+#include "exit_conditions.hxx"
 #include "graphics/gl32emu.hxx"
+#include "graphics/matops.hxx"
 #include "secondary/frame_recorder.hxx"
-#include "audio/audio.hxx"
 #include "tcl_iface/bridge.hxx"
 #include "tcl_iface/slave_thread.hxx"
-#include "exit_conditions.hxx"
 
 using namespace std;
 using namespace libconfig;
@@ -394,6 +395,8 @@ bool init() {
     return false;
   }
 
+  joystick::init();
+
   libconfig::setMaxPriStorage(cacheSizeMB*1024*1024);
   if (const char* err = libconfig::openSwapFile()) {
     printf("Unable to open swap file for libconfig: %s\n", err);
@@ -601,6 +604,7 @@ void run() {
       SDL_GL_SwapBuffers();
     }
 
+    joystick::update();
     while (SDL_PollEvent(&event) && state) {
       switch(event.type) {
         case SDL_KEYUP:
@@ -653,6 +657,7 @@ void run() {
 void shutdown() {
   bkg_term();
   audio::term();
+  joystick::close();
   SDL_Quit();
   libconfig::destroySwapFile();
   cout << "Average FPS: " << fpsSum/(float)fpsSampleCount << endl;
