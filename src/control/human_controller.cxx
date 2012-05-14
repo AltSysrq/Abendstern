@@ -175,7 +175,8 @@ namespace action {
                       accelMore = { {+0.05f}, false, false, throttle_on, NULL },
                       accelLess = { {-0.05f}, false, false, throttle_on, NULL },
                       stealth   = { {0}, false, false, stealth_on, NULL },
-                      compose   = { {0}, false, false, compose_message_on, NULL };
+                      compose   = { {0}, false, false, compose_message_on, NULL },
+                      unbound   = { {0}, false, false, NULL, NULL };
 
   void analogue_rotate(Ship* ship, float amt, bool recentre) {
     if (spunThisFrame) return;
@@ -616,7 +617,8 @@ void HumanController::hc_conf_bind() {
                 da_retgt = {thisPtr, false, false, action::retarget_on, NULL},
                 da_selfd = {{0}, false, false, action::selfDestruct_on, NULL},
                 da_stlth = {{0}, false, false, action::stealth_on, NULL},
-                da_comps = {thisPtr, false, false, action::compose_message_on, NULL};
+                da_comps = {thisPtr, false, false, action::compose_message_on, NULL},
+                da_nop   = {{0}, false, false, NULL, NULL};
   bind( da_accel, "accel" );
   bind( da_decel, "decel" );
   bind( da_turn , "rotate", Float, false, getFloatLimit(STD_ROT_RATE));
@@ -628,4 +630,5 @@ void HumanController::hc_conf_bind() {
   bind( da_selfd, "self destruct" );
   bind( da_stlth, "stealth" );
   bind( da_comps, "compose" );
+  bind( da_nop  , "__ unbound" );
 };
