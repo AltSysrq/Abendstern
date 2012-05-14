@@ -149,7 +149,7 @@ class ControlEditorDeviceSelector {
     $main add [new ::gui::Label [_ A ctrledit title] centre]
     $main add [new ::gui::Label [_ A ctrledit select_device] left]
     $main add [new ::gui::Button [_ A ctrledit keyboard] "$this editkbd"]
-    #$main add [new ::gui::Button [_ A ctrledit mouse] "$this editmouse"]
+    $main add [new ::gui::Button [_ A ctrledit mouse] "$this editmouse"]
 
     set can [new ::gui::Button [_ A gui quit] "$app die"]
     $can setCancel
@@ -213,7 +213,7 @@ class ControlEditorBaseConfigurator {
     $top setElt bottom $pclose
     $top setElt top [new ::gui::Label $title centre]
 
-    set main [new ::gui::HorizontalContainer 0.01 grid]
+    set main [new ::gui::TabPanel]
     set pdig [new ::gui::HorizontalContainer 0.01 grid]
     set pdigmain [new ::gui::BorderContainer 0 0.01]
     set pdigsel [new ::gui::BorderContainer 0 0.01]
@@ -242,7 +242,7 @@ class ControlEditorBaseConfigurator {
       $pdigbuttons add [new ::gui::Button [_ A ctrledit del_key] "$this delKey"]
     }
     $pdigmain setElt bottom $pdigbuttons
-    $main add $pdig
+    $main add [_ A ctrledit buttons] $pdig
 
     # If not the keyboard, add axes
     if {!$isKeyboard} {
@@ -258,12 +258,12 @@ class ControlEditorBaseConfigurator {
                                  {} {} $ranalogueNone \
                                  "$this setAnalogue rotate"]
       $panactrl add $ranalogueRotation
-      set ranalogueThrottle [new ::gui::RadioButton [_ A ctrledit ana_throt] \
+      set ranalogueThrottle [new ::gui::RadioButton [_ A ctrledit ana_throttle]\
                                  {} {} $ranalogueRotation \
                                  "$this setAnalogue throttle"]
       $panactrl add $ranalogueThrottle
       set sanalogueSensitivity [new ::gui::Slider [_ A ctrledit sensitivity] \
-                                    float {expr 0.5} {} 0 1 0.1 \
+                                    float {expr 2} {} 0 4 0.1 \
                                     "$this adjustSensitivity"]
       $panactrl add $sanalogueSensitivity
       set canalogueJoystick [new ::gui::Checkbox [_ A ctrledit joystick_mode] \
@@ -274,8 +274,8 @@ class ControlEditorBaseConfigurator {
                                {} {} "$this setInvert 1" \
                                "$this setInvert 0"]
       $panactrl add $canalogueInvert
-      $pana setElt bottom $pana
-      $main add $pana
+      $pana setElt bottom $panactrl
+      $main add [_ A ctrledit axes] $pana
     } else {
       set lstanalogueActions 0
     }
@@ -381,6 +381,10 @@ class ControlEditorBaseConfigurator {
       }
       return [format "%s: %s" $name $opt]
     }
+  }
+
+  method formatAxis {confroot} {
+    _ A ctrledit "ana_[$ str $confroot.action]"
   }
 
   method digitalSelected {} {
@@ -561,6 +565,91 @@ class ControlEditorBaseConfigurator {
     }
   }
 
+  method analogueSelected {} {
+    set sel [$lstanalogueActions getSelection]
+    if {{} == $sel} {
+      # Clear all radio boxen
+      foreach box [list $ranalogueThrottle $ranalogueRotation $ranalogueNone] {
+        $box forceChecked no
+      }
+      # Clear invert and joystick mode
+      $canalogueInvert setCheckedNoAction no
+      $canalogueJoystick setCheckedNoAction no
+    } else {
+      # Find what this is bound to and set all boxen appropriately
+      lassign [extract [lindex [$lstanalogueActions getItems] $sel]] \
+          defaultJoystick allowChangeJoystick confroot
+      set curr [$ str $confroot.action]
+      $ranalogueNone forceChecked [expr {"none" == $curr}]
+      $ranalogueRotation forceChecked [expr {"rotate" == $curr}]
+      $ranalogueThrottle forceChecked [expr {"throttle" == $curr}]
+      $canalogueJoystick setCheckedNoAction \
+          [expr {![$ bool $confroot.recentre]}]
+      $canalogueInvert setCheckedNoAction \
+          [expr {[$ float $confroot.sensitivity] < 0}]
+      $sanalogueSensitivity setValue \
+          [expr {abs([$ float $confroot.sensitivity])}]
+    }
+  }
+
+  method adjustSensitivity {amt} {
+    set sel [$lstanalogueActions getSelection]
+    if {$sel == {}} return
+
+    lassign [extract [lindex [$lstanalogueActions getItems] $sel]] \
+        defaultJoystick allowChangeJoystick confroot
+
+    if {[$canalogueInvert isChecked]} {
+      set amt [expr {-$amt}]
+    }
+
+    $ setf $confroot.sensitivity $amt
+  }
+
+  method setAnalogue what {
+    set sel [$lstanalogueActions getSelection]
+    if {$sel == {}} {
+      # Clear all and return
+      analogueSelected
+      return
+    }
+
+    lassign [extract [lindex [$lstanalogueActions getItems] $sel]] \
+        defaultJoystick allowChangeJoystick confroot
+
+    $ sets $confroot.action $what
+    refresh
+  }
+
+  method setInvert {inverted} {
+    set sel [$lstanalogueActions getSelection]
+    if {{} == $sel} {
+      # Uncheck the box
+      $canalogueInvert setCheckedNoAction no
+      return
+    }
+
+    # Readjusting the sensitivity will do the job
+    adjustSensitivity [$sanalogueSensitivity getValue]
+  }
+
+  method setJoystickMode {jm} {
+    set sel [$lstanalogueActions getSelection]
+    if {{} == $sel} return
+
+    lassign [extract [lindex [$lstanalogueActions getItems] $sel]] \
+        defaultJoystick allowChangeJoystick confroot
+
+    if {!$allowChangeJoystick} {
+      # Set it back
+      $canalogueJoystick setCheckedNoAction $defaultJoystick
+      set jm $defaultJoystick
+    }
+
+    # Write
+    $ setb $confroot.recentre [expr {!$jm}]
+  }
+
   method close {} {
     $app setMode [new ControlEditorDeviceSelector $app]
   }
@@ -624,5 +713,52 @@ class ControlEditorKeyboardConfigurator {
       refresh
     }
     selectKey $confroot.$entry
+  }
+}
+
+class ControlEditorMouseConfigurator {
+  inherit ControlEditorBaseConfigurator
+
+  variable confroot
+
+  constructor {app} {
+    ControlEditorBaseConfigurator::constructor $app [_ A ctrledit mouse] no
+  } {
+    set confroot [$app getRoot]
+    refresh
+  }
+
+  destructor {
+    # Axes unbound must not be in joystick mode, or the cursor will be shown
+    # in-game.
+    if {"none" == [$ str $confroot.analogue.horiz.action] &&
+        ![$ bool $confroot.analogue.horiz.recentre]} {
+      $ setb $confroot.analogue.horiz.recentre yes
+    }
+    if {"none" == [$ str $confroot.analogue.vert.action] &&
+        ![$ bool $confroot.analogue.vert.recentre]} {
+      $ setb $confroot.analogue.vert.recentre yes
+    }
+  }
+
+  method listDigitalControls {} {
+    set lst {}
+    foreach button {left middle right up down x1 x2} {
+      set conf $confroot.mouse.$button
+      # Create if it doesn't exist
+      if {![$ exists $conf]} {
+        $ add $confroot.mouse $button STGroup
+        $ adds $conf action "__ unbound"
+        $ addb $conf repeat 0
+      }
+      lappend lst [list [_ A ctrledit mousebutton_$button] $conf]
+    }
+    return $lst
+  }
+
+  method listAnalogueAxes {} {
+    list \
+        [list [_ A ctrledit mouse_horiz] 0 1 $confroot.analogue.horiz] \
+        [list [_ A ctrledit mouse_vert]  0 1 $confroot.analogue.vert ]
   }
 }

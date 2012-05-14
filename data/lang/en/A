@@ -194,7 +194,7 @@
 +Unbound
 -ana_rotate
 +Rotate
--ana_throt
+-ana_throttle
 +Throttle
 -sensitivity
 +Sensitivity
@@ -263,6 +263,25 @@
 +Debugging option
 -c___ unbound
 +Unbound
+
+-mouse_horiz
++X Axis
+-mouse_vert
++Y Axis
+-mousebutton_left
++Left button
+-mousebutton_middle
++Middle button
+-mousebutton_right
++Right button
+-mousebutton_up
++Wheel up
+-mousebutton_down
++Wheel down
+-mousebutton_x1
++Button 5
+-mousebutton_x2
++Button 6
 
 @editor
 -cant_put_systems_in_bridge
