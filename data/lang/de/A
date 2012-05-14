@@ -94,6 +94,100 @@
 -target_none
 +(KEIN)
 
+@ctrledit
+-edit_custom_dots
++Benutzer-definiert bearbeiten...
+-title
++Bearbeitung das Kontrolleschemas
+-select_device
++Wählen Sie ein Garät, um es zu konfigurieren.
+-keyboard
++Tastatur
+-mouse
++Maus
+-buttons
++Tasten
+-dig_bindings
++Tasten verbinden an:
+-axes
++Achsen
+-add_key
++Neue Taste hinfügen...
+-del_key
++Ausgewählt entfernen
+-ana_none
++Unverbunden
+-ana_rotate
++Drehen
+-ana_throt
++Drossel
+-sensitivity
++Empfindlichkeit
+-joystick_mode
++Joystick-Modus
+-invert_axis
++Umdrehen
+-value
++Wert
+
+-c_accel
++Beschleunigen
+-c_decel
++Bremsen
+-c_stats
++Spielergebnisse anzeigen
+-c_throttle
++Drossel anpassen
+-throttle_note
++Drossel reicht von 0 bis 1.
+-c_rotate
++Dresen
+-rotate_note
++UZ ist negativ, GUZ ist positiv
+-c_fire
++Feuer
+-c_compose
++Reden
+-c_adjust weapon power
++Waffengrad anpassen
+-c_set current weapon
++Waffen wechseln
+-c_show fullscreen map
++Vollbild-Karte anzeigen
+-c_set camera mode
++Kamera wechseln
+-c_adjust camera lookahead
++Kamera Zentiererung anpassen
+-lookahead_note
++Verschiebt die Kamera nach/von unten
+-cameramode_none
++Keine Rotation
+-cameramode_rotation
++Rotatieren mit Schiff
+-cameramode_velocity
++Rotatieren mit Geschwindigkeit
+-c_stealth
++Tarnkappe-Modus umschalten
+-c_self destruct
++Selbstzerstören
+-c_retarget
++Ziel ändern
+-c_adjust camera zoom
++Vergrößerung ändern
+-zoom_note
++Positiv vergrößert, Negativ verkleinert
+-c___ exit
++Menü öffnen
+-c___ frameXframe
++Debugging option
+-c___ fast
++Debugging option
+-c___ halt
++Debugging option
+-c___ slow
++Debugging option
+-c___ unbound
++Unverbunden
 
 @editor
 -cant_put_systems_in_bridge
