@@ -119,7 +119,7 @@
 +Unverbunden
 -ana_rotate
 +Drehen
--ana_throt
+-ana_throttle
 +Drossel
 -sensitivity
 +Empfindlichkeit
@@ -188,6 +188,25 @@
 +Debugging option
 -c___ unbound
 +Unverbunden
+
+-mouse_horiz
++X-Achse
+-mouse_vert
++Y-Achse
+-mousebutton_left
++Linke Taste
+-mousebutton_middle
++Mittlere Taste
+-mousebutton_right
++Rechte Taste
+-mousebutton_up
++Rad nach oben
+-mousebutton_down
++Rad nach unten
+-mousebutton_x1
++Taste-5
+-mousebutton_x2
++Taste-6
 
 @editor
 -cant_put_systems_in_bridge
