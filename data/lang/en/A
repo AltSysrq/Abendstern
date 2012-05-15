@@ -283,6 +283,27 @@
 -mousebutton_x2
 +Button 6
 
+-joystick_button
++Button %d
+-joystick_hat_up
++Hat %d up
+-joystick_hat_down
++Hat %d down
+-joystick_hat_left
++Hat %d left
+-joystick_hat_right
++Hat %d right
+-joystick_x_axis
++X Axis
+-joystick_y_axis
++Y Axis
+-joystick_other_axis
++Axis %d
+-joystick_ball_x
++Ball %d X Axis
+-joystick_ball_y
++Ball %d Y Axis
+
 @editor
 -cant_put_systems_in_bridge
 +Cannot put systems in bridge

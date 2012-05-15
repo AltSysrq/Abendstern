@@ -1310,6 +1310,27 @@ unsafe {
   fun void {audio::ShipMixer::end ship_mixer_end}
 }
 
+cxx src/control/joystick.hxx
+enum joystick::AxisType {} \
+    {joystick::Axis Axis} \
+    {joystick::BallX BallX} \
+    {joystick::BallY BallY}
+enum joystick::ButtonType {} \
+    {joystick::Button Button} \
+    {joystick::HatUp HatUp} \
+    {joystick::HatDown HatDown} \
+    {joystick::HatLeft HatLeft} \
+    {joystick::HatRight HatRight}
+unsafe {
+  fun unsigned {joystick::count joystick_count}
+  fun cstr {joystick::name joystick_name} unsigned
+  fun unsigned {joystick::axisCount joystick_axisCount} \
+      unsigned joystick::AxisType
+  fun unsigned {joystick::buttonCount joystick_buttonCount} \
+      unsigned joystick::ButtonType
+  # Tcl doesn't need access to the controls themselves.
+}
+
 cxx
 unsafe {
   fun void debugTclExports

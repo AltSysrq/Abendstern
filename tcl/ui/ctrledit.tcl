@@ -150,6 +150,9 @@ class ControlEditorDeviceSelector {
     $main add [new ::gui::Label [_ A ctrledit select_device] left]
     $main add [new ::gui::Button [_ A ctrledit keyboard] "$this editkbd"]
     $main add [new ::gui::Button [_ A ctrledit mouse] "$this editmouse"]
+    for {set i 0} {$i < [joystick_count]} {incr i} {
+      $main add [new ::gui::Button [joystick_name $i] "$this editjoy $i"]
+    }
 
     set can [new ::gui::Button [_ A gui quit] "$app die"]
     $can setCancel
@@ -166,6 +169,10 @@ class ControlEditorDeviceSelector {
 
   method editmouse {} {
     $app setMode [new ControlEditorMouseConfigurator $app]
+  }
+
+  method editjoy ix {
+    $app setMode [new ControlEditorJoystickConfigurator $app $ix]
   }
 
   method isBusy {} {
@@ -525,6 +532,27 @@ class ControlEditorBaseConfigurator {
     string range $from [string first "\a\a" $from]+2 end
   }
 
+  # Creates an unbound digital entry at the given location if it does not
+  # exist.
+  method ensureDigitalExists {base sub} {
+    if {![$ exists $base.$sub]} {
+      $ add $base $sub STGroup
+      $ adds $base.$sub action "__ unbound"
+      $ addb $base.$sub repeat 0
+    }
+  }
+
+  # Creates an unbound analogue entry at the given location if it does not
+  # exist.
+  method ensureAnalogueExists {base sub} {
+    if {![$ exists $base.$sub]} {
+      $ add $base $sub STGroup
+      $ adds $base.$sub action "none"
+      $ addb $base.$sub recentre 1
+      $ addf $base.$sub sensitivity 1.0
+    }
+  }
+
   method adjustValue {confroot meth value} {
     $ $meth $confroot.value $value
     needRefresh
@@ -746,11 +774,7 @@ class ControlEditorMouseConfigurator {
     foreach button {left middle right up down x1 x2} {
       set conf $confroot.mouse.$button
       # Create if it doesn't exist
-      if {![$ exists $conf]} {
-        $ add $confroot.mouse $button STGroup
-        $ adds $conf action "__ unbound"
-        $ addb $conf repeat 0
-      }
+      ensureDigitalExists $confroot.mouse $button
       lappend lst [list [_ A ctrledit mousebutton_$button] $conf]
     }
     return $lst
@@ -760,5 +784,80 @@ class ControlEditorMouseConfigurator {
     list \
         [list [_ A ctrledit mouse_horiz] 0 1 $confroot.analogue.horiz] \
         [list [_ A ctrledit mouse_vert]  0 1 $confroot.analogue.vert ]
+  }
+}
+
+class ControlEditorJoystickConfigurator {
+  inherit ControlEditorBaseConfigurator
+
+  variable confroot
+  variable joyix
+
+  constructor {app ix} {
+    ControlEditorBaseConfigurator::constructor $app [joystick_name $ix]  no
+  } {
+    set confbase [$app getRoot]
+    set joyix $ix
+    set confroot $confbase.joy_$joyix
+    # Create the joystick entry if it doesn't exist
+    if {![$ exists $confroot]} {
+      $ add $confbase joy_$joyix STGroup
+    }
+
+    refresh
+  }
+
+  method listDigitalControls {} {
+    set lst {}
+    # Conventional buttons
+    for {set i 0} {$i < [joystick_buttonCount $joyix Button]} {incr i} {
+      # Create if it doesn't exist
+      ensureDigitalExists $confroot button_$i
+      lappend lst [list [format [_ A ctrledit joystick_button] $i] \
+                       $confroot.button_$i]
+    }
+
+    # Hats
+    for {set i 0} {$i < [joystick_buttonCount $joyix HatUp]} {incr i} {
+      foreach hat {up down left right} {
+        ensureDigitalExists $confroot "hat_${hat}_$i"
+        lappend lst [list [format [_ A ctrledit joystick_hat_$hat] $i] \
+                         "$contfroot.hat_${hat}_$i"]
+      }
+    }
+
+    return $lst
+  }
+
+  method listAnalogueAxes {} {
+    set lst {}
+
+    # Conventional axes
+    for {set i 0} {$i < [joystick_axisCount $joyix Axis]} {incr i} {
+      ensureAnalogueExists $confroot axis_$i
+      # Axes 0 and 1 are named specially
+      switch $i {
+        0 { set name [_ A ctrledit joystick_x_axis] }
+        1 { set name [_ A ctrledit joystick_y_axis] }
+        default { set name [format [_ A ctrledit joystick_other_axis] $i] }
+      }
+      # It does not make sense to use non-joystick mode with joystick axes,
+      # since they do not have infinite range.
+      lappend lst [list $name 1 0 $confroot.axis_$i]
+    }
+
+    # Balls
+    for {set i 0} {$i < [joystick_axisCount $joyix BallX]} {incr i} {
+      foreach axis {x y} {
+        set entry "ball_${axis}_$i"
+        ensureAnalogueExists $confroot $entry
+        set name [format [_ A ctrledit joystick_ball_$axis] $i]
+        # We can't support joystick mode with balls, since they do not have
+        # absolute coordinates.
+        lappend lst [list $name 0 0 $confroot.$entry]
+      }
+    }
+
+    return $lst
   }
 }
