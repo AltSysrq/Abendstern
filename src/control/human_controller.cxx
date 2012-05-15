@@ -633,7 +633,7 @@ void HumanController::handleJoystick(float et) noth {
           if (joysticks[i].buttons[j][k].off)
             joysticks[i].buttons[j][k].off(ship,
                                            joysticks[i].buttons[j][k].datum);
-        } else if (curr) {
+        } else if (curr && joysticks[i].buttons[j][k].repeat) {
           //No state change, still on
           action::joystickStates[i].timeSinceRepeat[j][k] += et;
           if (action::joystickStates[i].timeSinceRepeat[j][k] >= REPEAT_T ||
