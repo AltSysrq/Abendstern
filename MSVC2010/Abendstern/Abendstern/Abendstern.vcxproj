@@ -287,6 +287,7 @@
     <ClInclude Include="..\..\..\src\control\genetic_ai.hxx" />
     <ClInclude Include="..\..\..\src\control\hc_conf.hxx" />
     <ClInclude Include="..\..\..\src\control\human_controller.hxx" />
+    <ClInclude Include="..\..\..\src\control\joystick.hxx" />
     <ClInclude Include="..\..\..\src\core\aobject.hxx" />
     <ClInclude Include="..\..\..\src\core\game_state.hxx" />
     <ClInclude Include="..\..\..\src\core\init_state.hxx" />
@@ -507,6 +508,7 @@
     <ClCompile Include="..\..\..\src\control\genetic_ai.cxx" />
     <ClCompile Include="..\..\..\src\control\hc_conf.cxx" />
     <ClCompile Include="..\..\..\src\control\human_controller.cxx" />
+    <ClCompile Include="..\..\..\src\control\joystick.cxx" />
     <ClCompile Include="..\..\..\src\core\aobject.cxx" />
     <ClCompile Include="..\..\..\src\core\game_state.cxx" />
     <ClCompile Include="..\..\..\src\core\init_state.cxx" />
