@@ -17,6 +17,7 @@
 #endif
 
 #include "controller.hxx"
+#include "joystick.hxx"
 #include "src/audio/ui_sounds.hxx"
 #include "src/opto_flags.hxx"
 #include "src/ship/sys/ship_system.hxx"
@@ -168,6 +169,12 @@ class HumanController: public Controller {
     mouseHoriz,
     /** Action mapped to vertical mouse movement. */
     mouseVert;
+
+  struct JoystickBinding {
+    std::vector<DigitalAction> buttons[JOYSTICK_NUM_BUTTON_TYPES];
+    std::vector<AnalogueAction> axes[JOYSTICK_NUM_AXIS_TYPES];
+  };
+  std::vector<JoystickBinding> joysticks;
 
   /** Constructs a new HumanController to control the specified Ship.
    *

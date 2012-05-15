@@ -16,6 +16,7 @@
 
 #include "human_controller.hxx"
 #include "hc_conf.hxx"
+#include "joystick.hxx"
 #include "src/ship/ship.hxx"
 #include "src/ship/insignia.hxx"
 #include "src/ship/sys/ship_system.hxx"
@@ -40,6 +41,12 @@ namespace action {
   float timeSinceKeyboardRepeat[lenof(keysPressed)];
   //See note in analogue_rotate
   float analogueRotationLastDSec;
+
+  struct JoystickState {
+    vector<bool> buttonsPressed[JOYSTICK_NUM_BUTTON_TYPES];
+    vector<float> timeSinceRepeat[JOYSTICK_NUM_BUTTON_TYPES];
+  };
+  vector<JoystickState> joystickStates;
 
   //Privately used to know how long the last frame was
   //Even though multiple HumanControllers will overwrite
@@ -315,6 +322,30 @@ HumanController::HumanController(Ship* s)
 
   mouseHoriz.act=mouseVert.act=NULL;
   mouseHoriz.recentre=mouseVert.recentre=true;
+
+  //Ensure global joystick data is dimensioned correctly
+  if (action::joystickStates.empty()) {
+    for (unsigned i = 0; i < joystick::count(); ++i) {
+      action::JoystickState state;
+      for (unsigned j = 0; j < JOYSTICK_NUM_BUTTON_TYPES; ++j) {
+        state.buttonsPressed[j].assign(
+          joystick::buttonCount(i, (joystick::ButtonType)j), 0);
+        state.timeSinceRepeat[j].assign(
+          joystick::buttonCount(i, (joystick::ButtonType)j), 0.0f);
+      }
+    }
+  }
+  //Init joystick data
+  AnalogueAction nullAnaAct = { AnalogueAction::Rotation, 0, 0, false, NULL };
+  for (unsigned i = 0; i < joystick::count(); ++i) {
+    JoystickBinding b;
+    for (unsigned j = 0; j < JOYSTICK_NUM_AXIS_TYPES; ++j)
+      b.axes[j].assign(
+        joystick::axisCount(i, (joystick::AxisType)j), nullAnaAct);
+    for (unsigned j = 0; j < JOYSTICK_NUM_BUTTON_TYPES; ++j)
+      b.buttons[j].assign(
+        joystick::buttonCount(i, (joystick::ButtonType)j), nullDigAct);
+  }
 
   analogueRotationLastDSec=0;
 
