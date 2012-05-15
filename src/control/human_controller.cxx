@@ -259,9 +259,16 @@ namespace action {
   }
 
   void analogue_accel(Ship* ship, float amt, bool recentre) {
+    if (!ship) return;
+
     float throttle = fabs(amt);
     if (throttle > 1) throttle = 1;
-    ship->configureEngines(amt > 0, amt < 0, throttle);
+    //Accelerate if positive. Brake if negative, or (velocity) dot (heading) is
+    //negative.
+    bool brake = (amt < 0 ||
+                  ship->getVX()*cos(ship->getRotation()) +
+                  ship->getVY()*sin(ship->getRotation()) < 0);
+    ship->configureEngines(amt > 0, brake, throttle);
   }
 
   const AnalogueAction rotate = { AnalogueAction::Rotation, 1.0f, 0.5f, true, analogue_rotate },
