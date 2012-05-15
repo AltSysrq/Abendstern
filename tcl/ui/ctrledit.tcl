@@ -544,11 +544,11 @@ class ControlEditorBaseConfigurator {
 
   # Creates an unbound analogue entry at the given location if it does not
   # exist.
-  method ensureAnalogueExists {base sub} {
+  method ensureAnalogueExists {base sub joystickMode} {
     if {![$ exists $base.$sub]} {
       $ add $base $sub STGroup
       $ adds $base.$sub action "none"
-      $ addb $base.$sub recentre 1
+      $ addb $base.$sub recentre [expr {!$joystickMode}]
       $ addf $base.$sub sensitivity 1.0
     }
   }
@@ -834,7 +834,7 @@ class ControlEditorJoystickConfigurator {
 
     # Conventional axes
     for {set i 0} {$i < [joystick_axisCount $joyix Axis]} {incr i} {
-      ensureAnalogueExists $confroot axis_$i
+      ensureAnalogueExists $confroot axis_$i 1
       # Axes 0 and 1 are named specially
       switch $i {
         0 { set name [_ A ctrledit joystick_x_axis] }
@@ -850,7 +850,7 @@ class ControlEditorJoystickConfigurator {
     for {set i 0} {$i < [joystick_axisCount $joyix BallX]} {incr i} {
       foreach axis {x y} {
         set entry "ball_${axis}_$i"
-        ensureAnalogueExists $confroot $entry
+        ensureAnalogueExists $confroot $entry 0
         set name [format [_ A ctrledit joystick_ball_$axis] $i]
         # We can't support joystick mode with balls, since they do not have
         # absolute coordinates.
