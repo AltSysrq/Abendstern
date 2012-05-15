@@ -195,6 +195,7 @@ class ControlEditorBaseConfigurator {
   variable ranalogueNone
   variable ranalogueRotation
   variable ranalogueThrottle
+  variable ranalogueAccel
   variable sanalogueSensitivity ;# Slider for analogue axis sensitivity
   variable canalogueJoystick ;# Whether the given analogue axis should operate
                               # in "joystick mode"
@@ -269,6 +270,10 @@ class ControlEditorBaseConfigurator {
                                  {} {} $ranalogueRotation \
                                  "$this setAnalogue throttle"]
       $panactrl add $ranalogueThrottle
+      set ranalogueAccel [new ::gui::RadioButton [_ A ctrledit ana_accel] \
+                              {} {} $ranalogueThrottle \
+                              "$this setAnalogue accel"]
+      $panactrl add $ranalogueAccel
       set sanalogueSensitivity [new ::gui::Slider [_ A ctrledit sensitivity] \
                                     float {expr 2} {} 0 4 0.1 \
                                     "$this adjustSensitivity"]
@@ -611,6 +616,7 @@ class ControlEditorBaseConfigurator {
       $ranalogueNone forceChecked [expr {"none" == $curr}]
       $ranalogueRotation forceChecked [expr {"rotate" == $curr}]
       $ranalogueThrottle forceChecked [expr {"throttle" == $curr}]
+      $ranalogueAccel forceChecked [expr {"accel" == $curr}]
       $canalogueJoystick setCheckedNoAction \
           [expr {![$ bool $confroot.recentre]}]
       $canalogueInvert setCheckedNoAction \

@@ -196,6 +196,8 @@
 +Rotate
 -ana_throttle
 +Throttle
+-ana_accel
++Acceleration
 -sensitivity
 +Sensitivity
 -joystick_mode

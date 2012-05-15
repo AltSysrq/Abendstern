@@ -226,8 +226,16 @@ namespace action {
     if (throttle<0) throttle=0;
     ship->setThrust(throttle);
   }
+
+  void analogue_accel(Ship* ship, float amt, bool recentre) {
+    float throttle = fabs(amt);
+    if (throttle > 1) throttle = 1;
+    ship->configureEngines(amt > 0, amt < 0, throttle);
+  }
+
   const AnalogueAction rotate = { AnalogueAction::Rotation, 1.0f, 0.5f, true, analogue_rotate },
                        throttle = { AnalogueAction::EnginePower, 0.5f, 0.5f, true, analogue_throttle },
+                       anaaccel = { AnalogueAction::EnginePower, 1, 1, false, analogue_accel },
                        noAction = { AnalogueAction::Rotation, 0, 0, true, NULL };
 };
 

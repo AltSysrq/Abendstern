@@ -231,6 +231,8 @@ namespace action {
     rotate,
     /** Throttle action */
     throttle,
+    /** Throttle+engine control */
+    anaaccel,
     /** Do-nothing action */
     noAction;
   /** Array of mouse buttons pressed. This should not be modified by external code. */

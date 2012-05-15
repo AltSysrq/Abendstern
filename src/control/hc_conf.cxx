@@ -84,6 +84,7 @@ namespace hc_conf {
     if      (0 == strcmp("none", setting["action"]))     act=action::noAction;
     else if (0 == strcmp("rotate", setting["action"]))   act=action::rotate;
     else if (0 == strcmp("throttle", setting["action"])) act=action::throttle;
+    else if (0 == strcmp("accel", setting["action"]))    act=action::anaaccel;
     act.sensitivity = setting["sensitivity"];
     act.recentre = setting["recentre"];
   }

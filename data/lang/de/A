@@ -121,6 +121,8 @@
 +Drehen
 -ana_throttle
 +Drossel
+-ana_accel
++Beschleunigung
 -sensitivity
 +Empfindlichkeit
 -joystick_mode
