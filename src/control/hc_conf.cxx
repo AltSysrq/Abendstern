@@ -20,6 +20,7 @@
 #include "src/globals.hxx"
 #include "hc_conf.hxx"
 #include "human_controller.hxx"
+#include "joystick.hxx"
 
 using namespace std;
 using namespace libconfig;
@@ -83,6 +84,7 @@ namespace hc_conf {
     if      (0 == strcmp("none", setting["action"]))     act=action::noAction;
     else if (0 == strcmp("rotate", setting["action"]))   act=action::rotate;
     else if (0 == strcmp("throttle", setting["action"])) act=action::throttle;
+    else if (0 == strcmp("accel", setting["action"]))    act=action::anaaccel;
     act.sensitivity = setting["sensitivity"];
     act.recentre = setting["recentre"];
   }
@@ -141,17 +143,85 @@ namespace hc_conf {
   void configure(HumanController* hc, const char* section) throw (ConfigException) {
     Setting& setting(conf["conf"][section]);
 
-    //Analogue settings are hardwired
+    //Analogue settings for the mouse are hardwired
     confAnalogue(setting["analogue"]["vert"], hc->mouseVert);
     confAnalogue(setting["analogue"]["horiz"], hc->mouseHoriz);
+
+    //Joysticks
+    for (unsigned i = 0; i < hc->joysticks.size(); ++i) {
+      char joyname_[] = "joy_XXXX";
+      sprintf(joyname_, "joy_%d", i);
+      //ISO C++ says that implicit char[]->string == char[]->char* in priority,
+      //so G++ won't compile joyname_ used as an index (note the casts with the
+      //lower indices). To save those casts, explicitly store into a const
+      //char* variable.
+      const char* joyname = joyname_;
+      if (!setting.exists(joyname)) continue;
+
+      //Normal axes
+      for (unsigned j=0; j<hc->joysticks[i].axes[joystick::Axis].size(); ++j) {
+        char axisname[] = "axis_XXXX";
+        sprintf(axisname, "axis_%d", j);
+        if (setting[joyname].exists(axisname)) {
+          confAnalogue(setting[joyname][(const char*)axisname],
+                       hc->joysticks[i].axes[joystick::Axis][j]);
+        }
+      }
+
+      //Balls
+      for (unsigned j=0; j<hc->joysticks[i].axes[joystick::BallX].size(); ++j) {
+        char axisname[] = "ball_x_XXXX";
+        sprintf(axisname, "ball_x_%d", j);
+        if (setting[joyname].exists(axisname)) {
+          confAnalogue(setting[joyname][(const char*)axisname],
+                       hc->joysticks[i].axes[joystick::BallX][j]);
+        }
+      }
+      for (unsigned j=0; j<hc->joysticks[i].axes[joystick::BallY].size(); ++j) {
+        char axisname[] = "ball_y_XXXX";
+        sprintf(axisname, "ball_y_%d", j);
+        if (setting[joyname].exists(axisname)) {
+          confAnalogue(setting[joyname][(const char*)axisname],
+                       hc->joysticks[i].axes[joystick::BallY][j]);
+        }
+      }
+
+      //Normal buttons
+      for (unsigned j=0; j<hc->joysticks[i].buttons[joystick::Button].size();
+           ++j) {
+        char buttonname[] = "button_XXXX";
+        sprintf(buttonname, "button_%d", j);
+        if (setting[joyname].exists(buttonname)) {
+          confDigital(setting[joyname][(const char*)buttonname],
+                      hc->joysticks[i].buttons[joystick::Button][j]);
+        }
+      }
+      //Hats
+      for (unsigned hat = (unsigned)joystick::HatUp;
+           hat <= (unsigned)joystick::HatRight;
+           ++hat) {
+        for (unsigned j=0; j < hc->joysticks[i].buttons[hat].size(); ++j) {
+          char buttonname[] = "hat_RIGHT_XXXX";
+          sprintf(buttonname, "hat_%s_%d",
+                  (hat == joystick::HatUp?    "up"    :
+                   hat == joystick::HatDown?  "down"  :
+                   hat == joystick::HatLeft?  "left"  :
+                                              "right"), j);
+          if (setting[joyname].exists(buttonname)) {
+            confDigital(setting[joyname][(const char*)buttonname],
+                        hc->joysticks[i].buttons[hat][j]);
+          }
+        }
+      }
+    }
 
     for (unsigned int i=0; i<=SDL_BUTTON_X2-1; ++i)
       if (setting["mouse"].exists(mouseButtonNames[i]))
         confDigital(setting["mouse"][mouseButtonNames[i]], hc->mouseButton[i+1]);
 
 
-    for (unsigned int i=0; i<SDLK_LAST; ++i) {
-      char name[]="key_XXX";
+    for (unsigned int i=0; i<=SDLK_LAST; ++i) {
+      char name[]="key_XXX  "; //Leave extra space in case a sym >=1000 is added
       sprintf(name, "key_%03d", i);
       if (setting["keyboard"].exists(name))
         confDigital(setting["keyboard"][(const char*)name], hc->keyboard[i]);

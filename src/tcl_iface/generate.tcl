@@ -455,22 +455,23 @@ class EnumType {
       ]
     }
     if {$isOpen} {
-      append bulid [
+      append build [
         format { {
-          const char* end;
-          %s = (%s)atol(tmp, &end, 10);
+          char* end;
+          %s = (%s)strtol(tmp, &end, 10);
           if (*end) {
             sprintf(staticError, "Unable to convert %%s to %s", tmp);
             scriptError(staticError);
           }
-        } } $valueOut $cppType $cppType
+          goto %s;
+        } } $valueOut $cppType $cppType $doneLabel
       ]
     } else {
       append build [
         format { {
           sprintf(staticError, "Unable to convert %%s to %s", tmp);
           scriptError(staticError);
-        } } $cppType
+        } } $cppType \
       ]
     }
     append build "\n$doneLabel:;"

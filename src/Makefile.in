@@ -124,6 +124,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-ci_cellex.$(OBJEXT) \
 	abendsternuxgl14-ci_field.$(OBJEXT) \
 	abendsternuxgl14-human_controller.$(OBJEXT) \
+	abendsternuxgl14-joystick.$(OBJEXT) \
 	abendsternuxgl14-globals.$(OBJEXT) \
 	abendsternuxgl14-shipio.$(OBJEXT) \
 	abendsternuxgl14-system_textures.$(OBJEXT) \
@@ -333,6 +334,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-ci_cellex.$(OBJEXT) \
 	abendsternuxgl21-ci_field.$(OBJEXT) \
 	abendsternuxgl21-human_controller.$(OBJEXT) \
+	abendsternuxgl21-joystick.$(OBJEXT) \
 	abendsternuxgl21-globals.$(OBJEXT) \
 	abendsternuxgl21-shipio.$(OBJEXT) \
 	abendsternuxgl21-system_textures.$(OBJEXT) \
@@ -540,6 +542,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-ci_cellex.$(OBJEXT) \
 	abendsternuxgl32-ci_field.$(OBJEXT) \
 	abendsternuxgl32-human_controller.$(OBJEXT) \
+	abendsternuxgl32-joystick.$(OBJEXT) \
 	abendsternuxgl32-globals.$(OBJEXT) \
 	abendsternuxgl32-shipio.$(OBJEXT) \
 	abendsternuxgl32-system_textures.$(OBJEXT) \
@@ -901,6 +904,7 @@ COMMONSOURCES = \
 ./control/genai/ci_cellex.cxx \
 ./control/genai/ci_field.cxx \
 ./control/human_controller.cxx \
+./control/joystick.cxx \
 ./globals.cxx \
 ./ship/shipio.cxx \
 ./ship/sys/system_textures.cxx \
@@ -1241,6 +1245,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-index_texture.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-init_state.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-insignia.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-joystick.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-lat_disc_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-launcher.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-lazy_transform_collision_tree.Po@am__quote@
@@ -1451,6 +1456,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-index_texture.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-init_state.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-insignia.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-joystick.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-lat_disc_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-launcher.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-lazy_transform_collision_tree.Po@am__quote@
@@ -1661,6 +1667,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-index_texture.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-init_state.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-insignia.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-joystick.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-lat_disc_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-launcher.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-lazy_transform_collision_tree.Po@am__quote@
@@ -2944,6 +2951,20 @@ abendsternuxgl14-human_controller.obj: ./control/human_controller.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/human_controller.cxx' object='abendsternuxgl14-human_controller.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-human_controller.obj `if test -f './control/human_controller.cxx'; then $(CYGPATH_W) './control/human_controller.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/human_controller.cxx'; fi`
+
+abendsternuxgl14-joystick.o: ./control/joystick.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-joystick.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-joystick.Tpo -c -o abendsternuxgl14-joystick.o `test -f './control/joystick.cxx' || echo '$(srcdir)/'`./control/joystick.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-joystick.Tpo $(DEPDIR)/abendsternuxgl14-joystick.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/joystick.cxx' object='abendsternuxgl14-joystick.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-joystick.o `test -f './control/joystick.cxx' || echo '$(srcdir)/'`./control/joystick.cxx
+
+abendsternuxgl14-joystick.obj: ./control/joystick.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-joystick.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-joystick.Tpo -c -o abendsternuxgl14-joystick.obj `if test -f './control/joystick.cxx'; then $(CYGPATH_W) './control/joystick.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/joystick.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-joystick.Tpo $(DEPDIR)/abendsternuxgl14-joystick.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/joystick.cxx' object='abendsternuxgl14-joystick.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-joystick.obj `if test -f './control/joystick.cxx'; then $(CYGPATH_W) './control/joystick.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/joystick.cxx'; fi`
 
 abendsternuxgl14-globals.o: ./globals.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-globals.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-globals.Tpo -c -o abendsternuxgl14-globals.o `test -f './globals.cxx' || echo '$(srcdir)/'`./globals.cxx
@@ -5885,6 +5906,20 @@ abendsternuxgl21-human_controller.obj: ./control/human_controller.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-human_controller.obj `if test -f './control/human_controller.cxx'; then $(CYGPATH_W) './control/human_controller.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/human_controller.cxx'; fi`
 
+abendsternuxgl21-joystick.o: ./control/joystick.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-joystick.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-joystick.Tpo -c -o abendsternuxgl21-joystick.o `test -f './control/joystick.cxx' || echo '$(srcdir)/'`./control/joystick.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-joystick.Tpo $(DEPDIR)/abendsternuxgl21-joystick.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/joystick.cxx' object='abendsternuxgl21-joystick.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-joystick.o `test -f './control/joystick.cxx' || echo '$(srcdir)/'`./control/joystick.cxx
+
+abendsternuxgl21-joystick.obj: ./control/joystick.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-joystick.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-joystick.Tpo -c -o abendsternuxgl21-joystick.obj `if test -f './control/joystick.cxx'; then $(CYGPATH_W) './control/joystick.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/joystick.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-joystick.Tpo $(DEPDIR)/abendsternuxgl21-joystick.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/joystick.cxx' object='abendsternuxgl21-joystick.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-joystick.obj `if test -f './control/joystick.cxx'; then $(CYGPATH_W) './control/joystick.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/joystick.cxx'; fi`
+
 abendsternuxgl21-globals.o: ./globals.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-globals.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-globals.Tpo -c -o abendsternuxgl21-globals.o `test -f './globals.cxx' || echo '$(srcdir)/'`./globals.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-globals.Tpo $(DEPDIR)/abendsternuxgl21-globals.Po
@@ -8824,6 +8859,20 @@ abendsternuxgl32-human_controller.obj: ./control/human_controller.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/human_controller.cxx' object='abendsternuxgl32-human_controller.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-human_controller.obj `if test -f './control/human_controller.cxx'; then $(CYGPATH_W) './control/human_controller.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/human_controller.cxx'; fi`
+
+abendsternuxgl32-joystick.o: ./control/joystick.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-joystick.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-joystick.Tpo -c -o abendsternuxgl32-joystick.o `test -f './control/joystick.cxx' || echo '$(srcdir)/'`./control/joystick.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-joystick.Tpo $(DEPDIR)/abendsternuxgl32-joystick.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/joystick.cxx' object='abendsternuxgl32-joystick.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-joystick.o `test -f './control/joystick.cxx' || echo '$(srcdir)/'`./control/joystick.cxx
+
+abendsternuxgl32-joystick.obj: ./control/joystick.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-joystick.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-joystick.Tpo -c -o abendsternuxgl32-joystick.obj `if test -f './control/joystick.cxx'; then $(CYGPATH_W) './control/joystick.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/joystick.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-joystick.Tpo $(DEPDIR)/abendsternuxgl32-joystick.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/joystick.cxx' object='abendsternuxgl32-joystick.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-joystick.obj `if test -f './control/joystick.cxx'; then $(CYGPATH_W) './control/joystick.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/joystick.cxx'; fi`
 
 abendsternuxgl32-globals.o: ./globals.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-globals.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-globals.Tpo -c -o abendsternuxgl32-globals.o `test -f './globals.cxx' || echo '$(srcdir)/'`./globals.cxx

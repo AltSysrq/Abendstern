@@ -245,6 +245,8 @@ class TestMode {
         $controlSettings add $box
       }
     }
+    $controlSettings add [new ::gui::Button [_ A ctrledit edit_custom_dots] \
+                              "$app setSubState \[new ControlEditor\]"]
     $settings add [_ T a settings_controls] $controlSettings
     set colourSettings [new gui::TabPanel]
     foreach colour {Standard Warning Danger Special} {

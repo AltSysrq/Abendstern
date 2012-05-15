@@ -169,6 +169,146 @@
 -target_none
 +(NONE)
 
+@ctrledit
+-edit_custom_dots
++Edit custom...
+-title
++Edit Control Scheme
+-select_device
++Select input device to configure.
+-keyboard
++Keyboard
+-mouse
++Mouse
+-buttons
++Buttons/Keys
+-dig_bindings
++Bind button to:
+-axes
++Axes
+-add_key
++Add new key binding...
+-del_key
++Delete selected
+-ana_none
++Unbound
+-ana_rotate
++Rotate
+-ana_throttle
++Throttle
+-ana_accel
++Acceleration
+-sensitivity
++Sensitivity
+-joystick_mode
++Joystick mode
+-invert_axis
++Invert
+-value
++Value
+
+-c_accel
++Accelerate
+-c_decel
++Brake
+-c_stats
++Show scores
+-c_throttle
++Adjust throttle
+-throttle_note
++Throttle ranges 0...1
+-c_rotate
++Rotate
+-rotate_note
++CW is negative, CCW is positive
+-c_fire
++Fire
+-c_compose
++Chat
+-c_adjust weapon power
++Adjust weapon power
+-c_set current weapon
++Change weapon
+-c_next weapon
++Next weapon
+-c_prev weapon
++Previous weapon
+-c_show fullscreen map
++Fullscreen map
+-c_set camera mode
++Change camera
+-c_adjust camera lookahead
++Adjust camera look-ahead
+-lookahead_note
++Moves the ship to/from the bottom
+-cameramode_none
++No rotation
+-cameramode_rotation
++Rotation matches ship's
+-cameramode_velocity
++Rotation matches velocity
+-c_stealth
++Toggle stealth mode
+-c_self destruct
++Self-destruct
+-c_retarget
++Change target
+-c_adjust camera zoom
++Zoom
+-zoom_note
++Positive is in, negative is out
+-c___ exit
++Open menu
+-c___ frameXframe
++Debugging option
+-c___ fast
++Debugging option
+-c___ halt
++Debugging option
+-c___ slow
++Debugging option
+-c___ unbound
++Unbound
+
+-mouse_horiz
++X Axis
+-mouse_vert
++Y Axis
+-mousebutton_left
++Left button
+-mousebutton_middle
++Middle button
+-mousebutton_right
++Right button
+-mousebutton_up
++Wheel up
+-mousebutton_down
++Wheel down
+-mousebutton_x1
++Button 5
+-mousebutton_x2
++Button 6
+
+-joystick_button
++Button %d
+-joystick_hat_up
++Hat %d up
+-joystick_hat_down
++Hat %d down
+-joystick_hat_left
++Hat %d left
+-joystick_hat_right
++Hat %d right
+-joystick_x_axis
++X Axis
+-joystick_y_axis
++Y Axis
+-joystick_other_axis
++Axis %d
+-joystick_ball_x
++Ball %d X Axis
+-joystick_ball_y
++Ball %d Y Axis
 
 @editor
 -cant_put_systems_in_bridge

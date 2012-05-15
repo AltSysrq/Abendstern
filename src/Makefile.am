@@ -126,6 +126,7 @@ COMMONSOURCES= \
 ./control/genai/ci_cellex.cxx \
 ./control/genai/ci_field.cxx \
 ./control/human_controller.cxx \
+./control/joystick.cxx \
 ./globals.cxx \
 ./ship/shipio.cxx \
 ./ship/sys/system_textures.cxx \

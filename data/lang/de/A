@@ -94,6 +94,146 @@
 -target_none
 +(KEIN)
 
+@ctrledit
+-edit_custom_dots
++Benutzer-definiert bearbeiten...
+-title
++Bearbeitung das Kontrolleschemas
+-select_device
++Wählen Sie ein Garät, um es zu konfigurieren.
+-keyboard
++Tastatur
+-mouse
++Maus
+-buttons
++Tasten
+-dig_bindings
++Tasten verbinden an:
+-axes
++Achsen
+-add_key
++Neue Taste hinfügen...
+-del_key
++Ausgewählt entfernen
+-ana_none
++Unverbunden
+-ana_rotate
++Drehen
+-ana_throttle
++Drossel
+-ana_accel
++Beschleunigung
+-sensitivity
++Empfindlichkeit
+-joystick_mode
++Joystick-Modus
+-invert_axis
++Umdrehen
+-value
++Wert
+
+-c_accel
++Beschleunigen
+-c_decel
++Bremsen
+-c_stats
++Spielergebnisse anzeigen
+-c_throttle
++Drossel anpassen
+-throttle_note
++Drossel reicht von 0 bis 1.
+-c_rotate
++Dresen
+-rotate_note
++UZ ist negativ, GUZ ist positiv
+-c_fire
++Feuer
+-c_compose
++Reden
+-c_adjust weapon power
++Waffengrad anpassen
+-c_set current weapon
++Waffe wechseln
+-c_next weapon
++Nächste Waffe
+-c_prev weapon
++Vorherige Waffe
+-c_show fullscreen map
++Vollbild-Karte anzeigen
+-c_set camera mode
++Kamera wechseln
+-c_adjust camera lookahead
++Kamera Zentiererung anpassen
+-lookahead_note
++Verschiebt die Kamera nach/von unten
+-cameramode_none
++Keine Rotation
+-cameramode_rotation
++Rotatieren mit Schiff
+-cameramode_velocity
++Rotatieren mit Geschwindigkeit
+-c_stealth
++Tarnkappe-Modus umschalten
+-c_self destruct
++Selbstzerstören
+-c_retarget
++Ziel ändern
+-c_adjust camera zoom
++Vergrößerung ändern
+-zoom_note
++Positiv vergrößert, Negativ verkleinert
+-c___ exit
++Menü öffnen
+-c___ frameXframe
++Debugging option
+-c___ fast
++Debugging option
+-c___ halt
++Debugging option
+-c___ slow
++Debugging option
+-c___ unbound
++Unverbunden
+
+-mouse_horiz
++X-Achse
+-mouse_vert
++Y-Achse
+-mousebutton_left
++Linke Taste
+-mousebutton_middle
++Mittlere Taste
+-mousebutton_right
++Rechte Taste
+-mousebutton_up
++Rad nach oben
+-mousebutton_down
++Rad nach unten
+-mousebutton_x1
++Taste-5
+-mousebutton_x2
++Taste-6
+
+-joystick_button
++Taste-%d
+-joystick_hat_up
++Cooliehat-%d nach oben
+-joystick_hat_down
++Cooliehat-%d nach unten
+-joystick_hat_left
++Cooliehat-%d nach links
+-joystick_hat_right
++Cooliehat-%d nach rechts
+-joystick_x_axis
++X-Achse
+-joystick_y_axis
++Y-Achse
+-joystick_other_axis
++Achse-%d
+-joystick_ball_x
++Ball-%d X-Achse
+-joystick_ball_y
++Ball-%d Y-Achse
 
 @editor
 -cant_put_systems_in_bridge

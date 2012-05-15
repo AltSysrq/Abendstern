@@ -16,6 +16,7 @@
 
 #include "human_controller.hxx"
 #include "hc_conf.hxx"
+#include "joystick.hxx"
 #include "src/ship/ship.hxx"
 #include "src/ship/insignia.hxx"
 #include "src/ship/sys/ship_system.hxx"
@@ -40,6 +41,12 @@ namespace action {
   float timeSinceKeyboardRepeat[lenof(keysPressed)];
   //See note in analogue_rotate
   float analogueRotationLastDSec;
+
+  struct JoystickState {
+    vector<bool> buttonsPressed[JOYSTICK_NUM_BUTTON_TYPES];
+    vector<float> timeSinceRepeat[JOYSTICK_NUM_BUTTON_TYPES];
+  };
+  vector<JoystickState> joystickStates;
 
   //Privately used to know how long the last frame was
   //Even though multiple HumanControllers will overwrite
@@ -76,6 +83,39 @@ namespace action {
     if (s) s->setThrust(s->getTrueThrust()+datum.amt);
   }
 
+  void weaponSwitchAudio(HumanController* hc) {
+    if (!hc->ship) return;
+    Weapon weap = hc->currentWeapon;
+    if (weapon_exists(hc->ship, weap)) switch (weap) {
+      case Weapon_EnergyCharge:
+        audio::root.add(new audio::Dtmf20);
+        break;
+      case Weapon_MagnetoBomb:
+        audio::root.add(new audio::Dtmf10);
+        break;
+      case Weapon_PlasmaBurst:
+        audio::root.add(new audio::Dtmf21);
+        break;
+      case Weapon_SGBomb:
+        audio::root.add(new audio::Dtmf11);
+        break;
+      case Weapon_GatlingPlasma:
+        audio::root.add(new audio::Dtmf22);
+        break;
+      case Weapon_Monophase:
+        audio::root.add(new audio::Dtmf23);
+        break;
+      case Weapon_Missile:
+        audio::root.add(new audio::Dtmf12);
+        break;
+      case Weapon_ParticleBeam:
+        audio::root.add(new audio::Dtmf13);
+        break;
+      } else {
+      audio::root.add(new audio::WeaponNotFound);
+    }
+  }
+
   void set_current_weapon_on(Ship* s, ActionDatum& datum) {
     const char* name=(const char*)datum.pair.second.ptr;
     Weapon weap;
@@ -94,36 +134,34 @@ namespace action {
     ((HumanController*)datum.pair.first)->currentWeapon = weap;
 
     HumanController* hc = (HumanController*)datum.pair.first;
-    if (hc->ship) {
-      if (weapon_exists(hc->ship, weap)) switch (weap) {
-        case Weapon_EnergyCharge:
-          audio::root.add(new audio::Dtmf20);
-          break;
-        case Weapon_MagnetoBomb:
-          audio::root.add(new audio::Dtmf10);
-          break;
-        case Weapon_PlasmaBurst:
-          audio::root.add(new audio::Dtmf21);
-          break;
-        case Weapon_SGBomb:
-          audio::root.add(new audio::Dtmf11);
-          break;
-        case Weapon_GatlingPlasma:
-          audio::root.add(new audio::Dtmf22);
-          break;
-        case Weapon_Monophase:
-          audio::root.add(new audio::Dtmf23);
-          break;
-        case Weapon_Missile:
-          audio::root.add(new audio::Dtmf12);
-          break;
-        case Weapon_ParticleBeam:
-          audio::root.add(new audio::Dtmf13);
-          break;
-      } else {
-        audio::root.add(new audio::WeaponNotFound);
-      }
-    }
+    weaponSwitchAudio(hc);
+  }
+
+  void next_weapon_on(Ship* s, ActionDatum& datum) {
+    if (!s) return;
+
+    HumanController* hc = (HumanController*)datum.ptr;
+    Weapon old = hc->currentWeapon, curr = old;
+    do {
+      curr = (Weapon)((((unsigned)curr)+1) % 8);
+    } while (!weapon_exists(hc->ship, curr) && curr != old);
+    hc->currentWeapon = curr;
+    weaponSwitchAudio(hc);
+  }
+
+  void prev_weapon_on(Ship* s, ActionDatum& datum) {
+    if (!s) return;
+
+    HumanController* hc = (HumanController*)datum.ptr;
+    Weapon old = hc->currentWeapon, curr = old;
+    do {
+      if (((unsigned)curr) == 0)
+        curr = (Weapon)7;
+      else
+        curr = (Weapon)(((unsigned)curr)-1);
+    } while (!weapon_exists(hc->ship, curr) && curr != old);
+    hc->currentWeapon = curr;
+    weaponSwitchAudio(hc);
   }
 
   void adjust_weapon_power_on(Ship* s, ActionDatum& datum) {
@@ -175,7 +213,8 @@ namespace action {
                       accelMore = { {+0.05f}, false, false, throttle_on, NULL },
                       accelLess = { {-0.05f}, false, false, throttle_on, NULL },
                       stealth   = { {0}, false, false, stealth_on, NULL },
-                      compose   = { {0}, false, false, compose_message_on, NULL };
+                      compose   = { {0}, false, false, compose_message_on, NULL },
+                      unbound   = { {0}, false, false, NULL, NULL };
 
   void analogue_rotate(Ship* ship, float amt, bool recentre) {
     if (spunThisFrame) return;
@@ -218,8 +257,23 @@ namespace action {
     if (throttle<0) throttle=0;
     ship->setThrust(throttle);
   }
+
+  void analogue_accel(Ship* ship, float amt, bool recentre) {
+    if (!ship) return;
+
+    float throttle = fabs(amt);
+    if (throttle > 1) throttle = 1;
+    //Accelerate if positive. Brake if negative, or (velocity) dot (heading) is
+    //negative.
+    bool brake = (amt < 0 ||
+                  ship->getVX()*cos(ship->getRotation()) +
+                  ship->getVY()*sin(ship->getRotation()) < 0);
+    ship->configureEngines(amt > 0, brake, throttle);
+  }
+
   const AnalogueAction rotate = { AnalogueAction::Rotation, 1.0f, 0.5f, true, analogue_rotate },
                        throttle = { AnalogueAction::EnginePower, 0.5f, 0.5f, true, analogue_throttle },
+                       anaaccel = { AnalogueAction::EnginePower, 1, 1, false, analogue_accel },
                        noAction = { AnalogueAction::Rotation, 0, 0, true, NULL };
 };
 
@@ -314,6 +368,32 @@ HumanController::HumanController(Ship* s)
 
   mouseHoriz.act=mouseVert.act=NULL;
   mouseHoriz.recentre=mouseVert.recentre=true;
+
+  //Ensure global joystick data is dimensioned correctly
+  if (action::joystickStates.empty()) {
+    for (unsigned i = 0; i < joystick::count(); ++i) {
+      action::JoystickState state;
+      for (unsigned j = 0; j < JOYSTICK_NUM_BUTTON_TYPES; ++j) {
+        state.buttonsPressed[j].assign(
+          joystick::buttonCount(i, (joystick::ButtonType)j), 0);
+        state.timeSinceRepeat[j].assign(
+          joystick::buttonCount(i, (joystick::ButtonType)j), 0.0f);
+      }
+      action::joystickStates.push_back(state);
+    }
+  }
+  //Init joystick data
+  AnalogueAction nullAnaAct = { AnalogueAction::Rotation, 0, 0, false, NULL };
+  for (unsigned i = 0; i < joystick::count(); ++i) {
+    JoystickBinding b;
+    for (unsigned j = 0; j < JOYSTICK_NUM_AXIS_TYPES; ++j)
+      b.axes[j].assign(
+        joystick::axisCount(i, (joystick::AxisType)j), nullAnaAct);
+    for (unsigned j = 0; j < JOYSTICK_NUM_BUTTON_TYPES; ++j)
+      b.buttons[j].assign(
+        joystick::buttonCount(i, (joystick::ButtonType)j), nullDigAct);
+    joysticks.push_back(b);
+  }
 
   analogueRotationLastDSec=0;
 
@@ -476,12 +556,13 @@ void HumanController::update(float et) noth {
     mouseVert.act(ship, vertMag, mouseVert.recentre);
   }
 
+  handleJoystick(et);
+
   if (mouseHoriz.recentre) horizMag=0;
   if (mouseVert .recentre) vertMag =0;
 
   if (warpMouse) SDL_WarpMouse(warpMouseX, warpMouseY);
   warpMouse=false;
-
   action::lastFrameTime=et;
   spunThisFrame=false;
 
@@ -537,6 +618,62 @@ void HumanController::update(float et) noth {
     //Don't play ShieldUp when we load if we have no shields (in which case weakestShield
     //stays at 2)
     shieldUp.setOn(weakestShield > 0.99f && !shields.empty());
+  }
+}
+
+void HumanController::handleJoystick(float et) noth {
+  //Buttons.
+  //An event occurs if the current button value does not match the old one. If
+  //the two match and the current state is on, time is added to the repeat
+  //counter and a repeat occurs if so dictated.
+  for (unsigned i = 0; i < joystick::count(); ++i) {
+    for (unsigned j = 0; j < JOYSTICK_NUM_BUTTON_TYPES; ++j) {
+      for (unsigned k = 0; k < joysticks[i].buttons[j].size(); ++k) {
+        //Generate events if state differs
+        bool curr = joystick::button(i, (joystick::ButtonType)j, k);
+        if (!action::joystickStates[i].buttonsPressed[j][k] && curr) {
+          if (joysticks[i].buttons[j][k].on)
+            joysticks[i].buttons[j][k].on(ship,
+                                          joysticks[i].buttons[j][k].datum);
+          action::joystickStates[i].timeSinceRepeat[j][k] = 0;
+        } else if (action::joystickStates[i].buttonsPressed[j][k] && !curr) {
+          if (joysticks[i].buttons[j][k].off)
+            joysticks[i].buttons[j][k].off(ship,
+                                           joysticks[i].buttons[j][k].datum);
+        } else if (curr && joysticks[i].buttons[j][k].repeat) {
+          //No state change, still on
+          action::joystickStates[i].timeSinceRepeat[j][k] += et;
+          if (action::joystickStates[i].timeSinceRepeat[j][k] >= REPEAT_T ||
+              joysticks[i].buttons[j][k].fastRepeat)
+            if (joysticks[i].buttons[j][k].on)
+              joysticks[i].buttons[j][k].on(ship,
+                                            joysticks[i].buttons[j][k].datum);
+        }
+
+        //Save current
+        action::joystickStates[i].buttonsPressed[j][k] = curr;
+      }
+    }
+  }
+
+  //Axes
+  for (unsigned i = 0; i < joystick::count(); ++i) {
+    for (unsigned j = 0; j < JOYSTICK_NUM_AXIS_TYPES; ++j) {
+      for (unsigned k = 0; k < joysticks[i].axes[j].size(); ++k) {
+        if (joysticks[i].axes[j][k].act) {
+          float val = joystick::axis(i, (joystick::AxisType)j, k);
+          float limit = joysticks[i].axes[j][k].limit;
+          val *= joysticks[i].axes[j][k].sensitivity;
+          if (val < -limit)
+            val = -limit;
+          if (val >  limit)
+            val =  limit;
+
+          joysticks[i].axes[j][k].act(ship, val,
+                                      joysticks[i].axes[j][k].recentre);
+        }
+      }
+    }
   }
 }
 
@@ -612,20 +749,26 @@ void HumanController::hc_conf_bind() {
                 da_fire  = {thisPtr, true, true, action::fire_on, NULL},
                 da_throt = {{0}, true, false, action::throttle_on, NULL},
                 da_weapn = {thisPair, false, false, action::set_current_weapon_on, NULL},
+                da_wnext = {thisPtr, false, false, action::next_weapon_on, NULL},
+                da_wprev = {thisPtr, false, false, action::prev_weapon_on, NULL},
                 da_power = {thisPair, true, false, action::adjust_weapon_power_on, NULL},
                 da_retgt = {thisPtr, false, false, action::retarget_on, NULL},
                 da_selfd = {{0}, false, false, action::selfDestruct_on, NULL},
                 da_stlth = {{0}, false, false, action::stealth_on, NULL},
-                da_comps = {thisPtr, false, false, action::compose_message_on, NULL};
+                da_comps = {thisPtr, false, false, action::compose_message_on, NULL},
+                da_nop   = {{0}, false, false, NULL, NULL};
   bind( da_accel, "accel" );
   bind( da_decel, "decel" );
   bind( da_turn , "rotate", Float, false, getFloatLimit(STD_ROT_RATE));
   bind( da_fire , "fire", NoParam );
   bind( da_throt, "throttle", Float, false, getFloatLimit(1) );
   bind( da_weapn, "set current weapon", CString, true);
+  bind( da_wnext, "next weapon" );
+  bind( da_wprev, "prev weapon" );
   bind( da_power, "adjust weapon power", Integer, true, getIntLimit(0xFFFF) );
   bind( da_retgt, "retarget" );
   bind( da_selfd, "self destruct" );
   bind( da_stlth, "stealth" );
   bind( da_comps, "compose" );
+  bind( da_nop  , "__ unbound" );
 };
