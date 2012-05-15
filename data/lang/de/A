@@ -153,7 +153,11 @@
 -c_adjust weapon power
 +Waffengrad anpassen
 -c_set current weapon
-+Waffen wechseln
++Waffe wechseln
+-c_next weapon
++Nächste Waffe
+-c_prev weapon
++Vorherige Waffe
 -c_show fullscreen map
 +Vollbild-Karte anzeigen
 -c_set camera mode

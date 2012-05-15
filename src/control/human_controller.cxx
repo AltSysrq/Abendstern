@@ -83,6 +83,39 @@ namespace action {
     if (s) s->setThrust(s->getTrueThrust()+datum.amt);
   }
 
+  void weaponSwitchAudio(HumanController* hc) {
+    if (!hc->ship) return;
+    Weapon weap = hc->currentWeapon;
+    if (weapon_exists(hc->ship, weap)) switch (weap) {
+      case Weapon_EnergyCharge:
+        audio::root.add(new audio::Dtmf20);
+        break;
+      case Weapon_MagnetoBomb:
+        audio::root.add(new audio::Dtmf10);
+        break;
+      case Weapon_PlasmaBurst:
+        audio::root.add(new audio::Dtmf21);
+        break;
+      case Weapon_SGBomb:
+        audio::root.add(new audio::Dtmf11);
+        break;
+      case Weapon_GatlingPlasma:
+        audio::root.add(new audio::Dtmf22);
+        break;
+      case Weapon_Monophase:
+        audio::root.add(new audio::Dtmf23);
+        break;
+      case Weapon_Missile:
+        audio::root.add(new audio::Dtmf12);
+        break;
+      case Weapon_ParticleBeam:
+        audio::root.add(new audio::Dtmf13);
+        break;
+      } else {
+      audio::root.add(new audio::WeaponNotFound);
+    }
+  }
+
   void set_current_weapon_on(Ship* s, ActionDatum& datum) {
     const char* name=(const char*)datum.pair.second.ptr;
     Weapon weap;
@@ -101,36 +134,34 @@ namespace action {
     ((HumanController*)datum.pair.first)->currentWeapon = weap;
 
     HumanController* hc = (HumanController*)datum.pair.first;
-    if (hc->ship) {
-      if (weapon_exists(hc->ship, weap)) switch (weap) {
-        case Weapon_EnergyCharge:
-          audio::root.add(new audio::Dtmf20);
-          break;
-        case Weapon_MagnetoBomb:
-          audio::root.add(new audio::Dtmf10);
-          break;
-        case Weapon_PlasmaBurst:
-          audio::root.add(new audio::Dtmf21);
-          break;
-        case Weapon_SGBomb:
-          audio::root.add(new audio::Dtmf11);
-          break;
-        case Weapon_GatlingPlasma:
-          audio::root.add(new audio::Dtmf22);
-          break;
-        case Weapon_Monophase:
-          audio::root.add(new audio::Dtmf23);
-          break;
-        case Weapon_Missile:
-          audio::root.add(new audio::Dtmf12);
-          break;
-        case Weapon_ParticleBeam:
-          audio::root.add(new audio::Dtmf13);
-          break;
-      } else {
-        audio::root.add(new audio::WeaponNotFound);
-      }
-    }
+    weaponSwitchAudio(hc);
+  }
+
+  void next_weapon_on(Ship* s, ActionDatum& datum) {
+    if (!s) return;
+
+    HumanController* hc = (HumanController*)datum.ptr;
+    Weapon old = hc->currentWeapon, curr = old;
+    do {
+      curr = (Weapon)((((unsigned)curr)+1) % 8);
+    } while (!weapon_exists(hc->ship, curr) && curr != old);
+    hc->currentWeapon = curr;
+    weaponSwitchAudio(hc);
+  }
+
+  void prev_weapon_on(Ship* s, ActionDatum& datum) {
+    if (!s) return;
+
+    HumanController* hc = (HumanController*)datum.ptr;
+    Weapon old = hc->currentWeapon, curr = old;
+    do {
+      if (((unsigned)curr) == 0)
+        curr = (Weapon)7;
+      else
+        curr = (Weapon)(((unsigned)curr)-1);
+    } while (!weapon_exists(hc->ship, curr) && curr != old);
+    hc->currentWeapon = curr;
+    weaponSwitchAudio(hc);
   }
 
   void adjust_weapon_power_on(Ship* s, ActionDatum& datum) {
@@ -711,6 +742,8 @@ void HumanController::hc_conf_bind() {
                 da_fire  = {thisPtr, true, true, action::fire_on, NULL},
                 da_throt = {{0}, true, false, action::throttle_on, NULL},
                 da_weapn = {thisPair, false, false, action::set_current_weapon_on, NULL},
+                da_wnext = {thisPtr, false, false, action::next_weapon_on, NULL},
+                da_wprev = {thisPtr, false, false, action::prev_weapon_on, NULL},
                 da_power = {thisPair, true, false, action::adjust_weapon_power_on, NULL},
                 da_retgt = {thisPtr, false, false, action::retarget_on, NULL},
                 da_selfd = {{0}, false, false, action::selfDestruct_on, NULL},
@@ -723,6 +756,8 @@ void HumanController::hc_conf_bind() {
   bind( da_fire , "fire", NoParam );
   bind( da_throt, "throttle", Float, false, getFloatLimit(1) );
   bind( da_weapn, "set current weapon", CString, true);
+  bind( da_wnext, "next weapon" );
+  bind( da_wprev, "prev weapon" );
   bind( da_power, "adjust weapon power", Integer, true, getIntLimit(0xFFFF) );
   bind( da_retgt, "retarget" );
   bind( da_selfd, "self destruct" );

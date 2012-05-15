@@ -44,6 +44,8 @@ set DIGITAL_ACTIONS {
     enuml10ns sys
     enuml10np {}
   }
+  "next weapon" { repeat 0 }
+  "prev weapon" { repeat 0 }
   "show fullscreen map" { repeat 0 }
   "set camera mode" {
     repeat 0

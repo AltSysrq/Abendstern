@@ -229,6 +229,10 @@
 +Adjust weapon power
 -c_set current weapon
 +Change weapon
+-c_next weapon
++Next weapon
+-c_prev weapon
++Previous weapon
 -c_show fullscreen map
 +Fullscreen map
 -c_set camera mode
