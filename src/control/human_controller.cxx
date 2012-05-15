@@ -333,6 +333,7 @@ HumanController::HumanController(Ship* s)
         state.timeSinceRepeat[j].assign(
           joystick::buttonCount(i, (joystick::ButtonType)j), 0.0f);
       }
+      action::joystickStates.push_back(state);
     }
   }
   //Init joystick data
@@ -345,6 +346,7 @@ HumanController::HumanController(Ship* s)
     for (unsigned j = 0; j < JOYSTICK_NUM_BUTTON_TYPES; ++j)
       b.buttons[j].assign(
         joystick::buttonCount(i, (joystick::ButtonType)j), nullDigAct);
+    joysticks.push_back(b);
   }
 
   analogueRotationLastDSec=0;
@@ -508,12 +510,13 @@ void HumanController::update(float et) noth {
     mouseVert.act(ship, vertMag, mouseVert.recentre);
   }
 
+  handleJoystick(et);
+
   if (mouseHoriz.recentre) horizMag=0;
   if (mouseVert .recentre) vertMag =0;
 
   if (warpMouse) SDL_WarpMouse(warpMouseX, warpMouseY);
   warpMouse=false;
-
   action::lastFrameTime=et;
   spunThisFrame=false;
 
@@ -569,6 +572,62 @@ void HumanController::update(float et) noth {
     //Don't play ShieldUp when we load if we have no shields (in which case weakestShield
     //stays at 2)
     shieldUp.setOn(weakestShield > 0.99f && !shields.empty());
+  }
+}
+
+void HumanController::handleJoystick(float et) noth {
+  //Buttons.
+  //An event occurs if the current button value does not match the old one. If
+  //the two match and the current state is on, time is added to the repeat
+  //counter and a repeat occurs if so dictated.
+  for (unsigned i = 0; i < joystick::count(); ++i) {
+    for (unsigned j = 0; j < JOYSTICK_NUM_BUTTON_TYPES; ++j) {
+      for (unsigned k = 0; k < joysticks[i].buttons[j].size(); ++k) {
+        //Generate events if state differs
+        bool curr = joystick::button(i, (joystick::ButtonType)j, k);
+        if (!action::joystickStates[i].buttonsPressed[j][k] && curr) {
+          if (joysticks[i].buttons[j][k].on)
+            joysticks[i].buttons[j][k].on(ship,
+                                          joysticks[i].buttons[j][k].datum);
+          action::joystickStates[i].timeSinceRepeat[j][k] = 0;
+        } else if (action::joystickStates[i].buttonsPressed[j][k] && !curr) {
+          if (joysticks[i].buttons[j][k].off)
+            joysticks[i].buttons[j][k].off(ship,
+                                           joysticks[i].buttons[j][k].datum);
+        } else if (curr) {
+          //No state change, still on
+          action::joystickStates[i].timeSinceRepeat[j][k] += et;
+          if (action::joystickStates[i].timeSinceRepeat[j][k] >= REPEAT_T ||
+              joysticks[i].buttons[j][k].fastRepeat)
+            if (joysticks[i].buttons[j][k].on)
+              joysticks[i].buttons[j][k].on(ship,
+                                            joysticks[i].buttons[j][k].datum);
+        }
+
+        //Save current
+        action::joystickStates[i].buttonsPressed[j][k] = curr;
+      }
+    }
+  }
+
+  //Axes
+  for (unsigned i = 0; i < joystick::count(); ++i) {
+    for (unsigned j = 0; j < JOYSTICK_NUM_AXIS_TYPES; ++j) {
+      for (unsigned k = 0; k < joysticks[i].axes[j].size(); ++k) {
+        if (joysticks[i].axes[j][k].act) {
+          float val = joystick::axis(i, (joystick::AxisType)j, k);
+          float limit = joysticks[i].axes[j][k].limit;
+          val *= joysticks[i].axes[j][k].sensitivity;
+          if (val < -limit)
+            val = -limit;
+          if (val >  limit)
+            val =  limit;
+
+          joysticks[i].axes[j][k].act(ship, val,
+                                      joysticks[i].axes[j][k].recentre);
+        }
+      }
+    }
   }
 }
 

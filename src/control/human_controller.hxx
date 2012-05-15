@@ -205,6 +205,9 @@ class HumanController: public Controller {
 
   /** Semi-intelligently select the initial value for currentWeapon */
   Weapon selectFirstWeapon() const noth;
+
+private:
+  void handleJoystick(float) noth;
 };
 
 namespace action {
