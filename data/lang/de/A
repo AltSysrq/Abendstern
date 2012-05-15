@@ -208,6 +208,27 @@
 -mousebutton_x2
 +Taste-6
 
+-joystick_button
++Taste-%d
+-joystick_hat_up
++Cooliehat-%d nach oben
+-joystick_hat_down
++Cooliehat-%d nach unten
+-joystick_hat_left
++Cooliehat-%d nach links
+-joystick_hat_right
++Cooliehat-%d nach rechts
+-joystick_x_axis
++X-Achse
+-joystick_y_axis
++Y-Achse
+-joystick_other_axis
++Achse-%d
+-joystick_ball_x
++Ball-%d X-Achse
+-joystick_ball_y
++Ball-%d Y-Achse
+
 @editor
 -cant_put_systems_in_bridge
 +Systeme können nicht in die Brücke gestellt werden.
