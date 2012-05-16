@@ -465,9 +465,10 @@ bool init() {
         cerr << "Error reading configuration: " << e.what() << endl;
         return false;
       }
-      //Save in the new location
-      conf.renameFile("conf", configFileLocation);
     }
+    //Save in the new location
+    conf.renameFile("conf", configFileLocation);
+    conf.sync("conf");
   }
   try {
     conf.open("shaders/stacks.rc", "shaders");
