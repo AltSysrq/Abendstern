@@ -212,6 +212,15 @@ static AbendsternGLType analyseGLVersion(const char* vers) {
  * @return The exit status of the program
  */
 int main(int argc, char** argv) {
+  //On Windows, HOME (er, USERPROFILE) is not an appropriate location.
+  //Since we need to set HOME anyway, APPDATA is the propper location.
+  #ifdef WIN32
+  {
+    char env[1024];
+    sprintf(env, "HOME=%s", getenv("APPDATA"));
+    putenv(env);
+  }
+  #endif
   //Create home directory if it does not exist
   {
     char home[1024];
