@@ -32,6 +32,8 @@
 //And _mkdir on Windows
 #else
 #include <direct.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 #endif
 
 #ifdef WIN32
