@@ -47,6 +47,11 @@ if {"" != $::abnet::userid} {
                 }
               }
               $ setf conf.camera.lookahead [$ float remote.camera.lookahead]
+              if {[$ exists remote.custom_control]} {
+                $ remove conf.custom_control
+                $ add conf custom_control STGroup
+                confcpy conf.custom_control remote.custom_control
+              }
 
               if {[$ exists remote.default_share_ships]} {
                 catch {$ remove conf.default_share_ships}

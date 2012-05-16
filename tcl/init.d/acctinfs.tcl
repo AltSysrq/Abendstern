@@ -8,8 +8,9 @@ if {"" != $::abnet::userid} {
   $ add remote ship_colour STArray
   $ add remote camera STGroup
   $ add remote default_share_ships STBool
+  $ add remote custom_control STGroup
   foreach c {hud control_scheme ship_colour camera
-             default_share_ships} {
+             default_share_ships custom_control} {
     confcpy remote.$c conf.$c
   }
   $ sync remote
