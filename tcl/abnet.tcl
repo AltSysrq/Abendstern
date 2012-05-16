@@ -632,7 +632,7 @@ namespace eval ::abnet {
       readServer
     } err errinfo]} {
       # For debugging
-      set debout [open abneterr.log w]
+      set debout [open [homeq abneterr.log w]]
       puts $debout "$err\n$errinfo"
       close $debout
       closeConnection $err

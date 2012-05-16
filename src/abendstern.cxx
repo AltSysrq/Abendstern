@@ -15,12 +15,25 @@
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
+#include <cerrno>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <typeinfo>
 #include <vector>
+
 #include <libconfig.h++>
+
+//For mkdir on Unix
+#ifndef WIN32
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+//And _mkdir on Windows
+#else
+#include <direct.h>
+#endif
+
 #ifdef WIN32
 #include <malloc.h> //For Windows-specific function
 #elif defined(DEBUG)
@@ -197,9 +210,38 @@ static AbendsternGLType analyseGLVersion(const char* vers) {
  * @return The exit status of the program
  */
 int main(int argc, char** argv) {
+  //Create home directory if it does not exist
+  {
+    char home[1024];
+    sprintf(home, "%s/.abendstern", getenv("HOME"));
+    #ifdef WIN32
+      struct _stat s;
+      if (_stat(home, &s)) {
+        //Create
+        if (_mkdir(home)) {
+          fprintf(stderr,
+                  "FATAL: Could not create or access home directory: %s\n",
+                  strerror(errno));
+          exit(EXIT_THE_SKY_IS_FALLING);
+        }
+      }
+    #else
+      struct stat s;
+      if (stat(home, &s)) {
+        if (mkdir(home, 0755)) {
+          fprintf(stderr,
+                  "FATAL: Could not create or access home directory: %s\n",
+                  strerror(errno));
+          exit(EXIT_THE_SKY_IS_FALLING);
+        }
+      }
+    #endif
+  }
   #ifdef WIN32
   {
-    ofstream out("launchlog.txt", ios::ate|ios::app);
+    char llout[1024];
+    sprintf(llout, "%s\\.abendstern\\launchlog.txt", getenv("HOME"));
+    ofstream out(llout, ios::ate|ios::app);
     out << argv[0] << endl;
   }
   #endif
@@ -207,12 +249,14 @@ int main(int argc, char** argv) {
   setlocale(LC_NUMERIC, "C");
   //On Windows, replace stdout and stderr with log.txt
   #ifdef WIN32
-  static ofstream logout("log.txt", ios::ate|ios::app);
+  char logoutName[1024];
+  sprintf(logoutName, "%s\\.abendstern\\log.txt", getenv("HOME"));
+  static ofstream logout(logoutName, ios::ate|ios::app);
   if (logout) {
     cout.rdbuf(logout.rdbuf());
     cerr.rdbuf(logout.rdbuf());
-    freopen("log.txt", "a", stdout);
-    freopen("log.txt", "a", stderr);
+    freopen(logoutName, "a", stdout);
+    freopen(logoutName, "a", stderr);
   }
   #endif /* WIN32 */
   /* Parse command-line arguments */
@@ -406,15 +450,23 @@ bool init() {
 
   int bits;
   bool fullScreen;
+  char configFileLocation[1024];
+  sprintf(configFileLocation, "%s/.abendstern/%s", getenv("HOME"), CONFIG_FILE);
   try {
-    conf.open(CONFIG_FILE, "conf");
+    conf.open(configFileLocation, "conf");
   } catch (ConfigException& e) {
     try {
-      conf.open(DEFAULT_CONFIG_FILE, "conf");
-      conf.renameFile("conf", CONFIG_FILE);
-    } catch (ConfigException& e) {
-      cerr << "Error reading configuration: " << e.what() << endl;
-      return false;
+      //Try opening the older abendstern.rc located in the CWD
+      conf.open(CONFIG_FILE, "conf");
+    } catch(ConfigException& e) {
+      try {
+        conf.open(DEFAULT_CONFIG_FILE, "conf");
+      } catch (ConfigException& e) {
+        cerr << "Error reading configuration: " << e.what() << endl;
+        return false;
+      }
+      //Save in the new location
+      conf.renameFile("conf", configFileLocation);
     }
   }
   try {

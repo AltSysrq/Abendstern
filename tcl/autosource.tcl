@@ -49,6 +49,7 @@ proc glScalef {x y z} {
 
 # Convert "foo.ship" or "hangar/x/foo.ship" to "ship:x/foo"
 proc shipPath2Mount file {
+  set file [unhomeq $file]
   if {-1 != [set ix [string first / $file]]} {
     set file [string range $file $ix+1 end]
   }
@@ -57,7 +58,7 @@ proc shipPath2Mount file {
 
 # Convert "ship:x/foo" to "hangar/x/foo.ship"
 proc shipMount2Path mount {
-  return hangar/[string range $mount 5 end].ship
+  homeq hangar/[string range $mount 5 end].ship
 }
 
 # Convert "ship:x/foo" to "x/foo"
@@ -77,7 +78,7 @@ proc shipName2Mount name {
 
 # Convert "x/foo" to "hangar/x/foo.ship"
 proc shipName2Path name {
-  return hangar/$name.ship
+  homeq hangar/$name.ship
 }
 
 # Set the specified variable to the given new value,
@@ -98,4 +99,20 @@ proc oexch {obj var val} {
   if {[string length $old] && $old != "0"} {
     delete object $old
   }
+}
+
+# Returns the qualified path of the given path relative to the user's
+# abendstern home directory.
+# eg, [homeq foo/bar] ==> /home/jlinge/.abendstern/foo/bar
+proc homeq {rel} {
+  file join $::env(HOME) .abendstern $rel
+}
+
+# Removes the prefix added by homeq, if any is present.
+proc unhomeq {path} {
+  set pfx [string range [homeq a] 0 end-1]
+  if {0 == [string first $pfx $path]} {
+    set path [string range $path [string length $pfx] end]
+  }
+  return $path
 }

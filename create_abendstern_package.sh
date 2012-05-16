@@ -25,7 +25,7 @@ done
 
 mkdir /tmp/$APP
 
-for f in $FILES hangar.default *.dll version patchlevel.rc dna; do
+for f in $FILES hangar.default *.dll version; do
   cp -R $f /tmp/$APP
 done
 cp $SRVDIR/manifest /tmp/$APP

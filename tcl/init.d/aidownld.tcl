@@ -7,19 +7,19 @@ if {![info exists aidownld_firstRun]} {
 if {$aidownld_firstRun
 &&  [$ exists conf.game.use_geneticai]
 &&  [$ bool conf.game.use_geneticai]} {
-  file mkdir dna
+  file mkdir [homeq dna]
   if {[catch {
-    $ open dna/ai_list.dat genai
+    $ open [homeq dna/ai_list.dat] genai
   } err]} {
     log "Could not mount genai: $err"
-    $ create dna/ai_list.dat genai
+    $ create [homeq dna/ai_list.dat] genai
     $ add genai species STGroup
   }
 
   for {set i 0} {$i < [$ length genai.species]} {incr i} {
     set name [$ name genai.species.\[$i\]]
     if {[catch {
-      $ open dna/$name.dna ai:$name
+      $ open [homeq dna/$name.dna] ai:$name
     } err]} {
       log "Could not mount ai:$name: $err"
       $ remix genai.species $i
@@ -34,11 +34,11 @@ proc aidownld_downloadingList {} {
     $ unmodify genai
     $ close genai
     if {[catch {
-      $ open dna/ai_list.dat genai
+      $ open [homeq dna/ai_list.dat] genai
     } err]} {
       log "Could not mount downloaded genai: $err"
       # Create empty
-      $ create dna/ai_list.dat genai
+      $ create [homeq dna/ai_list.dat] genai
       $ add genai species STGroup
     }
     $::state setCallback [_ A boot aidownld] aidownld_downloadingDNA
@@ -67,7 +67,7 @@ proc aidownld_downloadingDNA {} {
     set name [$ name genai.species.\[$aidownld_index\]]
     $ close ai:$name
     if {[catch {
-      $ open dna/$name.dna ai:$name
+      $ open [homeq dna/$name.dna] ai:$name
     } err]} {
       log "Could not mount downloaded ai:$name: $err"
       $ remix genai.species $aidownld_index
@@ -88,7 +88,7 @@ proc aidownld_downloadingDNA {} {
   }
   if {$curr != [$ int genai.species.\[$aidownld_index\]]} {
     # Differing generations (or we just don't have it)
-    ::abnet::getfn $name.dna dna/$name.dna 0
+    ::abnet::getfn $name.dna [homeq dna/$name.dna] 0
     set aidownld_needRemount yes
   } else {
     # Cached is correct
@@ -101,6 +101,6 @@ proc aidownld_downloadingDNA {} {
 if {$::abnet::isConnected
 &&  [$ exists conf.game.use_geneticai]
 &&  [$ bool conf.game.use_geneticai]} {
-  ::abnet::getfn CAI dna/ai_list.dat 0
+  ::abnet::getfn CAI [homeq dna/ai_list.dat] 0
   $state setCallback [_ A boot aidownld] aidownld_downloadingList
 }

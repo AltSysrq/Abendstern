@@ -184,7 +184,7 @@ class ShipEditorMain {
       set prefix $::abnet::userid/
     }
     set basename [generateNewShipBasename [$ str [$ str edit.mountname].info.name]]
-    $ create hangar/$basename.ship ship:$basename
+    $ create [homeq hangar/$basename.ship] ship:$basename
     $editor manip copyMounts ship:$basename [$ str edit.mountname]
     $ revert [$ str edit.mountname]
     $ sets edit.mountname ship:$basename

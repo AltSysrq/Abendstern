@@ -77,10 +77,8 @@ class ShipEditorNewShip {
     # OK, set the config up
     set basename [generateNewShipBasename $name]
     set mount ship:$basename
-    set filename hangar/$basename.ship
-    if {{} != $::abnet::userid} {
-      file mkdir hangar/$::abnet::userid
-    }
+    set filename [homeq hangar/$basename.ship]
+    file mkdir [file dir $filename]
     $ create $filename $mount
     $ add $mount info STGroup
     $ adds $mount.info name $name
