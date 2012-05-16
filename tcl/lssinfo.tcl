@@ -3,9 +3,9 @@
 # easy to use interface to these data.
 
 if {[catch {
-  $ open lssinfo.rc lssinfo
+  $ open [homeq lssinfo.rc] lssinfo
 }]} {
-  $ create lssinfo.rc lssinfo
+  $ create [homeq lssinfo.rc] lssinfo
 }
 
 # Returns the location of the lssinfo setting to store data in.

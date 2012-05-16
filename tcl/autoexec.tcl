@@ -11,7 +11,7 @@ if {$PLATFORM == "WINDOWS"} {
   # On Windows, we don't get stdout or stderr...
   # (Append since we write to the log already opened
   #  by C++)
-  set logOutput [open log.txt a]
+  set logOutput [open [homeq log.txt] a]
   proc log msg {
     puts $::logOutput $msg
     flush $::logOutput
@@ -51,9 +51,14 @@ proc forceUploadAll {} {
 
 # Returns a temporary filename not yet in use
 proc tmpname {{pfx temp}} {
-  set name $pfx[expr {int(rand()*65536*256)}]
+  if {$::PLATFORM == "WINDOWS"} {
+    set dir $::env(TEMP)
+  } else {
+    set dir /tmp
+  }
+  set name [file join $dir $pfx[expr {int(rand()*65536*256)}]]
   while {[file exists $name]} {
-    set name $pfx[expr {int(rand()*65536*256)}]
+    set name [file join $dir $pfx[expr {int(rand()*65536*256)}]]
   }
   return $name
 }

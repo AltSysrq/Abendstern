@@ -505,8 +505,8 @@ namespace libconfig {
       #else /* DEBUG */
       //In debug mode, use deterministic filenames in the current dir
       //These will not be deleted
-      char filename[32];
-      sprintf(filename, "swapfile.%d", i);
+      char filename[1024];
+      sprintf(filename, "%s/.abendstern/swapfile.%d", getenv("HOME"), i);
       swapfile[i] = fopen(filename, "wb+");
       #endif /* DEBUG */
       if (!swapfile[i]) {

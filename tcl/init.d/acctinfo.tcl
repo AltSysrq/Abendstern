@@ -3,7 +3,7 @@
 
 if {"" != $::abnet::userid} {
   # Remove any stale remoterc file
-  file delete remoterc.tmp
+  file delete [homeq remoterc.tmp]
 
   # Find its fileid
   ::abnet::lookupFilename abendstern.rc
@@ -14,7 +14,8 @@ if {"" != $::abnet::userid} {
       # Does the file exist?
       if {$::abnet::success} {
         # Yes, download it
-        ::abnet::getf $::abnet::filenames($::abnet::userid,abendstern.rc) remoterc.tmp
+        ::abnet::getf $::abnet::filenames($::abnet::userid,abendstern.rc) \
+            [homeq remoterc.tmp]
         $::state setCallback [_ A boot acctinfo] {
           # Wait until the download completes
           if {$::abnet::busy} {
@@ -23,7 +24,7 @@ if {"" != $::abnet::userid} {
             # We have it, merge relavent sections
             # We do this manually, to ensure that the input is valid
             if {[catch {
-              $ open remoterc.tmp remote
+              $ open [homeq remoterc.tmp] remote
               for {set i 0} {$i < 3} {incr i} {
                 $ setf conf.ship_colour.\[$i\] \
                   [$ float remote.ship_colour.\[$i\]]
@@ -57,7 +58,7 @@ if {"" != $::abnet::userid} {
             }
 
             catch {$ close remote}
-            file delete remoterc.tmp
+            file delete [homeq remoterc.tmp]
             # Done
             return 200
           }

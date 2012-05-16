@@ -179,20 +179,9 @@ if {![info exists SHIPDNLD_PROCS]} {
   #  all fileids and ship files.)
   # This clears the download list first (since the force list is
   # entirely unnecessary).
-  #
-  # This proc will also perform the following patches:
-  # + 1/ ships are matched by name in addition to fileid
-  # + If patch-info.local-migration does not exist, all local/ ships
-  #   are moved to userid/.
   proc shipdnld_appendManualObsoleteShips {} {
     set ::shipdnld_list {}
     lssi_clearForceList
-
-    set localMigrationPatch no
-    if {![$ exists patch-info.local-migration]} {
-      $ addb patch-info local-migration yes
-      set localMigrationPatch yes
-    }
 
     set filemap {}
     for {set ix 0} {$ix < [$ length hangar.all_ships]} {incr ix} {
@@ -202,42 +191,10 @@ if {![info exists SHIPDNLD_PROCS]} {
       if {[$ exists $sm.info.fileid]} {
         dict set filemap [$ int $sm.info.fileid] $sf
       }
-
-      if {$localMigrationPatch && 0 == [string first local/ $s]} {
-        # Give to current user
-        set ns "$::abnet::userid/[string range $s 6 end]"
-        $ close $sm
-        set nsf [shipName2Path $ns]
-        file mkdir hangar/$::abnet::userid
-        file rename $sf $nsf
-        set os $s
-        set s $ns
-        set sf $nsf
-        set sm [shipName2Mount $s]
-        $ open $sf $sm
-
-        # Update hangar
-        foreach topl {all_ships c b a} {
-          for {set j 0} {$j < [$ length hangar.$topl]} {incr j} {
-            if {$os == [$ str hangar.$topl.\[$j\]]} {
-              $ sets hangar.$topl.\[$j\] $s
-            }
-          }
-        }
-        for {set i 0} {$i < [$ length hangar.user]} {incr i} {
-          set topl user.\[$i\].contents
-          for {set j 0} {$j < [$ length hangar.$topl]} {incr j} {
-            if {$os == [$ str hangar.$topl.\[$j\].target]} {
-              $ sets hangar.$topl.\[$j\].target $s
-            }
-          }
-        }
-      }
     }
 
     # Sync patch info
     $ sync hangar
-    $ sync patch-info
 
     # Scan for changes
     foreach {shipid fileid owner name modified} $::abnet::subscribedShips {

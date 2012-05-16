@@ -4,9 +4,9 @@
 # Also provides the refreshStandardHangars and makeHangarEffective
 # procs
 
-$ open hangar/list.rc hangar
+$ open [homeq hangar/list.rc] hangar
 
-set shipLoadQueue [glob -nocomplain hangar/*/*.ship]
+set shipLoadQueue [glob -nocomplain [homeq hangar/*/*.ship]]
 set numShipsToLoad [llength $shipLoadQueue]
 
 # [Re]Populate standard "user" hangars

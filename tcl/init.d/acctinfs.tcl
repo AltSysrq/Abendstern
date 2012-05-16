@@ -2,7 +2,7 @@
 # to the server.
 
 if {"" != $::abnet::userid} {
-  $ create remoterc.tmp remote
+  $ create [homeq remoterc.tmp] remote
   $ add remote hud STGroup
   $ add remote control_scheme STString
   $ add remote ship_colour STArray
@@ -14,12 +14,12 @@ if {"" != $::abnet::userid} {
   }
   $ sync remote
   $ close remote
-  ::abnet::putf abendstern.rc remoterc.tmp
+  ::abnet::putf abendstern.rc [homeq remoterc.tmp]
   $state setCallback [_ A boot acctinfs] {
     if {$::abnet::busy} {
       return 0
     } else {
-      file delete remoterc.tmp
+      file delete [homeq remoterc.tmp]
       return 200
     }
   }
