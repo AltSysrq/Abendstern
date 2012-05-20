@@ -257,6 +257,24 @@ int main(int argc, char** argv) {
   }
   #endif
 
+  //Chdir to DATADIR if that is defined and the current directory does not
+  //contain abendstern.default.rc
+  #ifdef DATADIR
+  {
+    struct stat s;
+    if (stat(DEFAULT_CONFIG_FILE, &s)) {
+      if (chdir(DATADIR)) {
+        fprintf(stderr,
+                "FATAL: Could not chdir to " DATADIR ": %s\n",
+                strerror(errno));
+        exit(EXIT_PLATFORM_ERROR);
+      }
+    } else {
+      printf("Note: Operating in current directory instead of " DATADIR "\n");
+    }
+  }
+  #endif /* DATADIR */
+
   setlocale(LC_NUMERIC, "C");
   //On Windows, replace stdout and stderr with log.txt
   #ifdef WIN32

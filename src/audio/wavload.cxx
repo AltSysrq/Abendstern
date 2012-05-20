@@ -65,6 +65,15 @@ namespace audio {
     //Using the C IO library, since it actually allows us to find the length
     //of a file instantly
     FILE* f = fopen(filename, "rb");
+    //Since this may be executed at static constructor time, we may need to
+    //explicitly look in DATADIR if defined.
+    #ifdef DATADIR
+    if (!f) {
+      static char longfile[1024];
+      sprintf(longfile, DATADIR "/%s", filename);
+      f = fopen(longfile, "rb");
+    }
+    #endif /* DATADIR */
     if (!f) {
       printf("FATAL: Unable to open %s: %s\n", filename, strerror(errno));
       exit(EXIT_MALFORMED_DATA);
