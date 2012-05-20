@@ -14,7 +14,10 @@ else
 GL32PROG=
 endif
 
-COMMONCXXFLAGS=-Wall -I./config $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PNG_CFLAGS) -I/usr/include/tcl8.5 -I/usr/local/tcl8.5 -L/usr/lib/itcl3.4 -L/usr/local/lib/itcl3.4
+COMMONCXXFLAGS=-Wall -I./config -DDATADIR='"'"$(pkgdatadir)"'"' \
+               $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PNG_CFLAGS) \
+               -I/usr/include/tcl8.5 -I/usr/local/tcl8.5 \
+               -L/usr/lib/itcl3.4 -L/usr/local/lib/itcl3.4
 
 ./tcl_iface/bridge.cxx: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 	./tcl_iface/generate.tcl

@@ -817,7 +817,11 @@ top_srcdir = @top_srcdir@
 @ENABLE_GL21_TRUE@GL21PROG = abendsternuxgl21
 @ENABLE_GL32_FALSE@GL32PROG = 
 @ENABLE_GL32_TRUE@GL32PROG = abendsternuxgl32
-COMMONCXXFLAGS = -Wall -I./config $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PNG_CFLAGS) -I/usr/include/tcl8.5 -I/usr/local/tcl8.5 -L/usr/lib/itcl3.4 -L/usr/local/lib/itcl3.4
+COMMONCXXFLAGS = -Wall -I./config -DDATADIR='"'"$(pkgdatadir)"'"' \
+               $(SDL_CFLAGS) $(SDLIMG_CFLAGS) $(GL_CFLAGS) $(PNG_CFLAGS) \
+               -I/usr/include/tcl8.5 -I/usr/local/tcl8.5 \
+               -L/usr/lib/itcl3.4 -L/usr/local/lib/itcl3.4
+
 COMMONLDADD = $(SDL_LIBS) $(SDLIMG_LIBS) $(GL_LIBS) $(PNG_LIBS)
 COMMONSOURCES = \
 ./tcl_iface/bridge.cxx \

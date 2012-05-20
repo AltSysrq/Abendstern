@@ -35,15 +35,18 @@ distribution of Abendstern found at
   http://abendstern.servegame.com/download.shtml
 
 INSTALLING
-Abendstern cannot currently be installed.
+To install Abendstern, simply run "sudo make install" (or "make install" if you
+know you have sufficient privelages to write to $prefix).
+
+Abendstern can be uninstalled with a corresponding "make uninstall".
 
 RUNNING
 *NIX:
 Within the Abendstern directory, run one of the following, based on your
 OpenGL version (if in doubt, try the higher version first):
-  src/abendsternuxgl32
-  src/abendsternuxgl21
-  src/abendsternuxgl14
+  abendsternuxgl32
+  abendsternuxgl21
+  abendsternuxgl14
 
 Windows:
 Just run Abendstern.exe in the project root.
