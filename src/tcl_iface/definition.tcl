@@ -242,7 +242,7 @@ unsafe {
   const preliminaryRunMode bool
   const THIS_GL_TYPE AbendsternGLType
   var recommendedGLType AbendsternGLType
-#  fun void exitPreliminaryRunMode
+  fun void exitPreliminaryRunMode
 }
 
 cxx src/graphics/font.hxx

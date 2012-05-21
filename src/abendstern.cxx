@@ -15,6 +15,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
+#include <cctype>
 #include <cerrno>
 #include <fstream>
 #include <iomanip>
@@ -89,6 +90,10 @@ static unsigned fpsSum, fpsSampleCount;
 AbendsternGLType recommendedGLType;
 bool preliminaryRunMode = false;
 static bool preliminaryRunModeAuto = false;
+
+//The command-line arguments
+static char**   cmdargv;
+static unsigned cmdargc;
 
 #define vclock SDL_GetTicks
 
@@ -208,6 +213,9 @@ static AbendsternGLType analyseGLVersion(const char* vers) {
  * @return The exit status of the program
  */
 int main(int argc, char** argv) {
+  cmdargv = argv;
+  cmdargc = argc;
+
   //On Windows, HOME (er, USERPROFILE) is not an appropriate location.
   //Since we need to set HOME anyway, APPDATA is the propper location.
   #ifdef WIN32
@@ -381,47 +389,7 @@ int main(int argc, char** argv) {
   if (!headless) {
     cout << "OpenGL version: " << (const char*)glGetString(GL_VERSION)
         << " by " << (const char*)glGetString(GL_VENDOR) << endl;
-    AbendsternGLType aglt = analyseGLVersion((const char*)glGetString(GL_VERSION));
-    if (aglt != THIS_GL_TYPE) {
-      cerr << "Warning: This is not the best build of Abendstern to use, given your "
-              "OpenGL version." << endl;
-      char* newexe = NULL;
-      if (argc != 1) {
-        cerr << "Cannot automatically switch due to command-line arguments." << endl;
-        cerr << "Assuming you know what you are doing." << endl;
-      #ifndef WIN32
-      } else {
-        cerr << "Automatic switching to appropriate type is only supported on Windows." << endl;
-      }
-      #else
-      } else {
-        switch (aglt) {
-          case AGLT14: newexe = "bin\\abw32gl14.exe"; break;
-          case AGLT21: newexe = "bin\\abw32gl21.exe"; break;
-          case AGLT32: newexe = "bin\\abw32gl32.exe"; break;
-        }
-      }
-      #endif
-      if (newexe) {
-        cerr << "Automatically executing " << newexe << " instead." << endl;
-        #ifdef WIN32
-        //Need to close log outputs so the new process can open the files.
-        logout.close();
-        fclose(stdout);
-        fclose(stderr);
-        shutdown();
-        STARTUPINFOA sinfo = {
-          sizeof(STARTUPINFO),
-          0 //Init rest with zeros as well
-        };
-        PROCESS_INFORMATION info;
-        CreateProcessA(newexe, newexe, NULL, NULL, FALSE, CREATE_BREAKAWAY_FROM_JOB, NULL, NULL, &sinfo, &info);
-        CloseHandle(info.hProcess);
-        CloseHandle(info.hThread);
-        #endif /* WIN32 */
-        return 0;
-      }
-    }
+    recommendedGLType = analyseGLVersion((const char*)glGetString(GL_VERSION));
     #ifndef AB_OPENGL_14
     cout << "GLSL version: " << (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION) << endl;
     #endif
@@ -773,6 +741,88 @@ void shutdown() {
   for (int i=0; i<1000; ++i) if (gp_totalByFPS[i]>0) {
     sprintf(specTitle, "Graphics profile at framerate %d", i);
     printProfileInfo(specTitle, gp_profileByFPS[i], gp_totalByFPS[i]);
-  }
+    }
   #endif
+}
+
+void exitPreliminaryRunMode() {
+#ifdef WIN32
+  const char* newexe;
+  switch (recommendedGLType) {
+  case AGLT14: newexe = "bin\\abw32gl14.exe"; break;
+  case AGLT21: newexe = "bin\\abw32gl21.exe"; break;
+  case AGLT32: newexe = "bin\\abw32gl32.exe"; break;
+  }
+
+  //Build a string command, excluding -prelim and -prelimauto
+  ostringstream out(newexe);
+  for (unsigned i = 1; i < cmdargc; ++i)
+    if (0 != strcmp(cmdargc[i], "-prelim") &&
+        0 != strcmp(cmdargc[i], "-prelimauto"))
+      out << " " << cmdargc[i];
+
+  //Need to close log outputs so the new process can open the files.
+  logout.close();
+  fclose(stdout);
+  fclose(stderr);
+  shutdown();
+  STARTUPINFOA sinfo = {
+    sizeof(STARTUPINFO),
+    0 //Init rest with zeros as well
+  };
+  PROCESS_INFORMATION info;
+  CreateProcess(newexe, out.str().c_str(), NULL, NULL, FALSE,
+                CREATE_BREAKAWAY_FROM_JOB, NULL, NULL, &sinfo, &info);
+  CloseHandle(info.hProcess);
+  CloseHandle(info.hThread);
+  exit(EXIT_NORMAL);
+#else /* UNIX */
+  //New command-line arguments.
+  //Static so that the destructor won't be called
+  static vector<char*> nargs;
+
+  /* The final two characters of our command should be digits corresponding to
+   * the OpenGL version. By changing these, we can easily locate the new
+   * executable.
+   */
+  string progname(cmdargv[0]);
+  if (progname.size() < 3 ||
+      !isdigit(progname[progname.size()-2]) ||
+      !isdigit(progname[progname.size()-1])) {
+    cerr << "Cannot switch to new Abendstern process." << endl;
+    cerr << "Executable name does not meet assumptions: " << progname << endl;
+    exit(EXIT_THE_SKY_IS_FALLING);
+  }
+
+  //Alter the program name according to type
+  char ca, cb;
+  switch (recommendedGLType) {
+  case AGLT14: ca = '1', cb = '4'; break;
+  case AGLT21: ca = '2', cb = '1'; break;
+  case AGLT32: ca = '3', cb = '2'; break;
+  }
+  progname[progname.size()-2] = ca;
+  progname[progname.size()-1] = cb;
+
+  nargs.push_back(strdup(progname.c_str()));
+
+  //Add other arguments which are not -prelim or -prelimauto
+  for (unsigned i = 1; i < cmdargc; ++i)
+    if (0 != strcmp(cmdargv[i], "-prelim") &&
+        0 != strcmp(cmdargv[i], "-prelimauto"))
+      nargs.push_back(cmdargv[i]);
+  //Add terminating NULL
+  nargs.push_back(NULL);
+
+  //Release our resources
+  shutdown();
+
+  //Start the new process.
+  //If all goes well, execv() will never return
+  execv(nargs[0], &nargs[0]);
+
+  //Something went wrong
+  cerr << "Could not start new Abendstern process: " << strerror(errno) << endl;
+  exit(EXIT_PLATFORM_ERROR);
+#endif
 }
