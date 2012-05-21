@@ -57,6 +57,7 @@
 #include <GL/glxext.h>
 #endif /* ENABLE_X11_VSYNC */
 
+#include "abendstern.hxx"
 #include "globals.hxx"
 #include "audio/audio.hxx"
 #include "control/joystick.hxx"
@@ -84,6 +85,10 @@ static time_t fpsLastReport;
 static unsigned fps;
 /* For calculating average FPS over long period */
 static unsigned fpsSum, fpsSampleCount;
+
+AbendsternGLType recommendedGLType;
+bool preliminaryRunMode = false;
+static bool preliminaryRunModeAuto = false;
 
 #define vclock SDL_GetTicks
 
@@ -160,15 +165,6 @@ bool init();
 /** The primary game loop. Handles updating, drawing, and input events.
  */
 void run();
-
-enum AbendsternGLType { AGLT14, AGLT21, AGLT32 };
-#if defined(AB_OPENGL_14)
-#define THIS_GL_TYPE AGLT14
-#elif defined(AB_OPENGL_21)
-#define THIS_GL_TYPE AGLT21
-#else
-#define THIS_GL_TYPE AGLT32
-#endif
 
 /** Analyses the GL version string to determine which build type of Abendstern
  * is appropriate for the graphics hardware.
@@ -336,9 +332,11 @@ int main(int argc, char** argv) {
          ||  0 == strcmp(argv[i], "-F")) {
       fastForward = true;
     }
-    else if (0 == strcmp(argv[i], "-!")) {
-      //Flag does nothing (suppression occurs because switching is
-      //disabled if ANY arguments were passed)
+    else if (0 == strcmp(argv[i], "-prelim")) {
+      preliminaryRunMode = true;
+    }
+    else if (0 == strcmp(argv[i], "-prelimauto")) {
+      preliminaryRunModeAuto = true;
     }
     else {
       if (strcmp(argv[i], "-?")
@@ -354,7 +352,7 @@ int main(int argc, char** argv) {
               "  -b[its] int    Override bits-per-pixel\n"
               "  -c[ache] int   Set number of MB of RAM to use for config cache\n"
               "  -F[ast]        Force elapsed time for each frame to 10 ms\n"
-              "  -!             Don't switch to a better build based on GL version\n"
+              "  -prelim        Start in preliminary configuration mode\n"
               "  -?, -help      Print this help message" << endl;
       exit(EXIT_SUCCESS);
     }
@@ -505,9 +503,30 @@ bool init() {
     cerr << "Error reading shader stack info: " << e.what() << endl;
     return false;
   }
+
   Setting& settings=conf["conf"];
+  //Use prelim mode if specified, or if auto is specified and conf.skip_prelim
+  //is either nonexistent or is false.
+  if (preliminaryRunModeAuto &&
+      (!conf.exists("skip_prelim") || !(bool)conf["skip_prelim"])) {
+    preliminaryRunMode = true;
+  }
+
+  if (preliminaryRunMode) {
+    //Force graphics config
+    forceWidth = 640;
+    forceHeight = 480;
+    forceBits = 0; //Use native
+    forceFullscreen = false;
+    forceWindowed = true;
+  }
+
   try {
     headless=forceHeadless || settings["display"]["headless"];
+    //Can't use prelim mode when headless
+    if (headless)
+      preliminaryRunMode = false;
+
     if (!headless) {
       if (SDL_InitSubSystem(SDL_INIT_VIDEO)) {
         printf("Unable to initialize SDL: %s\n", SDL_GetError());
@@ -602,7 +621,6 @@ bool init() {
   #endif
 
   state=new InitState();
-  //state=new ShaderTest();
   if (!headless) state->configureGL();
 
   #ifdef FRAME_RECORDER_ENABLED
