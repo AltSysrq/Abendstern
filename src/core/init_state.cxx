@@ -15,6 +15,7 @@
 #include <tcl.h>
 
 #include "init_state.hxx"
+#include "src/abendstern.hxx"
 #include "src/globals.hxx"
 #include "src/graphics/imgload.hxx"
 #include "src/test_state.hxx"
@@ -67,7 +68,8 @@ InitState::InitState() {
 
   hasPainted=headless;
   if (!headless) {
-    SDL_ShowCursor(SDL_DISABLE);
+    if (!preliminaryRunMode)
+      SDL_ShowCursor(SDL_DISABLE);
     glGenTextures(1, &logo);
     vao = newVAO();
     glBindVertexArray(vao);
@@ -216,15 +218,19 @@ float InitState::systexLoader() {
 }
 
 float InitState::initFontLoader() {
-  new (sysfont)         Font("fonts/westm",   conf["conf"]["hud"]["font_size"], false);
-  new (sysfontStipple)  Font("fonts/westm",   conf["conf"]["hud"]["font_size"], true );
-  new (smallFont)       Font("fonts/unifont", conf["conf"]["hud"]["font_size"].operator float()/1.5f, false);
-  new (smallFontStipple)Font("fonts/unifont", conf["conf"]["hud"]["font_size"].operator float()/1.5f, true );
-  return 1.5;
+  float mult = (preliminaryRunMode? 2.0f : 1.0f);
+  float size = conf["conf"]["hud"]["font_size"];
+  new (sysfont)         Font("fonts/westm",   size*mult, false);
+  new (sysfontStipple)  Font("fonts/westm",   size*mult, true );
+  new (smallFont)       Font("fonts/unifont", size*mult/1.5f, false);
+  new (smallFontStipple)Font("fonts/unifont", size*mult/1.5f, true );
+  return 2;
 }
 
 //Delays for 500 ms to wait for keystrokes
 float InitState::keyboardDelay() {
+  if (preliminaryRunMode) return 2; //Don't wait
+
   static Uint32 start = SDL_GetTicks();
   Uint32 end = SDL_GetTicks();
   return (end-start)/512.0f;
