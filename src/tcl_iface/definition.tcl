@@ -236,6 +236,15 @@ unsafe {
 cxx
 newPairType float float
 
+cxx src/abendstern.hxx
+enum AbendsternGLType {} AGLT14 AGLT21 AGLT32
+unsafe {
+  const preliminaryRunMode bool
+  const THIS_GL_TYPE AbendsternGLType
+  var recommendedGLType AbendsternGLType
+#  fun void exitPreliminaryRunMode
+}
+
 cxx src/graphics/font.hxx
 class final Font {} {
   unsafe {
