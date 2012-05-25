@@ -69,3 +69,5 @@ Abendstern.exe
 *.gch
 *.wxs
 *.msi
+*.wixobj
+*.wixpdb
