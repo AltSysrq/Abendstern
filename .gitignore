@@ -67,5 +67,5 @@ bin
 ipch
 Abendstern.exe
 *.gch
-
-
+*.wxs
+*.msi
