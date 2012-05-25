@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Name="Abendstern" Id="autowix:guid:product"
+           UpgradeCode="autowix:guid:upgradecode"
+           Manufacturer="abendstern.servegame.com"
+           Language="1033" Codepage="1252" Version="0.0.1.120524">
+    <Package Id="*" Keywords="Installer"
+             Description="Abendstern Windows Installer"
+             InstallerVersion="100"
+             Languages="1033" SummaryCodepage="1252"
+             Compressed="yes" />
+
+    <Media Id="1" Cabinet="Abendstern.cab" EmbedCab="yes" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder" Name="PFiles">
+        <Directory Id="INSTALLDIR" Name="Abendstern">
+          <Component Id="MainExecutable" Guid="autowix:guid:MainExecutable">
+            <File Id="AbendsternEXE" Name="Abendstern.exe"
+                  DiskId="1" Source="Abendstern.exe" KeyPath="yes">
+              <Shortcut Id="startmenuShortcut"
+                        Directory="ProgramMenuDir"
+                        Name="Abendstern"
+                        WorkingDirectory="INSTALLDIR"
+                        Icon="Abendstern.exe"
+                        IconIndex="0"
+                        Advertise="yes" />
+              <Shortcut Id="desktopShortcut"
+                        Directory="DesktopFolder"
+                        Name="Abendstern"
+                        WorkingDirectory="INSTALLDIR"
+                        Icon="Abendstern.exe"
+                        IconIndex="0"
+                        Advertise="yes" />
+            </File>
+          </Component>
+
+          <autowixfilecomponents from="bin" />
+          <autowixfilecomponents from="data" />
+          <autowixfilecomponents from="fonts" />
+          <autowixfilecomponents from="images" />
+          <autowixfilecomponents from="hangar.default" />
+          <autowixfilecomponents from="legal" />
+          <autowixfilecomponents from="shaders" />
+          <autowixfilecomponents from="tcl" />
+          <autowixfilecomponents from="itcl3.4" />
+          <autowixfilecomponents from="library" />
+          <autowixfilecomponents from="tcllib" />
+          <autowixfilecomponents from="tls1.6" />
+          <autowixfilecomponents from="abendstern.default.rc" />
+          <autowixfilecomponents from="glew32.dll" />
+          <autowixfilecomponents from="libpng12-0.dll" />
+          <autowixfilecomponents from="libpng15.dll" />
+          <autowixfilecomponents from="mpir.dll" />
+          <autowixfilecomponents from="msvcp100.dll" />
+          <autowixfilecomponents from="msvcr71.dll" />
+          <autowixfilecomponents from="msvcr100.dll" />
+          <autowixfilecomponents from="SDL.dll" />
+          <autowixfilecomponents from="SDL_image.dll" />
+          <autowixfilecomponents from="SDL_net.dll" />
+          <autowixfilecomponents from="tcl85t.dll" />
+          <autowixfilecomponents from="tcldde13.dll" />
+          <autowixfilecomponents from="tclpip85.dll" />
+          <autowixfilecomponents from="tclreg12.dll" />
+          <autowixfilecomponents from="zlib1.dll" />
+          <autowixfilecomponents from="COPYING" />
+          <autowixfilecomponents from="README" />
+          <autowixfilecomponents from="version" />
+          <autowixfilecomponents from="abendstern.ico" />
+          <autowixfilecomponents from="apply_update.bat" />
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ProgramMenuDir" Name="Abendstern">
+          <Component Id="ProgramMenuDirComp" Guid="autowix:guid:programmenudir">
+            <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+            <RegistryValue Root="HKCU" Key="Software\[ProductName]"
+                           Type="string" Value="" KeyPath="yes" />
+          </Component>
+        </Directory>
+      </Directory>
+
+      <Directory Id="DesktopFolder" Name="Desktop" />
+    </Directory>
+
+    <Feature Id="Complete" Level="1">
+      <ComponentRef Id="MainExecutable" />
+      <ComponentRef Id="ProgramMenuDirComp" />
+      <autowixcomponentrefs />
+    </Feature>
+
+    <Icon Id="Abendstern.exe" SourceFile="Abendstern.exe" />
+  </Product>
+</Wix>
