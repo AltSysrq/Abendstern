@@ -11,24 +11,30 @@
              Compressed="yes" />
 
     <Media Id="1" Cabinet="Abendstern.cab" EmbedCab="yes" />
+    <UIRef Id="WixUI_Advanced" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+<!--    <Property Id="WIXUI_INSTALLDIR" Value="APPLICATIONFOLDER" /> -->
+    <Property Id="ApplicationFolderName" Value="Abendstern" />
+    <Property Id="WixAppFolder" Value="WixPerUserFolder" />
+    <WixVariable Id="WixUILicenseRtf" Value="legal\LICENSE.rtf" />
 
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder" Name="PFiles">
-        <Directory Id="INSTALLDIR" Name="Abendstern">
+        <Directory Id="APPLICATIONFOLDER" Name="Abendstern">
           <Component Id="MainExecutable" Guid="autowix:guid:MainExecutable">
             <File Id="AbendsternEXE" Name="Abendstern.exe"
                   DiskId="1" Source="Abendstern.exe" KeyPath="yes">
               <Shortcut Id="startmenuShortcut"
                         Directory="ProgramMenuDir"
                         Name="Abendstern"
-                        WorkingDirectory="INSTALLDIR"
+                        WorkingDirectory="APPLICATIONFOLDER"
                         Icon="Abendstern.exe"
                         IconIndex="0"
                         Advertise="yes" />
               <Shortcut Id="desktopShortcut"
                         Directory="DesktopFolder"
                         Name="Abendstern"
-                        WorkingDirectory="INSTALLDIR"
+                        WorkingDirectory="APPLICATIONFOLDER"
                         Icon="Abendstern.exe"
                         IconIndex="0"
                         Advertise="yes" />
@@ -84,7 +90,8 @@
       <Directory Id="DesktopFolder" Name="Desktop" />
     </Directory>
 
-    <Feature Id="Complete" Level="1">
+    <Feature Id="Complete" Level="1"
+             ConfigurableDirectory="APPLICATIONFOLDER">
       <ComponentRef Id="MainExecutable" />
       <ComponentRef Id="ProgramMenuDirComp" />
       <autowixcomponentrefs />
