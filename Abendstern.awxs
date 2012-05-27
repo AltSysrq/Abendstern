@@ -17,6 +17,7 @@
     <Property Id="ApplicationFolderName" Value="Abendstern" />
     <Property Id="WixAppFolder" Value="WixPerUserFolder" />
     <WixVariable Id="WixUILicenseRtf" Value="legal\LICENSE.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="images_src\msibanner.bmp" />
 
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder" Name="PFiles">
