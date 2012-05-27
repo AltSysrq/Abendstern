@@ -22,7 +22,7 @@
 #include <stdio.h>
 
 int main(int argc, const char* argv[]) {
-  char cmdline[4096];
+  char cmdline[4096], logfile[1024];
   char exe[] = "bin\\abw32gl14.exe";
   int i;
   STARTUPINFOA sinfo = {
@@ -31,10 +31,12 @@ int main(int argc, const char* argv[]) {
   };
   PROCESS_INFORMATION info;
   FILE* truncator;
-  // Truncate the log file before starting
-  truncator = fopen("log.txt", "w");
+  // Truncate the log files before starting
+  sprintf(logfile, "%s\\.abendstern\\log.txt", getenv("APPDATA"));
+  truncator = fopen(logfile, "w");
   if (truncator) fclose(truncator);
-  truncator = fopen("launchlog.txt", "w");
+  sprintf(logfile, "%s\\.abendstern\\launchlog.txt", getenv("APPDATA"));
+  truncator = fopen(logfile, "w");
   if (truncator) fclose(truncator);
   strcpy(cmdline, "bin\\abw32gl14.exe");
   strcat(cmdline, " ");
