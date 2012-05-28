@@ -396,6 +396,21 @@ int main(int argc, char** argv) {
   }
   atexit(shutdown);
   run();
+  //Time to end the program normally.
+  //Before we destroy the config system, move any prelim_assume_version_pre to
+  //prelim_assume_version since everything seems to have worked with the
+  //assumed settings.
+  Setting& settings(conf["conf"]);
+  if (settings.exists("prelim_assume_version_pre")) {
+    if (settings.exists("prelim_assume_version"))
+      settings.remove("prelim_assume_version");
+    settings.add("prelim_assume_version", Setting::TypeString);
+    settings["prelim_assume_version"] =
+      (const char*)settings["prelim_assume_version_pre"];
+    settings.remove("prelim_assume_version_pre");
+    conf.modify("conf");
+    conf.sync("conf");
+  }
   #ifdef WIN32
   //Callbacks regestired by Tcl cause deadlock on termination in Windows
   //(I have no idea why, the debugger is useless in this context...).
@@ -487,6 +502,20 @@ bool init() {
     forceBits = 0; //Use native
     forceFullscreen = false;
     forceWindowed = true;
+  } else {
+    //If prelim_assume_version is set, rename it to _pre (removing _pre first if
+    //that exists) so that the user gets prompted for configuration again if
+    //Abendstern crashes.
+    if (settings.exists("prelim_assume_version")) {
+      if (settings.exists("prelim_assume_version_pre"))
+        settings.remove("prelim_assume_version_pre");
+      settings.add("prelim_assume_version_pre", Setting::TypeString);
+      settings["prelim_assume_version_pre"] =
+        (const char*)settings["prelim_assume_version"];
+      settings.remove("prelim_assume_version");
+      conf.modify("conf");
+      conf.sync("conf");
+    }
   }
 
   try {
@@ -728,21 +757,23 @@ void shutdown() {
   joystick::close();
   SDL_Quit();
   libconfig::destroySwapFile();
-  cout << "Average FPS: " << fpsSum/(float)fpsSampleCount << endl;
-  //Print graphic profiling info
-  #ifdef PROFILE
-  cout << "Time spent updating: " << updateTime << " ms ("
-       << (int)(updateTime/(float)(updateTime+drawTime)*100.0f) << "%), "
-       << "time spent drawing: " << drawTime << " ms ("
-       << (int)(drawTime/(float)(updateTime+drawTime)*100.0f) << "%)"
-       << endl;
-  printProfileInfo("General graphics profile:", gp_profile, gp_total);
-  char specTitle[128];
-  for (int i=0; i<1000; ++i) if (gp_totalByFPS[i]>0) {
-    sprintf(specTitle, "Graphics profile at framerate %d", i);
-    printProfileInfo(specTitle, gp_profileByFPS[i], gp_totalByFPS[i]);
+  if (fpsSampleCount > 0) {
+    cout << "Average FPS: " << fpsSum/(float)fpsSampleCount << endl;
+    //Print graphic profiling info
+    #ifdef PROFILE
+    cout << "Time spent updating: " << updateTime << " ms ("
+         << (int)(updateTime/(float)(updateTime+drawTime)*100.0f) << "%), "
+         << "time spent drawing: " << drawTime << " ms ("
+         << (int)(drawTime/(float)(updateTime+drawTime)*100.0f) << "%)"
+         << endl;
+    printProfileInfo("General graphics profile:", gp_profile, gp_total);
+    char specTitle[128];
+    for (int i=0; i<1000; ++i) if (gp_totalByFPS[i]>0) {
+        sprintf(specTitle, "Graphics profile at framerate %d", i);
+        printProfileInfo(specTitle, gp_profileByFPS[i], gp_totalByFPS[i]);
     }
-  #endif
+    #endif
+  }
 }
 
 void exitPreliminaryRunMode() {
