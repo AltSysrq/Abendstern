@@ -43,6 +43,7 @@ COMMONCXXFLAGS=-Wall -I./config -DDATADIR='"'"$(pkgdatadir)"'"' \
 ./net/xxx/xnetobj.hxx: | ./net/xxx/xnetobj.cxx ./net/definition.tcl ./net/generate.tcl
 
 bin_PROGRAMS=$(GL14PROG) $(GL21PROG) $(GL32PROG)
+bin_SCRIPTS=abendstern
 COMMONLDADD=$(SDL_LIBS) $(SDLIMG_LIBS) $(GL_LIBS) $(PNG_LIBS)
 COMMONSOURCES= \
 ./tcl_iface/bridge.cxx \
