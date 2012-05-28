@@ -48,6 +48,8 @@ using namespace std;
 #define LOGO "images/a.png"
 #endif
 
+#define PRELIM_LOGO "images/a.png"
+
 //For LSD-mode Easter Egg
 static bool hasPressedL=false, hasPressedS=false, hasPressedD=false;
 
@@ -74,7 +76,7 @@ InitState::InitState() {
     vao = newVAO();
     glBindVertexArray(vao);
     vbo = newVBO();
-    const char* error=loadImage(LOGO, logo);
+    const char* error=loadImage(preliminaryRunMode? PRELIM_LOGO : LOGO, logo);
     if (error) {
       cerr << error << endl;
       exit(EXIT_MALFORMED_DATA);
