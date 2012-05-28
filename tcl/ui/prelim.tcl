@@ -157,7 +157,7 @@ class PrelimRunMode {
     $ sets conf.language [lindex \
                               [split \
                                    [lindex [$lstlanguage getItems] $sel] \
-                                   "\a\a"] 1]
+                                   "\a"] 2]
   }
 
   method start {} {
