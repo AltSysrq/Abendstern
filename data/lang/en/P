@@ -1,0 +1,28 @@
+~en
+ Language file for preliminary run mode
+
+@version
+-header
++Graphics Version
+-AGLT14
++Fallback (GL 1.1+)
+-AGLT21
++Compatible (GL 2.1+)
+-AGLT32
++Full (GL 3.2+)
+-always_assume
++Skip this screen on startup
+
+@tabs
+-main
++Main
+-config
++Settings
+
+@main
+-language
++Language
+-start
++Start Abendstern
+-suppress_autologin
++Suppress automatic login
