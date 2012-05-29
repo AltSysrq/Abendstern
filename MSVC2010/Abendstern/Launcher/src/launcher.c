@@ -39,7 +39,7 @@ int main(int argc, const char* argv[]) {
   truncator = fopen(logfile, "w");
   if (truncator) fclose(truncator);
   strcpy(cmdline, "bin\\abw32gl14.exe");
-  strcat(cmdline, " ");
+  strcat(cmdline, " -prelimauto ");
   for (i=1; i<argc; ++i) {
     strcat(cmdline, argv[i]);
     strcat(cmdline, " ");
