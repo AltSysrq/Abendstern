@@ -206,6 +206,9 @@ static AbendsternGLType analyseGLVersion(const char* vers) {
   else return AGLT14;
 }
 
+/** Pointer to the log output handle, or NULL if none is present. */
+static ofstream* logoutPtr = NULL;
+
 /** The main function. It is not reentrant, so no other code should call it.
  *
  * @param argc  The number of arguments passed (the length of argv)
@@ -285,6 +288,7 @@ int main(int argc, char** argv) {
   char logoutName[1024];
   sprintf(logoutName, "%s\\.abendstern\\log.txt", getenv("HOME"));
   static ofstream logout(logoutName, ios::ate|ios::app);
+  logoutPtr = &logout;
   if (logout) {
     cout.rdbuf(logout.rdbuf());
     cerr.rdbuf(logout.rdbuf());
@@ -788,12 +792,13 @@ void exitPreliminaryRunMode() {
   //Build a string command, excluding -prelim and -prelimauto
   ostringstream out(newexe);
   for (unsigned i = 1; i < cmdargc; ++i)
-    if (0 != strcmp(cmdargc[i], "-prelim") &&
-        0 != strcmp(cmdargc[i], "-prelimauto"))
-      out << " " << cmdargc[i];
+    if (0 != strcmp(cmdargv[i], "-prelim") &&
+        0 != strcmp(cmdargv[i], "-prelimauto"))
+      out << " " << cmdargv[i];
 
   //Need to close log outputs so the new process can open the files.
-  logout.close();
+  if (logoutPtr)
+    logoutPtr->close();
   fclose(stdout);
   fclose(stderr);
   shutdown();
@@ -802,8 +807,8 @@ void exitPreliminaryRunMode() {
     0 //Init rest with zeros as well
   };
   PROCESS_INFORMATION info;
-  CreateProcess(newexe, out.str().c_str(), NULL, NULL, FALSE,
-                CREATE_BREAKAWAY_FROM_JOB, NULL, NULL, &sinfo, &info);
+  CreateProcessA(newexe, (LPSTR)out.str().c_str(), NULL, NULL, FALSE,
+                 CREATE_BREAKAWAY_FROM_JOB, NULL, NULL, &sinfo, &info);
   CloseHandle(info.hProcess);
   CloseHandle(info.hThread);
   exit(EXIT_NORMAL);
