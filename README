@@ -29,22 +29,18 @@ know you have sufficient privelages to write to $prefix).
 Abendstern can be uninstalled with a corresponding "make uninstall".
 
 RUNNING
-Within the Abendstern directory, run one of the following, based on your
-OpenGL version (if in doubt, try the higher version first):
-  abendsternuxgl32
-  abendsternuxgl21
-  abendsternuxgl14
+Run the game simply with the command "abendstern". You will be prompted for
+initial settings and which graphics version to run (the default is usually
+correct).
 
 The executables understand the following options:
-  -H, -Headless		Run without graphics
-  -f, -fullscreen	Run in fullscreen mode, ignoring the config file
-  -W, -Windowed		Run in windowed mode, ignoring the config file
-  -h, -height arg	Set window or resolution height to arg
-  -w, -width arg	Set window or resolution width to arg
-  -b, -bits arg		Set screen bit-depth to arg
-  -c, -cache arg	Only use up to arg MB of RAM for config data
-  -F, -Fast		Ignore wall time; assume each frame is 10 ms long
-  -!			(Currently non-functional on UNIX)
-  			Don't check OpenGL version, and continue on anyway.
-  			(This is the default behaviour on UNIX).
-  -?			Print usage information
+  -H, -Headless         Run without graphics
+  -f, -fullscreen       Run in fullscreen mode, ignoring the config file
+  -W, -Windowed         Run in windowed mode, ignoring the config file
+  -h, -height arg       Set window or resolution height to arg
+  -w, -width arg        Set window or resolution width to arg
+  -b, -bits arg         Set screen bit-depth to arg
+  -c, -cache arg        Only use up to arg MB of RAM for config data
+  -F, -Fast             Ignore wall time; assume each frame is 10 ms long
+  -prelim               Start in preliminary configuration mode
+  -?                    Print usage information
