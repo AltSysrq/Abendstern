@@ -37,6 +37,7 @@ tcl/init.d/mainmenu.tcl
 tcl/init.d/hotpatch.tcl
 tcl/boot.tcl
 tcl/autoexec.tcl
+tcl/ui/prelim.tcl
 tcl/ui/ctrledit.tcl
 tcl/ui/login.tcl
 tcl/ui/acctmgr.tcl
