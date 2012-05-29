@@ -10909,6 +10909,9 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS
 	uninstall-binSCRIPTS
 
 
+# Don't try to compile abendstern.cxx -> abendstern.o -> abendstern
+abendstern:;
+
 ./tcl_iface/xxx/rebuilt: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 	./tcl_iface/generate.tcl
 	touch tcl_iface/xxx/rebuilt tcl_iface/bridge.cxx tcl_iface/xxx/*
