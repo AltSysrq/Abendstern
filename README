@@ -1,17 +1,18 @@
 COMPILATION
-To compile on *NIX, you need the following libraries, including their headers:
-o asio
-o boost
-o sdl
-o sdlimg
-o libgmp
-o OpenGL (at least 1.1)
-o tcl8.5
-o itcl3.4
-o tcl-tls
-o tcllib
-o libpng
-o libpng++
+To compile on *NIX, you need the following libraries, including their headers
+(Debian/Ubuntu package names are in parentheses):
+o asio          (libasio-dev)
+o boost         (libboost-dev)
+o sdl           (libsdl-dev, or libsdl1.2-dev, etc)
+o sdlimg        (libsdl-image1.2-dev or so)
+o libgmp        (libgmp-dev)
+o OpenGL        (libgl1-mesa-dev or proprietary video driver headers)
+o tcl8.5        (tcl8.5-dev)
+o itcl3.4       (itcl3-dev)
+o tcl-tls       (tcl-tls)
+o tcllib        (tcllib)
+o libpng        (libpng12-dev or so)
+o libpng++      (libpng++-dev)
 
 To compile, do
   ./configure
