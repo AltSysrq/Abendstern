@@ -40,13 +40,12 @@
   #define SHIFT ++objv, --objc
 
 #include "src/graphics/asgi.hxx"
-#include "src/secondary/light_trail.hxx"
-#include "src/sim/game_field.hxx"
-#include "src/background/nebula.hxx"
+#include "src/background/old_style_explosion.hxx"
+#include "src/background/explosion.hxx"
+#include "src/background/star_field.hxx"
 #include "src/sim/game_object.hxx"
 #include "src/sim/game_field.hxx"
-#include "src/secondary/global_chat.hxx"
-#include "src/net/seq_text_geraet.hxx"
+#include "src/camera/hud.hxx"
 #include "src/net/async_ack_geraet.hxx"
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
@@ -70,26 +69,26 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "GL_POINTS")) {arg0=asgi::Points; goto done1528;}
+          if (0 == strcmp(tmp, "GL_POINTS")) {arg0=asgi::Points; goto done1537;}
         
-          if (0 == strcmp(tmp, "GL_LINES")) {arg0=asgi::Lines; goto done1528;}
+          if (0 == strcmp(tmp, "GL_LINES")) {arg0=asgi::Lines; goto done1537;}
         
-          if (0 == strcmp(tmp, "GL_LINE_STRIP")) {arg0=asgi::LineStrip; goto done1528;}
+          if (0 == strcmp(tmp, "GL_LINE_STRIP")) {arg0=asgi::LineStrip; goto done1537;}
         
-          if (0 == strcmp(tmp, "GL_LINE_LOOP")) {arg0=asgi::LineLoop; goto done1528;}
+          if (0 == strcmp(tmp, "GL_LINE_LOOP")) {arg0=asgi::LineLoop; goto done1537;}
         
-          if (0 == strcmp(tmp, "GL_TRIANGLES")) {arg0=asgi::Triangles; goto done1528;}
+          if (0 == strcmp(tmp, "GL_TRIANGLES")) {arg0=asgi::Triangles; goto done1537;}
         
-          if (0 == strcmp(tmp, "GL_TRIANGLE_STRIP")) {arg0=asgi::TriangleStrip; goto done1528;}
+          if (0 == strcmp(tmp, "GL_TRIANGLE_STRIP")) {arg0=asgi::TriangleStrip; goto done1537;}
         
-          if (0 == strcmp(tmp, "GL_TRIANGLE_FAN")) {arg0=asgi::TriangleFan; goto done1528;}
+          if (0 == strcmp(tmp, "GL_TRIANGLE_FAN")) {arg0=asgi::TriangleFan; goto done1537;}
         
-          if (0 == strcmp(tmp, "GL_QUADS")) {arg0=asgi::Quads; goto done1528;}
+          if (0 == strcmp(tmp, "GL_QUADS")) {arg0=asgi::Quads; goto done1537;}
          {
           sprintf(staticError, "Unable to convert %s to asgi::Primitive", tmp);
           scriptError(staticError);
         } 
-done1528:;};
+done1537:;};
 arg0Init=true;
 try {
       
@@ -677,14 +676,14 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
 
-class TclLightTrail : public LightTrail {
+class TclOldStyleExplosion : public OldStyleExplosion {
       public:
-TclLightTrail(GameField* arg2, float arg3, int arg4, float arg5, float arg6, float arg7, float arg8, float arg9, float arg10, float arg11, float arg12, float arg13, float arg14) : LightTrail(arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14) {
+TclOldStyleExplosion(Explosion* arg2) : OldStyleExplosion(arg2) {
         tclExtended=invokingInterpreter;
         tclKnown=true;
       }
-static LightTrail* constructordefault
-    (const string& name, const string& magicCookie,  GameField* arg2, float arg3, int arg4, float arg5, float arg6, float arg7, float arg8, float arg9, float arg10, float arg11, float arg12, float arg13, float arg14) {
+static OldStyleExplosion* constructordefault
+    (const string& name, const string& magicCookie,  Explosion* arg2) {
       InterpInfo* info=interpreters[invokingInterpreter];
       //Validate magic cookie
       if (magicCookie != info->magicCookie) {
@@ -700,8 +699,8 @@ static LightTrail* constructordefault
       if (info->exportsByName[name]) {
         scriptError("Double allocation");
       }
-      LightTrail* ret;
-      ret=new LightTrail(arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14);
+      OldStyleExplosion* ret;
+      ret=new OldStyleExplosion(arg2);
       if (ret) {
         ret->tclKnown = true;
         //The trampoline will take care of assigning ownership to Tcl, we
@@ -710,7 +709,7 @@ static LightTrail* constructordefault
         info->exports[(void*)ret]=ex;
         info->exportsByName[name]=ex;
         ex->ptr = (void*)ret;
-        ex->type = typeExports[&typeid(LightTrail)];
+        ex->type = typeExports[&typeid(OldStyleExplosion)];
         ex->interp = invokingInterpreter;
         ex->tclrep=name;
       }
@@ -725,1902 +724,6 @@ static int
      trampoline433 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
-       if (objc != 15) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       
-string arg0; bool arg0Init=false;
-string arg1; bool arg1Init=false;
-GameField* arg2; bool arg2Init=false;
-float arg3; bool arg3Init=false;
-int arg4; bool arg4Init=false;
-float arg5; bool arg5Init=false;
-float arg6; bool arg6Init=false;
-float arg7; bool arg7Init=false;
-float arg8; bool arg8Init=false;
-float arg9; bool arg9Init=false;
-float arg10; bool arg10Init=false;
-float arg11; bool arg11Init=false;
-float arg12; bool arg12Init=false;
-float arg13; bool arg13Init=false;
-float arg14; bool arg14Init=false;
-LightTrail* ret; Tcl_Obj* retTcl=NULL;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-
-{
-      static Tcl_DString dstr;
-      static bool hasDstr=false;
-      if (!hasDstr) {
-        Tcl_DStringInit(&dstr);
-        hasDstr=true;
-      } else {
-        Tcl_DStringSetLength(&dstr, 0);
-      }
-      int length;
-      Tcl_UniChar* tuc = Tcl_GetUnicodeFromObj(objv[0], &length);
-      arg0 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
-    };
-arg0Init=true;
-{
-      static Tcl_DString dstr;
-      static bool hasDstr=false;
-      if (!hasDstr) {
-        Tcl_DStringInit(&dstr);
-        hasDstr=true;
-      } else {
-        Tcl_DStringSetLength(&dstr, 0);
-      }
-      int length;
-      Tcl_UniChar* tuc = Tcl_GetUnicodeFromObj(objv[1], &length);
-      arg1 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
-    };
-arg1Init=true;
-{
-      string name(Tcl_GetStringFromObj(objv[2], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(GameField)
-        &&  0==ex->type->superclasses.count(&typeid(GameField))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " GameField, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        GameField* tmp=(GameField*)ex->ptr;
-        
-        arg2 = tmp;
-    } else arg2=NULL;
-};
-arg2Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[3], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg3 = (float)tmp;};
-arg3Init=true;
-{int tmp;
-            int err = Tcl_GetIntFromObj(interp, objv[4], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg4 = (int)tmp;};
-arg4Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[5], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg5 = (float)tmp;};
-arg5Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[6], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg6 = (float)tmp;};
-arg6Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[7], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg7 = (float)tmp;};
-arg7Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[8], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg8 = (float)tmp;};
-arg8Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[9], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg9 = (float)tmp;};
-arg9Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[10], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg10 = (float)tmp;};
-arg10Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[11], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg11 = (float)tmp;};
-arg11Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[12], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg12 = (float)tmp;};
-arg12Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[13], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg13 = (float)tmp;};
-arg13Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[14], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg14 = (float)tmp;};
-arg14Init=true;
-try {
-      ret =
-     
-     
-     constructordefault(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14);
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-{if (!(ret)) {
-      retTcl=Tcl_NewStringObj("0", 1);
-    } else {
-      InterpInfo* info=interpreters[interp];
-      //Is it a valid export already?
-      void* ptr=const_cast<void*>((void*)(ret));
-      map<void*,Export*>::iterator it=info->exports.find(ptr);
-      Export* ex;
-      if (it == info->exports.end()) {
-        //No, create new one
-        (ret)->tclKnown=true;
-        ex=new Export;
-        ex->ptr=ptr;
-        ex->type=typeExports[&typeid(*(ret))];
-        ex->interp=interp;
-        
-
-        //Create the new Tcl-side object with
-        //  new Type {}
-        Tcl_Obj* cmd[3] = {
-          Tcl_NewStringObj("new", 3),
-          Tcl_NewStringObj(ex->type->tclClassName.c_str(),
-                           ex->type->tclClassName.size()),
-          Tcl_NewObj(),
-        };
-        for (unsigned i=0; i<lenof(cmd); ++i)
-          Tcl_IncrRefCount(cmd[i]);
-        int status=Tcl_EvalObjv(interp, lenof(cmd), cmd, TCL_EVAL_GLOBAL);
-        for (unsigned i=0; i<lenof(cmd); ++i)
-          Tcl_DecrRefCount(cmd[i]);
-        if (status == TCL_ERROR) {
-          sprintf(staticError, "Error exporting C++ object to Tcl: %s",
-                  Tcl_GetStringResult(interp));
-          scriptError(staticError);
-        }
-
-        //We can now get the name, and then have a fully-usable export
-        ex->tclrep=Tcl_GetStringResult(interp);
-        //Register
-        info->exports[(void*)(ret)]=ex;
-        info->exportsByName[ex->tclrep]=ex;
-      } else {
-        //Yes, use directly
-        ex = (*it).second;
-      }
-
-      //Ownership
-      if ((ret)) switch ((ret)->ownStat) {
-            case AObject::Tcl:
-              if (interp == (ret)->owner.interpreter) {
-                
-              }
-              //fall through
-            case AObject::Cpp:
-              (ret)->ownStatBak=(ret)->ownStat;
-              (ret)->ownerBak.interpreter = (ret)->owner.interpreter;
-              (ret)->ownStat=AObject::Tcl;
-              (ret)->owner.interpreter=interp;
-              break;
-            case AObject::Container:
-              cerr <<
-"FATAL: Attempt by C++ to give Tcl ownership of automatic value" << endl;
-              ::exit(EXIT_PROGRAM_BUG);
-          }
-
-      //Done
-      retTcl=Tcl_NewStringObj(ex->tclrep.c_str(), ex->tclrep.size());
-    }}
-Tcl_SetObjResult(interp, retTcl);
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      
-if (arg0Init) {arg0Init=false; }
-if (arg1Init) {arg1Init=false; }
-if (arg2Init) {arg2Init=false; }
-if (arg3Init) {arg3Init=false; }
-if (arg4Init) {arg4Init=false; }
-if (arg5Init) {arg5Init=false; }
-if (arg6Init) {arg6Init=false; }
-if (arg7Init) {arg7Init=false; }
-if (arg8Init) {arg8Init=false; }
-if (arg9Init) {arg9Init=false; }
-if (arg10Init) {arg10Init=false; }
-if (arg11Init) {arg11Init=false; }
-if (arg12Init) {arg12Init=false; }
-if (arg13Init) {arg13Init=false; }
-if (arg14Init) {arg14Init=false; }
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-static int
-     trampoline435 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 2) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       LightTrail* parent=NULL;
-float arg0; bool arg0Init=false;
-bool ret; Tcl_Obj* retTcl=NULL;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-{
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(LightTrail)
-        &&  0==ex->type->superclasses.count(&typeid(LightTrail))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " LightTrail, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        LightTrail* tmp=(LightTrail*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-}
-      if (!parent) { scriptError("NULL this passed into C++"); }
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[1], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg0 = (float)tmp;};
-arg0Init=true;
-try {
-      ret =
-     parent->
-     
-     update(arg0);
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-{retTcl = Tcl_NewBooleanObj(ret);}
-Tcl_SetObjResult(interp, retTcl);
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      if (parent) {}
-if (arg0Init) {arg0Init=false; }
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-static int
-     trampoline437 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 1) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       LightTrail* parent=NULL;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-{
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(LightTrail)
-        &&  0==ex->type->superclasses.count(&typeid(LightTrail))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " LightTrail, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        LightTrail* tmp=(LightTrail*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-}
-      if (!parent) { scriptError("NULL this passed into C++"); }
-try {
-      
-     parent->
-     
-     draw();
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      if (parent) {}
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-static int
-     trampoline439 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 1) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       LightTrail* parent=NULL;
-float ret; Tcl_Obj* retTcl=NULL;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-{
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(LightTrail)
-        &&  0==ex->type->superclasses.count(&typeid(LightTrail))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " LightTrail, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        LightTrail* tmp=(LightTrail*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-}
-      if (!parent) { scriptError("NULL this passed into C++"); }
-try {
-      ret =
-     parent->
-     
-     getRadius();
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-{retTcl = Tcl_NewDoubleObj((double)ret);}
-Tcl_SetObjResult(interp, retTcl);
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      if (parent) {}
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-static int
-     trampoline441 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 2) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       LightTrail* parent=NULL;
-float arg0; bool arg0Init=false;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-{
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(LightTrail)
-        &&  0==ex->type->superclasses.count(&typeid(LightTrail))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " LightTrail, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        LightTrail* tmp=(LightTrail*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-}
-      if (!parent) { scriptError("NULL this passed into C++"); }
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[1], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg0 = (float)tmp;};
-arg0Init=true;
-try {
-      
-     parent->
-     
-     setWidth(arg0);
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      if (parent) {}
-if (arg0Init) {arg0Init=false; }
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-static int
-     trampoline443 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 5) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       LightTrail* parent=NULL;
-float arg0; bool arg0Init=false;
-float arg1; bool arg1Init=false;
-float arg2; bool arg2Init=false;
-float arg3; bool arg3Init=false;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-{
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(LightTrail)
-        &&  0==ex->type->superclasses.count(&typeid(LightTrail))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " LightTrail, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        LightTrail* tmp=(LightTrail*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-}
-      if (!parent) { scriptError("NULL this passed into C++"); }
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[1], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg0 = (float)tmp;};
-arg0Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[2], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg1 = (float)tmp;};
-arg1Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[3], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg2 = (float)tmp;};
-arg2Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[4], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg3 = (float)tmp;};
-arg3Init=true;
-try {
-      
-     parent->
-     
-     emit(arg0, arg1, arg2, arg3);
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      if (parent) {}
-if (arg0Init) {arg0Init=false; }
-if (arg1Init) {arg1Init=false; }
-if (arg2Init) {arg2Init=false; }
-if (arg3Init) {arg3Init=false; }
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline433", trampoline433, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline435", trampoline435, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline437", trampoline437, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline439", trampoline439, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline441", trampoline441, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline443", trampoline443, 0, NULL);
-TypeExport* ste=new TypeExport(typeid(LightTrail)),
-                           * ete=new TypeExport(typeid(TclLightTrail));
-ste->isAObject=ete->isAObject=true;
-ste->tclClassName=ete->tclClassName="LightTrail";
-ste->superclasses.insert(&typeid(GameObject));
-ste->superclasses.insert(&typeid(AObject));
-ete->superclasses=ste->superclasses;
-ete->superclasses.insert(&typeid(LightTrail));
-typeExports[&typeid(LightTrail)]=ste;
-typeExports[&typeid(TclLightTrail)]=ete;
-}
-};
-void classdec432(bool safe, Tcl_Interp* interp) throw() {
-  TclLightTrail::cppDecCode(safe,interp);
-}
-
-class TclNebula : public Nebula {
-      public:
-TclNebula(GameObject* arg2, GameField* arg3, float arg4, float arg5, float arg6, float arg7, float arg8) : Nebula(arg2, arg3, arg4, arg5, arg6, arg7, arg8) {
-        tclExtended=invokingInterpreter;
-        tclKnown=true;
-      }
-static Nebula* constructordefault
-    (const string& name, const string& magicCookie,  GameObject* arg2, GameField* arg3, float arg4, float arg5, float arg6, float arg7, float arg8) {
-      InterpInfo* info=interpreters[invokingInterpreter];
-      //Validate magic cookie
-      if (magicCookie != info->magicCookie) {
-        scriptError("Call to c++ new with invalid magic cookie!");
-      }
-
-      //Refuse if we enforce allocation and the interpreter knows too much
-      if (info->enforceAllocationLimit && info->exports.size() > MAX_EXPORTS) {
-        scriptError("Interpreter allocation limit exceeded");
-      }
-
-      //Refuse duplicate allocation
-      if (info->exportsByName[name]) {
-        scriptError("Double allocation");
-      }
-      Nebula* ret;
-      ret=new Nebula(arg2, arg3, arg4, arg5, arg6, arg7, arg8);
-      if (ret) {
-        ret->tclKnown = true;
-        //The trampoline will take care of assigning ownership to Tcl, we
-        //just need to create the export so it has the correct name
-        Export* ex=new Export;
-        info->exports[(void*)ret]=ex;
-        info->exportsByName[name]=ex;
-        ex->ptr = (void*)ret;
-        ex->type = typeExports[&typeid(Nebula)];
-        ex->interp = invokingInterpreter;
-        ex->tclrep=name;
-      }
-
-      return ret;
-    }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-static int
-     trampoline700 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 9) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       
-string arg0; bool arg0Init=false;
-string arg1; bool arg1Init=false;
-GameObject* arg2; bool arg2Init=false;
-GameField* arg3; bool arg3Init=false;
-float arg4; bool arg4Init=false;
-float arg5; bool arg5Init=false;
-float arg6; bool arg6Init=false;
-float arg7; bool arg7Init=false;
-float arg8; bool arg8Init=false;
-Nebula* ret; Tcl_Obj* retTcl=NULL;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-
-{
-      static Tcl_DString dstr;
-      static bool hasDstr=false;
-      if (!hasDstr) {
-        Tcl_DStringInit(&dstr);
-        hasDstr=true;
-      } else {
-        Tcl_DStringSetLength(&dstr, 0);
-      }
-      int length;
-      Tcl_UniChar* tuc = Tcl_GetUnicodeFromObj(objv[0], &length);
-      arg0 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
-    };
-arg0Init=true;
-{
-      static Tcl_DString dstr;
-      static bool hasDstr=false;
-      if (!hasDstr) {
-        Tcl_DStringInit(&dstr);
-        hasDstr=true;
-      } else {
-        Tcl_DStringSetLength(&dstr, 0);
-      }
-      int length;
-      Tcl_UniChar* tuc = Tcl_GetUnicodeFromObj(objv[1], &length);
-      arg1 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
-    };
-arg1Init=true;
-{
-      string name(Tcl_GetStringFromObj(objv[2], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(GameObject)
-        &&  0==ex->type->superclasses.count(&typeid(GameObject))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " GameObject, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        GameObject* tmp=(GameObject*)ex->ptr;
-        
-        arg2 = tmp;
-    } else arg2=NULL;
-};
-arg2Init=true;
-{
-      string name(Tcl_GetStringFromObj(objv[3], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(GameField)
-        &&  0==ex->type->superclasses.count(&typeid(GameField))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " GameField, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        GameField* tmp=(GameField*)ex->ptr;
-        
-        arg3 = tmp;
-    } else arg3=NULL;
-};
-arg3Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[4], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg4 = (float)tmp;};
-arg4Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[5], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg5 = (float)tmp;};
-arg5Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[6], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg6 = (float)tmp;};
-arg6Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[7], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg7 = (float)tmp;};
-arg7Init=true;
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[8], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg8 = (float)tmp;};
-arg8Init=true;
-try {
-      ret =
-     
-     
-     constructordefault(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-{if (!(ret)) {
-      retTcl=Tcl_NewStringObj("0", 1);
-    } else {
-      InterpInfo* info=interpreters[interp];
-      //Is it a valid export already?
-      void* ptr=const_cast<void*>((void*)(ret));
-      map<void*,Export*>::iterator it=info->exports.find(ptr);
-      Export* ex;
-      if (it == info->exports.end()) {
-        //No, create new one
-        (ret)->tclKnown=true;
-        ex=new Export;
-        ex->ptr=ptr;
-        ex->type=typeExports[&typeid(*(ret))];
-        ex->interp=interp;
-        
-
-        //Create the new Tcl-side object with
-        //  new Type {}
-        Tcl_Obj* cmd[3] = {
-          Tcl_NewStringObj("new", 3),
-          Tcl_NewStringObj(ex->type->tclClassName.c_str(),
-                           ex->type->tclClassName.size()),
-          Tcl_NewObj(),
-        };
-        for (unsigned i=0; i<lenof(cmd); ++i)
-          Tcl_IncrRefCount(cmd[i]);
-        int status=Tcl_EvalObjv(interp, lenof(cmd), cmd, TCL_EVAL_GLOBAL);
-        for (unsigned i=0; i<lenof(cmd); ++i)
-          Tcl_DecrRefCount(cmd[i]);
-        if (status == TCL_ERROR) {
-          sprintf(staticError, "Error exporting C++ object to Tcl: %s",
-                  Tcl_GetStringResult(interp));
-          scriptError(staticError);
-        }
-
-        //We can now get the name, and then have a fully-usable export
-        ex->tclrep=Tcl_GetStringResult(interp);
-        //Register
-        info->exports[(void*)(ret)]=ex;
-        info->exportsByName[ex->tclrep]=ex;
-      } else {
-        //Yes, use directly
-        ex = (*it).second;
-      }
-
-      //Ownership
-      if ((ret)) switch ((ret)->ownStat) {
-            case AObject::Tcl:
-              if (interp == (ret)->owner.interpreter) {
-                
-              }
-              //fall through
-            case AObject::Cpp:
-              (ret)->ownStatBak=(ret)->ownStat;
-              (ret)->ownerBak.interpreter = (ret)->owner.interpreter;
-              (ret)->ownStat=AObject::Tcl;
-              (ret)->owner.interpreter=interp;
-              break;
-            case AObject::Container:
-              cerr <<
-"FATAL: Attempt by C++ to give Tcl ownership of automatic value" << endl;
-              ::exit(EXIT_PROGRAM_BUG);
-          }
-
-      //Done
-      retTcl=Tcl_NewStringObj(ex->tclrep.c_str(), ex->tclrep.size());
-    }}
-Tcl_SetObjResult(interp, retTcl);
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      
-if (arg0Init) {arg0Init=false; }
-if (arg1Init) {arg1Init=false; }
-if (arg2Init) {arg2Init=false; }
-if (arg3Init) {arg3Init=false; }
-if (arg4Init) {arg4Init=false; }
-if (arg5Init) {arg5Init=false; }
-if (arg6Init) {arg6Init=false; }
-if (arg7Init) {arg7Init=false; }
-if (arg8Init) {arg8Init=false; }
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-static int
-     trampoline702 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 4) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       Nebula* parent=NULL;
-const char* arg0; bool arg0Init=false;
-const char* arg1; bool arg1Init=false;
-bool arg2; bool arg2Init=false;
-const char* ret; Tcl_Obj* retTcl=NULL;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-{
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(Nebula)
-        &&  0==ex->type->superclasses.count(&typeid(Nebula))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " Nebula, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        Nebula* tmp=(Nebula*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-}
-      if (!parent) { scriptError("NULL this passed into C++"); }
-{
-          static Tcl_DString dstr;
-          static bool hasDstr=false;
-          if (!hasDstr) {
-            Tcl_DStringInit(&dstr);
-            hasDstr=true;
-          } else {
-            Tcl_DStringSetLength(&dstr, 0);
-          }
-          int length;
-          Tcl_UniChar* tuc = Tcl_GetUnicodeFromObj(objv[1], &length);
-          arg0 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
-        };
-arg0Init=true;
-{
-          static Tcl_DString dstr;
-          static bool hasDstr=false;
-          if (!hasDstr) {
-            Tcl_DStringInit(&dstr);
-            hasDstr=true;
-          } else {
-            Tcl_DStringSetLength(&dstr, 0);
-          }
-          int length;
-          Tcl_UniChar* tuc = Tcl_GetUnicodeFromObj(objv[2], &length);
-          arg1 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
-        };
-arg1Init=true;
-{int gen1871;
-            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen1871);
-            arg2=gen1871;
-            if (err == TCL_ERROR) {
-              scriptError(Tcl_GetStringResult(interp));
-            }};
-arg2Init=true;
-try {
-      ret =
-     parent->
-     
-     setFlowEquation(arg0, arg1, arg2);
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-{
-        static Tcl_DString dstr;
-        static bool hasDstr=false;
-        if (!hasDstr) {
-          hasDstr = true;
-          Tcl_DStringInit(&dstr);
-        } else {
-          Tcl_DStringSetLength(&dstr, 0);
-        }
-        Tcl_UniChar* tuc = Tcl_UtfToUniCharDString(ret? ret : "", -1, &dstr);
-        retTcl = Tcl_NewUnicodeObj(tuc, -1);
-      }
-Tcl_SetObjResult(interp, retTcl);
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      if (parent) {}
-if (arg0Init) {arg0Init=false; }
-if (arg1Init) {arg1Init=false; }
-if (arg2Init) {arg2Init=false; }
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-static int
-     trampoline704 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 3) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       Nebula* parent=NULL;
-const char* arg0; bool arg0Init=false;
-bool arg1; bool arg1Init=false;
-const char* ret; Tcl_Obj* retTcl=NULL;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-{
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(Nebula)
-        &&  0==ex->type->superclasses.count(&typeid(Nebula))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " Nebula, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        Nebula* tmp=(Nebula*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-}
-      if (!parent) { scriptError("NULL this passed into C++"); }
-{
-          static Tcl_DString dstr;
-          static bool hasDstr=false;
-          if (!hasDstr) {
-            Tcl_DStringInit(&dstr);
-            hasDstr=true;
-          } else {
-            Tcl_DStringSetLength(&dstr, 0);
-          }
-          int length;
-          Tcl_UniChar* tuc = Tcl_GetUnicodeFromObj(objv[1], &length);
-          arg0 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
-        };
-arg0Init=true;
-{int gen1873;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1873);
-            arg1=gen1873;
-            if (err == TCL_ERROR) {
-              scriptError(Tcl_GetStringResult(interp));
-            }};
-arg1Init=true;
-try {
-      ret =
-     parent->
-     
-     setPressureEquation(arg0, arg1);
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-{
-        static Tcl_DString dstr;
-        static bool hasDstr=false;
-        if (!hasDstr) {
-          hasDstr = true;
-          Tcl_DStringInit(&dstr);
-        } else {
-          Tcl_DStringSetLength(&dstr, 0);
-        }
-        Tcl_UniChar* tuc = Tcl_UtfToUniCharDString(ret? ret : "", -1, &dstr);
-        retTcl = Tcl_NewUnicodeObj(tuc, -1);
-      }
-Tcl_SetObjResult(interp, retTcl);
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      if (parent) {}
-if (arg0Init) {arg0Init=false; }
-if (arg1Init) {arg1Init=false; }
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-static int
-     trampoline706 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 2) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       Nebula* parent=NULL;
-float arg0; bool arg0Init=false;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-{
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(Nebula)
-        &&  0==ex->type->superclasses.count(&typeid(Nebula))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " Nebula, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        Nebula* tmp=(Nebula*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-}
-      if (!parent) { scriptError("NULL this passed into C++"); }
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[1], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg0 = (float)tmp;};
-arg0Init=true;
-try {
-      
-     parent->
-     
-     setPressureResetTime(arg0);
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      if (parent) {}
-if (arg0Init) {arg0Init=false; }
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-static int
-     trampoline708 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 1) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       Nebula* parent=NULL;
-float ret; Tcl_Obj* retTcl=NULL;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-{
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(Nebula)
-        &&  0==ex->type->superclasses.count(&typeid(Nebula))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " Nebula, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        Nebula* tmp=(Nebula*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-}
-      if (!parent) { scriptError("NULL this passed into C++"); }
-try {
-      ret =
-     parent->
-     
-     getPressureResetTime();
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-{retTcl = Tcl_NewDoubleObj((double)ret);}
-Tcl_SetObjResult(interp, retTcl);
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      if (parent) {}
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-static int
-     trampoline710 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 2) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       Nebula* parent=NULL;
-float arg0; bool arg0Init=false;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-{
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(Nebula)
-        &&  0==ex->type->superclasses.count(&typeid(Nebula))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " Nebula, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        Nebula* tmp=(Nebula*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-}
-      if (!parent) { scriptError("NULL this passed into C++"); }
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[1], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg0 = (float)tmp;};
-arg0Init=true;
-try {
-      
-     parent->
-     
-     setVelocityResetTime(arg0);
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      if (parent) {}
-if (arg0Init) {arg0Init=false; }
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-static int
-     trampoline712 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 1) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       Nebula* parent=NULL;
-float ret; Tcl_Obj* retTcl=NULL;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-{
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(Nebula)
-        &&  0==ex->type->superclasses.count(&typeid(Nebula))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " Nebula, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        Nebula* tmp=(Nebula*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-}
-      if (!parent) { scriptError("NULL this passed into C++"); }
-try {
-      ret =
-     parent->
-     
-     getVelocityResetTime();
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-{retTcl = Tcl_NewDoubleObj((double)ret);}
-Tcl_SetObjResult(interp, retTcl);
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      if (parent) {}
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-static int
-     trampoline714 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 2) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       Nebula* parent=NULL;
-float arg0; bool arg0Init=false;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-{
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(Nebula)
-        &&  0==ex->type->superclasses.count(&typeid(Nebula))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " Nebula, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        Nebula* tmp=(Nebula*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-}
-      if (!parent) { scriptError("NULL this passed into C++"); }
-{double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[1], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            arg0 = (float)tmp;};
-arg0Init=true;
-try {
-      
-     parent->
-     
-     setForceMultiplier(arg0);
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      if (parent) {}
-if (arg0Init) {arg0Init=false; }
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline700", trampoline700, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline702", trampoline702, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline704", trampoline704, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline706", trampoline706, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline708", trampoline708, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline710", trampoline710, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline712", trampoline712, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline714", trampoline714, 0, NULL);
-TypeExport* ste=new TypeExport(typeid(Nebula)),
-                           * ete=new TypeExport(typeid(TclNebula));
-ste->isAObject=ete->isAObject=true;
-ste->tclClassName=ete->tclClassName="Nebula";
-ste->superclasses.insert(&typeid(Background));
-ste->superclasses.insert(&typeid(EffectsHandler));
-ste->superclasses.insert(&typeid(AObject));
-ete->superclasses=ste->superclasses;
-ete->superclasses.insert(&typeid(Nebula));
-typeExports[&typeid(Nebula)]=ste;
-typeExports[&typeid(TclNebula)]=ete;
-}
-};
-void classdec699(bool safe, Tcl_Interp* interp) throw() {
-  TclNebula::cppDecCode(safe,interp);
-}
-
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
- int
-     trampoline1048 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 1) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       
-const char* arg0; bool arg0Init=false;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-
-{
-          static Tcl_DString dstr;
-          static bool hasDstr=false;
-          if (!hasDstr) {
-            Tcl_DStringInit(&dstr);
-            hasDstr=true;
-          } else {
-            Tcl_DStringSetLength(&dstr, 0);
-          }
-          int length;
-          Tcl_UniChar* tuc = Tcl_GetUnicodeFromObj(objv[0], &length);
-          arg0 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
-        };
-arg0Init=true;
-try {
-      
-     
-     
-     global_chat::post(arg0);
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      
-if (arg0Init) {arg0Init=false; }
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
- int
-     trampoline1050 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 1) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       
-const char* arg0; bool arg0Init=false;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-
-{
-          static Tcl_DString dstr;
-          static bool hasDstr=false;
-          if (!hasDstr) {
-            Tcl_DStringInit(&dstr);
-            hasDstr=true;
-          } else {
-            Tcl_DStringSetLength(&dstr, 0);
-          }
-          int length;
-          Tcl_UniChar* tuc = Tcl_GetUnicodeFromObj(objv[0], &length);
-          arg0 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
-        };
-arg0Init=true;
-try {
-      
-     
-     
-     global_chat::postLocal(arg0);
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      
-if (arg0Init) {arg0Init=false; }
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
- int
-     trampoline1052 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
-       if (objc != 1) {
-         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
-         return TCL_ERROR;
-       }
-       invokingInterpreter=interp;
-       
-const char* arg0; bool arg0Init=false;
-PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-
-{
-          static Tcl_DString dstr;
-          static bool hasDstr=false;
-          if (!hasDstr) {
-            Tcl_DStringInit(&dstr);
-            hasDstr=true;
-          } else {
-            Tcl_DStringSetLength(&dstr, 0);
-          }
-          int length;
-          Tcl_UniChar* tuc = Tcl_GetUnicodeFromObj(objv[0], &length);
-          arg0 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
-        };
-arg0Init=true;
-try {
-      
-     
-     
-     global_chat::postRemote(arg0);
-
-    } catch (exception& ex) {
-      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
-      scriptError(staticError);
-    }
-POP_TCL_ERROR_HANDLER;
-      return TCL_OK;
-error:
-      POP_TCL_ERROR_HANDLER;
-      double_error:
-      #undef scriptError
-      #define scriptError(msg) { \
-        cerr << "Double-error; old message: " << scriptingErrorMessage << \
-        ", new message: " << msg << endl; \
-        scriptingErrorMessage = msg; goto double_error; \
-      }
-      
-if (arg0Init) {arg0Init=false; }
-#undef scriptError
-Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
-#undef scriptError
-
-class TclSeqTextOutputGeraet : public SeqTextOutputGeraet {
-      public:
-TclSeqTextOutputGeraet(AsyncAckGeraet* arg2) : SeqTextOutputGeraet(arg2) {
-        tclExtended=invokingInterpreter;
-        tclKnown=true;
-      }
-static SeqTextOutputGeraet* constructordefault
-    (const string& name, const string& magicCookie,  AsyncAckGeraet* arg2) {
-      InterpInfo* info=interpreters[invokingInterpreter];
-      //Validate magic cookie
-      if (magicCookie != info->magicCookie) {
-        scriptError("Call to c++ new with invalid magic cookie!");
-      }
-
-      //Refuse if we enforce allocation and the interpreter knows too much
-      if (info->enforceAllocationLimit && info->exports.size() > MAX_EXPORTS) {
-        scriptError("Interpreter allocation limit exceeded");
-      }
-
-      //Refuse duplicate allocation
-      if (info->exportsByName[name]) {
-        scriptError("Double allocation");
-      }
-      SeqTextOutputGeraet* ret;
-      ret=new SeqTextOutputGeraet(arg2);
-      if (ret) {
-        ret->tclKnown = true;
-        //The trampoline will take care of assigning ownership to Tcl, we
-        //just need to create the export so it has the correct name
-        Export* ex=new Export;
-        info->exports[(void*)ret]=ex;
-        info->exportsByName[name]=ex;
-        ex->ptr = (void*)ret;
-        ex->type = typeExports[&typeid(SeqTextOutputGeraet)];
-        ex->interp = invokingInterpreter;
-        ex->tclrep=name;
-      }
-
-      return ret;
-    }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-static int
-     trampoline1256 (
-     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-       SHIFT;
        if (objc != 3) {
          Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
          return TCL_ERROR;
@@ -2629,8 +732,8 @@ static int
        
 string arg0; bool arg0Init=false;
 string arg1; bool arg1Init=false;
-AsyncAckGeraet* arg2; bool arg2Init=false;
-SeqTextOutputGeraet* ret; Tcl_Obj* retTcl=NULL;
+Explosion* arg2; bool arg2Init=false;
+OldStyleExplosion* ret; Tcl_Obj* retTcl=NULL;
 PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
 
 {
@@ -2678,17 +781,17 @@ arg1Init=true;
         }
         Export* ex=(*it).second;
         //OK, is the type correct?
-        if (ex->type->theType != typeid(AsyncAckGeraet)
-        &&  0==ex->type->superclasses.count(&typeid(AsyncAckGeraet))) {
+        if (ex->type->theType != typeid(Explosion)
+        &&  0==ex->type->superclasses.count(&typeid(Explosion))) {
           //Nope
           sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " AsyncAckGeraet, "
+                               " Explosion, "
                                "got %s", ex->type->tclClassName.c_str());
           scriptError(staticError);
         }
 
         //All is well, transfer ownership now
-        AsyncAckGeraet* tmp=(AsyncAckGeraet*)ex->ptr;
+        Explosion* tmp=(Explosion*)ex->ptr;
         
         arg2 = tmp;
     } else arg2=NULL;
@@ -2797,7 +900,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1258 (
+     trampoline435 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -2805,8 +908,9 @@ static int
          return TCL_ERROR;
        }
        invokingInterpreter=interp;
-       SeqTextOutputGeraet* parent=NULL;
-string arg0; bool arg0Init=false;
+       OldStyleExplosion* parent=NULL;
+float arg0; bool arg0Init=false;
+bool ret; Tcl_Obj* retTcl=NULL;
 PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
 {
       string name(Tcl_GetStringFromObj(objv[0], NULL));
@@ -2825,46 +929,40 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
         }
         Export* ex=(*it).second;
         //OK, is the type correct?
-        if (ex->type->theType != typeid(SeqTextOutputGeraet)
-        &&  0==ex->type->superclasses.count(&typeid(SeqTextOutputGeraet))) {
+        if (ex->type->theType != typeid(OldStyleExplosion)
+        &&  0==ex->type->superclasses.count(&typeid(OldStyleExplosion))) {
           //Nope
           sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " SeqTextOutputGeraet, "
+                               " OldStyleExplosion, "
                                "got %s", ex->type->tclClassName.c_str());
           scriptError(staticError);
         }
 
         //All is well, transfer ownership now
-        SeqTextOutputGeraet* tmp=(SeqTextOutputGeraet*)ex->ptr;
+        OldStyleExplosion* tmp=(OldStyleExplosion*)ex->ptr;
         
         parent = tmp;
     } else parent=NULL;
 }
       if (!parent) { scriptError("NULL this passed into C++"); }
-{
-      static Tcl_DString dstr;
-      static bool hasDstr=false;
-      if (!hasDstr) {
-        Tcl_DStringInit(&dstr);
-        hasDstr=true;
-      } else {
-        Tcl_DStringSetLength(&dstr, 0);
-      }
-      int length;
-      Tcl_UniChar* tuc = Tcl_GetUnicodeFromObj(objv[1], &length);
-      arg0 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
-    };
+{double tmp;
+            int err = Tcl_GetDoubleFromObj(interp, objv[1], &tmp);
+            if (err == TCL_ERROR)
+              scriptError(Tcl_GetStringResult(interp));
+            arg0 = (float)tmp;};
 arg0Init=true;
 try {
-      
+      ret =
      parent->
      
-     send(arg0);
+     update(arg0);
 
     } catch (exception& ex) {
       sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
       scriptError(staticError);
     }
+{retTcl = Tcl_NewBooleanObj(ret);}
+Tcl_SetObjResult(interp, retTcl);
 POP_TCL_ERROR_HANDLER;
       return TCL_OK;
 error:
@@ -2882,31 +980,185 @@ if (arg0Init) {arg0Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1256", trampoline1256, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1258", trampoline1258, 0, NULL);
-TypeExport* ste=new TypeExport(typeid(SeqTextOutputGeraet)),
-                           * ete=new TypeExport(typeid(TclSeqTextOutputGeraet));
+
+#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+
+#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+static int
+     trampoline437 (
+     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+       SHIFT;
+       if (objc != 1) {
+         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
+         return TCL_ERROR;
+       }
+       invokingInterpreter=interp;
+       OldStyleExplosion* parent=NULL;
+PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
+{
+      string name(Tcl_GetStringFromObj(objv[0], NULL));
+      if (name != "0") {
+        //Does it exist?
+        InterpInfo* info=interpreters[interp];
+        map<string,Export*>::iterator it=info->exportsByName.find(name);
+        if (it == info->exportsByName.end()) {
+          for (it=info->exportsByName.begin();
+               it != info->exportsByName.end(); ++it) {
+            cout << (*it).first << endl;
+          }
+          sprintf(staticError, "Invalid export passed to C++: %s",
+                  name.c_str());
+          scriptError(staticError);
+        }
+        Export* ex=(*it).second;
+        //OK, is the type correct?
+        if (ex->type->theType != typeid(OldStyleExplosion)
+        &&  0==ex->type->superclasses.count(&typeid(OldStyleExplosion))) {
+          //Nope
+          sprintf(staticError, "Wrong type passed to C++ function; expected"
+                               " OldStyleExplosion, "
+                               "got %s", ex->type->tclClassName.c_str());
+          scriptError(staticError);
+        }
+
+        //All is well, transfer ownership now
+        OldStyleExplosion* tmp=(OldStyleExplosion*)ex->ptr;
+        
+        parent = tmp;
+    } else parent=NULL;
+}
+      if (!parent) { scriptError("NULL this passed into C++"); }
+try {
+      
+     parent->
+     
+     draw();
+
+    } catch (exception& ex) {
+      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
+      scriptError(staticError);
+    }
+POP_TCL_ERROR_HANDLER;
+      return TCL_OK;
+error:
+      POP_TCL_ERROR_HANDLER;
+      double_error:
+      #undef scriptError
+      #define scriptError(msg) { \
+        cerr << "Double-error; old message: " << scriptingErrorMessage << \
+        ", new message: " << msg << endl; \
+        scriptingErrorMessage = msg; goto double_error; \
+      }
+      if (parent) {}
+#undef scriptError
+Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
+#undef scriptError
+
+
+#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+
+#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+static int
+     trampoline439 (
+     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+       SHIFT;
+       if (objc != 1) {
+         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
+         return TCL_ERROR;
+       }
+       invokingInterpreter=interp;
+       OldStyleExplosion* parent=NULL;
+float ret; Tcl_Obj* retTcl=NULL;
+PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
+{
+      string name(Tcl_GetStringFromObj(objv[0], NULL));
+      if (name != "0") {
+        //Does it exist?
+        InterpInfo* info=interpreters[interp];
+        map<string,Export*>::iterator it=info->exportsByName.find(name);
+        if (it == info->exportsByName.end()) {
+          for (it=info->exportsByName.begin();
+               it != info->exportsByName.end(); ++it) {
+            cout << (*it).first << endl;
+          }
+          sprintf(staticError, "Invalid export passed to C++: %s",
+                  name.c_str());
+          scriptError(staticError);
+        }
+        Export* ex=(*it).second;
+        //OK, is the type correct?
+        if (ex->type->theType != typeid(OldStyleExplosion)
+        &&  0==ex->type->superclasses.count(&typeid(OldStyleExplosion))) {
+          //Nope
+          sprintf(staticError, "Wrong type passed to C++ function; expected"
+                               " OldStyleExplosion, "
+                               "got %s", ex->type->tclClassName.c_str());
+          scriptError(staticError);
+        }
+
+        //All is well, transfer ownership now
+        OldStyleExplosion* tmp=(OldStyleExplosion*)ex->ptr;
+        
+        parent = tmp;
+    } else parent=NULL;
+}
+      if (!parent) { scriptError("NULL this passed into C++"); }
+try {
+      ret =
+     parent->
+     
+     getRadius();
+
+    } catch (exception& ex) {
+      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
+      scriptError(staticError);
+    }
+{retTcl = Tcl_NewDoubleObj((double)ret);}
+Tcl_SetObjResult(interp, retTcl);
+POP_TCL_ERROR_HANDLER;
+      return TCL_OK;
+error:
+      POP_TCL_ERROR_HANDLER;
+      double_error:
+      #undef scriptError
+      #define scriptError(msg) { \
+        cerr << "Double-error; old message: " << scriptingErrorMessage << \
+        ", new message: " << msg << endl; \
+        scriptingErrorMessage = msg; goto double_error; \
+      }
+      if (parent) {}
+#undef scriptError
+Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
+#undef scriptError
+
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline433", trampoline433, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline435", trampoline435, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline437", trampoline437, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline439", trampoline439, 0, NULL);
+TypeExport* ste=new TypeExport(typeid(OldStyleExplosion)),
+                           * ete=new TypeExport(typeid(TclOldStyleExplosion));
 ste->isAObject=ete->isAObject=true;
-ste->tclClassName=ete->tclClassName="SeqTextOutputGeraet";
-ste->superclasses.insert(&typeid(OutputNetworkGeraet));
+ste->tclClassName=ete->tclClassName="OldStyleExplosion";
+ste->superclasses.insert(&typeid(GameObject));
 ste->superclasses.insert(&typeid(AObject));
 ete->superclasses=ste->superclasses;
-ete->superclasses.insert(&typeid(SeqTextOutputGeraet));
-typeExports[&typeid(SeqTextOutputGeraet)]=ste;
-typeExports[&typeid(TclSeqTextOutputGeraet)]=ete;
+ete->superclasses.insert(&typeid(OldStyleExplosion));
+typeExports[&typeid(OldStyleExplosion)]=ste;
+typeExports[&typeid(TclOldStyleExplosion)]=ete;
 }
 };
-void classdec1255(bool safe, Tcl_Interp* interp) throw() {
-  TclSeqTextOutputGeraet::cppDecCode(safe,interp);
+void classdec432(bool safe, Tcl_Interp* interp) throw() {
+  TclOldStyleExplosion::cppDecCode(safe,interp);
 }
-class TclSeqTextInputGeraet : public SeqTextInputGeraet {
+
+class TclStarField : public StarField {
       public:
-TclSeqTextInputGeraet(AsyncAckGeraet* arg2) : SeqTextInputGeraet(arg2) {
+TclStarField(GameObject* arg2, GameField* arg3, int arg4) : StarField(arg2, arg3, arg4) {
         tclExtended=invokingInterpreter;
         tclKnown=true;
       }
-static SeqTextInputGeraet* constructorTcldefault
-    (const string& name, const string& magicCookie,  AsyncAckGeraet* arg2) {
+static StarField* constructordefault
+    (const string& name, const string& magicCookie,  GameObject* arg2, GameField* arg3, int arg4) {
       InterpInfo* info=interpreters[invokingInterpreter];
       //Validate magic cookie
       if (magicCookie != info->magicCookie) {
@@ -2922,8 +1174,8 @@ static SeqTextInputGeraet* constructorTcldefault
       if (info->exportsByName[name]) {
         scriptError("Double allocation");
       }
-      TclSeqTextInputGeraet* ret;
-      ret=new TclSeqTextInputGeraet(arg2);
+      StarField* ret;
+      ret=new StarField(arg2, arg3, arg4);
       if (ret) {
         ret->tclKnown = true;
         //The trampoline will take care of assigning ownership to Tcl, we
@@ -2932,7 +1184,7 @@ static SeqTextInputGeraet* constructorTcldefault
         info->exports[(void*)ret]=ex;
         info->exportsByName[name]=ex;
         ex->ptr = (void*)ret;
-        ex->type = typeExports[&typeid(TclSeqTextInputGeraet)];
+        ex->type = typeExports[&typeid(StarField)];
         ex->interp = invokingInterpreter;
         ex->tclrep=name;
       }
@@ -2944,10 +1196,10 @@ static SeqTextInputGeraet* constructorTcldefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1261 (
+     trampoline704 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
-       if (objc != 3) {
+       if (objc != 5) {
          Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
          return TCL_ERROR;
        }
@@ -2955,8 +1207,10 @@ static int
        
 string arg0; bool arg0Init=false;
 string arg1; bool arg1Init=false;
-AsyncAckGeraet* arg2; bool arg2Init=false;
-SeqTextInputGeraet* ret; Tcl_Obj* retTcl=NULL;
+GameObject* arg2; bool arg2Init=false;
+GameField* arg3; bool arg3Init=false;
+int arg4; bool arg4Init=false;
+StarField* ret; Tcl_Obj* retTcl=NULL;
 PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
 
 {
@@ -3004,27 +1258,66 @@ arg1Init=true;
         }
         Export* ex=(*it).second;
         //OK, is the type correct?
-        if (ex->type->theType != typeid(AsyncAckGeraet)
-        &&  0==ex->type->superclasses.count(&typeid(AsyncAckGeraet))) {
+        if (ex->type->theType != typeid(GameObject)
+        &&  0==ex->type->superclasses.count(&typeid(GameObject))) {
           //Nope
           sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " AsyncAckGeraet, "
+                               " GameObject, "
                                "got %s", ex->type->tclClassName.c_str());
           scriptError(staticError);
         }
 
         //All is well, transfer ownership now
-        AsyncAckGeraet* tmp=(AsyncAckGeraet*)ex->ptr;
+        GameObject* tmp=(GameObject*)ex->ptr;
         
         arg2 = tmp;
     } else arg2=NULL;
 };
 arg2Init=true;
+{
+      string name(Tcl_GetStringFromObj(objv[3], NULL));
+      if (name != "0") {
+        //Does it exist?
+        InterpInfo* info=interpreters[interp];
+        map<string,Export*>::iterator it=info->exportsByName.find(name);
+        if (it == info->exportsByName.end()) {
+          for (it=info->exportsByName.begin();
+               it != info->exportsByName.end(); ++it) {
+            cout << (*it).first << endl;
+          }
+          sprintf(staticError, "Invalid export passed to C++: %s",
+                  name.c_str());
+          scriptError(staticError);
+        }
+        Export* ex=(*it).second;
+        //OK, is the type correct?
+        if (ex->type->theType != typeid(GameField)
+        &&  0==ex->type->superclasses.count(&typeid(GameField))) {
+          //Nope
+          sprintf(staticError, "Wrong type passed to C++ function; expected"
+                               " GameField, "
+                               "got %s", ex->type->tclClassName.c_str());
+          scriptError(staticError);
+        }
+
+        //All is well, transfer ownership now
+        GameField* tmp=(GameField*)ex->ptr;
+        
+        arg3 = tmp;
+    } else arg3=NULL;
+};
+arg3Init=true;
+{int tmp;
+            int err = Tcl_GetIntFromObj(interp, objv[4], &tmp);
+            if (err == TCL_ERROR)
+              scriptError(Tcl_GetStringResult(interp));
+            arg4 = (int)tmp;};
+arg4Init=true;
 try {
       ret =
      
      
-     constructorTcldefault(arg0, arg1, arg2);
+     constructordefault(arg0, arg1, arg2, arg3, arg4);
 
     } catch (exception& ex) {
       sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
@@ -3114,196 +1407,50 @@ error:
 if (arg0Init) {arg0Init=false; }
 if (arg1Init) {arg1Init=false; }
 if (arg2Init) {arg2Init=false; }
+if (arg3Init) {arg3Init=false; }
+if (arg4Init) {arg4Init=false; }
 #undef scriptError
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-
-#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-virtual
-       void
-       receiveText (string arg0 )  noth { {
-        //Forward to Tcl
-        int status;
-        Tcl_Interp* interp=tclExtended;
-        Tcl_Obj* thisTcl=NULL;
-        const char*const methodName = "receiveText";
-        Tcl_Obj* meth=Tcl_NewStringObj(methodName, -1);
-        Tcl_IncrRefCount(meth);
-Tcl_Obj* arg0Tcl = NULL;
-{if (!(this)) {
-      thisTcl=Tcl_NewStringObj("0", 1);
-    } else {
-      InterpInfo* info=interpreters[interp];
-      //Is it a valid export already?
-      void* ptr=const_cast<void*>((void*)(this));
-      map<void*,Export*>::iterator it=info->exports.find(ptr);
-      Export* ex;
-      if (it == info->exports.end()) {
-        //No, create new one
-        (this)->tclKnown=true;
-        ex=new Export;
-        ex->ptr=ptr;
-        ex->type=typeExports[&typeid(*(this))];
-        ex->interp=interp;
-        
-
-        //Create the new Tcl-side object with
-        //  new Type {}
-        Tcl_Obj* cmd[3] = {
-          Tcl_NewStringObj("new", 3),
-          Tcl_NewStringObj(ex->type->tclClassName.c_str(),
-                           ex->type->tclClassName.size()),
-          Tcl_NewObj(),
-        };
-        for (unsigned i=0; i<lenof(cmd); ++i)
-          Tcl_IncrRefCount(cmd[i]);
-        int status=Tcl_EvalObjv(interp, lenof(cmd), cmd, TCL_EVAL_GLOBAL);
-        for (unsigned i=0; i<lenof(cmd); ++i)
-          Tcl_DecrRefCount(cmd[i]);
-        if (status == TCL_ERROR) {
-          sprintf(staticError, "Error exporting C++ object to Tcl: %s",
-                  Tcl_GetStringResult(interp));
-          scriptError(staticError);
-        }
-
-        //We can now get the name, and then have a fully-usable export
-        ex->tclrep=Tcl_GetStringResult(interp);
-        //Register
-        info->exports[(void*)(this)]=ex;
-        info->exportsByName[ex->tclrep]=ex;
-      } else {
-        //Yes, use directly
-        ex = (*it).second;
-      }
-
-      //Ownership
-      
-
-      //Done
-      thisTcl=Tcl_NewStringObj(ex->tclrep.c_str(), ex->tclrep.size());
-    }}
-        Tcl_IncrRefCount(thisTcl);
-      {
-        static Tcl_DString dstr;
-        static bool hasDstr=false;
-        if (!hasDstr) {
-          hasDstr = true;
-          Tcl_DStringInit(&dstr);
-        } else {
-          Tcl_DStringSetLength(&dstr, 0);
-        }
-        Tcl_UniChar* tuc = Tcl_UtfToUniCharDString(arg0.c_str(), -1, &dstr);
-        arg0Tcl = Tcl_NewUnicodeObj(tuc, -1);
-      }
-          Tcl_IncrRefCount(arg0Tcl);
-         {
-        Tcl_Obj* objv[3] = {
-          thisTcl,
-          meth,
-          arg0Tcl, };
-      status = Tcl_EvalObjv(interp, sizeof(objv)/sizeof(Tcl_Obj*), objv, TCL_EVAL_GLOBAL);
-      }
-      //Before checking status, decrement all ref counts.
-      Tcl_DecrRefCount(thisTcl);
-      thisTcl=NULL;
-      Tcl_DecrRefCount(meth);
-      meth=NULL;
-      Tcl_DecrRefCount(arg0Tcl);
-arg0Tcl=NULL;
-
-      if (status == TCL_ERROR) {
-        /* It's hard to reason about how the memory model should respond to this.
-         * However, deexporting the arguments is probably a worse idea than
-         * leaving them be.
-         * So just get out.
-         */
-        scriptingErrorMessage = Tcl_GetStringResult(interp);
-        goto long_jump;
-      }
-
-      //OK!
-return;
-
-      error:
-      //Decref anything existing
-      if (thisTcl) Tcl_DecrRefCount(thisTcl);
-      if (meth) Tcl_DecrRefCount(meth);
-      if (arg0Tcl) {
-          //Deimport as well
-          {}
-          Tcl_DecrRefCount(arg0Tcl);
-        }
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline704", trampoline704, 0, NULL);
+TypeExport* ste=new TypeExport(typeid(StarField)),
+                           * ete=new TypeExport(typeid(TclStarField));
+ste->isAObject=ete->isAObject=true;
+ste->tclClassName=ete->tclClassName="StarField";
+ste->superclasses.insert(&typeid(Background));
+ste->superclasses.insert(&typeid(EffectsHandler));
+ste->superclasses.insert(&typeid(AObject));
+ete->superclasses=ste->superclasses;
+ete->superclasses.insert(&typeid(StarField));
+typeExports[&typeid(StarField)]=ste;
+typeExports[&typeid(TclStarField)]=ete;
 }
-        long_jump:
-        longjmp(currentTclErrorHandler, 1);
-      }
+};
+void classdec703(bool safe, Tcl_Interp* interp) throw() {
+  TclStarField::cppDecCode(safe,interp);
+}
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-static int
-     trampoline1263 (
+
+#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+ int
+     trampoline706 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
-       if (objc != 2) {
+       if (objc != 0) {
          Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
          return TCL_ERROR;
        }
        invokingInterpreter=interp;
-       SeqTextInputGeraet* parent=NULL;
-string arg0; bool arg0Init=false;
+       
 PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
-{
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(SeqTextInputGeraet)
-        &&  0==ex->type->superclasses.count(&typeid(SeqTextInputGeraet))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " SeqTextInputGeraet, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
 
-        //All is well, transfer ownership now
-        SeqTextInputGeraet* tmp=(SeqTextInputGeraet*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-}
-      if (!parent) { scriptError("NULL this passed into C++"); }
-{
-      static Tcl_DString dstr;
-      static bool hasDstr=false;
-      if (!hasDstr) {
-        Tcl_DStringInit(&dstr);
-        hasDstr=true;
-      } else {
-        Tcl_DStringSetLength(&dstr, 0);
-      }
-      int length;
-      Tcl_UniChar* tuc = Tcl_GetUnicodeFromObj(objv[1], &length);
-      arg0 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
-    };
-arg0Init=true;
 try {
       
-     parent->
      
-     receiveText(arg0);
+     
+     initStarLists();
 
     } catch (exception& ex) {
       sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
@@ -3320,27 +1467,77 @@ error:
         ", new message: " << msg << endl; \
         scriptingErrorMessage = msg; goto double_error; \
       }
-      if (parent) {}
-if (arg0Init) {arg0Init=false; }
+      
 #undef scriptError
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1261", trampoline1261, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1263", trampoline1263, 0, NULL);
-TypeExport* ste=new TypeExport(typeid(SeqTextInputGeraet)),
-                           * ete=new TypeExport(typeid(TclSeqTextInputGeraet));
-ste->isAObject=ete->isAObject=true;
-ste->tclClassName=ete->tclClassName="SeqTextInputGeraet";
-ste->superclasses.insert(&typeid(InputNetworkGeraet));
-ste->superclasses.insert(&typeid(AObject));
-ete->superclasses=ste->superclasses;
-ete->superclasses.insert(&typeid(SeqTextInputGeraet));
-typeExports[&typeid(SeqTextInputGeraet)]=ste;
-typeExports[&typeid(TclSeqTextInputGeraet)]=ete;
-}
-};
-void classdec1260(bool safe, Tcl_Interp* interp) throw() {
-  TclSeqTextInputGeraet::cppDecCode(safe,interp);
-}
+
+
+#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+
+#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+ int
+     trampoline1055 (
+     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+       SHIFT;
+       if (objc != 2) {
+         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
+         return TCL_ERROR;
+       }
+       invokingInterpreter=interp;
+       
+unsigned arg0; bool arg0Init=false;
+const char* arg1; bool arg1Init=false;
+PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
+
+{int tmp;
+            int err = Tcl_GetIntFromObj(interp, objv[0], &tmp);
+            if (err == TCL_ERROR)
+              scriptError(Tcl_GetStringResult(interp));
+            arg0 = (unsigned)tmp;};
+arg0Init=true;
+{
+          static Tcl_DString dstr;
+          static bool hasDstr=false;
+          if (!hasDstr) {
+            Tcl_DStringInit(&dstr);
+            hasDstr=true;
+          } else {
+            Tcl_DStringSetLength(&dstr, 0);
+          }
+          int length;
+          Tcl_UniChar* tuc = Tcl_GetUnicodeFromObj(objv[1], &length);
+          arg1 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
+        };
+arg1Init=true;
+try {
+      
+     
+     
+     hud_user_messages::setmsg(arg0, arg1);
+
+    } catch (exception& ex) {
+      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
+      scriptError(staticError);
+    }
+POP_TCL_ERROR_HANDLER;
+      return TCL_OK;
+error:
+      POP_TCL_ERROR_HANDLER;
+      double_error:
+      #undef scriptError
+      #define scriptError(msg) { \
+        cerr << "Double-error; old message: " << scriptingErrorMessage << \
+        ", new message: " << msg << endl; \
+        scriptingErrorMessage = msg; goto double_error; \
+      }
+      
+if (arg0Init) {arg0Init=false; }
+if (arg1Init) {arg1Init=false; }
+#undef scriptError
+Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
+#undef scriptError
+
+
 
