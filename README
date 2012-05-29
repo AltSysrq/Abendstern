@@ -19,7 +19,7 @@ To compile, do
 
 If your OpenGL headers do not supply GL extension functions, instead use
   ./configure --disable-gl21 --disable-gl32
-You may also need the --disable-gl32 and possible --disable-gl21 if your
+You may also need the --disable-gl32 and possibly --disable-gl21 if your
 OpenGL library does not have the necessary functions.
 
 INSTALLING
