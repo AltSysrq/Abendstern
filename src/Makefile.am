@@ -19,6 +19,9 @@ COMMONCXXFLAGS=-Wall -I./config -DDATADIR='"'"$(pkgdatadir)"'"' \
                -I/usr/include/tcl8.5 -I/usr/local/tcl8.5 \
                -L/usr/lib/itcl3.4 -L/usr/local/lib/itcl3.4
 
+# Don't try to compile abendstern.cxx -> abendstern.o -> abendstern
+abendstern:;
+
 ./tcl_iface/xxx/rebuilt: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 	./tcl_iface/generate.tcl
 	touch tcl_iface/xxx/rebuilt tcl_iface/bridge.cxx tcl_iface/xxx/*
