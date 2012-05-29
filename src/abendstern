@@ -1,0 +1,14 @@
+#! /bin/sh
+
+# Automatically starts the lowest GL-version of Abendstern which resides in the
+# same directory as this script, in automatic preliminary mode.
+for suffix in uxgl14 uxgl21 uxgl32; do
+    if test -x $0$suffix; then
+        $0$suffix $* -prelimauto
+        exit $?
+    fi
+done
+
+basedir=`dirname $0`
+echo "$0: Could not find any version of Abendstern under $basedir"
+exit 1

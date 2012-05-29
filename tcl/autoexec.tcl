@@ -26,7 +26,7 @@ if {$PLATFORM == "WINDOWS"} {
 # Always have en as fallback
 l10n_acceptLanguage [$ str conf.language]
 l10n_acceptLanguage en
-foreach cat [list A N T] {
+foreach cat [list A N T P] {
   foreach f [glob -nocomplain data/lang/*/$cat] {
     l10n_loadCatalogue $cat $f
   }
@@ -108,7 +108,17 @@ proc makePlanet {} {
   delete object $parms
 }
 
-source tcl/boot.tcl
-set oldState $state
-set state [new BootManager boot]
-delete object $oldState
+if {!$preliminaryRunMode} {
+  source tcl/boot.tcl
+  set oldState $state
+  set state [new BootManager boot]
+  delete object $oldState
+} else {
+  # Load required libraries
+  source tcl/init.d/loadlib.tcl
+  # Start prelim mode
+  source tcl/ui/prelim.tcl
+  set oldState $state
+  set state [new PrelimRunApp]
+  delete object $oldState
+}

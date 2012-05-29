@@ -1,0 +1,27 @@
+~de
+
+@version
+-header
++Graphik-Version
+-AGLT14
++Ausfallsich (GL 1.1+)
+-AGLT21
++Kompatibel (GL 2.1+)
+-AGLT32
++Voll (GL 3.2+)
+-always_assume
++Dieser Dialog am Anfang überspringen
+
+@tabs
+-main
++Haupt
+-config
++Eigenschaften
+
+@main
+-language
++Sprache
+-start
++Abendstern starten
+-suppress_autologin
++Nicht automatisch anmelden

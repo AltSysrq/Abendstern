@@ -15,6 +15,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
+#include <cctype>
 #include <cerrno>
 #include <fstream>
 #include <iomanip>
@@ -57,6 +58,7 @@
 #include <GL/glxext.h>
 #endif /* ENABLE_X11_VSYNC */
 
+#include "abendstern.hxx"
 #include "globals.hxx"
 #include "audio/audio.hxx"
 #include "control/joystick.hxx"
@@ -84,6 +86,14 @@ static time_t fpsLastReport;
 static unsigned fps;
 /* For calculating average FPS over long period */
 static unsigned fpsSum, fpsSampleCount;
+
+AbendsternGLType recommendedGLType;
+bool preliminaryRunMode = false;
+static bool preliminaryRunModeAuto = false;
+
+//The command-line arguments
+static char**   cmdargv;
+static unsigned cmdargc;
 
 #define vclock SDL_GetTicks
 
@@ -161,15 +171,6 @@ bool init();
  */
 void run();
 
-enum AbendsternGLType { AGLT14, AGLT21, AGLT32 };
-#if defined(AB_OPENGL_14)
-#define THIS_GL_TYPE AGLT14
-#elif defined(AB_OPENGL_21)
-#define THIS_GL_TYPE AGLT21
-#else
-#define THIS_GL_TYPE AGLT32
-#endif
-
 /** Analyses the GL version string to determine which build type of Abendstern
  * is appropriate for the graphics hardware.
  */
@@ -212,6 +213,9 @@ static AbendsternGLType analyseGLVersion(const char* vers) {
  * @return The exit status of the program
  */
 int main(int argc, char** argv) {
+  cmdargv = argv;
+  cmdargc = argc;
+
   //On Windows, HOME (er, USERPROFILE) is not an appropriate location.
   //Since we need to set HOME anyway, APPDATA is the propper location.
   #ifdef WIN32
@@ -336,9 +340,11 @@ int main(int argc, char** argv) {
          ||  0 == strcmp(argv[i], "-F")) {
       fastForward = true;
     }
-    else if (0 == strcmp(argv[i], "-!")) {
-      //Flag does nothing (suppression occurs because switching is
-      //disabled if ANY arguments were passed)
+    else if (0 == strcmp(argv[i], "-prelim")) {
+      preliminaryRunMode = true;
+    }
+    else if (0 == strcmp(argv[i], "-prelimauto")) {
+      preliminaryRunModeAuto = true;
     }
     else {
       if (strcmp(argv[i], "-?")
@@ -354,7 +360,7 @@ int main(int argc, char** argv) {
               "  -b[its] int    Override bits-per-pixel\n"
               "  -c[ache] int   Set number of MB of RAM to use for config cache\n"
               "  -F[ast]        Force elapsed time for each frame to 10 ms\n"
-              "  -!             Don't switch to a better build based on GL version\n"
+              "  -prelim        Start in preliminary configuration mode\n"
               "  -?, -help      Print this help message" << endl;
       exit(EXIT_SUCCESS);
     }
@@ -383,53 +389,28 @@ int main(int argc, char** argv) {
   if (!headless) {
     cout << "OpenGL version: " << (const char*)glGetString(GL_VERSION)
         << " by " << (const char*)glGetString(GL_VENDOR) << endl;
-    AbendsternGLType aglt = analyseGLVersion((const char*)glGetString(GL_VERSION));
-    if (aglt != THIS_GL_TYPE) {
-      cerr << "Warning: This is not the best build of Abendstern to use, given your "
-              "OpenGL version." << endl;
-      char* newexe = NULL;
-      if (argc != 1) {
-        cerr << "Cannot automatically switch due to command-line arguments." << endl;
-        cerr << "Assuming you know what you are doing." << endl;
-      #ifndef WIN32
-      } else {
-        cerr << "Automatic switching to appropriate type is only supported on Windows." << endl;
-      }
-      #else
-      } else {
-        switch (aglt) {
-          case AGLT14: newexe = "bin\\abw32gl14.exe"; break;
-          case AGLT21: newexe = "bin\\abw32gl21.exe"; break;
-          case AGLT32: newexe = "bin\\abw32gl32.exe"; break;
-        }
-      }
-      #endif
-      if (newexe) {
-        cerr << "Automatically executing " << newexe << " instead." << endl;
-        #ifdef WIN32
-        //Need to close log outputs so the new process can open the files.
-        logout.close();
-        fclose(stdout);
-        fclose(stderr);
-        shutdown();
-        STARTUPINFOA sinfo = {
-          sizeof(STARTUPINFO),
-          0 //Init rest with zeros as well
-        };
-        PROCESS_INFORMATION info;
-        CreateProcessA(newexe, newexe, NULL, NULL, FALSE, CREATE_BREAKAWAY_FROM_JOB, NULL, NULL, &sinfo, &info);
-        CloseHandle(info.hProcess);
-        CloseHandle(info.hThread);
-        #endif /* WIN32 */
-        return 0;
-      }
-    }
+    recommendedGLType = analyseGLVersion((const char*)glGetString(GL_VERSION));
     #ifndef AB_OPENGL_14
     cout << "GLSL version: " << (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION) << endl;
     #endif
   }
   atexit(shutdown);
   run();
+  //Time to end the program normally.
+  //Before we destroy the config system, move any prelim_assume_version_pre to
+  //prelim_assume_version since everything seems to have worked with the
+  //assumed settings.
+  Setting& settings(conf["conf"]);
+  if (settings.exists("prelim_assume_version_pre")) {
+    if (settings.exists("prelim_assume_version"))
+      settings.remove("prelim_assume_version");
+    settings.add("prelim_assume_version", Setting::TypeString);
+    settings["prelim_assume_version"] =
+      (const char*)settings["prelim_assume_version_pre"];
+    settings.remove("prelim_assume_version_pre");
+    conf.modify("conf");
+    conf.sync("conf");
+  }
   #ifdef WIN32
   //Callbacks regestired by Tcl cause deadlock on termination in Windows
   //(I have no idea why, the debugger is useless in this context...).
@@ -505,9 +486,44 @@ bool init() {
     cerr << "Error reading shader stack info: " << e.what() << endl;
     return false;
   }
+
   Setting& settings=conf["conf"];
+  //Use prelim mode if specified, or if auto is specified and conf.skip_prelim
+  //is either nonexistent or is false.
+  if (preliminaryRunModeAuto &&
+      (!conf.exists("skip_prelim") || !(bool)conf["skip_prelim"])) {
+    preliminaryRunMode = true;
+  }
+
+  if (preliminaryRunMode) {
+    //Force graphics config
+    forceWidth = 640;
+    forceHeight = 480;
+    forceBits = 0; //Use native
+    forceFullscreen = false;
+    forceWindowed = true;
+  } else {
+    //If prelim_assume_version is set, rename it to _pre (removing _pre first if
+    //that exists) so that the user gets prompted for configuration again if
+    //Abendstern crashes.
+    if (settings.exists("prelim_assume_version")) {
+      if (settings.exists("prelim_assume_version_pre"))
+        settings.remove("prelim_assume_version_pre");
+      settings.add("prelim_assume_version_pre", Setting::TypeString);
+      settings["prelim_assume_version_pre"] =
+        (const char*)settings["prelim_assume_version"];
+      settings.remove("prelim_assume_version");
+      conf.modify("conf");
+      conf.sync("conf");
+    }
+  }
+
   try {
     headless=forceHeadless || settings["display"]["headless"];
+    //Can't use prelim mode when headless
+    if (headless)
+      preliminaryRunMode = false;
+
     if (!headless) {
       if (SDL_InitSubSystem(SDL_INIT_VIDEO)) {
         printf("Unable to initialize SDL: %s\n", SDL_GetError());
@@ -602,7 +618,6 @@ bool init() {
   #endif
 
   state=new InitState();
-  //state=new ShaderTest();
   if (!headless) state->configureGL();
 
   #ifdef FRAME_RECORDER_ENABLED
@@ -742,19 +757,103 @@ void shutdown() {
   joystick::close();
   SDL_Quit();
   libconfig::destroySwapFile();
-  cout << "Average FPS: " << fpsSum/(float)fpsSampleCount << endl;
-  //Print graphic profiling info
-  #ifdef PROFILE
-  cout << "Time spent updating: " << updateTime << " ms ("
-       << (int)(updateTime/(float)(updateTime+drawTime)*100.0f) << "%), "
-       << "time spent drawing: " << drawTime << " ms ("
-       << (int)(drawTime/(float)(updateTime+drawTime)*100.0f) << "%)"
-       << endl;
-  printProfileInfo("General graphics profile:", gp_profile, gp_total);
-  char specTitle[128];
-  for (int i=0; i<1000; ++i) if (gp_totalByFPS[i]>0) {
-    sprintf(specTitle, "Graphics profile at framerate %d", i);
-    printProfileInfo(specTitle, gp_profileByFPS[i], gp_totalByFPS[i]);
+  if (fpsSampleCount > 0) {
+    cout << "Average FPS: " << fpsSum/(float)fpsSampleCount << endl;
+    //Print graphic profiling info
+    #ifdef PROFILE
+    cout << "Time spent updating: " << updateTime << " ms ("
+         << (int)(updateTime/(float)(updateTime+drawTime)*100.0f) << "%), "
+         << "time spent drawing: " << drawTime << " ms ("
+         << (int)(drawTime/(float)(updateTime+drawTime)*100.0f) << "%)"
+         << endl;
+    printProfileInfo("General graphics profile:", gp_profile, gp_total);
+    char specTitle[128];
+    for (int i=0; i<1000; ++i) if (gp_totalByFPS[i]>0) {
+        sprintf(specTitle, "Graphics profile at framerate %d", i);
+        printProfileInfo(specTitle, gp_profileByFPS[i], gp_totalByFPS[i]);
+    }
+    #endif
   }
-  #endif
+}
+
+void exitPreliminaryRunMode() {
+#ifdef WIN32
+  const char* newexe;
+  switch (recommendedGLType) {
+  case AGLT14: newexe = "bin\\abw32gl14.exe"; break;
+  case AGLT21: newexe = "bin\\abw32gl21.exe"; break;
+  case AGLT32: newexe = "bin\\abw32gl32.exe"; break;
+  }
+
+  //Build a string command, excluding -prelim and -prelimauto
+  ostringstream out(newexe);
+  for (unsigned i = 1; i < cmdargc; ++i)
+    if (0 != strcmp(cmdargc[i], "-prelim") &&
+        0 != strcmp(cmdargc[i], "-prelimauto"))
+      out << " " << cmdargc[i];
+
+  //Need to close log outputs so the new process can open the files.
+  logout.close();
+  fclose(stdout);
+  fclose(stderr);
+  shutdown();
+  STARTUPINFOA sinfo = {
+    sizeof(STARTUPINFO),
+    0 //Init rest with zeros as well
+  };
+  PROCESS_INFORMATION info;
+  CreateProcess(newexe, out.str().c_str(), NULL, NULL, FALSE,
+                CREATE_BREAKAWAY_FROM_JOB, NULL, NULL, &sinfo, &info);
+  CloseHandle(info.hProcess);
+  CloseHandle(info.hThread);
+  exit(EXIT_NORMAL);
+#else /* UNIX */
+  //New command-line arguments.
+  //Static so that the destructor won't be called
+  static vector<char*> nargs;
+
+  /* The final two characters of our command should be digits corresponding to
+   * the OpenGL version. By changing these, we can easily locate the new
+   * executable.
+   */
+  string progname(cmdargv[0]);
+  if (progname.size() < 3 ||
+      !isdigit(progname[progname.size()-2]) ||
+      !isdigit(progname[progname.size()-1])) {
+    cerr << "Cannot switch to new Abendstern process." << endl;
+    cerr << "Executable name does not meet assumptions: " << progname << endl;
+    exit(EXIT_THE_SKY_IS_FALLING);
+  }
+
+  //Alter the program name according to type
+  char ca, cb;
+  switch (recommendedGLType) {
+  case AGLT14: ca = '1', cb = '4'; break;
+  case AGLT21: ca = '2', cb = '1'; break;
+  case AGLT32: ca = '3', cb = '2'; break;
+  }
+  progname[progname.size()-2] = ca;
+  progname[progname.size()-1] = cb;
+
+  nargs.push_back(strdup(progname.c_str()));
+
+  //Add other arguments which are not -prelim or -prelimauto
+  for (unsigned i = 1; i < cmdargc; ++i)
+    if (0 != strcmp(cmdargv[i], "-prelim") &&
+        0 != strcmp(cmdargv[i], "-prelimauto"))
+      nargs.push_back(cmdargv[i]);
+  //Add terminating NULL
+  nargs.push_back(NULL);
+
+  //Release our resources
+  shutdown();
+
+  //Start the new process.
+  //If all goes well, execv() will never return
+  execv(nargs[0], &nargs[0]);
+
+  //Something went wrong
+  cerr << "Could not start new Abendstern process: " << strerror(errno) << endl;
+  exit(EXIT_PLATFORM_ERROR);
+#endif
 }

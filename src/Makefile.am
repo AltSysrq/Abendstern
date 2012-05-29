@@ -19,30 +19,34 @@ COMMONCXXFLAGS=-Wall -I./config -DDATADIR='"'"$(pkgdatadir)"'"' \
                -I/usr/include/tcl8.5 -I/usr/local/tcl8.5 \
                -L/usr/lib/itcl3.4 -L/usr/local/lib/itcl3.4
 
-./tcl_iface/bridge.cxx: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/rebuilt: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 	./tcl_iface/generate.tcl
-./tcl_iface/xxx/x0.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x1.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x2.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x3.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x4.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x5.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x6.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x7.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x8.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x9.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xa.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xb.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xc.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xd.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xe.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xf.cxx: | ./tcl_iface/bridge.cxx ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+	touch tcl_iface/xxx/rebuilt tcl_iface/bridge.cxx tcl_iface/xxx/*
+./tcl_iface/bridge.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x0.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x1.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x2.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x3.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x4.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x5.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x6.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x7.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x8.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/x9.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xa.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xb.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xc.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xd.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xe.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/xxx/xf.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 
 ./net/xxx/xnetobj.cxx: ./net/definition.tcl ./net/generate.tcl
 	./net/generate.tcl
-./net/xxx/xnetobj.hxx: | ./net/xxx/xnetobj.cxx ./net/definition.tcl ./net/generate.tcl
+./net/xxx/xnetobj.hxx: ./net/xxx/xnetobj.cxx ./net/definition.tcl ./net/generate.tcl
+	touch net/xxx/xnetobj.hxx
 
 bin_PROGRAMS=$(GL14PROG) $(GL21PROG) $(GL32PROG)
+bin_SCRIPTS=abendstern
 COMMONLDADD=$(SDL_LIBS) $(SDLIMG_LIBS) $(GL_LIBS) $(PNG_LIBS)
 COMMONSOURCES= \
 ./tcl_iface/bridge.cxx \
