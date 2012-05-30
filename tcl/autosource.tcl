@@ -116,3 +116,41 @@ proc unhomeq {path} {
   }
   return $path
 }
+
+# Loop construct for the common ranged loops.
+# Usage:
+#   do variable from-inclusive to-exclusive body
+# from-inclusive and to-inclusive are used literally in the for condition.
+#
+# Examples:
+#   do i 0 5 { puts $i }
+#   0
+#   1
+#   2
+#   3
+#   4
+#
+#   # Config: root [0 1 2 3]
+#   do i [$ length root] { puts [$ int root.\[$i\]]; $ remove root.\[$i\] }
+#   0
+#   2
+#   error
+#
+#   do i {[$ length root]} { # same... }
+#   0
+#   2
+#   (end of loop)
+proc do {var from to body} {
+  uplevel 1 [list for "set {$var} $from" "\${$var} < $to" "incr {$var}" $body]
+}
+
+# Iterates over items in a libconfig collection.
+# The var is set to entries in the config; eg, foo.[0], foo.[1], ...
+# It cannot handle concurrent modification of the list, though.
+proc conffor {var conf body} {
+  upvar $var v
+  do i 0 [$ length $conf] {
+    set v conf.\[$i\]
+    uplevel $body
+  }
+}
