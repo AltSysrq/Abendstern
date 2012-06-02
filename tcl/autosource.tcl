@@ -150,7 +150,7 @@ proc do {var from to body} {
 proc conffor {var conf body} {
   upvar $var v
   do i 0 [$ length $conf] {
-    set v conf.\[$i\]
+    set v $conf.\[$i\]
     uplevel $body
   }
 }
