@@ -57,8 +57,8 @@
 #     If true, a state the aspect applies to is permitted.
 #   module list: boot (optional)
 #     A list of module descriptions to splice into the boot procedure.
-#   state list: states (optional)
-#     A list of state descriptions to splice into the AI description.
+#   state group: states (optional)
+#     A group of state descriptions to splice into the AI description.
 #   string array: forbidden (optional)
 #     An array of Tcl globs used to check whether any source module is
 #     permitted. Any module which matches any pattern is dropped.
