@@ -223,6 +223,27 @@ proc aspectaiWeave {output input aspectList mode} {
     } ;# End if is list
   } ;# End for state
 
+  # Remove overflowing reflexes
+  conffor state $output {
+    if {[$ type $state] != "STList"} continue
+
+    set reflexes {}
+    conffor module $state {
+      if {[$ exists $module.reflex]} {
+        lappend reflexes $module
+      }
+    } ;# End for moudle
+
+    # Reverse so removal will be in correct order and so that the first four
+    # reflexes are the ones to keep (which will have come from aspects, if any
+    # reflexes were added by them).
+    set reflexes [lreverse $reflexes]
+    foreach reflex [lrange $reflexes 4 end] {
+      append diagnostics "Removing overflowing reflex $reflex"
+      $ remove $reflex
+    }
+  } ;# End for state
+
   # Add aspect boot code
   foreach aspect $aspects {
     if {[$ exists $aspect.boot]} {
@@ -258,7 +279,15 @@ proc aspectaiSanitise {src forbidden} {
       continue
     }
 
-    set mod [$ str $src.\[$i\].module]
+    if {[$ exists $src.\[$i\].module]} {
+      set mod [$ str $src.\[$i\].module]
+      # Ensure that no reflex is present
+      if {[$ exists $src.\[$i\].reflex]} {
+        $ remove $src.\[$i\].reflex
+      }
+    } else {
+      set mod [$ str $src.\[$i\].reflex]
+    }
     set ok yes
     foreach forb $forbidden {
       if {[string match $forb $mod]} {
