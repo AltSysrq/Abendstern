@@ -93,7 +93,7 @@ proc aspectaiWeave {output input aspectList mode} {
   set aspects {}
   conffor aspect $aspectList {
     conffor modeglob $aspect.modes {
-      if {[string match $modeglob $mode]} {
+      if {[string match [$ str $modeglob] $mode]} {
         lappend aspects $aspect
         break
       }
@@ -119,14 +119,14 @@ proc aspectaiWeave {output input aspectList mode} {
   foreach aspect $aspects {
     if {[$ exists $aspect.forbidden]} {
       conffor fc $aspect.forbidden {
-        lappend aspect [$ str $aspect.forbidden.\[$i\]]
+        lappend forbidden [$ str $fc]
       }
     }
   }
 
   # Remove forbidden modules and add implicit weights
   conffor sub $output {
-    if {[$ type $sub] == "STList"} {
+    if {[$ getType $sub] == "STList"} {
       append diagnostics [aspectaiSanitise $sub $forbidden]
     }
   }
@@ -134,7 +134,7 @@ proc aspectaiWeave {output input aspectList mode} {
   # Ensure that all states have an authoritative match
   set unmatched {}
   conffor state $output {
-    if {[$ type $state] == "STList"} {
+    if {[$ getType $state] == "STList"} {
       set matched no
       set name [$ name $state]
       # Special exception for boot since it is managed by the weaver
@@ -177,13 +177,19 @@ proc aspectaiWeave {output input aspectList mode} {
 
         $ add $output $name STList
         confcpy $output.$name $state
+        # Ensure weight is set
+        conffor module $output.$name {
+          if {![$ exists $module.weight]} {
+            $ addi $module weight 1
+          }
+        }
       }
     }
   }
 
   # Weave concerns
   conffor state $output {
-    if {[$ type $state] == "STList"} {
+    if {[$ getType $state] == "STList"} {
       foreach aspect $aspects {
         conffor concern $aspect.concerns {
           set matches no
@@ -194,6 +200,9 @@ proc aspectaiWeave {output input aspectList mode} {
             }
           } ;# End for pattern
 
+          # If no pattern matched, this state does not apply
+          if {!$matches} continue
+
           # Calculate the total weight of the state as-is
           set total 0
           conffor module $state {
@@ -201,7 +210,7 @@ proc aspectaiWeave {output input aspectList mode} {
           } ;# End for module
 
           # Add advice modules
-          conffor advice $aspect.advice {
+          conffor advice $concern.advice {
             if {[$ exists $advice.weight]} {
               set weightPercent [$ int $advice.weight]
             } else {
@@ -215,7 +224,7 @@ proc aspectaiWeave {output input aspectList mode} {
             if {[$ exists $state.\[$ix\].weight]} {
               $ seti $state.\[$ix\].weight $weight
             } else {
-              $ addi $state.\[$ix\].weight $weight
+              $ addi $state.\[$ix\] weight $weight
             }
           } ;# End for advice
         } ;# End for concern
@@ -225,7 +234,7 @@ proc aspectaiWeave {output input aspectList mode} {
 
   # Remove overflowing reflexes
   conffor state $output {
-    if {[$ type $state] != "STList"} continue
+    if {[$ getType $state] != "STList"} continue
 
     set reflexes {}
     conffor module $state {
@@ -262,13 +271,15 @@ proc aspectaiWeave {output input aspectList mode} {
   $ adds $fin module "state/goto"
   $ adds $fin target "main"
   $ addi $fin weight 1
+
+  return $diagnostics
 }
 
 # Helper proc for aspectaiWeave
 # Removes forbidden modules and adds implicit weights where needed
 proc aspectaiSanitise {src forbidden} {
   set diagnostics {}
-  do i 0 "\[$ length $src\]" {
+  do i 0 "\[$ length {$src}\]" {
     if {![$ exists $src.\[$i\].weight]} {
       $ addi $src.\[$i\] weight 1
     }
@@ -304,7 +315,7 @@ proc aspectaiSanitise {src forbidden} {
     # If it has child modules, recurse over those, and forbid procedures
     if {[$ exists $src.\[$i\].modules]} {
       append diagnostics \
-          [aspectaiRemoveForbidden $src.\[$i\].modules \
+          [aspectaiSanitise $src.\[$i\].modules \
                [list {*}$forbidden *procedure*]]
 
       # Remove if total weight exceeds 8
@@ -315,7 +326,7 @@ proc aspectaiSanitise {src forbidden} {
 
       if {$w > 8} {
         append diagnostics "Removing procedure longer than 8\n"
-        $ remove $src
+        $ remove $src.\[$i\]
         incr i -1
         continue
       }
