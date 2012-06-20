@@ -222,7 +222,7 @@ OutputBlockGeraet::OutputBlockGeraet(unsigned sz, AsyncAckGeraet* aag,
                                      DeletionStrategy ds)
 : AAGSender(aag, ds),
   nextSeq(1),
-  old(sz, 0), concurrentModifications(sz, 0),
+  old(sz, 0), concurrentModifications((unsigned char)0, (size_t)sz),
   state(sz, 0),
   dirty(false)
 {
@@ -234,7 +234,7 @@ void OutputBlockGeraet::update(unsigned) throw() {
   //Send new packet if dirty and not waiting in synchronous mode
   if (dirty && syncPending.empty()) {
     vector<byte> packet;
-    valarray<unsigned char> concmod;
+    valarray<unsigned char> concmod((unsigned char)0, (size_t)state.size());
     block_geraet_seq seq = nextSeq++;
     packet.reserve(64);
 
@@ -245,13 +245,15 @@ void OutputBlockGeraet::update(unsigned) throw() {
         //Found change.
         //Search for continguous changes; only stop if more than one consecutive
         //non-changed byte is encountered.
-        //Additionally, note that we cannot encode more than 256 bytes in
+        //Additionally, note that we cannot encode more than 255 bytes in
         //one chunk.
         unsigned begin = i;
         while (i < state.size() && i-begin < 256
         &&     (MUST_UPDATE(i)
-            ||  (i+1 < state.size() && MUST_UPDATE(i))))
+            ||  (i+1 < state.size() && MUST_UPDATE(i+1)))) {
+          concmod[i] = 1;
           ++i;
+        }
 
         //i is now one past the last changed byte, or at the maximum length
         unsigned len = i-begin;
