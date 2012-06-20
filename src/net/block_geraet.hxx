@@ -10,6 +10,7 @@
 #include <vector>
 #include <map>
 #include <list>
+#include <valarray>
 
 #include <SDL.h>
 
@@ -71,10 +72,14 @@ protected:
 class OutputBlockGeraet: public AAGSender {
   block_geraet_seq nextSeq;
 
-  /* Possible states that the remote peer may know about; the earliest in
-   * this map is guaranteed to be known by the peer.
+  /* Possible states that the remote peer may know about, excluding the base
+   * state. The bit-set (valarray<unsigned char>) in each element indicates
+   * whether each byte was modified by that mutation.
    */
-  typedef std::map<block_geraet_seq, std::vector<byte> > remoteStates_t;
+  typedef std::map<block_geraet_seq,
+                   std::pair<std::vector<byte>,
+                             std::valarray<unsigned char> > >
+  remoteStates_t;
   remoteStates_t remoteStates;
 
   /* If waiting on synchronous mode, this contains packets (including the to-be-
@@ -95,6 +100,15 @@ class OutputBlockGeraet: public AAGSender {
 
   /* The latest state the remote peer is guaranteed to have. */
   std::vector<byte> old;
+  /* Whether each byte in the state has been modified by a pending
+   * (unacknowledged) state. Such bytes must be considered modified when
+   * calculating deltata.
+   *
+   * More specifically, this is a count of modifications performed by pending
+   * mutations; whenever a mutation is ACKed, NAKed, or obsoleted, its
+   * concurrent modification count must be subtracted from this value.
+   */
+  std::valarray<unsigned char> concurrentModifications;
 
 protected:
   /**
