@@ -66,6 +66,8 @@ namespace nebula_equation {
      */
     virtual float eval(float x,float y) const = 0;
 
+    virtual ~Element() {}
+
     private:
     bool operator=(const Element&) const; //NOT IMPLEMENTED
   };

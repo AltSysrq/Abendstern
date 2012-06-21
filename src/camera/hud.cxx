@@ -424,7 +424,7 @@ void HUD::draw(Camera* camera) noth {
       mUScale(cameraZoom*ship->getBoundingSquareHalfEdge());
       glBindVertexArray(vao);
       glBindBuffer(GL_ARRAY_BUFFER, vbo);
-      shader::colourStipleU uni = { {{r,g,b,1}}, screenW, screenH };
+      shader::colourStipleU uni = { {{r,g,b,1}}, (int)screenW, (int)screenH };
       shader::colourStiple->activate(&uni);
       glDrawArrays(GL_LINE_LOOP, 0, 4);
       mPop();
@@ -663,7 +663,7 @@ void HUD::draw(Camera* camera) noth {
 
       glBindVertexArray(backVAO);
       glBindBuffer(GL_ARRAY_BUFFER, backVBO);
-      shader::colourStipleU uni = { {{0,0,0,1}}, screenW, screenH };
+      shader::colourStipleU uni = { {{0,0,0,1}}, (int)screenW, (int)screenH };
       shader::colourStiple->activate(&uni);
       glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
@@ -792,7 +792,7 @@ void HUD::draw(Camera* camera) noth {
       shader::colourStipleU uni = { {{ colourStd[0]*dangerBlend + colourDang[0]*(1-dangerBlend),
                                        colourStd[1]*dangerBlend + colourDang[1]*(1-dangerBlend),
                                        colourStd[2]*dangerBlend + colourDang[2]*(1-dangerBlend),
-                                       1}}, screenW, screenH };
+                                       1}}, (int)screenW, (int)screenH };
       glBindVertexArray(vao);
       glBindBuffer(GL_ARRAY_BUFFER, vbo);
       shader::colourStiple->activate(&uni);
@@ -821,7 +821,8 @@ void HUD::draw(Camera* camera) noth {
         mPush(); \
         mTrans(ix*fw+fw/2,0); \
         mScale(1,val); \
-        shader::colourStipleU uni = { {{colour[0],colour[1],colour[2],1}}, screenW, screenH }; \
+        shader::colourStipleU uni = { {{colour[0],colour[1],colour[2],1}}, \
+                                      (int)screenW, (int)screenH }; \
         shader::colourStiple->activate(&uni);\
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4); \
         mPop(); \
@@ -859,7 +860,9 @@ void HUD::draw(Camera* camera) noth {
       const StatusIcon& icon(statusIcons[string(weaponIconName)]);
       glBindVertexArray(icon.vao);
       glBindBuffer(GL_ARRAY_BUFFER, icon.vbo);
-      shader::colourStipleU uni = { {{colourStd[0], colourStd[1], colourStd[2], 1}}, screenW, screenH };
+      shader::colourStipleU uni =
+        { {{colourStd[0], colourStd[1], colourStd[2], 1}},
+          (int)screenW, (int)screenH };
       shader::colourStiple->activate(&uni);
       glDrawArrays(icon.drawMode, 0, icon.length);
       mPop();
@@ -890,8 +893,12 @@ void HUD::draw(Camera* camera) noth {
 
       mPush();
       mTrans(cx,cy);
-      shader::colourStipleU northUni = { {{colourStd[0], colourStd[1], colourStd[2], 1}}, screenW, screenH };
-      shader::colourStipleU targUni  = { {{colourWarn[0], colourWarn[1], colourWarn[2], 1}}, screenW, screenH };
+      shader::colourStipleU northUni =
+        { {{colourStd[0], colourStd[1], colourStd[2], 1}},
+          (int)screenW, (int)screenH };
+      shader::colourStipleU targUni =
+        { {{colourWarn[0], colourWarn[1], colourWarn[2], 1}},
+          (int)screenW, (int)screenH };
       mRot(-visualRotation+pi/2);
       shader::colourStiple->activate(&northUni);
       glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -967,7 +974,7 @@ void HUD::draw(Camera* camera) noth {
       mPush();
       mTrans(ship->getX()/field.width, ship->getY()*vheight/field.height);
       mRot(ship->getRotation());
-      shader::colourStipleU uni = { {{r,g,b,1}}, screenW, screenH };
+      shader::colourStipleU uni = { {{r,g,b,1}}, (int)screenW, (int)screenH };
       shader::colourStiple->activate(&uni);
       glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
       mPop();

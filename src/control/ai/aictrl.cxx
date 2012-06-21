@@ -63,7 +63,9 @@ void AIControl::init(const Setting& conf) {
         namesrc = "reflex";
       }
       const char* modname=state[j][namesrc];
-      int weight;
+      //Explicitly initialise weight to suppress warning since G++ can't tell
+      //that it simply isn't touched if !isModule.
+      int weight = 0;
       if (isModule) {
         weight = state[j]["weight"];
         if (weight <= 0)
@@ -73,7 +75,7 @@ void AIControl::init(const Setting& conf) {
       if (!module)
         throw runtime_error("Unrecognised module name");
       if (isModule) {
-        Module mod = { module, weight };
+        Module mod = { module, (unsigned)weight };
         s.modules.push_back(mod);
         s.totalWeight += weight;
       } else {

@@ -38,39 +38,44 @@ using namespace std;
 
 /* Implementation details:
  * Threads:
- * In order to maximise efficiency, almost all nebula computation is run on a
- * separate thread. Exactly one thread at a time is allowed to access the objects
- * at a time (drawing in this case will not count as access); likewise the GPU.
- * When Nebula::update is called, it releases gpuLock if it is holding it, then
- * locks updateLock, then marks that it holds that. Similarly, Nebula::draw
- * releases updateLock if held, then locks and records gpuLock.
- * In headless mode, since draw will never be called, update will release updateLock,
- * sleep 4 milliseconds, then take updateLock again.
- * While the slave has the updateLock, it copies the NebulaResistanceElements from
- * each object, calculates interactions, then writes changes back into the object.
- * When it has the gpuLock, it sends the copied resistance information to the GPU
- * to update the pressure/velocity maps thereon.
- * The slave thread exits when alive is set to false.
  *
- * Updating on the GPU is performed as follows. First, the nebula_base_update shader is called
- * to draw the back texture onto the front, with the elapsed time passed as a uniform
- * (as well as the other nebula parms). This performs the base update (described below) in
- * the frag shader, copying and updating data from the back texture into the front. Then, the
- * nebula_object_update shader is called with points for each NebulaResistanceElement, the
- * positions and velocities being passed in. This performs the nebula object updating described
- * below for each point (a geometry shader expands it into the four points that will have
- * interactions). Only NebulaResistanceElements that are known to be relevent are sent.
+ * In order to maximise efficiency, almost all nebula computation is run on a
+ * separate thread. Exactly one thread at a time is allowed to access the
+ * objects at a time (drawing in this case will not count as access); likewise
+ * the GPU.  When Nebula::update is called, it releases gpuLock if it is
+ * holding it, then locks updateLock, then marks that it holds that. Similarly,
+ * Nebula::draw releases updateLock if held, then locks and records gpuLock.
+ * In headless mode, since draw will never be called, update will release
+ * updateLock, sleep 4 milliseconds, then take updateLock again.  While the
+ * slave has the updateLock, it copies the NebulaResistanceElements from each
+ * object, calculates interactions, then writes changes back into the object.
+ * When it has the gpuLock, it sends the copied resistance information to the
+ * GPU to update the pressure/velocity maps thereon.  The slave thread exits
+ * when alive is set to false.
+ *
+ * Updating on the GPU is performed as follows. First, the nebula_base_update
+ * shader is called to draw the back texture onto the front, with the elapsed
+ * time passed as a uniform (as well as the other nebula parms). This performs
+ * the base update (described below) in the frag shader, copying and updating
+ * data from the back texture into the front. Then, the nebula_object_update
+ * shader is called with points for each NebulaResistanceElement, the positions
+ * and velocities being passed in. This performs the nebula object updating
+ * described below for each point (a geometry shader expands it into the four
+ * points that will have interactions). Only NebulaResistanceElements that are
+ * known to be relevent are sent.
  *
  * Base update:
- * The new pressure for a coordinate x,y is given by (where v are the velocities from the previous
- * frame and p are the pressures):
- *   p(x,y) + time*(max(0, p(x+1,y)*v(x+1,y) dot <-1,0>) + max(0, p(x-1,y)*v(x-1,y) dot <1,0>)
- *                 +max(0, p(x,y+1)*v(x,y+1) dot <0,-1>) + max(0, p(x,y-1)*v(x,y-1) dot <0,1>)
+ * The new pressure for a coordinate x,y is given by (where v are the
+ * velocities from the previous frame and p are the pressures):
+ *   p(x,y) + time*(max(0, p(x+1,y)*v(x+1,y) dot <-1,0>)
+ *                 +max(0, p(x-1,y)*v(x-1,y) dot <1,0>)
+ *                 +max(0, p(x,y+1)*v(x,y+1) dot <0,-1>)
+ *                 +max(0, p(x,y-1)*v(x,y-1) dot <0,1>)
  *                 - p(x,y)*v(x,y))
  *          + time*prubber*(natural_pressure(x,y)-p(x,y))
  * The new velocity for a coordinate x,y is calculated with:
- *   v(x,y) + time/mass/p(x,y)*((p(x,y)-p(x+1,y))*<1,0> + (p(x,y)-p(x-1,y))*<-1,0>
- *                             +(p(x,y)-p(x,y+1))*<0,1> + (p(x,y)-p(x,y-1))*<0,-1>
+ *   v(x,y) + time/mass/p(x,y)*((p(x,y)-p(x+1,y))*<1,0>+(p(x,y)-p(x-1,y))*<-1,0>
+ *                             +(p(x,y)-p(x,y+1))*<0,1>+(p(x,y)-p(x,y-1))*<0,-1>
  *                             +viscosity*((v(x+1,y)*p(x+1,y)-v(x,y)*p(x,y))
  *                                        +(v(x-1,y)*p(x-1,y)-v(x,y)*p(x,y))
  *                                        +(v(x,y+1)*p(x,y+1)-v(x,y)*p(x,y))
@@ -79,9 +84,9 @@ using namespace std;
  * The edges of the grid are fixed to their natural values.
  *
  * Nebula object update:
- * A NebulaResistanceElement interacts with the four points surrounding it. Given an element at
- * N at velocity V and a point at P, the velocity is added with the below value, if (N-P) dot (V-v(P))
- * is greater than 0:
+ * A NebulaResistanceElement interacts with the four points surrounding
+ * it. Given an element at N at velocity V and a point at P, the velocity is
+ * added with the below value, if (N-P) dot (V-v(P)) is greater than 0:
  *   1000 * V * normalise((N-P) dot V)
  * The force exerted on that point is simply forcemul*p(P)*density*(v(P)-V).
  */

@@ -45,14 +45,14 @@ void convertImageToIndex(const Setting& conf, const Uint32* data, unsigned len, 
       max &= 0x7FFFFFFF;
 
       maprng m = {
-        ((min >> 23) & 0xFE) | ((min >> 24)&1),
-        (min >> 16) & 0xFF,
-        (min >> 8) & 0xFF,
-        min & 0xFF,
-        ((max >> 23) & 0xFE) | ((max >> 24)&1),
-        (max >> 16) & 0xFF,
-        (max >> 8) & 0xFF,
-        max & 0xFF,
+        (unsigned char)(((min >> 23) & 0xFE) | ((min >> 24)&1)),
+        (unsigned char)((min >> 16) & 0xFF),
+        (unsigned char)((min >> 8) & 0xFF),
+        (unsigned char)(min & 0xFF),
+        (unsigned char)(((max >> 23) & 0xFE) | ((max >> 24)&1)),
+        (unsigned char)((max >> 16) & 0xFF),
+        (unsigned char)((max >> 8) & 0xFF),
+        (unsigned char)(max & 0xFF),
         ix
       };
       map.push_back(m);

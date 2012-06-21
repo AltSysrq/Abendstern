@@ -102,15 +102,27 @@ void frame_recorder::update(float et) {
     unsigned imageSize = 4*screenW*screenH;
     unsigned char header[] = {
       'B', 'M',
-      fileSize, fileSize >> 8, fileSize >> 16, fileSize >> 24, //File size
+      (unsigned char)(fileSize >>  0),
+      (unsigned char)(fileSize >>  8),
+      (unsigned char)(fileSize >> 16),
+      (unsigned char)(fileSize >> 24), //File size
       0, 0, 0, 0, //Zero
       0x44, 0, 0, 0, //Offset
       0x28, 0, 0, 0, //Header size / BITMAPINFOHEADER
-      screenW, screenW >> 8, screenW >> 16, screenW >> 24, //Width
-      screenH, screenH >> 8, screenH >> 16, screenH >> 24, //height
+      (unsigned char)(screenW >>  0),
+      (unsigned char)(screenW >>  8),
+      (unsigned char)(screenW >> 16),
+      (unsigned char)(screenW >> 24), //Width
+      (unsigned char)(screenH >>  0),
+      (unsigned char)(screenH >>  8),
+      (unsigned char)(screenH >> 16),
+      (unsigned char)(screenH >> 24), //height
       0x01, 0x00, 0x20, 0x00, //Planes, BPP
       3, 0, 0, 0, //Compression
-      imageSize, imageSize >> 8, imageSize >> 16, imageSize >> 24, //Image size
+      (unsigned char)(imageSize >>  0),
+      (unsigned char)(imageSize >>  8),
+      (unsigned char)(imageSize >> 16),
+      (unsigned char)(imageSize >> 24), //Image size
       0x00, 0x10, 0x00, 0x00, //Horiz res
       0x00, 0x10, 0x00, 0x00, //Vert res
       0, 0, 0, 0, //Palette size

@@ -266,7 +266,7 @@ AObject::~AObject() {
   //To prevent issues with Tcl-extended objects, pretend we aren't
   //extended by Tcl; since c++ owns us, {c++ delete} will not try
   //to delete us in C++ form, preventing infinite corecursion.
-  tclExtended=false;
+  tclExtended=NULL;
   for (map<Tcl_Interp*,InterpInfo*>::iterator it=interpreters.begin();
        it != interpreters.end(); ++it)
   {

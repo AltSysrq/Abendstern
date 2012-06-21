@@ -206,8 +206,10 @@ static AbendsternGLType analyseGLVersion(const char* vers) {
   else return AGLT14;
 }
 
+#ifdef WIN32
 /** Pointer to the log output handle, or NULL if none is present. */
 static ofstream* logoutPtr = NULL;
+#endif /* WIN32 */
 
 /** The main function. It is not reentrant, so no other code should call it.
  *
@@ -836,6 +838,13 @@ void exitPreliminaryRunMode() {
   case AGLT14: ca = '1', cb = '4'; break;
   case AGLT21: ca = '2', cb = '1'; break;
   case AGLT32: ca = '3', cb = '2'; break;
+  //Default should never be executed, but handle it so G++ can see there is no
+  //code path where ca and cb are uninitialised.
+  //(I don't understand why it considers invalid enumeration values legitimate
+  // for the purpose of warnings...)
+  default:
+    cerr << "Unexpected recommendedGLType: " << recommendedGLType << endl;
+    exit(EXIT_THE_SKY_IS_FALLING);
   }
   progname[progname.size()-2] = ca;
   progname[progname.size()-1] = cb;
