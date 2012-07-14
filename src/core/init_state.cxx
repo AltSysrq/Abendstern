@@ -220,7 +220,7 @@ float InitState::systexLoader() {
 }
 
 float InitState::initFontLoader() {
-  float mult = (preliminaryRunMode? 2.0f : 1.0f);
+  float mult = (preliminaryRunMode? 2.0f : vheight);
   float size = conf["conf"]["hud"]["font_size"];
   new (sysfont)         Font("fonts/westm",   size*mult, false);
   new (sysfontStipple)  Font("fonts/westm",   size*mult, true );
