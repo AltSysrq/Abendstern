@@ -819,6 +819,7 @@ SDL_LIBS = @SDL_LIBS@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+TCL = @TCL@
 VERSION = @VERSION@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
@@ -10942,8 +10943,10 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS
 abendstern:;
 
 ./tcl_iface/xxx/rebuilt: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-	./tcl_iface/generate.tcl
-	touch tcl_iface/xxx/rebuilt tcl_iface/bridge.cxx tcl_iface/xxx/*
+	@echo '  TCL    tcl_iface/generate.tcl'
+	@$(TCL) ./tcl_iface/generate.tcl
+	@echo '  TOUCH  tcl_iface/xxx/rebuild tcl_iface/bridge.cxx tcl_iface/xxx/*'
+	@touch tcl_iface/xxx/rebuilt tcl_iface/bridge.cxx tcl_iface/xxx/*
 ./tcl_iface/bridge.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 ./tcl_iface/xxx/x0.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 ./tcl_iface/xxx/x1.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
@@ -10963,9 +10966,11 @@ abendstern:;
 ./tcl_iface/xxx/xf.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 
 ./net/xxx/xnetobj.cxx: ./net/definition.tcl ./net/generate.tcl
-	./net/generate.tcl
+	@echo '  TCL    net/generate.tcl'
+	@$(TCL) ./net/generate.tcl
 ./net/xxx/xnetobj.hxx: ./net/xxx/xnetobj.cxx ./net/definition.tcl ./net/generate.tcl
-	touch net/xxx/xnetobj.hxx
+	@echo '  TOUCH  net/xxx/xnetobj.hxx'
+	@touch net/xxx/xnetobj.hxx
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

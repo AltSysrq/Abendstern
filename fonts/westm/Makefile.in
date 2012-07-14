@@ -135,6 +135,7 @@ SDL_LIBS = @SDL_LIBS@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+TCL = @TCL@
 VERSION = @VERSION@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
@@ -362,7 +363,8 @@ uninstall-am:
 	mostlyclean-generic pdf pdf-am ps ps-am uninstall uninstall-am
 
 0040.png: def ../../src/fontgen.tcl ../../ttfs/fixedsys500c.ttf ../../ttfs/unifont.ttf
-	../../src/fontgen.tcl def .
+	@echo '  TCL    fontgen.tcl westm'
+	@$(TCL) ../../src/fontgen.tcl def .
 
 all: 0040.png
 
