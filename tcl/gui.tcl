@@ -2404,13 +2404,28 @@ namespace eval gui {
   # is supported; key bindings are as follows:
   #   left  Move cursor one character left
   #   right Move cursor one character right
+  #   C-lft One word left
+  #   C-rht One word right
   #   home  Move cursor to position zero
   #   end   Move cursor past last character
   #   back  Delete character to left of cursor
+  #   C-bk  Delete word to left of cursor
+  #   M-bk  Delete word to left of cursor
   #   del   Delete character to right of cursor
+  #   C-del Delete word to right of cursor
+  #   M-del Delete word to right of cursor
   #   tab   Defocus
   #   esc   Defocus
   #   enter Action and defocus
+  #   C-f   One char right
+  #   C-b   One char left
+  #   M-f   One word right (skip non-alnum, then alnum)
+  #   M-b   One word left
+  #   C-a   Position zero
+  #   C-e   Past last character
+  #   C-d   Delete character to right of cursor
+  #   M-d   Delete word to right of cursor
+  #   C-k   Delete all characters to right of cursor
   # An action script (for when the user presses enter) and
   # a validation script (which checks whether a new value
   # of the text box) may be supplied, as well as normal
@@ -2615,17 +2630,64 @@ namespace eval gui {
           }
           loseFocus
         }
-        DOWN:????:k_left {
+        DOWN:?-C?:k_b -
+        DOWN:?--?:k_left {
           if {$cursor > 0} {moveCursor [expr {$cursor-1}]}
         }
-        DOWN:????:k_right {
+        DOWN:?-C?:k_f -
+        DOWN:?--?:k_right {
           if {$cursor < [string length $contents]} {
             moveCursor [expr {$cursor+1}]
           }
         }
+        DOWN:?A-?:k_b -
+        DOWN:?A-?:k_left -
+        DOWN:?-C?:k_left {
+          set ix $cursor
+          set lastWordChar $cursor
+          if {$ix > 0} {
+            incr ix -1
+          }
+          while {$ix > 0 && ![string is alnum [string index $contents $ix]]} {
+            incr ix -1
+            # Always move over the non-words
+            set lastWordChar $ix
+          }
+          while {$ix > 0 && [string is alnum [string index $contents $ix]]} {
+            # Save the current index as a word character in case we pass the
+            # word
+            set lastWordChar $ix
+            incr ix -1
+          }
+
+          # We want to land at the beginning of the word, so move forward to
+          # $lastWordChar if the current character is not a word char
+          if {![string is alnum [string index $contents $ix]]} {
+            set ix $lastWordChar
+          }
+
+          moveCursor $ix
+        }
+        DOWN:?A-?:k_f -
+        DOWN:?A-?:k_right -
+        DOWN:?-C?:k_right {
+          set ix $cursor
+          set l [string length $contents]
+          while {$ix < $l && ![string is alnum [string index $contents $ix]]} {
+            incr ix +1
+          }
+          while {$ix < $l && [string is alnum [string index $contents $ix]]} {
+            incr ix +1
+          }
+
+          moveCursor $ix
+        }
+        DOWN:?-C?:k_a -
         DOWN:????:k_home { moveCursor 0 }
+        DOWN:?-C?:k_e -
         DOWN:????:k_end  { moveCursor [string length $contents] }
-        DOWN:????:k_backspace {
+        DOWN:?--?:k_backspace -
+        DOWN:?-C?:k_h {
           if {$cursor > 0} {
             set prefix [string range $contents 0 [expr {$cursor-2}]]
             set postfix [string range $contents $cursor [string length $contents]]
@@ -2633,12 +2695,66 @@ namespace eval gui {
             moveCursor [expr {$cursor-1}]
           }
         }
-        DOWN:????:k_delete {
+        DOWN:?-C?:k_backspace -
+        DOWN:?A-?:k_backspace -
+        DOWN:?A-?:k_h {
+          set end $cursor
+          set ix $cursor
+          set lastWordChar $ix
+          if {$ix > 0} {
+            incr ix -1
+          }
+          while {$ix > 0 && ![string is alnum [string index $contents $ix]]} {
+            incr ix -1
+            # Always move over the non-words
+            set lastWordChar $ix
+          }
+          while {$ix > 0 && [string is alnum [string index $contents $ix]]} {
+            # Save the current index as a word character in case we pass the
+            # word
+            set lastWordChar $ix
+            incr ix -1
+          }
+
+          # We want to land at the beginning of the word, so move forward to
+          # $lastWordChar if the current character is not a word char
+          if {![string is alnum [string index $contents $ix]]} {
+            set ix $lastWordChar
+          }
+
+          set prefix [string range $contents 0 $ix-1]
+          set suffix [string range $contents $end end]
+          set contents $prefix$suffix
+          moveCursor [expr {$ix}]
+        }
+        DOWN:?-C?:k_d -
+        DOWN:?--?:k_delete {
           if {$cursor < [string length $contents]} {
             set prefix [string range $contents 0 [expr {$cursor-1}]]
             set postfix [string range $contents [expr {$cursor+1}] [string length $contents]]
             set contents $prefix$postfix
           }
+        }
+        DOWN:?A-?:k_d -
+        DOWN:?A-?:k_delete -
+        DOWN:?-C?:k_delete {
+          set end $cursor
+          set ix $cursor
+
+          set l [string length $contents]
+          while {$ix < $l && ![string is alnum [string index $contents $ix]]} {
+            incr ix +1
+          }
+          while {$ix < $l && [string is alnum [string index $contents $ix]]} {
+            incr ix +1
+          }
+
+          set prefix [string range $contents 0 $end-1]
+          set suffix [string range $contents $ix end]
+          set contents $prefix$suffix
+        }
+        DOWN:?-C?:k_k {
+          set contents [string range $contents 0 $cursor-1]
         }
         DOWN:????:k_tab -
         DOWN:????:k_escape {loseFocus}
@@ -2648,7 +2764,8 @@ namespace eval gui {
     method character ch {
       if {$justFocused} return
       if {![isFocused]} return
-      if {[toUnicode $ch] >= 0x20 && [toUnicode $ch] != 0x7F} {
+      if {[toUnicode $ch] >= 0x20 && [toUnicode $ch] != 0x7F &&
+          [string match ---? $::currentKBMods]} {
         # Insert
         set prefix [string range $contents 0 [expr {$cursor-1}]]
         set postfix [string range $contents $cursor [string length $contents]]
