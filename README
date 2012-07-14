@@ -13,6 +13,8 @@ o tcl-tls       (tcl-tls)
 o tcllib        (tcllib)
 o libpng        (libpng12-dev or so)
 o libpng++      (libpng++-dev)
+You also need ImageMagick for building some data files. It is usually found in
+a package named imagemagick.
 
 To compile, do
   ./configure
