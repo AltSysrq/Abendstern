@@ -165,13 +165,17 @@ void InitState::draw() {
   static const float progressW = 0.3f;
   float currProgress = currStep/(float)numSteps + currStepProgress/numSteps;
   float baseX = 0.5f - progressW/2;
-  #if defined(AB_OPENGL_14)
-  asgi::colour(1.0f, 0.4f, 0.2f, 0.75f);
-  #elif defined(AB_OPENGL_21)
-  asgi::colour(0.2f, 1.0f, 0.4f, 0.75f);
-  #else
-  asgi::colour(0.2f, 0.3f, 0.9f, 0.75f);
-  #endif
+  if (!preliminaryRunMode) {
+    #if defined(AB_OPENGL_14)
+    asgi::colour(1.0f, 0.4f, 0.2f, 0.75f);
+    #elif defined(AB_OPENGL_21)
+    asgi::colour(0.2f, 1.0f, 0.4f, 0.75f);
+    #else
+    asgi::colour(0.2f, 0.3f, 0.9f, 0.75f);
+    #endif
+  } else {
+    asgi::colour(0.2f, 0.3f, 0.9f, 0.75f);
+  }
   asgi::begin(asgi::Quads);
   asgi::vertex(baseX, 4*progressH);
   asgi::vertex(baseX, 5*progressH);
