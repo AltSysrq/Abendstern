@@ -64,7 +64,7 @@
 #define GL_ELEMENT_ARRAY_BUFFER 2
 #endif
 
-/** Contains facilities for emulating OpenGL 3.2 on OpenGL2.0.
+/** Contains facilities for emulating OpenGL 3.2 on OpenGL1.4.
  * @see src/graphics/gl32emu.hxx
  */
 namespace gl32emu {
