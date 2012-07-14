@@ -3,3 +3,5 @@
 	@$(TCL) ../../src/fontgen.tcl def .
 
 all: 0040.png
+clean:
+	rm -f *.png
