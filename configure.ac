@@ -57,6 +57,13 @@ LDFLAGS="$LDFLAGS $AB_PROFILE_FLAGS"
 AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_CPP
+AC_PATH_PROG([IMAGEMAGICK_CONVERT], [convert])
+if test "x$IMAGEMAGICK_CONVERT" = "x"; then
+  echo 'The convert program (from ImageMagick) is required to generate the font'
+  echo 'files, but was not found in your PATH.'
+  echo 'Make sure ImageMagick is installed.'
+  exit 1
+fi
 
 # Check tclsh version.
 # Debian does (or at least used to) default to tclsh 8.4 even if 8.5 was installed
@@ -158,5 +165,8 @@ AC_FUNC_ERROR_AT_LINE
 AC_CHECK_FUNCS([atexit gettimeofday memmove memset pow setlocale socket sqrt strchr strerror])
 
 AC_CONFIG_FILES([Makefile
-                 src/Makefile])
+                 src/Makefile
+                 fonts/Makefile
+                 fonts/westm/Makefile
+                 fonts/unifont/Makefile])
 AC_OUTPUT

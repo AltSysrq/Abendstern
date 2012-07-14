@@ -40,8 +40,6 @@ hangar.bak
 autom4te.cache
 .deps
 passwords
-# Cannot include ttfs, it includes proprietary files
-ttfs/*
 lssinfo.rc
 abendsternuxgl*
 abendstern.rc
@@ -52,3 +50,4 @@ launchlog.txt
 bridge.cxx
 bridge.tcl
 xxx
+fonts/*/*.png
