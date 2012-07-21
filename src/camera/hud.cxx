@@ -769,16 +769,23 @@ void HUD::draw(Camera* camera) noth {
         vbo=newVBO();
 
         const shader::colourStipleV lines[] = {
+          //Toprule
           {{{0,5*fh}}}, {{{1,5*fh}}},
+          //Right border for status area
           {{{21*fw,5*fh}}}, {{{21*fw,1*fh}}},
+          //Left border for info area
           {{{1 - 25*fw, 5*fh}}}, {{{1 - 25*fw, 1*fh}}},
+          //Toprule for target/chat
           {{{7*fw,1*fh}}}, {{{1 - 8*fw, 1*fh}}},
+          //Right border for bars, left border for status area and target/chat
           {{{7*fw,5*fh}}}, {{{7*fw,0}}},
+          //Left border for minimap
           {{{1 - 8*fw, 5*fh}}}, {{{1 - 8*fw, 0}}},
 
-          {{{8*fw,5*fh}}}, {{{8*fw,5*fh-3*fw}}},
-          {{{11*fw,5*fh}}}, {{{11*fw,5*fh-3*fw}}},
-          {{{8*fw,5*fh-3*fw}}}, {{{11*fw,5*fh-3*fw}}},
+          //Borders for current weapon indicator
+          {{{8*fw, 5*fh}}}, {{{8*fw, 3*fh}}},
+          {{{11*fw,5*fh}}}, {{{11*fw,3*fh}}},
+          {{{8*fw, 3*fh}}}, {{{11*fw,3*fh}}},
         };
         numLines = lenof(lines);
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -856,7 +863,7 @@ void HUD::draw(Camera* camera) noth {
     if (showWeaponInfo) {
       mPush();
       mTrans(9.5*fw, 4*fh);
-      mUScale(fh);
+      mScale(1.5f*fw,fh);
       const StatusIcon& icon(statusIcons[string(weaponIconName)]);
       glBindVertexArray(icon.vao);
       glBindBuffer(GL_ARRAY_BUFFER, icon.vbo);
