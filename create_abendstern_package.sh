@@ -6,8 +6,9 @@ FILES="apply_update.bat Abendstern.exe abendstern.default.rc data fonts shaders 
 APP=Abendstern_WGL32
 
 ./validation.sh
-date -u +%Y%m%d%H%M%S >version
-cp version $BASEDIR/version
+#date -u +%Y%m%d%H%M%S >version
+#cp version $BASEDIR/version
+cp $BASEDIR/version version
 cp tcl/validation $BASEDIR/tcl/validation
 
 rm -f $SRVDIR/manifest
