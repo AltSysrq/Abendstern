@@ -77,6 +77,7 @@ tcl/editor/barsyscopy.tcl
 tcl/editor/initmode.tcl
 tcl/lssinfo.tcl
 tcl/httpa.tcl
+tcl/aspectai.tcl
 tcl/game/game_manager.tcl
 tcl/game/mod_perfect_radar.tcl
 tcl/game/mod_saw_best_player.tcl
