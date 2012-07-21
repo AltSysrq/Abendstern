@@ -28,6 +28,7 @@
 using namespace std;
 
 static shader::textureStensilU uniform;
+static shader::textureStensilStipleU stipple_uniform;
 
 /* Emulate the old GL's colour stack */
 static stack<vec4> colourStack;
@@ -139,15 +140,25 @@ void Font::preDraw(float r, float g, float b, float a) const noth {
         { {{1, 1        , 0, 1}}, {{1,0}} },
     };
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    shader::textureStensil->setupVBO();
+    if (stipple)
+      shader::textureStensilStiple->setupVBO();
+    else
+      shader::textureStensil->setupVBO();
     hasVAO=true;
   }
 
   uniform.modColour = Vec4(r,g,b,a);
   uniform.colourMap = 0;
+  stipple_uniform.modColour = Vec4(r,g,b,a);
+  stipple_uniform.colourMap = 0;
+  stipple_uniform.screenW = screenW;
+  stipple_uniform.screenH = screenH;
   glBindVertexArray(vao);
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
-  shader::textureStensil->activate(&uniform);
+  if (stipple)
+    shader::textureStensilStiple->activate(&stipple_uniform);
+  else
+    shader::textureStensil->activate(&uniform);
 }
 
 void Font::postDraw() const noth {
@@ -158,7 +169,9 @@ void Font::draw(char ch, float x, float y) const noth {
   draw(str, x, y);
 };
 
-void Font::draw(const char* str, float x, float y, float maxw, bool dontClear, const float* forceW) const noth {
+void Font::draw(const char* str, float x, float y, float maxw, bool dontClear,
+                const float* forceW)
+const noth {
   BEGINGP("Font")
   y-=getHeight() - toScreen(powerHeight)*mult;
   float sheight = toScreen(powerHeight)*mult;
@@ -266,7 +279,11 @@ void Font::draw(const char* str, float x, float y, float maxw, bool dontClear, c
       mPush();
       mTrans(x,y);
       mScale(toScreen(powerWidths[ch])*mult, sheight);
-      shader::textureStensil->setUniforms(&uniform);
+      stipple_uniform.modColour = uniform.modColour;
+      if (stipple)
+        shader::textureStensilStiple->setUniforms(&stipple_uniform);
+      else
+        shader::textureStensil->setUniforms(&uniform);
       glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
       mPop();
     }
@@ -367,14 +384,6 @@ void Font::renderCharacter(unsigned ch) noth {
       SDL_Surface* glCompat=SDL_CreateRGBSurface(SDL_SWSURFACE, width, powerHeight, 32, rmask, gmask, bmask, amask);
       SDL_SetAlpha(surf, 0, 0);
       SDL_BlitSurface(surf, 0, glCompat, 0);
-      //Handle stippling
-      if (stipple) {
-        for (unsigned y=0; y<powerHeight; ++y)
-          for (unsigned x=0; x<width; ++x)
-            if ((((unsigned)(x*mult))+((unsigned)(y*mult)))&1)
-              for (unsigned i=0; i<4; ++i)
-                ((GLubyte*)glCompat->pixels)[y*width*4+x*4+i]=0;
-      }
       //Over to OpenGL
       glGenTextures(1, &tex[ch]);
       glBindTexture(GL_TEXTURE_2D, tex[ch]);

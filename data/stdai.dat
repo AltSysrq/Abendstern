@@ -122,3 +122,70 @@ temp = {
       consider_this_scary = 20000; weight = 1; }
   );
 };
+
+# Standard aspects
+# Mode strings are assumed to have the format "property:value,...", including a
+# terminating comma after the last item.
+#
+# State names which are affected by aspects will always have an underscore in
+# their names (or are called "main"), while those that should not be (eg,
+# special states from aspects) will not contain underscores.
+aspects {
+  # Inserts code for avoiding the edge of the map into all user states which
+  # match *_avoidedge_* .
+  avoid_edge {
+    modes ["*"]
+    authoritative n
+    states {
+      avoidedge (
+        { module "navigation/avoid_edge" }
+        { reflex "state/edge_detect"
+          consider_this_scary 10000
+          otherwise = "main" }
+      )
+    }
+
+    concerns {
+      avoidedge {
+        points ["*_avoidedge_*"]
+        advice (
+          { reflex "state/edge_detect"
+            consider_this_scary 10000
+            scared "avoidedge" }
+        )
+      }
+    } # End aspect avoid_edge
+
+    # Requires any attack state to switch to navigation if the distance exceeds
+    # 5 screens.
+    # Requires the property "long-range" to be "no".
+    # This also authorises all attack states.
+    forbid_long_range_attack {
+      modes ["*,long-range:no,*"]
+      authoritative j
+      concerns {
+        navigate {
+          states ["attack_"]
+          advice (
+            { reflex "state/target_distance"
+              consider_this_close 5.0
+              far_state = "main" }
+          )
+        }
+      }
+    }
+
+    # Authorises navigation states, and forbidds attacking within them.
+    navigation_states {
+      modes ["*"]
+      authoritative j
+      forbidden ["attack/*"]
+      concerns {
+        authoritative {
+          states ["nav_*", "main"]
+          advice ()
+        }
+      }
+    }
+  }
+}

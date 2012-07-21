@@ -32,6 +32,7 @@ for {set ch 1} {$ch < 65536} {incr ch} {
   if {[info exists font]} {
     set chr [toChar $ch]
     if {$chr == "\\"} {set chr \\\\}
+    if {$chr == "@" } {set chr \\@}
     exec convert -background transparent -fill white \
                  -font $font -pointsize 60 label:$chr \
                  -depth 1 \

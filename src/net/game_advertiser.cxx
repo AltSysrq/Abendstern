@@ -56,9 +56,13 @@ noth {
     //OK
     byte pack[] = {
       'A', 'b', 'e', 'n', 'd', 's', 'p', 'i', 'e', 'l',
-      overseerid >> 24, overseerid >> 16, overseerid >> 8, overseerid >> 0,
+      (byte)(overseerid >> 24),
+      (byte)(overseerid >> 16),
+      (byte)(overseerid >>  8),
+      (byte)(overseerid >>  0),
       peerCount, passwordProtected,
-      gameMode[0], gameMode[1], gameMode[2], gameMode[3],
+      (byte)gameMode[0], (byte)gameMode[1],
+      (byte)gameMode[2], (byte)gameMode[3],
     };
     try {
       antenna->send(source, pack, sizeof(pack));

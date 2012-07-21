@@ -197,7 +197,7 @@ Shader::Shader(const char* name, void (*prelink)(GLuint), size_t vertexSize, ...
   for (attrName=va_arg(args, const char*); attrName; attrName=va_arg(args, const char*)) {
     attrOff=va_arg(args, size_t);
     attrNFloat=va_arg(args, size_t);
-    VertexFormat vf = { attrOff, attrNFloat };
+    VertexFormat vf = { (GLuint)attrOff, (GLuint)attrNFloat };
     vertexFormat.push_back(vf);
     glBindAttribLocation(shaderID, attrIx++, attrName);
   }
@@ -248,7 +248,7 @@ Shader::Shader(const char* name, void (*prelink)(GLuint), size_t vertexSize, ...
       exit(EXIT_MALFORMED_DATA);
     }
 
-    Uniform u = { id, uniType, uniOff, uniASz };
+    Uniform u = { id, uniType, (unsigned)uniOff, (unsigned)uniASz };
     uniforms.push_back(u);
   }
 

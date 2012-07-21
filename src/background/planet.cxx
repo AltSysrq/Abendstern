@@ -71,8 +71,9 @@ static void planet_cutTile(SDL_Surface* source, int x, int y, GLuint tex) {
            bmask=0x00ff0000,
            amask=0xff000000;
   #endif
-  SDL_Surface* slice=SDL_CreateRGBSurface(SDL_SWSURFACE, TEXW, TEXH, 32, rmask, gmask, bmask, amask);
-  SDL_Rect rect = { x*TEXW, y*TEXH, TEXW, TEXH };
+  SDL_Surface* slice=SDL_CreateRGBSurface(SDL_SWSURFACE, TEXW, TEXH, 32,
+                                          rmask, gmask, bmask, amask);
+  SDL_Rect rect = { (Sint16)(x*TEXW), (Sint16)(y*TEXH), TEXW, TEXH };
   SDL_BlitSurface(source, &rect, slice, NULL);
   slice=scaleImage(slice);
   glBindTexture(GL_TEXTURE_2D, tex);
@@ -80,7 +81,8 @@ static void planet_cutTile(SDL_Surface* source, int x, int y, GLuint tex) {
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, IMG_SCALE);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, slice->w, slice->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, slice->pixels);
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, slice->w, slice->h, 0, GL_RGBA,
+               GL_UNSIGNED_BYTE, slice->pixels);
   glBindTexture(GL_TEXTURE_2D, 0);
   SDL_FreeSurface(slice);
 }

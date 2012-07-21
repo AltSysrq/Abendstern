@@ -222,32 +222,38 @@ OutputBlockGeraet::OutputBlockGeraet(unsigned sz, AsyncAckGeraet* aag,
                                      DeletionStrategy ds)
 : AAGSender(aag, ds),
   nextSeq(1),
-  old(sz, 0), state(sz, 0),
+  old(sz, 0), concurrentModifications((unsigned char)0, (size_t)sz),
+  state(sz, 0),
   dirty(false)
 {
 }
 
+//Checks whether the data at the given index must be updated.
+#define MUST_UPDATE(i) (old[i] != state[i] || concurrentModifications[i])
 void OutputBlockGeraet::update(unsigned) throw() {
   //Send new packet if dirty and not waiting in synchronous mode
   if (dirty && syncPending.empty()) {
     vector<byte> packet;
+    valarray<unsigned char> concmod((unsigned char)0, (size_t)state.size());
     block_geraet_seq seq = nextSeq++;
     packet.reserve(64);
 
     //Scan for changes between states
     unsigned index = 0;
     for (unsigned i=0; i < state.size(); ++i) {
-      if (old[i] != state[i]) {
+      if (MUST_UPDATE(i)) {
         //Found change.
         //Search for continguous changes; only stop if more than one consecutive
         //non-changed byte is encountered.
-        //Additionally, note that we cannot encode more than 256 bytes in
+        //Additionally, note that we cannot encode more than 255 bytes in
         //one chunk.
         unsigned begin = i;
         while (i < state.size() && i-begin < 256
-        &&     (old[i] != state[i]
-            ||  (i+1 < state.size() && old[i+1] != state[i+1])))
+        &&     (MUST_UPDATE(i)
+            ||  (i+1 < state.size() && MUST_UPDATE(i+1)))) {
+          concmod[i] = 1;
           ++i;
+        }
 
         //i is now one past the last changed byte, or at the maximum length
         unsigned len = i-begin;
@@ -366,7 +372,7 @@ void OutputBlockGeraet::update(unsigned) throw() {
     }
 
     //Record current state
-    remoteStates.insert(make_pair(seq, state));
+    remoteStates.insert(make_pair(seq, make_pair(state, concmod)));
 
     //Mark clean
     dirty = false;
@@ -400,10 +406,13 @@ void OutputBlockGeraet::ack(NetworkConnection::seq_t seq) throw() {
     remoteStates_t::iterator sit = remoteStates.find(mseq);
     if (sit != remoteStates.end()) {
       //Update to remote state
-      old = sit->second;
+      old = sit->second.first;
+      concurrentModifications -= sit->second.second;
       //Remove all states before and including this one
-      while (!remoteStates.empty() && remoteStates.begin()->first <= mseq)
+      while (!remoteStates.empty() && remoteStates.begin()->first <= mseq) {
+        concurrentModifications -= remoteStates.begin()->second.second;
         remoteStates.erase(remoteStates.begin());
+      }
     }
   }
 }
@@ -426,9 +435,12 @@ void OutputBlockGeraet::nak(NetworkConnection::seq_t seq) throw() {
    * true to retransmit the changes on the next update.
    */
   if (syncPending.empty()) {
-    remoteStates.erase(mseq);
-    if (remoteStates.empty())
-      dirty = true;
+    if (remoteStates.count(mseq)) {
+      concurrentModifications -= remoteStates[mseq].second;
+      remoteStates.erase(mseq);
+      if (remoteStates.empty())
+        dirty = true;
+    }
   } else {
     syncPending_t::iterator sit = syncPending.find(seq);
     if (sit != syncPending.end()) {

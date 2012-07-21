@@ -23,8 +23,10 @@ COMMONCXXFLAGS=-Wall -I./config -DDATADIR='"'"$(pkgdatadir)"'"' \
 abendstern:;
 
 ./tcl_iface/xxx/rebuilt: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-	./tcl_iface/generate.tcl
-	touch tcl_iface/xxx/rebuilt tcl_iface/bridge.cxx tcl_iface/xxx/*
+	@echo '  TCL    tcl_iface/generate.tcl'
+	@$(TCL) ./tcl_iface/generate.tcl
+	@echo '  TOUCH  tcl_iface/xxx/rebuild tcl_iface/bridge.cxx tcl_iface/xxx/*'
+	@touch tcl_iface/xxx/rebuilt tcl_iface/bridge.cxx tcl_iface/xxx/*
 ./tcl_iface/bridge.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 ./tcl_iface/xxx/x0.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 ./tcl_iface/xxx/x1.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
@@ -44,9 +46,11 @@ abendstern:;
 ./tcl_iface/xxx/xf.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 
 ./net/xxx/xnetobj.cxx: ./net/definition.tcl ./net/generate.tcl
-	./net/generate.tcl
+	@echo '  TCL    net/generate.tcl'
+	@$(TCL) ./net/generate.tcl
 ./net/xxx/xnetobj.hxx: ./net/xxx/xnetobj.cxx ./net/definition.tcl ./net/generate.tcl
-	touch net/xxx/xnetobj.hxx
+	@echo '  TOUCH  net/xxx/xnetobj.hxx'
+	@touch net/xxx/xnetobj.hxx
 
 bin_PROGRAMS=$(GL14PROG) $(GL21PROG) $(GL32PROG)
 bin_SCRIPTS=abendstern

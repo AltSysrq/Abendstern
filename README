@@ -1,18 +1,20 @@
 COMPILATION
-*NIX:
-To compile on *NIX, you need the following libraries, including their headers:
-o asio
-o boost
-o sdl
-o sdlimg
-o libgmp
-o OpenGL (at least 1.1)
-o tcl8.5
-o itcl3.4
-o tcl-tls
-o tcllib
-o libpng
-o libpng++
+To compile on *NIX, you need the following libraries, including their headers
+(Debian/Ubuntu package names are in parentheses):
+o asio          (libasio-dev)
+o boost         (libboost-dev)
+o sdl           (libsdl-dev, or libsdl1.2-dev, etc)
+o sdlimg        (libsdl-image1.2-dev or so)
+o libgmp        (libgmp-dev)
+o OpenGL        (libgl1-mesa-dev or proprietary video driver headers)
+o tcl8.5        (tcl8.5-dev)
+o itcl3.4       (itcl3-dev)
+o tcl-tls       (tcl-tls)
+o tcllib        (tcllib)
+o libpng        (libpng12-dev or so)
+o libpng++      (libpng++-dev)
+You also need ImageMagick for building some data files. It is usually found in
+a package named imagemagick.
 
 To compile, do
   ./configure
@@ -20,7 +22,7 @@ To compile, do
 
 If your OpenGL headers do not supply GL extension functions, instead use
   ./configure --disable-gl21 --disable-gl32
-You may also need the --disable-gl32 and possible --disable-gl21 if your
+You may also need the --disable-gl32 and possibly --disable-gl21 if your
 OpenGL library does not have the necessary functions.
 
 Windows:
@@ -42,25 +44,21 @@ Abendstern can be uninstalled with a corresponding "make uninstall".
 
 RUNNING
 *NIX:
-Within the Abendstern directory, run one of the following, based on your
-OpenGL version (if in doubt, try the higher version first):
-  abendsternuxgl32
-  abendsternuxgl21
-  abendsternuxgl14
+Run the game simply with the command "abendstern". You will be prompted for
+initial settings and which graphics version to run (the default is usually
+correct).
 
 Windows:
 Just run Abendstern.exe in the project root.
 
 The executables understand the following options:
-  -H, -Headless		Run without graphics
-  -f, -fullscreen	Run in fullscreen mode, ignoring the config file
-  -W, -Windowed		Run in windowed mode, ignoring the config file
-  -h, -height arg	Set window or resolution height to arg
-  -w, -width arg	Set window or resolution width to arg
-  -b, -bits arg		Set screen bit-depth to arg
-  -c, -cache arg	Only use up to arg MB of RAM for config data
-  -F, -Fast		Ignore wall time; assume each frame is 10 ms long
-  -!			(Currently non-functional on UNIX)
-  			Don't check OpenGL version, and continue on anyway.
-  			(This is the default behaviour on UNIX).
-  -?			Print usage information
+  -H, -Headless         Run without graphics
+  -f, -fullscreen       Run in fullscreen mode, ignoring the config file
+  -W, -Windowed         Run in windowed mode, ignoring the config file
+  -h, -height arg       Set window or resolution height to arg
+  -w, -width arg        Set window or resolution width to arg
+  -b, -bits arg         Set screen bit-depth to arg
+  -c, -cache arg        Only use up to arg MB of RAM for config data
+  -F, -Fast             Ignore wall time; assume each frame is 10 ms long
+  -prelim               Start in preliminary configuration mode
+  -?                    Print usage information

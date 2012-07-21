@@ -1,21 +1,22 @@
 if {$ch >= 32 && $ch <= 402} {
-  set font ttfs/westm2.ttf
+  set font ../../ttfs/fixedsys500c.ttf
+  set auxflags [list -affine 0.89,0,0,0.89 -transform]
 # Greek
 } elseif {$ch >= 894 && $ch <= 974} {
-  set font ttfs/libmonoreg.ttf
+  set font ../../ttfs/unifont.ttf
   set auxflags [list -affine 0.89,0,0,0.89 -transform]
 # Cyrillic
 } elseif {$ch >= 1025 && $ch <= 1169} {
-  set font ttfs/libmonoreg.ttf
+  set font ../../ttfs/unifont.ttf
   set auxflags [list -affine 0.89,0,0,0.89 -transform]
-  # The dash used for spinners
+# The dash used for spinners
 } elseif {$ch == 8213} {
-  set font ttfs/libmonoreg.ttf
+  set font ../../ttfs/unifont.ttf
   set auxflags [list -affine 0.89,0,0,0.89 -transform]
 }
 
 # The Westminster M is stupidly wide (esp since we
 # use it for metrics)
-if {$ch == [toUnicode M]} {
-  set auxflags [list -affine 0.75,0,0,1.0 -transform]
-}
+#if {$ch == [toUnicode M]} {
+#  set auxflags [list -affine 0.75,0,0,1.0 -transform]
+#}

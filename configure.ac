@@ -57,26 +57,41 @@ LDFLAGS="$LDFLAGS $AB_PROFILE_FLAGS"
 AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_CPP
+AC_PATH_PROG([IMAGEMAGICK_CONVERT], [convert])
+if test "x$IMAGEMAGICK_CONVERT" = "x"; then
+  echo 'The convert program (from ImageMagick) is required to generate the font'
+  echo 'files, but was not found in your PATH.'
+  echo 'Make sure ImageMagick is installed.'
+  exit 1
+fi
 
 # Check tclsh version.
-# Debian does (or at least used to) default to tclsh 8.4 even if 8.5 was installed
-# (this when Tcl 8.5 was already stable), so check for that condition to tell
-# the user how to handle the situation.
-echo -n 'checking for tclsh (8.5)... '
-if echo ['exit [catch {package require Tcl 8.5}]'] | tclsh; then
+# Check for tclsh8.5 first since some systems (eg, FreeBSD) don't even create a
+# tclsh link.
+AC_PATH_PROGS([TCL], [tclsh8.5 tclsh])
+if test "x$TCL" == "x"; then
+  echo 'No Tcl executable ("tclsh8.5" or "tclsh") could be found in your PATH.'
+  echo 'Make sure Tcl 8.5 is installed.'
+  exit 1
+fi
+# Ensure that the version is correct
+echo -n 'checking Tcl version (8.5)... '
+if echo ['exit [catch {package require Tcl 8.5}]'] | $TCL; then
   echo 'yes'
 else
   echo 'no'
   echo 'Your either have an obsolete version of Tcl or do not have it at all.'
   echo 'Make sure that Tcl 8.5 is installed.'
-  if echo ['exit [catch {package require Tcl 8.4}]'] | tclsh \
-  && echo ['exit [catch {package require Tcl 8.5}]'] | tclsh8.5; then
-    echo 'It appears that you do have Tcl 8.5 installed, but tclsh still links to Tcl 8.4.'
-    echo 'Most likely, you are on Debian, or a derivitave such as Ubuntu.'
-    echo 'Try running'
-    echo '  sudo update-alternatives --config tclsh'
-    echo 'and select tclsh8.5.'
-  fi
+  # This check is now obsolete since we use tclsh8.5 if it exists, in
+  # preference to linked tclsh.
+  #if echo ['exit [catch {package require Tcl 8.4}]'] | tclsh \
+  #&& echo ['exit [catch {package require Tcl 8.5}]'] | tclsh8.5; then
+    #echo 'It appears that you do have Tcl 8.5 installed, but tclsh still links to Tcl 8.4.'
+    #echo 'Most likely, you are on Debian, or a derivitave such as Ubuntu.'
+    #echo 'Try running'
+    #echo '  sudo update-alternatives --config tclsh'
+    #echo 'and select tclsh8.5.'
+  #fi
   exit 1
 fi
 
@@ -158,5 +173,8 @@ AC_FUNC_ERROR_AT_LINE
 AC_CHECK_FUNCS([atexit gettimeofday memmove memset pow setlocale socket sqrt strchr strerror])
 
 AC_CONFIG_FILES([Makefile
-                 src/Makefile])
+                 src/Makefile
+                 fonts/Makefile
+                 fonts/westm/Makefile
+                 fonts/unifont/Makefile])
 AC_OUTPUT

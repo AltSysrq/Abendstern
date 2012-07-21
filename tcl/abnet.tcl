@@ -411,6 +411,14 @@ namespace eval ::abnet {
     _submitAiReport $spec $gen $scores $ct
   }
 
+  # Waits until $busy is false.
+  proc sync {} {
+    while {$::abnet::busy} {
+      after 5
+      update
+    }
+  }
+
   ### NO DECLARATIONS BELOW THIS POINT SHOULD BE ACCESSED
   ### BY EXTERNAL CODE
 
@@ -695,6 +703,7 @@ namespace eval ::abnet {
   # endSession, then resets variables to a not-connected
   # state
   proc endConnection {} {
+    sync
     endSession
     # Delay so any pending message can be transmitted
     after 512 close $::abnet::sock
@@ -713,6 +722,7 @@ namespace eval ::abnet {
   }
 
   proc _login {username password} {
+    sync
     set ::abnet::busy yes
     set ::abnet::lastReceive [clock seconds]
     set ::abnet::username $username
@@ -724,6 +734,7 @@ namespace eval ::abnet {
   }
 
   proc _createAcct {username password} {
+    sync
     set ::abnet::busy yes
     set ::abnet::lastReceive [clock seconds]
     set ::abnet::username $username
@@ -735,6 +746,7 @@ namespace eval ::abnet {
   }
 
   proc _alterAcct {username password} {
+    sync
     set ::abnet::busy yes
     set ::abnet::lastReceive [clock seconds]
     set ::abnet::alteredUsername $username
@@ -746,6 +758,7 @@ namespace eval ::abnet {
   }
 
   proc _deleteAcct {} {
+    sync
     writeServer top-account-delete
     endConnection
   }
@@ -768,6 +781,7 @@ namespace eval ::abnet {
   }
 
   proc _logout {} {
+    sync
     if {$::abnet::userid != ""} {
       writeServer [list top-account-logout]
     }
@@ -780,6 +794,7 @@ namespace eval ::abnet {
   }
 
   proc _lookupFilename {filename userid {getfnext no}} {
+    sync
     set ::abnet::requestedUfnPair "$userid,$filename"
     if {!$::abnet::isConnected} {
       set ::abnet::success no
@@ -804,6 +819,7 @@ namespace eval ::abnet {
       return
     }
 
+    sync
     writeServer top-file-stat $fileid
     set ::abnet::busy yes
     set ::abnet::currentAction stat
@@ -820,6 +836,7 @@ namespace eval ::abnet {
       return
     }
 
+    sync
     writeServer top-file-open $fileid
     set ::abnet::busy yes
     set ::abnet::currentAction open
@@ -849,6 +866,7 @@ namespace eval ::abnet {
       return
     }
 
+    sync
     writeServer top-post-file $filename [file size $infile] $public
     # Write the data
     # Since sock is async, this will complete as soon as all data is
@@ -871,6 +889,8 @@ namespace eval ::abnet {
       set ::abnet::resultMessage [_ N general failure]
       return
     }
+
+    sync
     writeServer top-file-delete $fileid
     set ::abnet::filestat($fileid) {}
 
@@ -887,6 +907,7 @@ namespace eval ::abnet {
       return
     }
 
+    sync
     enable user-list
     set ::abnet::busy yes
     set ::abnet::lastReceive [clock seconds]
@@ -900,6 +921,7 @@ namespace eval ::abnet {
       return
     }
 
+    sync
     enable ship-list
     set ::abnet::busy yes
     set ::abnet::lastReceive [clock seconds]
@@ -913,6 +935,7 @@ namespace eval ::abnet {
       return
     }
 
+    sync
     enable ship-file-list
     set ::abnet::busy yes
     set ::abnet::lastReceive [clock seconds]
@@ -921,11 +944,13 @@ namespace eval ::abnet {
 
   proc _shipdl shipid {
     if {"" == $::abnet::userid} return
+    sync
     writeServer top-record-ship-download $shipid
   }
 
   proc _shiprate {shipid positive} {
     if {"" == $::abnet::userid} return
+    sync
     writeServer top-rate-ship $shipid $positive
   }
 
@@ -937,6 +962,7 @@ namespace eval ::abnet {
       return
     }
 
+    sync
     writeServer top-get-subscriber-info
     set ::abnet::busy yes
     set ::abnet::lastReceive [clock seconds]
@@ -950,6 +976,7 @@ namespace eval ::abnet {
       return
     }
 
+    sync
     writeServer top-ships-obsolete [lssi_lastUpload] [lssi_lastDownload]
     set ::abnet::busy yes
     set ::abnet::lastReceive [clock seconds]
@@ -963,6 +990,7 @@ namespace eval ::abnet {
       return
     }
 
+    sync
     writeServer top-ships-all
     set ::abnet::busy yes
     set ::abnet::lastReceive [clock seconds]
@@ -979,6 +1007,7 @@ namespace eval ::abnet {
       return
     }
 
+    sync
     writeServer top-ship-info $shipid
     set ::abnet::busy yes
     set ::abnet::lastReceive [clock seconds]
@@ -991,6 +1020,7 @@ namespace eval ::abnet {
     set ix [lsearch -exact $::abnet::userSubscriptions $userid]
     if {$ix == -1} {
       lappend ::abnet::userSubscriptions $userid
+      sync
       writeServer top-subscribe-user $userid
     }
   }
@@ -999,6 +1029,7 @@ namespace eval ::abnet {
     set ix [lsearch -exact $::abnet::userSubscriptions $userid]
     if {$ix != -1} {
       set ::abnet::userSubscriptions [lreplace $::abnet::userSubscriptions $ix $ix]
+      sync
       writeServer top-unsubscribe-user $userid
     }
   }
@@ -1007,6 +1038,7 @@ namespace eval ::abnet {
     set ix [lsearch -exact $::abnet::shipSubscriptions $shipid]
     if {$ix == -1} {
       lappend ::abnet::shipSubscriptions $shipid
+      sync
       writeServer top-subscribe-ship $shipid
     }
   }
@@ -1015,6 +1047,7 @@ namespace eval ::abnet {
     set ix [lsearch -exact $::abnet::shipSubscriptions $shipid]
     if {$ix == -1} {
       set ::abnet::shipSubscriptions [lreplace $::abnet::shipSubscriptions $ix $ix]
+      sync
       writeServer top-unsubscribe-ship $shipid
     }
   }

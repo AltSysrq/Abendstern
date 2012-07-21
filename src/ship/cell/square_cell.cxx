@@ -320,7 +320,8 @@ GLuint square_cell::initAccessoryLists() noth {
   if (headless) return 0;
   GLuint list=glGenLists(16);
   for (unsigned l=0; l<16; ++l) {
-    bool neighbours[4] = { l & 1, l & 2, l & 4, l & 8 };
+    bool neighbours[4] = { (bool)(l & 1), (bool)(l & 2),
+                           (bool)(l & 4), (bool)(l & 8), };
     glNewList(list+l, GL_COMPILE);
     if (generalAlphaBlending)
       glColor4fv(semiblack);

@@ -1,7 +1,7 @@
 #version 120
 /* Stensiling texture stiple frag shader. */
 
-/* varying */ in vec2 varyingTexCoords;
+/* varying */ in vec2 varyingTexCoord;
 /* varying */ in vec2 screenCoord;
 
 uniform int screenW, screenH;
@@ -21,7 +21,7 @@ void main(void) {
   int sx = int(floor((screenCoord.x+1)/2*screenW));
   int sy = int(floor((screenCoord.y+1)/2*screenH));
   if (bit0(sx) == bit0(sy)) discard;
-  float a = texture2D(colourMaP, varyingTexCoords).a;
+  float a = texture2D(colourMap, varyingTexCoord).a;
   if (a <= 0.01) discard;
   else dst=a*modColour;
 }
