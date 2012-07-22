@@ -1,6 +1,11 @@
 # A Job is a task assigned by the Abendstern Network server which is executed
 # progressively in the background.
 #
+# Each job type must create a proc of the form
+#   proc create-job-$type {...} { ... }
+# where $type is the network-named type for the job, and the arguments are
+# whatever it should expect to receive via the job message.
+#
 # Note: Subclasses MUST be prepared to be destroyed AT ANY TIME. If the network
 # connection is lost, the Job will delete itself to avoid colliding with a
 # later, new connection.
