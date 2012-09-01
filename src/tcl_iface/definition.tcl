@@ -477,7 +477,8 @@ class final radar_t {} {
 }
 
 cxx src/ship/ship.hxx src/sim/game_field.hxx src/control/controller.hxx \
-    src/camera/effects_handler.hxx src/ship/cell/cell.hxx
+    src/camera/effects_handler.hxx src/ship/cell/cell.hxx \
+    src/ship/ship_image_renderer.hxx
 enum Ship::Category {} \
     {Ship::Swarm 	Swarm} \
     {Ship::Interceptor	Interceptor} \
@@ -565,6 +566,13 @@ class final Ship GameObject {
   fun cstr getDeathAttributions
   fun Ship::Category categorise
 }
+
+class final ShipImageRenderer {} {
+  fun bool renderNext
+  fun bool save const cstr
+}
+fun {ShipImageRenderer* steal} \
+    {ShipImageRenderer::create ShipImageRenderer_create} Ship*
 
 cxx src/ship/ship.hxx src/ship/shipio.hxx src/ship/cell/cell.hxx \
     src/camera/effects_handler.hxx src/sim/game_field.hxx
