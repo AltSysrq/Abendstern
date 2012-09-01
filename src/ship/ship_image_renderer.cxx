@@ -192,6 +192,7 @@ bool ShipImageRenderer::save(const char* filename) const {
   if (!texture)
     return false;
 
+#ifndef AB_OPENGL_14
   vector<GLubyte> indexed(imgW2*imgH2);
   png::image<png::rgba_pixel> img(imgW,imgH);
   glBindTexture(GL_TEXTURE_2D, texture);
@@ -233,6 +234,9 @@ bool ShipImageRenderer::save(const char* filename) const {
     return false;
   }
   return true;
+#else
+  return false;
+#endif
 }
 
 ShipImageRenderer* ShipImageRenderer::create(Ship* ship) {
