@@ -104,6 +104,7 @@ bool ShipImageRenderer::renderNext() {
   bool status = false;
 
   //Bind the framebuffer to the texture
+  glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fbo);
   glBindTexture(GL_TEXTURE_2D, texture);
   glViewport(0,0,imgW,imgH);
   glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
@@ -130,8 +131,7 @@ bool ShipImageRenderer::renderNext() {
   mId(matrix_stack::view);
   mPush();
   mId();
-  mUScale(PX_PER_CELL / STD_CELL_SZ);
-  mTrans(imgW/2, imgH/2);
+  mUScale(PX_PER_CELL / 2);
   ship->cells[currentCell++]->draw();
   mPop();
   mPop(matrix_stack::view);
@@ -161,7 +161,7 @@ bool ShipImageRenderer::save(const char* filename) const {
   vector<GLubyte> indexed(imgW*imgH);
   png::image<png::rgba_pixel> img(imgW,imgH);
   glBindTexture(GL_TEXTURE_2D, texture);
-  glGetTexImage(GL_TEXTURE_2D, 0, GL_LUMINANCE8, GL_UNSIGNED_BYTE, &indexed[0]);
+  glGetTexImage(GL_TEXTURE_2D, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, &indexed[0]);
 
   //Get the colours to use for translation
   ShipRenderer renderer(NULL);
@@ -174,8 +174,8 @@ bool ShipImageRenderer::save(const char* filename) const {
       a = r = g = b = 0; //Transparent
     else if (ix == P_BLACK)
       a = 255, r = g = b = 0; //Black
-    else if (ix < P_BODY_END) {
-      float mult = (ix - P_BODY_BEGIN) / (float)P_BODY_SZ;
+    else if (ix <= P_BODY_END) {
+      float mult = (ix - P_BODY_BEGIN + 1) / (float)P_BODY_SZ * 0.7f + 0.3f;
       a = 255;
       r = (unsigned)(255 * ship->getColourR() * mult);
       g = (unsigned)(255 * ship->getColourG() * mult);
