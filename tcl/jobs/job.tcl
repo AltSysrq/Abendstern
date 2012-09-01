@@ -23,10 +23,11 @@ class Job {
   # returns the (minimum) number of milliseconds that should elapse before the
   # next call to -exec.
   protected variable currentStage
+  variable alive yes
 
   # Constructs the Job, starting in the given stage
   constructor {initStage} {
-    set currentStage initStage
+    set currentStage $initStage
     after idle [list $this update]
   }
 
@@ -35,6 +36,7 @@ class Job {
   # update.
   method done {args} {
     ::abnet::jobDone $args
+    set alive no
     after idle [list delete object $this]
   }
 
@@ -42,6 +44,7 @@ class Job {
   # is sent to the server, and this Job will be deleted on the next update.
   method fail {why} {
     ::abnet::jobFailed $why
+    set alive no
     after idle [list delete object $this]
   }
 
@@ -50,12 +53,23 @@ class Job {
     # Die if the network connection is gone
     if {!$::abnet::isReady || $::abnet::userid == {}} {
       after idle [list delete object $this]
+      set alive no
       return
     }
 
-    $this $currentStage-exec
-    after [$this $currentStage-interval] [list $this update]
+    if {[catch {
+      $this $currentStage-exec
+    } err info]} {
+      log "Job failed due to unexpected error: $err\n$info"
+      fail "Unexpected error: $err"
+      return
+    }
+    if {$alive} {
+      after [$this $currentStage-interval] [list $this update]
+    }
   }
+
+  method fqn {} { return $this }
 }
 
 source tcl/jobs/render_ship_job.tcl

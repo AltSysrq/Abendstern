@@ -27,7 +27,7 @@ class ShipRenderJob {
 
   method start-fetch-exec {} {
     if {!$::abnet::busy} {
-      ::abnet::getf $fileID $tempShip
+      ::abnet::getf $fileId $tempShip
       set currentStage wait-for-fetch
     }
   }
@@ -110,7 +110,7 @@ class ShipRenderJob {
 
   method upload-result-exec {} {
     if {!$::abnet::busy} {
-      ::abnet::putf $renderOuptut $renderOutput
+      ::abnet::putf $renderOutput $renderOutput
       set currentStage wait-for-upload
     }
   }
@@ -129,7 +129,7 @@ class ShipRenderJob {
         done $::abnet::filenames($::abnet::userid,$renderOutput)
       } else {
         # Failed to upload
-        fail "Couldn't upload renderOuptut"
+        fail "Couldn't upload renderOutput"
       }
     }
   }
@@ -137,4 +137,12 @@ class ShipRenderJob {
   method wait-for-upload-interval {} {
     return 1000
   }
+}
+
+proc create-job-render-ship {fileid} {
+  if {![string is integer -strict $fileid]} {
+    error "Bad fileid: $fileid"
+  }
+
+  new ShipRenderJob $fileid
 }

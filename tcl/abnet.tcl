@@ -24,7 +24,7 @@ namespace eval ::abnet {
   set MAXIMUM_BUSY_TIME 10
   # The maximum interval between messages (to fill with ping if
   # nothing else to send), in seconds
-  set MAXIMUM_MSG_INTERVAL 120
+  set MAXIMUM_MSG_INTERVAL 60
   # Block size of AES
   set BLOCK_SZ 16
 
