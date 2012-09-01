@@ -94,6 +94,9 @@ class ShipRenderer {
   /** Create the renderer. The ship does not need to be fully
    * constructed at this point. No resources are allocated
    * by the constructor.
+   *
+   * The ship MAY be NULL, but no functions on this ShipRenderer other than
+   * setPallet() will function in that case.
    */
   ShipRenderer(Ship*);
   ~ShipRenderer();

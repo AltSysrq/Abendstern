@@ -535,7 +535,16 @@ class Ship: public GameObject {
   /** Rescans the ShipSystems for changes in update functions. */
   void refreshUpdates() noth;
 
-  virtual bool update(float)  noth HOT;
+  #ifndef AB_OPENGL_14
+  /**
+   * Prepares the given ShipRenderer's dynamic colour pallet.
+   *
+   * The ShipRenderer need not belong to this Ship.
+   */
+  void preparePallet(ShipRenderer*) const;
+  #endif
+
+  virtual bool update(float) noth HOT;
   virtual void draw() noth;
   virtual float getRotation() const noth { return theta; }
   /** Returns the cosine of the current rotation. */

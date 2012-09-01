@@ -154,3 +154,13 @@ proc conffor {var conf body} {
     uplevel $body
   }
 }
+
+# Deletes the given objects (with delete object) in the order specified. If a
+# value is "0" or "", it is ignored.
+proc del {args} {
+  foreach obj $args {
+    if {$obj ne "0" && $obj ne ""} {
+      delete object $obj
+    }
+  }
+}

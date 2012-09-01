@@ -179,6 +179,7 @@ COMMONSOURCES= \
 ./ship/ship.cxx \
 ./ship/render_quad.cxx \
 ./ship/ship_renderer.cxx \
+./ship/ship_image_renderer.cxx \
 ./ship/editor/system_creation_rectangle.cxx \
 ./ship/editor/cell_creation_brush.cxx \
 ./ship/editor/system_rotator.cxx \

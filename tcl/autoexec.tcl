@@ -108,6 +108,24 @@ proc makePlanet {} {
   delete object $parms
 }
 
+proc tsir {mount} {
+  set field [new GameField default 1 1]
+  set ship [loadShip $field $mount]
+  set sir [ShipImageRenderer_create $ship]
+  if {$sir == 0} {
+    log "Couldn't create SIR"
+    delete object $ship
+    delete object $field
+  }
+
+  while {[$sir renderNext]} {}
+  set ret [$sir save test.png]
+  delete object $sir
+  delete object $ship
+  delete object $field
+  return $ret
+}
+
 if {!$preliminaryRunMode} {
   source tcl/boot.tcl
   set oldState $state

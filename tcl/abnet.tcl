@@ -24,7 +24,7 @@ namespace eval ::abnet {
   set MAXIMUM_BUSY_TIME 10
   # The maximum interval between messages (to fill with ping if
   # nothing else to send), in seconds
-  set MAXIMUM_MSG_INTERVAL 120
+  set MAXIMUM_MSG_INTERVAL 60
   # Block size of AES
   set BLOCK_SZ 16
 
@@ -419,6 +419,24 @@ namespace eval ::abnet {
     }
   }
 
+  # Reports to the server that the current job has completed, with the given
+  # report data passed along.
+  proc jobDone {data} {
+    _jobDone $data
+  }
+
+  # Reports to the server that the current job has failed, with the given
+  # reason.
+  proc jobFailed {data} {
+    _jobFailed $data
+  }
+
+  # Enters "slave mode" for remote jobs.
+  proc slaveMode {} {
+    set ::abnet::MAXIMUM_MSG_INTERVAL 5
+    writeServer make-me-a-slave
+  }
+
   ### NO DECLARATIONS BELOW THIS POINT SHOULD BE ACCESSED
   ### BY EXTERNAL CODE
 
@@ -480,7 +498,7 @@ namespace eval ::abnet {
   set requestedUfnPair {}
 
   # The possible messages we expect to get from the server
-  set enabledMessages [list abendstern error]
+  set enabledMessages {}
 
   # Enables the given message patterns
   proc enable args {
@@ -673,7 +691,7 @@ namespace eval ::abnet {
     set ::abnet::lastReceive [clock seconds]
     set ::abnet::inputDataLeft 0
     set ::abnet::inputBuffer {}
-    set ::abnet::enabledMessages [list error abendstern clock-sync]
+    set ::abnet::enabledMessages [list error abendstern clock-sync job]
 
     if {[catch {
       set ::abnet::sock [socket -async $::abnet::SERVER $::abnet::PORT]
@@ -1064,6 +1082,18 @@ namespace eval ::abnet {
     }
   }
 
+  proc _jobDone {data} {
+    sync
+    writeServer job-done {*}$data
+    enable job
+  }
+
+  proc _jobFailed {why} {
+    sync
+    writeServer job-failed $why
+    enable job
+  }
+
   proc message-error {l10n english} {
     set report $english
     catch {
@@ -1303,6 +1333,15 @@ namespace eval ::abnet {
     set ::abnet::shipinfo($::abnet::shipinfoshipid,numrating) $numrating
     set ::abnet::busy no
     set ::abnet::success yes
+  }
+
+  proc message-job {type args} {
+    disable job
+    if {[catch {
+      create-job-$type {*}$args
+    } err]} {
+      jobFailed "Error creating job: $type $args: $err"
+    }
   }
 
   after idle ::abnet::runproto

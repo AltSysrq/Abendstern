@@ -439,24 +439,8 @@ bool Ship::update(float et) noth {
   return true;
 }
 
-void Ship::draw() noth {
-  physicsRequire(PHYS_SHIP_CAPAC_BIT
-                |PHYS_SHIP_POWER_BIT
-                |PHYS_SHIP_SHIELD_INVENTORY_BIT
-                |PHYS_SHIP_COORDS_BIT
-                |PHYS_CELL_LOCATION_PROPERTIES_BIT
-                );
-
-  BEGINGP("Ship")
-  invisibleTime=0;
-  mPush();
-  mTrans(x, y);
-  mRot(theta);
-
 #ifndef AB_OPENGL_14
-  if (!renderer)
-    renderer = new ShipRenderer(this);
-
+void Ship::preparePallet(ShipRenderer* renderer) const {
   renderer->setPallet(P_CAPACITOR, getCapacitancePercent(), getCapacitancePercent(), getCapacitancePercent());
   unsigned pulse=field->fieldClock%1000;
   if (pulse<500) pulse=1000-pulse;
@@ -492,7 +476,28 @@ void Ship::draw() noth {
       renderer->setPallet(i, 0.6f+0.4f*engineInfo.fade, engineInfo.fade/2, 0);
     else
       renderer->setPallet(i, 0.6f, 0, 0);
+}
+#endif
 
+void Ship::draw() noth {
+  physicsRequire(PHYS_SHIP_CAPAC_BIT
+                |PHYS_SHIP_POWER_BIT
+                |PHYS_SHIP_SHIELD_INVENTORY_BIT
+                |PHYS_SHIP_COORDS_BIT
+                |PHYS_CELL_LOCATION_PROPERTIES_BIT
+                );
+
+  BEGINGP("Ship")
+  invisibleTime=0;
+  mPush();
+  mTrans(x, y);
+  mRot(theta);
+
+#ifndef AB_OPENGL_14
+  if (!renderer)
+    renderer = new ShipRenderer(this);
+
+  preparePallet(renderer);
   renderer->draw();
 #else /* defined(AB_OPENGL_14) */
   //Don't draw if in stealth mode and have cloaking device
