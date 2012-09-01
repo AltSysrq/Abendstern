@@ -371,6 +371,7 @@
     <ClInclude Include="..\..\..\src\ship\render_quad.hxx" />
     <ClInclude Include="..\..\..\src\ship\ship.hxx" />
     <ClInclude Include="..\..\..\src\ship\shipio.hxx" />
+    <ClInclude Include="..\..\..\src\ship\ship_image_renderer.hxx" />
     <ClInclude Include="..\..\..\src\ship\ship_pallet.hxx" />
     <ClInclude Include="..\..\..\src\ship\ship_renderer.hxx" />
     <ClInclude Include="..\..\..\src\ship\sys\a\antimatter_power.hxx" />
@@ -584,6 +585,7 @@
     <ClCompile Include="..\..\..\src\ship\render_quad.cxx" />
     <ClCompile Include="..\..\..\src\ship\ship.cxx" />
     <ClCompile Include="..\..\..\src\ship\shipio.cxx" />
+    <ClCompile Include="..\..\..\src\ship\ship_image_renderer.cxx" />
     <ClCompile Include="..\..\..\src\ship\ship_renderer.cxx" />
     <ClCompile Include="..\..\..\src\ship\sys\a\antimatter_power.cxx" />
     <ClCompile Include="..\..\..\src\ship\sys\a\cloaking_device.cxx" />
