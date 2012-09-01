@@ -19,7 +19,7 @@ class Ship;
 class ShipImageRenderer: public AObject {
   Ship*const ship;
   unsigned currentCell;
-  unsigned imgW, imgH;
+  unsigned imgW, imgH, imgW2, imgH2;
   GLuint texture;
 
   ShipImageRenderer(Ship*);

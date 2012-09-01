@@ -42,9 +42,9 @@ static float axisMax(Ship* s, float (Cell::*dim)() const,
 // zero on each.
 static Ship* relocate(Ship* s) {
   s->teleport(0,0,0);
-  float minx = axisMax(s, &Cell::getX, fless) - STD_CELL_SZ/2;
-  float miny = axisMax(s, &Cell::getY, fless) - STD_CELL_SZ/2;
-  s->teleport(-minx, -miny, 0);
+  float minx = axisMax(s, &Cell::getX, fless) - STD_CELL_SZ;
+  float miny = axisMax(s, &Cell::getY, fless) - STD_CELL_SZ;
+  s->teleport(minx, miny, 0);
   return s;
 }
 
@@ -53,11 +53,13 @@ static unsigned calcDim(Ship* s, float (Cell::*dim)() const) {
   float max = axisMax(s, dim, fgreater);
   float min = axisMax(s, dim, fless   );
 
-  float size = max - min + STD_CELL_SZ;
-  unsigned ret = (unsigned)(PX_PER_CELL * size / STD_CELL_SZ);
-  //Round up to next power of two
+  float size = max - min + STD_CELL_SZ * 2;
+  return (unsigned)(PX_PER_CELL * size / STD_CELL_SZ);
+}
+
+static unsigned pow2(unsigned x) {
   unsigned i;
-  for (i = 1; i < ret; i *= 2);
+  for (i=1; i < x; i *= 2);
   return i;
 }
 
@@ -65,6 +67,8 @@ ShipImageRenderer::ShipImageRenderer(Ship* s)
 : ship(relocate(s)), currentCell(0),
   imgW(calcDim(s, &Cell::getX)),
   imgH(calcDim(s, &Cell::getY)),
+  imgW2(pow2(imgW)),
+  imgH2(pow2(imgH)),
   texture(0)
 {
 }
@@ -93,8 +97,8 @@ bool ShipImageRenderer::renderNext() {
     glGenTextures(1, &texture);
     if (!texture) return false;
     glBindTexture(GL_TEXTURE_2D, texture);
-    vector<GLubyte> zero(imgW*imgH);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE8, imgW, imgH, 0,
+    vector<GLubyte> zero(imgW2*imgH2);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE8, imgW2, imgH2, 0,
                  GL_LUMINANCE, GL_UNSIGNED_BYTE, &zero[0]);
   }
 
@@ -106,7 +110,7 @@ bool ShipImageRenderer::renderNext() {
   //Bind the framebuffer to the texture
   glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fbo);
   glBindTexture(GL_TEXTURE_2D, texture);
-  glViewport(0,0,imgW,imgH);
+  glViewport(0,0,imgW2,imgH2);
   glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
                          GL_TEXTURE_2D, texture, 0);
   switch (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER)) {
@@ -131,7 +135,10 @@ bool ShipImageRenderer::renderNext() {
   mId(matrix_stack::view);
   mPush();
   mId();
-  mUScale(PX_PER_CELL / 2);
+  mTrans(-1,-1);
+  mScale(PX_PER_CELL / STD_CELL_SZ / imgW2 * 2,
+         PX_PER_CELL / STD_CELL_SZ / imgH2 * 2);
+  mTrans(-ship->getX(),-ship->getY());
   ship->cells[currentCell++]->draw();
   mPop();
   mPop(matrix_stack::view);
@@ -158,7 +165,7 @@ bool ShipImageRenderer::save(const char* filename) const {
   if (!texture)
     return false;
 
-  vector<GLubyte> indexed(imgW*imgH);
+  vector<GLubyte> indexed(imgW2*imgH2);
   png::image<png::rgba_pixel> img(imgW,imgH);
   glBindTexture(GL_TEXTURE_2D, texture);
   glGetTexImage(GL_TEXTURE_2D, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, &indexed[0]);
@@ -167,28 +174,30 @@ bool ShipImageRenderer::save(const char* filename) const {
   ShipRenderer renderer(NULL);
   ship->preparePallet(&renderer);
   //Translate shader input to ARGB
-  for (unsigned i = 0; i < indexed.size(); ++i) {
-    GLubyte ix = indexed[i];
-    unsigned a, r, g, b;
-    if (!ix)
-      a = r = g = b = 0; //Transparent
-    else if (ix == P_BLACK)
-      a = 255, r = g = b = 0; //Black
-    else if (ix <= P_BODY_END) {
-      float mult = (ix - P_BODY_BEGIN + 1) / (float)P_BODY_SZ * 0.7f + 0.3f;
-      a = 255;
-      r = (unsigned)(255 * ship->getColourR() * mult);
-      g = (unsigned)(255 * ship->getColourG() * mult);
-      b = (unsigned)(255 * ship->getColourB() * mult);
-    } else {
-      ix -= P_DYNAMIC_BEGIN;
-      a = 255;
-      r = (unsigned)(255*renderer.pallet[ix][0]);
-      g = (unsigned)(255*renderer.pallet[ix][1]);
-      b = (unsigned)(255*renderer.pallet[ix][2]);
-    }
+  for (unsigned y = 0; y < imgH; ++y) {
+    for (unsigned x = 0; x < imgW; ++x) {
+      GLubyte ix = indexed[x + y*imgW2];
+      unsigned a, r, g, b;
+      if (!ix)
+        a = r = g = b = 0; //Transparent
+      else if (ix == P_BLACK)
+        a = 255, r = g = b = 0; //Black
+      else if (ix <= P_BODY_END) {
+        float mult = (ix - P_BODY_BEGIN + 1) / (float)P_BODY_SZ * 0.7f + 0.3f;
+        a = 255;
+        r = (unsigned)(255 * ship->getColourR() * mult);
+        g = (unsigned)(255 * ship->getColourG() * mult);
+        b = (unsigned)(255 * ship->getColourB() * mult);
+      } else {
+        ix -= P_DYNAMIC_BEGIN;
+        a = 255;
+        r = (unsigned)(255*renderer.pallet[ix][0]);
+        g = (unsigned)(255*renderer.pallet[ix][1]);
+        b = (unsigned)(255*renderer.pallet[ix][2]);
+      }
 
-    img[i/imgW][i%imgW] = png::rgba_pixel(r,g,b,a);
+      img[imgH-y-1][x] = png::rgba_pixel(r,g,b,a);
+    }
   }
 
   try {
