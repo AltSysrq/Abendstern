@@ -81,7 +81,7 @@ ShipRenderer::ShipRenderer(Ship* s)
   setPallet(P_G_YELLORNG0, 1, 1, 0);
   setPallet(P_G_YELLORNG1, 1, 0.75f, 0);
   setPallet(P_G_YELLORNG2, 1, 0.5f, 0);
-  setPallet(P_G_YELLORNG2, 1, 0.25f, 0);
+  setPallet(P_G_YELLORNG3, 1, 0.25f, 0);
   setPallet(P_G_GREYLGHT0, 0x33/255.0f, 0x33/255.0f, 0x33/255.0f);
   setPallet(P_G_GREYLGHT1, 0x66/255.0f, 0x66/255.0f, 0x66/255.0f);
   setPallet(P_G_GREYLGHT2, 0x99/255.0f, 0x99/255.0f, 0x99/255.0f);
