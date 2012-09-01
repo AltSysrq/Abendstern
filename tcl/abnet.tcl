@@ -431,6 +431,12 @@ namespace eval ::abnet {
     _jobFailed $data
   }
 
+  # Enters "slave mode" for remote jobs.
+  proc slaveMode {} {
+    set ::abnet::MAXIMUM_MSG_INTERVAL 5
+    writeServer make-me-a-slave
+  }
+
   ### NO DECLARATIONS BELOW THIS POINT SHOULD BE ACCESSED
   ### BY EXTERNAL CODE
 

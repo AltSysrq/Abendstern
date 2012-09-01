@@ -6,14 +6,16 @@ class ShipRenderJob {
   variable field 0
   variable ship 0
   variable sir 0
-  variable tempShip [tmpname render]
-  variable renderOutput [tmpname render]
+  variable tempShip
+  variable renderOutput
 
   constructor {fid} {
     Job::constructor start-fetch
   } {
     set fileId $fid
     set field [new GameField default 1 1]
+    set tempShip [tmpname render]
+    set renderOutput [tmpname render]
   }
 
   destructor {
