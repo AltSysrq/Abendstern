@@ -57,3 +57,5 @@ class Job {
     after [$this $currentStage-interval] [list $this update]
   }
 }
+
+source tcl/jobs/render_ship_job.tcl
