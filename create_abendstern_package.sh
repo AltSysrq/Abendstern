@@ -2,6 +2,7 @@
 
 BASEDIR=/oss/Abendstern
 SRVDIR=/programmes/cpp/abendstern/srv/abendstern/package
+WWWDIR=/programmes/cpp/abendstern/srv/www
 FILES="apply_update.bat Abendstern.exe abendstern.default.rc data fonts shaders images legal tcl library itcl3.4 tls1.6 tcllib bin"
 APP=Abendstern_WGL32
 
@@ -34,3 +35,5 @@ pushd /tmp/
 zip -r9q $SRVDIR/$APP.zip $APP
 popd
 rm -R /tmp/$APP
+
+cp $BASEDIR/Abendstern.msi $WWWDIR/Abendstern.msi
