@@ -18,6 +18,7 @@
 #include "src/graphics/glhelp.hxx"
 #include "src/graphics/matops.hxx"
 #include "src/ship/ship_renderer.hxx"
+#include "src/secondary/confreg.hxx"
 #include "src/globals.hxx"
 #include "ship_image_renderer.hxx"
 
@@ -63,6 +64,18 @@ static unsigned pow2(unsigned x) {
   return i;
 }
 
+static unsigned hexit(char c) {
+  if (c >= '0' && c <= '9')
+    return c - '0';
+  else if (c >= 'a' && c <= 'f')
+    return c - 'a' + 10;
+  else if (c >= 'A' && c < 'F')
+    return c - 'A' + 10;
+  else
+    //Might as well do /something/
+    return (c&0xF);
+}
+
 ShipImageRenderer::ShipImageRenderer(Ship* s)
 : ship(relocate(s)), currentCell(0),
   imgW(calcDim(s, &Cell::getX)),
@@ -71,6 +84,20 @@ ShipImageRenderer::ShipImageRenderer(Ship* s)
   imgH2(pow2(imgH)),
   texture(0)
 {
+  //Generate a colour for the ship based on the first six hexits of its GUID
+  try {
+    const char* guid = conf[s->typeName.c_str()]["info"]["guid"];
+    if (strlen(guid) >= 6) {
+      unsigned r, g, b;
+      r = (hexit(guid[0]) << 4) | hexit(guid[1]);
+      g = (hexit(guid[2]) << 4) | hexit(guid[3]);
+      b = (hexit(guid[4]) << 4) | hexit(guid[5]);
+
+      ship->setColour(r/255.0f, g/255.0f, b/255.0f);
+    }
+  } catch (libconfig::ConfigException&) {
+    //Oh well, silently ignore
+  }
 }
 
 ShipImageRenderer::~ShipImageRenderer() {
