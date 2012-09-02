@@ -661,9 +661,9 @@ static int set335 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {int gen1655;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1655);
-            newVal=gen1655;
+      {int gen1666;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1666);
+            newVal=gen1666;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -2008,7 +2008,7 @@ static MonophasicEnergyPulse* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline675 (
+     trampoline682 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 8) {
@@ -2267,7 +2267,7 @@ if (arg7Init) {arg7Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline675", trampoline675, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline682", trampoline682, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(MonophasicEnergyPulse)),
                            * ete=new TypeExport(typeid(TclMonophasicEnergyPulse));
 ste->isAObject=ete->isAObject=true;
@@ -2280,7 +2280,7 @@ typeExports[&typeid(MonophasicEnergyPulse)]=ste;
 typeExports[&typeid(TclMonophasicEnergyPulse)]=ete;
 }
 };
-void classdec674(bool safe, Tcl_Interp* interp) throw() {
+void classdec681(bool safe, Tcl_Interp* interp) throw() {
   TclMonophasicEnergyPulse::cppDecCode(safe,interp);
 }
 class TclForwardingEffectsHandler : public ForwardingEffectsHandler {
@@ -2328,7 +2328,7 @@ static ForwardingEffectsHandler* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline857 (
+     trampoline864 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -2502,7 +2502,7 @@ if (arg2Init) {arg2Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline857", trampoline857, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline864", trampoline864, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(ForwardingEffectsHandler)),
                            * ete=new TypeExport(typeid(TclForwardingEffectsHandler));
 ste->isAObject=ete->isAObject=true;
@@ -2515,7 +2515,7 @@ typeExports[&typeid(ForwardingEffectsHandler)]=ste;
 typeExports[&typeid(TclForwardingEffectsHandler)]=ete;
 }
 };
-void classdec856(bool safe, Tcl_Interp* interp) throw() {
+void classdec863(bool safe, Tcl_Interp* interp) throw() {
   TclForwardingEffectsHandler::cppDecCode(safe,interp);
 }
 class TclConnectionListener : public ConnectionListener {
@@ -2532,7 +2532,7 @@ typeExports[&typeid(ConnectionListener)]=ste;
 typeExports[&typeid(TclConnectionListener)]=ete;
 }
 };
-void classdec1230(bool safe, Tcl_Interp* interp) throw() {
+void classdec1237(bool safe, Tcl_Interp* interp) throw() {
   TclConnectionListener::cppDecCode(safe,interp);
 }
 
@@ -2541,7 +2541,7 @@ void classdec1230(bool safe, Tcl_Interp* interp) throw() {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1523 (
+     trampoline1530 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -2583,7 +2583,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1525 (
+     trampoline1532 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {

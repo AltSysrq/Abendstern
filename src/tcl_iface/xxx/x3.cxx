@@ -87,469 +87,469 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "k_unknown")) {arg0=SDLK_UNKNOWN; goto done1540;}
+          if (0 == strcmp(tmp, "k_unknown")) {arg0=SDLK_UNKNOWN; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_enter")) {arg0=SDLK_RETURN; goto done1540;}
+          if (0 == strcmp(tmp, "k_enter")) {arg0=SDLK_RETURN; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_scrolllock")) {arg0=SDLK_SCROLLOCK; goto done1540;}
+          if (0 == strcmp(tmp, "k_scrolllock")) {arg0=SDLK_SCROLLOCK; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_backspace")) {arg0=SDLK_BACKSPACE; goto done1540;}
+          if (0 == strcmp(tmp, "k_backspace")) {arg0=SDLK_BACKSPACE; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_tab")) {arg0=SDLK_TAB; goto done1540;}
+          if (0 == strcmp(tmp, "k_tab")) {arg0=SDLK_TAB; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_clear")) {arg0=SDLK_CLEAR; goto done1540;}
+          if (0 == strcmp(tmp, "k_clear")) {arg0=SDLK_CLEAR; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_pause")) {arg0=SDLK_PAUSE; goto done1540;}
+          if (0 == strcmp(tmp, "k_pause")) {arg0=SDLK_PAUSE; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_escape")) {arg0=SDLK_ESCAPE; goto done1540;}
+          if (0 == strcmp(tmp, "k_escape")) {arg0=SDLK_ESCAPE; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_space")) {arg0=SDLK_SPACE; goto done1540;}
+          if (0 == strcmp(tmp, "k_space")) {arg0=SDLK_SPACE; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_exclaim")) {arg0=SDLK_EXCLAIM; goto done1540;}
+          if (0 == strcmp(tmp, "k_exclaim")) {arg0=SDLK_EXCLAIM; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_quotedbl")) {arg0=SDLK_QUOTEDBL; goto done1540;}
+          if (0 == strcmp(tmp, "k_quotedbl")) {arg0=SDLK_QUOTEDBL; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_hash")) {arg0=SDLK_HASH; goto done1540;}
+          if (0 == strcmp(tmp, "k_hash")) {arg0=SDLK_HASH; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_dollar")) {arg0=SDLK_DOLLAR; goto done1540;}
+          if (0 == strcmp(tmp, "k_dollar")) {arg0=SDLK_DOLLAR; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_ampersand")) {arg0=SDLK_AMPERSAND; goto done1540;}
+          if (0 == strcmp(tmp, "k_ampersand")) {arg0=SDLK_AMPERSAND; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_quote")) {arg0=SDLK_QUOTE; goto done1540;}
+          if (0 == strcmp(tmp, "k_quote")) {arg0=SDLK_QUOTE; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_leftparen")) {arg0=SDLK_LEFTPAREN; goto done1540;}
+          if (0 == strcmp(tmp, "k_leftparen")) {arg0=SDLK_LEFTPAREN; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_rightparen")) {arg0=SDLK_RIGHTPAREN; goto done1540;}
+          if (0 == strcmp(tmp, "k_rightparen")) {arg0=SDLK_RIGHTPAREN; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_asterisk")) {arg0=SDLK_ASTERISK; goto done1540;}
+          if (0 == strcmp(tmp, "k_asterisk")) {arg0=SDLK_ASTERISK; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_plus")) {arg0=SDLK_PLUS; goto done1540;}
+          if (0 == strcmp(tmp, "k_plus")) {arg0=SDLK_PLUS; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_comma")) {arg0=SDLK_COMMA; goto done1540;}
+          if (0 == strcmp(tmp, "k_comma")) {arg0=SDLK_COMMA; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_minus")) {arg0=SDLK_MINUS; goto done1540;}
+          if (0 == strcmp(tmp, "k_minus")) {arg0=SDLK_MINUS; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_period")) {arg0=SDLK_PERIOD; goto done1540;}
+          if (0 == strcmp(tmp, "k_period")) {arg0=SDLK_PERIOD; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_slash")) {arg0=SDLK_SLASH; goto done1540;}
+          if (0 == strcmp(tmp, "k_slash")) {arg0=SDLK_SLASH; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_0")) {arg0=SDLK_0; goto done1540;}
+          if (0 == strcmp(tmp, "k_0")) {arg0=SDLK_0; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_1")) {arg0=SDLK_1; goto done1540;}
+          if (0 == strcmp(tmp, "k_1")) {arg0=SDLK_1; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_2")) {arg0=SDLK_2; goto done1540;}
+          if (0 == strcmp(tmp, "k_2")) {arg0=SDLK_2; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_3")) {arg0=SDLK_3; goto done1540;}
+          if (0 == strcmp(tmp, "k_3")) {arg0=SDLK_3; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_4")) {arg0=SDLK_4; goto done1540;}
+          if (0 == strcmp(tmp, "k_4")) {arg0=SDLK_4; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_5")) {arg0=SDLK_5; goto done1540;}
+          if (0 == strcmp(tmp, "k_5")) {arg0=SDLK_5; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_6")) {arg0=SDLK_6; goto done1540;}
+          if (0 == strcmp(tmp, "k_6")) {arg0=SDLK_6; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_7")) {arg0=SDLK_7; goto done1540;}
+          if (0 == strcmp(tmp, "k_7")) {arg0=SDLK_7; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_8")) {arg0=SDLK_8; goto done1540;}
+          if (0 == strcmp(tmp, "k_8")) {arg0=SDLK_8; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_9")) {arg0=SDLK_9; goto done1540;}
+          if (0 == strcmp(tmp, "k_9")) {arg0=SDLK_9; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_colon")) {arg0=SDLK_COLON; goto done1540;}
+          if (0 == strcmp(tmp, "k_colon")) {arg0=SDLK_COLON; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_semicolon")) {arg0=SDLK_SEMICOLON; goto done1540;}
+          if (0 == strcmp(tmp, "k_semicolon")) {arg0=SDLK_SEMICOLON; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_less")) {arg0=SDLK_LESS; goto done1540;}
+          if (0 == strcmp(tmp, "k_less")) {arg0=SDLK_LESS; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_equals")) {arg0=SDLK_EQUALS; goto done1540;}
+          if (0 == strcmp(tmp, "k_equals")) {arg0=SDLK_EQUALS; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_greater")) {arg0=SDLK_GREATER; goto done1540;}
+          if (0 == strcmp(tmp, "k_greater")) {arg0=SDLK_GREATER; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_question")) {arg0=SDLK_QUESTION; goto done1540;}
+          if (0 == strcmp(tmp, "k_question")) {arg0=SDLK_QUESTION; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_at")) {arg0=SDLK_AT; goto done1540;}
+          if (0 == strcmp(tmp, "k_at")) {arg0=SDLK_AT; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_leftbracket")) {arg0=SDLK_LEFTBRACKET; goto done1540;}
+          if (0 == strcmp(tmp, "k_leftbracket")) {arg0=SDLK_LEFTBRACKET; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_backslash")) {arg0=SDLK_BACKSLASH; goto done1540;}
+          if (0 == strcmp(tmp, "k_backslash")) {arg0=SDLK_BACKSLASH; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_rightbracket")) {arg0=SDLK_RIGHTBRACKET; goto done1540;}
+          if (0 == strcmp(tmp, "k_rightbracket")) {arg0=SDLK_RIGHTBRACKET; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_caret")) {arg0=SDLK_CARET; goto done1540;}
+          if (0 == strcmp(tmp, "k_caret")) {arg0=SDLK_CARET; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_underscore")) {arg0=SDLK_UNDERSCORE; goto done1540;}
+          if (0 == strcmp(tmp, "k_underscore")) {arg0=SDLK_UNDERSCORE; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_backquote")) {arg0=SDLK_BACKQUOTE; goto done1540;}
+          if (0 == strcmp(tmp, "k_backquote")) {arg0=SDLK_BACKQUOTE; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_delete")) {arg0=SDLK_DELETE; goto done1540;}
+          if (0 == strcmp(tmp, "k_delete")) {arg0=SDLK_DELETE; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp0")) {arg0=SDLK_KP0; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp0")) {arg0=SDLK_KP0; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp1")) {arg0=SDLK_KP1; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp1")) {arg0=SDLK_KP1; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp2")) {arg0=SDLK_KP2; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp2")) {arg0=SDLK_KP2; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp3")) {arg0=SDLK_KP3; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp3")) {arg0=SDLK_KP3; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp4")) {arg0=SDLK_KP4; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp4")) {arg0=SDLK_KP4; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp5")) {arg0=SDLK_KP5; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp5")) {arg0=SDLK_KP5; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp6")) {arg0=SDLK_KP6; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp6")) {arg0=SDLK_KP6; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp7")) {arg0=SDLK_KP7; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp7")) {arg0=SDLK_KP7; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp8")) {arg0=SDLK_KP8; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp8")) {arg0=SDLK_KP8; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp9")) {arg0=SDLK_KP9; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp9")) {arg0=SDLK_KP9; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp_period")) {arg0=SDLK_KP_PERIOD; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp_period")) {arg0=SDLK_KP_PERIOD; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp_divide")) {arg0=SDLK_KP_DIVIDE; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp_divide")) {arg0=SDLK_KP_DIVIDE; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp_multiply")) {arg0=SDLK_KP_MULTIPLY; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp_multiply")) {arg0=SDLK_KP_MULTIPLY; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp_minus")) {arg0=SDLK_KP_MINUS; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp_minus")) {arg0=SDLK_KP_MINUS; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp_plus")) {arg0=SDLK_KP_PLUS; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp_plus")) {arg0=SDLK_KP_PLUS; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp_enter")) {arg0=SDLK_KP_ENTER; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp_enter")) {arg0=SDLK_KP_ENTER; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_kp_equals")) {arg0=SDLK_KP_EQUALS; goto done1540;}
+          if (0 == strcmp(tmp, "k_kp_equals")) {arg0=SDLK_KP_EQUALS; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_up")) {arg0=SDLK_UP; goto done1540;}
+          if (0 == strcmp(tmp, "k_up")) {arg0=SDLK_UP; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_down")) {arg0=SDLK_DOWN; goto done1540;}
+          if (0 == strcmp(tmp, "k_down")) {arg0=SDLK_DOWN; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_right")) {arg0=SDLK_RIGHT; goto done1540;}
+          if (0 == strcmp(tmp, "k_right")) {arg0=SDLK_RIGHT; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_left")) {arg0=SDLK_LEFT; goto done1540;}
+          if (0 == strcmp(tmp, "k_left")) {arg0=SDLK_LEFT; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_insert")) {arg0=SDLK_INSERT; goto done1540;}
+          if (0 == strcmp(tmp, "k_insert")) {arg0=SDLK_INSERT; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_home")) {arg0=SDLK_HOME; goto done1540;}
+          if (0 == strcmp(tmp, "k_home")) {arg0=SDLK_HOME; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_end")) {arg0=SDLK_END; goto done1540;}
+          if (0 == strcmp(tmp, "k_end")) {arg0=SDLK_END; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_pageup")) {arg0=SDLK_PAGEUP; goto done1540;}
+          if (0 == strcmp(tmp, "k_pageup")) {arg0=SDLK_PAGEUP; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_pagedown")) {arg0=SDLK_PAGEDOWN; goto done1540;}
+          if (0 == strcmp(tmp, "k_pagedown")) {arg0=SDLK_PAGEDOWN; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f1")) {arg0=SDLK_F1; goto done1540;}
+          if (0 == strcmp(tmp, "k_f1")) {arg0=SDLK_F1; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f2")) {arg0=SDLK_F2; goto done1540;}
+          if (0 == strcmp(tmp, "k_f2")) {arg0=SDLK_F2; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f3")) {arg0=SDLK_F3; goto done1540;}
+          if (0 == strcmp(tmp, "k_f3")) {arg0=SDLK_F3; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f4")) {arg0=SDLK_F4; goto done1540;}
+          if (0 == strcmp(tmp, "k_f4")) {arg0=SDLK_F4; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f5")) {arg0=SDLK_F5; goto done1540;}
+          if (0 == strcmp(tmp, "k_f5")) {arg0=SDLK_F5; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f6")) {arg0=SDLK_F6; goto done1540;}
+          if (0 == strcmp(tmp, "k_f6")) {arg0=SDLK_F6; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f7")) {arg0=SDLK_F7; goto done1540;}
+          if (0 == strcmp(tmp, "k_f7")) {arg0=SDLK_F7; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f8")) {arg0=SDLK_F8; goto done1540;}
+          if (0 == strcmp(tmp, "k_f8")) {arg0=SDLK_F8; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f9")) {arg0=SDLK_F9; goto done1540;}
+          if (0 == strcmp(tmp, "k_f9")) {arg0=SDLK_F9; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f10")) {arg0=SDLK_F10; goto done1540;}
+          if (0 == strcmp(tmp, "k_f10")) {arg0=SDLK_F10; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f11")) {arg0=SDLK_F11; goto done1540;}
+          if (0 == strcmp(tmp, "k_f11")) {arg0=SDLK_F11; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f12")) {arg0=SDLK_F12; goto done1540;}
+          if (0 == strcmp(tmp, "k_f12")) {arg0=SDLK_F12; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f13")) {arg0=SDLK_F13; goto done1540;}
+          if (0 == strcmp(tmp, "k_f13")) {arg0=SDLK_F13; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f14")) {arg0=SDLK_F14; goto done1540;}
+          if (0 == strcmp(tmp, "k_f14")) {arg0=SDLK_F14; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f15")) {arg0=SDLK_F15; goto done1540;}
+          if (0 == strcmp(tmp, "k_f15")) {arg0=SDLK_F15; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_numlock")) {arg0=SDLK_NUMLOCK; goto done1540;}
+          if (0 == strcmp(tmp, "k_numlock")) {arg0=SDLK_NUMLOCK; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_capslock")) {arg0=SDLK_CAPSLOCK; goto done1540;}
+          if (0 == strcmp(tmp, "k_capslock")) {arg0=SDLK_CAPSLOCK; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_rshift")) {arg0=SDLK_RSHIFT; goto done1540;}
+          if (0 == strcmp(tmp, "k_rshift")) {arg0=SDLK_RSHIFT; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_lshift")) {arg0=SDLK_LSHIFT; goto done1540;}
+          if (0 == strcmp(tmp, "k_lshift")) {arg0=SDLK_LSHIFT; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_rctrl")) {arg0=SDLK_RCTRL; goto done1540;}
+          if (0 == strcmp(tmp, "k_rctrl")) {arg0=SDLK_RCTRL; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_lctrl")) {arg0=SDLK_LCTRL; goto done1540;}
+          if (0 == strcmp(tmp, "k_lctrl")) {arg0=SDLK_LCTRL; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_ralt")) {arg0=SDLK_RALT; goto done1540;}
+          if (0 == strcmp(tmp, "k_ralt")) {arg0=SDLK_RALT; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_lalt")) {arg0=SDLK_LALT; goto done1540;}
+          if (0 == strcmp(tmp, "k_lalt")) {arg0=SDLK_LALT; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_rmeta")) {arg0=SDLK_RMETA; goto done1540;}
+          if (0 == strcmp(tmp, "k_rmeta")) {arg0=SDLK_RMETA; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_lmeta")) {arg0=SDLK_LMETA; goto done1540;}
+          if (0 == strcmp(tmp, "k_lmeta")) {arg0=SDLK_LMETA; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_lsuper")) {arg0=SDLK_LSUPER; goto done1540;}
+          if (0 == strcmp(tmp, "k_lsuper")) {arg0=SDLK_LSUPER; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_rsuper")) {arg0=SDLK_RSUPER; goto done1540;}
+          if (0 == strcmp(tmp, "k_rsuper")) {arg0=SDLK_RSUPER; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_mode")) {arg0=SDLK_MODE; goto done1540;}
+          if (0 == strcmp(tmp, "k_mode")) {arg0=SDLK_MODE; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_compose")) {arg0=SDLK_COMPOSE; goto done1540;}
+          if (0 == strcmp(tmp, "k_compose")) {arg0=SDLK_COMPOSE; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_help")) {arg0=SDLK_HELP; goto done1540;}
+          if (0 == strcmp(tmp, "k_help")) {arg0=SDLK_HELP; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_print")) {arg0=SDLK_PRINT; goto done1540;}
+          if (0 == strcmp(tmp, "k_print")) {arg0=SDLK_PRINT; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_sysreq")) {arg0=SDLK_SYSREQ; goto done1540;}
+          if (0 == strcmp(tmp, "k_sysreq")) {arg0=SDLK_SYSREQ; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_break")) {arg0=SDLK_BREAK; goto done1540;}
+          if (0 == strcmp(tmp, "k_break")) {arg0=SDLK_BREAK; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_menu")) {arg0=SDLK_MENU; goto done1540;}
+          if (0 == strcmp(tmp, "k_menu")) {arg0=SDLK_MENU; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_power")) {arg0=SDLK_POWER; goto done1540;}
+          if (0 == strcmp(tmp, "k_power")) {arg0=SDLK_POWER; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_euro")) {arg0=SDLK_EURO; goto done1540;}
+          if (0 == strcmp(tmp, "k_euro")) {arg0=SDLK_EURO; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_undo")) {arg0=SDLK_UNDO; goto done1540;}
+          if (0 == strcmp(tmp, "k_undo")) {arg0=SDLK_UNDO; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_a")) {arg0=SDLK_a; goto done1540;}
+          if (0 == strcmp(tmp, "k_a")) {arg0=SDLK_a; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_b")) {arg0=SDLK_b; goto done1540;}
+          if (0 == strcmp(tmp, "k_b")) {arg0=SDLK_b; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_c")) {arg0=SDLK_c; goto done1540;}
+          if (0 == strcmp(tmp, "k_c")) {arg0=SDLK_c; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_d")) {arg0=SDLK_d; goto done1540;}
+          if (0 == strcmp(tmp, "k_d")) {arg0=SDLK_d; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_e")) {arg0=SDLK_e; goto done1540;}
+          if (0 == strcmp(tmp, "k_e")) {arg0=SDLK_e; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_f")) {arg0=SDLK_f; goto done1540;}
+          if (0 == strcmp(tmp, "k_f")) {arg0=SDLK_f; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_g")) {arg0=SDLK_g; goto done1540;}
+          if (0 == strcmp(tmp, "k_g")) {arg0=SDLK_g; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_h")) {arg0=SDLK_h; goto done1540;}
+          if (0 == strcmp(tmp, "k_h")) {arg0=SDLK_h; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_i")) {arg0=SDLK_i; goto done1540;}
+          if (0 == strcmp(tmp, "k_i")) {arg0=SDLK_i; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_j")) {arg0=SDLK_j; goto done1540;}
+          if (0 == strcmp(tmp, "k_j")) {arg0=SDLK_j; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_k")) {arg0=SDLK_k; goto done1540;}
+          if (0 == strcmp(tmp, "k_k")) {arg0=SDLK_k; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_l")) {arg0=SDLK_l; goto done1540;}
+          if (0 == strcmp(tmp, "k_l")) {arg0=SDLK_l; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_m")) {arg0=SDLK_m; goto done1540;}
+          if (0 == strcmp(tmp, "k_m")) {arg0=SDLK_m; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_n")) {arg0=SDLK_n; goto done1540;}
+          if (0 == strcmp(tmp, "k_n")) {arg0=SDLK_n; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_o")) {arg0=SDLK_o; goto done1540;}
+          if (0 == strcmp(tmp, "k_o")) {arg0=SDLK_o; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_p")) {arg0=SDLK_p; goto done1540;}
+          if (0 == strcmp(tmp, "k_p")) {arg0=SDLK_p; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_q")) {arg0=SDLK_q; goto done1540;}
+          if (0 == strcmp(tmp, "k_q")) {arg0=SDLK_q; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_r")) {arg0=SDLK_r; goto done1540;}
+          if (0 == strcmp(tmp, "k_r")) {arg0=SDLK_r; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_s")) {arg0=SDLK_s; goto done1540;}
+          if (0 == strcmp(tmp, "k_s")) {arg0=SDLK_s; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_t")) {arg0=SDLK_t; goto done1540;}
+          if (0 == strcmp(tmp, "k_t")) {arg0=SDLK_t; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_u")) {arg0=SDLK_u; goto done1540;}
+          if (0 == strcmp(tmp, "k_u")) {arg0=SDLK_u; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_v")) {arg0=SDLK_v; goto done1540;}
+          if (0 == strcmp(tmp, "k_v")) {arg0=SDLK_v; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_w")) {arg0=SDLK_w; goto done1540;}
+          if (0 == strcmp(tmp, "k_w")) {arg0=SDLK_w; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_x")) {arg0=SDLK_x; goto done1540;}
+          if (0 == strcmp(tmp, "k_x")) {arg0=SDLK_x; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_y")) {arg0=SDLK_y; goto done1540;}
+          if (0 == strcmp(tmp, "k_y")) {arg0=SDLK_y; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_z")) {arg0=SDLK_z; goto done1540;}
+          if (0 == strcmp(tmp, "k_z")) {arg0=SDLK_z; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_0")) {arg0=SDLK_WORLD_0; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_0")) {arg0=SDLK_WORLD_0; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_1")) {arg0=SDLK_WORLD_1; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_1")) {arg0=SDLK_WORLD_1; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_2")) {arg0=SDLK_WORLD_2; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_2")) {arg0=SDLK_WORLD_2; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_3")) {arg0=SDLK_WORLD_3; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_3")) {arg0=SDLK_WORLD_3; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_4")) {arg0=SDLK_WORLD_4; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_4")) {arg0=SDLK_WORLD_4; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_5")) {arg0=SDLK_WORLD_5; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_5")) {arg0=SDLK_WORLD_5; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_6")) {arg0=SDLK_WORLD_6; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_6")) {arg0=SDLK_WORLD_6; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_7")) {arg0=SDLK_WORLD_7; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_7")) {arg0=SDLK_WORLD_7; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_8")) {arg0=SDLK_WORLD_8; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_8")) {arg0=SDLK_WORLD_8; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_9")) {arg0=SDLK_WORLD_9; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_9")) {arg0=SDLK_WORLD_9; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_10")) {arg0=SDLK_WORLD_10; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_10")) {arg0=SDLK_WORLD_10; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_11")) {arg0=SDLK_WORLD_11; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_11")) {arg0=SDLK_WORLD_11; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_12")) {arg0=SDLK_WORLD_12; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_12")) {arg0=SDLK_WORLD_12; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_13")) {arg0=SDLK_WORLD_13; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_13")) {arg0=SDLK_WORLD_13; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_14")) {arg0=SDLK_WORLD_14; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_14")) {arg0=SDLK_WORLD_14; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_15")) {arg0=SDLK_WORLD_15; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_15")) {arg0=SDLK_WORLD_15; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_16")) {arg0=SDLK_WORLD_16; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_16")) {arg0=SDLK_WORLD_16; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_17")) {arg0=SDLK_WORLD_17; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_17")) {arg0=SDLK_WORLD_17; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_18")) {arg0=SDLK_WORLD_18; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_18")) {arg0=SDLK_WORLD_18; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_19")) {arg0=SDLK_WORLD_19; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_19")) {arg0=SDLK_WORLD_19; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_20")) {arg0=SDLK_WORLD_20; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_20")) {arg0=SDLK_WORLD_20; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_21")) {arg0=SDLK_WORLD_21; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_21")) {arg0=SDLK_WORLD_21; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_22")) {arg0=SDLK_WORLD_22; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_22")) {arg0=SDLK_WORLD_22; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_23")) {arg0=SDLK_WORLD_23; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_23")) {arg0=SDLK_WORLD_23; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_24")) {arg0=SDLK_WORLD_24; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_24")) {arg0=SDLK_WORLD_24; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_25")) {arg0=SDLK_WORLD_25; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_25")) {arg0=SDLK_WORLD_25; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_26")) {arg0=SDLK_WORLD_26; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_26")) {arg0=SDLK_WORLD_26; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_27")) {arg0=SDLK_WORLD_27; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_27")) {arg0=SDLK_WORLD_27; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_28")) {arg0=SDLK_WORLD_28; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_28")) {arg0=SDLK_WORLD_28; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_29")) {arg0=SDLK_WORLD_29; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_29")) {arg0=SDLK_WORLD_29; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_30")) {arg0=SDLK_WORLD_30; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_30")) {arg0=SDLK_WORLD_30; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_31")) {arg0=SDLK_WORLD_31; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_31")) {arg0=SDLK_WORLD_31; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_32")) {arg0=SDLK_WORLD_32; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_32")) {arg0=SDLK_WORLD_32; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_33")) {arg0=SDLK_WORLD_33; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_33")) {arg0=SDLK_WORLD_33; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_34")) {arg0=SDLK_WORLD_34; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_34")) {arg0=SDLK_WORLD_34; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_35")) {arg0=SDLK_WORLD_35; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_35")) {arg0=SDLK_WORLD_35; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_36")) {arg0=SDLK_WORLD_36; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_36")) {arg0=SDLK_WORLD_36; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_37")) {arg0=SDLK_WORLD_37; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_37")) {arg0=SDLK_WORLD_37; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_38")) {arg0=SDLK_WORLD_38; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_38")) {arg0=SDLK_WORLD_38; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_39")) {arg0=SDLK_WORLD_39; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_39")) {arg0=SDLK_WORLD_39; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_40")) {arg0=SDLK_WORLD_40; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_40")) {arg0=SDLK_WORLD_40; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_41")) {arg0=SDLK_WORLD_41; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_41")) {arg0=SDLK_WORLD_41; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_42")) {arg0=SDLK_WORLD_42; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_42")) {arg0=SDLK_WORLD_42; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_43")) {arg0=SDLK_WORLD_43; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_43")) {arg0=SDLK_WORLD_43; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_44")) {arg0=SDLK_WORLD_44; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_44")) {arg0=SDLK_WORLD_44; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_45")) {arg0=SDLK_WORLD_45; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_45")) {arg0=SDLK_WORLD_45; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_46")) {arg0=SDLK_WORLD_46; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_46")) {arg0=SDLK_WORLD_46; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_47")) {arg0=SDLK_WORLD_47; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_47")) {arg0=SDLK_WORLD_47; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_48")) {arg0=SDLK_WORLD_48; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_48")) {arg0=SDLK_WORLD_48; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_49")) {arg0=SDLK_WORLD_49; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_49")) {arg0=SDLK_WORLD_49; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_50")) {arg0=SDLK_WORLD_50; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_50")) {arg0=SDLK_WORLD_50; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_51")) {arg0=SDLK_WORLD_51; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_51")) {arg0=SDLK_WORLD_51; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_52")) {arg0=SDLK_WORLD_52; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_52")) {arg0=SDLK_WORLD_52; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_53")) {arg0=SDLK_WORLD_53; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_53")) {arg0=SDLK_WORLD_53; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_54")) {arg0=SDLK_WORLD_54; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_54")) {arg0=SDLK_WORLD_54; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_55")) {arg0=SDLK_WORLD_55; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_55")) {arg0=SDLK_WORLD_55; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_56")) {arg0=SDLK_WORLD_56; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_56")) {arg0=SDLK_WORLD_56; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_57")) {arg0=SDLK_WORLD_57; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_57")) {arg0=SDLK_WORLD_57; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_58")) {arg0=SDLK_WORLD_58; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_58")) {arg0=SDLK_WORLD_58; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_59")) {arg0=SDLK_WORLD_59; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_59")) {arg0=SDLK_WORLD_59; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_60")) {arg0=SDLK_WORLD_60; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_60")) {arg0=SDLK_WORLD_60; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_61")) {arg0=SDLK_WORLD_61; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_61")) {arg0=SDLK_WORLD_61; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_62")) {arg0=SDLK_WORLD_62; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_62")) {arg0=SDLK_WORLD_62; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_63")) {arg0=SDLK_WORLD_63; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_63")) {arg0=SDLK_WORLD_63; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_64")) {arg0=SDLK_WORLD_64; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_64")) {arg0=SDLK_WORLD_64; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_65")) {arg0=SDLK_WORLD_65; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_65")) {arg0=SDLK_WORLD_65; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_66")) {arg0=SDLK_WORLD_66; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_66")) {arg0=SDLK_WORLD_66; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_67")) {arg0=SDLK_WORLD_67; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_67")) {arg0=SDLK_WORLD_67; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_68")) {arg0=SDLK_WORLD_68; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_68")) {arg0=SDLK_WORLD_68; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_69")) {arg0=SDLK_WORLD_69; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_69")) {arg0=SDLK_WORLD_69; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_70")) {arg0=SDLK_WORLD_70; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_70")) {arg0=SDLK_WORLD_70; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_71")) {arg0=SDLK_WORLD_71; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_71")) {arg0=SDLK_WORLD_71; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_72")) {arg0=SDLK_WORLD_72; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_72")) {arg0=SDLK_WORLD_72; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_73")) {arg0=SDLK_WORLD_73; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_73")) {arg0=SDLK_WORLD_73; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_74")) {arg0=SDLK_WORLD_74; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_74")) {arg0=SDLK_WORLD_74; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_75")) {arg0=SDLK_WORLD_75; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_75")) {arg0=SDLK_WORLD_75; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_76")) {arg0=SDLK_WORLD_76; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_76")) {arg0=SDLK_WORLD_76; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_77")) {arg0=SDLK_WORLD_77; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_77")) {arg0=SDLK_WORLD_77; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_78")) {arg0=SDLK_WORLD_78; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_78")) {arg0=SDLK_WORLD_78; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_79")) {arg0=SDLK_WORLD_79; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_79")) {arg0=SDLK_WORLD_79; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_80")) {arg0=SDLK_WORLD_80; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_80")) {arg0=SDLK_WORLD_80; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_81")) {arg0=SDLK_WORLD_81; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_81")) {arg0=SDLK_WORLD_81; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_82")) {arg0=SDLK_WORLD_82; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_82")) {arg0=SDLK_WORLD_82; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_83")) {arg0=SDLK_WORLD_83; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_83")) {arg0=SDLK_WORLD_83; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_84")) {arg0=SDLK_WORLD_84; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_84")) {arg0=SDLK_WORLD_84; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_85")) {arg0=SDLK_WORLD_85; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_85")) {arg0=SDLK_WORLD_85; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_86")) {arg0=SDLK_WORLD_86; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_86")) {arg0=SDLK_WORLD_86; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_87")) {arg0=SDLK_WORLD_87; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_87")) {arg0=SDLK_WORLD_87; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_88")) {arg0=SDLK_WORLD_88; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_88")) {arg0=SDLK_WORLD_88; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_89")) {arg0=SDLK_WORLD_89; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_89")) {arg0=SDLK_WORLD_89; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_90")) {arg0=SDLK_WORLD_90; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_90")) {arg0=SDLK_WORLD_90; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_91")) {arg0=SDLK_WORLD_91; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_91")) {arg0=SDLK_WORLD_91; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_92")) {arg0=SDLK_WORLD_92; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_92")) {arg0=SDLK_WORLD_92; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_93")) {arg0=SDLK_WORLD_93; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_93")) {arg0=SDLK_WORLD_93; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_94")) {arg0=SDLK_WORLD_94; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_94")) {arg0=SDLK_WORLD_94; goto done1551;}
         
-          if (0 == strcmp(tmp, "k_world_95")) {arg0=SDLK_WORLD_95; goto done1540;}
+          if (0 == strcmp(tmp, "k_world_95")) {arg0=SDLK_WORLD_95; goto done1551;}
          {
           char* end;
           arg0 = (SDLKey)strtol(tmp, &end, 10);
@@ -557,9 +557,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
             sprintf(staticError, "Unable to convert %s to SDLKey", tmp);
             scriptError(staticError);
           }
-          goto done1540;
+          goto done1551;
         } 
-done1540:;};
+done1551:;};
 arg0Init=true;
 try {
       ret =
@@ -1301,469 +1301,469 @@ static int set94 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "k_unknown")) {newVal=SDLK_UNKNOWN; goto done1543;}
+          if (0 == strcmp(tmp, "k_unknown")) {newVal=SDLK_UNKNOWN; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_enter")) {newVal=SDLK_RETURN; goto done1543;}
+          if (0 == strcmp(tmp, "k_enter")) {newVal=SDLK_RETURN; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_scrolllock")) {newVal=SDLK_SCROLLOCK; goto done1543;}
+          if (0 == strcmp(tmp, "k_scrolllock")) {newVal=SDLK_SCROLLOCK; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_backspace")) {newVal=SDLK_BACKSPACE; goto done1543;}
+          if (0 == strcmp(tmp, "k_backspace")) {newVal=SDLK_BACKSPACE; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_tab")) {newVal=SDLK_TAB; goto done1543;}
+          if (0 == strcmp(tmp, "k_tab")) {newVal=SDLK_TAB; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_clear")) {newVal=SDLK_CLEAR; goto done1543;}
+          if (0 == strcmp(tmp, "k_clear")) {newVal=SDLK_CLEAR; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_pause")) {newVal=SDLK_PAUSE; goto done1543;}
+          if (0 == strcmp(tmp, "k_pause")) {newVal=SDLK_PAUSE; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_escape")) {newVal=SDLK_ESCAPE; goto done1543;}
+          if (0 == strcmp(tmp, "k_escape")) {newVal=SDLK_ESCAPE; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_space")) {newVal=SDLK_SPACE; goto done1543;}
+          if (0 == strcmp(tmp, "k_space")) {newVal=SDLK_SPACE; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_exclaim")) {newVal=SDLK_EXCLAIM; goto done1543;}
+          if (0 == strcmp(tmp, "k_exclaim")) {newVal=SDLK_EXCLAIM; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_quotedbl")) {newVal=SDLK_QUOTEDBL; goto done1543;}
+          if (0 == strcmp(tmp, "k_quotedbl")) {newVal=SDLK_QUOTEDBL; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_hash")) {newVal=SDLK_HASH; goto done1543;}
+          if (0 == strcmp(tmp, "k_hash")) {newVal=SDLK_HASH; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_dollar")) {newVal=SDLK_DOLLAR; goto done1543;}
+          if (0 == strcmp(tmp, "k_dollar")) {newVal=SDLK_DOLLAR; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_ampersand")) {newVal=SDLK_AMPERSAND; goto done1543;}
+          if (0 == strcmp(tmp, "k_ampersand")) {newVal=SDLK_AMPERSAND; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_quote")) {newVal=SDLK_QUOTE; goto done1543;}
+          if (0 == strcmp(tmp, "k_quote")) {newVal=SDLK_QUOTE; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_leftparen")) {newVal=SDLK_LEFTPAREN; goto done1543;}
+          if (0 == strcmp(tmp, "k_leftparen")) {newVal=SDLK_LEFTPAREN; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_rightparen")) {newVal=SDLK_RIGHTPAREN; goto done1543;}
+          if (0 == strcmp(tmp, "k_rightparen")) {newVal=SDLK_RIGHTPAREN; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_asterisk")) {newVal=SDLK_ASTERISK; goto done1543;}
+          if (0 == strcmp(tmp, "k_asterisk")) {newVal=SDLK_ASTERISK; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_plus")) {newVal=SDLK_PLUS; goto done1543;}
+          if (0 == strcmp(tmp, "k_plus")) {newVal=SDLK_PLUS; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_comma")) {newVal=SDLK_COMMA; goto done1543;}
+          if (0 == strcmp(tmp, "k_comma")) {newVal=SDLK_COMMA; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_minus")) {newVal=SDLK_MINUS; goto done1543;}
+          if (0 == strcmp(tmp, "k_minus")) {newVal=SDLK_MINUS; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_period")) {newVal=SDLK_PERIOD; goto done1543;}
+          if (0 == strcmp(tmp, "k_period")) {newVal=SDLK_PERIOD; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_slash")) {newVal=SDLK_SLASH; goto done1543;}
+          if (0 == strcmp(tmp, "k_slash")) {newVal=SDLK_SLASH; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_0")) {newVal=SDLK_0; goto done1543;}
+          if (0 == strcmp(tmp, "k_0")) {newVal=SDLK_0; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_1")) {newVal=SDLK_1; goto done1543;}
+          if (0 == strcmp(tmp, "k_1")) {newVal=SDLK_1; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_2")) {newVal=SDLK_2; goto done1543;}
+          if (0 == strcmp(tmp, "k_2")) {newVal=SDLK_2; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_3")) {newVal=SDLK_3; goto done1543;}
+          if (0 == strcmp(tmp, "k_3")) {newVal=SDLK_3; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_4")) {newVal=SDLK_4; goto done1543;}
+          if (0 == strcmp(tmp, "k_4")) {newVal=SDLK_4; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_5")) {newVal=SDLK_5; goto done1543;}
+          if (0 == strcmp(tmp, "k_5")) {newVal=SDLK_5; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_6")) {newVal=SDLK_6; goto done1543;}
+          if (0 == strcmp(tmp, "k_6")) {newVal=SDLK_6; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_7")) {newVal=SDLK_7; goto done1543;}
+          if (0 == strcmp(tmp, "k_7")) {newVal=SDLK_7; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_8")) {newVal=SDLK_8; goto done1543;}
+          if (0 == strcmp(tmp, "k_8")) {newVal=SDLK_8; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_9")) {newVal=SDLK_9; goto done1543;}
+          if (0 == strcmp(tmp, "k_9")) {newVal=SDLK_9; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_colon")) {newVal=SDLK_COLON; goto done1543;}
+          if (0 == strcmp(tmp, "k_colon")) {newVal=SDLK_COLON; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_semicolon")) {newVal=SDLK_SEMICOLON; goto done1543;}
+          if (0 == strcmp(tmp, "k_semicolon")) {newVal=SDLK_SEMICOLON; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_less")) {newVal=SDLK_LESS; goto done1543;}
+          if (0 == strcmp(tmp, "k_less")) {newVal=SDLK_LESS; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_equals")) {newVal=SDLK_EQUALS; goto done1543;}
+          if (0 == strcmp(tmp, "k_equals")) {newVal=SDLK_EQUALS; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_greater")) {newVal=SDLK_GREATER; goto done1543;}
+          if (0 == strcmp(tmp, "k_greater")) {newVal=SDLK_GREATER; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_question")) {newVal=SDLK_QUESTION; goto done1543;}
+          if (0 == strcmp(tmp, "k_question")) {newVal=SDLK_QUESTION; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_at")) {newVal=SDLK_AT; goto done1543;}
+          if (0 == strcmp(tmp, "k_at")) {newVal=SDLK_AT; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_leftbracket")) {newVal=SDLK_LEFTBRACKET; goto done1543;}
+          if (0 == strcmp(tmp, "k_leftbracket")) {newVal=SDLK_LEFTBRACKET; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_backslash")) {newVal=SDLK_BACKSLASH; goto done1543;}
+          if (0 == strcmp(tmp, "k_backslash")) {newVal=SDLK_BACKSLASH; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_rightbracket")) {newVal=SDLK_RIGHTBRACKET; goto done1543;}
+          if (0 == strcmp(tmp, "k_rightbracket")) {newVal=SDLK_RIGHTBRACKET; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_caret")) {newVal=SDLK_CARET; goto done1543;}
+          if (0 == strcmp(tmp, "k_caret")) {newVal=SDLK_CARET; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_underscore")) {newVal=SDLK_UNDERSCORE; goto done1543;}
+          if (0 == strcmp(tmp, "k_underscore")) {newVal=SDLK_UNDERSCORE; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_backquote")) {newVal=SDLK_BACKQUOTE; goto done1543;}
+          if (0 == strcmp(tmp, "k_backquote")) {newVal=SDLK_BACKQUOTE; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_delete")) {newVal=SDLK_DELETE; goto done1543;}
+          if (0 == strcmp(tmp, "k_delete")) {newVal=SDLK_DELETE; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp0")) {newVal=SDLK_KP0; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp0")) {newVal=SDLK_KP0; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp1")) {newVal=SDLK_KP1; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp1")) {newVal=SDLK_KP1; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp2")) {newVal=SDLK_KP2; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp2")) {newVal=SDLK_KP2; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp3")) {newVal=SDLK_KP3; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp3")) {newVal=SDLK_KP3; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp4")) {newVal=SDLK_KP4; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp4")) {newVal=SDLK_KP4; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp5")) {newVal=SDLK_KP5; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp5")) {newVal=SDLK_KP5; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp6")) {newVal=SDLK_KP6; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp6")) {newVal=SDLK_KP6; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp7")) {newVal=SDLK_KP7; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp7")) {newVal=SDLK_KP7; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp8")) {newVal=SDLK_KP8; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp8")) {newVal=SDLK_KP8; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp9")) {newVal=SDLK_KP9; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp9")) {newVal=SDLK_KP9; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp_period")) {newVal=SDLK_KP_PERIOD; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp_period")) {newVal=SDLK_KP_PERIOD; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp_divide")) {newVal=SDLK_KP_DIVIDE; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp_divide")) {newVal=SDLK_KP_DIVIDE; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp_multiply")) {newVal=SDLK_KP_MULTIPLY; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp_multiply")) {newVal=SDLK_KP_MULTIPLY; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp_minus")) {newVal=SDLK_KP_MINUS; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp_minus")) {newVal=SDLK_KP_MINUS; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp_plus")) {newVal=SDLK_KP_PLUS; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp_plus")) {newVal=SDLK_KP_PLUS; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp_enter")) {newVal=SDLK_KP_ENTER; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp_enter")) {newVal=SDLK_KP_ENTER; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_kp_equals")) {newVal=SDLK_KP_EQUALS; goto done1543;}
+          if (0 == strcmp(tmp, "k_kp_equals")) {newVal=SDLK_KP_EQUALS; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_up")) {newVal=SDLK_UP; goto done1543;}
+          if (0 == strcmp(tmp, "k_up")) {newVal=SDLK_UP; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_down")) {newVal=SDLK_DOWN; goto done1543;}
+          if (0 == strcmp(tmp, "k_down")) {newVal=SDLK_DOWN; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_right")) {newVal=SDLK_RIGHT; goto done1543;}
+          if (0 == strcmp(tmp, "k_right")) {newVal=SDLK_RIGHT; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_left")) {newVal=SDLK_LEFT; goto done1543;}
+          if (0 == strcmp(tmp, "k_left")) {newVal=SDLK_LEFT; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_insert")) {newVal=SDLK_INSERT; goto done1543;}
+          if (0 == strcmp(tmp, "k_insert")) {newVal=SDLK_INSERT; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_home")) {newVal=SDLK_HOME; goto done1543;}
+          if (0 == strcmp(tmp, "k_home")) {newVal=SDLK_HOME; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_end")) {newVal=SDLK_END; goto done1543;}
+          if (0 == strcmp(tmp, "k_end")) {newVal=SDLK_END; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_pageup")) {newVal=SDLK_PAGEUP; goto done1543;}
+          if (0 == strcmp(tmp, "k_pageup")) {newVal=SDLK_PAGEUP; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_pagedown")) {newVal=SDLK_PAGEDOWN; goto done1543;}
+          if (0 == strcmp(tmp, "k_pagedown")) {newVal=SDLK_PAGEDOWN; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f1")) {newVal=SDLK_F1; goto done1543;}
+          if (0 == strcmp(tmp, "k_f1")) {newVal=SDLK_F1; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f2")) {newVal=SDLK_F2; goto done1543;}
+          if (0 == strcmp(tmp, "k_f2")) {newVal=SDLK_F2; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f3")) {newVal=SDLK_F3; goto done1543;}
+          if (0 == strcmp(tmp, "k_f3")) {newVal=SDLK_F3; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f4")) {newVal=SDLK_F4; goto done1543;}
+          if (0 == strcmp(tmp, "k_f4")) {newVal=SDLK_F4; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f5")) {newVal=SDLK_F5; goto done1543;}
+          if (0 == strcmp(tmp, "k_f5")) {newVal=SDLK_F5; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f6")) {newVal=SDLK_F6; goto done1543;}
+          if (0 == strcmp(tmp, "k_f6")) {newVal=SDLK_F6; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f7")) {newVal=SDLK_F7; goto done1543;}
+          if (0 == strcmp(tmp, "k_f7")) {newVal=SDLK_F7; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f8")) {newVal=SDLK_F8; goto done1543;}
+          if (0 == strcmp(tmp, "k_f8")) {newVal=SDLK_F8; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f9")) {newVal=SDLK_F9; goto done1543;}
+          if (0 == strcmp(tmp, "k_f9")) {newVal=SDLK_F9; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f10")) {newVal=SDLK_F10; goto done1543;}
+          if (0 == strcmp(tmp, "k_f10")) {newVal=SDLK_F10; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f11")) {newVal=SDLK_F11; goto done1543;}
+          if (0 == strcmp(tmp, "k_f11")) {newVal=SDLK_F11; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f12")) {newVal=SDLK_F12; goto done1543;}
+          if (0 == strcmp(tmp, "k_f12")) {newVal=SDLK_F12; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f13")) {newVal=SDLK_F13; goto done1543;}
+          if (0 == strcmp(tmp, "k_f13")) {newVal=SDLK_F13; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f14")) {newVal=SDLK_F14; goto done1543;}
+          if (0 == strcmp(tmp, "k_f14")) {newVal=SDLK_F14; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f15")) {newVal=SDLK_F15; goto done1543;}
+          if (0 == strcmp(tmp, "k_f15")) {newVal=SDLK_F15; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_numlock")) {newVal=SDLK_NUMLOCK; goto done1543;}
+          if (0 == strcmp(tmp, "k_numlock")) {newVal=SDLK_NUMLOCK; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_capslock")) {newVal=SDLK_CAPSLOCK; goto done1543;}
+          if (0 == strcmp(tmp, "k_capslock")) {newVal=SDLK_CAPSLOCK; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_rshift")) {newVal=SDLK_RSHIFT; goto done1543;}
+          if (0 == strcmp(tmp, "k_rshift")) {newVal=SDLK_RSHIFT; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_lshift")) {newVal=SDLK_LSHIFT; goto done1543;}
+          if (0 == strcmp(tmp, "k_lshift")) {newVal=SDLK_LSHIFT; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_rctrl")) {newVal=SDLK_RCTRL; goto done1543;}
+          if (0 == strcmp(tmp, "k_rctrl")) {newVal=SDLK_RCTRL; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_lctrl")) {newVal=SDLK_LCTRL; goto done1543;}
+          if (0 == strcmp(tmp, "k_lctrl")) {newVal=SDLK_LCTRL; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_ralt")) {newVal=SDLK_RALT; goto done1543;}
+          if (0 == strcmp(tmp, "k_ralt")) {newVal=SDLK_RALT; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_lalt")) {newVal=SDLK_LALT; goto done1543;}
+          if (0 == strcmp(tmp, "k_lalt")) {newVal=SDLK_LALT; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_rmeta")) {newVal=SDLK_RMETA; goto done1543;}
+          if (0 == strcmp(tmp, "k_rmeta")) {newVal=SDLK_RMETA; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_lmeta")) {newVal=SDLK_LMETA; goto done1543;}
+          if (0 == strcmp(tmp, "k_lmeta")) {newVal=SDLK_LMETA; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_lsuper")) {newVal=SDLK_LSUPER; goto done1543;}
+          if (0 == strcmp(tmp, "k_lsuper")) {newVal=SDLK_LSUPER; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_rsuper")) {newVal=SDLK_RSUPER; goto done1543;}
+          if (0 == strcmp(tmp, "k_rsuper")) {newVal=SDLK_RSUPER; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_mode")) {newVal=SDLK_MODE; goto done1543;}
+          if (0 == strcmp(tmp, "k_mode")) {newVal=SDLK_MODE; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_compose")) {newVal=SDLK_COMPOSE; goto done1543;}
+          if (0 == strcmp(tmp, "k_compose")) {newVal=SDLK_COMPOSE; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_help")) {newVal=SDLK_HELP; goto done1543;}
+          if (0 == strcmp(tmp, "k_help")) {newVal=SDLK_HELP; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_print")) {newVal=SDLK_PRINT; goto done1543;}
+          if (0 == strcmp(tmp, "k_print")) {newVal=SDLK_PRINT; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_sysreq")) {newVal=SDLK_SYSREQ; goto done1543;}
+          if (0 == strcmp(tmp, "k_sysreq")) {newVal=SDLK_SYSREQ; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_break")) {newVal=SDLK_BREAK; goto done1543;}
+          if (0 == strcmp(tmp, "k_break")) {newVal=SDLK_BREAK; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_menu")) {newVal=SDLK_MENU; goto done1543;}
+          if (0 == strcmp(tmp, "k_menu")) {newVal=SDLK_MENU; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_power")) {newVal=SDLK_POWER; goto done1543;}
+          if (0 == strcmp(tmp, "k_power")) {newVal=SDLK_POWER; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_euro")) {newVal=SDLK_EURO; goto done1543;}
+          if (0 == strcmp(tmp, "k_euro")) {newVal=SDLK_EURO; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_undo")) {newVal=SDLK_UNDO; goto done1543;}
+          if (0 == strcmp(tmp, "k_undo")) {newVal=SDLK_UNDO; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_a")) {newVal=SDLK_a; goto done1543;}
+          if (0 == strcmp(tmp, "k_a")) {newVal=SDLK_a; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_b")) {newVal=SDLK_b; goto done1543;}
+          if (0 == strcmp(tmp, "k_b")) {newVal=SDLK_b; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_c")) {newVal=SDLK_c; goto done1543;}
+          if (0 == strcmp(tmp, "k_c")) {newVal=SDLK_c; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_d")) {newVal=SDLK_d; goto done1543;}
+          if (0 == strcmp(tmp, "k_d")) {newVal=SDLK_d; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_e")) {newVal=SDLK_e; goto done1543;}
+          if (0 == strcmp(tmp, "k_e")) {newVal=SDLK_e; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_f")) {newVal=SDLK_f; goto done1543;}
+          if (0 == strcmp(tmp, "k_f")) {newVal=SDLK_f; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_g")) {newVal=SDLK_g; goto done1543;}
+          if (0 == strcmp(tmp, "k_g")) {newVal=SDLK_g; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_h")) {newVal=SDLK_h; goto done1543;}
+          if (0 == strcmp(tmp, "k_h")) {newVal=SDLK_h; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_i")) {newVal=SDLK_i; goto done1543;}
+          if (0 == strcmp(tmp, "k_i")) {newVal=SDLK_i; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_j")) {newVal=SDLK_j; goto done1543;}
+          if (0 == strcmp(tmp, "k_j")) {newVal=SDLK_j; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_k")) {newVal=SDLK_k; goto done1543;}
+          if (0 == strcmp(tmp, "k_k")) {newVal=SDLK_k; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_l")) {newVal=SDLK_l; goto done1543;}
+          if (0 == strcmp(tmp, "k_l")) {newVal=SDLK_l; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_m")) {newVal=SDLK_m; goto done1543;}
+          if (0 == strcmp(tmp, "k_m")) {newVal=SDLK_m; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_n")) {newVal=SDLK_n; goto done1543;}
+          if (0 == strcmp(tmp, "k_n")) {newVal=SDLK_n; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_o")) {newVal=SDLK_o; goto done1543;}
+          if (0 == strcmp(tmp, "k_o")) {newVal=SDLK_o; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_p")) {newVal=SDLK_p; goto done1543;}
+          if (0 == strcmp(tmp, "k_p")) {newVal=SDLK_p; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_q")) {newVal=SDLK_q; goto done1543;}
+          if (0 == strcmp(tmp, "k_q")) {newVal=SDLK_q; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_r")) {newVal=SDLK_r; goto done1543;}
+          if (0 == strcmp(tmp, "k_r")) {newVal=SDLK_r; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_s")) {newVal=SDLK_s; goto done1543;}
+          if (0 == strcmp(tmp, "k_s")) {newVal=SDLK_s; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_t")) {newVal=SDLK_t; goto done1543;}
+          if (0 == strcmp(tmp, "k_t")) {newVal=SDLK_t; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_u")) {newVal=SDLK_u; goto done1543;}
+          if (0 == strcmp(tmp, "k_u")) {newVal=SDLK_u; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_v")) {newVal=SDLK_v; goto done1543;}
+          if (0 == strcmp(tmp, "k_v")) {newVal=SDLK_v; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_w")) {newVal=SDLK_w; goto done1543;}
+          if (0 == strcmp(tmp, "k_w")) {newVal=SDLK_w; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_x")) {newVal=SDLK_x; goto done1543;}
+          if (0 == strcmp(tmp, "k_x")) {newVal=SDLK_x; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_y")) {newVal=SDLK_y; goto done1543;}
+          if (0 == strcmp(tmp, "k_y")) {newVal=SDLK_y; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_z")) {newVal=SDLK_z; goto done1543;}
+          if (0 == strcmp(tmp, "k_z")) {newVal=SDLK_z; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_0")) {newVal=SDLK_WORLD_0; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_0")) {newVal=SDLK_WORLD_0; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_1")) {newVal=SDLK_WORLD_1; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_1")) {newVal=SDLK_WORLD_1; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_2")) {newVal=SDLK_WORLD_2; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_2")) {newVal=SDLK_WORLD_2; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_3")) {newVal=SDLK_WORLD_3; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_3")) {newVal=SDLK_WORLD_3; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_4")) {newVal=SDLK_WORLD_4; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_4")) {newVal=SDLK_WORLD_4; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_5")) {newVal=SDLK_WORLD_5; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_5")) {newVal=SDLK_WORLD_5; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_6")) {newVal=SDLK_WORLD_6; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_6")) {newVal=SDLK_WORLD_6; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_7")) {newVal=SDLK_WORLD_7; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_7")) {newVal=SDLK_WORLD_7; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_8")) {newVal=SDLK_WORLD_8; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_8")) {newVal=SDLK_WORLD_8; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_9")) {newVal=SDLK_WORLD_9; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_9")) {newVal=SDLK_WORLD_9; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_10")) {newVal=SDLK_WORLD_10; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_10")) {newVal=SDLK_WORLD_10; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_11")) {newVal=SDLK_WORLD_11; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_11")) {newVal=SDLK_WORLD_11; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_12")) {newVal=SDLK_WORLD_12; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_12")) {newVal=SDLK_WORLD_12; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_13")) {newVal=SDLK_WORLD_13; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_13")) {newVal=SDLK_WORLD_13; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_14")) {newVal=SDLK_WORLD_14; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_14")) {newVal=SDLK_WORLD_14; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_15")) {newVal=SDLK_WORLD_15; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_15")) {newVal=SDLK_WORLD_15; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_16")) {newVal=SDLK_WORLD_16; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_16")) {newVal=SDLK_WORLD_16; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_17")) {newVal=SDLK_WORLD_17; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_17")) {newVal=SDLK_WORLD_17; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_18")) {newVal=SDLK_WORLD_18; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_18")) {newVal=SDLK_WORLD_18; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_19")) {newVal=SDLK_WORLD_19; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_19")) {newVal=SDLK_WORLD_19; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_20")) {newVal=SDLK_WORLD_20; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_20")) {newVal=SDLK_WORLD_20; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_21")) {newVal=SDLK_WORLD_21; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_21")) {newVal=SDLK_WORLD_21; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_22")) {newVal=SDLK_WORLD_22; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_22")) {newVal=SDLK_WORLD_22; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_23")) {newVal=SDLK_WORLD_23; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_23")) {newVal=SDLK_WORLD_23; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_24")) {newVal=SDLK_WORLD_24; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_24")) {newVal=SDLK_WORLD_24; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_25")) {newVal=SDLK_WORLD_25; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_25")) {newVal=SDLK_WORLD_25; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_26")) {newVal=SDLK_WORLD_26; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_26")) {newVal=SDLK_WORLD_26; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_27")) {newVal=SDLK_WORLD_27; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_27")) {newVal=SDLK_WORLD_27; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_28")) {newVal=SDLK_WORLD_28; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_28")) {newVal=SDLK_WORLD_28; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_29")) {newVal=SDLK_WORLD_29; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_29")) {newVal=SDLK_WORLD_29; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_30")) {newVal=SDLK_WORLD_30; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_30")) {newVal=SDLK_WORLD_30; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_31")) {newVal=SDLK_WORLD_31; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_31")) {newVal=SDLK_WORLD_31; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_32")) {newVal=SDLK_WORLD_32; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_32")) {newVal=SDLK_WORLD_32; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_33")) {newVal=SDLK_WORLD_33; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_33")) {newVal=SDLK_WORLD_33; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_34")) {newVal=SDLK_WORLD_34; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_34")) {newVal=SDLK_WORLD_34; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_35")) {newVal=SDLK_WORLD_35; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_35")) {newVal=SDLK_WORLD_35; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_36")) {newVal=SDLK_WORLD_36; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_36")) {newVal=SDLK_WORLD_36; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_37")) {newVal=SDLK_WORLD_37; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_37")) {newVal=SDLK_WORLD_37; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_38")) {newVal=SDLK_WORLD_38; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_38")) {newVal=SDLK_WORLD_38; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_39")) {newVal=SDLK_WORLD_39; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_39")) {newVal=SDLK_WORLD_39; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_40")) {newVal=SDLK_WORLD_40; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_40")) {newVal=SDLK_WORLD_40; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_41")) {newVal=SDLK_WORLD_41; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_41")) {newVal=SDLK_WORLD_41; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_42")) {newVal=SDLK_WORLD_42; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_42")) {newVal=SDLK_WORLD_42; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_43")) {newVal=SDLK_WORLD_43; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_43")) {newVal=SDLK_WORLD_43; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_44")) {newVal=SDLK_WORLD_44; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_44")) {newVal=SDLK_WORLD_44; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_45")) {newVal=SDLK_WORLD_45; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_45")) {newVal=SDLK_WORLD_45; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_46")) {newVal=SDLK_WORLD_46; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_46")) {newVal=SDLK_WORLD_46; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_47")) {newVal=SDLK_WORLD_47; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_47")) {newVal=SDLK_WORLD_47; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_48")) {newVal=SDLK_WORLD_48; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_48")) {newVal=SDLK_WORLD_48; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_49")) {newVal=SDLK_WORLD_49; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_49")) {newVal=SDLK_WORLD_49; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_50")) {newVal=SDLK_WORLD_50; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_50")) {newVal=SDLK_WORLD_50; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_51")) {newVal=SDLK_WORLD_51; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_51")) {newVal=SDLK_WORLD_51; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_52")) {newVal=SDLK_WORLD_52; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_52")) {newVal=SDLK_WORLD_52; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_53")) {newVal=SDLK_WORLD_53; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_53")) {newVal=SDLK_WORLD_53; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_54")) {newVal=SDLK_WORLD_54; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_54")) {newVal=SDLK_WORLD_54; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_55")) {newVal=SDLK_WORLD_55; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_55")) {newVal=SDLK_WORLD_55; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_56")) {newVal=SDLK_WORLD_56; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_56")) {newVal=SDLK_WORLD_56; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_57")) {newVal=SDLK_WORLD_57; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_57")) {newVal=SDLK_WORLD_57; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_58")) {newVal=SDLK_WORLD_58; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_58")) {newVal=SDLK_WORLD_58; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_59")) {newVal=SDLK_WORLD_59; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_59")) {newVal=SDLK_WORLD_59; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_60")) {newVal=SDLK_WORLD_60; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_60")) {newVal=SDLK_WORLD_60; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_61")) {newVal=SDLK_WORLD_61; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_61")) {newVal=SDLK_WORLD_61; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_62")) {newVal=SDLK_WORLD_62; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_62")) {newVal=SDLK_WORLD_62; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_63")) {newVal=SDLK_WORLD_63; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_63")) {newVal=SDLK_WORLD_63; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_64")) {newVal=SDLK_WORLD_64; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_64")) {newVal=SDLK_WORLD_64; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_65")) {newVal=SDLK_WORLD_65; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_65")) {newVal=SDLK_WORLD_65; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_66")) {newVal=SDLK_WORLD_66; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_66")) {newVal=SDLK_WORLD_66; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_67")) {newVal=SDLK_WORLD_67; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_67")) {newVal=SDLK_WORLD_67; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_68")) {newVal=SDLK_WORLD_68; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_68")) {newVal=SDLK_WORLD_68; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_69")) {newVal=SDLK_WORLD_69; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_69")) {newVal=SDLK_WORLD_69; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_70")) {newVal=SDLK_WORLD_70; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_70")) {newVal=SDLK_WORLD_70; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_71")) {newVal=SDLK_WORLD_71; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_71")) {newVal=SDLK_WORLD_71; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_72")) {newVal=SDLK_WORLD_72; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_72")) {newVal=SDLK_WORLD_72; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_73")) {newVal=SDLK_WORLD_73; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_73")) {newVal=SDLK_WORLD_73; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_74")) {newVal=SDLK_WORLD_74; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_74")) {newVal=SDLK_WORLD_74; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_75")) {newVal=SDLK_WORLD_75; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_75")) {newVal=SDLK_WORLD_75; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_76")) {newVal=SDLK_WORLD_76; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_76")) {newVal=SDLK_WORLD_76; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_77")) {newVal=SDLK_WORLD_77; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_77")) {newVal=SDLK_WORLD_77; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_78")) {newVal=SDLK_WORLD_78; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_78")) {newVal=SDLK_WORLD_78; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_79")) {newVal=SDLK_WORLD_79; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_79")) {newVal=SDLK_WORLD_79; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_80")) {newVal=SDLK_WORLD_80; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_80")) {newVal=SDLK_WORLD_80; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_81")) {newVal=SDLK_WORLD_81; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_81")) {newVal=SDLK_WORLD_81; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_82")) {newVal=SDLK_WORLD_82; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_82")) {newVal=SDLK_WORLD_82; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_83")) {newVal=SDLK_WORLD_83; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_83")) {newVal=SDLK_WORLD_83; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_84")) {newVal=SDLK_WORLD_84; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_84")) {newVal=SDLK_WORLD_84; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_85")) {newVal=SDLK_WORLD_85; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_85")) {newVal=SDLK_WORLD_85; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_86")) {newVal=SDLK_WORLD_86; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_86")) {newVal=SDLK_WORLD_86; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_87")) {newVal=SDLK_WORLD_87; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_87")) {newVal=SDLK_WORLD_87; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_88")) {newVal=SDLK_WORLD_88; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_88")) {newVal=SDLK_WORLD_88; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_89")) {newVal=SDLK_WORLD_89; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_89")) {newVal=SDLK_WORLD_89; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_90")) {newVal=SDLK_WORLD_90; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_90")) {newVal=SDLK_WORLD_90; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_91")) {newVal=SDLK_WORLD_91; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_91")) {newVal=SDLK_WORLD_91; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_92")) {newVal=SDLK_WORLD_92; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_92")) {newVal=SDLK_WORLD_92; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_93")) {newVal=SDLK_WORLD_93; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_93")) {newVal=SDLK_WORLD_93; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_94")) {newVal=SDLK_WORLD_94; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_94")) {newVal=SDLK_WORLD_94; goto done1554;}
         
-          if (0 == strcmp(tmp, "k_world_95")) {newVal=SDLK_WORLD_95; goto done1543;}
+          if (0 == strcmp(tmp, "k_world_95")) {newVal=SDLK_WORLD_95; goto done1554;}
          {
           char* end;
           newVal = (SDLKey)strtol(tmp, &end, 10);
@@ -1771,9 +1771,9 @@ static int set94 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]
             sprintf(staticError, "Unable to convert %s to SDLKey", tmp);
             scriptError(staticError);
           }
-          goto done1543;
+          goto done1554;
         } 
-done1543:;}
+done1554:;}
 
       //Any necessary checks
       
@@ -2172,14 +2172,14 @@ static int set104 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "DOWN")) {newVal=SDL_KEYDOWN; goto done1547;}
+          if (0 == strcmp(tmp, "DOWN")) {newVal=SDL_KEYDOWN; goto done1558;}
         
-          if (0 == strcmp(tmp, "UP")) {newVal=SDL_KEYUP; goto done1547;}
+          if (0 == strcmp(tmp, "UP")) {newVal=SDL_KEYUP; goto done1558;}
          {
           sprintf(staticError, "Unable to convert %s to Uint8", tmp);
           scriptError(staticError);
         } 
-done1547:;}
+done1558:;}
 
       //Any necessary checks
       
@@ -2315,14 +2315,14 @@ static int set107 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "PRESSED")) {newVal=SDL_PRESSED; goto done1549;}
+          if (0 == strcmp(tmp, "PRESSED")) {newVal=SDL_PRESSED; goto done1560;}
         
-          if (0 == strcmp(tmp, "RELEASED")) {newVal=SDL_RELEASED; goto done1549;}
+          if (0 == strcmp(tmp, "RELEASED")) {newVal=SDL_RELEASED; goto done1560;}
          {
           sprintf(staticError, "Unable to convert %s to Uint8", tmp);
           scriptError(staticError);
         } 
-done1549:;}
+done1560:;}
 
       //Any necessary checks
       
@@ -3661,14 +3661,14 @@ static int set151 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "DOWN")) {newVal=SDL_MOUSEBUTTONDOWN; goto done1559;}
+          if (0 == strcmp(tmp, "DOWN")) {newVal=SDL_MOUSEBUTTONDOWN; goto done1570;}
         
-          if (0 == strcmp(tmp, "UP")) {newVal=SDL_MOUSEBUTTONUP; goto done1559;}
+          if (0 == strcmp(tmp, "UP")) {newVal=SDL_MOUSEBUTTONUP; goto done1570;}
          {
           sprintf(staticError, "Unable to convert %s to Uint8", tmp);
           scriptError(staticError);
         } 
-done1559:;}
+done1570:;}
 
       //Any necessary checks
       
@@ -3927,20 +3927,20 @@ static int set157 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "mb_left")) {newVal=SDL_BUTTON_LEFT; goto done1562;}
+          if (0 == strcmp(tmp, "mb_left")) {newVal=SDL_BUTTON_LEFT; goto done1573;}
         
-          if (0 == strcmp(tmp, "mb_mid")) {newVal=SDL_BUTTON_MIDDLE; goto done1562;}
+          if (0 == strcmp(tmp, "mb_mid")) {newVal=SDL_BUTTON_MIDDLE; goto done1573;}
         
-          if (0 == strcmp(tmp, "mb_right")) {newVal=SDL_BUTTON_RIGHT; goto done1562;}
+          if (0 == strcmp(tmp, "mb_right")) {newVal=SDL_BUTTON_RIGHT; goto done1573;}
         
-          if (0 == strcmp(tmp, "mb_wup")) {newVal=SDL_BUTTON_WHEELUP; goto done1562;}
+          if (0 == strcmp(tmp, "mb_wup")) {newVal=SDL_BUTTON_WHEELUP; goto done1573;}
         
-          if (0 == strcmp(tmp, "mb_wdown")) {newVal=SDL_BUTTON_WHEELDOWN; goto done1562;}
+          if (0 == strcmp(tmp, "mb_wdown")) {newVal=SDL_BUTTON_WHEELDOWN; goto done1573;}
          {
           sprintf(staticError, "Unable to convert %s to Uint8", tmp);
           scriptError(staticError);
         } 
-done1562:;}
+done1573:;}
 
       //Any necessary checks
       
@@ -4076,14 +4076,14 @@ static int set160 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "PRESSED")) {newVal=SDL_PRESSED; goto done1564;}
+          if (0 == strcmp(tmp, "PRESSED")) {newVal=SDL_PRESSED; goto done1575;}
         
-          if (0 == strcmp(tmp, "RELEASED")) {newVal=SDL_RELEASED; goto done1564;}
+          if (0 == strcmp(tmp, "RELEASED")) {newVal=SDL_RELEASED; goto done1575;}
          {
           sprintf(staticError, "Unable to convert %s to Uint8", tmp);
           scriptError(staticError);
         } 
-done1564:;}
+done1575:;}
 
       //Any necessary checks
       
@@ -4392,469 +4392,469 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "k_unknown")) {arg0=SDLK_UNKNOWN; goto done1567;}
+          if (0 == strcmp(tmp, "k_unknown")) {arg0=SDLK_UNKNOWN; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_enter")) {arg0=SDLK_RETURN; goto done1567;}
+          if (0 == strcmp(tmp, "k_enter")) {arg0=SDLK_RETURN; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_scrolllock")) {arg0=SDLK_SCROLLOCK; goto done1567;}
+          if (0 == strcmp(tmp, "k_scrolllock")) {arg0=SDLK_SCROLLOCK; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_backspace")) {arg0=SDLK_BACKSPACE; goto done1567;}
+          if (0 == strcmp(tmp, "k_backspace")) {arg0=SDLK_BACKSPACE; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_tab")) {arg0=SDLK_TAB; goto done1567;}
+          if (0 == strcmp(tmp, "k_tab")) {arg0=SDLK_TAB; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_clear")) {arg0=SDLK_CLEAR; goto done1567;}
+          if (0 == strcmp(tmp, "k_clear")) {arg0=SDLK_CLEAR; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_pause")) {arg0=SDLK_PAUSE; goto done1567;}
+          if (0 == strcmp(tmp, "k_pause")) {arg0=SDLK_PAUSE; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_escape")) {arg0=SDLK_ESCAPE; goto done1567;}
+          if (0 == strcmp(tmp, "k_escape")) {arg0=SDLK_ESCAPE; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_space")) {arg0=SDLK_SPACE; goto done1567;}
+          if (0 == strcmp(tmp, "k_space")) {arg0=SDLK_SPACE; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_exclaim")) {arg0=SDLK_EXCLAIM; goto done1567;}
+          if (0 == strcmp(tmp, "k_exclaim")) {arg0=SDLK_EXCLAIM; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_quotedbl")) {arg0=SDLK_QUOTEDBL; goto done1567;}
+          if (0 == strcmp(tmp, "k_quotedbl")) {arg0=SDLK_QUOTEDBL; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_hash")) {arg0=SDLK_HASH; goto done1567;}
+          if (0 == strcmp(tmp, "k_hash")) {arg0=SDLK_HASH; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_dollar")) {arg0=SDLK_DOLLAR; goto done1567;}
+          if (0 == strcmp(tmp, "k_dollar")) {arg0=SDLK_DOLLAR; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_ampersand")) {arg0=SDLK_AMPERSAND; goto done1567;}
+          if (0 == strcmp(tmp, "k_ampersand")) {arg0=SDLK_AMPERSAND; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_quote")) {arg0=SDLK_QUOTE; goto done1567;}
+          if (0 == strcmp(tmp, "k_quote")) {arg0=SDLK_QUOTE; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_leftparen")) {arg0=SDLK_LEFTPAREN; goto done1567;}
+          if (0 == strcmp(tmp, "k_leftparen")) {arg0=SDLK_LEFTPAREN; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_rightparen")) {arg0=SDLK_RIGHTPAREN; goto done1567;}
+          if (0 == strcmp(tmp, "k_rightparen")) {arg0=SDLK_RIGHTPAREN; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_asterisk")) {arg0=SDLK_ASTERISK; goto done1567;}
+          if (0 == strcmp(tmp, "k_asterisk")) {arg0=SDLK_ASTERISK; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_plus")) {arg0=SDLK_PLUS; goto done1567;}
+          if (0 == strcmp(tmp, "k_plus")) {arg0=SDLK_PLUS; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_comma")) {arg0=SDLK_COMMA; goto done1567;}
+          if (0 == strcmp(tmp, "k_comma")) {arg0=SDLK_COMMA; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_minus")) {arg0=SDLK_MINUS; goto done1567;}
+          if (0 == strcmp(tmp, "k_minus")) {arg0=SDLK_MINUS; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_period")) {arg0=SDLK_PERIOD; goto done1567;}
+          if (0 == strcmp(tmp, "k_period")) {arg0=SDLK_PERIOD; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_slash")) {arg0=SDLK_SLASH; goto done1567;}
+          if (0 == strcmp(tmp, "k_slash")) {arg0=SDLK_SLASH; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_0")) {arg0=SDLK_0; goto done1567;}
+          if (0 == strcmp(tmp, "k_0")) {arg0=SDLK_0; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_1")) {arg0=SDLK_1; goto done1567;}
+          if (0 == strcmp(tmp, "k_1")) {arg0=SDLK_1; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_2")) {arg0=SDLK_2; goto done1567;}
+          if (0 == strcmp(tmp, "k_2")) {arg0=SDLK_2; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_3")) {arg0=SDLK_3; goto done1567;}
+          if (0 == strcmp(tmp, "k_3")) {arg0=SDLK_3; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_4")) {arg0=SDLK_4; goto done1567;}
+          if (0 == strcmp(tmp, "k_4")) {arg0=SDLK_4; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_5")) {arg0=SDLK_5; goto done1567;}
+          if (0 == strcmp(tmp, "k_5")) {arg0=SDLK_5; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_6")) {arg0=SDLK_6; goto done1567;}
+          if (0 == strcmp(tmp, "k_6")) {arg0=SDLK_6; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_7")) {arg0=SDLK_7; goto done1567;}
+          if (0 == strcmp(tmp, "k_7")) {arg0=SDLK_7; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_8")) {arg0=SDLK_8; goto done1567;}
+          if (0 == strcmp(tmp, "k_8")) {arg0=SDLK_8; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_9")) {arg0=SDLK_9; goto done1567;}
+          if (0 == strcmp(tmp, "k_9")) {arg0=SDLK_9; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_colon")) {arg0=SDLK_COLON; goto done1567;}
+          if (0 == strcmp(tmp, "k_colon")) {arg0=SDLK_COLON; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_semicolon")) {arg0=SDLK_SEMICOLON; goto done1567;}
+          if (0 == strcmp(tmp, "k_semicolon")) {arg0=SDLK_SEMICOLON; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_less")) {arg0=SDLK_LESS; goto done1567;}
+          if (0 == strcmp(tmp, "k_less")) {arg0=SDLK_LESS; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_equals")) {arg0=SDLK_EQUALS; goto done1567;}
+          if (0 == strcmp(tmp, "k_equals")) {arg0=SDLK_EQUALS; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_greater")) {arg0=SDLK_GREATER; goto done1567;}
+          if (0 == strcmp(tmp, "k_greater")) {arg0=SDLK_GREATER; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_question")) {arg0=SDLK_QUESTION; goto done1567;}
+          if (0 == strcmp(tmp, "k_question")) {arg0=SDLK_QUESTION; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_at")) {arg0=SDLK_AT; goto done1567;}
+          if (0 == strcmp(tmp, "k_at")) {arg0=SDLK_AT; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_leftbracket")) {arg0=SDLK_LEFTBRACKET; goto done1567;}
+          if (0 == strcmp(tmp, "k_leftbracket")) {arg0=SDLK_LEFTBRACKET; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_backslash")) {arg0=SDLK_BACKSLASH; goto done1567;}
+          if (0 == strcmp(tmp, "k_backslash")) {arg0=SDLK_BACKSLASH; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_rightbracket")) {arg0=SDLK_RIGHTBRACKET; goto done1567;}
+          if (0 == strcmp(tmp, "k_rightbracket")) {arg0=SDLK_RIGHTBRACKET; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_caret")) {arg0=SDLK_CARET; goto done1567;}
+          if (0 == strcmp(tmp, "k_caret")) {arg0=SDLK_CARET; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_underscore")) {arg0=SDLK_UNDERSCORE; goto done1567;}
+          if (0 == strcmp(tmp, "k_underscore")) {arg0=SDLK_UNDERSCORE; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_backquote")) {arg0=SDLK_BACKQUOTE; goto done1567;}
+          if (0 == strcmp(tmp, "k_backquote")) {arg0=SDLK_BACKQUOTE; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_delete")) {arg0=SDLK_DELETE; goto done1567;}
+          if (0 == strcmp(tmp, "k_delete")) {arg0=SDLK_DELETE; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp0")) {arg0=SDLK_KP0; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp0")) {arg0=SDLK_KP0; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp1")) {arg0=SDLK_KP1; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp1")) {arg0=SDLK_KP1; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp2")) {arg0=SDLK_KP2; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp2")) {arg0=SDLK_KP2; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp3")) {arg0=SDLK_KP3; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp3")) {arg0=SDLK_KP3; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp4")) {arg0=SDLK_KP4; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp4")) {arg0=SDLK_KP4; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp5")) {arg0=SDLK_KP5; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp5")) {arg0=SDLK_KP5; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp6")) {arg0=SDLK_KP6; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp6")) {arg0=SDLK_KP6; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp7")) {arg0=SDLK_KP7; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp7")) {arg0=SDLK_KP7; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp8")) {arg0=SDLK_KP8; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp8")) {arg0=SDLK_KP8; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp9")) {arg0=SDLK_KP9; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp9")) {arg0=SDLK_KP9; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp_period")) {arg0=SDLK_KP_PERIOD; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp_period")) {arg0=SDLK_KP_PERIOD; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp_divide")) {arg0=SDLK_KP_DIVIDE; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp_divide")) {arg0=SDLK_KP_DIVIDE; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp_multiply")) {arg0=SDLK_KP_MULTIPLY; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp_multiply")) {arg0=SDLK_KP_MULTIPLY; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp_minus")) {arg0=SDLK_KP_MINUS; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp_minus")) {arg0=SDLK_KP_MINUS; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp_plus")) {arg0=SDLK_KP_PLUS; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp_plus")) {arg0=SDLK_KP_PLUS; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp_enter")) {arg0=SDLK_KP_ENTER; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp_enter")) {arg0=SDLK_KP_ENTER; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_kp_equals")) {arg0=SDLK_KP_EQUALS; goto done1567;}
+          if (0 == strcmp(tmp, "k_kp_equals")) {arg0=SDLK_KP_EQUALS; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_up")) {arg0=SDLK_UP; goto done1567;}
+          if (0 == strcmp(tmp, "k_up")) {arg0=SDLK_UP; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_down")) {arg0=SDLK_DOWN; goto done1567;}
+          if (0 == strcmp(tmp, "k_down")) {arg0=SDLK_DOWN; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_right")) {arg0=SDLK_RIGHT; goto done1567;}
+          if (0 == strcmp(tmp, "k_right")) {arg0=SDLK_RIGHT; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_left")) {arg0=SDLK_LEFT; goto done1567;}
+          if (0 == strcmp(tmp, "k_left")) {arg0=SDLK_LEFT; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_insert")) {arg0=SDLK_INSERT; goto done1567;}
+          if (0 == strcmp(tmp, "k_insert")) {arg0=SDLK_INSERT; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_home")) {arg0=SDLK_HOME; goto done1567;}
+          if (0 == strcmp(tmp, "k_home")) {arg0=SDLK_HOME; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_end")) {arg0=SDLK_END; goto done1567;}
+          if (0 == strcmp(tmp, "k_end")) {arg0=SDLK_END; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_pageup")) {arg0=SDLK_PAGEUP; goto done1567;}
+          if (0 == strcmp(tmp, "k_pageup")) {arg0=SDLK_PAGEUP; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_pagedown")) {arg0=SDLK_PAGEDOWN; goto done1567;}
+          if (0 == strcmp(tmp, "k_pagedown")) {arg0=SDLK_PAGEDOWN; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f1")) {arg0=SDLK_F1; goto done1567;}
+          if (0 == strcmp(tmp, "k_f1")) {arg0=SDLK_F1; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f2")) {arg0=SDLK_F2; goto done1567;}
+          if (0 == strcmp(tmp, "k_f2")) {arg0=SDLK_F2; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f3")) {arg0=SDLK_F3; goto done1567;}
+          if (0 == strcmp(tmp, "k_f3")) {arg0=SDLK_F3; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f4")) {arg0=SDLK_F4; goto done1567;}
+          if (0 == strcmp(tmp, "k_f4")) {arg0=SDLK_F4; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f5")) {arg0=SDLK_F5; goto done1567;}
+          if (0 == strcmp(tmp, "k_f5")) {arg0=SDLK_F5; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f6")) {arg0=SDLK_F6; goto done1567;}
+          if (0 == strcmp(tmp, "k_f6")) {arg0=SDLK_F6; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f7")) {arg0=SDLK_F7; goto done1567;}
+          if (0 == strcmp(tmp, "k_f7")) {arg0=SDLK_F7; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f8")) {arg0=SDLK_F8; goto done1567;}
+          if (0 == strcmp(tmp, "k_f8")) {arg0=SDLK_F8; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f9")) {arg0=SDLK_F9; goto done1567;}
+          if (0 == strcmp(tmp, "k_f9")) {arg0=SDLK_F9; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f10")) {arg0=SDLK_F10; goto done1567;}
+          if (0 == strcmp(tmp, "k_f10")) {arg0=SDLK_F10; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f11")) {arg0=SDLK_F11; goto done1567;}
+          if (0 == strcmp(tmp, "k_f11")) {arg0=SDLK_F11; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f12")) {arg0=SDLK_F12; goto done1567;}
+          if (0 == strcmp(tmp, "k_f12")) {arg0=SDLK_F12; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f13")) {arg0=SDLK_F13; goto done1567;}
+          if (0 == strcmp(tmp, "k_f13")) {arg0=SDLK_F13; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f14")) {arg0=SDLK_F14; goto done1567;}
+          if (0 == strcmp(tmp, "k_f14")) {arg0=SDLK_F14; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f15")) {arg0=SDLK_F15; goto done1567;}
+          if (0 == strcmp(tmp, "k_f15")) {arg0=SDLK_F15; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_numlock")) {arg0=SDLK_NUMLOCK; goto done1567;}
+          if (0 == strcmp(tmp, "k_numlock")) {arg0=SDLK_NUMLOCK; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_capslock")) {arg0=SDLK_CAPSLOCK; goto done1567;}
+          if (0 == strcmp(tmp, "k_capslock")) {arg0=SDLK_CAPSLOCK; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_rshift")) {arg0=SDLK_RSHIFT; goto done1567;}
+          if (0 == strcmp(tmp, "k_rshift")) {arg0=SDLK_RSHIFT; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_lshift")) {arg0=SDLK_LSHIFT; goto done1567;}
+          if (0 == strcmp(tmp, "k_lshift")) {arg0=SDLK_LSHIFT; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_rctrl")) {arg0=SDLK_RCTRL; goto done1567;}
+          if (0 == strcmp(tmp, "k_rctrl")) {arg0=SDLK_RCTRL; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_lctrl")) {arg0=SDLK_LCTRL; goto done1567;}
+          if (0 == strcmp(tmp, "k_lctrl")) {arg0=SDLK_LCTRL; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_ralt")) {arg0=SDLK_RALT; goto done1567;}
+          if (0 == strcmp(tmp, "k_ralt")) {arg0=SDLK_RALT; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_lalt")) {arg0=SDLK_LALT; goto done1567;}
+          if (0 == strcmp(tmp, "k_lalt")) {arg0=SDLK_LALT; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_rmeta")) {arg0=SDLK_RMETA; goto done1567;}
+          if (0 == strcmp(tmp, "k_rmeta")) {arg0=SDLK_RMETA; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_lmeta")) {arg0=SDLK_LMETA; goto done1567;}
+          if (0 == strcmp(tmp, "k_lmeta")) {arg0=SDLK_LMETA; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_lsuper")) {arg0=SDLK_LSUPER; goto done1567;}
+          if (0 == strcmp(tmp, "k_lsuper")) {arg0=SDLK_LSUPER; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_rsuper")) {arg0=SDLK_RSUPER; goto done1567;}
+          if (0 == strcmp(tmp, "k_rsuper")) {arg0=SDLK_RSUPER; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_mode")) {arg0=SDLK_MODE; goto done1567;}
+          if (0 == strcmp(tmp, "k_mode")) {arg0=SDLK_MODE; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_compose")) {arg0=SDLK_COMPOSE; goto done1567;}
+          if (0 == strcmp(tmp, "k_compose")) {arg0=SDLK_COMPOSE; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_help")) {arg0=SDLK_HELP; goto done1567;}
+          if (0 == strcmp(tmp, "k_help")) {arg0=SDLK_HELP; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_print")) {arg0=SDLK_PRINT; goto done1567;}
+          if (0 == strcmp(tmp, "k_print")) {arg0=SDLK_PRINT; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_sysreq")) {arg0=SDLK_SYSREQ; goto done1567;}
+          if (0 == strcmp(tmp, "k_sysreq")) {arg0=SDLK_SYSREQ; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_break")) {arg0=SDLK_BREAK; goto done1567;}
+          if (0 == strcmp(tmp, "k_break")) {arg0=SDLK_BREAK; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_menu")) {arg0=SDLK_MENU; goto done1567;}
+          if (0 == strcmp(tmp, "k_menu")) {arg0=SDLK_MENU; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_power")) {arg0=SDLK_POWER; goto done1567;}
+          if (0 == strcmp(tmp, "k_power")) {arg0=SDLK_POWER; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_euro")) {arg0=SDLK_EURO; goto done1567;}
+          if (0 == strcmp(tmp, "k_euro")) {arg0=SDLK_EURO; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_undo")) {arg0=SDLK_UNDO; goto done1567;}
+          if (0 == strcmp(tmp, "k_undo")) {arg0=SDLK_UNDO; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_a")) {arg0=SDLK_a; goto done1567;}
+          if (0 == strcmp(tmp, "k_a")) {arg0=SDLK_a; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_b")) {arg0=SDLK_b; goto done1567;}
+          if (0 == strcmp(tmp, "k_b")) {arg0=SDLK_b; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_c")) {arg0=SDLK_c; goto done1567;}
+          if (0 == strcmp(tmp, "k_c")) {arg0=SDLK_c; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_d")) {arg0=SDLK_d; goto done1567;}
+          if (0 == strcmp(tmp, "k_d")) {arg0=SDLK_d; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_e")) {arg0=SDLK_e; goto done1567;}
+          if (0 == strcmp(tmp, "k_e")) {arg0=SDLK_e; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_f")) {arg0=SDLK_f; goto done1567;}
+          if (0 == strcmp(tmp, "k_f")) {arg0=SDLK_f; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_g")) {arg0=SDLK_g; goto done1567;}
+          if (0 == strcmp(tmp, "k_g")) {arg0=SDLK_g; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_h")) {arg0=SDLK_h; goto done1567;}
+          if (0 == strcmp(tmp, "k_h")) {arg0=SDLK_h; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_i")) {arg0=SDLK_i; goto done1567;}
+          if (0 == strcmp(tmp, "k_i")) {arg0=SDLK_i; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_j")) {arg0=SDLK_j; goto done1567;}
+          if (0 == strcmp(tmp, "k_j")) {arg0=SDLK_j; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_k")) {arg0=SDLK_k; goto done1567;}
+          if (0 == strcmp(tmp, "k_k")) {arg0=SDLK_k; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_l")) {arg0=SDLK_l; goto done1567;}
+          if (0 == strcmp(tmp, "k_l")) {arg0=SDLK_l; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_m")) {arg0=SDLK_m; goto done1567;}
+          if (0 == strcmp(tmp, "k_m")) {arg0=SDLK_m; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_n")) {arg0=SDLK_n; goto done1567;}
+          if (0 == strcmp(tmp, "k_n")) {arg0=SDLK_n; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_o")) {arg0=SDLK_o; goto done1567;}
+          if (0 == strcmp(tmp, "k_o")) {arg0=SDLK_o; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_p")) {arg0=SDLK_p; goto done1567;}
+          if (0 == strcmp(tmp, "k_p")) {arg0=SDLK_p; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_q")) {arg0=SDLK_q; goto done1567;}
+          if (0 == strcmp(tmp, "k_q")) {arg0=SDLK_q; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_r")) {arg0=SDLK_r; goto done1567;}
+          if (0 == strcmp(tmp, "k_r")) {arg0=SDLK_r; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_s")) {arg0=SDLK_s; goto done1567;}
+          if (0 == strcmp(tmp, "k_s")) {arg0=SDLK_s; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_t")) {arg0=SDLK_t; goto done1567;}
+          if (0 == strcmp(tmp, "k_t")) {arg0=SDLK_t; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_u")) {arg0=SDLK_u; goto done1567;}
+          if (0 == strcmp(tmp, "k_u")) {arg0=SDLK_u; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_v")) {arg0=SDLK_v; goto done1567;}
+          if (0 == strcmp(tmp, "k_v")) {arg0=SDLK_v; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_w")) {arg0=SDLK_w; goto done1567;}
+          if (0 == strcmp(tmp, "k_w")) {arg0=SDLK_w; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_x")) {arg0=SDLK_x; goto done1567;}
+          if (0 == strcmp(tmp, "k_x")) {arg0=SDLK_x; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_y")) {arg0=SDLK_y; goto done1567;}
+          if (0 == strcmp(tmp, "k_y")) {arg0=SDLK_y; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_z")) {arg0=SDLK_z; goto done1567;}
+          if (0 == strcmp(tmp, "k_z")) {arg0=SDLK_z; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_0")) {arg0=SDLK_WORLD_0; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_0")) {arg0=SDLK_WORLD_0; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_1")) {arg0=SDLK_WORLD_1; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_1")) {arg0=SDLK_WORLD_1; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_2")) {arg0=SDLK_WORLD_2; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_2")) {arg0=SDLK_WORLD_2; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_3")) {arg0=SDLK_WORLD_3; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_3")) {arg0=SDLK_WORLD_3; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_4")) {arg0=SDLK_WORLD_4; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_4")) {arg0=SDLK_WORLD_4; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_5")) {arg0=SDLK_WORLD_5; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_5")) {arg0=SDLK_WORLD_5; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_6")) {arg0=SDLK_WORLD_6; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_6")) {arg0=SDLK_WORLD_6; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_7")) {arg0=SDLK_WORLD_7; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_7")) {arg0=SDLK_WORLD_7; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_8")) {arg0=SDLK_WORLD_8; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_8")) {arg0=SDLK_WORLD_8; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_9")) {arg0=SDLK_WORLD_9; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_9")) {arg0=SDLK_WORLD_9; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_10")) {arg0=SDLK_WORLD_10; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_10")) {arg0=SDLK_WORLD_10; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_11")) {arg0=SDLK_WORLD_11; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_11")) {arg0=SDLK_WORLD_11; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_12")) {arg0=SDLK_WORLD_12; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_12")) {arg0=SDLK_WORLD_12; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_13")) {arg0=SDLK_WORLD_13; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_13")) {arg0=SDLK_WORLD_13; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_14")) {arg0=SDLK_WORLD_14; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_14")) {arg0=SDLK_WORLD_14; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_15")) {arg0=SDLK_WORLD_15; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_15")) {arg0=SDLK_WORLD_15; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_16")) {arg0=SDLK_WORLD_16; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_16")) {arg0=SDLK_WORLD_16; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_17")) {arg0=SDLK_WORLD_17; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_17")) {arg0=SDLK_WORLD_17; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_18")) {arg0=SDLK_WORLD_18; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_18")) {arg0=SDLK_WORLD_18; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_19")) {arg0=SDLK_WORLD_19; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_19")) {arg0=SDLK_WORLD_19; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_20")) {arg0=SDLK_WORLD_20; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_20")) {arg0=SDLK_WORLD_20; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_21")) {arg0=SDLK_WORLD_21; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_21")) {arg0=SDLK_WORLD_21; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_22")) {arg0=SDLK_WORLD_22; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_22")) {arg0=SDLK_WORLD_22; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_23")) {arg0=SDLK_WORLD_23; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_23")) {arg0=SDLK_WORLD_23; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_24")) {arg0=SDLK_WORLD_24; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_24")) {arg0=SDLK_WORLD_24; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_25")) {arg0=SDLK_WORLD_25; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_25")) {arg0=SDLK_WORLD_25; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_26")) {arg0=SDLK_WORLD_26; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_26")) {arg0=SDLK_WORLD_26; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_27")) {arg0=SDLK_WORLD_27; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_27")) {arg0=SDLK_WORLD_27; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_28")) {arg0=SDLK_WORLD_28; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_28")) {arg0=SDLK_WORLD_28; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_29")) {arg0=SDLK_WORLD_29; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_29")) {arg0=SDLK_WORLD_29; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_30")) {arg0=SDLK_WORLD_30; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_30")) {arg0=SDLK_WORLD_30; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_31")) {arg0=SDLK_WORLD_31; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_31")) {arg0=SDLK_WORLD_31; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_32")) {arg0=SDLK_WORLD_32; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_32")) {arg0=SDLK_WORLD_32; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_33")) {arg0=SDLK_WORLD_33; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_33")) {arg0=SDLK_WORLD_33; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_34")) {arg0=SDLK_WORLD_34; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_34")) {arg0=SDLK_WORLD_34; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_35")) {arg0=SDLK_WORLD_35; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_35")) {arg0=SDLK_WORLD_35; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_36")) {arg0=SDLK_WORLD_36; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_36")) {arg0=SDLK_WORLD_36; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_37")) {arg0=SDLK_WORLD_37; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_37")) {arg0=SDLK_WORLD_37; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_38")) {arg0=SDLK_WORLD_38; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_38")) {arg0=SDLK_WORLD_38; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_39")) {arg0=SDLK_WORLD_39; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_39")) {arg0=SDLK_WORLD_39; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_40")) {arg0=SDLK_WORLD_40; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_40")) {arg0=SDLK_WORLD_40; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_41")) {arg0=SDLK_WORLD_41; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_41")) {arg0=SDLK_WORLD_41; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_42")) {arg0=SDLK_WORLD_42; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_42")) {arg0=SDLK_WORLD_42; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_43")) {arg0=SDLK_WORLD_43; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_43")) {arg0=SDLK_WORLD_43; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_44")) {arg0=SDLK_WORLD_44; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_44")) {arg0=SDLK_WORLD_44; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_45")) {arg0=SDLK_WORLD_45; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_45")) {arg0=SDLK_WORLD_45; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_46")) {arg0=SDLK_WORLD_46; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_46")) {arg0=SDLK_WORLD_46; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_47")) {arg0=SDLK_WORLD_47; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_47")) {arg0=SDLK_WORLD_47; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_48")) {arg0=SDLK_WORLD_48; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_48")) {arg0=SDLK_WORLD_48; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_49")) {arg0=SDLK_WORLD_49; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_49")) {arg0=SDLK_WORLD_49; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_50")) {arg0=SDLK_WORLD_50; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_50")) {arg0=SDLK_WORLD_50; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_51")) {arg0=SDLK_WORLD_51; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_51")) {arg0=SDLK_WORLD_51; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_52")) {arg0=SDLK_WORLD_52; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_52")) {arg0=SDLK_WORLD_52; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_53")) {arg0=SDLK_WORLD_53; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_53")) {arg0=SDLK_WORLD_53; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_54")) {arg0=SDLK_WORLD_54; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_54")) {arg0=SDLK_WORLD_54; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_55")) {arg0=SDLK_WORLD_55; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_55")) {arg0=SDLK_WORLD_55; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_56")) {arg0=SDLK_WORLD_56; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_56")) {arg0=SDLK_WORLD_56; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_57")) {arg0=SDLK_WORLD_57; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_57")) {arg0=SDLK_WORLD_57; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_58")) {arg0=SDLK_WORLD_58; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_58")) {arg0=SDLK_WORLD_58; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_59")) {arg0=SDLK_WORLD_59; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_59")) {arg0=SDLK_WORLD_59; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_60")) {arg0=SDLK_WORLD_60; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_60")) {arg0=SDLK_WORLD_60; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_61")) {arg0=SDLK_WORLD_61; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_61")) {arg0=SDLK_WORLD_61; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_62")) {arg0=SDLK_WORLD_62; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_62")) {arg0=SDLK_WORLD_62; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_63")) {arg0=SDLK_WORLD_63; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_63")) {arg0=SDLK_WORLD_63; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_64")) {arg0=SDLK_WORLD_64; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_64")) {arg0=SDLK_WORLD_64; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_65")) {arg0=SDLK_WORLD_65; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_65")) {arg0=SDLK_WORLD_65; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_66")) {arg0=SDLK_WORLD_66; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_66")) {arg0=SDLK_WORLD_66; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_67")) {arg0=SDLK_WORLD_67; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_67")) {arg0=SDLK_WORLD_67; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_68")) {arg0=SDLK_WORLD_68; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_68")) {arg0=SDLK_WORLD_68; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_69")) {arg0=SDLK_WORLD_69; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_69")) {arg0=SDLK_WORLD_69; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_70")) {arg0=SDLK_WORLD_70; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_70")) {arg0=SDLK_WORLD_70; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_71")) {arg0=SDLK_WORLD_71; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_71")) {arg0=SDLK_WORLD_71; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_72")) {arg0=SDLK_WORLD_72; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_72")) {arg0=SDLK_WORLD_72; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_73")) {arg0=SDLK_WORLD_73; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_73")) {arg0=SDLK_WORLD_73; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_74")) {arg0=SDLK_WORLD_74; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_74")) {arg0=SDLK_WORLD_74; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_75")) {arg0=SDLK_WORLD_75; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_75")) {arg0=SDLK_WORLD_75; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_76")) {arg0=SDLK_WORLD_76; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_76")) {arg0=SDLK_WORLD_76; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_77")) {arg0=SDLK_WORLD_77; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_77")) {arg0=SDLK_WORLD_77; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_78")) {arg0=SDLK_WORLD_78; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_78")) {arg0=SDLK_WORLD_78; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_79")) {arg0=SDLK_WORLD_79; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_79")) {arg0=SDLK_WORLD_79; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_80")) {arg0=SDLK_WORLD_80; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_80")) {arg0=SDLK_WORLD_80; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_81")) {arg0=SDLK_WORLD_81; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_81")) {arg0=SDLK_WORLD_81; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_82")) {arg0=SDLK_WORLD_82; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_82")) {arg0=SDLK_WORLD_82; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_83")) {arg0=SDLK_WORLD_83; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_83")) {arg0=SDLK_WORLD_83; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_84")) {arg0=SDLK_WORLD_84; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_84")) {arg0=SDLK_WORLD_84; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_85")) {arg0=SDLK_WORLD_85; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_85")) {arg0=SDLK_WORLD_85; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_86")) {arg0=SDLK_WORLD_86; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_86")) {arg0=SDLK_WORLD_86; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_87")) {arg0=SDLK_WORLD_87; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_87")) {arg0=SDLK_WORLD_87; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_88")) {arg0=SDLK_WORLD_88; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_88")) {arg0=SDLK_WORLD_88; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_89")) {arg0=SDLK_WORLD_89; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_89")) {arg0=SDLK_WORLD_89; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_90")) {arg0=SDLK_WORLD_90; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_90")) {arg0=SDLK_WORLD_90; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_91")) {arg0=SDLK_WORLD_91; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_91")) {arg0=SDLK_WORLD_91; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_92")) {arg0=SDLK_WORLD_92; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_92")) {arg0=SDLK_WORLD_92; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_93")) {arg0=SDLK_WORLD_93; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_93")) {arg0=SDLK_WORLD_93; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_94")) {arg0=SDLK_WORLD_94; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_94")) {arg0=SDLK_WORLD_94; goto done1578;}
         
-          if (0 == strcmp(tmp, "k_world_95")) {arg0=SDLK_WORLD_95; goto done1567;}
+          if (0 == strcmp(tmp, "k_world_95")) {arg0=SDLK_WORLD_95; goto done1578;}
          {
           char* end;
           arg0 = (SDLKey)strtol(tmp, &end, 10);
@@ -4862,9 +4862,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
             sprintf(staticError, "Unable to convert %s to SDLKey", tmp);
             scriptError(staticError);
           }
-          goto done1567;
+          goto done1578;
         } 
-done1567:;};
+done1578:;};
 arg0Init=true;
 try {
       ret =
@@ -5451,9 +5451,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else arg0=NULL;
 };
 arg0Init=true;
-{int gen1735;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1735);
-            arg1=gen1735;
+{int gen1746;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1746);
+            arg1=gen1746;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -5571,9 +5571,9 @@ arg0Init=true;
     } else arg1=NULL;
 };
 arg1Init=true;
-{int gen1738;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1738);
-            arg2=gen1738;
+{int gen1749;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1749);
+            arg2=gen1749;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -5997,7 +5997,7 @@ static Camera* constructorTcldefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline726 (
+     trampoline733 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -6171,11 +6171,11 @@ if (arg2Init) {arg2Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static int get728 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get735 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get728", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get735", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -6273,11 +6273,11 @@ static int get728 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       return TCL_ERROR;
       #undef scriptError
     }
-static int set729 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int set736 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set729", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set736", TCL_VOLATILE);
         return TCL_ERROR;
       }
       GameObject* newVal;
@@ -6471,7 +6471,7 @@ return;
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline731 (
+     trampoline738 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -6652,7 +6652,7 @@ return;
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline733 (
+     trampoline740 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -6729,7 +6729,7 @@ if (arg0Init) {arg0Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     deftramp734 (
+     deftramp741 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -6912,7 +6912,7 @@ return;
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline735 (
+     trampoline742 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -6981,7 +6981,7 @@ error:
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     deftramp736 (
+     deftramp743 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -7156,7 +7156,7 @@ return;
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline737 (
+     trampoline744 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -7225,7 +7225,7 @@ error:
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     deftramp738 (
+     deftramp745 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -7303,7 +7303,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline739 (
+     trampoline746 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -7347,9 +7347,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else parent=NULL;
 }
       if (!parent) { scriptError("NULL this passed into C++"); }
-{int gen1900;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1900);
-            arg0=gen1900;
+{int gen1914;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1914);
+            arg0=gen1914;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -7381,17 +7381,17 @@ if (arg0Init) {arg0Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline726", trampoline726, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get728", get728, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set729", set729, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline731", trampoline731, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline733", trampoline733, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ deftramp734", deftramp734, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline735", trampoline735, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ deftramp736", deftramp736, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline737", trampoline737, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ deftramp738", deftramp738, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline739", trampoline739, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline733", trampoline733, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get735", get735, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set736", set736, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline738", trampoline738, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline740", trampoline740, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ deftramp741", deftramp741, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline742", trampoline742, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ deftramp743", deftramp743, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline744", trampoline744, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ deftramp745", deftramp745, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline746", trampoline746, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(Camera)),
                            * ete=new TypeExport(typeid(TclCamera));
 ste->isAObject=ete->isAObject=true;
@@ -7404,15 +7404,15 @@ typeExports[&typeid(Camera)]=ste;
 typeExports[&typeid(TclCamera)]=ete;
 }
 };
-void classdec725(bool safe, Tcl_Interp* interp) throw() {
+void classdec732(bool safe, Tcl_Interp* interp) throw() {
   TclCamera::cppDecCode(safe,interp);
 }
 
- int get1063 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1070 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1063", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1070", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -7477,11 +7477,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1064 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1071 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1064", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1071", TCL_VOLATILE);
         return TCL_ERROR;
       }
       GameState* newVal;
@@ -7568,11 +7568,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
     }
 
 
- int get1066 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1073 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1066", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1073", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -7598,11 +7598,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1068 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1075 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1068", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1075", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -7617,11 +7617,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1070 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1077 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1070", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1077", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -7636,11 +7636,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1072 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1079 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1072", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1079", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -7655,11 +7655,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1074 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1081 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1074", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1081", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -7673,20 +7673,20 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1075 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1082 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1075", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1082", TCL_VOLATILE);
         return TCL_ERROR;
       }
       bool newVal;
       
 
       //Extract value
-      {int gen2041;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2041);
-            newVal=gen2041;
+      {int gen2055;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2055);
+            newVal=gen2055;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -7710,11 +7710,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1077 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1084 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1077", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1084", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -7728,20 +7728,20 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1078 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1085 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1078", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1085", TCL_VOLATILE);
         return TCL_ERROR;
       }
       bool newVal;
       
 
       //Extract value
-      {int gen2042;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2042);
-            newVal=gen2042;
+      {int gen2056;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2056);
+            newVal=gen2056;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -7765,11 +7765,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1080 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1087 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1080", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1087", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -7783,20 +7783,20 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1081 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1088 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1081", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1088", TCL_VOLATILE);
         return TCL_ERROR;
       }
       bool newVal;
       
 
       //Extract value
-      {int gen2043;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2043);
-            newVal=gen2043;
+      {int gen2057;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2057);
+            newVal=gen2057;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -7820,11 +7820,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1083 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1090 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1083", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1090", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -7838,20 +7838,20 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1084 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1091 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1084", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1091", TCL_VOLATILE);
         return TCL_ERROR;
       }
       bool newVal;
       
 
       //Extract value
-      {int gen2044;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2044);
-            newVal=gen2044;
+      {int gen2058;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2058);
+            newVal=gen2058;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -7875,11 +7875,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1086 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1093 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1086", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1093", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -7893,20 +7893,20 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1087 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1094 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1087", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1094", TCL_VOLATILE);
         return TCL_ERROR;
       }
       bool newVal;
       
 
       //Extract value
-      {int gen2045;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2045);
-            newVal=gen2045;
+      {int gen2059;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2059);
+            newVal=gen2059;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -7931,11 +7931,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
     }
 
 
- int get1089 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1096 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1089", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1096", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -7950,11 +7950,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1091 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1098 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1091", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1098", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -7968,11 +7968,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1092 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1099 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1092", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1099", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -8004,11 +8004,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1094 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1101 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1094", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1101", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8022,11 +8022,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1095 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1102 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1095", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1102", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -8058,11 +8058,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1097 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1104 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1097", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1104", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8076,11 +8076,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1098 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1105 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1098", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1105", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -8112,11 +8112,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1100 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1107 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1100", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1107", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8130,11 +8130,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1101 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1108 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1101", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1108", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -8166,11 +8166,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1103 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1110 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1103", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1110", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8184,11 +8184,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1104 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1111 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1104", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1111", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -8220,11 +8220,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1106 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1113 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1106", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1113", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8238,11 +8238,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1107 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1114 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1107", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1114", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -8274,11 +8274,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1109 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1116 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1109", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1116", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8292,11 +8292,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1110 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1117 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1110", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1117", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -8328,11 +8328,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1112 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1119 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1112", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1119", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8346,11 +8346,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1113 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1120 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1113", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1120", TCL_VOLATILE);
         return TCL_ERROR;
       }
       int newVal;
@@ -8382,11 +8382,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1115 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1122 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1115", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1122", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8400,11 +8400,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1116 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1123 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1116", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1123", TCL_VOLATILE);
         return TCL_ERROR;
       }
       int newVal;
@@ -8436,11 +8436,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1118 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1125 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1118", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1125", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8454,11 +8454,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1119 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1126 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1119", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1126", TCL_VOLATILE);
         return TCL_ERROR;
       }
       int newVal;
@@ -8490,11 +8490,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1121 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1128 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1121", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1128", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8508,11 +8508,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       return TCL_ERROR;
       #undef scriptError
     }
- int set1122 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int set1129 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1122", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1129", TCL_VOLATILE);
         return TCL_ERROR;
       }
       int newVal;
@@ -8545,11 +8545,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
     }
 
 
- int get1124 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1131 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1124", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1131", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8564,11 +8564,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1126 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1133 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1126", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1133", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8583,11 +8583,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1128 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1135 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1128", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1135", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8602,11 +8602,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1130 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1137 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1130", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1137", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8621,11 +8621,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1132 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1139 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1132", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1139", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8640,11 +8640,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get1134 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get1141 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1134", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1141", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8661,11 +8661,11 @@ void classdec725(bool safe, Tcl_Interp* interp) throw() {
 
 class TclPeer : public Peer {
       public:
-static int get1275 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1282 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1275", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1282", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8764,11 +8764,11 @@ static int get1275 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static int get1277 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1284 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1277", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1284", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8816,11 +8816,11 @@ static int get1277 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static int get1279 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1286 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1279", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1286", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8868,11 +8868,11 @@ static int get1279 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static int get1281 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1288 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1281", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1288", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -8920,11 +8920,11 @@ static int get1281 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static int get1283 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1290 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1283", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1290", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -9023,11 +9023,11 @@ static int get1283 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static int get1285 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1292 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1285", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1292", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -9086,11 +9086,11 @@ static int get1285 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static int get1287 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+static int get1294 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1287", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1294", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -9138,13 +9138,13 @@ static int get1287 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ get1275", get1275, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get1277", get1277, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get1279", get1279, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get1281", get1281, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get1283", get1283, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get1285", get1285, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get1287", get1287, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ get1282", get1282, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1284", get1284, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1286", get1286, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1288", get1288, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1290", get1290, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1292", get1292, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1294", get1294, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(Peer)),
                            * ete=new TypeExport(typeid(TclPeer));
 ste->isAObject=ete->isAObject=true;
@@ -9156,7 +9156,7 @@ typeExports[&typeid(Peer)]=ste;
 typeExports[&typeid(TclPeer)]=ete;
 }
 };
-void classdec1274(bool safe, Tcl_Interp* interp) throw() {
+void classdec1281(bool safe, Tcl_Interp* interp) throw() {
   TclPeer::cppDecCode(safe,interp);
 }
 class TclNetIface : public NetIface {
@@ -9204,7 +9204,7 @@ static NetIface* constructorTcldefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1290 (
+     trampoline1297 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -9506,7 +9506,7 @@ return;
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1292 (
+     trampoline1299 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -9773,7 +9773,7 @@ return;
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1294 (
+     trampoline1301 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -10040,7 +10040,7 @@ return;
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1296 (
+     trampoline1303 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -10328,7 +10328,7 @@ if (arg1Tcl) {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1298 (
+     trampoline1305 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -10632,7 +10632,7 @@ if (arg1Tcl) {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1300 (
+     trampoline1307 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -10936,7 +10936,7 @@ if (arg1Tcl) {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1302 (
+     trampoline1309 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -11221,9 +11221,9 @@ arg1Tcl=NULL;
 
       //OK!
 returnValueTcl = Tcl_GetObjResult(interp);
-        {int gen2127;
-            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen2127);
-            returnValue=gen2127;
+        {int gen2141;
+            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen2141);
+            returnValue=gen2141;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -11262,7 +11262,7 @@ if (arg1Tcl) {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1304 (
+     trampoline1311 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -11494,9 +11494,9 @@ arg0Tcl=NULL;
 
       //OK!
 returnValueTcl = Tcl_GetObjResult(interp);
-        {int gen2130;
-            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen2130);
-            returnValue=gen2130;
+        {int gen2144;
+            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen2144);
+            returnValue=gen2144;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -11530,7 +11530,7 @@ returnValueTcl = Tcl_GetObjResult(interp);
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1306 (
+     trampoline1313 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -11741,7 +11741,7 @@ return;
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1308 (
+     trampoline1315 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -11957,7 +11957,7 @@ returnValueTcl = Tcl_GetObjResult(interp);
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1310 (
+     trampoline1317 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -12163,7 +12163,7 @@ return;
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1312 (
+     trampoline1319 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -12379,7 +12379,7 @@ returnValueTcl = Tcl_GetObjResult(interp);
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1314 (
+     trampoline1321 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -12686,7 +12686,7 @@ if (arg1Tcl) {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1316 (
+     trampoline1323 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -12825,20 +12825,20 @@ if (arg1Init) {arg1Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1290", trampoline1290, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1292", trampoline1292, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1294", trampoline1294, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1296", trampoline1296, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1298", trampoline1298, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1300", trampoline1300, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1302", trampoline1302, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1304", trampoline1304, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1306", trampoline1306, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1308", trampoline1308, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1310", trampoline1310, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1312", trampoline1312, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1314", trampoline1314, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1316", trampoline1316, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1297", trampoline1297, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1299", trampoline1299, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1301", trampoline1301, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1303", trampoline1303, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1305", trampoline1305, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1307", trampoline1307, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1309", trampoline1309, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1311", trampoline1311, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1313", trampoline1313, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1315", trampoline1315, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1317", trampoline1317, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1319", trampoline1319, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1321", trampoline1321, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1323", trampoline1323, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(NetIface)),
                            * ete=new TypeExport(typeid(TclNetIface));
 ste->isAObject=ete->isAObject=true;
@@ -12850,7 +12850,7 @@ typeExports[&typeid(NetIface)]=ste;
 typeExports[&typeid(TclNetIface)]=ete;
 }
 };
-void classdec1289(bool safe, Tcl_Interp* interp) throw() {
+void classdec1296(bool safe, Tcl_Interp* interp) throw() {
   TclNetIface::cppDecCode(safe,interp);
 }
 class TclNetworkGame : public NetworkGame {
@@ -12898,7 +12898,7 @@ static NetworkGame* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1319 (
+     trampoline1326 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -13077,7 +13077,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1321 (
+     trampoline1328 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -13205,7 +13205,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1323 (
+     trampoline1330 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -13333,7 +13333,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1325 (
+     trampoline1332 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -13496,7 +13496,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1327 (
+     trampoline1334 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -13584,7 +13584,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1329 (
+     trampoline1336 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -13693,7 +13693,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1331 (
+     trampoline1338 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -13783,7 +13783,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1333 (
+     trampoline1340 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -13857,7 +13857,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1335 (
+     trampoline1342 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -13931,7 +13931,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1337 (
+     trampoline1344 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -14008,7 +14008,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1339 (
+     trampoline1346 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -14085,7 +14085,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1341 (
+     trampoline1348 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -14173,7 +14173,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1343 (
+     trampoline1350 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -14263,7 +14263,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1345 (
+     trampoline1352 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -14345,7 +14345,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1347 (
+     trampoline1354 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -14419,7 +14419,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1349 (
+     trampoline1356 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -14464,16 +14464,16 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else parent=NULL;
 }
       if (!parent) { scriptError("NULL this passed into C++"); }
-{int gen2157;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen2157);
-            arg0=gen2157;
+{int gen2171;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen2171);
+            arg0=gen2171;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
 arg0Init=true;
-{int gen2158;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen2158);
-            arg1=gen2158;
+{int gen2172;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen2172);
+            arg1=gen2172;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -14511,7 +14511,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1351 (
+     trampoline1358 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -14593,7 +14593,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1353 (
+     trampoline1360 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -14691,7 +14691,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1355 (
+     trampoline1362 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -14773,7 +14773,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1357 (
+     trampoline1364 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -14847,7 +14847,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1359 (
+     trampoline1366 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -14956,7 +14956,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1361 (
+     trampoline1368 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -15081,7 +15081,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1363 (
+     trampoline1370 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -15206,7 +15206,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1365 (
+     trampoline1372 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -15331,7 +15331,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1367 (
+     trampoline1374 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -15456,7 +15456,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1369 (
+     trampoline1376 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -15546,7 +15546,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1371 (
+     trampoline1378 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -15655,7 +15655,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1373 (
+     trampoline1380 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -15767,34 +15767,34 @@ if (arg1Init) {arg1Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1319", trampoline1319, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1321", trampoline1321, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1323", trampoline1323, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1325", trampoline1325, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1327", trampoline1327, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1329", trampoline1329, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1331", trampoline1331, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1333", trampoline1333, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1335", trampoline1335, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1337", trampoline1337, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1339", trampoline1339, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1341", trampoline1341, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1343", trampoline1343, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1345", trampoline1345, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1347", trampoline1347, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1349", trampoline1349, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1351", trampoline1351, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1353", trampoline1353, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1355", trampoline1355, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1357", trampoline1357, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1359", trampoline1359, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1361", trampoline1361, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1363", trampoline1363, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1365", trampoline1365, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1367", trampoline1367, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1369", trampoline1369, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1371", trampoline1371, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1373", trampoline1373, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1326", trampoline1326, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1328", trampoline1328, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1330", trampoline1330, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1332", trampoline1332, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1334", trampoline1334, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1336", trampoline1336, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1338", trampoline1338, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1340", trampoline1340, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1342", trampoline1342, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1344", trampoline1344, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1346", trampoline1346, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1348", trampoline1348, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1350", trampoline1350, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1352", trampoline1352, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1354", trampoline1354, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1356", trampoline1356, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1358", trampoline1358, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1360", trampoline1360, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1362", trampoline1362, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1364", trampoline1364, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1366", trampoline1366, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1368", trampoline1368, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1370", trampoline1370, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1372", trampoline1372, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1374", trampoline1374, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1376", trampoline1376, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1378", trampoline1378, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1380", trampoline1380, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(NetworkGame)),
                            * ete=new TypeExport(typeid(TclNetworkGame));
 ste->isAObject=ete->isAObject=true;
@@ -15806,7 +15806,7 @@ typeExports[&typeid(NetworkGame)]=ste;
 typeExports[&typeid(TclNetworkGame)]=ete;
 }
 };
-void classdec1318(bool safe, Tcl_Interp* interp) throw() {
+void classdec1325(bool safe, Tcl_Interp* interp) throw() {
   TclNetworkGame::cppDecCode(safe,interp);
 }
 
