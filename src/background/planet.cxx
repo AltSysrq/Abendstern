@@ -125,7 +125,7 @@ Planet::Planet(GameObject* ref, GameField* _field,
 
     tileSize = height/numTexturesHigh;
     float tileH = tileSize, tileW = tileSize*TEXW/(float)TEXH;
-    parallax = height/(field->height)/2/sqrt(2.0f);
+    parallax = height/(field->height)/4/sqrt(2.0f)/sqrt(1 + 4*vheight*vheight);
 
     PlanetVertex vertices[4] = {
       { {{0,0}}, {{0,1}}, 1 },
@@ -180,7 +180,8 @@ void Planet::draw() noth {
   glBindVertexArray(vao);
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-  float paraX = (cameraCX-field->width/2)*parallax, paraY=(cameraCY-field->height/2)*parallax;
+  float paraX = (cameraCX-field->width/2)*parallax,
+        paraY = (cameraCY-field->height/2)*parallax;
 
   float dayBegin = orbit + twilight/2;
   float dayEnd = orbit + 0.5f - twilight/2;
