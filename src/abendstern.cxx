@@ -626,9 +626,7 @@ bool init() {
   state=new InitState();
   if (!headless) state->configureGL();
 
-  #ifdef FRAME_RECORDER_ENABLED
   frame_recorder::init();
-  #endif
 
   //Enable all floating-point exceptions on non-Windows debug
   #if defined(DEBUG) && !defined(WIN32)
@@ -697,13 +695,11 @@ void run() {
       glXGetVideoSyncSGI(&retraceCount);
       glXWaitVideoSyncSGI(2, (retraceCount+1)&1, &retraceCount);
       #endif /* ENABLE_X11_VSYNC */
-      #ifdef FRAME_RECORDER_ENABLED
       vclock_t rbegin = vclock();
       frame_recorder::update(elapsedMillis);
       //Don't count time spent saving the image toward elapsed time
       vclock_t rend = vclock();
       lastFrameClock += (rend-rbegin);
-      #endif
       SDL_GL_SwapBuffers();
     }
 
@@ -712,12 +708,10 @@ void run() {
       switch(event.type) {
         case SDL_KEYUP:
         case SDL_KEYDOWN:
-          #ifdef FRAME_RECORDER_ENABLED
           if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_PAUSE) {
             if (frame_recorder::on()) frame_recorder::end();
             else                      frame_recorder::begin();
           }
-          #endif /* FRAME_RECORDER_ENABLED */
                                   state->keyboard(&event.key);   break;
         case SDL_MOUSEMOTION:     state->motion(&event.motion);  break;
         case SDL_MOUSEBUTTONUP:

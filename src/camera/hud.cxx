@@ -583,10 +583,10 @@ void HUD::draw(Camera* camera) noth {
         font.draw(weaponComment, 8*fw, 1*fh);
     }
 
-    font.draw(hud_user_messages::msg0, 1 - 24.5f*fw, 4*fh);
-    font.draw(hud_user_messages::msg1, 1 - 24.5f*fw, 3*fh);
-    font.draw(hud_user_messages::msg2, 1 - 24.5f*fw, 2*fh);
-    font.draw(hud_user_messages::msg3, 1 - 24.5f*fw, 1*fh);
+    font.draw(hud_user_messages::msg0, 1 - 40.5f*fw, 4*fh);
+    font.draw(hud_user_messages::msg1, 1 - 40.5f*fw, 3*fh);
+    font.draw(hud_user_messages::msg2, 1 - 40.5f*fw, 2*fh);
+    font.draw(hud_user_messages::msg3, 1 - 40.5f*fw, 1*fh);
 
     font.postDraw();
 
@@ -774,7 +774,7 @@ void HUD::draw(Camera* camera) noth {
           //Right border for status area
           {{{21*fw,5*fh}}}, {{{21*fw,1*fh}}},
           //Left border for info area
-          {{{1 - 25*fw, 5*fh}}}, {{{1 - 25*fw, 1*fh}}},
+          {{{1 - 41*fw, 5*fh}}}, {{{1 - 41*fw, 1*fh}}},
           //Toprule for target/chat
           {{{7*fw,1*fh}}}, {{{1 - 8*fw, 1*fh}}},
           //Right border for bars, left border for status area and target/chat

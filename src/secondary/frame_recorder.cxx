@@ -23,16 +23,14 @@
 #include "frame_recorder.hxx"
 #include "src/globals.hxx"
 
-#ifdef FRAME_RECORDER_ENABLED
-
 using namespace std;
 
-#define MS_PER_FRAME 33.3333f
 #define TIME_BETWEEN_SYNC 4000
 
-static bool running;
+static bool running, enabled = false;
 static unsigned run;
 static unsigned frame;
+static float msPerFrame = 33.3333f;
 static float timeUntilNextFrame;
 static float timeUntilForceSync;
 static char filename[128];
@@ -43,6 +41,7 @@ void frame_recorder::init() {
 }
 
 void frame_recorder::begin() {
+  if (!enabled) return;
   ++run;
   frame = 0;
   timeUntilNextFrame = 0;
@@ -63,7 +62,7 @@ void frame_recorder::update(float et) {
   timeUntilNextFrame -= et;
 
   while (timeUntilNextFrame < 0) {
-    timeUntilNextFrame += MS_PER_FRAME;
+    timeUntilNextFrame += msPerFrame;
 
     static Uint32* data=NULL;
     if (!data) {
@@ -153,4 +152,7 @@ void frame_recorder::update(float et) {
   }
 }
 
-#endif /* FRAME_RECORDER_ENABLED */
+void frame_recorder::enable() { enabled = true; }
+void frame_recorder::setFrameRate(float rate) {
+  msPerFrame = 1000.0f/rate;
+}

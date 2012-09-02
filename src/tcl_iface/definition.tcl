@@ -1348,6 +1348,12 @@ unsafe {
   # Tcl doesn't need access to the controls themselves.
 }
 
+cxx src/secondary/frame_recorder.hxx
+unsafe {
+  fun void {frame_recorder::enable frame_recorder_enable}
+  fun void {frame_recorder::setFrameRate frame_recorder_setFrameRate} float
+}
+
 cxx
 unsafe {
   fun void debugTclExports

@@ -77,8 +77,8 @@ static void planet_cutTile(SDL_Surface* source, int x, int y, GLuint tex) {
   SDL_BlitSurface(source, &rect, slice, NULL);
   slice=scaleImage(slice);
   glBindTexture(GL_TEXTURE_2D, tex);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, IMG_SCALE);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, IMG_SCALE);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, slice->w, slice->h, 0, GL_RGBA,
@@ -125,7 +125,7 @@ Planet::Planet(GameObject* ref, GameField* _field,
 
     tileSize = height/numTexturesHigh;
     float tileH = tileSize, tileW = tileSize*TEXW/(float)TEXH;
-    parallax = height/(field->height)/2/sqrt(2.0f);
+    parallax = height/(field->height)/4/sqrt(2.0f)/sqrt(1 + 4*vheight*vheight);
 
     PlanetVertex vertices[4] = {
       { {{0,0}}, {{0,1}}, 1 },
@@ -180,7 +180,8 @@ void Planet::draw() noth {
   glBindVertexArray(vao);
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-  float paraX = (cameraCX-field->width/2)*parallax, paraY=(cameraCY-field->height/2)*parallax;
+  float paraX = (cameraCX-field->width/2)*parallax,
+        paraY = (cameraCY-field->height/2)*parallax;
 
   float dayBegin = orbit + twilight/2;
   float dayEnd = orbit + 0.5f - twilight/2;

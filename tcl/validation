@@ -7,6 +7,8 @@
 #invalidate the copy. (Note that the only penalty of being invalid is that you cannot
 #join online games.)
 tcl/abnet.tcl
+tcl/jobs/job.tcl
+tcl/jobs/render_ship_job.tcl
 tcl/star_background.tcl
 tcl/bkgsupport.tcl
 tcl/bridge.tcl
