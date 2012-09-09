@@ -63,6 +63,11 @@ static uint32_t* xform = NULL;
 
 static int threadBody(void*);
 
+static const drachen_block_spec blockSpec[2] = {
+  { HEADER_SIZE, HEADER_SIZE },
+  { 0xFFFFFFFFu, 32 },
+};
+
 void frame_recorder::init() {
   running = false;
   run = 0;
@@ -117,6 +122,8 @@ void frame_recorder::begin() {
     running = false;
     return;
   }
+
+  drachen_set_block_size(encoder, blockSpec);
 
   thread = SDL_CreateThread(threadBody, NULL);
 }
