@@ -14,16 +14,23 @@
 #ifndef FRAME_RECORDER_HXX_
 #define FRAME_RECORDER_HXX_
 
-/** Contains an interface to Abendstern's built-in
+/**
+ * Contains an interface to Abendstern's built-in
  * frame recorder. The recorder, when active, captures the current
  * screen at a framerate of exactly 30 FPS and stores them to
  * images with filenames fitting the pattern of
- * &nbsp;  <code>recorder/XX.NNNNNNNN.bmp</code>
+ * &nbsp;  <code>recorder/XX-NNNNNNNN.bmp</code>
  * where XX is the recording run (starting at 01) and NNNNNNNN is
  * the frame number.
  * It assumes that the directory "recorder" already exists.
  * The images may be converted to a video with the command
- * &nbsp;  <code>ffmpeg -r 30 -b 1200 -i %08d.bmp out.mpg</code>
+ * &nbsp;  <code>ffmpeg -r 30 -b 1200 -i XX-%08d.bmp out.mpg</code>
+ *
+ * As of 9 Sept 2012, the images for a single run are compressed into a Drachen
+ * archive named recorder/XX.drach. If you don't have libdrachen, the frame
+ * recorder does nothing. You will need to use drachencode to get the images
+ * usable for transcoding to normal video:
+ *   drachencode -d XX.drach
  */
 namespace frame_recorder {
   /** Sets internal variables up. This MUST be called
