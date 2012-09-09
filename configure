@@ -663,6 +663,8 @@ CPPFLAGS
 LDFLAGS
 CXXFLAGS
 CXX
+ENABLE_FONTS_FALSE
+ENABLE_FONTS_TRUE
 ENABLE_GL32_FALSE
 ENABLE_GL32_TRUE
 ENABLE_GL21_FALSE
@@ -753,6 +755,7 @@ enable_gl14
 enable_gl21
 enable_gl32
 with_glew
+with_fonts
 enable_dependency_tracking
 '
       ac_precious_vars='build_alias
@@ -1411,6 +1414,7 @@ Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
   --with-glew             Use GLEW to access GL extensions.
+  --without-fonts         Don't generate font files (useful for servers).
 
 Some influential environment variables:
   PKG_CONFIG  path to pkg-config utility
@@ -3321,6 +3325,36 @@ fi
 
 fi
 
+
+# Check whether --with-fonts was given.
+if test "${with_fonts+set}" = set; then :
+  withval=$with_fonts;
+fi
+
+if test "x$with_fonts" = "xno"; then :
+
+   if false; then
+  ENABLE_FONTS_TRUE=
+  ENABLE_FONTS_FALSE='#'
+else
+  ENABLE_FONTS_TRUE='#'
+  ENABLE_FONTS_FALSE=
+fi
+
+
+else
+
+   if true; then
+  ENABLE_FONTS_TRUE=
+  ENABLE_FONTS_FALSE='#'
+else
+  ENABLE_FONTS_TRUE='#'
+  ENABLE_FONTS_FALSE=
+fi
+
+
+fi
+
 CXXFLAGS="$CXXFLAGS $AB_DEBUG_FLAGS $AB_PROFILE_FLAGS -DTHREAD_LOCAL=__thread"
 LDFLAGS="$LDFLAGS $AB_PROFILE_FLAGS"
 
@@ -4867,11 +4901,13 @@ $as_echo "no" >&6; }
 fi
 
 
-if test "x$IMAGEMAGICK_CONVERT" = "x"; then
+if test "x$IMAGEMAGICK_CONVERT" = "x" -a "x$with_fonts" != "xno"; then :
+
   echo 'The convert program (from ImageMagick) is required to generate the font'
   echo 'files, but was not found in your PATH.'
   echo 'Make sure ImageMagick is installed.'
   exit 1
+
 fi
 
 # Check tclsh version.
@@ -6468,6 +6504,14 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${ENABLE_GL32_TRUE}" && test -z "${ENABLE_GL32_FALSE}"; then
   as_fn_error $? "conditional \"ENABLE_GL32\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${ENABLE_FONTS_TRUE}" && test -z "${ENABLE_FONTS_FALSE}"; then
+  as_fn_error $? "conditional \"ENABLE_FONTS\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${ENABLE_FONTS_TRUE}" && test -z "${ENABLE_FONTS_FALSE}"; then
+  as_fn_error $? "conditional \"ENABLE_FONTS\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${AMDEP_TRUE}" && test -z "${AMDEP_FALSE}"; then

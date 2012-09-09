@@ -1,5 +1,9 @@
 doc_DATA=README COPYING
+if ENABLE_FONTS
 SUBDIRS=src fonts
+else
+SUBDIRS=src
+endif
 install-data-hook: remove-backups
 	mkdir -p $(pkgdatadir)
 	cp -R abendstern.default.rc hangar.default data fonts images tcl \
