@@ -51,3 +51,4 @@ bridge.cxx
 bridge.tcl
 xxx
 fonts/*/*.png
+config.h
