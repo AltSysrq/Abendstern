@@ -156,8 +156,14 @@ AC_CHECK_HEADER([gmp.h], [], [AC_MSG_ERROR([could not find gmp.h])])
 AC_CHECK_HEADER([boost/shared_array.hpp], [], [AC_MSG_ERROR([could not find boost/shared_array.hpp])])
 AC_CHECK_HEADER([png++/png.hpp], [], [AC_MSG_ERROR([Could not find png++ header.])])
 
-# Checks for header files.
-AC_CHECK_HEADERS([arpa/inet.h inttypes.h malloc.h netinet/in.h stdint.h stdlib.h string.h sys/socket.h sys/time.h unistd.h])
+AC_CHECK_HEADERS([drachen.h])
+AC_SEARCH_LIBS(drachen_encode, [drachen], [], [
+  echo "Note: You do not seem to have libdrachen installed."
+  echo "This is not a problem unless you want to record game footage."
+])
+
+AC_CHECK_HEADERS([arpa/inet.h inttypes.h malloc.h netinet/in.h stdint.h dnl
+                  stdlib.h string.h sys/socket.h sys/time.h unistd.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
