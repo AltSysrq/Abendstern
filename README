@@ -25,6 +25,17 @@ If your OpenGL headers do not supply GL extension functions, instead use
 You may also need the --disable-gl32 and possibly --disable-gl21 if your
 OpenGL library does not have the necessary functions.
 
+If you want to be able to record gameplay footage, you will also need
+libdrachen to be installed, which you can get here:
+  https://github.com/AltSysrq/libdrachen
+To use the recorder, start Abendstern, then run
+  frame_recorder_enable
+in the "Tcl" box. After that, at any point, you may press Pause (aka Break,
+usually to the right of the function keys) at any point to start or stop
+recording. The details of how to work with the outputs of recording are given
+in the file
+  src/secondary/frame_recorder.hxx
+
 INSTALLING
 To install Abendstern, simply run "sudo make install" (or "make install" if you
 know you have sufficient privelages to write to $prefix).
