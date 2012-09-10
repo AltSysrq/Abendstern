@@ -4,14 +4,14 @@ To compile on *NIX, you need the following libraries, including their headers
 o asio          (libasio-dev)
 o boost         (libboost-dev)
 o sdl           (libsdl-dev, or libsdl1.2-dev, etc)
-o sdlimg        (libsdl-image1.2-dev or so)
+o sdlimg        (libsdl-image1.2-dev or other version)
 o libgmp        (libgmp-dev)
 o OpenGL        (libgl1-mesa-dev or proprietary video driver headers)
 o tcl8.5        (tcl8.5-dev)
 o itcl3.4       (itcl3-dev)
 o tcl-tls       (tcl-tls)
 o tcllib        (tcllib)
-o libpng        (libpng12-dev or so)
+o libpng        (libpng12-dev or other version)
 o libpng++      (libpng++-dev)
 You also need ImageMagick for building some data files. It is usually found in
 a package named imagemagick.
