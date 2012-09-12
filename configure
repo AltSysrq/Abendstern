@@ -663,6 +663,8 @@ CPPFLAGS
 LDFLAGS
 CXXFLAGS
 CXX
+ENABLE_FONTS_FALSE
+ENABLE_FONTS_TRUE
 ENABLE_GL32_FALSE
 ENABLE_GL32_TRUE
 ENABLE_GL21_FALSE
@@ -753,6 +755,7 @@ enable_gl14
 enable_gl21
 enable_gl32
 with_glew
+with_fonts
 enable_dependency_tracking
 '
       ac_precious_vars='build_alias
@@ -1411,6 +1414,7 @@ Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
   --with-glew             Use GLEW to access GL extensions.
+  --without-fonts         Don't generate font files (useful for servers).
 
 Some influential environment variables:
   PKG_CONFIG  path to pkg-config utility
@@ -3321,6 +3325,36 @@ fi
 
 fi
 
+
+# Check whether --with-fonts was given.
+if test "${with_fonts+set}" = set; then :
+  withval=$with_fonts;
+fi
+
+if test "x$with_fonts" = "xno"; then :
+
+   if false; then
+  ENABLE_FONTS_TRUE=
+  ENABLE_FONTS_FALSE='#'
+else
+  ENABLE_FONTS_TRUE='#'
+  ENABLE_FONTS_FALSE=
+fi
+
+
+else
+
+   if true; then
+  ENABLE_FONTS_TRUE=
+  ENABLE_FONTS_FALSE='#'
+else
+  ENABLE_FONTS_TRUE='#'
+  ENABLE_FONTS_FALSE=
+fi
+
+
+fi
+
 CXXFLAGS="$CXXFLAGS $AB_DEBUG_FLAGS $AB_PROFILE_FLAGS -DTHREAD_LOCAL=__thread"
 LDFLAGS="$LDFLAGS $AB_PROFILE_FLAGS"
 
@@ -4867,11 +4901,13 @@ $as_echo "no" >&6; }
 fi
 
 
-if test "x$IMAGEMAGICK_CONVERT" = "x"; then
+if test "x$IMAGEMAGICK_CONVERT" = "x" -a "x$with_fonts" != "xno"; then :
+
   echo 'The convert program (from ImageMagick) is required to generate the font'
   echo 'files, but was not found in your PATH.'
   echo 'Make sure ImageMagick is installed.'
   exit 1
+
 fi
 
 # Check tclsh version.
@@ -5985,8 +6021,81 @@ fi
 
 
 
-# Checks for header files.
-for ac_header in arpa/inet.h inttypes.h malloc.h netinet/in.h stdint.h stdlib.h string.h sys/socket.h sys/time.h unistd.h
+for ac_header in drachen.h
+do :
+  ac_fn_cxx_check_header_mongrel "$LINENO" "drachen.h" "ac_cv_header_drachen_h" "$ac_includes_default"
+if test "x$ac_cv_header_drachen_h" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_DRACHEN_H 1
+_ACEOF
+
+fi
+
+done
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for library containing drachen_encode" >&5
+$as_echo_n "checking for library containing drachen_encode... " >&6; }
+if ${ac_cv_search_drachen_encode+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_func_search_save_LIBS=$LIBS
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char drachen_encode ();
+int
+main ()
+{
+return drachen_encode ();
+  ;
+  return 0;
+}
+_ACEOF
+for ac_lib in '' drachen; do
+  if test -z "$ac_lib"; then
+    ac_res="none required"
+  else
+    ac_res=-l$ac_lib
+    LIBS="-l$ac_lib  $ac_func_search_save_LIBS"
+  fi
+  if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_search_drachen_encode=$ac_res
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext
+  if ${ac_cv_search_drachen_encode+:} false; then :
+  break
+fi
+done
+if ${ac_cv_search_drachen_encode+:} false; then :
+
+else
+  ac_cv_search_drachen_encode=no
+fi
+rm conftest.$ac_ext
+LIBS=$ac_func_search_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_search_drachen_encode" >&5
+$as_echo "$ac_cv_search_drachen_encode" >&6; }
+ac_res=$ac_cv_search_drachen_encode
+if test "$ac_res" != no; then :
+  test "$ac_res" = "none required" || LIBS="$ac_res $LIBS"
+
+else
+
+  echo "Note: You do not seem to have libdrachen installed."
+  echo "This is not a problem unless you want to record game footage."
+
+fi
+
+
+for ac_header in arpa/inet.h inttypes.h malloc.h netinet/in.h stdint.h                   stdlib.h string.h sys/socket.h sys/time.h unistd.h
 do :
   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
 ac_fn_cxx_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
@@ -6202,41 +6311,6 @@ _ACEOF
 
 
 # Checks for library functions.
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for error_at_line" >&5
-$as_echo_n "checking for error_at_line... " >&6; }
-if ${ac_cv_lib_error_at_line+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-#include <error.h>
-int
-main ()
-{
-error_at_line (0, 0, "", 0, "an error occurred");
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_cxx_try_link "$LINENO"; then :
-  ac_cv_lib_error_at_line=yes
-else
-  ac_cv_lib_error_at_line=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_error_at_line" >&5
-$as_echo "$ac_cv_lib_error_at_line" >&6; }
-if test $ac_cv_lib_error_at_line = no; then
-  case " $LIBOBJS " in
-  *" error.$ac_objext "* ) ;;
-  *) LIBOBJS="$LIBOBJS error.$ac_objext"
- ;;
-esac
-
-fi
-
 for ac_func in atexit gettimeofday memmove memset pow setlocale socket sqrt strchr strerror
 do :
   as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
@@ -6395,6 +6469,14 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${ENABLE_GL32_TRUE}" && test -z "${ENABLE_GL32_FALSE}"; then
   as_fn_error $? "conditional \"ENABLE_GL32\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${ENABLE_FONTS_TRUE}" && test -z "${ENABLE_FONTS_FALSE}"; then
+  as_fn_error $? "conditional \"ENABLE_FONTS\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${ENABLE_FONTS_TRUE}" && test -z "${ENABLE_FONTS_FALSE}"; then
+  as_fn_error $? "conditional \"ENABLE_FONTS\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${AMDEP_TRUE}" && test -z "${AMDEP_FALSE}"; then

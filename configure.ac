@@ -50,6 +50,15 @@ AS_IF([test "x$enable_gl32" = "xno"], [
   AM_CONDITIONAL(ENABLE_GL32, true)
 ])
 
+AC_ARG_WITH([fonts],
+  AS_HELP_STRING([--without-fonts],
+    [Don't generate font files (useful for servers).]))
+AS_IF([test "x$with_fonts" = "xno"], [
+  AM_CONDITIONAL(ENABLE_FONTS, false)
+], [
+  AM_CONDITIONAL(ENABLE_FONTS, true)
+])
+
 CXXFLAGS="$CXXFLAGS $AB_DEBUG_FLAGS $AB_PROFILE_FLAGS -DTHREAD_LOCAL=__thread"
 LDFLAGS="$LDFLAGS $AB_PROFILE_FLAGS"
 
@@ -58,12 +67,12 @@ AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_CPP
 AC_PATH_PROG([IMAGEMAGICK_CONVERT], [convert])
-if test "x$IMAGEMAGICK_CONVERT" = "x"; then
+AS_IF([test "x$IMAGEMAGICK_CONVERT" = "x" -a "x$with_fonts" != "xno"], [
   echo 'The convert program (from ImageMagick) is required to generate the font'
   echo 'files, but was not found in your PATH.'
   echo 'Make sure ImageMagick is installed.'
   exit 1
-fi
+])
 
 # Check tclsh version.
 # Check for tclsh8.5 first since some systems (eg, FreeBSD) don't even create a
@@ -156,8 +165,14 @@ AC_CHECK_HEADER([gmp.h], [], [AC_MSG_ERROR([could not find gmp.h])])
 AC_CHECK_HEADER([boost/shared_array.hpp], [], [AC_MSG_ERROR([could not find boost/shared_array.hpp])])
 AC_CHECK_HEADER([png++/png.hpp], [], [AC_MSG_ERROR([Could not find png++ header.])])
 
-# Checks for header files.
-AC_CHECK_HEADERS([arpa/inet.h inttypes.h malloc.h netinet/in.h stdint.h stdlib.h string.h sys/socket.h sys/time.h unistd.h])
+AC_CHECK_HEADERS([drachen.h])
+AC_SEARCH_LIBS(drachen_encode, [drachen], [], [
+  echo "Note: You do not seem to have libdrachen installed."
+  echo "This is not a problem unless you want to record game footage."
+])
+
+AC_CHECK_HEADERS([arpa/inet.h inttypes.h malloc.h netinet/in.h stdint.h dnl
+                  stdlib.h string.h sys/socket.h sys/time.h unistd.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
@@ -169,7 +184,6 @@ AC_TYPE_UINT64_T
 AC_TYPE_UINT8_T
 
 # Checks for library functions.
-AC_FUNC_ERROR_AT_LINE
 AC_CHECK_FUNCS([atexit gettimeofday memmove memset pow setlocale socket sqrt strchr strerror])
 
 AC_CONFIG_FILES([Makefile

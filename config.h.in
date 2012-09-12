@@ -6,6 +6,12 @@
 /* Define to 1 if you have the `atexit' function. */
 #undef HAVE_ATEXIT
 
+/* Define to 1 if you have the <dnl> header file. */
+#undef HAVE_DNL
+
+/* Define to 1 if you have the <drachen.h> header file. */
+#undef HAVE_DRACHEN_H
+
 /* Define to 1 if you have the `gettimeofday' function. */
 #undef HAVE_GETTIMEOFDAY
 

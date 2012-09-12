@@ -156,6 +156,15 @@ void CellCreationBrush::draw() {
 
 
 bool CellCreationBrush::enterActiveMode(Cell* cell) {
+  /* Give up early if the cell has all the neighbours it can have */
+  bool hasEmpty = false;
+  for (unsigned i=0; i < cell->numNeighbours(); ++i)
+    if (!cell->neighbours[i])
+      hasEmpty = true;
+
+  if (!hasEmpty)
+    return false;
+
   manip->pushUndo();
   whyNotCells.clear();
 
