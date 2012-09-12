@@ -93,7 +93,7 @@ StarField::StarField(GameObject* ref, GameField* field, int count) {
   //remove all in that class, and repeat until empty
   //Copy the original (we'll be removing elements)
   vector<BackgroundObject*> bgobjs = backgroundObjects;
-  numBkgObjects = (field->width > 25? backgroundObjectClassCount : 0);
+  numBkgObjects = backgroundObjectClassCount;
   bkgObjects = new BackgroundObject*[numBkgObjects];
   for (int i=0; i<numBkgObjects; ++i) {
     int index = rand()%bgobjs.size();
@@ -223,7 +223,7 @@ void StarField::draw() noth {
   angsin=sin(angle);
   BackgroundObject** bkgObjects = this->bkgObjects;
   float rx = cameraCX, ry=cameraCY;
-  int numBkgObjects = this->numBkgObjects;
+  int numBkgObjects = field->width > 25? this->numBkgObjects : 0;
 
   //Don't bother drawing stars that are less than 1 px
   float minSize=0.5f/(float)screenW/fakeZoomMul;
