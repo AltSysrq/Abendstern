@@ -257,6 +257,10 @@ void Manipulator::deleteShip() {
 }
 
 const char* Manipulator::reloadShip() {
+  //A place to store error messages to return, since the exception will cease
+  //to exist outside of a catch block
+  static string message;
+
   if (ship) delete ship;
   ship=NULL; //In case the below fails
   try {
@@ -267,9 +271,11 @@ const char* Manipulator::reloadShip() {
 
     ship = loadShip(field, mount.c_str());
   } catch (NoSuchSettingException& nsse) {
-    return nsse.what();
+    message = nsse.what();
+    return message.c_str();
   } catch (runtime_error& err) {
-    return err.what();
+    message = err.what();
+    return message.c_str();
   } catch (...) {
     cerr << "Warning: In Manipulator::reloadShip(): Unknown error" << endl;
     return "Unknown error";
