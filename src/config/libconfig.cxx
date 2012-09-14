@@ -597,9 +597,33 @@ namespace libconfig {
     }
   }
 
+  //Implemented and documented later
+  static void sfree(Setting*);
+
   /* Allocates a new block and returns its index. */
   static iptr balloc() {
-    if (!nextFreeBlock) bextend();
+    /* If using a lazy strategy, we may want to garbage collect now if there's
+     * anything in the queue. We must check that we aren't doing this somewhere
+     * up the stack, as we may need to allocate blocks in the process of
+     * collecting garbage.
+     */
+    if (!nextFreeBlock &&
+        (gcStrategy == GCS_Lazy || gcStrategy == GCS_LazyProgressive)) {
+      static bool isGCing = false;
+      if (!isGCing) {
+        isGCing = true;
+        while (!nextFreeBlock && !toDelete.empty()) {
+          Setting* toFree = toDelete.front();
+          toDelete.pop();
+          sfree(toFree);
+        }
+        isGCing = false;
+      }
+    }
+
+    if (!nextFreeBlock) {
+      bextend();
+    }
     iptr ret = nextFreeBlock;
     BFree blk;
     bread(ret, &blk);
@@ -630,9 +654,6 @@ namespace libconfig {
   Setting::Type Setting::getType() const {
     return SettingEncoder::type(RS(this));
   }
-
-  //Implemented and documented later
-  static void sfree(Setting*);
 
   /* Queues the given Setting* for deletion.
    *
