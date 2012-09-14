@@ -965,6 +965,9 @@ namespace libconfig {
      *
      * Memory usage statistics will indicate the maximum amount of memory used,
      * since nothing is reclaimed until necessary.
+     *
+     * Note that since index tables are reclaimed very slowly, total memory
+     * usage will be significantly greater with this strategy.
      */
     GCS_Lazy,
     /**
@@ -973,6 +976,9 @@ namespace libconfig {
      * call. This exacts a much smaller continuous performance penalty, while
      * aleviating most of the sudden performance drops which can occur with
      * GCS_Lazy.
+     *
+     * Note that since index tables are reclaimed very slowly, total memory
+     * usage will be significantly greater with this strategy.
      */
     GCS_LazyProgressive,
     /**
