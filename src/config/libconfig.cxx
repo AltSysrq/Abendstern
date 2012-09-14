@@ -26,6 +26,7 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <stack>
 #include <algorithm>
 #include <set>
 
@@ -345,7 +346,7 @@ namespace libconfig {
    */
   static vector<SwapPointer*> upperIndex, parentUpperIndex;
 
-  static queue<Setting*> toDelete;
+  static stack<Setting*> toDelete;
   static GarbageCollectionStrategy gcStrategy = GCS_Immediate;
 
   /* Set to false when swap files are closed.
@@ -613,7 +614,7 @@ namespace libconfig {
       if (!isGCing) {
         isGCing = true;
         while (!nextFreeBlock && !toDelete.empty()) {
-          Setting* toFree = toDelete.front();
+          Setting* toFree = toDelete.top();
           toDelete.pop();
           sfree(toFree);
         }
@@ -665,7 +666,7 @@ namespace libconfig {
 
     if (gcStrategy == GCS_Immediate) {
       while (toDelete.size()) {
-        Setting* other = toDelete.front();
+        Setting* other = toDelete.top();
         toDelete.pop();
         sfree(other);
       }
@@ -2938,12 +2939,14 @@ namespace libconfig {
     if (gcStrategy == GCS_Progressive) {
       end = clock() + CLOCKS_PER_SEC/100;
       while (clock() < end && !toDelete.empty()) {
-        sfree(toDelete.front());
+        Setting* toFree = toDelete.top();
         toDelete.pop();
+        sfree(toFree);
       }
     } else if (gcStrategy == GCS_LazyProgressive && !toDelete.empty()) {
-      sfree(toDelete.front());
+      Setting* toFree = toDelete.top();
       toDelete.pop();
+      sfree(toFree);
     }
 
     end = clock() + CLOCKS_PER_SEC/100;
