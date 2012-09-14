@@ -346,6 +346,7 @@ namespace libconfig {
   static vector<SwapPointer*> upperIndex, parentUpperIndex;
 
   static queue<Setting*> toDelete;
+  static GarbageCollectionStrategy gcStrategy = GCS_Immediate;
 
   /* Set to false when swap files are closed.
    * If false, the Config destructor will do nothing (and it is
@@ -630,6 +631,26 @@ namespace libconfig {
     return SettingEncoder::type(RS(this));
   }
 
+  //Implemented and documented later
+  static void sfree(Setting*);
+
+  /* Queues the given Setting* for deletion.
+   *
+   * The Setting may be NULL.
+   */
+  static void sqdel(Setting* s) {
+    if (s)
+      toDelete.push(s);
+
+    if (gcStrategy == GCS_Immediate) {
+      while (toDelete.size()) {
+        Setting* other = toDelete.front();
+        toDelete.pop();
+        sfree(other);
+      }
+    }
+  }
+
   /* BEGIN: Data management functions.
    * There are four for each type:
    * + ramfree  Frees the subdata of a Swappable*.
@@ -804,7 +825,7 @@ namespace libconfig {
   static void ramfree_array(Swappable* swp) {
     RArray* arr = (RArray*)swp;
     for (unsigned i=0; i<arr->length; ++i)
-      toDelete.push(arr->dat[i]);
+      sqdel(arr->dat[i]);
     delete[] arr->dat;
   }
   static void diskfree_array(iptr base) {
@@ -812,7 +833,7 @@ namespace libconfig {
     do {
       bread(base, &blk);
       for (unsigned i=0; i<sizeof(blk.dat)/sizeof(Setting*) && blk.dat[i]; ++i)
-        toDelete.push(blk.dat[i]);
+        sqdel(blk.dat[i]);
       bfree(base);
       base = blk.nxt;
     } while (base);
@@ -879,7 +900,7 @@ namespace libconfig {
         //Queue Settings and dealloc strings
         for (RGroup::HashEntry* e = &grp->table[i];
              e && deleteSettingsAndStrings; e = e->nxt) {
-          toDelete.push(e->dat);
+          sqdel(e->dat);
           delete[] e->name;
         }
         //Deallocate links
@@ -905,7 +926,7 @@ namespace libconfig {
       if (blk.name)
         diskfree_string(blk.name);
       if (blk.value)
-        toDelete.push(blk.value);
+        sqdel(blk.value);
       base = blk.nxt;
     } while (base);
   }
@@ -1264,7 +1285,7 @@ namespace libconfig {
 
   /* Immediately frees a Setting. This should only be used from
    * garbageCollection() and parsing functions;
-   * normally, one sould add the Setting* to toDelete.
+   * normally, one should call sqdel().
    */
   static void sfree(Setting* s) {
     Setting::Type type = s->getType();
@@ -1914,7 +1935,7 @@ namespace libconfig {
       grp->size -= 1+strlen(grp->entries[ix].name);
       delete[] grp->entries[ix].name;
       //Dealloc setting
-      toDelete.push(grp->entries[ix].dat);
+      sqdel(grp->entries[ix].dat);
       //Remove from ordered list
       --grp->numEntries;
       memmove(grp->entries+ix, grp->entries+ix+1,
@@ -1933,7 +1954,7 @@ namespace libconfig {
                                        getPath() + "." + subname.str());
       }
 
-      toDelete.push(arr->dat[ix]);
+      sqdel(arr->dat[ix]);
       --arr->length;
       memmove(arr->dat+ix, arr->dat+ix+1, (arr->length-ix)*sizeof(Setting*));
     }
@@ -2450,7 +2471,7 @@ namespace libconfig {
         assert(nxt == sub);
       }
     } catch (...) {
-      toDelete.push(ret);
+      sqdel(ret);
       throw;
     }
 
@@ -2498,7 +2519,7 @@ namespace libconfig {
       if (*s != terminator)
         throw ParseException("Unterminated group", file, line);
     } catch (...) {
-      toDelete.push(ret);
+      sqdel(ret);
       throw;
     }
 
@@ -2741,11 +2762,11 @@ namespace libconfig {
   { }
   Config::~Config() {
     if (root && enableConfigDestructor)
-      toDelete.push(root);
+      sqdel(root);
   }
 
   void Config::readString(const char* input, const char* filename) {
-    toDelete.push(root);
+    sqdel(root);
 
     unsigned line = 1;
     try {
@@ -2881,8 +2902,15 @@ namespace libconfig {
   }
   void garbageCollection() {
     rsanity();
-    clock_t end = clock() + CLOCKS_PER_SEC/100;
-    while (clock() < end && !toDelete.empty()) {
+    clock_t end;
+
+    if (gcStrategy == GCS_Progressive) {
+      end = clock() + CLOCKS_PER_SEC/100;
+      while (clock() < end && !toDelete.empty()) {
+        sfree(toDelete.front());
+        toDelete.pop();
+      }
+    } else if (gcStrategy == GCS_LazyProgressive && !toDelete.empty()) {
       sfree(toDelete.front());
       toDelete.pop();
     }
