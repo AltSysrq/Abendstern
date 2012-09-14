@@ -2900,6 +2900,16 @@ namespace libconfig {
     sz *= BLOCK_SZ;
     return sz;
   }
+
+  GarbageCollectionStrategy getGarbageCollectionStrategy() {
+    return gcStrategy;
+  }
+  void setGarbageCollectionStrategy(GarbageCollectionStrategy gc) {
+    gcStrategy = gc;
+    //Handle immediate trigger and such
+    sqdel(NULL);
+  }
+
   void garbageCollection() {
     rsanity();
     clock_t end;
