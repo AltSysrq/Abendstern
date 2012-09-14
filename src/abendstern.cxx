@@ -164,6 +164,7 @@ static bool forceWindowed=false;
 static unsigned forceWidth=0, forceHeight=0;
 static unsigned forceBits=0;
 static unsigned cacheSizeMB=32;
+static GarbageCollectionStrategy lcgcs = libconfig::GCS_Progressive;
 
 /** Sets the environment up for running. */
 bool init();
@@ -352,6 +353,21 @@ int main(int argc, char** argv) {
     else if (0 == strcmp(argv[i], "-prelimauto")) {
       preliminaryRunModeAuto = true;
     }
+    else if (0 == strcmp(argv[i], "-lcgcs-immediate")) {
+      lcgcs = libconfig::GCS_Immediate;
+    }
+    else if (0 == strcmp(argv[i], "-lcgcs-progressive")) {
+      lcgcs = libconfig::GCS_Progressive;
+    }
+    else if (0 == strcmp(argv[i], "-lcgcs-lazy")) {
+      lcgcs = libconfig::GCS_Lazy;
+    }
+    else if (0 == strcmp(argv[i], "-lcgcs-lazy-progressive")) {
+      lcgcs = libconfig::GCS_LazyProgressive;
+    }
+    else if (0 == strcmp(argv[i], "-lcgcs-none")) {
+      lcgcs = libconfig::GCS_None;
+    }
     else {
       if (strcmp(argv[i], "-?")
       &&  strcmp(argv[i], "-help") && strcmp(argv[i], "--help"))
@@ -458,6 +474,7 @@ bool init() {
   joystick::init();
 
   libconfig::setMaxPriStorage(cacheSizeMB*1024*1024);
+  libconfig::setGarbageCollectionStrategy(lcgcs);
   if (const char* err = libconfig::openSwapFile()) {
     printf("Unable to open swap file for libconfig: %s\n", err);
     //Expand RAM storage so this won't be an issue
