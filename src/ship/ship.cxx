@@ -682,7 +682,7 @@ void Ship::physicsRequire(physics_bits bits) noth {
     }
 
     //To prevent divides by 0 and similar, enforce a minimum inertia
-    float minin = cells[0]->physics.mass * STD_CELL_SZ/2;
+    float minin = 10 * STD_CELL_SZ/2;
     if (angularInertia < minin) angularInertia = minin;
     assert(angularInertia == angularInertia);
 
@@ -1293,14 +1293,12 @@ bool Ship::collideWith(GameObject* other) noth {
 
     if (destruction) {
       //Handle possible fragments
-      vector<Cell*> bridgeAttachedRaw;
+      set<Cell*> bridgeAttached;
       //If the root was destroyed, create an entirely
       //new ship, by making bridgeAttached be empty
       if (!rootDestroyed)
-        cells[0]->getAdjoined(bridgeAttachedRaw);
-      if (bridgeAttachedRaw.size()!=cells.size()) {
-        set<Cell*> bridgeAttached(bridgeAttachedRaw.begin(),
-                                  bridgeAttachedRaw.end());
+        cells[0]->getAdjoined(bridgeAttached);
+      if (bridgeAttached.size()!=cells.size()) {
         //We've split...
         //Use a non-damaging blast to blow fragments apart
         Blast blowUp(blast, false);
@@ -1335,7 +1333,9 @@ bool Ship::collideWith(GameObject* other) noth {
            * the next decorative update, allowing
            * the second blast to expire first.
            */
-          cells[i]->getAdjoined(frag->cells);
+          set<Cell*> fragCells;
+          cells[i]->getAdjoined(fragCells);
+          frag->cells.insert(frag->cells.end(), fragCells.begin(), fragCells.end());
           for (unsigned int j=0; j<frag->cells.size(); ++j) {
             //Subtract from physics
             preremove(frag->cells[j]);
@@ -1422,17 +1422,19 @@ bool Ship::collideWith(GameObject* other) noth {
           field->addBegin(frag);
         }
       }
-      if (cells.size()!=bridgeAttachedRaw.size()) {
+      if (cells.size()!=bridgeAttached.size()) {
         cerr << "FATAL: Not all detached cells accounted for.\n"
           "We have " << cells.size() << ", but should have " <<
-          bridgeAttachedRaw.size() << endl;
+          bridgeAttached.size() << endl;
         cerr << "Us=" << this << endl;
         for (unsigned int i=0; i<cells.size(); ++i)
           cout << i << " " << cells[i] << ' ' <<
             cells[i]->getX() << ' ' <<
             cells[i]->parent << endl;
-        for (unsigned i=0; i<bridgeAttachedRaw.size(); ++i)
-          cout << i << " " << bridgeAttachedRaw[i] << endl;
+        unsigned i = 0;
+        for (set<Cell*>::const_iterator it = bridgeAttached.begin();
+             it != bridgeAttached.end(); ++it)
+          cout << i++ << " " << *it << endl;
         exit(EXIT_PROGRAM_BUG);
       }
       //See if we should exist

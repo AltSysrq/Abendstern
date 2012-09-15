@@ -7,6 +7,7 @@
 #ifndef CELL_HXX_
 #define CELL_HXX_
 
+#include <set>
 #include <vector>
 #include <string>
 //for GLuint
@@ -403,7 +404,7 @@ class Cell: public AObject {
   /** Returns a vector of Cells that are all joined in some way to this Cell.
    * Returns immediately if the Cell is already in the vector.
    */
-  void getAdjoined(vector<Cell*>&) noth;
+  void getAdjoined(std::set<Cell*>&) noth;
 
   /** Clears the specified physics flags for this cell.
    * Notifies the parent ship that some cells do not have valid

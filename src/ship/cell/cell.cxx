@@ -139,11 +139,10 @@ void Cell::drawShape(const float* healthy, const float* damaged) noth {
   ENDGP
 }
 
-void Cell::getAdjoined(vector<Cell*>& list) noth {
-  for (unsigned int i=0; i<list.size(); ++i)
-    if (list[i]==this) return;
+void Cell::getAdjoined(set<Cell*>& list) noth {
+  if (list.count(this)) return;
 
-  list.push_back(this);
+  list.insert(this);
   unsigned n = numNeighbours();
   for (unsigned i=0; i<n; ++i)
     if (neighbours[i])
