@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Name="Abendstern" Id="autowix:guid:product120912"
+  <Product Name="Abendstern" Id="autowix:guid:product120915"
            UpgradeCode="autowix:guid:upgradecode"
            Manufacturer="abendstern.servegame.com"
-           Language="1033" Codepage="1252" Version="0.0.4.120912">
+           Language="1033" Codepage="1252" Version="0.0.4.120915">
     <Package Id="*" Keywords="Installer"
              Description="Abendstern Windows Installer"
              InstallerVersion="100"
