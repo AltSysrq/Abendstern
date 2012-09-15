@@ -26,6 +26,7 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <stack>
 #include <algorithm>
 #include <set>
 
@@ -325,6 +326,9 @@ namespace libconfig {
     //the Swappable itself.
     //It is to return the index within the file that the structure
     //is rooted in.
+    //If this Swappable contains other Swappables, this function MUST allocate
+    //all blocks before writing them, since it is possible for it to be
+    //modified while allocation is taking place.
     iptr (*swapout)(Swappable*);
   } ruhead = { NULL, &rutail, NULL },
     rutail = { NULL, NULL, &ruhead }; //Recently-used list
@@ -345,7 +349,18 @@ namespace libconfig {
    */
   static vector<SwapPointer*> upperIndex, parentUpperIndex;
 
-  static queue<Setting*> toDelete;
+  static stack<Setting*> toDelete;
+  /* If true, swapOneItemOut() is busy and it is not safe to free RAM-based
+   * Setting*s. sfree() will store those Setting*s in toDeleteConflicts in this
+   * case.
+   */
+  static unsigned isSwappingOut = 0;
+  /* Stores settings which were to be sfree()d, but which were RAM-based and
+   * for which sfree() was called underneath swapOneItemOut().
+   */
+  static deque<Setting*> toDeleteConflicts;
+
+  static GarbageCollectionStrategy gcStrategy = GCS_Immediate;
 
   /* Set to false when swap files are closed.
    * If false, the Config destructor will do nothing (and it is
@@ -596,9 +611,33 @@ namespace libconfig {
     }
   }
 
+  //Implemented and documented later
+  static void sfree(Setting*);
+
   /* Allocates a new block and returns its index. */
   static iptr balloc() {
-    if (!nextFreeBlock) bextend();
+    /* If using a lazy strategy, we may want to garbage collect now if there's
+     * anything in the queue. We must check that we aren't doing this somewhere
+     * up the stack, as we may need to allocate blocks in the process of
+     * collecting garbage.
+     */
+    if (!nextFreeBlock &&
+        (gcStrategy == GCS_Lazy || gcStrategy == GCS_LazyProgressive)) {
+      static bool isGCing = false;
+      if (!isGCing) {
+        isGCing = true;
+        while (!nextFreeBlock && !toDelete.empty()) {
+          Setting* toFree = toDelete.top();
+          toDelete.pop();
+          sfree(toFree);
+        }
+        isGCing = false;
+      }
+    }
+
+    if (!nextFreeBlock) {
+      bextend();
+    }
     iptr ret = nextFreeBlock;
     BFree blk;
     bread(ret, &blk);
@@ -628,6 +667,23 @@ namespace libconfig {
   //can inline it
   Setting::Type Setting::getType() const {
     return SettingEncoder::type(RS(this));
+  }
+
+  /* Queues the given Setting* for deletion.
+   *
+   * The Setting may be NULL.
+   */
+  static void sqdel(Setting* s) {
+    if (s)
+      toDelete.push(s);
+
+    if (gcStrategy == GCS_Immediate) {
+      while (toDelete.size()) {
+        Setting* other = toDelete.top();
+        toDelete.pop();
+        sfree(other);
+      }
+    }
   }
 
   /* BEGIN: Data management functions.
@@ -747,10 +803,13 @@ namespace libconfig {
     BLIndexCont blic;
     BLIndexHead blih;
     BLIndex blk;
+    vector<iptr> blocks((LOWER_INDEX_SZ+2)/3);
 
     iptr base = balloc();
     blic.head = balloc();
-    blic.body = balloc();
+    for (unsigned i = 0; i < blocks.size(); ++i)
+      blocks[i] = balloc();
+    blic.body = blocks[0];
     bwrite(base, &blic);
 
     blih.next = rli->next;
@@ -764,7 +823,7 @@ namespace libconfig {
       for (unsigned j=0; j<3 && i<LOWER_INDEX_SZ; ++i, ++j)
         blk.dat[j] = rli->dat[i].ipt;
 
-      blk.dat[3] = (i < LOWER_INDEX_SZ? balloc() : 0);
+      blk.dat[3] = (i < LOWER_INDEX_SZ? blocks[i/3] : 0);
       bwrite(curr, &blk);
     }
 
@@ -804,7 +863,7 @@ namespace libconfig {
   static void ramfree_array(Swappable* swp) {
     RArray* arr = (RArray*)swp;
     for (unsigned i=0; i<arr->length; ++i)
-      toDelete.push(arr->dat[i]);
+      sqdel(arr->dat[i]);
     delete[] arr->dat;
   }
   static void diskfree_array(iptr base) {
@@ -812,7 +871,7 @@ namespace libconfig {
     do {
       bread(base, &blk);
       for (unsigned i=0; i<sizeof(blk.dat)/sizeof(Setting*) && blk.dat[i]; ++i)
-        toDelete.push(blk.dat[i]);
+        sqdel(blk.dat[i]);
       bfree(base);
       base = blk.nxt;
     } while (base);
@@ -879,7 +938,7 @@ namespace libconfig {
         //Queue Settings and dealloc strings
         for (RGroup::HashEntry* e = &grp->table[i];
              e && deleteSettingsAndStrings; e = e->nxt) {
-          toDelete.push(e->dat);
+          sqdel(e->dat);
           delete[] e->name;
         }
         //Deallocate links
@@ -905,7 +964,7 @@ namespace libconfig {
       if (blk.name)
         diskfree_string(blk.name);
       if (blk.value)
-        toDelete.push(blk.value);
+        sqdel(blk.value);
       base = blk.nxt;
     } while (base);
   }
@@ -995,15 +1054,58 @@ namespace libconfig {
   /* END: Data management functions */
 
   /* BEGIN: Memory management function */
-  /* Swaps the last item in the swappable list out. */
+  /* Swaps the last item in the swappable list out.
+   * This function must be reëntrant.
+   *
+   * In lazy garbage collection strategies, this function can interact with
+   * other components in surprising ways.
+   *
+   * It may trigger garbage-collection in such a way that the function is
+   * called again.
+   *
+   * It may trigger garbage-collection of the very setting whose backing it is
+   * swapping out. This is handled by tracking how many times this function is
+   * on the stack; if non-zero, a RAM-backed Setting passed to sfree() causes
+   * that setting to be added to toDeleteConflicts instead of being freed.
+   *
+   * It may trigger garbage-collection of an item which is subordinate to the
+   * item being swapped out, which results in rtraverse()ing it. This is
+   * handled by setting swp->nxt to NULL, telling rtraverse() to do
+   * nothing. This is safe since the only way this can happen is if the
+   * subordinate is being freed; since this item was being swapped out anyway,
+   * we still know that no other subordinates are in RAM, and that any swapout
+   * which has direct subordinates allocates all blocks it needs before writing
+   * them (so the resulting concurrent modification will not be a problem).
+   */
   static void swapOneItemOut() {
     Swappable* swp = rutail.prv;
-    iptr loc = swp->swapout(swp);
-    swp->parent->dsk = loc | 1;
-    primaryUsed -= swp->size;
+    /* Act as if the item were removed already so we don't recurse in lazy GC
+     * strategies.
+     */
     rutail.prv = swp->prv;
     rutail.prv->nxt = &rutail;
+    primaryUsed -= swp->size;
+    swp->nxt = NULL;
+
+    ++isSwappingOut;
+
+    /* Perform the actual swapping out */
+    iptr loc = swp->swapout(swp);
+    swp->parent->dsk = loc | 1;
+
     delete swp;
+
+    --isSwappingOut;
+
+    if (!isSwappingOut) {
+      /* Re-enqueue all conflicted deletions */
+      deque<Setting*> q(toDeleteConflicts);
+      toDeleteConflicts.clear();
+      while (!q.empty()) {
+        sfree(q.front());
+        q.pop_front();
+      }
+    }
   }
 
   /* Ensures that current memory usage is below twice the requested maximum. */
@@ -1042,8 +1144,12 @@ namespace libconfig {
   /* Moves a Swappable to the head of the RU list.
    * This assumes that the size has not changed; if it has,
    * rremove() and radd() should be called instead.
+   *
+   * If swp->nxt is NULL, does nothing. (See swapOneItemOut() for what this
+   * means.)
    */
   static void rtraverse(Swappable* swp) {
+    if (!swp->nxt) return;
     swp->nxt->prv = swp->prv;
     swp->prv->nxt = swp->nxt;
     swp->prv = &ruhead;
@@ -1264,7 +1370,7 @@ namespace libconfig {
 
   /* Immediately frees a Setting. This should only be used from
    * garbageCollection() and parsing functions;
-   * normally, one sould add the Setting* to toDelete.
+   * normally, one should call sqdel().
    */
   static void sfree(Setting* s) {
     Setting::Type type = s->getType();
@@ -1302,6 +1408,12 @@ namespace libconfig {
     if (diskfree) {
       diskfree(sdat->ptr.dsk ^ 1);
     } else if (ramfree) {
+      if (isSwappingOut) {
+        //This Setting's backing could be en route to disk, so we can't do
+        //anything now
+        toDeleteConflicts.push_back(s);
+        return;
+      }
       ramfree(sdat->ptr.ptr);
       rfree(sdat->ptr.ptr);
     }
@@ -1914,7 +2026,7 @@ namespace libconfig {
       grp->size -= 1+strlen(grp->entries[ix].name);
       delete[] grp->entries[ix].name;
       //Dealloc setting
-      toDelete.push(grp->entries[ix].dat);
+      sqdel(grp->entries[ix].dat);
       //Remove from ordered list
       --grp->numEntries;
       memmove(grp->entries+ix, grp->entries+ix+1,
@@ -1933,7 +2045,7 @@ namespace libconfig {
                                        getPath() + "." + subname.str());
       }
 
-      toDelete.push(arr->dat[ix]);
+      sqdel(arr->dat[ix]);
       --arr->length;
       memmove(arr->dat+ix, arr->dat+ix+1, (arr->length-ix)*sizeof(Setting*));
     }
@@ -2450,7 +2562,7 @@ namespace libconfig {
         assert(nxt == sub);
       }
     } catch (...) {
-      toDelete.push(ret);
+      sqdel(ret);
       throw;
     }
 
@@ -2498,7 +2610,7 @@ namespace libconfig {
       if (*s != terminator)
         throw ParseException("Unterminated group", file, line);
     } catch (...) {
-      toDelete.push(ret);
+      sqdel(ret);
       throw;
     }
 
@@ -2741,11 +2853,11 @@ namespace libconfig {
   { }
   Config::~Config() {
     if (root && enableConfigDestructor)
-      toDelete.push(root);
+      sqdel(root);
   }
 
   void Config::readString(const char* input, const char* filename) {
-    toDelete.push(root);
+    sqdel(root);
 
     unsigned line = 1;
     try {
@@ -2879,12 +2991,31 @@ namespace libconfig {
     sz *= BLOCK_SZ;
     return sz;
   }
+
+  GarbageCollectionStrategy getGarbageCollectionStrategy() {
+    return gcStrategy;
+  }
+  void setGarbageCollectionStrategy(GarbageCollectionStrategy gc) {
+    gcStrategy = gc;
+    //Handle immediate trigger and such
+    sqdel(NULL);
+  }
+
   void garbageCollection() {
     rsanity();
-    clock_t end = clock() + CLOCKS_PER_SEC/100;
-    while (clock() < end && !toDelete.empty()) {
-      sfree(toDelete.front());
+    clock_t end;
+
+    if (gcStrategy == GCS_Progressive) {
+      end = clock() + CLOCKS_PER_SEC/100;
+      while (clock() < end && !toDelete.empty()) {
+        Setting* toFree = toDelete.top();
+        toDelete.pop();
+        sfree(toFree);
+      }
+    } else if (gcStrategy == GCS_LazyProgressive && !toDelete.empty()) {
+      Setting* toFree = toDelete.top();
       toDelete.pop();
+      sfree(toFree);
     }
 
     end = clock() + CLOCKS_PER_SEC/100;

@@ -127,8 +127,6 @@ void ShipRenderer::cellRemoved(Cell* cell) noth {
 
     cell2Quad.erase(it);
   }
-
-  isHighPriority=true;
 }
 
 void ShipRenderer::cellChanged(Cell* cell) noth {
@@ -224,7 +222,7 @@ void ShipRenderer::draw() noth {
            -gradius+(owner->cells[0]->getY()-bridgeY));
     shipShader->activate(&uni);
     for (unsigned i=0; i<nPerSide*nPerSide; ++i)
-      if (quads[i]->isReady())
+      if (quads[i]->isValid())
         quads[i]->draw();
   }
 }

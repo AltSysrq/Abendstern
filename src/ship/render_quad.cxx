@@ -37,7 +37,9 @@ using namespace std;
 #define DAM_TEX_SZ  64
 
 RenderQuad::RenderQuad(unsigned detail, unsigned x, unsigned y)
-: hasVao(false), hasTex(false), shipTexValid(false), damTexValid(false),
+: hasVao(false), hasTex(false),
+  shipTexValid(false), damTexValid(false),
+  shipTexReady(false), damTexReady(false),
   detailLevel(detail),
   minX(detail*STD_CELL_SZ*x), minY(detail*STD_CELL_SZ*y),
   maxX(detail*STD_CELL_SZ*(x+1)), maxY(detail*STD_CELL_SZ*(y+1))
@@ -79,11 +81,11 @@ bool RenderQuad::doesCellIntersect(Cell* cell) noth {
 }
 
 void RenderQuad::cellDamaged() noth {
-  damTexValid=false;
+  damTexReady=false;
 }
 
 void RenderQuad::physicalChange(const Cell* destroyed) noth {
-  damTexValid=shipTexValid=false;
+  damTexReady=shipTexReady=false;
   if (destroyed) {
     cells.erase(find(cells.begin(), cells.end(), destroyed));
     if (cells.empty())
@@ -126,6 +128,7 @@ void RenderQuad::makeReady(float tx, float ty) noth {
 
     hasTex=true;
     damTexValid=shipTexValid=false;
+    damTexReady=shipTexReady=false;
   }
 
   static GLuint fbo=0;
@@ -133,7 +136,7 @@ void RenderQuad::makeReady(float tx, float ty) noth {
     glGenFramebuffers(1, &fbo);
   }
 
-  if (!shipTexValid) {
+  if (!shipTexReady || !shipTexValid) {
     mPush();
     mUScale(SHIP_TEX_SZ/2.0f/detailLevel);
     mTrans(tx-minX,ty-minY);
@@ -172,10 +175,10 @@ void RenderQuad::makeReady(float tx, float ty) noth {
     mPop();
     glViewport(0,0,screenW,screenH);
 
-    shipTexValid=true;
+    shipTexValid=shipTexReady=true;
   }
 
-  if (!damTexValid) {
+  if (!damTexReady || !damTexValid) {
     mPush();
     mUScale(DAM_TEX_SZ*2.0f/detailLevel);
     mTrans(tx-minX,ty-minY);
@@ -212,7 +215,7 @@ void RenderQuad::makeReady(float tx, float ty) noth {
     glBindTexture(GL_TEXTURE_2D, 0);
     mPop();
     glViewport(0,0,screenW,screenH);
-    damTexValid=true;
+    damTexValid=damTexReady=true;
   }
 }
 

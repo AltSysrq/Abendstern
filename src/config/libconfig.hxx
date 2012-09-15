@@ -929,10 +929,87 @@ namespace libconfig {
   unsigned long long getSwapFileSize();
 
   /**
+   * Describes the strategy used to reclaim freed Setting data.
+   */
+  enum GarbageCollectionStrategy {
+    /**
+     * Indicates that all resources should be freed immediately. This means
+     * that garbageCollection() does not need to be called, but also means that
+     * freeing large Configs may take a while.
+     *
+     * All memory usage statistics will be correct always with this strategy.
+     *
+     * This is the default.
+     */
+    GCS_Immediate,
+    /**
+     * Indicates that memory is reclaimed progressivey upon each call to
+     * garbageCollection(). This avoids the long delays due to deletion of
+     * large configs associated with GCS_Immediate, but leads to greater memory
+     * usage and somewhat lower performance. This strategy requires that
+     * garbageCollection() be called, or no memory will be freed.
+     *
+     * Memory usage statistics will be too high while garbage collection is in
+     * progress, but will be accurate once all deallcated memory is freed.
+     */
+    GCS_Progressive,
+    /**
+     * Indicates that memory is not freed until space in the swapfile(s) is
+     * exhausted. This eliminates the deallcation delay of GCS_Immediate and
+     * the continuous performance penalty of GCS_Progressive, but slows down
+     * allocation when the hard RAM limit is reached, and reduces the rate at
+     * which RAM usage is reduced to the soft limit.
+     *
+     * With this strategy, garbageCollection() does not need to be called, but
+     * it is recommended so that RAM usage stays below the hard limit.
+     *
+     * Memory usage statistics will indicate the maximum amount of memory used,
+     * since nothing is reclaimed until necessary.
+     *
+     * Note that since index tables are reclaimed very slowly, total memory
+     * usage will be significantly greater with this strategy.
+     */
+    GCS_Lazy,
+    /**
+     * A hybrid of GCS_Progressive and GCS_Lazy. garbageCollection() will
+     * perform some reclamation, as with GCS_Progressive, but only one item per
+     * call. This exacts a much smaller continuous performance penalty, while
+     * aleviating most of the sudden performance drops which can occur with
+     * GCS_Lazy.
+     *
+     * Note that since index tables are reclaimed very slowly, total memory
+     * usage will be significantly greater with this strategy.
+     */
+    GCS_LazyProgressive,
+    /**
+     * Prevents any garbage collection from occurring. No memory will be
+     * reclaimed with this strategy (though deallocated settings will migrate
+     * from RAM to swap as usage increases).
+     *
+     * This may be useful in programs which need temporary real-time behaviour.
+     */
+    GCS_None
+  };
+
+  /**
+   * Returns the current garbage collection strategy.
+   */
+  GarbageCollectionStrategy getGarbageCollectionStrategy();
+
+  /**
+   * Sets the garbage collection strategy.
+   *
+   * If GCS_Immediate is set, this will immediately reclaim any memory left by
+   * any other strategy.
+   */
+  void setGarbageCollectionStrategy(GarbageCollectionStrategy);
+
+  /**
    * Deletes up to Settings queued for deletion for up to 10 ms, and swaps data
    * out if necessary for up to 10 ms.
    *
-   * This must be called to reclaim memory used by Settings.
+   * This must be called to reclaim memory used by Settings in some collection
+   * strategies.
    *
    * This system exists due to the fact that Abendstern in a number of
    * cases progressively creates an enormous number of Settings, then

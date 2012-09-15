@@ -40,7 +40,9 @@ class Cell;
 class RenderQuad {
   GLuint vao, vbo;
   GLuint shipTex, damTex;
-  bool hasVao, hasTex, shipTexValid, damTexValid;
+  bool hasVao, hasTex,
+    shipTexValid, damTexValid,
+    shipTexReady, damTexReady;
 
   const unsigned detailLevel;
   //This rectangle assumes that the ship is zeroed, and
@@ -74,6 +76,16 @@ class RenderQuad {
    */
   bool doesCellIntersect(Cell*) noth;
 
+  /**
+   * Returns true of the quad is valid.
+   * "Valid" indicates that all textures exist and can be drawn properly, but
+   * might not yet be up-to-date.
+   */
+  bool isValid() const noth {
+    if (cells.empty()) return true;
+    return hasVao && hasTex && shipTexValid && damTexValid;
+  }
+
   /** Returns true if the quad is ready for rendering.
    * "Ready for rendering" indicates that both the vertex array
    * AND the textures are up-to-date.
@@ -81,9 +93,8 @@ class RenderQuad {
    */
   bool isReady() const noth {
     if (cells.empty()) return true;
-    return hasVao && hasTex && shipTexValid && damTexValid;
+    return isValid() && shipTexReady && damTexReady;
   }
-
   /** Performs any setup necessary to make the quad ready for rendering.
    * "Ready for rendering" indicates that both the vertex array
    * AND the textures are up-to-date.
