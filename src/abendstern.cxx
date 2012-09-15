@@ -164,7 +164,7 @@ static bool forceWindowed=false;
 static unsigned forceWidth=0, forceHeight=0;
 static unsigned forceBits=0;
 static unsigned cacheSizeMB=32;
-static GarbageCollectionStrategy lcgcs = libconfig::GCS_Progressive;
+static GarbageCollectionStrategy lcgcs = libconfig::GCS_LazyProgressive;
 
 /** Sets the environment up for running. */
 bool init();
