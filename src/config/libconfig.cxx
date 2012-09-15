@@ -326,6 +326,9 @@ namespace libconfig {
     //the Swappable itself.
     //It is to return the index within the file that the structure
     //is rooted in.
+    //If this Swappable contains other Swappables, this function MUST allocate
+    //all blocks before writing them, since it is possible for it to be
+    //modified while allocation is taking place.
     iptr (*swapout)(Swappable*);
   } ruhead = { NULL, &rutail, NULL },
     rutail = { NULL, NULL, &ruhead }; //Recently-used list
@@ -347,6 +350,16 @@ namespace libconfig {
   static vector<SwapPointer*> upperIndex, parentUpperIndex;
 
   static stack<Setting*> toDelete;
+  /* If true, swapOneItemOut() is busy and it is not safe to free RAM-based
+   * Setting*s. sfree() will store those Setting*s in toDeleteConflicts in this
+   * case.
+   */
+  static unsigned isSwappingOut = 0;
+  /* Stores settings which were to be sfree()d, but which were RAM-based and
+   * for which sfree() was called underneath swapOneItemOut().
+   */
+  static deque<Setting*> toDeleteConflicts;
+
   static GarbageCollectionStrategy gcStrategy = GCS_Immediate;
 
   /* Set to false when swap files are closed.
@@ -790,10 +803,13 @@ namespace libconfig {
     BLIndexCont blic;
     BLIndexHead blih;
     BLIndex blk;
+    vector<iptr> blocks((LOWER_INDEX_SZ+2)/3);
 
     iptr base = balloc();
     blic.head = balloc();
-    blic.body = balloc();
+    for (unsigned i = 0; i < blocks.size(); ++i)
+      blocks[i] = balloc();
+    blic.body = blocks[0];
     bwrite(base, &blic);
 
     blih.next = rli->next;
@@ -807,7 +823,7 @@ namespace libconfig {
       for (unsigned j=0; j<3 && i<LOWER_INDEX_SZ; ++i, ++j)
         blk.dat[j] = rli->dat[i].ipt;
 
-      blk.dat[3] = (i < LOWER_INDEX_SZ? balloc() : 0);
+      blk.dat[3] = (i < LOWER_INDEX_SZ? blocks[i/3] : 0);
       bwrite(curr, &blk);
     }
 
@@ -1038,15 +1054,58 @@ namespace libconfig {
   /* END: Data management functions */
 
   /* BEGIN: Memory management function */
-  /* Swaps the last item in the swappable list out. */
+  /* Swaps the last item in the swappable list out.
+   * This function must be reëntrant.
+   *
+   * In lazy garbage collection strategies, this function can interact with
+   * other components in surprising ways.
+   *
+   * It may trigger garbage-collection in such a way that the function is
+   * called again.
+   *
+   * It may trigger garbage-collection of the very setting whose backing it is
+   * swapping out. This is handled by tracking how many times this function is
+   * on the stack; if non-zero, a RAM-backed Setting passed to sfree() causes
+   * that setting to be added to toDeleteConflicts instead of being freed.
+   *
+   * It may trigger garbage-collection of an item which is subordinate to the
+   * item being swapped out, which results in rtraverse()ing it. This is
+   * handled by setting swp->nxt to NULL, telling rtraverse() to do
+   * nothing. This is safe since the only way this can happen is if the
+   * subordinate is being freed; since this item was being swapped out anyway,
+   * we still know that no other subordinates are in RAM, and that any swapout
+   * which has direct subordinates allocates all blocks it needs before writing
+   * them (so the resulting concurrent modification will not be a problem).
+   */
   static void swapOneItemOut() {
     Swappable* swp = rutail.prv;
-    iptr loc = swp->swapout(swp);
-    swp->parent->dsk = loc | 1;
-    primaryUsed -= swp->size;
+    /* Act as if the item were removed already so we don't recurse in lazy GC
+     * strategies.
+     */
     rutail.prv = swp->prv;
     rutail.prv->nxt = &rutail;
+    primaryUsed -= swp->size;
+    swp->nxt = NULL;
+
+    ++isSwappingOut;
+
+    /* Perform the actual swapping out */
+    iptr loc = swp->swapout(swp);
+    swp->parent->dsk = loc | 1;
+
     delete swp;
+
+    --isSwappingOut;
+
+    if (!isSwappingOut) {
+      /* Re-enqueue all conflicted deletions */
+      deque<Setting*> q(toDeleteConflicts);
+      toDeleteConflicts.clear();
+      while (!q.empty()) {
+        sfree(q.front());
+        q.pop_front();
+      }
+    }
   }
 
   /* Ensures that current memory usage is below twice the requested maximum. */
@@ -1085,8 +1144,12 @@ namespace libconfig {
   /* Moves a Swappable to the head of the RU list.
    * This assumes that the size has not changed; if it has,
    * rremove() and radd() should be called instead.
+   *
+   * If swp->nxt is NULL, does nothing. (See swapOneItemOut() for what this
+   * means.)
    */
   static void rtraverse(Swappable* swp) {
+    if (!swp->nxt) return;
     swp->nxt->prv = swp->prv;
     swp->prv->nxt = swp->nxt;
     swp->prv = &ruhead;
@@ -1345,6 +1408,12 @@ namespace libconfig {
     if (diskfree) {
       diskfree(sdat->ptr.dsk ^ 1);
     } else if (ramfree) {
+      if (isSwappingOut) {
+        //This Setting's backing could be en route to disk, so we can't do
+        //anything now
+        toDeleteConflicts.push_back(s);
+        return;
+      }
       ramfree(sdat->ptr.ptr);
       rfree(sdat->ptr.ptr);
     }
