@@ -143,8 +143,7 @@ void Cell::getAdjoined(set<Cell*>& list) noth {
   if (list.count(this)) return;
 
   list.insert(this);
-  unsigned n = numNeighbours();
-  for (unsigned i=0; i<n; ++i)
+  for (unsigned i=0; i<4; ++i)
     if (neighbours[i])
       neighbours[i]->getAdjoined(list);
 }
