@@ -195,7 +195,7 @@ void MonophasicEnergyPulse::explode(GameObject* obj) noth {
 
 bool MonophasicEnergyPulse::collideWith(GameObject* obj) noth {
   if (obj != this) {
-    field->inject(new Blast(field, blame, x, y, SIZE*5, power, true, 0));
+    field->inject(new Blast(field, blame, x, y, SIZE*2, power, true, 0));
     explode(obj);
   }
   return false;
