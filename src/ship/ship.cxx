@@ -1168,8 +1168,6 @@ bool Ship::collideWith(GameObject* other) noth {
         }
       }
 
-      cout << blastIx << " " << collided.size() << endl;
-
       for (unsigned int cix=0; cix<collided.size(); ++cix) {
         //Find the cell's index
         unsigned i;
