@@ -35,9 +35,14 @@ void FusionPower::destroy(unsigned blame) noth {
   pair<float,float> coords=Ship::cellCoord(parent, container);
   GameField* field=parent->getField();
   //Don't create a Blast if remote
-  if (!parent->isRemote)
-    field->inject(new Blast(field, blame, coords.first, coords.second, STD_CELL_SZ*1.5f,
-                            (parent->hasPower()? 35 : 15), true, STD_CELL_SZ/2));
+  if (!parent->isRemote) {
+    Blast* blast = new Blast(field, blame, coords.first, coords.second,
+                             STD_CELL_SZ*1.5f, (parent->hasPower()? 35 : 15),
+                             true, STD_CELL_SZ/2);
+    parent->injectBlastCollision(blast);
+    field->inject(blast);
+  }
+
   if (!EXPCLOSE(coords.first, coords.second)) return;
   pair<float,float> vel=parent->getCellVelocity(container);
   if (parent->hasPower()) {
