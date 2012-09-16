@@ -164,6 +164,7 @@ Ship::Ship(const Ship& other)
   timeUntilSlowFire(other.timeUntilSlowFire),
   timeUntilRadarRefresh(other.timeUntilRadarRefresh),
   soundEffects(false),
+  injectedBlasts(other.injectedBlasts),
   insignia(other.insignia),
   blame(other.blame),
   score(other.score),
@@ -269,6 +270,16 @@ bool Ship::update(float et) noth {
 
   //The controller only need be updated per physical frame
   if (controller && currentVFrameLast) controller->update(currentFrameTime);
+
+  //Clean up injectedBlasts
+  {
+    list<ObjDL>::iterator it = injectedBlasts.begin();
+    while (it != injectedBlasts.end())
+      if (it->ref)
+        ++it;
+      else
+        it = injectedBlasts.erase(it);
+  }
 
   x+=vx*et;
   y+=vy*et;
@@ -1062,6 +1073,11 @@ float Ship::endTest() noth {
 }
 
 CollisionResult Ship::checkCollision(GameObject* other) noth {
+  //Ignore it if it was already injected
+  for (list<ObjDL>::const_iterator it = injectedBlasts.begin();
+       it != injectedBlasts.end(); ++it)
+    if (it->ref == other)
+      return NoCollision;
   return MaybeCollision;
 }
 
@@ -1071,6 +1087,7 @@ bool Ship::collideWith(GameObject* other) noth {
                 |PHYS_SHIP_INERTIA_BIT
                 |PHYS_SHIP_COORDS_BIT
                 |PHYS_SHIP_DS_INVENTORY_BIT
+                |PHYS_CELL_LOCATION_PROPERTIES_BIT
                 );
   if (other == this) {
     //Special handling
@@ -1084,212 +1101,249 @@ bool Ship::collideWith(GameObject* other) noth {
   }
 
   if (typeid(*other)==typeid(Blast)) {
-    Blast* blast=(Blast*)other;
+    //Ignore if it was injected earlier
+    for (list<ObjDL>::const_iterator it = injectedBlasts.begin();
+         it != injectedBlasts.end(); ++it)
+      if (it->ref == other)
+        return true;
+
+    Blast* initialBlast=(Blast*)other;
     //Compensate for Blasts from the other decoration
-    if (blast->isDecorative() != this->isDecorative()) return true;
+    if (initialBlast->isDecorative() != this->isDecorative()) return true;
     /* If we are remote, just calculate
      * velocity change and forward the blast
      * to the remote peer.
      */
-    if (isRemote && shipDamageGeraet && blast->causesDamage()
-    &&  blast->isDecorative() == this->isDecorative())
-      shipDamageGeraet->shipBlastCollision(this, blast);
+    if (isRemote && shipDamageGeraet && initialBlast->causesDamage()
+    &&  initialBlast->isDecorative() == this->isDecorative())
+      shipDamageGeraet->shipBlastCollision(this, initialBlast);
 
-    /* Since we integrate shield collision with our own,
-     * we must pass this on to all Shields as well (it
-     * is OK if no collision actually occurred).
-     *
-     * (Collide the shields even if remote, so that we don't
-     * have to wait for confirmation.)
-     */
-    for (unsigned i=0; i<shields.size(); ++i) {
-      /* A Shield will never die from collision,
-       * so it's OK to ignore the return value.
+    bool rootDestroyed=false, destruction = false;
+    set<Cell*> possiblyOrphaned, destroyed;
+
+    collideWithCurrent.clear();
+    collideWithCurrent.push_back(initialBlast);
+    //Stop if mass becomes zero. A zero mass indicates that all cells on this
+    //ship have been destroyed, so we can't do anything else.
+    for (unsigned blastIx = 0;
+         blastIx < collideWithCurrent.size() && mass > 0;
+         ++blastIx) {
+      Blast* blast = collideWithCurrent[blastIx];
+
+      /* Since we integrate shield collision with our own,
+       * we must pass this on to all Shields as well (it
+       * is OK if no collision actually occurred).
+       *
+       * (Collide the shields even if remote, so that we don't
+       * have to wait for confirmation.)
        */
-      shields[i]->collideWith(other);
-      /* Nothing that collides with shields needs to know
-       * /that/ specifically. All collideables work fine
-       * just believing that they hit a Ship.
-       */
-      //other->collideWith(shields[i]);
-    }
-
-    bool rootDestroyed=false;
-    float dx, dy;
-    pair<float,float> edge;
-    Cell* maxStrengthCell=NULL;
-    float maxStrength=0, totalStrength=0;
-    vector<const CollisionRectangle*> collidedRaw;
-    vector<Cell*> collided;
-    set<Cell*> possiblyOrphaned;
-    accumulateCollision(this, other, collidedRaw);
-    //Remove duplicates and non-cells
-    {
-      set<void*> found;
-      found.insert((void*)NULL);
-      for (unsigned i = 0; i < collidedRaw.size(); ++i) {
-        if (!found.count(collidedRaw[i]->data)) {
-          found.insert(collidedRaw[i]->data);
-          collided.push_back((Cell*)collidedRaw[i]->data);
-        }
-      }
-    }
-
-    for (unsigned int cix=0; cix<collided.size(); ++cix) {
-      //Find the cell's index
-      unsigned i;
-      for (i=0; cells[i] != collided[cix]; ++i);
-      pair<float,float> cc=cellCoord(this, cells[i]);
-
-      edge=closestEdgePoint(*cells[i]->getCollisionBounds(),
-                            make_pair(blast->getX(), blast->getY()));
-      dx=edge.first-blast->getX(), dy=edge.second-blast->getY();
-      //See if it would be better to use the centre of the cell than the edge
-      float cdx = cc.first-blast->getX(), cdy=cc.second-blast->getY();
-      if (cdx*cdx + cdy*cdy < dx*dx + dy*dy) {
-        edge=cc;
-        dx=cdx;
-        dy=cdy;
+      for (unsigned i=0; i<shields.size(); ++i) {
+        /* A Shield will never die from collision,
+         * so it's OK to ignore the return value.
+         */
+        shields[i]->collideWith(blast);
+        /* Nothing that collides with shields needs to know
+         * /that/ specifically. All collideables work fine
+         * just believing that they hit a Ship.
+         */
+        //other->collideWith(shields[i]);
       }
 
-      /* This code is now handled generically in applyCollision(), but is kept
-       * here to further explain how it works in this context.
-       */
-      /**
-       * //We actually care about the edge->ship, not cell->ship
-       * cellToShipAngle=atan2(edge.second-centre.second,
-       *                       edge.first -centre.first);
-       * //We should consider the blast to be comming from the angle at
-       * //which is the closest point
-       * blastToCellAngle=atan2(blast->getY()-edge.second,
-       *                        blast->getX()-edge.first);
-       **/
-
-      float distance=sqrt(dx*dx + dy*dy);
-
-      float strength=blast->getStrength(distance),
-            movementStrength=blast->getStrength(distance/2);
-      if (movementStrength==0) continue;
-      totalStrength += strength;
-      if (strength>maxStrength) {
-        maxStrength=strength;
-        maxStrengthCell = cells[i];
-      }
-      //Velocity adjustments
-      applyCollision(edge.first, edge.second, strength, blast->getX(),
-                     blast->getY());
-    }
-
-    effects->impact(totalStrength/mass);
-    if (soundEffects && maxStrengthCell)
-      shipDynamicEvent(new audio::Virtual<audio::shipImpact>,
-                       SHIP_IMPACT_LEN, maxStrengthCell,
-                       totalStrength * IMPACT_VOLUME_MUL);
-
-    //Handle damage
-    float totalDamage = 0;
-    bool destruction=false;
-    float damageXOff=0, damageYOff=0;
-    float maxCellDamage = 0;
-    for (unsigned cix=0; cix<collided.size() && blast->causesDamage(); ++cix) {
-      //Find the index of this cell
-      unsigned i;
-      for (i=0; cells[i] != collided[cix]; ++i) assert(i < cells.size());
-      pair<float,float> cc=closestEdgePoint(*cells[i]->getCollisionBounds(),
-                                            make_pair(blast->getX(),
-                                                      blast->getY()));
-      float dx=cc.first-blast->getX(), dy=cc.second-blast->getY();
-      float dist=sqrt(dx*dx + dy*dy);
-      float strength=blast->getStrength(dist);
-      if (!isRemote && strength > 0) {
-        //Check for possible damage reduction
-        cells[i]->physicsRequire(PHYS_CELL_DS_NEAREST_BIT);
-        if (cells[i]->physics.distanceDS >= 0
-        &&  !stealthMode
-        &&  !shieldsDeactivated
-        &&  !isFragment) {
-          float maxRedByDist = DAM_DISP_MAX /
-              (1 + DAM_DISP_DIST_MUL*cells[i]->physics.distanceDS/STD_CELL_SZ);
-          float maxRedByCap = currentCapacitance / DAM_DISP_CAP_MUL;
-          float maxRedByTemp = (MAX_TEMP - heatInfo.temperature) /
-                               DAM_DISP_TEMP_MUL;
-          float maxRedByPDist = strength /
-              (1 + DAM_DISP_DIST_MUL*cells[i]->physics.distanceDS/STD_CELL_SZ);
-          float reduction = min(min(maxRedByDist, maxRedByCap),
-                                min(maxRedByTemp, maxRedByPDist));
-
-          //Apply if possible
-          if (reduction > 0) {
-            strength -= reduction;
-            currentCapacitance -= reduction * DAM_DISP_CAP_MUL;
-            heatInfo.temperature += reduction * DAM_DISP_TEMP_MUL;
+      float dx, dy;
+      pair<float,float> edge;
+      Cell* maxStrengthCell=NULL;
+      float maxStrength=0, totalStrength=0;
+      vector<const CollisionRectangle*> collidedRaw;
+      vector<Cell*> collided;
+      accumulateCollision(this, other, collidedRaw);
+      //Remove duplicates and non-cells
+      {
+        set<void*> found;
+        found.insert((void*)NULL);
+        for (unsigned i = 0; i < collidedRaw.size(); ++i) {
+          if (!found.count(collidedRaw[i]->data)) {
+            found.insert(collidedRaw[i]->data);
+            collided.push_back((Cell*)collidedRaw[i]->data);
           }
-          reduction += 1;
+        }
+      }
+
+      cout << blastIx << " " << collided.size() << endl;
+
+      for (unsigned int cix=0; cix<collided.size(); ++cix) {
+        //Find the cell's index
+        unsigned i;
+        for (i=0; cells[i] != collided[cix]; ++i);
+        pair<float,float> cc=cellCoord(this, cells[i]);
+
+        edge=closestEdgePoint(*cells[i]->getCollisionBounds(),
+                              make_pair(blast->getX(), blast->getY()));
+        dx=edge.first-blast->getX(), dy=edge.second-blast->getY();
+        //See if it would be better to use the centre of the cell than the edge
+        float cdx = cc.first-blast->getX(), cdy=cc.second-blast->getY();
+        if (cdx*cdx + cdy*cdy < dx*dx + dy*dy) {
+          edge=cc;
+          dx=cdx;
+          dy=cdy;
         }
 
-        if (strength > maxCellDamage) {
-          maxCellDamage = strength;
-          damageXOff = cells[i]->getX();
-          damageYOff = cells[i]->getY();
-        }
-        totalDamage += strength;
-        if (!cells[i]->applyDamage(strength*damageMultiplier, blast->blame)) {
-          preremove(cells[i]);
-          CellFragment::spawn(cells[i], blast);
+        /* This code is now handled generically in applyCollision(), but is kept
+         * here to further explain how it works in this context.
+         */
+        /**
+         * //We actually care about the edge->ship, not cell->ship
+         * cellToShipAngle=atan2(edge.second-centre.second,
+         *                       edge.first -centre.first);
+         * //We should consider the blast to be comming from the angle at
+         * //which is the closest point
+         * blastToCellAngle=atan2(blast->getY()-edge.second,
+         *                        blast->getX()-edge.first);
+         **/
 
-          //Replace with several empty cells
-          destruction=true;
-          for (unsigned n=0; n<cells[i]->numNeighbours(); ++n) {
-            if (cells[i]->neighbours[n]) {
-              possiblyOrphaned.insert(cells[i]->neighbours[n]);
-              int index=cells[i]->neighbours[n]->getNeighbour(cells[i]);
-              EmptyCell* ec=new EmptyCell(this, cells[i]->neighbours[n]);
-              if (highQuality && !isFragment) field->add(new PlasmaFire(ec));
-              cells[i]->neighbours[n]->neighbours[index]=ec;
-              cells.push_back(ec);
+        float distance=sqrt(dx*dx + dy*dy);
+
+        float strength=blast->getStrength(distance),
+          movementStrength=blast->getStrength(distance/2);
+        if (movementStrength==0) continue;
+        totalStrength += strength;
+        if (strength>maxStrength) {
+          maxStrength=strength;
+          maxStrengthCell = cells[i];
+        }
+        //Velocity adjustments
+        applyCollision(edge.first, edge.second, strength, blast->getX(),
+                       blast->getY());
+      }
+
+      effects->impact(totalStrength/mass);
+      if (soundEffects && maxStrengthCell)
+        shipDynamicEvent(new audio::Virtual<audio::shipImpact>,
+                         SHIP_IMPACT_LEN, maxStrengthCell,
+                         totalStrength * IMPACT_VOLUME_MUL);
+
+      //Handle damage
+      float totalDamage = 0;
+      float damageXOff=0, damageYOff=0;
+      float maxCellDamage = 0;
+      for (unsigned cix=0; cix<collided.size() && blast->causesDamage(); ++cix) {
+        //Do nothing for this cell if it was destroyed
+        if (destroyed.count(collided[cix])) continue;
+
+        //Find the index of this cell
+        unsigned i;
+        for (i=0; cells[i] != collided[cix]; ++i) assert(i < cells.size());
+        pair<float,float> cc=closestEdgePoint(*cells[i]->getCollisionBounds(),
+                                              make_pair(blast->getX(),
+                                                        blast->getY()));
+        float dx=cc.first-blast->getX(), dy=cc.second-blast->getY();
+        float dist=sqrt(dx*dx + dy*dy);
+        float strength=blast->getStrength(dist);
+        if (!isRemote && strength > 0) {
+          //Check for possible damage reduction
+          cells[i]->physicsRequire(PHYS_CELL_DS_NEAREST_BIT);
+          if (cells[i]->physics.distanceDS >= 0
+              &&  !stealthMode
+              &&  !shieldsDeactivated
+              &&  !isFragment) {
+            float maxRedByDist = DAM_DISP_MAX /
+              (1 + DAM_DISP_DIST_MUL*cells[i]->physics.distanceDS/STD_CELL_SZ);
+            float maxRedByCap = currentCapacitance / DAM_DISP_CAP_MUL;
+            float maxRedByTemp = (MAX_TEMP - heatInfo.temperature) /
+              DAM_DISP_TEMP_MUL;
+            float maxRedByPDist = strength /
+              (1 + DAM_DISP_DIST_MUL*cells[i]->physics.distanceDS/STD_CELL_SZ);
+            float reduction = min(min(maxRedByDist, maxRedByCap),
+                                  min(maxRedByTemp, maxRedByPDist));
+
+            //Apply if possible
+            if (reduction > 0) {
+              strength -= reduction;
+              currentCapacitance -= reduction * DAM_DISP_CAP_MUL;
+              heatInfo.temperature += reduction * DAM_DISP_TEMP_MUL;
             }
-          }
-          //If this was the bridge, we're dead
-          if (i==0) {
-            currentCapacitance=0;
-            isFragment=decorative=true;
-            rootDestroyed=true;
+            reduction += 1;
           }
 
-          //Remove networking entry
-          if (networkCells.size() > 0)
-            networkCells[cells[i]->netIndex] = NULL;
-
-          //Remove cell
-          delete cells[i];
-          if (renderer) renderer->cellRemoved(cells[i]);
-          possiblyOrphaned.erase(cells[i]);
-          cells.erase(cells.begin() + i--);
+          if (strength > maxCellDamage) {
+            maxCellDamage = strength;
+            damageXOff = cells[i]->getX();
+            damageYOff = cells[i]->getY();
+          }
+          totalDamage += strength;
+          if (!cells[i]->applyDamage(strength*damageMultiplier, blast->blame)) {
+            CellFragment::spawn(cells[i], blast);
+            destroyed.insert(cells[i]);
+          }
         }
       }
+
+      //Assign blame for this damage
+      float minBlamedDamage = damageBlame[0].damage;
+      unsigned blameix = 0;
+      for (unsigned i=0; i<lenof(damageBlame); ++i) {
+        if (damageBlame[i].blame == blast->blame) {
+          blameix = i;
+          break;
+        }
+        if (damageBlame[i].damage < minBlamedDamage) {
+          minBlamedDamage = damageBlame[i].damage;
+          blameix = i;
+        }
+      }
+      if (damageBlame[blameix].blame != blast->blame) {
+        damageBlame[blameix].blame = blast->blame;
+        damageBlame[blameix].damage = totalDamage;
+      } else {
+        damageBlame[blameix].damage += totalDamage;
+      }
+      if (controller)
+        controller->damage(totalDamage, damageXOff, damageYOff);
     }
 
-    //Assign blame for this damage
-    float minBlamedDamage = damageBlame[0].damage;
-    unsigned blameix = 0;
-    for (unsigned i=0; i<lenof(damageBlame); ++i) {
-      if (damageBlame[i].blame == blast->blame) {
-        blameix = i;
-        break;
+    //Actually destroy destroyed cells
+    for (set<Cell*>::const_iterator it = destroyed.begin();
+         it != destroyed.end(); ++it) {
+      Cell* cell = *it;
+      preremove(cell);
+
+      //Replace with several empty cells
+      destruction=true;
+      for (unsigned n=0; n < 4; ++n) {
+        if (cell->neighbours[n]) {
+          possiblyOrphaned.insert(cell->neighbours[n]);
+          int index=cell->neighbours[n]->getNeighbour(cell);
+          EmptyCell* ec=new EmptyCell(this, cell->neighbours[n]);
+          if (highQuality && !isFragment) field->add(new PlasmaFire(ec));
+          cell->neighbours[n]->neighbours[index]=ec;
+          cells.push_back(ec);
+
+          /* Ensure that this cell has its physical location properties
+           * already.
+           */
+          ec->physicsRequire(PHYS_CELL_LOCATION_PROPERTIES_BIT);
+        }
       }
-      if (damageBlame[i].damage < minBlamedDamage) {
-        minBlamedDamage = damageBlame[i].damage;
-        blameix = i;
+      //If this was the bridge, we're dead
+      if (cell == cells[0] && !rootDestroyed) {
+        currentCapacitance=0;
+        isFragment=decorative=true;
+        rootDestroyed=true;
       }
+
+      //Remove networking entry
+      if (networkCells.size() > 0)
+        networkCells[cell->netIndex] = NULL;
+
+      //Remove cell
+      delete cell;
+      if (renderer) renderer->cellRemoved(cell);
+      possiblyOrphaned.erase(cell);
+      cells.erase(find(cells.begin(), cells.end(), cell));
     }
-    if (damageBlame[blameix].blame != blast->blame) {
-      damageBlame[blameix].blame = blast->blame;
-      damageBlame[blameix].damage = totalDamage;
-    } else {
-      damageBlame[blameix].damage += totalDamage;
-    }
-    if (controller)
-      controller->damage(totalDamage, damageXOff, damageYOff);
+
+
+    //Let injectBlastCollision() know we won't notice anything else it adds
+    collideWithCurrent.clear();
 
     if (destruction) {
       //Handle possible fragments
@@ -1300,8 +1354,7 @@ bool Ship::collideWith(GameObject* other) noth {
         cells[0]->getAdjoined(bridgeAttached);
       if (bridgeAttached.size()!=cells.size()) {
         //We've split...
-        //Use a non-damaging blast to blow fragments apart
-        Blast blowUp(blast, false);
+
         //Keep track of cells removed.
         //We can't modify possiblyOrphaned since that invalidates the
         //iterator.
@@ -1415,8 +1468,15 @@ bool Ship::collideWith(GameObject* other) noth {
           float centreAngle=(centreDist!=0? atan2(dy, dx) : 0);
           frag->vx = this->vx + centreDist*vtheta*cos(centreAngle+theta);
           frag->vy = this->vy + centreDist*vtheta*sin(centreAngle+theta);
+          //Give it a copy of the injectedBlasts, since it's been exposed to
+          //the same
+          frag->injectedBlasts = this->injectedBlasts;
           //Blow apart
-          frag->collideWith(&blowUp);
+          for (unsigned blastIx = 0; blastIx < collideWithCurrent.size();
+               ++blastIx) {
+            Blast blowUp(collideWithCurrent[blastIx], false);
+            frag->collideWith(&blowUp);
+          }
           /* There is a possibility of the fragment being out of bounds, so have it not be added
            * until after collision detection. */
           field->addBegin(frag);
@@ -1532,6 +1592,15 @@ void Ship::applyCollision(float px, float py, float strength, float ox, float oy
   vtheta-=strength*sdist*sin(oangle-pangle)/angularInertia * 2*pi * rot_factor;
   if (vtheta != vtheta) {
     cout << "Vtheta is NaN!" << endl;
+  }
+}
+
+void Ship::injectBlastCollision(Blast* blast) noth {
+  //Only do something if the list is not empty.
+  //If it is empty, collideWith() will not process anything.
+  if (!collideWithCurrent.empty()) {
+    collideWithCurrent.push_back(blast);
+    injectedBlasts.push_back(ObjDL(blast));
   }
 }
 

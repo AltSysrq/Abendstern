@@ -242,12 +242,21 @@ void Cell::physicsRequire(physics_bits bits) noth {
   if (isEmpty) {
     if (!(physics.valid & PHYS_CELL_LOCATION_PROPERTIES_BIT)
     &&  (PHYS_CELL_LOCATION_PROPERTIES_BITS & bits)) {
-      neighbours[0]->physicsRequire(PHYS_CELL_LOCATION_PROPERTIES_BIT);
+      if (!neighbours[0]->isEmpty) {
+        neighbours[0]->physicsRequire(PHYS_CELL_LOCATION_PROPERTIES_BIT);
 
-      physics.distance  = neighbours[0]->physics.distance;
-      physics.sine      = neighbours[0]->physics.sine;
-      physics.cosine    = neighbours[0]->physics.cosine;
-      physics.angle     = neighbours[0]->physics.angle;
+        physics.distance  = neighbours[0]->physics.distance;
+        physics.sine      = neighbours[0]->physics.sine;
+        physics.cosine    = neighbours[0]->physics.cosine;
+        physics.angle     = neighbours[0]->physics.angle;
+      } else {
+        //Island of two empty cells, do nothing
+        physics.distance = 0;
+        physics.sine = 0;
+        physics.cosine = 1;
+        physics.angle = 0;
+      }
+
       assert(physics.distance == physics.distance);
 
       physics.valid |= PHYS_CELL_LOCATION_PROPERTIES_BIT;
