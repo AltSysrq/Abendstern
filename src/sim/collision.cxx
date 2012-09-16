@@ -116,10 +116,10 @@ static bool walkCollisionTree(CollisionRectangle*const* av, unsigned ac,
     #define bv0y bv[bi]->vertices[0].second
     #define avr av[ai]->radius
     #define bvr bv[bi]->radius
-    if (((av0x > bv0x-bvr && av0x <= bv0x+bvr)
-    ||   (bv0x > av0x-avr && bv0x <= av0x+avr))
-    &&  ((av0y > bv0y-bvr && av0y <= bv0y+bvr)
-    ||   (bv0y > av0y-avr && bv0y <= av0y+avr))) {
+    if (((av0x > bv0x-bvr-avr && av0x <= bv0x+bvr+avr)
+    ||   (bv0x > av0x-avr-bvr && bv0x <= av0x+avr+bvr))
+    &&  ((av0y > bv0y-bvr-avr && av0y <= bv0y+bvr+avr)
+    ||   (bv0y > av0y-avr-bvr && bv0y <= av0y+avr+bvr))) {
       if (rectanglesCollide(*av[ai], *bv[bi])) {
         if (av[ai]->recurse || bv[bi]->recurse) {
           //We need to check a finer level
