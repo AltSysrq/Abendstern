@@ -679,7 +679,7 @@ void run() {
     #ifdef PROFILE
     Uint32 updateStart=gameClock;
     #endif
-    GameState* ret=state->update(elapsedMillis);
+    GameState* ret=state->update(elapsedMillis < 100? elapsedMillis : 100);
     if (ret) {
       if (ret==state) ret=NULL;
       delete state;
