@@ -125,3 +125,9 @@ void VersusMatch::shipDeath(Ship* s) noth {
     }
   }
 }
+
+VersusMatch* VersusMatch::create(const string& t, unsigned nt,
+                                 const string& a, unsigned at)
+throw (runtime_error) {
+  return new VersusMatch(t,nt,a,at);
+}

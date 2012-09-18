@@ -1349,6 +1349,14 @@ unsafe {
   # Tcl doesn't need access to the controls themselves.
 }
 
+cxx src/secondary/versus_match.hxx
+class final VersusMatch {} {
+  fun bool step noth
+  fun float score {const noth}
+}
+fun VersusMatch* {VersusMatch::create VersusMatch_create} \
+    string unsigned string unsigned
+
 cxx src/secondary/frame_recorder.hxx
 unsafe {
   fun void {frame_recorder::enable frame_recorder_enable}
