@@ -112,7 +112,7 @@ class ShipRenderJob {
 
   method upload-result-exec {} {
     if {!$::abnet::busy} {
-      ::abnet::putf $renderOutput $renderOutput
+      ::abnet::putf ".tmp.render.$fileId" $renderOutput
       set currentStage wait-for-upload
     }
   }
