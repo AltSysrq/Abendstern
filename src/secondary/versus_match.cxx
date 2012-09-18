@@ -45,7 +45,7 @@ throw (runtime_error)
       field.add(s);
       testing.push_back(s);
       s->insignia = TESTING_INSIGNIA;
-      s->controller = new AIControl(s, conf["AI"]["test"]);
+      s->controller = new AIControl(s, conf["ai"]["test"]);
       s->shipExistenceFailure = &notifyShipDeath;
     }
 
@@ -53,8 +53,8 @@ throw (runtime_error)
       Ship* s = loadShip(&field, againstroot.c_str());
       field.add(s);
       testing.push_back(s);
-      s->insignia = TESTING_INSIGNIA;
-      s->controller = new AIControl(s, conf["AI"]["test"]);
+      s->insignia = AGAINST_INSIGNIA;
+      s->controller = new AIControl(s, conf["ai"]["test"]);
       s->shipExistenceFailure = &notifyShipDeath;
     }
   } catch (libconfig::ConfigException& ce) {
@@ -99,6 +99,8 @@ float VersusMatch::score() const noth {
     if (!against[i])
       //Enemy got killed, increase score
       s += 1.0f / against.size();
+
+  s *= 0.5 + (MAX_STEPS - currentStep) / (float)MAX_STEPS / 2.0f;
 
   return s;
 }

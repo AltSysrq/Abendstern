@@ -1084,12 +1084,14 @@ namespace eval ::abnet {
 
   proc _jobDone {data} {
     sync
+    log "Job done: $data"
     writeServer job-done {*}$data
     enable job
   }
 
   proc _jobFailed {why} {
     sync
+    log "Job failed: $why"
     writeServer job-failed $why
     enable job
   }

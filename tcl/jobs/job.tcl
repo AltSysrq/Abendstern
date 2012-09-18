@@ -72,4 +72,61 @@ class Job {
   method fqn {} { return $this }
 }
 
+# Creates a pair of methods which fetch a file and store it, then change to
+# another state.
+# Fileid and filename are variable names which must be accessible to the
+# methods.
+# Postexec is code to run before changing stage but after the file has been
+# retrieved; it is spliced into the method.
+#
+# The entry state is called start-fetch-KEY
+proc job-fetch-files-state {key fileid filename nextStage {postexec {}}} {
+  uplevel 1 [string map [list KEY $key FILEID $fileid \
+                             FILENAME $filename NXT $nextStage PEX $postexec] \
+                 {
+                   method start-fetch-KEY-exec {} {
+                     if {!$::abnet::busy} {
+                       ::abnet::getf $FILEID $FILENAME
+                       set currentStage wait-for-fetch-KEY
+                     }
+                   }
+
+                   method start-fetch-KEY-interval {} {
+                     return 100
+                   }
+
+                   method wait-for-fetch-KEY-exec {} {
+                     if {!$::abnet::busy} {
+                       if {[llength $::abnet::filestat($FILEID)]} {
+                         # Fetched successfully
+                         PEX
+                         set currentStage NXT
+                       } else {
+                         # Couldn't download the file
+                         fail "Couldn't download $FILEID"
+                       }
+                     }
+                   }
+
+                   method wait-for-fetch-KEY-interval {} {
+                     return 1000
+                   }
+                 }]
+}
+
+# Returns a string usable as a postexec in job-fetch-files-state which loads
+# a file into a config.
+# Filename is a variable reachable in the method, but mount is substituted
+# verbatim.
+proc job-pex-mountconf {filename mount} {
+  string map [list FILENAME $filename MOUNT $mount] {
+    if {[catch {
+      $ open $FILENAME MOUNT
+    } err]} {
+      fail $err
+    }
+  }
+}
+
 source tcl/jobs/render_ship_job.tcl
+source tcl/jobs/ship_match_job.tcl
