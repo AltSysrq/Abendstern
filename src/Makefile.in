@@ -251,6 +251,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-confreg.$(OBJEXT) \
 	abendsternuxgl14-planet_generator.$(OBJEXT) \
 	abendsternuxgl14-global_chat.$(OBJEXT) \
+	abendsternuxgl14-versus_match.$(OBJEXT) \
 	abendsternuxgl14-fasttrig.$(OBJEXT) \
 	abendsternuxgl14-matops.$(OBJEXT) \
 	abendsternuxgl14-mat.$(OBJEXT) abendsternuxgl14-asgi.$(OBJEXT) \
@@ -462,6 +463,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-confreg.$(OBJEXT) \
 	abendsternuxgl21-planet_generator.$(OBJEXT) \
 	abendsternuxgl21-global_chat.$(OBJEXT) \
+	abendsternuxgl21-versus_match.$(OBJEXT) \
 	abendsternuxgl21-fasttrig.$(OBJEXT) \
 	abendsternuxgl21-matops.$(OBJEXT) \
 	abendsternuxgl21-mat.$(OBJEXT) abendsternuxgl21-asgi.$(OBJEXT) \
@@ -671,6 +673,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-confreg.$(OBJEXT) \
 	abendsternuxgl32-planet_generator.$(OBJEXT) \
 	abendsternuxgl32-global_chat.$(OBJEXT) \
+	abendsternuxgl32-versus_match.$(OBJEXT) \
 	abendsternuxgl32-fasttrig.$(OBJEXT) \
 	abendsternuxgl32-matops.$(OBJEXT) \
 	abendsternuxgl32-mat.$(OBJEXT) abendsternuxgl32-asgi.$(OBJEXT) \
@@ -1074,6 +1077,7 @@ COMMONSOURCES = \
 ./secondary/confreg.cxx \
 ./secondary/planet_generator.cxx \
 ./secondary/global_chat.cxx \
+./secondary/versus_match.cxx \
 ./fasttrig.cxx \
 ./graphics/matops.cxx \
 ./graphics/mat.cxx \
@@ -1421,6 +1425,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-tuner.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-vaoemu.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-vec.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-versus_match.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-wavload.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-windows_firewall_opener.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-x0.Po@am__quote@
@@ -1633,6 +1638,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-tuner.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-vaoemu.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-vec.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-versus_match.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-wavload.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-windows_firewall_opener.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-x0.Po@am__quote@
@@ -1845,6 +1851,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-tuner.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-vaoemu.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-vec.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-versus_match.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-wavload.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-windows_firewall_opener.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-x0.Po@am__quote@
@@ -4580,6 +4587,20 @@ abendsternuxgl14-global_chat.obj: ./secondary/global_chat.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./secondary/global_chat.cxx' object='abendsternuxgl14-global_chat.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-global_chat.obj `if test -f './secondary/global_chat.cxx'; then $(CYGPATH_W) './secondary/global_chat.cxx'; else $(CYGPATH_W) '$(srcdir)/./secondary/global_chat.cxx'; fi`
+
+abendsternuxgl14-versus_match.o: ./secondary/versus_match.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-versus_match.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-versus_match.Tpo -c -o abendsternuxgl14-versus_match.o `test -f './secondary/versus_match.cxx' || echo '$(srcdir)/'`./secondary/versus_match.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-versus_match.Tpo $(DEPDIR)/abendsternuxgl14-versus_match.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./secondary/versus_match.cxx' object='abendsternuxgl14-versus_match.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-versus_match.o `test -f './secondary/versus_match.cxx' || echo '$(srcdir)/'`./secondary/versus_match.cxx
+
+abendsternuxgl14-versus_match.obj: ./secondary/versus_match.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-versus_match.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-versus_match.Tpo -c -o abendsternuxgl14-versus_match.obj `if test -f './secondary/versus_match.cxx'; then $(CYGPATH_W) './secondary/versus_match.cxx'; else $(CYGPATH_W) '$(srcdir)/./secondary/versus_match.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-versus_match.Tpo $(DEPDIR)/abendsternuxgl14-versus_match.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./secondary/versus_match.cxx' object='abendsternuxgl14-versus_match.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-versus_match.obj `if test -f './secondary/versus_match.cxx'; then $(CYGPATH_W) './secondary/versus_match.cxx'; else $(CYGPATH_W) '$(srcdir)/./secondary/versus_match.cxx'; fi`
 
 abendsternuxgl14-fasttrig.o: ./fasttrig.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-fasttrig.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-fasttrig.Tpo -c -o abendsternuxgl14-fasttrig.o `test -f './fasttrig.cxx' || echo '$(srcdir)/'`./fasttrig.cxx
@@ -7549,6 +7570,20 @@ abendsternuxgl21-global_chat.obj: ./secondary/global_chat.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-global_chat.obj `if test -f './secondary/global_chat.cxx'; then $(CYGPATH_W) './secondary/global_chat.cxx'; else $(CYGPATH_W) '$(srcdir)/./secondary/global_chat.cxx'; fi`
 
+abendsternuxgl21-versus_match.o: ./secondary/versus_match.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-versus_match.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-versus_match.Tpo -c -o abendsternuxgl21-versus_match.o `test -f './secondary/versus_match.cxx' || echo '$(srcdir)/'`./secondary/versus_match.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-versus_match.Tpo $(DEPDIR)/abendsternuxgl21-versus_match.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./secondary/versus_match.cxx' object='abendsternuxgl21-versus_match.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-versus_match.o `test -f './secondary/versus_match.cxx' || echo '$(srcdir)/'`./secondary/versus_match.cxx
+
+abendsternuxgl21-versus_match.obj: ./secondary/versus_match.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-versus_match.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-versus_match.Tpo -c -o abendsternuxgl21-versus_match.obj `if test -f './secondary/versus_match.cxx'; then $(CYGPATH_W) './secondary/versus_match.cxx'; else $(CYGPATH_W) '$(srcdir)/./secondary/versus_match.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-versus_match.Tpo $(DEPDIR)/abendsternuxgl21-versus_match.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./secondary/versus_match.cxx' object='abendsternuxgl21-versus_match.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-versus_match.obj `if test -f './secondary/versus_match.cxx'; then $(CYGPATH_W) './secondary/versus_match.cxx'; else $(CYGPATH_W) '$(srcdir)/./secondary/versus_match.cxx'; fi`
+
 abendsternuxgl21-fasttrig.o: ./fasttrig.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-fasttrig.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-fasttrig.Tpo -c -o abendsternuxgl21-fasttrig.o `test -f './fasttrig.cxx' || echo '$(srcdir)/'`./fasttrig.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-fasttrig.Tpo $(DEPDIR)/abendsternuxgl21-fasttrig.Po
@@ -10517,6 +10552,20 @@ abendsternuxgl32-global_chat.obj: ./secondary/global_chat.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-global_chat.obj `if test -f './secondary/global_chat.cxx'; then $(CYGPATH_W) './secondary/global_chat.cxx'; else $(CYGPATH_W) '$(srcdir)/./secondary/global_chat.cxx'; fi`
 
+abendsternuxgl32-versus_match.o: ./secondary/versus_match.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-versus_match.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-versus_match.Tpo -c -o abendsternuxgl32-versus_match.o `test -f './secondary/versus_match.cxx' || echo '$(srcdir)/'`./secondary/versus_match.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-versus_match.Tpo $(DEPDIR)/abendsternuxgl32-versus_match.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./secondary/versus_match.cxx' object='abendsternuxgl32-versus_match.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-versus_match.o `test -f './secondary/versus_match.cxx' || echo '$(srcdir)/'`./secondary/versus_match.cxx
+
+abendsternuxgl32-versus_match.obj: ./secondary/versus_match.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-versus_match.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-versus_match.Tpo -c -o abendsternuxgl32-versus_match.obj `if test -f './secondary/versus_match.cxx'; then $(CYGPATH_W) './secondary/versus_match.cxx'; else $(CYGPATH_W) '$(srcdir)/./secondary/versus_match.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-versus_match.Tpo $(DEPDIR)/abendsternuxgl32-versus_match.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./secondary/versus_match.cxx' object='abendsternuxgl32-versus_match.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-versus_match.obj `if test -f './secondary/versus_match.cxx'; then $(CYGPATH_W) './secondary/versus_match.cxx'; else $(CYGPATH_W) '$(srcdir)/./secondary/versus_match.cxx'; fi`
+
 abendsternuxgl32-fasttrig.o: ./fasttrig.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-fasttrig.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-fasttrig.Tpo -c -o abendsternuxgl32-fasttrig.o `test -f './fasttrig.cxx' || echo '$(srcdir)/'`./fasttrig.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-fasttrig.Tpo $(DEPDIR)/abendsternuxgl32-fasttrig.Po
@@ -10902,8 +10951,6 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
-clean: clean-am
-
 clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-am
@@ -10990,6 +11037,10 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS
 
 # Don't try to compile abendstern.cxx -> abendstern.o -> abendstern
 abendstern:;
+
+# Also clean generated files on clean
+clean:
+	rm -f ./tcl_iface/xxx/* ./tcl_iface/bridge.cxx ../tcl/bridge.tcl
 
 ./tcl_iface/xxx/rebuilt: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 	@echo '  TCL    tcl_iface/generate.tcl'
