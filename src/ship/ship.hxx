@@ -996,5 +996,13 @@ class Ship: public GameObject {
  */
 const char* verify(Ship* ship, bool phys=true);
 
+/**
+ * Returns the integer representation of the given category.
+ * This is a utility function for Tcl.
+ */
+static inline unsigned shipCategoryToInt(Ship::Category cat) {
+  return (unsigned)cat;
+}
+
 
 #endif /*SHIP_HXX_*/

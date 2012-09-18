@@ -486,6 +486,7 @@ enum Ship::Category {} \
     {Ship::Attacker	Attacker} \
     {Ship::Subcapital	Subcapital} \
     {Ship::Defender	Defender}
+fun unsigned shipCategoryToInt Ship::Category
 class final Ship GameObject {
   unsafe {
     var controller Controller* steal
