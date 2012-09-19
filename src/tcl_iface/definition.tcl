@@ -1354,7 +1354,7 @@ class final VersusMatch {} {
   fun bool step noth
   fun float score {const noth}
 }
-fun VersusMatch* {VersusMatch::create VersusMatch_create} \
+fun {VersusMatch* steal} {VersusMatch::create VersusMatch_create} \
     string unsigned string unsigned
 
 cxx src/secondary/frame_recorder.hxx
