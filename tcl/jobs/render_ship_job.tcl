@@ -8,14 +8,16 @@ class ShipRenderJob {
   variable sir 0
   variable tempShip
   variable renderOutput
+  variable uploadName
 
   constructor {fid} {
-    Job::constructor start-fetch
+    Job::constructor start-fetch-ship
   } {
     set fileId $fid
     set field [new GameField default 1 1]
     set tempShip [tmpname render]
     set renderOutput [tmpname render]
+    set uploadName ".tmp.render.$fid"
   }
 
   destructor {
@@ -27,41 +29,8 @@ class ShipRenderJob {
     file delete $renderOutput
   }
 
-  method start-fetch-exec {} {
-    if {!$::abnet::busy} {
-      ::abnet::getf $fileId $tempShip
-      set currentStage wait-for-fetch
-    }
-  }
-
-  method start-fetch-interval {} {
-    return 100
-  }
-
-  method wait-for-fetch-exec {} {
-    if {!$::abnet::busy} {
-      if {[llength $::abnet::filestat($fileId)]} {
-        # Fetched successfully
-        # Try to mount
-        if {[catch {
-          $ open $tempShip render_ship_job
-        } err]} {
-          fail $err
-          return
-        }
-
-        # OK, load the ship next
-        set currentStage load-ship
-      } else {
-        # Couldn't download ship
-        fail "Couldn't download $fileId"
-      }
-    }
-  }
-
-  method wait-for-fetch-interval {} {
-    return 1000
-  }
+  job-fetch-files-state ship fileId tempShip load-ship \
+      [job-pex-mountconf tempShip render_ship_job]
 
   method load-ship-exec {} {
     if {[catch {
@@ -112,7 +81,7 @@ class ShipRenderJob {
 
   method upload-result-exec {} {
     if {!$::abnet::busy} {
-      ::abnet::putf ".tmp.render.$fileId" $renderOutput
+      ::abnet::putf $uploadName $renderOutput
       set currentStage wait-for-upload
     }
   }
@@ -126,9 +95,11 @@ class ShipRenderJob {
       # Upload is done, see if it succeeded
       # (We can't check $::abnet::success, because something may have happened
       # while we were asleep)
-      if {[info exists ::abnet::filenames($::abnet::userid,$renderOutput)]} {
+      if {[info exists ::abnet::filenames($::abnet::userid,$uploadName)]} {
         # Success
-        done $::abnet::filenames($::abnet::userid,$renderOutput)
+        done $::abnet::filenames($::abnet::userid,$uploadName)
+        # Gets deleted implicitly
+        unset ::abnet::filenames($::abnet::userid,$uploadName)
       } else {
         # Failed to upload
         fail "Couldn't upload renderOutput"

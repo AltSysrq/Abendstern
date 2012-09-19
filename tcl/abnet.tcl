@@ -269,6 +269,8 @@ namespace eval ::abnet {
   # It has the exact behaviour of calling lookupFilename
   # if the name is not yet known, then immediately getf
   # after success.
+  #
+  # This is a compound operation, so success hooks will not work as expected.
   proc getfn {filename outfile {userid {}}} {
     if {"" == $userid} { set userid $::abnet::userid }
     _getfn $filename $outfile $userid
@@ -435,6 +437,14 @@ namespace eval ::abnet {
   proc slaveMode {} {
     set ::abnet::MAXIMUM_MSG_INTERVAL 5
     writeServer make-me-a-slave
+  }
+
+  # Requests notification when $::abnet::success is updated.
+  # The parameters given will have the new value of success appended (via
+  # lappend), and will then be eval'd at global scope.
+  # If not currently busy, immediately runs the hook.
+  proc successHook {args} {
+    _successHook $args
   }
 
   ### NO DECLARATIONS BELOW THIS POINT SHOULD BE ACCESSED
@@ -1094,6 +1104,23 @@ namespace eval ::abnet {
     log "Job failed: $why"
     writeServer job-failed $why
     enable job
+  }
+
+  proc _successHook {code} {
+    trace add variable ::abnet::success write \
+        [list ::abnet::successHookTrigger $code]
+    if {!$::abnet::busy} {
+      set ::abnet::success $::abnet::success
+    }
+  }
+
+  proc successHookTrigger {code args} {
+    # Remove the trace since this is only supposed to run once
+    trace remove variable ::abnet::success write \
+        [list ::abnet::successHookTrigger $code]
+    # Add the current value of success and run
+    lappend code $::abnet::success
+    namespace eval :: $code
   }
 
   proc message-error {l10n english} {

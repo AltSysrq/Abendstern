@@ -84,11 +84,17 @@ proc job-fetch-files-state {key fileid filename nextStage {postexec {}}} {
   uplevel 1 [string map [list KEY $key FILEID $fileid \
                              FILENAME $filename NXT $nextStage PEX $postexec] \
                  {
+                   variable fetch-KEY-success mu
                    method start-fetch-KEY-exec {} {
                      if {!$::abnet::busy} {
                        ::abnet::getf $FILEID $FILENAME
                        set currentStage wait-for-fetch-KEY
+                       ::abnet::successHook $this fetch-KEY-hook
                      }
+                   }
+
+                   method fetch-KEY-hook {suc} {
+                     set fetch-KEY-success $suc
                    }
 
                    method start-fetch-KEY-interval {} {
@@ -96,8 +102,8 @@ proc job-fetch-files-state {key fileid filename nextStage {postexec {}}} {
                    }
 
                    method wait-for-fetch-KEY-exec {} {
-                     if {!$::abnet::busy} {
-                       if {[llength $::abnet::filestat($FILEID)]} {
+                     if {${fetch-KEY-success} ne {mu}} {
+                       if {${fetch-KEY-success}} {
                          # Fetched successfully
                          PEX
                          set currentStage NXT
