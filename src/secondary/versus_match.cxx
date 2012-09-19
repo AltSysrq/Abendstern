@@ -74,13 +74,13 @@ bool VersusMatch::step() noth {
     return false;
 
   //Check for one team having been eliminated
-  bool anyAlive = false;
-  for (unsigned i = 0; i < testing.size() && !anyAlive; ++i)
-    anyAlive |= !!testing[i];
-  for (unsigned i = 0; i < against.size() && !anyAlive; ++i)
-    anyAlive |= !!against[i];
+  bool anyTAlive = false, anyAAlive;
+  for (unsigned i = 0; i < testing.size() && !anyTAlive; ++i)
+    anyTAlive |= !!testing[i];
+  for (unsigned i = 0; i < against.size() && !anyAAlive; ++i)
+    anyAAlive |= !!against[i];
 
-  if (!anyAlive)
+  if (!anyTAlive || !anyAAlive)
     return false;
 
   //Still more to do
