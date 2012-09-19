@@ -52,7 +52,7 @@ throw (runtime_error)
     for (unsigned i = 0; i < againstCount; ++i) {
       Ship* s = loadShip(&field, againstroot.c_str());
       field.add(s);
-      testing.push_back(s);
+      against.push_back(s);
       s->insignia = AGAINST_INSIGNIA;
       s->controller = new AIControl(s, conf["ai"]["test"]);
       s->shipExistenceFailure = &notifyShipDeath;
