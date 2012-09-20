@@ -633,6 +633,14 @@ namespace eval ::abnet {
         }
       }
       secure {
+        incr ::abnet::outputsSinceKeyChange
+        if {$::abnet::outputsSinceKeyChange > 1024} {
+          set k [crypto_rand]
+          set ::abnet::outputsSinceKeyChange 0
+          writeServer change-key $k
+          setKey ::abnet::outputKey $k
+        }
+
         set str [encoding convertto utf-8 $args]
         append str "\n"
         while {[string length $str] % 16} {
@@ -649,14 +657,6 @@ namespace eval ::abnet {
           set ::abnet::isConnected no
           set ::abnet::resultMessage $err
           return
-        }
-
-        incr ::abnet::outputsSinceKeyChange
-        if {$::abnet::outputsSinceKeyChange > 1024} {
-          set k [crypto_rand]
-          set ::abnet::outputsSinceKeyChange 0
-          writeServer change-key $k
-          setKey ::abnet::outputKey $k
         }
       }
     }
