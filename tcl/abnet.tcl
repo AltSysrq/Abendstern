@@ -731,7 +731,6 @@ namespace eval ::abnet {
   # endSession, then resets variables to a not-connected
   # state
   proc endConnection {} {
-    sync
     endSession
     # Delay so any pending message can be transmitted
     after 512 close $::abnet::sock
@@ -740,6 +739,8 @@ namespace eval ::abnet {
     set ::abnet::isReady no
     set ::abnet::currentUpdate {}
     set ::abnet::busy no
+    # Set success so that any pending hooks are run
+    set ::abnet::success no
   }
   proc _closeConnection msg {
     if {[catch { writeServer error {} $msg } err errinfo]} {
