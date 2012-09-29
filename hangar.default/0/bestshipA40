@@ -1,0 +1,5247 @@
+info	{
+ name	"Reiseengel",
+ author	"AltSysrq",
+ version	0
+ bridge	"konnichiwa",
+ reinforcement	6.0
+ class	"A",
+ alliance	["EUF",	"WUDR",]
+ mass	1327741.0
+ energy_levels	{
+  GatlingPlasma	7
+  Monophase	5
+  Missile	5
+  ParticleBeam	4
+  EnergyCharge	7
+ }
+ sharing_enabled	t
+ fileid	683
+ ownerid	1
+ needs_uploading	t
+ original_filename	"hangar/1/reiseeng.ship",
+ guid	"75779665-b3c4-47d9-6ca2-09e736cb12ba",
+ verification_signature	90396176
+}
+cells	{
+ konnichiwa	{
+  type	"square",
+  neighbours	["hipegu",	"shaishousho",	"menowai",	"gensupei",]
+ }
+ hipegu	{
+  neighbours	["konnichiwa",	"boumuwei",	"kuyaigo",	"ryiweinsho",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ kuyaigo	{
+  neighbours	["hipegu",	"nairyeno",	"humaishe",	"shapaidi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ humaishe	{
+  neighbours	["kuyaigo",	"haijosin",	"gouyikon",	"boushiye",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ gouyikon	{
+  neighbours	["humaishe",	"hewuni",	"bibouga",	"futairyei",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ bibouga	{
+  neighbours	["gouyikon",	"turine",	"modounryi",	"maishiti",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ modounryi	{
+  neighbours	["bibouga",	"ryoubobai",	"nikoinwo",	"yeihogo",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ nikoinwo	{
+  neighbours	["modounryi",	"gouworyi",	"wuteirai",	"gagefoi",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ wuteirai	{
+  neighbours	["nikoinwo",	"soigoifei",	"jangoupan",	"deikefen",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ jangoupan	{
+  neighbours	["wuteirai",	"kinaye",	"hehodai",	"waimiho",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ hehodai	{
+  neighbours	["jangoupan",	"pondaishain",	"",	"tashame",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	2
+   turbo	t
+  }
+ }
+ menowai	{
+  neighbours	["konnichiwa",	"douhafai",	"joukunfa",	"goungagu",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ joukunfa	{
+  neighbours	["menowai",	"baweifi",	"daitaimun",	"bairyigun",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ daitaimun	{
+  neighbours	["joukunfa",	"bunafa",	"deifeyi",	"monshagai",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ deifeyi	{
+  neighbours	["daitaimun",	"bonsetou",	"bunnoumon",	"kineiwoi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ bunnoumon	{
+  neighbours	["deifeyi",	"sunoimei",	"giryaigo",	"donpouba",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ giryaigo	{
+  neighbours	["bunnoumon",	"sogunjo",	"naibanoi",	"guyeishe",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ naibanoi	{
+  neighbours	["giryaigo",	"goumeishou",	"ryonmeiwu",	"jeisayoin",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ shaishousho	{
+  neighbours	["konnichiwa",	"ryiweinsho",	"shoponta",	"douhafai",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ shoponta	{
+  neighbours	["shaishousho",	"roujaiga",	"metobei",	"moinhoibi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ metobei	{
+  neighbours	["shoponta",	"fuboiyan",	"tuhero",	"niteida",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ tuhero	{
+  neighbours	["metobei",	"nouwoinka",	"wuterai",	"heingoingi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ wuterai	{
+  neighbours	["tuhero",	"hanshoire",	"runushai",	"tigaisa",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ runushai	{
+  neighbours	["wuterai",	"noisewei",	"sanahou",	"jenmeshon",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ sanahou	{
+  neighbours	["runushai",	"donbeimai",	"",	"toibose",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ gensupei	{
+  neighbours	["konnichiwa",	"goungagu",	"ryotashi",	"boumuwei",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ryotashi	{
+  neighbours	["gensupei",	"poibouryai",	"koujete",	"wukiwei",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ koujete	{
+  neighbours	["ryotashi",	"kupeisi",	"weishiwou",	"mojaya",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ weishiwou	{
+  neighbours	["koujete",	"mifejain",	"pemuryo",	"denmeide",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ pemuryo	{
+  neighbours	["weishiwou",	"humaiwu",	"yekonryei",	"ryaibino",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ yekonryei	{
+  neighbours	["pemuryo",	"meinteinai",	"soufoune",	"tewoirei",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ soufoune	{
+  neighbours	["yekonryei",	"rishobi",	"",	"dihokou",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ douhafai	{
+  neighbours	["menowai",	"shaishousho",	"moinhoibi",	"baweifi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ moinhoibi	{
+  neighbours	["douhafai",	"shoponta",	"niteida",	"noubeishi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ niteida	{
+  neighbours	["moinhoibi",	"metobei",	"heingoingi",	"ryasoji",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ heingoingi	{
+  neighbours	["niteida",	"tuhero",	"tigaisa",	"hoidadoun",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ tigaisa	{
+  neighbours	["heingoingi",	"wuterai",	"jenmeshon",	"derofi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ baweifi	{
+  neighbours	["joukunfa",	"douhafai",	"noubeishi",	"bunafa",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ noubeishi	{
+  neighbours	["baweifi",	"moinhoibi",	"ryasoji",	"tehoiki",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ryasoji	{
+  neighbours	["noubeishi",	"niteida",	"hoidadoun",	"geinnisai",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ hoidadoun	{
+  neighbours	["ryasoji",	"heingoingi",	"derofi",	"yoimouhoi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ jenmeshon	{
+  neighbours	["tigaisa",	"runushai",	"toibose",	"noihugei",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ toibose	{
+  neighbours	["jenmeshon",	"sanahou",	"",	"shisheifoun",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ derofi	{
+  neighbours	["hoidadoun",	"tigaisa",	"noihugei",	"fepoube",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ noihugei	{
+  neighbours	["derofi",	"jenmeshon",	"shisheifoun",	"dainosu",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ bunafa	{
+  neighbours	["baweifi",	"tehoiki",	"bonsetou",	"daitaimun",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ bonsetou	{
+  neighbours	["bunafa",	"panhoga",	"sunoimei",	"deifeyi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ sunoimei	{
+  neighbours	["bonsetou",	"kipaibai",	"sogunjo",	"bunnoumon",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ sogunjo	{
+  neighbours	["sunoimei",	"woudongo",	"goumeishou",	"giryaigo",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ goumeishou	{
+  neighbours	["sogunjo",	"hounwisoun",	"naboirou",	"naibanoi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ tehoiki	{
+  neighbours	["noubeishi",	"geinnisai",	"panhoga",	"bunafa",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ panhoga	{
+  neighbours	["tehoiki",	"fumemou",	"kipaibai",	"bonsetou",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ kipaibai	{
+  neighbours	["panhoga",	"minoirai",	"woudongo",	"sunoimei",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ woudongo	{
+  neighbours	["sogunjo",	"kipaibai",	"kopekai",	"hounwisoun",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+ }
+ fumemou	{
+  neighbours	["panhoga",	"geinnisai",	"mukouboi",	"minoirai",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ geinnisai	{
+  neighbours	["fumemou",	"tehoiki",	"ryasoji",	"yoimouhoi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ yoimouhoi	{
+  neighbours	["geinnisai",	"hoidadoun",	"fepoube",	"mukouboi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ minoirai	{
+  neighbours	["fumemou",	"hosashei",	"kopekai",	"kipaibai",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ mukouboi	{
+  neighbours	["fumemou",	"yoimouhoi",	"hanoinhu",	"hosashei",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ fepoube	{
+  neighbours	["yoimouhoi",	"derofi",	"dainosu",	"hanoinhu",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ kopekai	{
+  neighbours	["woudongo",	"minoirai",	"fashaiwoun",	"ryouhoihou",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ dainosu	{
+  neighbours	["noihugei",	"",	"yeishupo",	"fepoube",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ hosashei	{
+  neighbours	["minoirai",	"mukouboi",	"futohoi",	"fashaiwoun",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ hanoinhu	{
+  neighbours	["mukouboi",	"fepoube",	"yeishupo",	"futohoi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ jeisayoin	{
+  neighbours	["naibanoi",	"dotashi",	"gagoishe",	"guyeishe",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ guyeishe	{
+  neighbours	["jeisayoin",	"heikonkou",	"donpouba",	"giryaigo",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ donpouba	{
+  neighbours	["guyeishe",	"baifehon",	"kineiwoi",	"bunnoumon",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ kineiwoi	{
+  neighbours	["donpouba",	"rounouryen",	"monshagai",	"deifeyi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ monshagai	{
+  neighbours	["kineiwoi",	"honounkai",	"bairyigun",	"daitaimun",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ bairyigun	{
+  neighbours	["monshagai",	"kaiwoufa",	"goungagu",	"joukunfa",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ goungagu	{
+  neighbours	["bairyigun",	"poibouryai",	"gensupei",	"menowai",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ poibouryai	{
+  neighbours	["goungagu",	"kaiwoufa",	"kupeisi",	"ryotashi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ kupeisi	{
+  neighbours	["poibouryai",	"rimoki",	"mifejain",	"koujete",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ mifejain	{
+  neighbours	["kupeisi",	"kugaido",	"humaiwu",	"weishiwou",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ humaiwu	{
+  neighbours	["mifejain",	"pogahen",	"meinteinai",	"pemuryo",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ meinteinai	{
+  neighbours	["humaiwu",	"toifoyai",	"rishobi",	"yekonryei",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ rishobi	{
+  neighbours	["meinteinai",	"maihoutai",	"",	"soufoune",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ heikonkou	{
+  neighbours	["guyeishe",	"gagoishe",	"weiyetei",	"baifehon",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+ }
+ baifehon	{
+  neighbours	["heikonkou",	"gekunhain",	"rounouryen",	"donpouba",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ rounouryen	{
+  neighbours	["baifehon",	"muponbai",	"honounkai",	"kineiwoi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ honounkai	{
+  neighbours	["rounouryen",	"seiwousoin",	"kaiwoufa",	"monshagai",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ kaiwoufa	{
+  neighbours	["honounkai",	"rimoki",	"poibouryai",	"bairyigun",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ rimoki	{
+  neighbours	["kaiwoufa",	"seiwousoin",	"kugaido",	"kupeisi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ kugaido	{
+  neighbours	["rimoki",	"gaindoiryei",	"pogahen",	"mifejain",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ pogahen	{
+  neighbours	["kugaido",	"nisoden",	"toifoyai",	"humaiwu",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ toifoyai	{
+  neighbours	["pogahen",	"jijibou",	"maihoutai",	"meinteinai",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ weiyetei	{
+  neighbours	["heikonkou",	"rewouwu",	"mapadei",	"gekunhain",]
+  type	"square",
+ }
+ gekunhain	{
+  neighbours	["weiyetei",	"noiboigoi",	"muponbai",	"baifehon",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ muponbai	{
+  neighbours	["gekunhain",	"monweisin",	"seiwousoin",	"rounouryen",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ seiwousoin	{
+  neighbours	["muponbai",	"gaindoiryei",	"rimoki",	"honounkai",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ gaindoiryei	{
+  neighbours	["seiwousoin",	"monweisin",	"nisoden",	"kugaido",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ nisoden	{
+  neighbours	["gaindoiryei",	"wonubi",	"jijibou",	"pogahen",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ jijibou	{
+  neighbours	["nisoden",	"nomoumen",	"",	"toifoyai",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ noiboigoi	{
+  neighbours	["gekunhain",	"mapadei",	"ryodaye",	"monweisin",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ monweisin	{
+  neighbours	["noiboigoi",	"wonubi",	"gaindoiryei",	"muponbai",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ wonubi	{
+  neighbours	["monweisin",	"ryodaye",	"nomoumen",	"nisoden",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ ryiweinsho	{
+  neighbours	["shaishousho",	"hipegu",	"shapaidi",	"roujaiga",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ shapaidi	{
+  neighbours	["ryiweinsho",	"kuyaigo",	"boushiye",	"ryusoikou",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ boushiye	{
+  neighbours	["shapaidi",	"humaishe",	"futairyei",	"deribo",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ futairyei	{
+  neighbours	["boushiye",	"gouyikon",	"maishiti",	"mapuhou",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ maishiti	{
+  neighbours	["futairyei",	"bibouga",	"yeihogo",	"keiryushoun",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ yeihogo	{
+  neighbours	["maishiti",	"modounryi",	"gagefoi",	"tisufai",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ gagefoi	{
+  neighbours	["yeihogo",	"nikoinwo",	"deikefen",	"meigani",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ deikefen	{
+  neighbours	["gagefoi",	"wuteirai",	"waimiho",	"kouporyo",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ waimiho	{
+  neighbours	["deikefen",	"jangoupan",	"tashame",	"wefipo",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ donbeimai	{
+  neighbours	["sanahou",	"noisewei",	"mewinfo",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ noisewei	{
+  neighbours	["donbeimai",	"runushai",	"hanshoire",	"gewosou",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ hanshoire	{
+  neighbours	["noisewei",	"wuterai",	"nouwoinka",	"goureyu",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ nouwoinka	{
+  neighbours	["hanshoire",	"tuhero",	"fuboiyan",	"faiteimu",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ fuboiyan	{
+  neighbours	["nouwoinka",	"metobei",	"roujaiga",	"waigongu",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ roujaiga	{
+  neighbours	["fuboiyan",	"shoponta",	"ryiweinsho",	"ryusoikou",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ gewosou	{
+  neighbours	["noisewei",	"goureyu",	"huryanei",	"mewinfo",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ goureyu	{
+  neighbours	["gewosou",	"hanshoire",	"faiteimu",	"seinafai",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ faiteimu	{
+  neighbours	["goureyu",	"nouwoinka",	"waigongu",	"shoibaiyu",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ waigongu	{
+  neighbours	["faiteimu",	"fuboiyan",	"ryusoikou",	"rinryawei",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ryusoikou	{
+  neighbours	["waigongu",	"roujaiga",	"shapaidi",	"deribo",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ deribo	{
+  neighbours	["ryusoikou",	"boushiye",	"mapuhou",	"rinryawei",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ mapuhou	{
+  neighbours	["deribo",	"futairyei",	"keiryushoun",	"fohoutoi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ keiryushoun	{
+  neighbours	["mapuhou",	"maishiti",	"tisufai",	"giputei",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ tisufai	{
+  neighbours	["keiryushoun",	"yeihogo",	"meigani",	"bougude",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ meigani	{
+  neighbours	["tisufai",	"gagefoi",	"kouporyo",	"youboinoi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ kouporyo	{
+  neighbours	["meigani",	"deikefen",	"wefipo",	"jeimaryoi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ huryanei	{
+  neighbours	["gewosou",	"seinafai",	"ryepisai",	"",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ seinafai	{
+  neighbours	["huryanei",	"goureyu",	"shoibaiyu",	"poushota",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ shoibaiyu	{
+  neighbours	["seinafai",	"faiteimu",	"rinryawei",	"wajosa",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ rinryawei	{
+  neighbours	["shoibaiyu",	"waigongu",	"deribo",	"fohoutoi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ fohoutoi	{
+  neighbours	["rinryawei",	"mapuhou",	"giputei",	"wajosa",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ giputei	{
+  neighbours	["fohoutoi",	"keiryushoun",	"bougude",	"nafaipoin",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ bougude	{
+  neighbours	["giputei",	"tisufai",	"youboinoi",	"hainshoufu",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ youboinoi	{
+  neighbours	["bougude",	"meigani",	"jeimaryoi",	"soutoryu",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ poushota	{
+  neighbours	["seinafai",	"wajosa",	"sheidoine",	"ryepisai",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ wajosa	{
+  neighbours	["poushota",	"shoibaiyu",	"fohoutoi",	"nafaipoin",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ nafaipoin	{
+  neighbours	["wajosa",	"giputei",	"hainshoufu",	"sheidoine",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ hainshoufu	{
+  neighbours	["nafaipoin",	"bougude",	"soutoryu",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	3
+   turbo	t
+  }
+ }
+ dihokou	{
+  neighbours	["soufoune",	"",	"yejoryou",	"tewoirei",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ tewoirei	{
+  neighbours	["dihokou",	"fepousa",	"ryaibino",	"yekonryei",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ryaibino	{
+  neighbours	["tewoirei",	"kepipai",	"denmeide",	"pemuryo",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ denmeide	{
+  neighbours	["ryaibino",	"sonmohu",	"mojaya",	"weishiwou",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ mojaya	{
+  neighbours	["denmeide",	"moudadu",	"wukiwei",	"koujete",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ wukiwei	{
+  neighbours	["mojaya",	"punaikoun",	"boumuwei",	"ryotashi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ boumuwei	{
+  neighbours	["wukiwei",	"nairyeno",	"hipegu",	"gensupei",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ nairyeno	{
+  neighbours	["boumuwei",	"punaikoun",	"haijosin",	"kuyaigo",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ haijosin	{
+  neighbours	["nairyeno",	"shusoushin",	"hewuni",	"humaishe",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ hewuni	{
+  neighbours	["haijosin",	"yingoryou",	"turine",	"gouyikon",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ turine	{
+  neighbours	["hewuni",	"feinwibe",	"ryoubobai",	"bibouga",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ gouworyi	{
+  neighbours	["nikoinwo",	"ryoubobai",	"rutaiyou",	"soigoifei",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ ryoubobai	{
+  neighbours	["gouworyi",	"modounryi",	"turine",	"beyoiwoi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ soigoifei	{
+  neighbours	["gouworyi",	"nonkenru",	"kinaye",	"wuteirai",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ kinaye	{
+  neighbours	["soigoifei",	"rogaimoi",	"pondaishain",	"jangoupan",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ fepousa	{
+  neighbours	["tewoirei",	"yejoryou",	"taifeibo",	"kepipai",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ kepipai	{
+  neighbours	["fepousa",	"suryugoi",	"sonmohu",	"ryaibino",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ sonmohu	{
+  neighbours	["kepipai",	"jeryeni",	"moudadu",	"denmeide",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ moudadu	{
+  neighbours	["sonmohu",	"shibeidou",	"punaikoun",	"mojaya",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ punaikoun	{
+  neighbours	["moudadu",	"shusoushin",	"nairyeno",	"wukiwei",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ shusoushin	{
+  neighbours	["punaikoun",	"shibeidou",	"yingoryou",	"haijosin",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ yingoryou	{
+  neighbours	["shusoushin",	"pusaina",	"feinwibe",	"hewuni",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ feinwibe	{
+  neighbours	["yingoryou",	"yoiseihou",	"beyoiwoi",	"turine",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ beyoiwoi	{
+  neighbours	["feinwibe",	"poiwubu",	"rutaiyou",	"ryoubobai",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ rutaiyou	{
+  neighbours	["beyoiwoi",	"faronai",	"nonkenru",	"gouworyi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ nonkenru	{
+  neighbours	["rutaiyou",	"raiwoinmei",	"rogaimoi",	"soigoifei",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ taifeibo	{
+  neighbours	["fepousa",	"",	"pougiye",	"suryugoi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ suryugoi	{
+  neighbours	["taifeibo",	"sasaikei",	"jeryeni",	"kepipai",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ jeryeni	{
+  neighbours	["suryugoi",	"denfomoi",	"shibeidou",	"sonmohu",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ shibeidou	{
+  neighbours	["jeryeni",	"pusaina",	"shusoushin",	"moudadu",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ pusaina	{
+  neighbours	["shibeidou",	"denfomoi",	"yoiseihou",	"yingoryou",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ yoiseihou	{
+  neighbours	["pusaina",	"shagemi",	"poiwubu",	"feinwibe",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ poiwubu	{
+  neighbours	["yoiseihou",	"hunshunki",	"faronai",	"beyoiwoi",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ faronai	{
+  neighbours	["poiwubu",	"motaisei",	"raiwoinmei",	"rutaiyou",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ sasaikei	{
+  neighbours	["suryugoi",	"pougiye",	"dawuden",	"denfomoi",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ denfomoi	{
+  neighbours	["sasaikei",	"shagemi",	"pusaina",	"jeryeni",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ shagemi	{
+  neighbours	["denfomoi",	"dawuden",	"hunshunki",	"yoiseihou",]
+  type	"square",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ hunshunki	{
+  neighbours	["shagemi",	"",	"motaisei",	"poiwubu",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	1
+   turbo	t
+  }
+ }
+ mewinfo	{
+  neighbours	["gewosou",	"",	"donbeimai",	"",]
+  type	"right",
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	1
+   turbo	t
+  }
+ }
+ ryepisai	{
+  neighbours	["poushota",	"",	"huryanei",	"",]
+  type	"right",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ sheidoine	{
+  neighbours	["nafaipoin",	"",	"poushota",	"",]
+  type	"right",
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	1
+   turbo	t
+  }
+ }
+ soutoryu	{
+  neighbours	["youboinoi",	"",	"hainshoufu",	"",]
+  type	"right",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ jeimaryoi	{
+  neighbours	["kouporyo",	"",	"youboinoi",	"",]
+  type	"right",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ raiwoinmei	{
+  neighbours	["faronai",	"",	"nonkenru",	"",]
+  type	"right",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ motaisei	{
+  neighbours	["hunshunki",	"",	"faronai",	"",]
+  type	"right",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ dawuden	{
+  neighbours	["sasaikei",	"",	"shagemi",	"",]
+  type	"right",
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	1
+   turbo	t
+  }
+ }
+ pougiye	{
+  neighbours	["taifeibo",	"",	"sasaikei",	"",]
+  type	"right",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ yejoryou	{
+  neighbours	["dihokou",	"",	"fepousa",	"",]
+  type	"right",
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	1
+   turbo	t
+  }
+ }
+ maihoutai	{
+  neighbours	["toifoyai",	"",	"rishobi",	"",]
+  type	"right",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ nomoumen	{
+  neighbours	["wonubi",	"",	"jijibou",	"",]
+  type	"right",
+  s0	{
+   type	"Heatsink",
+  }
+ }
+ ryodaye	{
+  neighbours	["noiboigoi",	"",	"wonubi",	"",]
+  type	"right",
+  s0	{
+   type	"Heatsink",
+  }
+ }
+ mapadei	{
+  neighbours	["weiyetei",	"",	"noiboigoi",	"",]
+  type	"right",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ gagoishe	{
+  neighbours	["jeisayoin",	"",	"heikonkou",	"",]
+  type	"right",
+  s0	{
+   type	"Heatsink",
+  }
+ }
+ hounwisoun	{
+  neighbours	["woudongo",	"",	"goumeishou",	"",]
+  type	"right",
+  s0	{
+   type	"Heatsink",
+  }
+ }
+ fashaiwoun	{
+  neighbours	["hosashei",	"",	"kopekai",	"",]
+  type	"right",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ futohoi	{
+  neighbours	["hanoinhu",	"",	"hosashei",	"",]
+  type	"right",
+  s0	{
+   type	"Heatsink",
+  }
+ }
+ yeishupo	{
+  neighbours	["dainosu",	"",	"hanoinhu",	"",]
+  type	"right",
+  s0	{
+   type	"Heatsink",
+  }
+ }
+ shisheifoun	{
+  neighbours	["toibose",	"",	"noihugei",	"",]
+  type	"right",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ tashame	{
+  neighbours	["hehodai",	"",	"waimiho",	"",]
+  type	"right",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ pondaishain	{
+  neighbours	["kinaye",	"",	"hehodai",	"",]
+  type	"right",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ wefipo	{
+  neighbours	["waimiho",	"",	"kouporyo",	"",]
+  type	"right",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ rogaimoi	{
+  neighbours	["nonkenru",	"",	"kinaye",	"",]
+  type	"right",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ ryouhoihou	{
+  neighbours	["kopekai",	"",	"seineipa",	"",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ seineipa	{
+  neighbours	["ryouhoihou",	"",	"dousaiwa",	"kounouko",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ dousaiwa	{
+  neighbours	["seineipa",	"",	"nenmaiku",	"gimona",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ kounouko	{
+  neighbours	["seineipa",	"gimona",	"naboirou",	"",]
+  type	"square",
+  s0	{
+   type	"ParticleBeamLauncher",
+   orient	3
+  }
+ }
+ naboirou	{
+  neighbours	["kounouko",	"nobeishou",	"ryonmeiwu",	"goumeishou",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ ryonmeiwu	{
+  neighbours	["naboirou",	"yirankai",	"dotashi",	"naibanoi",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+ }
+ dotashi	{
+  neighbours	["ryonmeiwu",	"shondushon",	"menjaro",	"jeisayoin",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ menjaro	{
+  neighbours	["dotashi",	"tisouyei",	"gourebi",	"",]
+  type	"square",
+  s0	{
+   type	"ParticleBeamLauncher",
+   orient	3
+  }
+ }
+ gourebi	{
+  neighbours	["menjaro",	"hoidanou",	"",	"rewouwu",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ rewouwu	{
+  neighbours	["gourebi",	"",	"weiyetei",	"",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ hoidanou	{
+  neighbours	["gourebi",	"tisouyei",	"taimaimi",	"",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ tisouyei	{
+  neighbours	["hoidanou",	"menjaro",	"shondushon",	"weisaiye",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ shondushon	{
+  neighbours	["tisouyei",	"dotashi",	"yirankai",	"hentohun",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ yirankai	{
+  neighbours	["shondushon",	"ryonmeiwu",	"nobeishou",	"joikefi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ nobeishou	{
+  neighbours	["yirankai",	"naboirou",	"gimona",	"togewa",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ gimona	{
+  neighbours	["nobeishou",	"kounouko",	"dousaiwa",	"houkobo",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ nenmaiku	{
+  neighbours	["dousaiwa",	"",	"shounoima",	"houkobo",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ houkobo	{
+  neighbours	["nenmaiku",	"kainwuno",	"togewa",	"gimona",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ togewa	{
+  neighbours	["houkobo",	"rainjaiji",	"joikefi",	"nobeishou",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ joikefi	{
+  neighbours	["togewa",	"saidohu",	"hentohun",	"yirankai",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ hentohun	{
+  neighbours	["joikefi",	"peijahi",	"weisaiye",	"shondushon",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ weisaiye	{
+  neighbours	["hentohun",	"ridoiye",	"taimaimi",	"tisouyei",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ taimaimi	{
+  neighbours	["weisaiye",	"sahounsha",	"",	"hoidanou",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ shounoima	{
+  neighbours	["nenmaiku",	"",	"haifidu",	"kainwuno",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ kainwuno	{
+  neighbours	["shounoima",	"sagoiryu",	"rainjaiji",	"houkobo",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ rainjaiji	{
+  neighbours	["kainwuno",	"maireko",	"saidohu",	"togewa",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ saidohu	{
+  neighbours	["rainjaiji",	"maiyugu",	"peijahi",	"joikefi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ peijahi	{
+  neighbours	["saidohu",	"rouwogein",	"ridoiye",	"hentohun",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ ridoiye	{
+  neighbours	["peijahi",	"neshoikou",	"sahounsha",	"weisaiye",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ sahounsha	{
+  neighbours	["ridoiye",	"serurai",	"",	"taimaimi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ haifidu	{
+  neighbours	["shounoima",	"",	"dijashei",	"sagoiryu",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ sagoiryu	{
+  neighbours	["haifidu",	"yihihi",	"maireko",	"kainwuno",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ maireko	{
+  neighbours	["sagoiryu",	"januwoun",	"maiyugu",	"rainjaiji",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ maiyugu	{
+  neighbours	["maireko",	"fosandon",	"rouwogein",	"saidohu",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ rouwogein	{
+  neighbours	["maiyugu",	"tebejo",	"neshoikou",	"peijahi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ neshoikou	{
+  neighbours	["rouwogein",	"pouyoitoi",	"serurai",	"ridoiye",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ serurai	{
+  neighbours	["neshoikou",	"naryasei",	"",	"sahounsha",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ dijashei	{
+  neighbours	["haifidu",	"",	"wouputa",	"yihihi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ wouputa	{
+  neighbours	["dijashei",	"",	"jaiyoinu",	"woinoutu",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ woinoutu	{
+  neighbours	["wouputa",	"wouryouho",	"kusoyo",	"yihihi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ kusoyo	{
+  neighbours	["woinoutu",	"neiryowou",	"meduboi",	"januwoun",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ meduboi	{
+  neighbours	["kusoyo",	"kesiryoin",	"ryudurou",	"fosandon",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ ryudurou	{
+  neighbours	["meduboi",	"kagibe",	"doudousha",	"tebejo",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ doudousha	{
+  neighbours	["ryudurou",	"tuhouwei",	"nanomai",	"pouyoitoi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ pouyoitoi	{
+  neighbours	["doudousha",	"naryasei",	"neshoikou",	"tebejo",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ naryasei	{
+  neighbours	["pouyoitoi",	"nanomai",	"",	"serurai",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ nanomai	{
+  neighbours	["naryasei",	"doudousha",	"bansiyei",	"",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ tebejo	{
+  neighbours	["pouyoitoi",	"rouwogein",	"fosandon",	"ryudurou",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ fosandon	{
+  neighbours	["tebejo",	"maiyugu",	"januwoun",	"meduboi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"DispersionShield",
+  }
+ }
+ januwoun	{
+  neighbours	["fosandon",	"maireko",	"yihihi",	"kusoyo",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ yihihi	{
+  neighbours	["januwoun",	"sagoiryu",	"dijashei",	"woinoutu",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ jaiyoinu	{
+  neighbours	["wouputa",	"paifeiryen",	"heinunju",	"wouryouho",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ wouryouho	{
+  neighbours	["jaiyoinu",	"nugakun",	"neiryowou",	"woinoutu",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ neiryowou	{
+  neighbours	["wouryouho",	"paryumi",	"kesiryoin",	"kusoyo",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ kesiryoin	{
+  neighbours	["neiryowou",	"boukunnou",	"kagibe",	"meduboi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ kagibe	{
+  neighbours	["kesiryoin",	"sufeifu",	"tuhouwei",	"ryudurou",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ tuhouwei	{
+  neighbours	["kagibe",	"wonoisha",	"bansiyei",	"doudousha",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ bansiyei	{
+  neighbours	["tuhouwei",	"yairoujo",	"shofeisho",	"nanomai",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ heinunju	{
+  neighbours	["jaiyoinu",	"geikeifa",	"dokaidi",	"nugakun",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+ }
+ nugakun	{
+  neighbours	["heinunju",	"somihoun",	"paryumi",	"wouryouho",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ paryumi	{
+  neighbours	["nugakun",	"tidewu",	"boukunnou",	"neiryowou",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ boukunnou	{
+  neighbours	["paryumi",	"sheiroukai",	"sufeifu",	"kesiryoin",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ sufeifu	{
+  neighbours	["boukunnou",	"houshaisha",	"wonoisha",	"kagibe",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ wonoisha	{
+  neighbours	["sufeifu",	"paidishin",	"yairoujo",	"tuhouwei",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ yairoujo	{
+  neighbours	["wonoisha",	"datitoi",	"goiboirya",	"bansiyei",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+ }
+ dokaidi	{
+  neighbours	["heinunju",	"rugogei",	"ryouhoitai",	"somihoun",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ somihoun	{
+  neighbours	["dokaidi",	"puryeiwu",	"tidewu",	"nugakun",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ tidewu	{
+  neighbours	["somihoun",	"shoushousan",	"sheiroukai",	"paryumi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ sheiroukai	{
+  neighbours	["tidewu",	"ryimure",	"houshaisha",	"boukunnou",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ houshaisha	{
+  neighbours	["sheiroukai",	"joshiro",	"paidishin",	"sufeifu",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ paidishin	{
+  neighbours	["houshaisha",	"bongaifoi",	"datitoi",	"wonoisha",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ datitoi	{
+  neighbours	["paidishin",	"yeiyoiyu",	"roiyidoi",	"yairoujo",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ ryouhoitai	{
+  neighbours	["dokaidi",	"hedoidu",	"shonbounnou",	"puryeiwu",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ puryeiwu	{
+  neighbours	["ryouhoitai",	"goshado",	"shoushousan",	"somihoun",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ shoushousan	{
+  neighbours	["puryeiwu",	"yiyaiko",	"ryimure",	"tidewu",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ ryimure	{
+  neighbours	["shoushousan",	"husekoin",	"joshiro",	"sheiroukai",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"DispersionShield",
+  }
+ }
+ joshiro	{
+  neighbours	["ryimure",	"geimomou",	"bongaifoi",	"houshaisha",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ bongaifoi	{
+  neighbours	["joshiro",	"shaireinei",	"yeiyoiyu",	"paidishin",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ yeiyoiyu	{
+  neighbours	["bongaifoi",	"teihoishi",	"ryoiyanei",	"datitoi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ shonbounnou	{
+  neighbours	["ryouhoitai",	"doihudoi",	"guryerai",	"goshado",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ goshado	{
+  neighbours	["shonbounnou",	"hapigu",	"yiyaiko",	"puryeiwu",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ yiyaiko	{
+  neighbours	["goshado",	"fumadai",	"husekoin",	"shoushousan",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ husekoin	{
+  neighbours	["yiyaiko",	"ryoitonni",	"geimomou",	"ryimure",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ geimomou	{
+  neighbours	["husekoin",	"ryobaintou",	"shaireinei",	"joshiro",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ shaireinei	{
+  neighbours	["geimomou",	"sushoidou",	"teihoishi",	"bongaifoi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ sushoidou	{
+  neighbours	["shaireinei",	"ryobaintou",	"keheika",	"kidunnu",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ kidunnu	{
+  neighbours	["sushoidou",	"manuhe",	"jakita",	"teihoishi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ teihoishi	{
+  neighbours	["kidunnu",	"jewijou",	"yeiyoiyu",	"shaireinei",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ ryobaintou	{
+  neighbours	["sushoidou",	"geimomou",	"ryoitonni",	"fukayei",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ ryoitonni	{
+  neighbours	["ryobaintou",	"husekoin",	"fumadai",	"shoishaigi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ fumadai	{
+  neighbours	["ryoitonni",	"yiyaiko",	"hapigu",	"padedoi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ hapigu	{
+  neighbours	["fumadai",	"goshado",	"guryerai",	"doipointu",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ guryerai	{
+  neighbours	["hapigu",	"shonbounnou",	"doteikoi",	"yeinrouga",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ manuhe	{
+  neighbours	["kidunnu",	"keheika",	"habaishou",	"garyairyo",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+ }
+ keheika	{
+  neighbours	["manuhe",	"sushoidou",	"fukayei",	"wounsafoi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ fukayei	{
+  neighbours	["keheika",	"ryobaintou",	"shoishaigi",	"foimesoi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ shoishaigi	{
+  neighbours	["fukayei",	"ryoitonni",	"padedoi",	"renemain",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ padedoi	{
+  neighbours	["shoishaigi",	"fumadai",	"doipointu",	"keshumoun",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ doipointu	{
+  neighbours	["padedoi",	"hapigu",	"yeinrouga",	"wainhesou",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ yeinrouga	{
+  neighbours	["doipointu",	"guryerai",	"dohoubo",	"pouneinei",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+ }
+ habaishou	{
+  neighbours	["manuhe",	"wounsafoi",	"hoingountoi",	"boitokai",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ wounsafoi	{
+  neighbours	["habaishou",	"keheika",	"foimesoi",	"peifisou",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ foimesoi	{
+  neighbours	["wounsafoi",	"fukayei",	"renemain",	"kaidoke",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ renemain	{
+  neighbours	["foimesoi",	"shoishaigi",	"keshumoun",	"shankegou",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ keshumoun	{
+  neighbours	["renemain",	"padedoi",	"wainhesou",	"nifafan",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ wainhesou	{
+  neighbours	["keshumoun",	"doipointu",	"pouneinei",	"nugaipan",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ pouneinei	{
+  neighbours	["wainhesou",	"yeinrouga",	"seisheiya",	"sajaki",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ hoingountoi	{
+  neighbours	["habaishou",	"peifisou",	"ryinyafa",	"japohu",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ peifisou	{
+  neighbours	["hoingountoi",	"wounsafoi",	"kaidoke",	"ryeyouboi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ kaidoke	{
+  neighbours	["foimesoi",	"shankegou",	"meshouku",	"peifisou",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ shankegou	{
+  neighbours	["kaidoke",	"renemain",	"nifafan",	"toundepo",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"DispersionShield",
+  }
+ }
+ nifafan	{
+  neighbours	["shankegou",	"keshumoun",	"nugaipan",	"dinwunjei",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ nugaipan	{
+  neighbours	["nifafan",	"wainhesou",	"sajaki",	"tunaiga",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ sajaki	{
+  neighbours	["nugaipan",	"pouneinei",	"nisheipoun",	"keyuhu",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ ryinyafa	{
+  neighbours	["hoingountoi",	"ryeyouboi",	"gusoimoi",	"",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ ryeyouboi	{
+  neighbours	["ryinyafa",	"peifisou",	"meshouku",	"bejanjan",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ meshouku	{
+  neighbours	["ryeyouboi",	"kaidoke",	"toundepo",	"boinukai",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ toundepo	{
+  neighbours	["meshouku",	"shankegou",	"dinwunjei",	"beinwunga",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ dinwunjei	{
+  neighbours	["toundepo",	"nifafan",	"tunaiga",	"kounisoi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ tunaiga	{
+  neighbours	["dinwunjei",	"nugaipan",	"keyuhu",	"doudisu",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ keyuhu	{
+  neighbours	["tunaiga",	"sajaki",	"",	"foundoudi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ gusoimoi	{
+  neighbours	["ryinyafa",	"bejanjan",	"wanoinmoin",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ bejanjan	{
+  neighbours	["gusoimoi",	"ryeyouboi",	"boinukai",	"donaintai",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ boinukai	{
+  neighbours	["bejanjan",	"meshouku",	"beinwunga",	"jodoisa",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ beinwunga	{
+  neighbours	["boinukai",	"toundepo",	"kounisoi",	"nihinjo",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ kounisoi	{
+  neighbours	["beinwunga",	"dinwunjei",	"doudisu",	"baryifoi",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ doudisu	{
+  neighbours	["kounisoi",	"tunaiga",	"foundoudi",	"sheigukoi",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ foundoudi	{
+  neighbours	["doudisu",	"keyuhu",	"",	"yiranan",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ donaintai	{
+  neighbours	["bejanjan",	"jodoisa",	"",	"wanoinmoin",]
+  type	"square",
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	2
+   turbo	t
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ jodoisa	{
+  neighbours	["donaintai",	"boinukai",	"nihinjo",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ nihinjo	{
+  neighbours	["jodoisa",	"beinwunga",	"baryifoi",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ baryifoi	{
+  neighbours	["nihinjo",	"kounisoi",	"sheigukoi",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ sheigukoi	{
+  neighbours	["baryifoi",	"doudisu",	"yiranan",	"",]
+  type	"square",
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	3
+   turbo	t
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ yiranan	{
+  neighbours	["foundoudi",	"",	"sheigukoi",	"",]
+  type	"right",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ wanoinmoin	{
+  neighbours	["donaintai",	"",	"gusoimoi",	"",]
+  type	"right",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ nisheipoun	{
+  neighbours	["sajaki",	"seisheiya",	"wagoida",	"",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ seisheiya	{
+  neighbours	["nisheipoun",	"pouneinei",	"dohoubo",	"hanofei",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ dohoubo	{
+  neighbours	["seisheiya",	"yeinrouga",	"doteikoi",	"tafoimai",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ doteikoi	{
+  neighbours	["dohoubo",	"guryerai",	"doihudoi",	"doushirei",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ doihudoi	{
+  neighbours	["doteikoi",	"shonbounnou",	"hedoidu",	"bousaiwoi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ hedoidu	{
+  neighbours	["doihudoi",	"ryouhoitai",	"rugogei",	"jounwouke",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ rugogei	{
+  neighbours	["hedoidu",	"dokaidi",	"geikeifa",	"rusepe",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ geikeifa	{
+  neighbours	["rugogei",	"heinunju",	"paifeiryen",	"bopefu",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ paifeiryen	{
+  neighbours	["geikeifa",	"jaiyoinu",	"",	"taryibai",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ wagoida	{
+  neighbours	["nisheipoun",	"hanofei",	"faryiyoi",	"",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ hanofei	{
+  neighbours	["wagoida",	"seisheiya",	"tafoimai",	"paihorei",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ tafoimai	{
+  neighbours	["hanofei",	"dohoubo",	"doushirei",	"ropaitou",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ doushirei	{
+  neighbours	["tafoimai",	"doteikoi",	"bousaiwoi",	"pinyeku",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ bousaiwoi	{
+  neighbours	["doushirei",	"doihudoi",	"jounwouke",	"tadimin",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ jounwouke	{
+  neighbours	["bousaiwoi",	"hedoidu",	"rusepe",	"wainwewoi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ rusepe	{
+  neighbours	["jounwouke",	"rugogei",	"bopefu",	"roshaitoi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ bopefu	{
+  neighbours	["rusepe",	"geikeifa",	"taryibai",	"gaiyijain",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ taryibai	{
+  neighbours	["bopefu",	"paifeiryen",	"",	"dobutun",]
+  type	"square",
+  s0	{
+   type	"MissileLauncher",
+   orient	2
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ faryiyoi	{
+  neighbours	["wagoida",	"paihorei",	"yojaigoun",	"noisoinu",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ paihorei	{
+  neighbours	["faryiyoi",	"hanofei",	"ropaitou",	"goiteinbe",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ropaitou	{
+  neighbours	["paihorei",	"tafoimai",	"pinyeku",	"tujoitei",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ pinyeku	{
+  neighbours	["ropaitou",	"doushirei",	"tadimin",	"geinroryoi",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ tadimin	{
+  neighbours	["pinyeku",	"bousaiwoi",	"wainwewoi",	"weinroryi",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ wainwewoi	{
+  neighbours	["tadimin",	"jounwouke",	"roshaitoi",	"bigoiryu",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ roshaitoi	{
+  neighbours	["wainwewoi",	"rusepe",	"gaiyijain",	"shoshinu",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ gaiyijain	{
+  neighbours	["roshaitoi",	"bopefu",	"dobutun",	"yidosi",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ dobutun	{
+  neighbours	["gaiyijain",	"taryibai",	"faitukoi",	"ryaiside",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ faitukoi	{
+  neighbours	["dobutun",	"",	"newimou",	"naintouju",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ newimou	{
+  neighbours	["faitukoi",	"",	"haishiryou",	"roiwesai",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ haishiryou	{
+  neighbours	["newimou",	"",	"jogobe",	"romiko",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ jogobe	{
+  neighbours	["haishiryou",	"",	"jefijoi",	"yikini",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ jefijoi	{
+  neighbours	["jogobe",	"",	"heihounhu",	"heipainyoi",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ heipainyoi	{
+  neighbours	["jefijoi",	"nourepu",	"ryapainei",	"",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ryapainei	{
+  neighbours	["heipainyoi",	"meimouyu",	"shoushani",	"",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"DispersionShield",
+  }
+ }
+ shoushani	{
+  neighbours	["ryapainei",	"shinjofon",	"goifenjoi",	"",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ goifenjoi	{
+  neighbours	["shoushani",	"foiroini",	"",	"sekaba",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ sekaba	{
+  neighbours	["goifenjoi",	"",	"muheirai",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ muheirai	{
+  neighbours	["sekaba",	"",	"sungomu",	"feryawe",]
+  type	"square",
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	1
+   turbo	t
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ sungomu	{
+  neighbours	["muheirai",	"",	"maisheimoi",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ maisheimoi	{
+  neighbours	["sungomu",	"",	"setouwoun",	"foukoifai",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ setouwoun	{
+  neighbours	["maisheimoi",	"",	"daiheidu",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ daiheidu	{
+  neighbours	["setouwoun",	"",	"tetoitai",	"susabain",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ tetoitai	{
+  neighbours	["daiheidu",	"",	"naigaimei",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ naigaimei	{
+  neighbours	["tetoitai",	"",	"bisoujoi",	"gopoinou",]
+  type	"square",
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	1
+   turbo	t
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ bisoujoi	{
+  neighbours	["naigaimei",	"",	"ryofonye",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ryofonye	{
+  neighbours	["bisoujoi",	"",	"gointaimoi",	"mapoume",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ gointaimoi	{
+  neighbours	["ryofonye",	"",	"janryounyai",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ janryounyai	{
+  neighbours	["gointaimoi",	"",	"saifoifo",	"shaijoudei",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ saifoifo	{
+  neighbours	["janryounyai",	"",	"sinhukou",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ sinhukou	{
+  neighbours	["saifoifo",	"",	"yusushu",	"meisuhoin",]
+  type	"square",
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	1
+   turbo	t
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ noisoinu	{
+  neighbours	["feinmubun",	"",	"faryiyoi",	"beitoube",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ feryawe	{
+  neighbours	["muheirai",	"",	"bouryoinpu",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ bouryoinpu	{
+  neighbours	["feryawe",	"",	"romiko",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ romiko	{
+  neighbours	["bouryoinpu",	"",	"haishiryou",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ foukoifai	{
+  neighbours	["maisheimoi",	"",	"hoigogo",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ hoigogo	{
+  neighbours	["foukoifai",	"",	"naintouju",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ naintouju	{
+  neighbours	["hoigogo",	"",	"faitukoi",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ susabain	{
+  neighbours	["daiheidu",	"",	"pitaryou",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ pitaryou	{
+  neighbours	["susabain",	"",	"yidosi",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ yidosi	{
+  neighbours	["pitaryou",	"",	"gaiyijain",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ gopoinou	{
+  neighbours	["naigaimei",	"",	"geibeda",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ geibeda	{
+  neighbours	["gopoinou",	"",	"bigoiryu",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ bigoiryu	{
+  neighbours	["geibeda",	"",	"wainwewoi",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ mapoume	{
+  neighbours	["ryofonye",	"",	"ryaihaibi",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ryaihaibi	{
+  neighbours	["mapoume",	"",	"geinroryoi",	"",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ geinroryoi	{
+  neighbours	["ryaihaibi",	"",	"pinyeku",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ shaijoudei	{
+  neighbours	["janryounyai",	"",	"saitegein",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ saitegein	{
+  neighbours	["shaijoudei",	"",	"goiteinbe",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ goiteinbe	{
+  neighbours	["saitegein",	"",	"paihorei",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ meisuhoin	{
+  neighbours	["sinhukou",	"",	"juryibon",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ juryibon	{
+  neighbours	["meisuhoin",	"",	"beitoube",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ beitoube	{
+  neighbours	["juryibon",	"",	"noisoinu",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ feinmubun	{
+  neighbours	["noisoinu",	"shagowou",	"doufounron",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ doufounron	{
+  neighbours	["feinmubun",	"shouyifoi",	"",	"",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	2
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ shouyifoi	{
+  neighbours	["doufounron",	"",	"dourante",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	1
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	3
+  }
+ }
+ dourante	{
+  neighbours	["shouyifoi",	"",	"nouryoipu",	"",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	3
+  }
+ }
+ nouryoipu	{
+  neighbours	["dourante",	"",	"wukeinai",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	3
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ wukeinai	{
+  neighbours	["nouryoipu",	"yusushu",	"",	"",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	3
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ yusushu	{
+  neighbours	["wukeinai",	"",	"sinhukou",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ japohu	{
+  neighbours	["hoingountoi",	"",	"putoufa",	"boitokai",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ boitokai	{
+  neighbours	["japohu",	"naidaki",	"garyairyo",	"habaishou",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ garyairyo	{
+  neighbours	["boitokai",	"fanshume",	"jakita",	"manuhe",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ jakita	{
+  neighbours	["garyairyo",	"fegosi",	"jewijou",	"kidunnu",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ jewijou	{
+  neighbours	["jakita",	"doutako",	"ryoiyanei",	"teihoishi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ ryoiyanei	{
+  neighbours	["jewijou",	"maijikon",	"roiyidoi",	"yeiyoiyu",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ roiyidoi	{
+  neighbours	["ryoiyanei",	"roishayo",	"goiboirya",	"datitoi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ goiboirya	{
+  neighbours	["roiyidoi",	"keiparoun",	"shofeisho",	"yairoujo",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ shofeisho	{
+  neighbours	["goiboirya",	"yuweidou",	"",	"bansiyei",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ putoufa	{
+  neighbours	["japohu",	"",	"ryamoihou",	"naidaki",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ naidaki	{
+  neighbours	["putoufa",	"tewafi",	"fanshume",	"boitokai",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ fanshume	{
+  neighbours	["naidaki",	"ryeijouwai",	"fegosi",	"garyairyo",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ fegosi	{
+  neighbours	["fanshume",	"woungeboun",	"doutako",	"jakita",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ doutako	{
+  neighbours	["fegosi",	"haiheiti",	"maijikon",	"jewijou",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ maijikon	{
+  neighbours	["doutako",	"ryushinta",	"roishayo",	"ryoiyanei",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ roishayo	{
+  neighbours	["maijikon",	"judoise",	"keiparoun",	"roiyidoi",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ keiparoun	{
+  neighbours	["roishayo",	"rewesu",	"yuweidou",	"goiboirya",]
+  type	"square",
+  s0	{
+   type	"Heatsink",
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ yuweidou	{
+  neighbours	["keiparoun",	"jiwusai",	"",	"shofeisho",]
+  type	"square",
+  s0	{
+   type	"MissileLauncher",
+   orient	2
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ryamoihou	{
+  neighbours	["putoufa",	"hafouryei",	"feirefi",	"tewafi",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ tewafi	{
+  neighbours	["ryamoihou",	"moinpeishai",	"ryeijouwai",	"naidaki",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ryeijouwai	{
+  neighbours	["tewafi",	"dokeikai",	"woungeboun",	"fanshume",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ woungeboun	{
+  neighbours	["ryeijouwai",	"ginkisai",	"haiheiti",	"fegosi",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ haiheiti	{
+  neighbours	["woungeboun",	"sajaipei",	"ryushinta",	"doutako",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ryushinta	{
+  neighbours	["haiheiti",	"soibufoi",	"judoise",	"maijikon",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ judoise	{
+  neighbours	["ryushinta",	"beiposou",	"rewesu",	"roishayo",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ rewesu	{
+  neighbours	["judoise",	"tutoshoi",	"jiwusai",	"keiparoun",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ jiwusai	{
+  neighbours	["rewesu",	"dihoimoi",	"toidojo",	"yuweidou",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ toidojo	{
+  neighbours	["jiwusai",	"fouyouhei",	"hoinkumei",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ hoinkumei	{
+  neighbours	["toidojo",	"bohahou",	"daiweima",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ daiweima	{
+  neighbours	["hoinkumei",	"yoinoukou",	"pafotou",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ pafotou	{
+  neighbours	["daiweima",	"gunratoi",	"poudiryoi",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ poudiryoi	{
+  neighbours	["pafotou",	"ranfeida",	"geishesi",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ranfeida	{
+  neighbours	["poudiryoi",	"",	"youyaibei",	"wadopoi",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ youyaibei	{
+  neighbours	["ranfeida",	"",	"sasabain",	"jinuke",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"DispersionShield",
+  }
+ }
+ sasabain	{
+  neighbours	["youyaibei",	"",	"ryeryoupai",	"nuheisan",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ryeryoupai	{
+  neighbours	["sasabain",	"foifouka",	"",	"nosoina",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ foifouka	{
+  neighbours	["ryeryoupai",	"",	"semouyo",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ semouyo	{
+  neighbours	["foifouka",	"saihoye",	"koipapo",	"",]
+  type	"square",
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	3
+   turbo	t
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ koipapo	{
+  neighbours	["semouyo",	"",	"yomaiwai",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ yomaiwai	{
+  neighbours	["koipapo",	"moijufou",	"romifai",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ romifai	{
+  neighbours	["yomaiwai",	"",	"wendotai",	"",]
+  type	"square",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ wendotai	{
+  neighbours	["romifai",	"heinwudei",	"shunryengo",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ shunryengo	{
+  neighbours	["wendotai",	"",	"shebopei",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ shebopei	{
+  neighbours	["shunryengo",	"houyurai",	"weirusei",	"",]
+  type	"square",
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	3
+   turbo	t
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ weirusei	{
+  neighbours	["shebopei",	"",	"ryaijansei",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ryaijansei	{
+  neighbours	["weirusei",	"nenmantai",	"woderyei",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ woderyei	{
+  neighbours	["ryaijansei",	"",	"nunsaijei",	"",]
+  type	"square",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ nunsaijei	{
+  neighbours	["woderyei",	"rokounkai",	"shitukoi",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ shitukoi	{
+  neighbours	["nunsaijei",	"",	"ryuryeso",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ryuryeso	{
+  neighbours	["shitukoi",	"shaifoisai",	"daisishu",	"",]
+  type	"square",
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	3
+   turbo	t
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ shaifoisai	{
+  neighbours	["ryuryeso",	"",	"meinesu",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	3
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ meinesu	{
+  neighbours	["shaifoisai",	"",	"toidounka",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	3
+  }
+ }
+ toidounka	{
+  neighbours	["meinesu",	"",	"hafouryei",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	1
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	3
+  }
+ }
+ hafouryei	{
+  neighbours	["toidounka",	"ryamoihou",	"",	"mokeidai",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ mokeidai	{
+  neighbours	["hafouryei",	"",	"showougai",	"dakodou",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ showougai	{
+  neighbours	["mokeidai",	"",	"",	"posainan",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	2
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ posainan	{
+  neighbours	["showougai",	"",	"boguma",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ boguma	{
+  neighbours	["posainan",	"",	"ryeiworyai",	"",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ ryeiworyai	{
+  neighbours	["boguma",	"",	"sainbeiye",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ sainbeiye	{
+  neighbours	["ryeiworyai",	"",	"",	"daisishu",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ daisishu	{
+  neighbours	["sainbeiye",	"",	"ryuryeso",	"",]
+  type	"square",
+  s0	{
+   type	"PowerCell",
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ moinpeishai	{
+  neighbours	["tewafi",	"",	"feisoisu",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ feisoisu	{
+  neighbours	["moinpeishai",	"",	"rokounkai",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ rokounkai	{
+  neighbours	["feisoisu",	"",	"nunsaijei",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ ginkisai	{
+  neighbours	["woungeboun",	"",	"shatitai",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ shatitai	{
+  neighbours	["ginkisai",	"",	"nenmantai",	"",]
+  type	"square",
+  s1	{
+   type	"DispersionShield",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ nenmantai	{
+  neighbours	["shatitai",	"",	"ryaijansei",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ soibufoi	{
+  neighbours	["ryushinta",	"",	"soiyoipo",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ soiyoipo	{
+  neighbours	["soibufoi",	"",	"houyurai",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ houyurai	{
+  neighbours	["soiyoipo",	"",	"shebopei",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ tutoshoi	{
+  neighbours	["rewesu",	"",	"foigounju",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ foigounju	{
+  neighbours	["tutoshoi",	"",	"heinwudei",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ heinwudei	{
+  neighbours	["foigounju",	"",	"wendotai",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ fouyouhei	{
+  neighbours	["toidojo",	"",	"foihairyin",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ foihairyin	{
+  neighbours	["fouyouhei",	"",	"moijufou",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ moijufou	{
+  neighbours	["foihairyin",	"",	"yomaiwai",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ yoinoukou	{
+  neighbours	["daiweima",	"",	"ryeiyeigei",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ ryeiyeigei	{
+  neighbours	["yoinoukou",	"",	"saihoye",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+ }
+ saihoye	{
+  neighbours	["ryeiyeigei",	"",	"semouyo",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"PowerCell",
+  }
+ }
+ shinjofon	{
+  neighbours	["shoushani",	"meimouyu",	"",	"foiroini",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	2
+  }
+ }
+ meimouyu	{
+  neighbours	["shinjofon",	"ryapainei",	"nourepu",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ nourepu	{
+  neighbours	["meimouyu",	"heipainyoi",	"heihounhu",	"",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	3
+  }
+  s0	{
+   type	"PowerCell",
+  }
+ }
+ wadopoi	{
+  neighbours	["ranfeida",	"jinuke",	"",	"geishesi",]
+  type	"square",
+  s1	{
+   type	"MonophasicEnergyEmitter",
+   orient	2
+  }
+  s0	{
+   type	"PowerCell",
+  }
+ }
+ jinuke	{
+  neighbours	["wadopoi",	"youyaibei",	"nuheisan",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ nuheisan	{
+  neighbours	["jinuke",	"sasabain",	"nosoina",	"",]
+  type	"square",
+  s1	{
+   type	"PowerCell",
+  }
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	3
+  }
+ }
+ foiroini	{
+  neighbours	["shinjofon",	"",	"goifenjoi",	"",]
+  type	"right",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ geishesi	{
+  neighbours	["wadopoi",	"",	"poudiryoi",	"",]
+  type	"right",
+  s0	{
+   type	"PowerCell",
+  }
+ }
+ nosoina	{
+  neighbours	["ryeryoupai",	"",	"nuheisan",	"",]
+  type	"right",
+  s0	{
+   type	"EnergyChargeLauncher",
+   orient	1
+  }
+ }
+ heihounhu	{
+  neighbours	["jefijoi",	"",	"nourepu",	"",]
+  type	"right",
+  s0	{
+   type	"PowerCell",
+  }
+ }
+ shagowou	{
+  neighbours	["feinmubun",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ yojaigoun	{
+  neighbours	["faryiyoi",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ tujoitei	{
+  neighbours	["ropaitou",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ weinroryi	{
+  neighbours	["tadimin",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ shoshinu	{
+  neighbours	["roshaitoi",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ ryaiside	{
+  neighbours	["dobutun",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ roiwesai	{
+  neighbours	["newimou",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ yikini	{
+  neighbours	["jogobe",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ dakodou	{
+  neighbours	["mokeidai",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ feirefi	{
+  neighbours	["ryamoihou",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ dokeikai	{
+  neighbours	["ryeijouwai",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ sajaipei	{
+  neighbours	["haiheiti",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ beiposou	{
+  neighbours	["judoise",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ dihoimoi	{
+  neighbours	["jiwusai",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ gunratoi	{
+  neighbours	["pafotou",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+ bohahou	{
+  neighbours	["hoinkumei",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"FissionPower",
+  }
+ }
+}

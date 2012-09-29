@@ -1,0 +1,179 @@
+info	{
+ name	"Scorpion",
+ alliance	["ship:scorpion",]
+ version	0
+ author	"AltSysrq",
+ bridge	"AAAA",
+ reinforcement	1.299999952
+ class	"B",
+ old_format	"[ Loosely based on the Naboo fighter from Star Wars ]\ne {\n n"
+		"10s s0pc30 s1xd {\n  n20s s0pu s1xs10 3.5 {\n   n20s s0pu s1pu"
+		" {\n    n20s s0pu s1pu {\n     n20e s0pu.\n    }.\n   }.\n  }."
+		"\n  n13s s0eb s1wp {\n   n13s s0pc30 s1pc15 {n00e s0pc30. n20e"
+		" s0pc30. n10r s0eb.}.\n  }.\n  n31s s0eb s1wp {\n   n31s s0pc3"
+		"0 s1pc15 {n00e s0pc30. n20e s0pc30. n32r s0eb.}.\n  }.\n }.\n}"
+		".\n1.3\n\n",
+ mass	4771.0
+ energy_levels	{
+  PlasmaBurst	3
+ }
+ sharing_enabled	t
+ fileid	517
+ ownerid	1
+ needs_uploading	t
+ verification_signature	1323156158
+ original_filename	"hangar/1/scorpion.ship",
+ guid	"c67f34dd-8d0c-496d-7b9d-fd76ca5f4154",
+}
+cells	{
+ AAAA	{
+  type	"equil",
+  neighbours	["",	"BAAA",	"",	"",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["AAAA",	"GAAA",	"CAAA",	"LAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   type	"SelfDestructCharge",
+  }
+ }
+ CAAA	{
+  type	"square",
+  neighbours	["BAAA",	"",	"DAAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"ShieldGenerator",
+   radius	3.5
+   strength	10.0
+  }
+ }
+ DAAA	{
+  type	"square",
+  neighbours	["CAAA",	"",	"EAAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ EAAA	{
+  type	"square",
+  neighbours	["DAAA",	"",	"FAAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ FAAA	{
+  type	"equil",
+  neighbours	["EAAA",	"",	"",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+ }
+ GAAA	{
+  type	"square",
+  neighbours	["",	"HAAA",	"",	"BAAA",]
+  s0	{
+   type	"BussardRamjet",
+   orient	2
+  }
+  s1	{
+   type	"PlasmaBurstLauncher",
+   orient	0
+  }
+ }
+ HAAA	{
+  type	"square",
+  neighbours	["IAAA",	"KAAA",	"JAAA",	"GAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	15
+   type	"Capacitor",
+  }
+ }
+ IAAA	{
+  type	"equil",
+  neighbours	["HAAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ JAAA	{
+  type	"equil",
+  neighbours	["HAAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ KAAA	{
+  type	"right",
+  neighbours	["HAAA",	"",	"",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	2
+  }
+ }
+ LAAA	{
+  type	"square",
+  neighbours	["",	"BAAA",	"",	"MAAA",]
+  s0	{
+   type	"BussardRamjet",
+   orient	2
+  }
+  s1	{
+   type	"PlasmaBurstLauncher",
+   orient	0
+  }
+ }
+ MAAA	{
+  type	"square",
+  neighbours	["NAAA",	"LAAA",	"OAAA",	"PAAA",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	15
+   type	"Capacitor",
+  }
+ }
+ NAAA	{
+  type	"equil",
+  neighbours	["MAAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ OAAA	{
+  type	"equil",
+  neighbours	["MAAA",	"",	"",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ PAAA	{
+  type	"right",
+  neighbours	["",	"",	"MAAA",	"",]
+  s0	{
+   type	"BussardRamjet",
+   orient	0
+  }
+ }
+}

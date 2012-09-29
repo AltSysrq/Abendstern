@@ -1,0 +1,232 @@
+info	{
+ name	"Mini Klingon BOP",
+ alliance	["ship:klingon",]
+ version	0
+ author	"AltSysrq",
+ bridge	"AAAA",
+ reinforcement	2.5
+ class	"B",
+ old_format	"[ The Klingon Bird of Prey ]\nc {\n n20s s0pu s1pu {\n  n20s s"
+		"0pu s1xs25 3 {\n   n20c s0pu s1pu {\n    n13s s0eb s1pc30 {\n "
+		"    n13s s0eb s1wp {\n      n10e s0pu {\n       n12s s0pu s1pu"
+		" { n02s s0pc30 s1pc30 { n02s s0pc30 s1pc30 { n00e s0xs7 3 {n20"
+		"s s0wg.}. }. }. }.\n      }.\n     }.\n    }.\n    n31s s0eb s"
+		"1pc30 {\n     n31s s0eb s1wp {\n      n30e s0pu {\n       n22s"
+		" s0pu s1pu { n02s s0pc30 s1pc30 { n02s s0pc30 s1pc30 { n00e s0"
+		"xs7 3 {n10s s0wg.}. }. }. }.\n      }.\n     }.\n    }.\n   }."
+		"\n  }.\n }.\n}.\n2.5\n",
+ mass	13882.0
+ energy_levels	{
+  PlasmaBurst	6
+  SGBomb	1
+ }
+ verification_signature	367109455
+ sharing_enabled	t
+ fileid	578
+ ownerid	1
+ needs_uploading	t
+ original_filename	"hangar/1/klingon.ship",
+ guid	"a2e3475f-a347-4f20-642c-4e750f1c7274",
+}
+cells	{
+ AAAA	{
+  type	"circle",
+  neighbours	["",	"",	"BAAA",	"",]
+ }
+ BAAA	{
+  type	"square",
+  neighbours	["AAAA",	"",	"CAAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ CAAA	{
+  type	"square",
+  neighbours	["BAAA",	"",	"DAAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"ShieldGenerator",
+   radius	3.0
+   strength	25.0
+  }
+ }
+ DAAA	{
+  type	"circle",
+  neighbours	["CAAA",	"EAAA",	"",	"MAAA",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ EAAA	{
+  type	"square",
+  neighbours	["",	"FAAA",	"",	"DAAA",]
+  s0	{
+   type	"BussardRamjet",
+   orient	2
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ FAAA	{
+  type	"square",
+  neighbours	["",	"GAAA",	"",	"EAAA",]
+  s0	{
+   type	"BussardRamjet",
+   orient	2
+  }
+  s1	{
+   type	"PlasmaBurstLauncher",
+   orient	0
+  }
+ }
+ GAAA	{
+  type	"equil",
+  neighbours	["FAAA",	"HAAA",	"",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+ }
+ HAAA	{
+  type	"square",
+  neighbours	["IAAA",	"",	"GAAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ IAAA	{
+  type	"square",
+  neighbours	["JAAA",	"",	"HAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ JAAA	{
+  type	"square",
+  neighbours	["KAAA",	"",	"IAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ KAAA	{
+  type	"equil",
+  neighbours	["JAAA",	"",	"LAAA",	"",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	3.0
+   strength	7.0
+  }
+ }
+ LAAA	{
+  type	"square",
+  neighbours	["KAAA",	"",	"",	"",]
+  s0	{
+   type	"SemiguidedBombLauncher",
+   orient	1
+  }
+ }
+ MAAA	{
+  type	"square",
+  neighbours	["",	"DAAA",	"",	"NAAA",]
+  s0	{
+   type	"BussardRamjet",
+   orient	2
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ NAAA	{
+  type	"square",
+  neighbours	["",	"MAAA",	"",	"OAAA",]
+  s0	{
+   type	"BussardRamjet",
+   orient	2
+  }
+  s1	{
+   type	"PlasmaBurstLauncher",
+   orient	0
+  }
+ }
+ OAAA	{
+  type	"equil",
+  neighbours	["NAAA",	"",	"PAAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+ }
+ PAAA	{
+  type	"square",
+  neighbours	["QAAA",	"",	"OAAA",	"",]
+  s0	{
+   type	"FusionPower",
+  }
+  s1	{
+   type	"FusionPower",
+  }
+ }
+ QAAA	{
+  type	"square",
+  neighbours	["RAAA",	"",	"PAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ RAAA	{
+  type	"square",
+  neighbours	["SAAA",	"",	"QAAA",	"",]
+  s0	{
+   capacity	30
+   type	"Capacitor",
+  }
+  s1	{
+   capacity	30
+   type	"Capacitor",
+  }
+ }
+ SAAA	{
+  type	"equil",
+  neighbours	["RAAA",	"TAAA",	"",	"",]
+  s0	{
+   type	"ShieldGenerator",
+   radius	3.0
+   strength	7.0
+  }
+ }
+ TAAA	{
+  type	"square",
+  neighbours	["SAAA",	"",	"",	"",]
+  s0	{
+   type	"SemiguidedBombLauncher",
+   orient	3
+  }
+ }
+}
