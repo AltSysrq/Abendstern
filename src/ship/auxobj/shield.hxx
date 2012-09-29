@@ -66,6 +66,7 @@ class Shield: public AObject {
   #endif
   CollisionRectangle collisionRects[NUM_RECTS];
   CollisionRectangle baseRects     [NUM_RECTS];
+  CollisionRectangle*collisionRectPtrs[NUM_RECTS];
   #undef NUM_RECTS
 
   /* Instead of updating collisionRects every cycle, only
@@ -97,7 +98,9 @@ class Shield: public AObject {
   {
     for (unsigned i=0; i<lenof(collisionRects); ++i) {
       collisionRects[i].radius=STD_CELL_SZ*rad*2;
-      collisionRects[i].data = NULL; //Because Ship uses these to identify cells
+      collisionRects[i].data = NULL; //Because Ship uses these to identify
+                                     //cells
+      collisionRectPtrs[i] = &collisionRects[i];
     }
 
     initBases();

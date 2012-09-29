@@ -269,6 +269,8 @@ namespace eval ::abnet {
   # It has the exact behaviour of calling lookupFilename
   # if the name is not yet known, then immediately getf
   # after success.
+  #
+  # This is a compound operation, so success hooks will not work as expected.
   proc getfn {filename outfile {userid {}}} {
     if {"" == $userid} { set userid $::abnet::userid }
     _getfn $filename $outfile $userid
@@ -435,6 +437,14 @@ namespace eval ::abnet {
   proc slaveMode {} {
     set ::abnet::MAXIMUM_MSG_INTERVAL 5
     writeServer make-me-a-slave
+  }
+
+  # Requests notification when $::abnet::success is updated.
+  # The parameters given will have the new value of success appended (via
+  # lappend), and will then be eval'd at global scope.
+  # If not currently busy, immediately runs the hook.
+  proc successHook {args} {
+    _successHook $args
   }
 
   ### NO DECLARATIONS BELOW THIS POINT SHOULD BE ACCESSED
@@ -623,6 +633,14 @@ namespace eval ::abnet {
         }
       }
       secure {
+        incr ::abnet::outputsSinceKeyChange
+        if {$::abnet::outputsSinceKeyChange > 1024} {
+          set k [crypto_rand]
+          set ::abnet::outputsSinceKeyChange 0
+          writeServer change-key $k
+          setKey ::abnet::outputKey $k
+        }
+
         set str [encoding convertto utf-8 $args]
         append str "\n"
         while {[string length $str] % 16} {
@@ -640,14 +658,6 @@ namespace eval ::abnet {
           set ::abnet::resultMessage $err
           return
         }
-
-        incr ::abnet::outputsSinceKeyChange
-        if {$::abnet::outputsSinceKeyChange > 1024} {
-          set k [crypto_rand]
-          set ::abnet::outputsSinceKeyChange 0
-          writeServer change-key $k
-          setKey ::abnet::outputKey $k
-        }
       }
     }
   }
@@ -658,7 +668,7 @@ namespace eval ::abnet {
       readServer
     } err errinfo]} {
       # For debugging
-      set debout [open [homeq abneterr.log w]]
+      set debout [open [homeq abneterr.log] w]
       puts $debout "$err\n$errinfo"
       close $debout
       closeConnection $err
@@ -721,7 +731,6 @@ namespace eval ::abnet {
   # endSession, then resets variables to a not-connected
   # state
   proc endConnection {} {
-    sync
     endSession
     # Delay so any pending message can be transmitted
     after 512 close $::abnet::sock
@@ -730,6 +739,8 @@ namespace eval ::abnet {
     set ::abnet::isReady no
     set ::abnet::currentUpdate {}
     set ::abnet::busy no
+    # Set success so that any pending hooks are run
+    set ::abnet::success no
   }
   proc _closeConnection msg {
     if {[catch { writeServer error {} $msg } err errinfo]} {
@@ -1084,14 +1095,33 @@ namespace eval ::abnet {
 
   proc _jobDone {data} {
     sync
+    log "Job done: $data"
     writeServer job-done {*}$data
     enable job
   }
 
   proc _jobFailed {why} {
     sync
+    log "Job failed: $why"
     writeServer job-failed $why
     enable job
+  }
+
+  proc _successHook {code} {
+    trace add variable ::abnet::success write \
+        [list ::abnet::successHookTrigger $code]
+    if {!$::abnet::busy} {
+      set ::abnet::success $::abnet::success
+    }
+  }
+
+  proc successHookTrigger {code args} {
+    # Remove the trace since this is only supposed to run once
+    trace remove variable ::abnet::success write \
+        [list ::abnet::successHookTrigger $code]
+    # Add the current value of success and run
+    lappend code $::abnet::success
+    namespace eval :: $code
   }
 
   proc message-error {l10n english} {

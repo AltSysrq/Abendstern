@@ -1,4 +1,5 @@
 # Loads miscelaneous GUI components
+source tcl/ship_index.tcl
 source tcl/self_update.tcl
 source tcl/ship_edit.tcl
 source tcl/ui/login.tcl

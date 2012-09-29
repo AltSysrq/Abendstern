@@ -139,13 +139,11 @@ void Cell::drawShape(const float* healthy, const float* damaged) noth {
   ENDGP
 }
 
-void Cell::getAdjoined(vector<Cell*>& list) noth {
-  for (unsigned int i=0; i<list.size(); ++i)
-    if (list[i]==this) return;
+void Cell::getAdjoined(set<Cell*>& list) noth {
+  if (list.count(this)) return;
 
-  list.push_back(this);
-  unsigned n = numNeighbours();
-  for (unsigned i=0; i<n; ++i)
+  list.insert(this);
+  for (unsigned i=0; i<4; ++i)
     if (neighbours[i])
       neighbours[i]->getAdjoined(list);
 }
@@ -244,12 +242,21 @@ void Cell::physicsRequire(physics_bits bits) noth {
   if (isEmpty) {
     if (!(physics.valid & PHYS_CELL_LOCATION_PROPERTIES_BIT)
     &&  (PHYS_CELL_LOCATION_PROPERTIES_BITS & bits)) {
-      neighbours[0]->physicsRequire(PHYS_CELL_LOCATION_PROPERTIES_BIT);
+      if (!neighbours[0]->isEmpty) {
+        neighbours[0]->physicsRequire(PHYS_CELL_LOCATION_PROPERTIES_BIT);
 
-      physics.distance  = neighbours[0]->physics.distance;
-      physics.sine      = neighbours[0]->physics.sine;
-      physics.cosine    = neighbours[0]->physics.cosine;
-      physics.angle     = neighbours[0]->physics.angle;
+        physics.distance  = neighbours[0]->physics.distance;
+        physics.sine      = neighbours[0]->physics.sine;
+        physics.cosine    = neighbours[0]->physics.cosine;
+        physics.angle     = neighbours[0]->physics.angle;
+      } else {
+        //Island of two empty cells, do nothing
+        physics.distance = 0;
+        physics.sine = 0;
+        physics.cosine = 1;
+        physics.angle = 0;
+      }
+
       assert(physics.distance == physics.distance);
 
       physics.valid |= PHYS_CELL_LOCATION_PROPERTIES_BIT;

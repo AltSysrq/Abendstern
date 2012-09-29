@@ -816,9 +816,9 @@
 +\a[(danger)Konto löschen\a]
 
 -switchcreate
-+Eine Konto erschaffen
++Eine Konto erschaffen...
 -switchlogin
-+Mit Existierender anmelden
++Mit Existierender anmelden...
 -offline
 +Offline spielen
 -possible_avatars
@@ -829,7 +829,7 @@
 -creating
 +Erschaffe Konto...
 -logging_in
-+Melden an...
++Melde an...
 -altering
 +Informationen werden geändert...
 
@@ -841,7 +841,7 @@
 -offline_disadvantages
 +In Offline-Modus können Sie weder nicht in online Spiele gegen
 + andere Leute spielen, benutzerdefinierte Schiffe teilen
-+ und bekommen, noch die stetig Verbesserungen des AI der
++ und bekommen, noch die stetig Verbesserungen des KI der
 + rechner-controllierte Gegner bekommen.
 
 -deletewarn
@@ -1253,7 +1253,7 @@
 -shipdnld_main
 +Lade abonnierte Schiffe herunter
 -aidownld
-+Lade Daten des AIs herunter
++Lade Daten des KIs herunter
 -mainmenu
 +
 -logout
@@ -1266,3 +1266,7 @@
 +Sie sollten dies nicht sehen!
 -aistage
 +
+-bsdownld
++Lade KI-Schiffe herunter
+-bsload
++Lade KI-Schiffe

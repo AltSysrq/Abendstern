@@ -90,3 +90,21 @@ proc lssi_removeForceList {shipids} {
   }
   $ sets $s.force $result
 }
+
+# Returns the timestamp of the most recent AI ship download
+proc lssi_getBestship {} {
+  if {[$ exists lssinfo.aidl]} {
+    return [$ int lssinfo.aidl]
+  } else {
+    return 0
+  }
+}
+
+# Sets the timestamp of the most recent AI ship download to now
+proc lssi_setBestship {} {
+  if {[$ exists lssinfo.aidl]} {
+    $ remove lssinfo.aidl
+  }
+
+  $ addi lssinfo aidl [clock seconds]
+}

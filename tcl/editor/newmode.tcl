@@ -114,5 +114,6 @@ class ShipEditorNewShip {
     $ sets edit.mountname $mount
     $editor manip reloadShip
     $editor setMode [new ShipEditorMain $editor]
+    ::ship_index::add $mount yes
   }
 }

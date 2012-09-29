@@ -178,8 +178,8 @@ void Shield::addCollisionBounds(vector<CollisionRectangle*>& vec) noth {
     needUpdateRects=false;
   }
 
-  for (unsigned i=0; i<lenof(collisionRects); ++i)
-    vec.push_back(&collisionRects[i]);
+  vec.insert(vec.end(),
+             collisionRectPtrs, collisionRectPtrs+lenof(collisionRectPtrs));
 }
 
 void Shield::updateXYOffs() noth {

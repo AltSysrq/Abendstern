@@ -486,6 +486,7 @@ enum Ship::Category {} \
     {Ship::Attacker	Attacker} \
     {Ship::Subcapital	Subcapital} \
     {Ship::Defender	Defender}
+fun unsigned shipCategoryToInt Ship::Category
 class final Ship GameObject {
   unsafe {
     var controller Controller* steal
@@ -566,6 +567,7 @@ class final Ship GameObject {
   fun cstr getDeathAttributions
   fun Ship::Category categorise
 }
+fun Ship::Category {Ship::categorise Ship_categorise} cstr
 
 class final ShipImageRenderer {} {
   fun bool renderNext
@@ -1347,6 +1349,14 @@ unsafe {
       unsigned joystick::ButtonType
   # Tcl doesn't need access to the controls themselves.
 }
+
+cxx src/secondary/versus_match.hxx
+class final VersusMatch {} {
+  fun bool step noth
+  fun float score {const noth}
+}
+fun {VersusMatch* steal} {VersusMatch::create VersusMatch_create} \
+    string unsigned string unsigned
 
 cxx src/secondary/frame_recorder.hxx
 unsafe {

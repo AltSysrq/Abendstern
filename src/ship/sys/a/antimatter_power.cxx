@@ -35,9 +35,14 @@ void AntimatterPower::destroy(unsigned blame) noth {
   pair<float,float> coords=Ship::cellCoord(container->parent, container, 0, 0);
   GameField* field=container->parent->getField();
   //Don't create a Blast if remote
-  if (!parent->isRemote)
-    field->inject(new Blast(field, blame, coords.first, coords.second, STD_CELL_SZ*2.5f,
-                            (container->parent->hasPower()? 100 : 50), true, STD_CELL_SZ/2));
+  if (!parent->isRemote) {
+    Blast* blast = new Blast(field, blame, coords.first, coords.second,
+                             STD_CELL_SZ*2.5f,
+                             (container->parent->hasPower()? 100 : 50),
+                             true, STD_CELL_SZ/2);
+    parent->injectBlastCollision(blast);
+    field->inject(blast);
+  }
   if (!EXPCLOSE(coords.first, coords.second)) return;
   pair<float,float> vel=container->parent->getCellVelocity(container);
   if (container->parent->hasPower()) {

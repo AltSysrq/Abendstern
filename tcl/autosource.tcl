@@ -2,6 +2,9 @@
 
 encoding system utf-8
 
+package require stringprep
+::stringprep::register basic -mapping {B.1 B.2} -normalization KC
+
 # Eval this so that globalConf gets subbed correctly
 eval "proc \$ {args} { $globalConf {*}\$args }"
 safe_source tcl/gui.tcl

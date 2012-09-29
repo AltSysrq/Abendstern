@@ -1,0 +1,210 @@
+info	{
+ name	"Colonial Viper",
+ author	"AltSysrq",
+ version	0
+ bridge	"konnichiwa",
+ reinforcement	2.400000095
+ class	"A",
+ alliance	["EUF",	"WUDR",]
+ mass	15434.0
+ energy_levels	{
+  GatlingPlasma	10
+  PlasmaBurst	21
+ }
+ sharing_enabled	t
+ fileid	509
+ ownerid	1
+ needs_uploading	t
+ verification_signature	1149322172
+ original_filename	"hangar/1/colonial.ship",
+ guid	"7c05accb-6a7a-4648-6e21-d84268e1bc98",
+}
+cells	{
+ konnichiwa	{
+  type	"circle",
+  neighbours	["mejinoi",	"doidupoi",	"donshawoi",	"neijoita",]
+ }
+ donshawoi	{
+  neighbours	["konnichiwa",	"poujeiwa",	"sheiryaipoi",	"baihouho",]
+  type	"square",
+  s0	{
+   type	"DispersionShield",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ poujeiwa	{
+  neighbours	["sutashe",	"donshawoi",	"doidupoi",	"",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ baihouho	{
+  neighbours	["donshawoi",	"ryoubeita",	"",	"neijoita",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ mejinoi	{
+  neighbours	["konnichiwa",	"",	"raititei",	"",]
+  type	"square",
+  s0	{
+   type	"ShieldGenerator",
+   radius	2.5
+   strength	5.0
+  }
+  s1	{
+   type	"Heatsink",
+  }
+ }
+ raititei	{
+  neighbours	["mejinoi",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"Heatsink",
+  }
+ }
+ doidupoi	{
+  neighbours	["konnichiwa",	"wuduji",	"poujeiwa",	"",]
+  type	"right",
+  s0	{
+   type	"AntimatterPower",
+  }
+ }
+ neijoita	{
+  neighbours	["baihouho",	"poijemoi",	"konnichiwa",	"",]
+  type	"right",
+  s0	{
+   type	"AntimatterPower",
+  }
+ }
+ wuduji	{
+  neighbours	["doidupoi",	"",	"koiryeinou",	"",]
+  type	"right",
+  s0	{
+   type	"GatlingPlasmaBurstLauncher",
+   orient	1
+   turbo	f
+  }
+ }
+ poijemoi	{
+  neighbours	["getoimo",	"",	"neijoita",	"",]
+  type	"right",
+  s0	{
+   type	"PlasmaBurstLauncher",
+   orient	1
+  }
+ }
+ sutashe	{
+  neighbours	["poujeiwa",	"",	"ropoino",	"sheiryaipoi",]
+  type	"circle",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ ryoubeita	{
+  neighbours	["baihouho",	"sheiryaipoi",	"yeirasoin",	"",]
+  type	"circle",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ sheiryaipoi	{
+  neighbours	["ryoubeita",	"donshawoi",	"sutashe",	"shehemi",]
+  type	"square",
+  s0	{
+   type	"AntimatterPower",
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ ropoino	{
+  neighbours	["sutashe",	"shifaigai",	"",	"shehemi",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	2
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ shehemi	{
+  neighbours	["ropoino",	"",	"yeirasoin",	"sheiryaipoi",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ yeirasoin	{
+  neighbours	["shehemi",	"",	"moiryukai",	"ryoubeita",]
+  type	"square",
+  s0	{
+   type	"RelIonAccelerator",
+   orient	1
+  }
+  s1	{
+   type	"AntimatterPower",
+  }
+ }
+ moiryukai	{
+  neighbours	["yeirasoin",	"",	"",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	1
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ shifaigai	{
+  neighbours	["ropoino",	"",	"",	"",]
+  type	"square",
+  s0	{
+   type	"BussardRamjet",
+   orient	3
+  }
+  s1	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ koiryeinou	{
+  neighbours	["wuduji",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+ getoimo	{
+  neighbours	["poijemoi",	"",	"",	"",]
+  type	"equil",
+  s0	{
+   type	"Capacitor",
+   capacity	100
+  }
+ }
+}

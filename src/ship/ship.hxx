@@ -7,6 +7,7 @@
 #ifndef SHIP_HXX_
 #define SHIP_HXX_
 
+#include <list>
 #include <vector>
 #include <cmath>
 #include <utility>
@@ -59,6 +60,7 @@
 /** The maximum number of Cells a Ship is allowed to have. */
 #define MAX_CELL_CNT 4094
 
+class Blast;
 class ShipSystem;
 class Shield;
 class Cell;
@@ -445,6 +447,19 @@ class Ship: public GameObject {
     float damage;
   } damageBlame[4];
   friend bool damageBlameCompare(const damage_blame_t&, const damage_blame_t&);
+
+  /* A list of Blast*s that the current invocation of collideWith() is applying
+   * to. It is meaningless if collideWith() is not currently on the stack.
+   *
+   * This is used to inject new Blasts into the current invocation, to avoid
+   * reëntrancy and the performance problems with the simple "let the GameField
+   * handle it" solution.
+   */
+  std::vector<Blast*> collideWithCurrent;
+  /* A list of Blast*s which have been injected into collideWith(). Calls to
+   * collideWith() which refer to any of these are ignored.
+   */
+  std::list<ObjDL> injectedBlasts;
 
   public:
   /** The insignia (or factional alliance) of the ship. Ships with
@@ -881,6 +896,20 @@ class Ship: public GameObject {
   virtual CollisionResult checkCollision(GameObject*) noth;
   virtual bool collideWith(GameObject*) noth;
 
+  /**
+   * "Injects" the given Blast into the currently-running collideWith()
+   * invocation. The Blast will be processed at some later time this frame; the
+   * caller must ensure that the pointer remains valid at least that long.
+   *
+   * This is more efficient than simply placing the Blast into the GameField
+   * and letting it be handled that way, since fewer unneeded physics
+   * recalculations must be done.
+   *
+   * If collideWith() is not currently in the call stack, this call has no
+   * significant effect.
+   */
+  void injectBlastCollision(Blast*) noth;
+
   virtual const NebulaResistanceElement* getNebulaResistanceElements() noth;
   virtual unsigned getNumNebulaResistanceElements() const noth;
 
@@ -942,6 +971,8 @@ class Ship: public GameObject {
 
   /** Returns the category into which this Ship falls. */
   Category categorise() const noth;
+  /** Categorises a ship by examining only its config root. */
+  static Category categorise(const char*);
 
   private:
   /* Subtract the given Cell's information from the ship, and perform any
@@ -966,6 +997,14 @@ class Ship: public GameObject {
  * @param phys Check physical properties (very expensive)
  */
 const char* verify(Ship* ship, bool phys=true);
+
+/**
+ * Returns the integer representation of the given category.
+ * This is a utility function for Tcl.
+ */
+static inline unsigned shipCategoryToInt(Ship::Category cat) {
+  return (unsigned)cat;
+}
 
 
 #endif /*SHIP_HXX_*/

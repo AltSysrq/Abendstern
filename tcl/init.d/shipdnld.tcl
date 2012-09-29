@@ -75,6 +75,7 @@ if {![info exists SHIPDNLD_PROCS]} {
       $ appends hangar.[string tolower [$ str $ship.info.class]] [shipMount2Name $ship]
       refreshStandardHangars
       $ sync hangar
+      ::ship_index::add $ship no
     }
 
     ::abnet::shipdl $shipid

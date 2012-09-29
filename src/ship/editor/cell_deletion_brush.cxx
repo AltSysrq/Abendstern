@@ -11,6 +11,7 @@
  *      Author: jason
  */
 
+#include <set>
 #include <vector>
 #include <algorithm>
 #include <libconfig.h++>
@@ -51,12 +52,12 @@ void CellDeletionBrush::press(float x, float y) {
       for (unsigned m=0; m<4; ++m)
         if (target->neighbours[n]->neighbours[m] == target)
           target->neighbours[n]->neighbours[m] = NULL;
-  vector<Cell*> nonOrphans;
+  set<Cell*> nonOrphans;
   ship->cells[0]->getAdjoined(nonOrphans);
   //Add any Ship cells into the toDelete vector and remove from
   //the Ship. Then, remove their config entries and delete them.
   for (unsigned i=0; i<ship->cells.size(); ++i)
-    if (nonOrphans.end() == find(nonOrphans.begin(), nonOrphans.end(), ship->cells[i])) {
+    if (!nonOrphans.count(ship->cells[i])) {
       toDelete.push_back(ship->cells[i]);
       ship->cells.erase(ship->cells.begin() + (i--));
     }
