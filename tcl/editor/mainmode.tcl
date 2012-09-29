@@ -83,6 +83,12 @@ class ShipEditorMain {
     $editor manip addToHistory ;#Add the initial state
   }
 
+  destructor {
+    # Unset any cursor locking that might be in place
+    set ::gui::cursorLockX -1
+    set ::gui::cursorLockY -1
+  }
+
   method draw {} {
     if {[string length $proceedOnNone] && "none" == [$ str edit.current_mode]} {
       setbar $proceedOnNone
@@ -157,6 +163,14 @@ class ShipEditorMain {
       $editor manip reloadShip
       $editor manip activateMode
       $ setb edit.modified yes
+    } elseif {[string match "DOWN:????:k_?shift" $keyspec]} {
+      set ::gui::cursorLockX $::cursorX
+    } elseif {[string match "UP:????:k_?shift" $keyspec]} {
+      set ::gui::cursorLockX -1
+    } elseif {[string match "DOWN:????:k_?ctrl" $keyspec]} {
+      set ::gui::cursorLockY $::cursorY
+    } elseif {[string match "UP:????:k_?ctrl" $keyspec]} {
+      set ::gui::cursorLockY -1
     } else {
       Mode::keyboard $keyspec
     }
