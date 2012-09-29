@@ -841,7 +841,7 @@
 -offline_disadvantages
 +In Offline-Modus können Sie weder nicht in online Spiele gegen
 + andere Leute spielen, benutzerdefinierte Schiffe teilen
-+ und bekommen, noch die stetig Verbesserungen des AI der
++ und bekommen, noch die stetig Verbesserungen des KI der
 + rechner-controllierte Gegner bekommen.
 
 -deletewarn
@@ -1253,7 +1253,7 @@
 -shipdnld_main
 +Lade abonnierte Schiffe herunter
 -aidownld
-+Lade Daten des AIs herunter
++Lade Daten des KIs herunter
 -mainmenu
 +
 -logout
