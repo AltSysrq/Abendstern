@@ -29,25 +29,42 @@ clean:
 ./tcl_iface/xxx/rebuilt: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 	@echo '  TCL    tcl_iface/generate.tcl'
 	@$(TCL) ./tcl_iface/generate.tcl
-	@echo '  TOUCH  tcl_iface/xxx/rebuild tcl_iface/bridge.cxx tcl_iface/xxx/*'
+	@echo '  TOUCH  tcl_iface/xxx/rebuilt tcl_iface/bridge.cxx tcl_iface/xxx/*'
 	@touch tcl_iface/xxx/rebuilt tcl_iface/bridge.cxx tcl_iface/xxx/*
-./tcl_iface/bridge.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x0.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x1.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x2.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x3.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x4.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x5.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x6.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x7.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x8.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/x9.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xa.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xb.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xc.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xd.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xe.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
-./tcl_iface/xxx/xf.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
+./tcl_iface/bridge.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/x0.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/x1.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/x2.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/x3.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/x4.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/x5.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/x6.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/x7.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/x8.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/x9.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/xa.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/xb.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/xc.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/xd.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/xe.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
+./tcl_iface/xxx/xf.cxx: ./tcl_iface/xxx/rebuilt ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl \
+	;
 
 ./net/xxx/xnetobj.cxx: ./net/definition.tcl ./net/generate.tcl
 	@echo '  TCL    net/generate.tcl'
