@@ -816,9 +816,9 @@
 +\a[(danger)Konto löschen\a]
 
 -switchcreate
-+Eine Konto erschaffen
++Eine Konto erschaffen...
 -switchlogin
-+Mit Existierender anmelden
++Mit Existierender anmelden...
 -offline
 +Offline spielen
 -possible_avatars
