@@ -345,6 +345,7 @@
     <ClInclude Include="..\..\..\src\secondary\namegen.hxx" />
     <ClInclude Include="..\..\..\src\secondary\planet_generator.hxx" />
     <ClInclude Include="..\..\..\src\secondary\validation.hxx" />
+    <ClInclude Include="..\..\..\src\secondary\versus_match.hxx" />
     <ClInclude Include="..\..\..\src\ship\auxobj\cell_fragment.hxx" />
     <ClInclude Include="..\..\..\src\ship\auxobj\plasma_fire.hxx" />
     <ClInclude Include="..\..\..\src\ship\auxobj\shield.hxx" />
@@ -562,6 +563,7 @@
     <ClCompile Include="..\..\..\src\secondary\light_trail.cxx" />
     <ClCompile Include="..\..\..\src\secondary\namegen.cxx" />
     <ClCompile Include="..\..\..\src\secondary\planet_generator.cxx" />
+    <ClCompile Include="..\..\..\src\secondary\versus_match.cxx" />
     <ClCompile Include="..\..\..\src\ship\auxobj\cell_fragment.cxx" />
     <ClCompile Include="..\..\..\src\ship\auxobj\plasma_fire.cxx" />
     <ClCompile Include="..\..\..\src\ship\auxobj\shield.cxx" />
