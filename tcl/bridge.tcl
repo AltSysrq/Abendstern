@@ -1975,106 +1975,110 @@ destructor {
 }
 }
 
+proc {shipCategoryToInt} { a0  } {set retpi [uplevel 1 [list {c++ trampoline471} $a0 ]]
+set ret $retpi
+return $ret
+}
 ::itcl::class {Ship} {
 inherit GameObject
 public variable controller
- method accessor474 {ignored ignored op} {
+ method accessor476 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get472} $this]
+               set tmp [{c++ get474} $this]
                set controller $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set473} $this $controller]
+               return [{c++ set475} $this $controller]
              } else { error "Cannot unset C++ variable controller" }
            }
 
 public variable effects
- method accessor477 {ignored ignored op} {
+ method accessor479 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get475} $this]
+               set tmp [{c++ get477} $this]
                set effects $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set476} $this $effects]
+               return [{c++ set478} $this $effects]
              } else { error "Cannot unset C++ variable effects" }
            }
 
 public variable shipExistenceFailure
- method accessor480 {ignored ignored op} {
+ method accessor482 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get478} $this]
+               set tmp [{c++ get480} $this]
                set shipExistenceFailure $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set479} $this $shipExistenceFailure]
+               return [{c++ set481} $this $shipExistenceFailure]
              } else { error "Cannot unset C++ variable shipExistenceFailure" }
            }
 
 
-proc {cellCoord} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline481} $a0 $a1 ]]
+proc {cellCoord} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline483} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }
-proc {cellSubCoord} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline483} $a0 $a1 $a2 $a3 ]]
+proc {cellSubCoord} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline485} $a0 $a1 $a2 $a3 ]]
 set ret $retpi
 return $ret
 }
 public variable insignia
- method accessor487 {ignored ignored op} {
+ method accessor489 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get485} $this]
+               set tmp [{c++ get487} $this]
                set insignia $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set486} $this $insignia]
+               return [{c++ set488} $this $insignia]
              } else { error "Cannot unset C++ variable insignia" }
            }
 
 public variable blame
- method accessor490 {ignored ignored op} {
+ method accessor492 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get488} $this]
+               set tmp [{c++ get490} $this]
                set blame $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set489} $this $blame]
+               return [{c++ set491} $this $blame]
              } else { error "Cannot unset C++ variable blame" }
            }
 
 public variable score
- method accessor493 {ignored ignored op} {
+ method accessor495 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get491} $this]
+               set tmp [{c++ get493} $this]
                set score $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set492} $this $score]
+               return [{c++ set494} $this $score]
              } else { error "Cannot unset C++ variable score" }
            }
 
 public variable damageMultiplier
- method accessor496 {ignored ignored op} {
+ method accessor498 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get494} $this]
+               set tmp [{c++ get496} $this]
                set damageMultiplier $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set495} $this $damageMultiplier]
+               return [{c++ set497} $this $damageMultiplier]
              } else { error "Cannot unset C++ variable damageMultiplier" }
            }
 
 public variable diedSpontaneously
- method accessor498 {ignored ignored op} {
+ method accessor500 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get497} $this]
+               set tmp [{c++ get499} $this]
                set diedSpontaneously $tmp
 
              } elseif {$op == {write}} {
@@ -2083,10 +2087,10 @@ public variable diedSpontaneously
            }
 
 public variable typeName
- method accessor500 {ignored ignored op} {
+ method accessor502 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get499} $this]
+               set tmp [{c++ get501} $this]
                set typeName $tmp
 
              } elseif {$op == {write}} {
@@ -2095,190 +2099,190 @@ public variable typeName
            }
 
 namespace eval :: {
-proc {c++ new Ship default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline501} $a0 $a1 $a2 ]]
+proc {c++ new Ship default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline503} $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }}
 
 
-method {refreshUpdates} {  } {set retpi [uplevel 1 [list {c++ trampoline503} $this ]]
+method {refreshUpdates} {  } {set retpi [uplevel 1 [list {c++ trampoline505} $this ]]
 return $retpi
 }
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline505} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline507} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline507} $this ]]
-return $retpi
-}
-
-method {getVRotation} {  } {set retpi [uplevel 1 [list {c++ trampoline509} $this ]]
-set ret $retpi
-return $ret
-}
-method {getMass} {  } {set retpi [uplevel 1 [list {c++ trampoline511} $this ]]
-set ret $retpi
-return $ret
-}
-method {glSetColour0} {  } {set retpi [uplevel 1 [list {c++ trampoline513} $this ]]
-return $retpi
-}
-method {glSetColour1} { a0  } {set retpi [uplevel 1 [list {c++ trampoline515} $this $a0 ]]
-return $retpi
-}
-method {glSetColour2} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline517} $this $a0 $a1 ]]
-return $retpi
-}
-method {setThrust} { a0  } {set retpi [uplevel 1 [list {c++ trampoline519} $this $a0 ]]
-return $retpi
-}
-method {getThrust} {  } {set retpi [uplevel 1 [list {c++ trampoline521} $this ]]
-set ret $retpi
-return $ret
-}
-method {getTrueThrust} {  } {set retpi [uplevel 1 [list {c++ trampoline523} $this ]]
-set ret $retpi
-return $ret
-}
-method {setThrustOn} { a0  } {set retpi [uplevel 1 [list {c++ trampoline525} $this $a0 ]]
-return $retpi
-}
-method {isThrustOn} {  } {set retpi [uplevel 1 [list {c++ trampoline527} $this ]]
-set ret $retpi
-return $ret
-}
-method {setBrakeOn} { a0  } {set retpi [uplevel 1 [list {c++ trampoline529} $this $a0 ]]
-return $retpi
-}
-method {isBrakeOn} {  } {set retpi [uplevel 1 [list {c++ trampoline531} $this ]]
-set ret $retpi
-return $ret
-}
-method {configureEngines} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline533} $this $a0 $a1 $a2 ]]
-return $retpi
-}
-method {configureEngines2} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline535} $this $a0 $a1 ]]
-return $retpi
-}
-method {getAcceleration} {  } {set retpi [uplevel 1 [list {c++ trampoline537} $this ]]
-set ret $retpi
-return $ret
-}
-method {getRotationRate} {  } {set retpi [uplevel 1 [list {c++ trampoline539} $this ]]
-set ret $retpi
-return $ret
-}
-method {getRotationAccel} {  } {set retpi [uplevel 1 [list {c++ trampoline541} $this ]]
-set ret $retpi
-return $ret
-}
-method {getRadius} {  } {set retpi [uplevel 1 [list {c++ trampoline543} $this ]]
-set ret $retpi
-return $ret
-}
-method {getPowerUsagePercent} {  } {set retpi [uplevel 1 [list {c++ trampoline545} $this ]]
-set ret $retpi
-return $ret
-}
-method {getPowerSupply} {  } {set retpi [uplevel 1 [list {c++ trampoline547} $this ]]
-set ret $retpi
-return $ret
-}
-method {getPowerDrain} {  } {set retpi [uplevel 1 [list {c++ trampoline549} $this ]]
-set ret $retpi
-return $ret
-}
-method {getCurrentCapacitance} {  } {set retpi [uplevel 1 [list {c++ trampoline551} $this ]]
-set ret $retpi
-return $ret
-}
-method {getMaximumCapacitance} {  } {set retpi [uplevel 1 [list {c++ trampoline553} $this ]]
-set ret $retpi
-return $ret
-}
-method {getCapacitancePercent} {  } {set retpi [uplevel 1 [list {c++ trampoline555} $this ]]
-set ret $retpi
-return $ret
-}
-method {setColour} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline557} $this $a0 $a1 $a2 ]]
-return $retpi
-}
-method {destroyGraphicsInfo} {  } {set retpi [uplevel 1 [list {c++ trampoline559} $this ]]
-return $retpi
-}
-method {getColourR} {  } {set retpi [uplevel 1 [list {c++ trampoline561} $this ]]
-set ret $retpi
-return $ret
-}
-method {getColourG} {  } {set retpi [uplevel 1 [list {c++ trampoline563} $this ]]
-set ret $retpi
-return $ret
-}
-method {getColourB} {  } {set retpi [uplevel 1 [list {c++ trampoline565} $this ]]
-set ret $retpi
-return $ret
-}
-method {drawPower} { a0  } {set retpi [uplevel 1 [list {c++ trampoline567} $this $a0 ]]
-set ret $retpi
-return $ret
-}
-method {getReinforcement} {  } {set retpi [uplevel 1 [list {c++ trampoline569} $this ]]
-set ret $retpi
-return $ret
-}
-method {setReinforcement} { a0  } {set retpi [uplevel 1 [list {c++ trampoline571} $this $a0 ]]
-return $retpi
-}
-method {enableSoundEffects} {  } {set retpi [uplevel 1 [list {c++ trampoline573} $this ]]
+method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline509} $this ]]
 return $retpi
 }
 
-method {hasPower} {  } {set retpi [uplevel 1 [list {c++ trampoline575} $this ]]
+method {getVRotation} {  } {set retpi [uplevel 1 [list {c++ trampoline511} $this ]]
 set ret $retpi
 return $ret
 }
-method {spontaneouslyDie} {  } {set retpi [uplevel 1 [list {c++ trampoline577} $this ]]
+method {getMass} {  } {set retpi [uplevel 1 [list {c++ trampoline513} $this ]]
+set ret $retpi
+return $ret
+}
+method {glSetColour0} {  } {set retpi [uplevel 1 [list {c++ trampoline515} $this ]]
 return $retpi
 }
-method {getCoolingMult} {  } {set retpi [uplevel 1 [list {c++ trampoline579} $this ]]
+method {glSetColour1} { a0  } {set retpi [uplevel 1 [list {c++ trampoline517} $this $a0 ]]
+return $retpi
+}
+method {glSetColour2} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline519} $this $a0 $a1 ]]
+return $retpi
+}
+method {setThrust} { a0  } {set retpi [uplevel 1 [list {c++ trampoline521} $this $a0 ]]
+return $retpi
+}
+method {getThrust} {  } {set retpi [uplevel 1 [list {c++ trampoline523} $this ]]
 set ret $retpi
 return $ret
 }
-method {getCellVelocity} { a0  } {set retpi [uplevel 1 [list {c++ trampoline581} $this $a0 ]]
+method {getTrueThrust} {  } {set retpi [uplevel 1 [list {c++ trampoline525} $this ]]
 set ret $retpi
 return $ret
+}
+method {setThrustOn} { a0  } {set retpi [uplevel 1 [list {c++ trampoline527} $this $a0 ]]
+return $retpi
+}
+method {isThrustOn} {  } {set retpi [uplevel 1 [list {c++ trampoline529} $this ]]
+set ret $retpi
+return $ret
+}
+method {setBrakeOn} { a0  } {set retpi [uplevel 1 [list {c++ trampoline531} $this $a0 ]]
+return $retpi
+}
+method {isBrakeOn} {  } {set retpi [uplevel 1 [list {c++ trampoline533} $this ]]
+set ret $retpi
+return $ret
+}
+method {configureEngines} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline535} $this $a0 $a1 $a2 ]]
+return $retpi
+}
+method {configureEngines2} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline537} $this $a0 $a1 ]]
+return $retpi
+}
+method {getAcceleration} {  } {set retpi [uplevel 1 [list {c++ trampoline539} $this ]]
+set ret $retpi
+return $ret
+}
+method {getRotationRate} {  } {set retpi [uplevel 1 [list {c++ trampoline541} $this ]]
+set ret $retpi
+return $ret
+}
+method {getRotationAccel} {  } {set retpi [uplevel 1 [list {c++ trampoline543} $this ]]
+set ret $retpi
+return $ret
+}
+method {getRadius} {  } {set retpi [uplevel 1 [list {c++ trampoline545} $this ]]
+set ret $retpi
+return $ret
+}
+method {getPowerUsagePercent} {  } {set retpi [uplevel 1 [list {c++ trampoline547} $this ]]
+set ret $retpi
+return $ret
+}
+method {getPowerSupply} {  } {set retpi [uplevel 1 [list {c++ trampoline549} $this ]]
+set ret $retpi
+return $ret
+}
+method {getPowerDrain} {  } {set retpi [uplevel 1 [list {c++ trampoline551} $this ]]
+set ret $retpi
+return $ret
+}
+method {getCurrentCapacitance} {  } {set retpi [uplevel 1 [list {c++ trampoline553} $this ]]
+set ret $retpi
+return $ret
+}
+method {getMaximumCapacitance} {  } {set retpi [uplevel 1 [list {c++ trampoline555} $this ]]
+set ret $retpi
+return $ret
+}
+method {getCapacitancePercent} {  } {set retpi [uplevel 1 [list {c++ trampoline557} $this ]]
+set ret $retpi
+return $ret
+}
+method {setColour} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline559} $this $a0 $a1 $a2 ]]
+return $retpi
+}
+method {destroyGraphicsInfo} {  } {set retpi [uplevel 1 [list {c++ trampoline561} $this ]]
+return $retpi
+}
+method {getColourR} {  } {set retpi [uplevel 1 [list {c++ trampoline563} $this ]]
+set ret $retpi
+return $ret
+}
+method {getColourG} {  } {set retpi [uplevel 1 [list {c++ trampoline565} $this ]]
+set ret $retpi
+return $ret
+}
+method {getColourB} {  } {set retpi [uplevel 1 [list {c++ trampoline567} $this ]]
+set ret $retpi
+return $ret
+}
+method {drawPower} { a0  } {set retpi [uplevel 1 [list {c++ trampoline569} $this $a0 ]]
+set ret $retpi
+return $ret
+}
+method {getReinforcement} {  } {set retpi [uplevel 1 [list {c++ trampoline571} $this ]]
+set ret $retpi
+return $ret
+}
+method {setReinforcement} { a0  } {set retpi [uplevel 1 [list {c++ trampoline573} $this $a0 ]]
+return $retpi
+}
+method {enableSoundEffects} {  } {set retpi [uplevel 1 [list {c++ trampoline575} $this ]]
+return $retpi
 }
 
-method {spin} { a0  } {set retpi [uplevel 1 [list {c++ trampoline583} $this $a0 ]]
+method {hasPower} {  } {set retpi [uplevel 1 [list {c++ trampoline577} $this ]]
+set ret $retpi
+return $ret
+}
+method {spontaneouslyDie} {  } {set retpi [uplevel 1 [list {c++ trampoline579} $this ]]
 return $retpi
 }
-method {startTest} {  } {set retpi [uplevel 1 [list {c++ trampoline585} $this ]]
-return $retpi
+method {getCoolingMult} {  } {set retpi [uplevel 1 [list {c++ trampoline581} $this ]]
+set ret $retpi
+return $ret
 }
-method {endTest} {  } {set retpi [uplevel 1 [list {c++ trampoline587} $this ]]
+method {getCellVelocity} { a0  } {set retpi [uplevel 1 [list {c++ trampoline583} $this $a0 ]]
 set ret $retpi
 return $ret
 }
 
-method {applyCollision} { a0 a1 a2 a3 a4  } {set retpi [uplevel 1 [list {c++ trampoline589} $this $a0 $a1 $a2 $a3 $a4 ]]
+method {spin} { a0  } {set retpi [uplevel 1 [list {c++ trampoline585} $this $a0 ]]
 return $retpi
 }
-method {cellCount} {  } {set retpi [uplevel 1 [list {c++ trampoline591} $this ]]
-set ret $retpi
-return $ret
-}
-method {getRadar} {  } {set retpi [uplevel 1 [list {c++ trampoline593} $this ]]
-set ret $retpi
-return $ret
-}
-method {setRadar} { a0  } {set retpi [uplevel 1 [list {c++ trampoline595} $this $a0 ]]
+method {startTest} {  } {set retpi [uplevel 1 [list {c++ trampoline587} $this ]]
 return $retpi
 }
-method {getDeathAttributions} {  } {set retpi [uplevel 1 [list {c++ trampoline597} $this ]]
+method {endTest} {  } {set retpi [uplevel 1 [list {c++ trampoline589} $this ]]
 set ret $retpi
 return $ret
 }
-method {categorise} {  } {set retpi [uplevel 1 [list {c++ trampoline599} $this ]]
+
+method {applyCollision} { a0 a1 a2 a3 a4  } {set retpi [uplevel 1 [list {c++ trampoline591} $this $a0 $a1 $a2 $a3 $a4 ]]
+return $retpi
+}
+method {cellCount} {  } {set retpi [uplevel 1 [list {c++ trampoline593} $this ]]
+set ret $retpi
+return $ret
+}
+method {getRadar} {  } {set retpi [uplevel 1 [list {c++ trampoline595} $this ]]
+set ret $retpi
+return $ret
+}
+method {setRadar} { a0  } {set retpi [uplevel 1 [list {c++ trampoline597} $this $a0 ]]
+return $retpi
+}
+method {getDeathAttributions} {  } {set retpi [uplevel 1 [list {c++ trampoline599} $this ]]
+set ret $retpi
+return $ret
+}
+method {categorise} {  } {set retpi [uplevel 1 [list {c++ trampoline601} $this ]]
 set ret $retpi
 return $ret
 }
@@ -2291,26 +2295,26 @@ constructor {clazz cname arguments} {
                  "Tcl$clazz" : $clazz}] [expr {[string length $cname] && {*}==[string index $cname 0]?
                  [string range $cname 1 [string length $cname]] : $cname}] $arguments} {
 set controller {}
-            trace add variable controller {read write unset} "$this accessor474"
+            trace add variable controller {read write unset} "$this accessor476"
 set effects {}
-            trace add variable effects {read write unset} "$this accessor477"
+            trace add variable effects {read write unset} "$this accessor479"
 set shipExistenceFailure {}
-            trace add variable shipExistenceFailure {read write unset} "$this accessor480"
+            trace add variable shipExistenceFailure {read write unset} "$this accessor482"
 
 
 
 set insignia {}
-            trace add variable insignia {read write unset} "$this accessor487"
+            trace add variable insignia {read write unset} "$this accessor489"
 set blame {}
-            trace add variable blame {read write unset} "$this accessor490"
+            trace add variable blame {read write unset} "$this accessor492"
 set score {}
-            trace add variable score {read write unset} "$this accessor493"
+            trace add variable score {read write unset} "$this accessor495"
 set damageMultiplier {}
-            trace add variable damageMultiplier {read write unset} "$this accessor496"
+            trace add variable damageMultiplier {read write unset} "$this accessor498"
 set diedSpontaneously {}
-            trace add variable diedSpontaneously {read write unset} "$this accessor498"
+            trace add variable diedSpontaneously {read write unset} "$this accessor500"
 set typeName {}
-            trace add variable typeName {read write unset} "$this accessor500"
+            trace add variable typeName {read write unset} "$this accessor502"
 
 
 
@@ -2368,18 +2372,18 @@ set typeName {}
 
 }
 destructor {
-trace remove variable controller {read write unset} "$this accessor474"
-trace remove variable effects {read write unset} "$this accessor477"
-trace remove variable shipExistenceFailure {read write unset} "$this accessor480"
+trace remove variable controller {read write unset} "$this accessor476"
+trace remove variable effects {read write unset} "$this accessor479"
+trace remove variable shipExistenceFailure {read write unset} "$this accessor482"
 
 
 
-trace remove variable insignia {read write unset} "$this accessor487"
-trace remove variable blame {read write unset} "$this accessor490"
-trace remove variable score {read write unset} "$this accessor493"
-trace remove variable damageMultiplier {read write unset} "$this accessor496"
-trace remove variable diedSpontaneously {read write unset} "$this accessor498"
-trace remove variable typeName {read write unset} "$this accessor500"
+trace remove variable insignia {read write unset} "$this accessor489"
+trace remove variable blame {read write unset} "$this accessor492"
+trace remove variable score {read write unset} "$this accessor495"
+trace remove variable damageMultiplier {read write unset} "$this accessor498"
+trace remove variable diedSpontaneously {read write unset} "$this accessor500"
+trace remove variable typeName {read write unset} "$this accessor502"
 
 
 
@@ -2438,13 +2442,17 @@ trace remove variable typeName {read write unset} "$this accessor500"
 }
 }
 
-::itcl::class {ShipImageRenderer} {
-inherit AObject
-method {renderNext} {  } {set retpi [uplevel 1 [list {c++ trampoline602} $this ]]
+proc {Ship_categorise} { a0  } {set retpi [uplevel 1 [list {c++ trampoline603} $a0 ]]
 set ret $retpi
 return $ret
 }
-method {save} { a0  } {set retpi [uplevel 1 [list {c++ trampoline604} $this $a0 ]]
+::itcl::class {ShipImageRenderer} {
+inherit AObject
+method {renderNext} {  } {set retpi [uplevel 1 [list {c++ trampoline606} $this ]]
+set ret $retpi
+return $ret
+}
+method {save} { a0  } {set retpi [uplevel 1 [list {c++ trampoline608} $this $a0 ]]
 set ret $retpi
 return $ret
 }
@@ -2465,54 +2473,54 @@ destructor {
 }
 }
 
-proc {ShipImageRenderer_create} { a0  } {set retpi [uplevel 1 [list {c++ trampoline606} $a0 ]]
+proc {ShipImageRenderer_create} { a0  } {set retpi [uplevel 1 [list {c++ trampoline610} $a0 ]]
 set ret $retpi
 return $ret
 }
-proc {verify} { a0  } {set retpi [uplevel 1 [list {c++ trampoline608} $a0 ]]
+proc {verify} { a0  } {set retpi [uplevel 1 [list {c++ trampoline612} $a0 ]]
 set ret $retpi
 return $ret
 }
-proc {loadShip} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline610} $a0 $a1 ]]
+proc {loadShip} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline614} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }
-proc {saveShip} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline612} $a0 $a1 ]]
+proc {saveShip} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline616} $a0 $a1 ]]
 return $retpi
 }
 
 ::itcl::class {Shield} {
 inherit AObject
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline615} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline619} $this $a0 ]]
 return $retpi
 }
-method {updateDist} {  } {set retpi [uplevel 1 [list {c++ trampoline617} $this ]]
+method {updateDist} {  } {set retpi [uplevel 1 [list {c++ trampoline621} $this ]]
 return $retpi
 }
-method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline619} $this ]]
+method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline623} $this ]]
 return $retpi
 }
-method {getRadius} {  } {set retpi [uplevel 1 [list {c++ trampoline621} $this ]]
+method {getRadius} {  } {set retpi [uplevel 1 [list {c++ trampoline625} $this ]]
 set ret $retpi
 return $ret
 }
-method {collideWith} { a0  } {set retpi [uplevel 1 [list {c++ trampoline623} $this $a0 ]]
+method {collideWith} { a0  } {set retpi [uplevel 1 [list {c++ trampoline627} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {getStrength} {  } {set retpi [uplevel 1 [list {c++ trampoline625} $this ]]
+method {getStrength} {  } {set retpi [uplevel 1 [list {c++ trampoline629} $this ]]
 set ret $retpi
 return $ret
 }
-method {getStability} {  } {set retpi [uplevel 1 [list {c++ trampoline627} $this ]]
+method {getStability} {  } {set retpi [uplevel 1 [list {c++ trampoline631} $this ]]
 set ret $retpi
 return $ret
 }
-method {getShip} {  } {set retpi [uplevel 1 [list {c++ trampoline629} $this ]]
+method {getShip} {  } {set retpi [uplevel 1 [list {c++ trampoline633} $this ]]
 set ret $retpi
 return $ret
 }
-method {drawForHUD} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline631} $this $a0 $a1 $a2 $a3 ]]
+method {drawForHUD} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline635} $this $a0 $a1 $a2 $a3 ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -2547,46 +2555,46 @@ destructor {
 }
 
 
-proc {insignia} { a0  } {set retpi [uplevel 1 [list {c++ trampoline633} $a0 ]]
+proc {insignia} { a0  } {set retpi [uplevel 1 [list {c++ trampoline637} $a0 ]]
 set ret $retpi
 return $ret
 }
-proc {clear_insignias} {  } {set retpi [uplevel 1 [list {c++ trampoline635} ]]
+proc {clear_insignias} {  } {set retpi [uplevel 1 [list {c++ trampoline639} ]]
 return $retpi
 }
 
-proc {getAlliance} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline637} $a0 $a1 ]]
+proc {getAlliance} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline641} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }
-proc {setAlliance} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline639} $a0 $a1 $a2 ]]
+proc {setAlliance} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline643} $a0 $a1 $a2 ]]
 return $retpi
 }
 
 ::itcl::class {EnergyCharge} {
 inherit GameObject
 namespace eval :: {
-proc {c++ new EnergyCharge default} { a0 a1 a2 a3 a4 a5 a6 a7  } {set retpi [uplevel 1 [list {c++ trampoline642} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 ]]
+proc {c++ new EnergyCharge default} { a0 a1 a2 a3 a4 a5 a6 a7  } {set retpi [uplevel 1 [list {c++ trampoline646} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 ]]
 set ret $retpi
 return $ret
 }}
 
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ deftramp645} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ deftramp649} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline646} $this ]]
+method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline650} $this ]]
 return $retpi
 }
-method {getRadius} {  } {set retpi [uplevel 1 [list {c++ trampoline648} $this ]]
+method {getRadius} {  } {set retpi [uplevel 1 [list {c++ trampoline652} $this ]]
 set ret $retpi
 return $ret
 }
-method {getIntensity} {  } {set retpi [uplevel 1 [list {c++ trampoline650} $this ]]
+method {getIntensity} {  } {set retpi [uplevel 1 [list {c++ trampoline654} $this ]]
 set ret $retpi
 return $ret
 }
-method {explode} { a0  } {set retpi [uplevel 1 [list {c++ trampoline652} $this $a0 ]]
+method {explode} { a0  } {set retpi [uplevel 1 [list {c++ trampoline656} $this $a0 ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -2617,27 +2625,27 @@ destructor {
 ::itcl::class {MagnetoBomb} {
 inherit GameObject
 namespace eval :: {
-proc {c++ new MagnetoBomb default} { a0 a1 a2 a3 a4 a5 a6 a7 a8  } {set retpi [uplevel 1 [list {c++ trampoline655} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 $a8 ]]
+proc {c++ new MagnetoBomb default} { a0 a1 a2 a3 a4 a5 a6 a7 a8  } {set retpi [uplevel 1 [list {c++ trampoline659} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 $a8 ]]
 set ret $retpi
 return $ret
 }}
 
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ deftramp658} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ deftramp662} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline659} $this ]]
+method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline663} $this ]]
 return $retpi
 }
-method {getRadius} {  } {set retpi [uplevel 1 [list {c++ trampoline661} $this ]]
+method {getRadius} {  } {set retpi [uplevel 1 [list {c++ trampoline665} $this ]]
 set ret $retpi
 return $ret
 }
-method {getPower} {  } {set retpi [uplevel 1 [list {c++ trampoline663} $this ]]
+method {getPower} {  } {set retpi [uplevel 1 [list {c++ trampoline667} $this ]]
 set ret $retpi
 return $ret
 }
-method {simulateFailure} {  } {set retpi [uplevel 1 [list {c++ trampoline665} $this ]]
+method {simulateFailure} {  } {set retpi [uplevel 1 [list {c++ trampoline669} $this ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -2668,7 +2676,7 @@ destructor {
 ::itcl::class {SemiguidedBomb} {
 inherit MagnetoBomb
 namespace eval :: {
-proc {c++ new SemiguidedBomb default} { a0 a1 a2 a3 a4 a5 a6 a7 a8  } {set retpi [uplevel 1 [list {c++ trampoline668} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 $a8 ]]
+proc {c++ new SemiguidedBomb default} { a0 a1 a2 a3 a4 a5 a6 a7 a8  } {set retpi [uplevel 1 [list {c++ trampoline672} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 $a8 ]]
 set ret $retpi
 return $ret
 }}
@@ -2691,23 +2699,23 @@ destructor {
 ::itcl::class {PlasmaBurst} {
 inherit GameObject
 namespace eval :: {
-proc {c++ new PlasmaBurst default} { a0 a1 a2 a3 a4 a5 a6 a7 a8 a9  } {set retpi [uplevel 1 [list {c++ trampoline671} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 $a8 $a9 ]]
+proc {c++ new PlasmaBurst default} { a0 a1 a2 a3 a4 a5 a6 a7 a8 a9  } {set retpi [uplevel 1 [list {c++ trampoline675} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 $a8 $a9 ]]
 set ret $retpi
 return $ret
 }}
 
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ deftramp674} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ deftramp678} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline675} $this ]]
+method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline679} $this ]]
 return $retpi
 }
-method {getRadius} {  } {set retpi [uplevel 1 [list {c++ trampoline677} $this ]]
+method {getRadius} {  } {set retpi [uplevel 1 [list {c++ trampoline681} $this ]]
 set ret $retpi
 return $ret
 }
-method {getMass} {  } {set retpi [uplevel 1 [list {c++ trampoline679} $this ]]
+method {getMass} {  } {set retpi [uplevel 1 [list {c++ trampoline683} $this ]]
 set ret $retpi
 return $ret
 }
@@ -2737,7 +2745,7 @@ destructor {
 ::itcl::class {MonophasicEnergyPulse} {
 inherit GameObject
 namespace eval :: {
-proc {c++ new MonophasicEnergyPulse default} { a0 a1 a2 a3 a4 a5 a6 a7  } {set retpi [uplevel 1 [list {c++ trampoline682} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 ]]
+proc {c++ new MonophasicEnergyPulse default} { a0 a1 a2 a3 a4 a5 a6 a7  } {set retpi [uplevel 1 [list {c++ trampoline686} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 ]]
 set ret $retpi
 return $ret
 }}
@@ -2760,7 +2768,7 @@ destructor {
 ::itcl::class {Missile} {
 inherit GameObject
 namespace eval :: {
-proc {c++ new Missile default} { a0 a1 a2 a3 a4 a5 a6 a7 a8 a9  } {set retpi [uplevel 1 [list {c++ trampoline685} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 $a8 $a9 ]]
+proc {c++ new Missile default} { a0 a1 a2 a3 a4 a5 a6 a7 a8 a9  } {set retpi [uplevel 1 [list {c++ trampoline689} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 $a8 $a9 ]]
 set ret $retpi
 return $ret
 }}
@@ -2783,21 +2791,21 @@ destructor {
 ::itcl::class {EffectsHandler} {
 inherit AObject
 namespace eval :: {
-proc {c++ new EffectsHandler default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline688} $a0 $a1 ]]
+proc {c++ new EffectsHandler default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline692} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }}
 
 namespace eval :: {
-proc {c++ new TclEffectsHandler default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline690} $a0 $a1 ]]
+proc {c++ new TclEffectsHandler default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline694} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }}
 
-method {impact} { a0  } {set retpi [uplevel 1 [list {c++ deftramp693} $this $a0 ]]
+method {impact} { a0  } {set retpi [uplevel 1 [list {c++ deftramp697} $this $a0 ]]
 return $retpi
 }
-method {explode} { a0  } {set retpi [uplevel 1 [list {c++ deftramp695} $this $a0 ]]
+method {explode} { a0  } {set retpi [uplevel 1 [list {c++ deftramp699} $this $a0 ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -2821,10 +2829,10 @@ destructor {
 }
 }
 
- proc accessor697 {ignored ignored op} {
+ proc accessor701 {ignored ignored op} {
              global nullEffectsHandler
              if {$op == {read}} {
-               set tmp [{c++ get696} ]
+               set tmp [{c++ get700} ]
                set nullEffectsHandler $tmp
 
              } elseif {$op == {write}} {
@@ -2834,16 +2842,16 @@ destructor {
 
 ::itcl::class {Background} {
 inherit EffectsHandler
-method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline699} $this ]]
+method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline703} $this ]]
 return $retpi
 }
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline701} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline705} $this $a0 ]]
 return $retpi
 }
-method {updateReference} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline703} $this $a0 $a1 ]]
+method {updateReference} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline707} $this $a0 $a1 ]]
 return $retpi
 }
-method {repopulate} {  } {set retpi [uplevel 1 [list {c++ trampoline705} $this ]]
+method {repopulate} {  } {set retpi [uplevel 1 [list {c++ trampoline709} $this ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -2871,7 +2879,7 @@ destructor {
 ::itcl::class {Planet} {
 inherit Background
 namespace eval :: {
-proc {c++ new Planet default} { a0 a1 a2 a3 a4 a5 a6 a7 a8 a9  } {set retpi [uplevel 1 [list {c++ trampoline708} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 $a8 $a9 ]]
+proc {c++ new Planet default} { a0 a1 a2 a3 a4 a5 a6 a7 a8 a9  } {set retpi [uplevel 1 [list {c++ trampoline712} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 $a8 $a9 ]]
 set ret $retpi
 return $ret
 }}
@@ -2895,7 +2903,7 @@ destructor {
 ::itcl::class {StarField} {
 inherit Background
 namespace eval :: {
-proc {c++ new StarField default} { a0 a1 a2 a3 a4  } {set retpi [uplevel 1 [list {c++ trampoline711} $a0 $a1 $a2 $a3 $a4 ]]
+proc {c++ new StarField default} { a0 a1 a2 a3 a4  } {set retpi [uplevel 1 [list {c++ trampoline715} $a0 $a1 $a2 $a3 $a4 ]]
 set ret $retpi
 return $ret
 }}
@@ -2915,41 +2923,41 @@ destructor {
 }
 }
 
-proc {initStarLists} {  } {set retpi [uplevel 1 [list {c++ trampoline713} ]]
+proc {initStarLists} {  } {set retpi [uplevel 1 [list {c++ trampoline717} ]]
 return $retpi
 }
 
 ::itcl::class {Nebula} {
 inherit Background
 namespace eval :: {
-proc {c++ new Nebula default} { a0 a1 a2 a3 a4 a5 a6 a7 a8  } {set retpi [uplevel 1 [list {c++ trampoline716} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 $a8 ]]
+proc {c++ new Nebula default} { a0 a1 a2 a3 a4 a5 a6 a7 a8  } {set retpi [uplevel 1 [list {c++ trampoline720} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 $a8 ]]
 set ret $retpi
 return $ret
 }}
 
-method {setFlowEquation} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline718} $this $a0 $a1 $a2 ]]
+method {setFlowEquation} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline722} $this $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }
-method {setPressureEquation} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline720} $this $a0 $a1 ]]
+method {setPressureEquation} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline724} $this $a0 $a1 ]]
 set ret $retpi
 return $ret
 }
-method {setPressureResetTime} { a0  } {set retpi [uplevel 1 [list {c++ trampoline722} $this $a0 ]]
+method {setPressureResetTime} { a0  } {set retpi [uplevel 1 [list {c++ trampoline726} $this $a0 ]]
 return $retpi
 }
-method {getPressureResetTime} {  } {set retpi [uplevel 1 [list {c++ trampoline724} $this ]]
+method {getPressureResetTime} {  } {set retpi [uplevel 1 [list {c++ trampoline728} $this ]]
 set ret $retpi
 return $ret
 }
-method {setVelocityResetTime} { a0  } {set retpi [uplevel 1 [list {c++ trampoline726} $this $a0 ]]
+method {setVelocityResetTime} { a0  } {set retpi [uplevel 1 [list {c++ trampoline730} $this $a0 ]]
 return $retpi
 }
-method {getVelocityResetTime} {  } {set retpi [uplevel 1 [list {c++ trampoline728} $this ]]
+method {getVelocityResetTime} {  } {set retpi [uplevel 1 [list {c++ trampoline732} $this ]]
 set ret $retpi
 return $ret
 }
-method {setForceMultiplier} { a0  } {set retpi [uplevel 1 [list {c++ trampoline730} $this $a0 ]]
+method {setForceMultiplier} { a0  } {set retpi [uplevel 1 [list {c++ trampoline734} $this $a0 ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -2985,36 +2993,36 @@ destructor {
 ::itcl::class {Camera} {
 inherit EffectsHandler
 namespace eval :: {
-proc {c++ new TclCamera default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline733} $a0 $a1 $a2 ]]
+proc {c++ new TclCamera default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline737} $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }}
 
 protected variable reference
- method accessor737 {ignored ignored op} {
+ method accessor741 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get735} $this]
+               set tmp [{c++ get739} $this]
                set reference $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set736} $this $reference]
+               return [{c++ set740} $this $reference]
              } else { error "Cannot unset C++ variable reference" }
            }
 
 protected method {doSetup} {  } {set retpi [uplevel 1 error "Call to pure-virtual function doSetup"]
 return $retpi
 }
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ deftramp741} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ deftramp745} $this $a0 ]]
 return $retpi
 }
-method {drawOverlays} {  } {set retpi [uplevel 1 [list {c++ deftramp743} $this ]]
+method {drawOverlays} {  } {set retpi [uplevel 1 [list {c++ deftramp747} $this ]]
 return $retpi
 }
-method {reset} {  } {set retpi [uplevel 1 [list {c++ deftramp745} $this ]]
+method {reset} {  } {set retpi [uplevel 1 [list {c++ deftramp749} $this ]]
 return $retpi
 }
-method {setup} { a0  } {set retpi [uplevel 1 [list {c++ trampoline746} $this $a0 ]]
+method {setup} { a0  } {set retpi [uplevel 1 [list {c++ trampoline750} $this $a0 ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -3027,7 +3035,7 @@ constructor {clazz cname arguments} {
                  [string range $cname 1 [string length $cname]] : $cname}] $arguments} {
 
 set reference {}
-            trace add variable reference {read write unset} "$this accessor737"
+            trace add variable reference {read write unset} "$this accessor741"
 
 
 
@@ -3036,7 +3044,7 @@ set reference {}
 }
 destructor {
 
-trace remove variable reference {read write unset} "$this accessor737"
+trace remove variable reference {read write unset} "$this accessor741"
 
 
 
@@ -3049,46 +3057,46 @@ trace remove variable reference {read write unset} "$this accessor737"
 ::itcl::class {DynamicCamera} {
 inherit Camera
 namespace eval :: {
-proc {c++ new DynamicCamera default} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline749} $a0 $a1 $a2 $a3 ]]
+proc {c++ new DynamicCamera default} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline753} $a0 $a1 $a2 $a3 ]]
 set ret $retpi
 return $ret
 }}
 
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline751} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline755} $this $a0 ]]
 return $retpi
 }
-protected method {doSetup} {  } {set retpi [uplevel 1 [list {c++ trampoline753} $this ]]
+protected method {doSetup} {  } {set retpi [uplevel 1 [list {c++ trampoline757} $this ]]
 return $retpi
 }
-method {reset} {  } {set retpi [uplevel 1 [list {c++ trampoline755} $this ]]
+method {reset} {  } {set retpi [uplevel 1 [list {c++ trampoline759} $this ]]
 return $retpi
 }
-method {getZoom} {  } {set retpi [uplevel 1 [list {c++ trampoline757} $this ]]
+method {getZoom} {  } {set retpi [uplevel 1 [list {c++ trampoline761} $this ]]
 set ret $retpi
 return $ret
 }
-method {setZoom} { a0  } {set retpi [uplevel 1 [list {c++ trampoline759} $this $a0 ]]
+method {setZoom} { a0  } {set retpi [uplevel 1 [list {c++ trampoline763} $this $a0 ]]
 return $retpi
 }
-method {getRotateMode} {  } {set retpi [uplevel 1 [list {c++ trampoline761} $this ]]
+method {getRotateMode} {  } {set retpi [uplevel 1 [list {c++ trampoline765} $this ]]
 set ret $retpi
 return $ret
 }
-method {setRotateMode} { a0  } {set retpi [uplevel 1 [list {c++ trampoline763} $this $a0 ]]
+method {setRotateMode} { a0  } {set retpi [uplevel 1 [list {c++ trampoline767} $this $a0 ]]
 return $retpi
 }
-method {getLookAhead} {  } {set retpi [uplevel 1 [list {c++ trampoline765} $this ]]
+method {getLookAhead} {  } {set retpi [uplevel 1 [list {c++ trampoline769} $this ]]
 set ret $retpi
 return $ret
 }
-method {setLookAhead} { a0  } {set retpi [uplevel 1 [list {c++ trampoline767} $this $a0 ]]
+method {setLookAhead} { a0  } {set retpi [uplevel 1 [list {c++ trampoline771} $this $a0 ]]
 return $retpi
 }
-method {getVisualRotation} {  } {set retpi [uplevel 1 [list {c++ trampoline769} $this ]]
+method {getVisualRotation} {  } {set retpi [uplevel 1 [list {c++ trampoline773} $this ]]
 set ret $retpi
 return $ret
 }
-method {hc_conf_bind} {  } {set retpi [uplevel 1 [list {c++ trampoline771} $this ]]
+method {hc_conf_bind} {  } {set retpi [uplevel 1 [list {c++ trampoline775} $this ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -3132,7 +3140,7 @@ destructor {
 ::itcl::class {FixedCamera} {
 inherit Camera
 namespace eval :: {
-proc {c++ new FixedCamera default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline774} $a0 $a1 $a2 ]]
+proc {c++ new FixedCamera default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline778} $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }}
@@ -3156,10 +3164,10 @@ destructor {
 ::itcl::class {Controller} {
 inherit AObject
 public variable ship
- method accessor778 {ignored ignored op} {
+ method accessor782 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get777} $this]
+               set tmp [{c++ get781} $this]
                set ship $tmp
 
              } elseif {$op == {write}} {
@@ -3168,7 +3176,7 @@ public variable ship
            }
 
 namespace eval :: {
-proc {c++ new TclController default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline779} $a0 $a1 $a2 ]]
+proc {c++ new TclController default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline783} $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }}
@@ -3176,13 +3184,13 @@ return $ret
 method {update} { a0  } {set retpi [uplevel 1 error "Call to pure-virtual function update"]
 return $retpi
 }
-method {damage} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ deftramp784} $this $a0 $a1 $a2 ]]
+method {damage} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ deftramp788} $this $a0 $a1 $a2 ]]
 return $retpi
 }
-method {otherShipDied} { a0  } {set retpi [uplevel 1 [list {c++ deftramp786} $this $a0 ]]
+method {otherShipDied} { a0  } {set retpi [uplevel 1 [list {c++ deftramp790} $this $a0 ]]
 return $retpi
 }
-method {notifyScore} { a0  } {set retpi [uplevel 1 [list {c++ deftramp788} $this $a0 ]]
+method {notifyScore} { a0  } {set retpi [uplevel 1 [list {c++ deftramp792} $this $a0 ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -3194,7 +3202,7 @@ constructor {clazz cname arguments} {
                  "Tcl$clazz" : $clazz}] [expr {[string length $cname] && {*}==[string index $cname 0]?
                  [string range $cname 1 [string length $cname]] : $cname}] $arguments} {
 set ship {}
-            trace add variable ship {read write unset} "$this accessor778"
+            trace add variable ship {read write unset} "$this accessor782"
 
 
 
@@ -3202,7 +3210,7 @@ set ship {}
 
 }
 destructor {
-trace remove variable ship {read write unset} "$this accessor778"
+trace remove variable ship {read write unset} "$this accessor782"
 
 
 
@@ -3215,24 +3223,24 @@ trace remove variable ship {read write unset} "$this accessor778"
 ::itcl::class {HumanController} {
 inherit Controller
 namespace eval :: {
-proc {c++ new HumanController default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline790} $a0 $a1 $a2 ]]
+proc {c++ new HumanController default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline794} $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }}
 
-method {hc_conf_bind} {  } {set retpi [uplevel 1 [list {c++ trampoline792} $this ]]
+method {hc_conf_bind} {  } {set retpi [uplevel 1 [list {c++ trampoline796} $this ]]
 return $retpi
 }
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline794} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline798} $this $a0 ]]
 return $retpi
 }
-method {motion} { a0  } {set retpi [uplevel 1 [list {c++ trampoline796} $this $a0 ]]
+method {motion} { a0  } {set retpi [uplevel 1 [list {c++ trampoline800} $this $a0 ]]
 return $retpi
 }
-method {button} { a0  } {set retpi [uplevel 1 [list {c++ trampoline798} $this $a0 ]]
+method {button} { a0  } {set retpi [uplevel 1 [list {c++ trampoline802} $this $a0 ]]
 return $retpi
 }
-method {key} { a0  } {set retpi [uplevel 1 [list {c++ trampoline800} $this $a0 ]]
+method {key} { a0  } {set retpi [uplevel 1 [list {c++ trampoline804} $this $a0 ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -3260,10 +3268,10 @@ destructor {
 }
 }
 
- proc accessor803 {ignored ignored op} {
+ proc accessor807 {ignored ignored op} {
              global isCompositionBufferInUse
              if {$op == {read}} {
-               set tmp [{c++ get802} ]
+               set tmp [{c++ get806} ]
                set isCompositionBufferInUse $tmp
 
              } elseif {$op == {write}} {
@@ -3271,34 +3279,34 @@ destructor {
              } else { error "Cannot unset C++ variable isCompositionBufferInUse" }
            }
 
- proc accessor806 {ignored ignored op} {
+ proc accessor810 {ignored ignored op} {
              global compositionBufferPrefix
              if {$op == {read}} {
-               set tmp [{c++ get804} ]
+               set tmp [{c++ get808} ]
                set compositionBufferPrefix $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set805}  $compositionBufferPrefix]
+               return [{c++ set809}  $compositionBufferPrefix]
              } else { error "Cannot unset C++ variable compositionBufferPrefix" }
            }
 
 
-proc {hc_conf_configure} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline807} $a0 $a1 ]]
+proc {hc_conf_configure} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline811} $a0 $a1 ]]
 return $retpi
 }
-proc {hc_conf_clear} {  } {set retpi [uplevel 1 [list {c++ trampoline809} ]]
+proc {hc_conf_clear} {  } {set retpi [uplevel 1 [list {c++ trampoline813} ]]
 return $retpi
 }
 
 ::itcl::class {AIControl} {
 inherit Controller
 namespace eval :: {
-proc {c++ new AIControl default} { a0 a1 a2 a3 a4  } {set retpi [uplevel 1 [list {c++ trampoline812} $a0 $a1 $a2 $a3 $a4 ]]
+proc {c++ new AIControl default} { a0 a1 a2 a3 a4  } {set retpi [uplevel 1 [list {c++ trampoline816} $a0 $a1 $a2 $a3 $a4 ]]
 set ret $retpi
 return $ret
 }}
 
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline814} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline818} $this $a0 ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -3322,19 +3330,19 @@ destructor {
 ::itcl::class {GeneticAI} {
 inherit Controller
 namespace eval :: {
-proc {c++ new GeneticAI default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline817} $a0 $a1 $a2 ]]
+proc {c++ new GeneticAI default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline821} $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }}
 
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline819} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline823} $this $a0 ]]
 return $retpi
 }
 public variable species
- method accessor822 {ignored ignored op} {
+ method accessor826 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get821} $this]
+               set tmp [{c++ get825} $this]
                set species $tmp
 
              } elseif {$op == {write}} {
@@ -3343,10 +3351,10 @@ public variable species
            }
 
 public variable generation
- method accessor824 {ignored ignored op} {
+ method accessor828 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get823} $this]
+               set tmp [{c++ get827} $this]
                set generation $tmp
 
              } elseif {$op == {write}} {
@@ -3355,10 +3363,10 @@ public variable generation
            }
 
 public variable instance
- method accessor826 {ignored ignored op} {
+ method accessor830 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get825} $this]
+               set tmp [{c++ get829} $this]
                set instance $tmp
 
              } elseif {$op == {write}} {
@@ -3367,10 +3375,10 @@ public variable instance
            }
 
 public variable failed
- method accessor828 {ignored ignored op} {
+ method accessor832 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get827} $this]
+               set tmp [{c++ get831} $this]
                set failed $tmp
 
              } elseif {$op == {write}} {
@@ -3389,37 +3397,37 @@ constructor {clazz cname arguments} {
 
 
 set species {}
-            trace add variable species {read write unset} "$this accessor822"
+            trace add variable species {read write unset} "$this accessor826"
 set generation {}
-            trace add variable generation {read write unset} "$this accessor824"
+            trace add variable generation {read write unset} "$this accessor828"
 set instance {}
-            trace add variable instance {read write unset} "$this accessor826"
+            trace add variable instance {read write unset} "$this accessor830"
 set failed {}
-            trace add variable failed {read write unset} "$this accessor828"
+            trace add variable failed {read write unset} "$this accessor832"
 }
 destructor {
 
 
-trace remove variable species {read write unset} "$this accessor822"
-trace remove variable generation {read write unset} "$this accessor824"
-trace remove variable instance {read write unset} "$this accessor826"
-trace remove variable failed {read write unset} "$this accessor828"
+trace remove variable species {read write unset} "$this accessor826"
+trace remove variable generation {read write unset} "$this accessor828"
+trace remove variable instance {read write unset} "$this accessor830"
+trace remove variable failed {read write unset} "$this accessor832"
 }
 }
 
-proc {calculateGeneticAIFunctionCosts} {  } {set retpi [uplevel 1 [list {c++ trampoline829} ]]
+proc {calculateGeneticAIFunctionCosts} {  } {set retpi [uplevel 1 [list {c++ trampoline833} ]]
 return $retpi
 }
 ::itcl::class {GenAI} {
 inherit Controller
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline832} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline836} $this $a0 ]]
 return $retpi
 }
 public variable species
- method accessor835 {ignored ignored op} {
+ method accessor839 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get834} $this]
+               set tmp [{c++ get838} $this]
                set species $tmp
 
              } elseif {$op == {write}} {
@@ -3428,10 +3436,10 @@ public variable species
            }
 
 public variable generation
- method accessor837 {ignored ignored op} {
+ method accessor841 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get836} $this]
+               set tmp [{c++ get840} $this]
                set generation $tmp
 
              } elseif {$op == {write}} {
@@ -3439,7 +3447,7 @@ public variable generation
              } else { error "Cannot unset C++ variable generation" }
            }
 
-method {getScores} {  } {set retpi [uplevel 1 [list {c++ trampoline838} $this ]]
+method {getScores} {  } {set retpi [uplevel 1 [list {c++ trampoline842} $this ]]
 set ret $retpi
 return $ret
 }
@@ -3453,20 +3461,20 @@ constructor {clazz cname arguments} {
                  [string range $cname 1 [string length $cname]] : $cname}] $arguments} {
 
 set species {}
-            trace add variable species {read write unset} "$this accessor835"
+            trace add variable species {read write unset} "$this accessor839"
 set generation {}
-            trace add variable generation {read write unset} "$this accessor837"
+            trace add variable generation {read write unset} "$this accessor841"
 
 }
 destructor {
 
-trace remove variable species {read write unset} "$this accessor835"
-trace remove variable generation {read write unset} "$this accessor837"
+trace remove variable species {read write unset} "$this accessor839"
+trace remove variable generation {read write unset} "$this accessor841"
 
 }
 }
 
-proc {GenAI_make} { a0  } {set retpi [uplevel 1 [list {c++ trampoline840} $a0 ]]
+proc {GenAI_make} { a0  } {set retpi [uplevel 1 [list {c++ trampoline844} $a0 ]]
 set ret $retpi
 return $ret
 }
@@ -3474,39 +3482,39 @@ return $ret
 ::itcl::class {CommonKeyboardClient} {
 inherit AObject
 namespace eval :: {
-proc {c++ new CommonKeyboardClient default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline843} $a0 $a1 ]]
+proc {c++ new CommonKeyboardClient default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline847} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }}
 
 namespace eval :: {
-proc {c++ new TclCommonKeyboardClient default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline845} $a0 $a1 ]]
+proc {c++ new TclCommonKeyboardClient default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline849} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }}
 
-method {exit} {  } {set retpi [uplevel 1 [list {c++ deftramp848} $this ]]
+method {exit} {  } {set retpi [uplevel 1 [list {c++ deftramp852} $this ]]
 return $retpi
 }
-method {slow} {  } {set retpi [uplevel 1 [list {c++ deftramp850} $this ]]
+method {slow} {  } {set retpi [uplevel 1 [list {c++ deftramp854} $this ]]
 return $retpi
 }
-method {fast} {  } {set retpi [uplevel 1 [list {c++ deftramp852} $this ]]
+method {fast} {  } {set retpi [uplevel 1 [list {c++ deftramp856} $this ]]
 return $retpi
 }
-method {halt} {  } {set retpi [uplevel 1 [list {c++ deftramp854} $this ]]
+method {halt} {  } {set retpi [uplevel 1 [list {c++ deftramp858} $this ]]
 return $retpi
 }
-method {frameXframe} {  } {set retpi [uplevel 1 [list {c++ deftramp856} $this ]]
+method {frameXframe} {  } {set retpi [uplevel 1 [list {c++ deftramp860} $this ]]
 return $retpi
 }
-method {statsOn} {  } {set retpi [uplevel 1 [list {c++ deftramp858} $this ]]
+method {statsOn} {  } {set retpi [uplevel 1 [list {c++ deftramp862} $this ]]
 return $retpi
 }
-method {statsOff} {  } {set retpi [uplevel 1 [list {c++ deftramp860} $this ]]
+method {statsOff} {  } {set retpi [uplevel 1 [list {c++ deftramp864} $this ]]
 return $retpi
 }
-method {hc_conf_bind} {  } {set retpi [uplevel 1 [list {c++ trampoline861} $this ]]
+method {hc_conf_bind} {  } {set retpi [uplevel 1 [list {c++ trampoline865} $this ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -3546,7 +3554,7 @@ destructor {
 ::itcl::class {ForwardingEffectsHandler} {
 inherit EffectsHandler
 namespace eval :: {
-proc {c++ new ForwardingEffectsHandler default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline864} $a0 $a1 $a2 ]]
+proc {c++ new ForwardingEffectsHandler default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline868} $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }}
@@ -3569,33 +3577,33 @@ destructor {
 ::itcl::class {Spectator} {
 inherit GameObject
 namespace eval :: {
-proc {c++ new Spectator default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline867} $a0 $a1 $a2 ]]
+proc {c++ new Spectator default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline871} $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }}
 
 namespace eval :: {
-proc {c++ new Spectator explicit} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline869} $a0 $a1 $a2 $a3 ]]
+proc {c++ new Spectator explicit} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline873} $a0 $a1 $a2 $a3 ]]
 set ret $retpi
 return $ret
 }}
 
 namespace eval :: {
-proc {c++ new Spectator empty} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline871} $a0 $a1 $a2 ]]
+proc {c++ new Spectator empty} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline875} $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }}
 
-method {nextReference} {  } {set retpi [uplevel 1 [list {c++ trampoline873} $this ]]
+method {nextReference} {  } {set retpi [uplevel 1 [list {c++ trampoline877} $this ]]
 return $retpi
 }
-method {requireInsignia} { a0  } {set retpi [uplevel 1 [list {c++ trampoline875} $this $a0 ]]
+method {requireInsignia} { a0  } {set retpi [uplevel 1 [list {c++ trampoline879} $this $a0 ]]
 return $retpi
 }
-method {kill} {  } {set retpi [uplevel 1 [list {c++ trampoline877} $this ]]
+method {kill} {  } {set retpi [uplevel 1 [list {c++ trampoline881} $this ]]
 return $retpi
 }
-method {getReference} {  } {set retpi [uplevel 1 [list {c++ trampoline879} $this ]]
+method {getReference} {  } {set retpi [uplevel 1 [list {c++ trampoline883} $this ]]
 set ret $retpi
 return $ret
 }
@@ -3629,55 +3637,55 @@ destructor {
 ::itcl::class {GameEnv} {
 inherit AObject
 namespace eval :: {
-proc {c++ new GameEnv customCamera} { a0 a1 a2 a3 a4  } {set retpi [uplevel 1 [list {c++ trampoline882} $a0 $a1 $a2 $a3 $a4 ]]
+proc {c++ new GameEnv customCamera} { a0 a1 a2 a3 a4  } {set retpi [uplevel 1 [list {c++ trampoline886} $a0 $a1 $a2 $a3 $a4 ]]
 set ret $retpi
 return $ret
 }}
 
 namespace eval :: {
-proc {c++ new GameEnv default} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline884} $a0 $a1 $a2 $a3 ]]
+proc {c++ new GameEnv default} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline888} $a0 $a1 $a2 $a3 ]]
 set ret $retpi
 return $ret
 }}
 
-method {getReference} {  } {set retpi [uplevel 1 [list {c++ trampoline886} $this ]]
+method {getReference} {  } {set retpi [uplevel 1 [list {c++ trampoline890} $this ]]
 set ret $retpi
 return $ret
 }
-method {setReference} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline888} $this $a0 $a1 ]]
+method {setReference} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline892} $this $a0 $a1 ]]
 return $retpi
 }
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline890} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline894} $this $a0 ]]
 return $retpi
 }
-method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline892} $this ]]
+method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline896} $this ]]
 return $retpi
 }
-method {getField} {  } {set retpi [uplevel 1 [list {c++ trampoline894} $this ]]
+method {getField} {  } {set retpi [uplevel 1 [list {c++ trampoline898} $this ]]
 set ret $retpi
 return $ret
 }
 public variable cam
- method accessor898 {ignored ignored op} {
+ method accessor902 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get896} $this]
+               set tmp [{c++ get900} $this]
                set cam $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set897} $this $cam]
+               return [{c++ set901} $this $cam]
              } else { error "Cannot unset C++ variable cam" }
            }
 
 public variable stars
- method accessor901 {ignored ignored op} {
+ method accessor905 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get899} $this]
+               set tmp [{c++ get903} $this]
                set stars $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set900} $this $stars]
+               return [{c++ set904} $this $stars]
              } else { error "Cannot unset C++ variable stars" }
            }
 
@@ -3697,9 +3705,9 @@ constructor {clazz cname arguments} {
 
 
 set cam {}
-            trace add variable cam {read write unset} "$this accessor898"
+            trace add variable cam {read write unset} "$this accessor902"
 set stars {}
-            trace add variable stars {read write unset} "$this accessor901"
+            trace add variable stars {read write unset} "$this accessor905"
 }
 destructor {
 
@@ -3709,8 +3717,8 @@ destructor {
 
 
 
-trace remove variable cam {read write unset} "$this accessor898"
-trace remove variable stars {read write unset} "$this accessor901"
+trace remove variable cam {read write unset} "$this accessor902"
+trace remove variable stars {read write unset} "$this accessor905"
 }
 }
 
@@ -3718,73 +3726,73 @@ trace remove variable stars {read write unset} "$this accessor901"
 ::itcl::class {Manipulator} {
 inherit AObject
 namespace eval :: {
-proc {c++ new Manipulator default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline903} $a0 $a1 ]]
+proc {c++ new Manipulator default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline907} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }}
 
-method {update} {  } {set retpi [uplevel 1 [list {c++ trampoline905} $this ]]
+method {update} {  } {set retpi [uplevel 1 [list {c++ trampoline909} $this ]]
 return $retpi
 }
-method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline907} $this ]]
+method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline911} $this ]]
 return $retpi
 }
-method {primaryDown} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline909} $this $a0 $a1 ]]
+method {primaryDown} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline913} $this $a0 $a1 ]]
 return $retpi
 }
-method {primaryUp} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline911} $this $a0 $a1 ]]
+method {primaryUp} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline915} $this $a0 $a1 ]]
 return $retpi
 }
-method {secondaryDown} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline913} $this $a0 $a1 ]]
+method {secondaryDown} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline917} $this $a0 $a1 ]]
 return $retpi
 }
-method {secondaryUp} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline915} $this $a0 $a1 ]]
+method {secondaryUp} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline919} $this $a0 $a1 ]]
 return $retpi
 }
-method {scrollUp} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline917} $this $a0 $a1 ]]
+method {scrollUp} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline921} $this $a0 $a1 ]]
 return $retpi
 }
-method {scrollDown} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline919} $this $a0 $a1 ]]
+method {scrollDown} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline923} $this $a0 $a1 ]]
 return $retpi
 }
-method {motion} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline921} $this $a0 $a1 $a2 $a3 ]]
+method {motion} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline925} $this $a0 $a1 $a2 $a3 ]]
 return $retpi
 }
-method {resetView} {  } {set retpi [uplevel 1 [list {c++ trampoline923} $this ]]
+method {resetView} {  } {set retpi [uplevel 1 [list {c++ trampoline927} $this ]]
 return $retpi
 }
-method {pushUndo} {  } {set retpi [uplevel 1 [list {c++ trampoline925} $this ]]
+method {pushUndo} {  } {set retpi [uplevel 1 [list {c++ trampoline929} $this ]]
 return $retpi
 }
-method {popUndo} {  } {set retpi [uplevel 1 [list {c++ trampoline927} $this ]]
+method {popUndo} {  } {set retpi [uplevel 1 [list {c++ trampoline931} $this ]]
 return $retpi
 }
-method {commitUndo} {  } {set retpi [uplevel 1 [list {c++ trampoline929} $this ]]
+method {commitUndo} {  } {set retpi [uplevel 1 [list {c++ trampoline933} $this ]]
 return $retpi
 }
-method {deactivateMode} {  } {set retpi [uplevel 1 [list {c++ trampoline931} $this ]]
+method {deactivateMode} {  } {set retpi [uplevel 1 [list {c++ trampoline935} $this ]]
 return $retpi
 }
-method {activateMode} {  } {set retpi [uplevel 1 [list {c++ trampoline933} $this ]]
+method {activateMode} {  } {set retpi [uplevel 1 [list {c++ trampoline937} $this ]]
 return $retpi
 }
-method {addToHistory} {  } {set retpi [uplevel 1 [list {c++ trampoline935} $this ]]
+method {addToHistory} {  } {set retpi [uplevel 1 [list {c++ trampoline939} $this ]]
 return $retpi
 }
-method {revertToHistory} { a0  } {set retpi [uplevel 1 [list {c++ trampoline937} $this $a0 ]]
+method {revertToHistory} { a0  } {set retpi [uplevel 1 [list {c++ trampoline941} $this $a0 ]]
 return $retpi
 }
-method {reloadShip} {  } {set retpi [uplevel 1 [list {c++ trampoline939} $this ]]
+method {reloadShip} {  } {set retpi [uplevel 1 [list {c++ trampoline943} $this ]]
 set ret $retpi
 return $ret
 }
-method {deleteShip} {  } {set retpi [uplevel 1 [list {c++ trampoline941} $this ]]
+method {deleteShip} {  } {set retpi [uplevel 1 [list {c++ trampoline945} $this ]]
 return $retpi
 }
-method {copyMounts} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline943} $this $a0 $a1 ]]
+method {copyMounts} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline947} $this $a0 $a1 ]]
 return $retpi
 }
-method {getCellAt} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline945} $this $a0 $a1 ]]
+method {getCellAt} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline949} $this $a0 $a1 ]]
 set ret $retpi
 return $ret
 }
@@ -3846,10 +3854,10 @@ destructor {
 }
 
 
- proc accessor948 {ignored ignored op} {
+ proc accessor952 {ignored ignored op} {
              global planetgen_width
              if {$op == {read}} {
-               set tmp [{c++ get947} ]
+               set tmp [{c++ get951} ]
                set planetgen_width $tmp
 
              } elseif {$op == {write}} {
@@ -3857,10 +3865,10 @@ destructor {
              } else { error "Cannot unset C++ variable planetgen_width" }
            }
 
- proc accessor950 {ignored ignored op} {
+ proc accessor954 {ignored ignored op} {
              global planetgen_height
              if {$op == {read}} {
-               set tmp [{c++ get949} ]
+               set tmp [{c++ get953} ]
                set planetgen_height $tmp
 
              } elseif {$op == {write}} {
@@ -3871,392 +3879,392 @@ destructor {
 ::itcl::class {PlanetGeneratorParms} {
 inherit AObject
 namespace eval :: {
-proc {c++ new PlanetGeneratorParms default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline952} $a0 $a1 ]]
+proc {c++ new PlanetGeneratorParms default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline956} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }}
 
 public variable seed
- method accessor956 {ignored ignored op} {
+ method accessor960 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get954} $this]
+               set tmp [{c++ get958} $this]
                set seed $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set955} $this $seed]
+               return [{c++ set959} $this $seed]
              } else { error "Cannot unset C++ variable seed" }
            }
 
 public variable continents
- method accessor959 {ignored ignored op} {
+ method accessor963 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get957} $this]
+               set tmp [{c++ get961} $this]
                set continents $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set958} $this $continents]
+               return [{c++ set962} $this $continents]
              } else { error "Cannot unset C++ variable continents" }
            }
 
 public variable largeIslands
- method accessor962 {ignored ignored op} {
+ method accessor966 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get960} $this]
+               set tmp [{c++ get964} $this]
                set largeIslands $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set961} $this $largeIslands]
+               return [{c++ set965} $this $largeIslands]
              } else { error "Cannot unset C++ variable largeIslands" }
            }
 
 public variable smallIslands
- method accessor965 {ignored ignored op} {
+ method accessor969 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get963} $this]
+               set tmp [{c++ get967} $this]
                set smallIslands $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set964} $this $smallIslands]
+               return [{c++ set968} $this $smallIslands]
              } else { error "Cannot unset C++ variable smallIslands" }
            }
 
 public variable islandGrouping
- method accessor968 {ignored ignored op} {
+ method accessor972 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get966} $this]
+               set tmp [{c++ get970} $this]
                set islandGrouping $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set967} $this $islandGrouping]
+               return [{c++ set971} $this $islandGrouping]
              } else { error "Cannot unset C++ variable islandGrouping" }
            }
 
 public variable landSlope
- method accessor971 {ignored ignored op} {
+ method accessor975 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get969} $this]
+               set tmp [{c++ get973} $this]
                set landSlope $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set970} $this $landSlope]
+               return [{c++ set974} $this $landSlope]
              } else { error "Cannot unset C++ variable landSlope" }
            }
 
 public variable oceans
- method accessor974 {ignored ignored op} {
+ method accessor978 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get972} $this]
+               set tmp [{c++ get976} $this]
                set oceans $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set973} $this $oceans]
+               return [{c++ set977} $this $oceans]
              } else { error "Cannot unset C++ variable oceans" }
            }
 
 public variable seas
- method accessor977 {ignored ignored op} {
+ method accessor981 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get975} $this]
+               set tmp [{c++ get979} $this]
                set seas $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set976} $this $seas]
+               return [{c++ set980} $this $seas]
              } else { error "Cannot unset C++ variable seas" }
            }
 
 public variable lakes
- method accessor980 {ignored ignored op} {
+ method accessor984 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get978} $this]
+               set tmp [{c++ get982} $this]
                set lakes $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set979} $this $lakes]
+               return [{c++ set983} $this $lakes]
              } else { error "Cannot unset C++ variable lakes" }
            }
 
 public variable rivers
- method accessor983 {ignored ignored op} {
+ method accessor987 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get981} $this]
+               set tmp [{c++ get985} $this]
                set rivers $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set982} $this $rivers]
+               return [{c++ set986} $this $rivers]
              } else { error "Cannot unset C++ variable rivers" }
            }
 
 public variable mountainRanges
- method accessor986 {ignored ignored op} {
+ method accessor990 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get984} $this]
+               set tmp [{c++ get988} $this]
                set mountainRanges $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set985} $this $mountainRanges]
+               return [{c++ set989} $this $mountainRanges]
              } else { error "Cannot unset C++ variable mountainRanges" }
            }
 
 public variable mountainSteepness
- method accessor989 {ignored ignored op} {
+ method accessor993 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get987} $this]
+               set tmp [{c++ get991} $this]
                set mountainSteepness $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set988} $this $mountainSteepness]
+               return [{c++ set992} $this $mountainSteepness]
              } else { error "Cannot unset C++ variable mountainSteepness" }
            }
 
 public variable enormousMountains
- method accessor992 {ignored ignored op} {
+ method accessor996 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get990} $this]
+               set tmp [{c++ get994} $this]
                set enormousMountains $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set991} $this $enormousMountains]
+               return [{c++ set995} $this $enormousMountains]
              } else { error "Cannot unset C++ variable enormousMountains" }
            }
 
 public variable craters
- method accessor995 {ignored ignored op} {
+ method accessor999 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get993} $this]
+               set tmp [{c++ get997} $this]
                set craters $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set994} $this $craters]
+               return [{c++ set998} $this $craters]
              } else { error "Cannot unset C++ variable craters" }
            }
 
 public variable maxCraterSize
- method accessor998 {ignored ignored op} {
+ method accessor1002 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get996} $this]
+               set tmp [{c++ get1000} $this]
                set maxCraterSize $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set997} $this $maxCraterSize]
+               return [{c++ set1001} $this $maxCraterSize]
              } else { error "Cannot unset C++ variable maxCraterSize" }
            }
 
 public variable equatorTemperature
- method accessor1001 {ignored ignored op} {
+ method accessor1005 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get999} $this]
+               set tmp [{c++ get1003} $this]
                set equatorTemperature $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1000} $this $equatorTemperature]
+               return [{c++ set1004} $this $equatorTemperature]
              } else { error "Cannot unset C++ variable equatorTemperature" }
            }
 
 public variable solarEquator
- method accessor1004 {ignored ignored op} {
+ method accessor1008 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1002} $this]
+               set tmp [{c++ get1006} $this]
                set solarEquator $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1003} $this $solarEquator]
+               return [{c++ set1007} $this $solarEquator]
              } else { error "Cannot unset C++ variable solarEquator" }
            }
 
 public variable polarTemperature
- method accessor1007 {ignored ignored op} {
+ method accessor1011 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1005} $this]
+               set tmp [{c++ get1009} $this]
                set polarTemperature $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1006} $this $polarTemperature]
+               return [{c++ set1010} $this $polarTemperature]
              } else { error "Cannot unset C++ variable polarTemperature" }
            }
 
 public variable altitudeTemperatureDelta
- method accessor1010 {ignored ignored op} {
+ method accessor1014 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1008} $this]
+               set tmp [{c++ get1012} $this]
                set altitudeTemperatureDelta $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1009} $this $altitudeTemperatureDelta]
+               return [{c++ set1013} $this $altitudeTemperatureDelta]
              } else { error "Cannot unset C++ variable altitudeTemperatureDelta" }
            }
 
 public variable waterTemperatureDelta
- method accessor1013 {ignored ignored op} {
+ method accessor1017 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1011} $this]
+               set tmp [{c++ get1015} $this]
                set waterTemperatureDelta $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1012} $this $waterTemperatureDelta]
+               return [{c++ set1016} $this $waterTemperatureDelta]
              } else { error "Cannot unset C++ variable waterTemperatureDelta" }
            }
 
 public variable freezingPoint
- method accessor1016 {ignored ignored op} {
+ method accessor1020 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1014} $this]
+               set tmp [{c++ get1018} $this]
                set freezingPoint $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1015} $this $freezingPoint]
+               return [{c++ set1019} $this $freezingPoint]
              } else { error "Cannot unset C++ variable freezingPoint" }
            }
 
 public variable humidity
- method accessor1019 {ignored ignored op} {
+ method accessor1023 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1017} $this]
+               set tmp [{c++ get1021} $this]
                set humidity $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1018} $this $humidity]
+               return [{c++ set1022} $this $humidity]
              } else { error "Cannot unset C++ variable humidity" }
            }
 
 public variable vapourTransport
- method accessor1022 {ignored ignored op} {
+ method accessor1026 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1020} $this]
+               set tmp [{c++ get1024} $this]
                set vapourTransport $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1021} $this $vapourTransport]
+               return [{c++ set1025} $this $vapourTransport]
              } else { error "Cannot unset C++ variable vapourTransport" }
            }
 
 public variable mountainBlockage
- method accessor1025 {ignored ignored op} {
+ method accessor1029 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1023} $this]
+               set tmp [{c++ get1027} $this]
                set mountainBlockage $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1024} $this $mountainBlockage]
+               return [{c++ set1028} $this $mountainBlockage]
              } else { error "Cannot unset C++ variable mountainBlockage" }
            }
 
 public variable vegitationHumidity
- method accessor1028 {ignored ignored op} {
+ method accessor1032 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1026} $this]
+               set tmp [{c++ get1030} $this]
                set vegitationHumidity $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1027} $this $vegitationHumidity]
+               return [{c++ set1031} $this $vegitationHumidity]
              } else { error "Cannot unset C++ variable vegitationHumidity" }
            }
 
 public variable cities
- method accessor1031 {ignored ignored op} {
+ method accessor1035 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1029} $this]
+               set tmp [{c++ get1033} $this]
                set cities $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1030} $this $cities]
+               return [{c++ set1034} $this $cities]
              } else { error "Cannot unset C++ variable cities" }
            }
 
 public variable maxCitySize
- method accessor1034 {ignored ignored op} {
+ method accessor1038 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1032} $this]
+               set tmp [{c++ get1036} $this]
                set maxCitySize $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1033} $this $maxCitySize]
+               return [{c++ set1037} $this $maxCitySize]
              } else { error "Cannot unset C++ variable maxCitySize" }
            }
 
 public variable cityGrouping
- method accessor1037 {ignored ignored op} {
+ method accessor1041 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1035} $this]
+               set tmp [{c++ get1039} $this]
                set cityGrouping $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1036} $this $cityGrouping]
+               return [{c++ set1040} $this $cityGrouping]
              } else { error "Cannot unset C++ variable cityGrouping" }
            }
 
 public variable waterColour
- method accessor1040 {ignored ignored op} {
+ method accessor1044 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1038} $this]
+               set tmp [{c++ get1042} $this]
                set waterColour $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1039} $this $waterColour]
+               return [{c++ set1043} $this $waterColour]
              } else { error "Cannot unset C++ variable waterColour" }
            }
 
 public variable vegitationColour
- method accessor1043 {ignored ignored op} {
+ method accessor1047 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1041} $this]
+               set tmp [{c++ get1045} $this]
                set vegitationColour $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1042} $this $vegitationColour]
+               return [{c++ set1046} $this $vegitationColour]
              } else { error "Cannot unset C++ variable vegitationColour" }
            }
 
 public variable lowerPlanetColour
- method accessor1046 {ignored ignored op} {
+ method accessor1050 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1044} $this]
+               set tmp [{c++ get1048} $this]
                set lowerPlanetColour $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1045} $this $lowerPlanetColour]
+               return [{c++ set1049} $this $lowerPlanetColour]
              } else { error "Cannot unset C++ variable lowerPlanetColour" }
            }
 
 public variable upperPlanetColour
- method accessor1049 {ignored ignored op} {
+ method accessor1053 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1047} $this]
+               set tmp [{c++ get1051} $this]
                set upperPlanetColour $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1048} $this $upperPlanetColour]
+               return [{c++ set1052} $this $upperPlanetColour]
              } else { error "Cannot unset C++ variable upperPlanetColour" }
            }
 
@@ -4270,157 +4278,157 @@ constructor {clazz cname arguments} {
                  [string range $cname 1 [string length $cname]] : $cname}] $arguments} {
 
 set seed {}
-            trace add variable seed {read write unset} "$this accessor956"
+            trace add variable seed {read write unset} "$this accessor960"
 set continents {}
-            trace add variable continents {read write unset} "$this accessor959"
+            trace add variable continents {read write unset} "$this accessor963"
 set largeIslands {}
-            trace add variable largeIslands {read write unset} "$this accessor962"
+            trace add variable largeIslands {read write unset} "$this accessor966"
 set smallIslands {}
-            trace add variable smallIslands {read write unset} "$this accessor965"
+            trace add variable smallIslands {read write unset} "$this accessor969"
 set islandGrouping {}
-            trace add variable islandGrouping {read write unset} "$this accessor968"
+            trace add variable islandGrouping {read write unset} "$this accessor972"
 set landSlope {}
-            trace add variable landSlope {read write unset} "$this accessor971"
+            trace add variable landSlope {read write unset} "$this accessor975"
 set oceans {}
-            trace add variable oceans {read write unset} "$this accessor974"
+            trace add variable oceans {read write unset} "$this accessor978"
 set seas {}
-            trace add variable seas {read write unset} "$this accessor977"
+            trace add variable seas {read write unset} "$this accessor981"
 set lakes {}
-            trace add variable lakes {read write unset} "$this accessor980"
+            trace add variable lakes {read write unset} "$this accessor984"
 set rivers {}
-            trace add variable rivers {read write unset} "$this accessor983"
+            trace add variable rivers {read write unset} "$this accessor987"
 set mountainRanges {}
-            trace add variable mountainRanges {read write unset} "$this accessor986"
+            trace add variable mountainRanges {read write unset} "$this accessor990"
 set mountainSteepness {}
-            trace add variable mountainSteepness {read write unset} "$this accessor989"
+            trace add variable mountainSteepness {read write unset} "$this accessor993"
 set enormousMountains {}
-            trace add variable enormousMountains {read write unset} "$this accessor992"
+            trace add variable enormousMountains {read write unset} "$this accessor996"
 set craters {}
-            trace add variable craters {read write unset} "$this accessor995"
+            trace add variable craters {read write unset} "$this accessor999"
 set maxCraterSize {}
-            trace add variable maxCraterSize {read write unset} "$this accessor998"
+            trace add variable maxCraterSize {read write unset} "$this accessor1002"
 set equatorTemperature {}
-            trace add variable equatorTemperature {read write unset} "$this accessor1001"
+            trace add variable equatorTemperature {read write unset} "$this accessor1005"
 set solarEquator {}
-            trace add variable solarEquator {read write unset} "$this accessor1004"
+            trace add variable solarEquator {read write unset} "$this accessor1008"
 set polarTemperature {}
-            trace add variable polarTemperature {read write unset} "$this accessor1007"
+            trace add variable polarTemperature {read write unset} "$this accessor1011"
 set altitudeTemperatureDelta {}
-            trace add variable altitudeTemperatureDelta {read write unset} "$this accessor1010"
+            trace add variable altitudeTemperatureDelta {read write unset} "$this accessor1014"
 set waterTemperatureDelta {}
-            trace add variable waterTemperatureDelta {read write unset} "$this accessor1013"
+            trace add variable waterTemperatureDelta {read write unset} "$this accessor1017"
 set freezingPoint {}
-            trace add variable freezingPoint {read write unset} "$this accessor1016"
+            trace add variable freezingPoint {read write unset} "$this accessor1020"
 set humidity {}
-            trace add variable humidity {read write unset} "$this accessor1019"
+            trace add variable humidity {read write unset} "$this accessor1023"
 set vapourTransport {}
-            trace add variable vapourTransport {read write unset} "$this accessor1022"
+            trace add variable vapourTransport {read write unset} "$this accessor1026"
 set mountainBlockage {}
-            trace add variable mountainBlockage {read write unset} "$this accessor1025"
+            trace add variable mountainBlockage {read write unset} "$this accessor1029"
 set vegitationHumidity {}
-            trace add variable vegitationHumidity {read write unset} "$this accessor1028"
+            trace add variable vegitationHumidity {read write unset} "$this accessor1032"
 set cities {}
-            trace add variable cities {read write unset} "$this accessor1031"
+            trace add variable cities {read write unset} "$this accessor1035"
 set maxCitySize {}
-            trace add variable maxCitySize {read write unset} "$this accessor1034"
+            trace add variable maxCitySize {read write unset} "$this accessor1038"
 set cityGrouping {}
-            trace add variable cityGrouping {read write unset} "$this accessor1037"
+            trace add variable cityGrouping {read write unset} "$this accessor1041"
 set waterColour {}
-            trace add variable waterColour {read write unset} "$this accessor1040"
+            trace add variable waterColour {read write unset} "$this accessor1044"
 set vegitationColour {}
-            trace add variable vegitationColour {read write unset} "$this accessor1043"
+            trace add variable vegitationColour {read write unset} "$this accessor1047"
 set lowerPlanetColour {}
-            trace add variable lowerPlanetColour {read write unset} "$this accessor1046"
+            trace add variable lowerPlanetColour {read write unset} "$this accessor1050"
 set upperPlanetColour {}
-            trace add variable upperPlanetColour {read write unset} "$this accessor1049"
+            trace add variable upperPlanetColour {read write unset} "$this accessor1053"
 }
 destructor {
 
-trace remove variable seed {read write unset} "$this accessor956"
-trace remove variable continents {read write unset} "$this accessor959"
-trace remove variable largeIslands {read write unset} "$this accessor962"
-trace remove variable smallIslands {read write unset} "$this accessor965"
-trace remove variable islandGrouping {read write unset} "$this accessor968"
-trace remove variable landSlope {read write unset} "$this accessor971"
-trace remove variable oceans {read write unset} "$this accessor974"
-trace remove variable seas {read write unset} "$this accessor977"
-trace remove variable lakes {read write unset} "$this accessor980"
-trace remove variable rivers {read write unset} "$this accessor983"
-trace remove variable mountainRanges {read write unset} "$this accessor986"
-trace remove variable mountainSteepness {read write unset} "$this accessor989"
-trace remove variable enormousMountains {read write unset} "$this accessor992"
-trace remove variable craters {read write unset} "$this accessor995"
-trace remove variable maxCraterSize {read write unset} "$this accessor998"
-trace remove variable equatorTemperature {read write unset} "$this accessor1001"
-trace remove variable solarEquator {read write unset} "$this accessor1004"
-trace remove variable polarTemperature {read write unset} "$this accessor1007"
-trace remove variable altitudeTemperatureDelta {read write unset} "$this accessor1010"
-trace remove variable waterTemperatureDelta {read write unset} "$this accessor1013"
-trace remove variable freezingPoint {read write unset} "$this accessor1016"
-trace remove variable humidity {read write unset} "$this accessor1019"
-trace remove variable vapourTransport {read write unset} "$this accessor1022"
-trace remove variable mountainBlockage {read write unset} "$this accessor1025"
-trace remove variable vegitationHumidity {read write unset} "$this accessor1028"
-trace remove variable cities {read write unset} "$this accessor1031"
-trace remove variable maxCitySize {read write unset} "$this accessor1034"
-trace remove variable cityGrouping {read write unset} "$this accessor1037"
-trace remove variable waterColour {read write unset} "$this accessor1040"
-trace remove variable vegitationColour {read write unset} "$this accessor1043"
-trace remove variable lowerPlanetColour {read write unset} "$this accessor1046"
-trace remove variable upperPlanetColour {read write unset} "$this accessor1049"
+trace remove variable seed {read write unset} "$this accessor960"
+trace remove variable continents {read write unset} "$this accessor963"
+trace remove variable largeIslands {read write unset} "$this accessor966"
+trace remove variable smallIslands {read write unset} "$this accessor969"
+trace remove variable islandGrouping {read write unset} "$this accessor972"
+trace remove variable landSlope {read write unset} "$this accessor975"
+trace remove variable oceans {read write unset} "$this accessor978"
+trace remove variable seas {read write unset} "$this accessor981"
+trace remove variable lakes {read write unset} "$this accessor984"
+trace remove variable rivers {read write unset} "$this accessor987"
+trace remove variable mountainRanges {read write unset} "$this accessor990"
+trace remove variable mountainSteepness {read write unset} "$this accessor993"
+trace remove variable enormousMountains {read write unset} "$this accessor996"
+trace remove variable craters {read write unset} "$this accessor999"
+trace remove variable maxCraterSize {read write unset} "$this accessor1002"
+trace remove variable equatorTemperature {read write unset} "$this accessor1005"
+trace remove variable solarEquator {read write unset} "$this accessor1008"
+trace remove variable polarTemperature {read write unset} "$this accessor1011"
+trace remove variable altitudeTemperatureDelta {read write unset} "$this accessor1014"
+trace remove variable waterTemperatureDelta {read write unset} "$this accessor1017"
+trace remove variable freezingPoint {read write unset} "$this accessor1020"
+trace remove variable humidity {read write unset} "$this accessor1023"
+trace remove variable vapourTransport {read write unset} "$this accessor1026"
+trace remove variable mountainBlockage {read write unset} "$this accessor1029"
+trace remove variable vegitationHumidity {read write unset} "$this accessor1032"
+trace remove variable cities {read write unset} "$this accessor1035"
+trace remove variable maxCitySize {read write unset} "$this accessor1038"
+trace remove variable cityGrouping {read write unset} "$this accessor1041"
+trace remove variable waterColour {read write unset} "$this accessor1044"
+trace remove variable vegitationColour {read write unset} "$this accessor1047"
+trace remove variable lowerPlanetColour {read write unset} "$this accessor1050"
+trace remove variable upperPlanetColour {read write unset} "$this accessor1053"
 }
 }
 
-proc {planetgen_begin} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1050} $a0 ]]
+proc {planetgen_begin} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1054} $a0 ]]
 return $retpi
 }
-proc {planetgen_what} {  } {set retpi [uplevel 1 [list {c++ trampoline1052} ]]
+proc {planetgen_what} {  } {set retpi [uplevel 1 [list {c++ trampoline1056} ]]
 set ret $retpi
 return $ret
 }
-proc {planetgen_progress} {  } {set retpi [uplevel 1 [list {c++ trampoline1054} ]]
+proc {planetgen_progress} {  } {set retpi [uplevel 1 [list {c++ trampoline1058} ]]
 set ret $retpi
 return $ret
 }
-proc {planetgen_done} {  } {set retpi [uplevel 1 [list {c++ trampoline1056} ]]
+proc {planetgen_done} {  } {set retpi [uplevel 1 [list {c++ trampoline1060} ]]
 set ret $retpi
 return $ret
 }
-proc {planetgen_kill} {  } {set retpi [uplevel 1 [list {c++ trampoline1058} ]]
+proc {planetgen_kill} {  } {set retpi [uplevel 1 [list {c++ trampoline1062} ]]
 return $retpi
 }
-proc {planetgen_save} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1060} $a0 $a1 ]]
+proc {planetgen_save} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1064} $a0 $a1 ]]
 return $retpi
 }
 
-proc {set_hud_message} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1062} $a0 $a1 ]]
+proc {set_hud_message} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1066} $a0 $a1 ]]
 return $retpi
 }
-proc {global_chat_post} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1064} $a0 ]]
+proc {global_chat_post} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1068} $a0 ]]
 return $retpi
 }
-proc {global_chat_post_local} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1066} $a0 ]]
+proc {global_chat_post_local} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1070} $a0 ]]
 return $retpi
 }
-proc {global_chat_post_remote} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1068} $a0 ]]
+proc {global_chat_post_remote} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1072} $a0 ]]
 return $retpi
 }
- proc accessor1072 {ignored ignored op} {
+ proc accessor1076 {ignored ignored op} {
              global state
              if {$op == {read}} {
-               set tmp [{c++ get1070} ]
+               set tmp [{c++ get1074} ]
                set state $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1071}  $state]
+               return [{c++ set1075}  $state]
              } else { error "Cannot unset C++ variable state" }
            }
 
 
- proc accessor1074 {ignored ignored op} {
+ proc accessor1078 {ignored ignored op} {
              global PLATFORM
              if {$op == {read}} {
-               set tmp [{c++ get1073} ]
+               set tmp [{c++ get1077} ]
                set PLATFORM $tmp
 
              } elseif {$op == {write}} {
@@ -4428,10 +4436,10 @@ return $retpi
              } else { error "Cannot unset C++ variable PLATFORM" }
            }
 
- proc accessor1076 {ignored ignored op} {
+ proc accessor1080 {ignored ignored op} {
              global screenW
              if {$op == {read}} {
-               set tmp [{c++ get1075} ]
+               set tmp [{c++ get1079} ]
                set screenW $tmp
 
              } elseif {$op == {write}} {
@@ -4439,10 +4447,10 @@ return $retpi
              } else { error "Cannot unset C++ variable screenW" }
            }
 
- proc accessor1078 {ignored ignored op} {
+ proc accessor1082 {ignored ignored op} {
              global screenH
              if {$op == {read}} {
-               set tmp [{c++ get1077} ]
+               set tmp [{c++ get1081} ]
                set screenH $tmp
 
              } elseif {$op == {write}} {
@@ -4450,10 +4458,10 @@ return $retpi
              } else { error "Cannot unset C++ variable screenH" }
            }
 
- proc accessor1080 {ignored ignored op} {
+ proc accessor1084 {ignored ignored op} {
              global vheight
              if {$op == {read}} {
-               set tmp [{c++ get1079} ]
+               set tmp [{c++ get1083} ]
                set vheight $tmp
 
              } elseif {$op == {write}} {
@@ -4461,66 +4469,66 @@ return $retpi
              } else { error "Cannot unset C++ variable vheight" }
            }
 
- proc accessor1083 {ignored ignored op} {
+ proc accessor1087 {ignored ignored op} {
              global generalAlphaBlending
              if {$op == {read}} {
-               set tmp [{c++ get1081} ]
+               set tmp [{c++ get1085} ]
                set generalAlphaBlending $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1082}  $generalAlphaBlending]
+               return [{c++ set1086}  $generalAlphaBlending]
              } else { error "Cannot unset C++ variable generalAlphaBlending" }
            }
 
- proc accessor1086 {ignored ignored op} {
+ proc accessor1090 {ignored ignored op} {
              global alphaBlendingEnabled
              if {$op == {read}} {
-               set tmp [{c++ get1084} ]
+               set tmp [{c++ get1088} ]
                set alphaBlendingEnabled $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1085}  $alphaBlendingEnabled]
+               return [{c++ set1089}  $alphaBlendingEnabled]
              } else { error "Cannot unset C++ variable alphaBlendingEnabled" }
            }
 
- proc accessor1089 {ignored ignored op} {
+ proc accessor1093 {ignored ignored op} {
              global smoothScaling
              if {$op == {read}} {
-               set tmp [{c++ get1087} ]
+               set tmp [{c++ get1091} ]
                set smoothScaling $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1088}  $smoothScaling]
+               return [{c++ set1092}  $smoothScaling]
              } else { error "Cannot unset C++ variable smoothScaling" }
            }
 
- proc accessor1092 {ignored ignored op} {
+ proc accessor1096 {ignored ignored op} {
              global highQuality
              if {$op == {read}} {
-               set tmp [{c++ get1090} ]
+               set tmp [{c++ get1094} ]
                set highQuality $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1091}  $highQuality]
+               return [{c++ set1095}  $highQuality]
              } else { error "Cannot unset C++ variable highQuality" }
            }
 
- proc accessor1095 {ignored ignored op} {
+ proc accessor1099 {ignored ignored op} {
              global antialiasing
              if {$op == {read}} {
-               set tmp [{c++ get1093} ]
+               set tmp [{c++ get1097} ]
                set antialiasing $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1094}  $antialiasing]
+               return [{c++ set1098}  $antialiasing]
              } else { error "Cannot unset C++ variable antialiasing" }
            }
 
 
- proc accessor1097 {ignored ignored op} {
+ proc accessor1101 {ignored ignored op} {
              global headless
              if {$op == {read}} {
-               set tmp [{c++ get1096} ]
+               set tmp [{c++ get1100} ]
                set headless $tmp
 
              } elseif {$op == {write}} {
@@ -4528,132 +4536,132 @@ return $retpi
              } else { error "Cannot unset C++ variable headless" }
            }
 
- proc accessor1100 {ignored ignored op} {
+ proc accessor1104 {ignored ignored op} {
              global cameraX1
              if {$op == {read}} {
-               set tmp [{c++ get1098} ]
+               set tmp [{c++ get1102} ]
                set cameraX1 $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1099}  $cameraX1]
+               return [{c++ set1103}  $cameraX1]
              } else { error "Cannot unset C++ variable cameraX1" }
            }
 
- proc accessor1103 {ignored ignored op} {
+ proc accessor1107 {ignored ignored op} {
              global cameraX2
              if {$op == {read}} {
-               set tmp [{c++ get1101} ]
+               set tmp [{c++ get1105} ]
                set cameraX2 $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1102}  $cameraX2]
+               return [{c++ set1106}  $cameraX2]
              } else { error "Cannot unset C++ variable cameraX2" }
            }
 
- proc accessor1106 {ignored ignored op} {
+ proc accessor1110 {ignored ignored op} {
              global cameraY1
              if {$op == {read}} {
-               set tmp [{c++ get1104} ]
+               set tmp [{c++ get1108} ]
                set cameraY1 $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1105}  $cameraY1]
+               return [{c++ set1109}  $cameraY1]
              } else { error "Cannot unset C++ variable cameraY1" }
            }
 
- proc accessor1109 {ignored ignored op} {
+ proc accessor1113 {ignored ignored op} {
              global cameraY2
              if {$op == {read}} {
-               set tmp [{c++ get1107} ]
+               set tmp [{c++ get1111} ]
                set cameraY2 $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1108}  $cameraY2]
+               return [{c++ set1112}  $cameraY2]
              } else { error "Cannot unset C++ variable cameraY2" }
            }
 
- proc accessor1112 {ignored ignored op} {
+ proc accessor1116 {ignored ignored op} {
              global cameraCX
              if {$op == {read}} {
-               set tmp [{c++ get1110} ]
+               set tmp [{c++ get1114} ]
                set cameraCX $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1111}  $cameraCX]
+               return [{c++ set1115}  $cameraCX]
              } else { error "Cannot unset C++ variable cameraCX" }
            }
 
- proc accessor1115 {ignored ignored op} {
+ proc accessor1119 {ignored ignored op} {
              global cameraCY
              if {$op == {read}} {
-               set tmp [{c++ get1113} ]
+               set tmp [{c++ get1117} ]
                set cameraCY $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1114}  $cameraCY]
+               return [{c++ set1118}  $cameraCY]
              } else { error "Cannot unset C++ variable cameraCY" }
            }
 
- proc accessor1118 {ignored ignored op} {
+ proc accessor1122 {ignored ignored op} {
              global cameraZoom
              if {$op == {read}} {
-               set tmp [{c++ get1116} ]
+               set tmp [{c++ get1120} ]
                set cameraZoom $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1117}  $cameraZoom]
+               return [{c++ set1121}  $cameraZoom]
              } else { error "Cannot unset C++ variable cameraZoom" }
            }
 
- proc accessor1121 {ignored ignored op} {
+ proc accessor1125 {ignored ignored op} {
              global cursorX
              if {$op == {read}} {
-               set tmp [{c++ get1119} ]
+               set tmp [{c++ get1123} ]
                set cursorX $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1120}  $cursorX]
+               return [{c++ set1124}  $cursorX]
              } else { error "Cannot unset C++ variable cursorX" }
            }
 
- proc accessor1124 {ignored ignored op} {
+ proc accessor1128 {ignored ignored op} {
              global cursorY
              if {$op == {read}} {
-               set tmp [{c++ get1122} ]
+               set tmp [{c++ get1126} ]
                set cursorY $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1123}  $cursorY]
+               return [{c++ set1127}  $cursorY]
              } else { error "Cannot unset C++ variable cursorY" }
            }
 
- proc accessor1127 {ignored ignored op} {
+ proc accessor1131 {ignored ignored op} {
              global oldCursorX
              if {$op == {read}} {
-               set tmp [{c++ get1125} ]
+               set tmp [{c++ get1129} ]
                set oldCursorX $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1126}  $oldCursorX]
+               return [{c++ set1130}  $oldCursorX]
              } else { error "Cannot unset C++ variable oldCursorX" }
            }
 
- proc accessor1130 {ignored ignored op} {
+ proc accessor1134 {ignored ignored op} {
              global oldCursorY
              if {$op == {read}} {
-               set tmp [{c++ get1128} ]
+               set tmp [{c++ get1132} ]
                set oldCursorY $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1129}  $oldCursorY]
+               return [{c++ set1133}  $oldCursorY]
              } else { error "Cannot unset C++ variable oldCursorY" }
            }
 
 
- proc accessor1132 {ignored ignored op} {
+ proc accessor1136 {ignored ignored op} {
              global currentFrameTime
              if {$op == {read}} {
-               set tmp [{c++ get1131} ]
+               set tmp [{c++ get1135} ]
                set currentFrameTime $tmp
 
              } elseif {$op == {write}} {
@@ -4661,10 +4669,10 @@ return $retpi
              } else { error "Cannot unset C++ variable currentFrameTime" }
            }
 
- proc accessor1134 {ignored ignored op} {
+ proc accessor1138 {ignored ignored op} {
              global currentFrameTimeLeft
              if {$op == {read}} {
-               set tmp [{c++ get1133} ]
+               set tmp [{c++ get1137} ]
                set currentFrameTimeLeft $tmp
 
              } elseif {$op == {write}} {
@@ -4672,10 +4680,10 @@ return $retpi
              } else { error "Cannot unset C++ variable currentFrameTimeLeft" }
            }
 
- proc accessor1136 {ignored ignored op} {
+ proc accessor1140 {ignored ignored op} {
              global currentVFrameLast
              if {$op == {read}} {
-               set tmp [{c++ get1135} ]
+               set tmp [{c++ get1139} ]
                set currentVFrameLast $tmp
 
              } elseif {$op == {write}} {
@@ -4683,10 +4691,10 @@ return $retpi
              } else { error "Cannot unset C++ variable currentVFrameLast" }
            }
 
- proc accessor1138 {ignored ignored op} {
+ proc accessor1142 {ignored ignored op} {
              global frameRate
              if {$op == {read}} {
-               set tmp [{c++ get1137} ]
+               set tmp [{c++ get1141} ]
                set frameRate $tmp
 
              } elseif {$op == {write}} {
@@ -4694,10 +4702,10 @@ return $retpi
              } else { error "Cannot unset C++ variable frameRate" }
            }
 
- proc accessor1140 {ignored ignored op} {
+ proc accessor1144 {ignored ignored op} {
              global sparkCountMultiplier
              if {$op == {read}} {
-               set tmp [{c++ get1139} ]
+               set tmp [{c++ get1143} ]
                set sparkCountMultiplier $tmp
 
              } elseif {$op == {write}} {
@@ -4705,10 +4713,10 @@ return $retpi
              } else { error "Cannot unset C++ variable sparkCountMultiplier" }
            }
 
- proc accessor1142 {ignored ignored op} {
+ proc accessor1146 {ignored ignored op} {
              global gameClock
              if {$op == {read}} {
-               set tmp [{c++ get1141} ]
+               set tmp [{c++ get1145} ]
                set gameClock $tmp
 
              } elseif {$op == {write}} {
@@ -4716,10 +4724,10 @@ return $retpi
              } else { error "Cannot unset C++ variable gameClock" }
            }
 
- proc accessor1144 {ignored ignored op} {
+ proc accessor1148 {ignored ignored op} {
              global STD_CELL_SZ
              if {$op == {read}} {
-               set tmp [{c++ get1143} ]
+               set tmp [{c++ get1147} ]
                set STD_CELL_SZ $tmp
 
              } elseif {$op == {write}} {
@@ -4730,26 +4738,26 @@ return $retpi
 ::itcl::class {SquareIcon} {
 inherit AObject
 namespace eval :: {
-proc {c++ new SquareIcon default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1146} $a0 $a1 ]]
+proc {c++ new SquareIcon default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1150} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }}
 
-method {load} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1148} $this $a0 $a1 $a2 ]]
+method {load} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1152} $this $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }
-method {unload} {  } {set retpi [uplevel 1 [list {c++ trampoline1150} $this ]]
+method {unload} {  } {set retpi [uplevel 1 [list {c++ trampoline1154} $this ]]
 return $retpi
 }
-method {isLoaded} {  } {set retpi [uplevel 1 [list {c++ trampoline1152} $this ]]
+method {isLoaded} {  } {set retpi [uplevel 1 [list {c++ trampoline1156} $this ]]
 set ret $retpi
 return $ret
 }
-method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline1154} $this ]]
+method {draw} {  } {set retpi [uplevel 1 [list {c++ trampoline1158} $this ]]
 return $retpi
 }
-method {save} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1156} $this $a0 ]]
+method {save} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1160} $this $a0 ]]
 set ret $retpi
 return $ret
 }
@@ -4784,46 +4792,46 @@ destructor {
 ::itcl::class {Antenna} {
 inherit AObject
 namespace eval :: {
-proc {c++ new Antenna default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1161} $a0 $a1 ]]
+proc {c++ new Antenna default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1165} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }}
 
 public variable tuner
- method accessor1165 {ignored ignored op} {
+ method accessor1169 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1163} $this]
+               set tmp [{c++ get1167} $this]
                set tuner $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1164} $this $tuner]
+               return [{c++ set1168} $this $tuner]
              } else { error "Cannot unset C++ variable tuner" }
            }
 
-method {setInternetInformation4} { a0 a1 a2 a3 a4  } {set retpi [uplevel 1 [list {c++ trampoline1166} $this $a0 $a1 $a2 $a3 $a4 ]]
+method {setInternetInformation4} { a0 a1 a2 a3 a4  } {set retpi [uplevel 1 [list {c++ trampoline1170} $this $a0 $a1 $a2 $a3 $a4 ]]
 return $retpi
 }
-method {setInternetInformation6} { a0 a1 a2 a3 a4 a5 a6 a7 a8  } {set retpi [uplevel 1 [list {c++ trampoline1168} $this $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 $a8 ]]
+method {setInternetInformation6} { a0 a1 a2 a3 a4 a5 a6 a7 a8  } {set retpi [uplevel 1 [list {c++ trampoline1172} $this $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 $a8 ]]
 return $retpi
 }
-method {getGlobalID4} {  } {set retpi [uplevel 1 [list {c++ trampoline1170} $this ]]
+method {getGlobalID4} {  } {set retpi [uplevel 1 [list {c++ trampoline1174} $this ]]
 set ret $retpi
 return $ret
 }
-method {getGlobalID6} {  } {set retpi [uplevel 1 [list {c++ trampoline1172} $this ]]
+method {getGlobalID6} {  } {set retpi [uplevel 1 [list {c++ trampoline1176} $this ]]
 set ret $retpi
 return $ret
 }
-method {hasV4} {  } {set retpi [uplevel 1 [list {c++ trampoline1174} $this ]]
+method {hasV4} {  } {set retpi [uplevel 1 [list {c++ trampoline1178} $this ]]
 set ret $retpi
 return $ret
 }
-method {hasV6} {  } {set retpi [uplevel 1 [list {c++ trampoline1176} $this ]]
+method {hasV6} {  } {set retpi [uplevel 1 [list {c++ trampoline1180} $this ]]
 set ret $retpi
 return $ret
 }
-method {processIncomming} {  } {set retpi [uplevel 1 [list {c++ trampoline1178} $this ]]
+method {processIncomming} {  } {set retpi [uplevel 1 [list {c++ trampoline1182} $this ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -4836,7 +4844,7 @@ constructor {clazz cname arguments} {
                  [string range $cname 1 [string length $cname]] : $cname}] $arguments} {
 
 set tuner {}
-            trace add variable tuner {read write unset} "$this accessor1165"
+            trace add variable tuner {read write unset} "$this accessor1169"
 
 
 
@@ -4847,7 +4855,7 @@ set tuner {}
 }
 destructor {
 
-trace remove variable tuner {read write unset} "$this accessor1165"
+trace remove variable tuner {read write unset} "$this accessor1169"
 
 
 
@@ -4858,10 +4866,10 @@ trace remove variable tuner {read write unset} "$this accessor1165"
 }
 }
 
- proc accessor1181 {ignored ignored op} {
+ proc accessor1185 {ignored ignored op} {
              global antenna
              if {$op == {read}} {
-               set tmp [{c++ get1180} ]
+               set tmp [{c++ get1184} ]
                set antenna $tmp
 
              } elseif {$op == {write}} {
@@ -4869,14 +4877,14 @@ trace remove variable tuner {read write unset} "$this accessor1165"
              } else { error "Cannot unset C++ variable antenna" }
            }
 
- proc accessor1184 {ignored ignored op} {
+ proc accessor1188 {ignored ignored op} {
              global packetDropMask
              if {$op == {read}} {
-               set tmp [{c++ get1182} ]
+               set tmp [{c++ get1186} ]
                set packetDropMask $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1183}  $packetDropMask]
+               return [{c++ set1187}  $packetDropMask]
              } else { error "Cannot unset C++ variable packetDropMask" }
            }
 
@@ -4884,7 +4892,7 @@ trace remove variable tuner {read write unset} "$this accessor1165"
 ::itcl::class {Tuner} {
 inherit AObject
 namespace eval :: {
-proc {c++ new Tuner default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1186} $a0 $a1 ]]
+proc {c++ new Tuner default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1190} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }}
@@ -4908,12 +4916,12 @@ destructor {
 ::itcl::class {GlobalID} {
 inherit AObject
 namespace eval :: {
-proc {c++ new GlobalID default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1189} $a0 $a1 ]]
+proc {c++ new GlobalID default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1193} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }}
 
-method {toString} {  } {set retpi [uplevel 1 [list {c++ trampoline1191} $this ]]
+method {toString} {  } {set retpi [uplevel 1 [list {c++ trampoline1195} $this ]]
 set ret $retpi
 return $ret
 }
@@ -4955,10 +4963,10 @@ destructor {
 ::itcl::class {NetworkAssembly} {
 inherit AObject
 public variable field
- method accessor1197 {ignored ignored op} {
+ method accessor1201 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1196} $this]
+               set tmp [{c++ get1200} $this]
                set field $tmp
 
              } elseif {$op == {write}} {
@@ -4967,10 +4975,10 @@ public variable field
            }
 
 public variable antenna
- method accessor1199 {ignored ignored op} {
+ method accessor1203 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1198} $this]
+               set tmp [{c++ get1202} $this]
                set antenna $tmp
 
              } elseif {$op == {write}} {
@@ -4979,39 +4987,39 @@ public variable antenna
            }
 
 namespace eval :: {
-proc {c++ new NetworkAssembly default} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline1200} $a0 $a1 $a2 $a3 ]]
+proc {c++ new NetworkAssembly default} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline1204} $a0 $a1 $a2 $a3 ]]
 set ret $retpi
 return $ret
 }}
 
-method {getTuner} {  } {set retpi [uplevel 1 [list {c++ trampoline1202} $this ]]
+method {getTuner} {  } {set retpi [uplevel 1 [list {c++ trampoline1206} $this ]]
 set ret $retpi
 return $ret
 }
-method {numConnections} {  } {set retpi [uplevel 1 [list {c++ trampoline1204} $this ]]
+method {numConnections} {  } {set retpi [uplevel 1 [list {c++ trampoline1208} $this ]]
 set ret $retpi
 return $ret
 }
-method {getConnection} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1206} $this $a0 ]]
+method {getConnection} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1210} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {addConnection} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1208} $this $a0 ]]
+method {addConnection} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1212} $this $a0 ]]
 return $retpi
 }
-method {removeConnection} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1210} $this $a0 ]]
+method {removeConnection} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1214} $this $a0 ]]
 return $retpi
 }
-method {addPacketProcessor} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1212} $this $a0 ]]
+method {addPacketProcessor} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1216} $this $a0 ]]
 return $retpi
 }
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1214} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1218} $this $a0 ]]
 return $retpi
 }
-method {setFieldSize} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1216} $this $a0 $a1 ]]
+method {setFieldSize} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1220} $this $a0 $a1 ]]
 return $retpi
 }
-method {changeField} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1218} $this $a0 ]]
+method {changeField} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1222} $this $a0 ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -5023,9 +5031,9 @@ constructor {clazz cname arguments} {
                  "Tcl$clazz" : $clazz}] [expr {[string length $cname] && {*}==[string index $cname 0]?
                  [string range $cname 1 [string length $cname]] : $cname}] $arguments} {
 set field {}
-            trace add variable field {read write unset} "$this accessor1197"
+            trace add variable field {read write unset} "$this accessor1201"
 set antenna {}
-            trace add variable antenna {read write unset} "$this accessor1199"
+            trace add variable antenna {read write unset} "$this accessor1203"
 
 
 
@@ -5038,8 +5046,8 @@ set antenna {}
 
 }
 destructor {
-trace remove variable field {read write unset} "$this accessor1197"
-trace remove variable antenna {read write unset} "$this accessor1199"
+trace remove variable field {read write unset} "$this accessor1201"
+trace remove variable antenna {read write unset} "$this accessor1203"
 
 
 
@@ -5058,10 +5066,10 @@ trace remove variable antenna {read write unset} "$this accessor1199"
 ::itcl::class {NetworkConnection} {
 inherit PacketProcessor
 public variable parent
- method accessor1223 {ignored ignored op} {
+ method accessor1227 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1222} $this]
+               set tmp [{c++ get1226} $this]
                set parent $tmp
 
              } elseif {$op == {write}} {
@@ -5070,10 +5078,10 @@ public variable parent
            }
 
 public variable scg
- method accessor1225 {ignored ignored op} {
+ method accessor1229 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1224} $this]
+               set tmp [{c++ get1228} $this]
                set scg $tmp
 
              } elseif {$op == {write}} {
@@ -5082,29 +5090,29 @@ public variable scg
            }
 
 public variable blameMask
- method accessor1228 {ignored ignored op} {
+ method accessor1232 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1226} $this]
+               set tmp [{c++ get1230} $this]
                set blameMask $tmp
 
              } elseif {$op == {write}} {
-               return [{c++ set1227} $this $blameMask]
+               return [{c++ set1231} $this $blameMask]
              } else { error "Cannot unset C++ variable blameMask" }
            }
 
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1229} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1233} $this $a0 ]]
 return $retpi
 }
-method {getStatus} {  } {set retpi [uplevel 1 [list {c++ trampoline1231} $this ]]
+method {getStatus} {  } {set retpi [uplevel 1 [list {c++ trampoline1235} $this ]]
 set ret $retpi
 return $ret
 }
-method {getDisconnectReason} {  } {set retpi [uplevel 1 [list {c++ trampoline1233} $this ]]
+method {getDisconnectReason} {  } {set retpi [uplevel 1 [list {c++ trampoline1237} $this ]]
 set ret $retpi
 return $ret
 }
-method {setFieldSize} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1235} $this $a0 $a1 ]]
+method {setFieldSize} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1239} $this $a0 $a1 ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -5116,20 +5124,20 @@ constructor {clazz cname arguments} {
                  "Tcl$clazz" : $clazz}] [expr {[string length $cname] && {*}==[string index $cname 0]?
                  [string range $cname 1 [string length $cname]] : $cname}] $arguments} {
 set parent {}
-            trace add variable parent {read write unset} "$this accessor1223"
+            trace add variable parent {read write unset} "$this accessor1227"
 set scg {}
-            trace add variable scg {read write unset} "$this accessor1225"
+            trace add variable scg {read write unset} "$this accessor1229"
 set blameMask {}
-            trace add variable blameMask {read write unset} "$this accessor1228"
+            trace add variable blameMask {read write unset} "$this accessor1232"
 
 
 
 
 }
 destructor {
-trace remove variable parent {read write unset} "$this accessor1223"
-trace remove variable scg {read write unset} "$this accessor1225"
-trace remove variable blameMask {read write unset} "$this accessor1228"
+trace remove variable parent {read write unset} "$this accessor1227"
+trace remove variable scg {read write unset} "$this accessor1229"
+trace remove variable blameMask {read write unset} "$this accessor1232"
 
 
 
@@ -5193,7 +5201,7 @@ itcl::class fun<InputNetworkGeraet*:NetworkConnection*>::fun_t {
 ::itcl::class {fun<InputNetworkGeraet*:NetworkConnection*>} {
 inherit AObject
 namespace eval :: {
-proc {c++ new Tclfun<InputNetworkGeraet*:NetworkConnection*> default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1241} $a0 $a1 ]]
+proc {c++ new Tclfun<InputNetworkGeraet*:NetworkConnection*> default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1245} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }}
@@ -5202,11 +5210,11 @@ method {invoke} { a0  } {set retpi [uplevel 1 error "Call to pure-virtual functi
 set ret $retpi
 return $ret
 }
-proc {call} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1245} $a0 $a1 ]]
+proc {call} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1249} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }
-method {get} {  } {set retpi [uplevel 1 [list {c++ trampoline1247} $this ]]
+method {get} {  } {set retpi [uplevel 1 [list {c++ trampoline1251} $this ]]
 set ret $retpi
 return $ret
 }
@@ -5234,7 +5242,7 @@ destructor {
 
 ::itcl::class {SynchronousControlGeraet} {
 inherit AObject
-method {openChannel} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1250} $this $a0 $a1 ]]
+method {openChannel} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1254} $this $a0 $a1 ]]
 set ret $retpi
 return $ret
 }
@@ -5257,18 +5265,18 @@ destructor {
 ::itcl::class {GameAdvertiser} {
 inherit PacketProcessor
 namespace eval :: {
-proc {c++ new GameAdvertiser default} { a0 a1 a2 a3 a4 a5 a6 a7  } {set retpi [uplevel 1 [list {c++ trampoline1253} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 ]]
+proc {c++ new GameAdvertiser default} { a0 a1 a2 a3 a4 a5 a6 a7  } {set retpi [uplevel 1 [list {c++ trampoline1257} $a0 $a1 $a2 $a3 $a4 $a5 $a6 $a7 ]]
 set ret $retpi
 return $ret
 }}
 
-method {setOverseerId} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1255} $this $a0 ]]
+method {setOverseerId} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1259} $this $a0 ]]
 return $retpi
 }
-method {setPeerCount} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1257} $this $a0 ]]
+method {setPeerCount} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1261} $this $a0 ]]
 return $retpi
 }
-method {setGameMode} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1259} $this $a0 ]]
+method {setGameMode} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1263} $this $a0 ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -5296,18 +5304,18 @@ destructor {
 ::itcl::class {GameDiscoverer} {
 inherit PacketProcessor
 namespace eval :: {
-proc {c++ new GameDiscoverer default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1262} $a0 $a1 $a2 ]]
+proc {c++ new GameDiscoverer default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1266} $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }}
 
-method {start} {  } {set retpi [uplevel 1 [list {c++ trampoline1264} $this ]]
+method {start} {  } {set retpi [uplevel 1 [list {c++ trampoline1268} $this ]]
 return $retpi
 }
-method {poll} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1266} $this $a0 ]]
+method {poll} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1270} $this $a0 ]]
 return $retpi
 }
-method {progress} {  } {set retpi [uplevel 1 [list {c++ trampoline1268} $this ]]
+method {progress} {  } {set retpi [uplevel 1 [list {c++ trampoline1272} $this ]]
 set ret $retpi
 return $ret
 }
@@ -5338,12 +5346,12 @@ destructor {
 ::itcl::class {SeqTextOutputGeraet} {
 inherit OutputNetworkGeraet
 namespace eval :: {
-proc {c++ new SeqTextOutputGeraet default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1272} $a0 $a1 $a2 ]]
+proc {c++ new SeqTextOutputGeraet default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1276} $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }}
 
-method {send} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1274} $this $a0 ]]
+method {send} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1278} $this $a0 ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -5366,7 +5374,7 @@ destructor {
 ::itcl::class {SeqTextInputGeraet} {
 inherit InputNetworkGeraet
 namespace eval :: {
-proc {c++ new TclSeqTextInputGeraet default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1277} $a0 $a1 $a2 ]]
+proc {c++ new TclSeqTextInputGeraet default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1281} $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }}
@@ -5395,10 +5403,10 @@ destructor {
 ::itcl::class {Peer} {
 inherit AObject
 public variable gid
- method accessor1283 {ignored ignored op} {
+ method accessor1287 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1282} $this]
+               set tmp [{c++ get1286} $this]
                set gid $tmp
 
              } elseif {$op == {write}} {
@@ -5407,10 +5415,10 @@ public variable gid
            }
 
 public variable nid
- method accessor1285 {ignored ignored op} {
+ method accessor1289 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1284} $this]
+               set tmp [{c++ get1288} $this]
                set nid $tmp
 
              } elseif {$op == {write}} {
@@ -5419,10 +5427,10 @@ public variable nid
            }
 
 public variable overseerReady
- method accessor1287 {ignored ignored op} {
+ method accessor1291 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1286} $this]
+               set tmp [{c++ get1290} $this]
                set overseerReady $tmp
 
              } elseif {$op == {write}} {
@@ -5431,10 +5439,10 @@ public variable overseerReady
            }
 
 public variable connectionAttempts
- method accessor1289 {ignored ignored op} {
+ method accessor1293 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1288} $this]
+               set tmp [{c++ get1292} $this]
                set connectionAttempts $tmp
 
              } elseif {$op == {write}} {
@@ -5443,10 +5451,10 @@ public variable connectionAttempts
            }
 
 public variable cxn
- method accessor1291 {ignored ignored op} {
+ method accessor1295 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1290} $this]
+               set tmp [{c++ get1294} $this]
                set cxn $tmp
 
              } elseif {$op == {write}} {
@@ -5455,10 +5463,10 @@ public variable cxn
            }
 
 public variable screenName
- method accessor1293 {ignored ignored op} {
+ method accessor1297 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1292} $this]
+               set tmp [{c++ get1296} $this]
                set screenName $tmp
 
              } elseif {$op == {write}} {
@@ -5467,10 +5475,10 @@ public variable screenName
            }
 
 public variable receivedStx
- method accessor1295 {ignored ignored op} {
+ method accessor1299 {ignored ignored op} {
              
              if {$op == {read}} {
-               set tmp [{c++ get1294} $this]
+               set tmp [{c++ get1298} $this]
                set receivedStx $tmp
 
              } elseif {$op == {write}} {
@@ -5487,35 +5495,35 @@ constructor {clazz cname arguments} {
                  "Tcl$clazz" : $clazz}] [expr {[string length $cname] && {*}==[string index $cname 0]?
                  [string range $cname 1 [string length $cname]] : $cname}] $arguments} {
 set gid {}
-            trace add variable gid {read write unset} "$this accessor1283"
+            trace add variable gid {read write unset} "$this accessor1287"
 set nid {}
-            trace add variable nid {read write unset} "$this accessor1285"
+            trace add variable nid {read write unset} "$this accessor1289"
 set overseerReady {}
-            trace add variable overseerReady {read write unset} "$this accessor1287"
+            trace add variable overseerReady {read write unset} "$this accessor1291"
 set connectionAttempts {}
-            trace add variable connectionAttempts {read write unset} "$this accessor1289"
+            trace add variable connectionAttempts {read write unset} "$this accessor1293"
 set cxn {}
-            trace add variable cxn {read write unset} "$this accessor1291"
+            trace add variable cxn {read write unset} "$this accessor1295"
 set screenName {}
-            trace add variable screenName {read write unset} "$this accessor1293"
+            trace add variable screenName {read write unset} "$this accessor1297"
 set receivedStx {}
-            trace add variable receivedStx {read write unset} "$this accessor1295"
+            trace add variable receivedStx {read write unset} "$this accessor1299"
 }
 destructor {
-trace remove variable gid {read write unset} "$this accessor1283"
-trace remove variable nid {read write unset} "$this accessor1285"
-trace remove variable overseerReady {read write unset} "$this accessor1287"
-trace remove variable connectionAttempts {read write unset} "$this accessor1289"
-trace remove variable cxn {read write unset} "$this accessor1291"
-trace remove variable screenName {read write unset} "$this accessor1293"
-trace remove variable receivedStx {read write unset} "$this accessor1295"
+trace remove variable gid {read write unset} "$this accessor1287"
+trace remove variable nid {read write unset} "$this accessor1289"
+trace remove variable overseerReady {read write unset} "$this accessor1291"
+trace remove variable connectionAttempts {read write unset} "$this accessor1293"
+trace remove variable cxn {read write unset} "$this accessor1295"
+trace remove variable screenName {read write unset} "$this accessor1297"
+trace remove variable receivedStx {read write unset} "$this accessor1299"
 }
 }
 
 ::itcl::class {NetIface} {
 inherit AObject
 namespace eval :: {
-proc {c++ new TclNetIface default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1297} $a0 $a1 ]]
+proc {c++ new TclNetIface default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1301} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }}
@@ -5607,97 +5615,97 @@ destructor {
 ::itcl::class {NetworkGame} {
 inherit AObject
 namespace eval :: {
-proc {c++ new NetworkGame default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1326} $a0 $a1 $a2 ]]
+proc {c++ new NetworkGame default} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1330} $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }}
 
-method {getLocalPeer} {  } {set retpi [uplevel 1 [list {c++ trampoline1328} $this ]]
+method {getLocalPeer} {  } {set retpi [uplevel 1 [list {c++ trampoline1332} $this ]]
 set ret $retpi
 return $ret
 }
-method {getOverseer} {  } {set retpi [uplevel 1 [list {c++ trampoline1330} $this ]]
+method {getOverseer} {  } {set retpi [uplevel 1 [list {c++ trampoline1334} $this ]]
 set ret $retpi
 return $ret
 }
-method {getPeerByConnection} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1332} $this $a0 ]]
+method {getPeerByConnection} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1336} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {getDisconnectReason} {  } {set retpi [uplevel 1 [list {c++ trampoline1334} $this ]]
+method {getDisconnectReason} {  } {set retpi [uplevel 1 [list {c++ trampoline1338} $this ]]
 set ret $retpi
 return $ret
 }
-method {setNetIface} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1336} $this $a0 ]]
+method {setNetIface} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1340} $this $a0 ]]
 return $retpi
 }
-method {setAdvertising} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1338} $this $a0 ]]
+method {setAdvertising} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1342} $this $a0 ]]
 return $retpi
 }
-method {stopAdvertising} {  } {set retpi [uplevel 1 [list {c++ trampoline1340} $this ]]
+method {stopAdvertising} {  } {set retpi [uplevel 1 [list {c++ trampoline1344} $this ]]
 return $retpi
 }
-method {startDiscoveryScan} {  } {set retpi [uplevel 1 [list {c++ trampoline1342} $this ]]
+method {startDiscoveryScan} {  } {set retpi [uplevel 1 [list {c++ trampoline1346} $this ]]
 return $retpi
 }
-method {discoveryScanProgress} {  } {set retpi [uplevel 1 [list {c++ trampoline1344} $this ]]
+method {discoveryScanProgress} {  } {set retpi [uplevel 1 [list {c++ trampoline1348} $this ]]
 set ret $retpi
 return $ret
 }
-method {discoveryScanDone} {  } {set retpi [uplevel 1 [list {c++ trampoline1346} $this ]]
+method {discoveryScanDone} {  } {set retpi [uplevel 1 [list {c++ trampoline1350} $this ]]
 set ret $retpi
 return $ret
 }
-method {getDiscoveryResults} {  } {set retpi [uplevel 1 [list {c++ trampoline1348} $this ]]
+method {getDiscoveryResults} {  } {set retpi [uplevel 1 [list {c++ trampoline1352} $this ]]
 set ret $retpi
 return $ret
 }
-method {setLocalPeerName} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1350} $this $a0 ]]
+method {setLocalPeerName} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1354} $this $a0 ]]
 return $retpi
 }
-method {setLocalPeerNID} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1352} $this $a0 ]]
+method {setLocalPeerNID} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1356} $this $a0 ]]
 return $retpi
 }
-method {setLocalPeerNIDAuto} {  } {set retpi [uplevel 1 [list {c++ trampoline1354} $this ]]
+method {setLocalPeerNIDAuto} {  } {set retpi [uplevel 1 [list {c++ trampoline1358} $this ]]
 return $retpi
 }
-method {connectToNothing} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1356} $this $a0 $a1 ]]
+method {connectToNothing} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1360} $this $a0 $a1 ]]
 return $retpi
 }
-method {connectToDiscovery} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1358} $this $a0 ]]
+method {connectToDiscovery} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1362} $this $a0 ]]
 return $retpi
 }
-method {connectToLan} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1360} $this $a0 $a1 ]]
+method {connectToLan} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1364} $this $a0 $a1 ]]
 return $retpi
 }
-method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1362} $this $a0 ]]
+method {update} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1366} $this $a0 ]]
 return $retpi
 }
-method {updateFieldSize} {  } {set retpi [uplevel 1 [list {c++ trampoline1364} $this ]]
+method {updateFieldSize} {  } {set retpi [uplevel 1 [list {c++ trampoline1368} $this ]]
 return $retpi
 }
-method {changeField} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1366} $this $a0 ]]
+method {changeField} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1370} $this $a0 ]]
 return $retpi
 }
-method {alterDats} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1368} $this $a0 $a1 ]]
+method {alterDats} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1372} $this $a0 $a1 ]]
 return $retpi
 }
-method {alterDatp} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1370} $this $a0 $a1 ]]
+method {alterDatp} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1374} $this $a0 $a1 ]]
 return $retpi
 }
-method {sendUnicast} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1372} $this $a0 $a1 ]]
+method {sendUnicast} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1376} $this $a0 $a1 ]]
 return $retpi
 }
-method {sendOverseer} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1374} $this $a0 $a1 ]]
+method {sendOverseer} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1378} $this $a0 $a1 ]]
 return $retpi
 }
-method {sendBroadcast} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1376} $this $a0 ]]
+method {sendBroadcast} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1380} $this $a0 ]]
 return $retpi
 }
-method {sendGameMode} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1378} $this $a0 ]]
+method {sendGameMode} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1382} $this $a0 ]]
 return $retpi
 }
-method {setBlameMask} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1380} $this $a0 $a1 ]]
+method {setBlameMask} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1384} $this $a0 $a1 ]]
 return $retpi
 }
 constructor {clazz cname arguments} {
@@ -5772,160 +5780,160 @@ destructor {
 
 ::itcl::class {ConfReg} {
 inherit AObject
-method {open} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1383} $this $a0 $a1 ]]
+method {open} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1387} $this $a0 $a1 ]]
 return $retpi
 }
-method {create} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1385} $this $a0 $a1 ]]
+method {create} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1389} $this $a0 $a1 ]]
 return $retpi
 }
-method {close} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1387} $this $a0 ]]
+method {close} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1391} $this $a0 ]]
 return $retpi
 }
-method {closeAll} {  } {set retpi [uplevel 1 [list {c++ trampoline1389} $this ]]
+method {closeAll} {  } {set retpi [uplevel 1 [list {c++ trampoline1393} $this ]]
 return $retpi
 }
-method {modify} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1391} $this $a0 ]]
+method {modify} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1395} $this $a0 ]]
 return $retpi
 }
-method {unmodify} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1393} $this $a0 ]]
+method {unmodify} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1397} $this $a0 ]]
 return $retpi
 }
-method {sync} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1395} $this $a0 ]]
+method {sync} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1399} $this $a0 ]]
 return $retpi
 }
-method {syncAll} {  } {set retpi [uplevel 1 [list {c++ trampoline1397} $this ]]
+method {syncAll} {  } {set retpi [uplevel 1 [list {c++ trampoline1401} $this ]]
 return $retpi
 }
-method {revert} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1399} $this $a0 ]]
+method {revert} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1403} $this $a0 ]]
 return $retpi
 }
-method {revertAll} {  } {set retpi [uplevel 1 [list {c++ trampoline1401} $this ]]
+method {revertAll} {  } {set retpi [uplevel 1 [list {c++ trampoline1405} $this ]]
 return $retpi
 }
-method {addToWhitelist} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1403} $this $a0 ]]
+method {addToWhitelist} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1407} $this $a0 ]]
 return $retpi
 }
-method {removeFromWhitelist} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1405} $this $a0 ]]
+method {removeFromWhitelist} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1409} $this $a0 ]]
 return $retpi
 }
-method {clearWhitelist} {  } {set retpi [uplevel 1 [list {c++ trampoline1407} $this ]]
+method {clearWhitelist} {  } {set retpi [uplevel 1 [list {c++ trampoline1411} $this ]]
 return $retpi
 }
-method {setWhitelistOnly} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1409} $this $a0 ]]
+method {setWhitelistOnly} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1413} $this $a0 ]]
 return $retpi
 }
-method {renameFile} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1411} $this $a0 $a1 ]]
+method {renameFile} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1415} $this $a0 $a1 ]]
 return $retpi
 }
 
-method {exists} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1413} $this $a0 ]]
+method {exists} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1417} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {bool} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1415} $this $a0 ]]
+method {bool} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1419} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {int} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1417} $this $a0 ]]
+method {int} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1421} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {float} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1419} $this $a0 ]]
+method {float} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1423} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {str} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1421} $this $a0 ]]
+method {str} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1425} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {setb} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1423} $this $a0 $a1 ]]
+method {setb} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1427} $this $a0 $a1 ]]
 return $retpi
 }
-method {seti} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1425} $this $a0 $a1 ]]
+method {seti} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1429} $this $a0 $a1 ]]
 return $retpi
 }
-method {setf} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1427} $this $a0 $a1 ]]
+method {setf} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1431} $this $a0 $a1 ]]
 return $retpi
 }
-method {sets} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1429} $this $a0 $a1 ]]
+method {sets} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1433} $this $a0 $a1 ]]
 return $retpi
 }
-method {add} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1431} $this $a0 $a1 $a2 ]]
+method {add} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1435} $this $a0 $a1 $a2 ]]
 return $retpi
 }
-method {addb} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1433} $this $a0 $a1 $a2 ]]
+method {addb} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1437} $this $a0 $a1 $a2 ]]
 return $retpi
 }
-method {addi} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1435} $this $a0 $a1 $a2 ]]
+method {addi} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1439} $this $a0 $a1 $a2 ]]
 return $retpi
 }
-method {addf} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1437} $this $a0 $a1 $a2 ]]
+method {addf} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1441} $this $a0 $a1 $a2 ]]
 return $retpi
 }
-method {adds} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1439} $this $a0 $a1 $a2 ]]
+method {adds} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1443} $this $a0 $a1 $a2 ]]
 return $retpi
 }
-method {remove} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1441} $this $a0 ]]
+method {remove} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1445} $this $a0 ]]
 return $retpi
 }
-method {append} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1443} $this $a0 $a1 ]]
+method {append} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1447} $this $a0 $a1 ]]
 return $retpi
 }
-method {appendb} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1445} $this $a0 $a1 ]]
+method {appendb} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1449} $this $a0 $a1 ]]
 return $retpi
 }
-method {appendi} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1447} $this $a0 $a1 ]]
+method {appendi} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1451} $this $a0 $a1 ]]
 return $retpi
 }
-method {appendf} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1449} $this $a0 $a1 ]]
+method {appendf} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1453} $this $a0 $a1 ]]
 return $retpi
 }
-method {appends} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1451} $this $a0 $a1 ]]
+method {appends} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1455} $this $a0 $a1 ]]
 return $retpi
 }
-method {remix} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1453} $this $a0 $a1 ]]
+method {remix} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1457} $this $a0 $a1 ]]
 return $retpi
 }
-method {name} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1455} $this $a0 ]]
+method {name} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1459} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {copy} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1457} $this $a0 $a1 ]]
+method {copy} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1461} $this $a0 $a1 ]]
 return $retpi
 }
-method {getType} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1459} $this $a0 ]]
+method {getType} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1463} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {length} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1461} $this $a0 ]]
+method {length} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1465} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {isGroup} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1463} $this $a0 ]]
+method {isGroup} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1467} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {isArray} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1465} $this $a0 ]]
+method {isArray} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1469} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {isList} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1467} $this $a0 ]]
+method {isList} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1471} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {isAggregate} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1469} $this $a0 ]]
+method {isAggregate} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1473} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {isScalar} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1471} $this $a0 ]]
+method {isScalar} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1475} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {isNumber} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1473} $this $a0 ]]
+method {isNumber} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1477} $this $a0 ]]
 set ret $retpi
 return $ret
 }
-method {getSourceLine} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1475} $this $a0 ]]
+method {getSourceLine} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1479} $this $a0 ]]
 set ret $retpi
 return $ret
 }
@@ -6038,10 +6046,10 @@ destructor {
 }
 }
 
- proc accessor1478 {ignored ignored op} {
+ proc accessor1482 {ignored ignored op} {
              global globalConf
              if {$op == {read}} {
-               set tmp [{c++ get1477} ]
+               set tmp [{c++ get1481} ]
                set globalConf $tmp
 
              } elseif {$op == {write}} {
@@ -6049,90 +6057,90 @@ destructor {
              } else { error "Cannot unset C++ variable globalConf" }
            }
 
-proc {confcpy} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1479} $a0 $a1 ]]
+proc {confcpy} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1483} $a0 $a1 ]]
 return $retpi
 }
-proc {l10n_acceptLanguage} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1481} $a0 ]]
+proc {l10n_acceptLanguage} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1485} $a0 ]]
 return $retpi
 }
-proc {l10n_loadCatalogue} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1483} $a0 $a1 ]]
+proc {l10n_loadCatalogue} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1487} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }
-proc {l10n_purgeCatalogue} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1485} $a0 ]]
+proc {l10n_purgeCatalogue} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1489} $a0 ]]
 return $retpi
 }
 
-proc {_} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1487} $a0 $a1 $a2 ]]
+proc {_} { a0 a1 a2  } {set retpi [uplevel 1 [list {c++ trampoline1491} $a0 $a1 $a2 ]]
 set ret $retpi
 return $ret
 }
-proc {namegenAny} {  } {set retpi [uplevel 1 [list {c++ trampoline1489} ]]
+proc {namegenAny} {  } {set retpi [uplevel 1 [list {c++ trampoline1493} ]]
 set ret $retpi
 return $ret
 }
-proc {namegenGet} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1491} $a0 ]]
+proc {namegenGet} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1495} $a0 ]]
 set ret $retpi
 return $ret
 }
-proc {newInterpreter} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1493} $a0 $a1 ]]
+proc {newInterpreter} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1497} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }
-proc {delInterpreter} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1495} $a0 ]]
+proc {delInterpreter} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1499} $a0 ]]
 return $retpi
 }
 
-proc {safe_source} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1497} $a0 ]]
+proc {safe_source} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1501} $a0 ]]
 return $retpi
 }
-proc {bkg_start} {  } {set retpi [uplevel 1 [list {c++ trampoline1499} ]]
+proc {bkg_start} {  } {set retpi [uplevel 1 [list {c++ trampoline1503} ]]
 return $retpi
 }
-proc {bkg_req} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1501} $a0 ]]
+proc {bkg_req} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1505} $a0 ]]
 return $retpi
 }
-proc {bkg_ans} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1503} $a0 ]]
+proc {bkg_ans} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1507} $a0 ]]
 return $retpi
 }
-proc {bkg_req2} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1505} $a0 $a1 ]]
+proc {bkg_req2} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1509} $a0 $a1 ]]
 return $retpi
 }
-proc {bkg_ans2} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1507} $a0 $a1 ]]
+proc {bkg_ans2} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1511} $a0 $a1 ]]
 return $retpi
 }
-proc {bkg_rcv} {  } {set retpi [uplevel 1 [list {c++ trampoline1509} ]]
+proc {bkg_rcv} {  } {set retpi [uplevel 1 [list {c++ trampoline1513} ]]
 set ret $retpi
 return $ret
 }
-proc {bkg_get} {  } {set retpi [uplevel 1 [list {c++ trampoline1511} ]]
+proc {bkg_get} {  } {set retpi [uplevel 1 [list {c++ trampoline1515} ]]
 set ret $retpi
 return $ret
 }
-proc {bkg_wait} {  } {set retpi [uplevel 1 [list {c++ trampoline1513} ]]
+proc {bkg_wait} {  } {set retpi [uplevel 1 [list {c++ trampoline1517} ]]
 return $retpi
 }
 
-proc {crypto_init} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1515} $a0 ]]
+proc {crypto_init} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1519} $a0 ]]
 return $retpi
 }
-proc {crypto_rand} {  } {set retpi [uplevel 1 [list {c++ trampoline1517} ]]
+proc {crypto_rand} {  } {set retpi [uplevel 1 [list {c++ trampoline1521} ]]
 set ret $retpi
 return $ret
 }
-proc {crypto_powm} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1519} $a0 $a1 ]]
+proc {crypto_powm} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1523} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }
 
-proc {performValidation} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline1521} $a0 $a1 $a2 $a3 ]]
+proc {performValidation} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline1525} $a0 $a1 $a2 $a3 ]]
 return $retpi
 }
-proc {getValidationResultA} {  } {set retpi [uplevel 1 [list {c++ trampoline1523} ]]
+proc {getValidationResultA} {  } {set retpi [uplevel 1 [list {c++ trampoline1527} ]]
 set ret $retpi
 return $ret
 }
-proc {getValidationResultB} {  } {set retpi [uplevel 1 [list {c++ trampoline1525} ]]
+proc {getValidationResultB} {  } {set retpi [uplevel 1 [list {c++ trampoline1529} ]]
 set ret $retpi
 return $ret
 }
@@ -6140,7 +6148,7 @@ return $ret
 ::itcl::class {NetworkTest} {
 inherit TestState
 namespace eval :: {
-proc {c++ new NetworkTest default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1528} $a0 $a1 ]]
+proc {c++ new NetworkTest default} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1532} $a0 $a1 ]]
 set ret $retpi
 return $ret
 }}
@@ -6161,38 +6169,69 @@ destructor {
 }
 
 
-proc {ship_mixer_init} {  } {set retpi [uplevel 1 [list {c++ trampoline1530} ]]
+proc {ship_mixer_init} {  } {set retpi [uplevel 1 [list {c++ trampoline1534} ]]
 return $retpi
 }
-proc {ship_mixer_end} {  } {set retpi [uplevel 1 [list {c++ trampoline1532} ]]
-return $retpi
-}
-
-proc {joystick_count} {  } {set retpi [uplevel 1 [list {c++ trampoline1534} ]]
-set ret $retpi
-return $ret
-}
-proc {joystick_name} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1536} $a0 ]]
-set ret $retpi
-return $ret
-}
-proc {joystick_axisCount} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1538} $a0 $a1 ]]
-set ret $retpi
-return $ret
-}
-proc {joystick_buttonCount} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1540} $a0 $a1 ]]
-set ret $retpi
-return $ret
-}
-
-proc {frame_recorder_enable} {  } {set retpi [uplevel 1 [list {c++ trampoline1542} ]]
-return $retpi
-}
-proc {frame_recorder_setFrameRate} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1544} $a0 ]]
+proc {ship_mixer_end} {  } {set retpi [uplevel 1 [list {c++ trampoline1536} ]]
 return $retpi
 }
 
-proc {debugTclExports} {  } {set retpi [uplevel 1 [list {c++ trampoline1546} ]]
+proc {joystick_count} {  } {set retpi [uplevel 1 [list {c++ trampoline1538} ]]
+set ret $retpi
+return $ret
+}
+proc {joystick_name} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1540} $a0 ]]
+set ret $retpi
+return $ret
+}
+proc {joystick_axisCount} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1542} $a0 $a1 ]]
+set ret $retpi
+return $ret
+}
+proc {joystick_buttonCount} { a0 a1  } {set retpi [uplevel 1 [list {c++ trampoline1544} $a0 $a1 ]]
+set ret $retpi
+return $ret
+}
+
+::itcl::class {VersusMatch} {
+inherit AObject
+method {step} {  } {set retpi [uplevel 1 [list {c++ trampoline1547} $this ]]
+set ret $retpi
+return $ret
+}
+method {score} {  } {set retpi [uplevel 1 [list {c++ trampoline1549} $this ]]
+set ret $retpi
+return $ret
+}
+constructor {clazz cname arguments} {
+      # Every class we extend (if it isn't just AObject) has
+      # exactly one purpose in its constructor: Call the parent
+      # constructor until we reach AObject. Therefore, to avoid
+      # multiple instantiation, only call the first super
+      AObject::constructor [expr {[string length $cname] && {*}==[string index $cname 0]?
+                 "Tcl$clazz" : $clazz}] [expr {[string length $cname] && {*}==[string index $cname 0]?
+                 [string range $cname 1 [string length $cname]] : $cname}] $arguments} {
+
+
+}
+destructor {
+
+
+}
+}
+
+proc {VersusMatch_create} { a0 a1 a2 a3  } {set retpi [uplevel 1 [list {c++ trampoline1551} $a0 $a1 $a2 $a3 ]]
+set ret $retpi
+return $ret
+}
+proc {frame_recorder_enable} {  } {set retpi [uplevel 1 [list {c++ trampoline1553} ]]
+return $retpi
+}
+proc {frame_recorder_setFrameRate} { a0  } {set retpi [uplevel 1 [list {c++ trampoline1555} $a0 ]]
+return $retpi
+}
+
+proc {debugTclExports} {  } {set retpi [uplevel 1 [list {c++ trampoline1557} ]]
 return $retpi
 }
 
@@ -6483,7 +6522,9 @@ set glueClass(fun<void:Ship*,bool>) yes
 set glueClass(radar_t) yes
 
 
+
 set glueClass(Ship) yes
+
 
 
 
@@ -6618,7 +6659,7 @@ set glueClass(EffectsHandler) yes
 
 
 set nullEffectsHandler {}
-trace add variable nullEffectsHandler {read write unset} accessor697
+trace add variable nullEffectsHandler {read write unset} accessor701
 set glueClass(Background) yes
 
 
@@ -6693,9 +6734,9 @@ set glueClass(HumanController) yes
 
 
 set isCompositionBufferInUse {}
-trace add variable isCompositionBufferInUse {read write unset} accessor803
+trace add variable isCompositionBufferInUse {read write unset} accessor807
 set compositionBufferPrefix {}
-trace add variable compositionBufferPrefix {read write unset} accessor806
+trace add variable compositionBufferPrefix {read write unset} accessor810
 
 
 
@@ -6785,9 +6826,9 @@ set glueClass(Manipulator) yes
 
 
 set planetgen_width {}
-trace add variable planetgen_width {read write unset} accessor948
+trace add variable planetgen_width {read write unset} accessor952
 set planetgen_height {}
-trace add variable planetgen_height {read write unset} accessor950
+trace add variable planetgen_height {read write unset} accessor954
 set glueClass(PlanetGeneratorParms) yes
 
 
@@ -6835,66 +6876,66 @@ set glueClass(PlanetGeneratorParms) yes
 
 
 set state {}
-trace add variable state {read write unset} accessor1072
+trace add variable state {read write unset} accessor1076
 
 set PLATFORM {}
-trace add variable PLATFORM {read write unset} accessor1074
+trace add variable PLATFORM {read write unset} accessor1078
 set screenW {}
-trace add variable screenW {read write unset} accessor1076
+trace add variable screenW {read write unset} accessor1080
 set screenH {}
-trace add variable screenH {read write unset} accessor1078
+trace add variable screenH {read write unset} accessor1082
 set vheight {}
-trace add variable vheight {read write unset} accessor1080
+trace add variable vheight {read write unset} accessor1084
 set generalAlphaBlending {}
-trace add variable generalAlphaBlending {read write unset} accessor1083
+trace add variable generalAlphaBlending {read write unset} accessor1087
 set alphaBlendingEnabled {}
-trace add variable alphaBlendingEnabled {read write unset} accessor1086
+trace add variable alphaBlendingEnabled {read write unset} accessor1090
 set smoothScaling {}
-trace add variable smoothScaling {read write unset} accessor1089
+trace add variable smoothScaling {read write unset} accessor1093
 set highQuality {}
-trace add variable highQuality {read write unset} accessor1092
+trace add variable highQuality {read write unset} accessor1096
 set antialiasing {}
-trace add variable antialiasing {read write unset} accessor1095
+trace add variable antialiasing {read write unset} accessor1099
 
 set headless {}
-trace add variable headless {read write unset} accessor1097
+trace add variable headless {read write unset} accessor1101
 set cameraX1 {}
-trace add variable cameraX1 {read write unset} accessor1100
+trace add variable cameraX1 {read write unset} accessor1104
 set cameraX2 {}
-trace add variable cameraX2 {read write unset} accessor1103
+trace add variable cameraX2 {read write unset} accessor1107
 set cameraY1 {}
-trace add variable cameraY1 {read write unset} accessor1106
+trace add variable cameraY1 {read write unset} accessor1110
 set cameraY2 {}
-trace add variable cameraY2 {read write unset} accessor1109
+trace add variable cameraY2 {read write unset} accessor1113
 set cameraCX {}
-trace add variable cameraCX {read write unset} accessor1112
+trace add variable cameraCX {read write unset} accessor1116
 set cameraCY {}
-trace add variable cameraCY {read write unset} accessor1115
+trace add variable cameraCY {read write unset} accessor1119
 set cameraZoom {}
-trace add variable cameraZoom {read write unset} accessor1118
+trace add variable cameraZoom {read write unset} accessor1122
 set cursorX {}
-trace add variable cursorX {read write unset} accessor1121
+trace add variable cursorX {read write unset} accessor1125
 set cursorY {}
-trace add variable cursorY {read write unset} accessor1124
+trace add variable cursorY {read write unset} accessor1128
 set oldCursorX {}
-trace add variable oldCursorX {read write unset} accessor1127
+trace add variable oldCursorX {read write unset} accessor1131
 set oldCursorY {}
-trace add variable oldCursorY {read write unset} accessor1130
+trace add variable oldCursorY {read write unset} accessor1134
 
 set currentFrameTime {}
-trace add variable currentFrameTime {read write unset} accessor1132
+trace add variable currentFrameTime {read write unset} accessor1136
 set currentFrameTimeLeft {}
-trace add variable currentFrameTimeLeft {read write unset} accessor1134
+trace add variable currentFrameTimeLeft {read write unset} accessor1138
 set currentVFrameLast {}
-trace add variable currentVFrameLast {read write unset} accessor1136
+trace add variable currentVFrameLast {read write unset} accessor1140
 set frameRate {}
-trace add variable frameRate {read write unset} accessor1138
+trace add variable frameRate {read write unset} accessor1142
 set sparkCountMultiplier {}
-trace add variable sparkCountMultiplier {read write unset} accessor1140
+trace add variable sparkCountMultiplier {read write unset} accessor1144
 set gameClock {}
-trace add variable gameClock {read write unset} accessor1142
+trace add variable gameClock {read write unset} accessor1146
 set STD_CELL_SZ {}
-trace add variable STD_CELL_SZ {read write unset} accessor1144
+trace add variable STD_CELL_SZ {read write unset} accessor1148
 set glueClass(SquareIcon) yes
 
 
@@ -6918,9 +6959,9 @@ set glueClass(Antenna) yes
 
 
 set antenna {}
-trace add variable antenna {read write unset} accessor1181
+trace add variable antenna {read write unset} accessor1185
 set packetDropMask {}
-trace add variable packetDropMask {read write unset} accessor1184
+trace add variable packetDropMask {read write unset} accessor1188
 
 set glueClass(Tuner) yes
 
@@ -7112,7 +7153,7 @@ set glueClass(ConfReg) yes
 
 
 set globalConf {}
-trace add variable globalConf {read write unset} accessor1478
+trace add variable globalConf {read write unset} accessor1482
 
 
 
@@ -7150,6 +7191,11 @@ set glueClass(NetworkTest) yes
 
 
 
+
+
+
+
+set glueClass(VersusMatch) yes
 
 
 
