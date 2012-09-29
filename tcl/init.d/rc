@@ -48,6 +48,8 @@ login [
   "acctinfo",
   "shipdnld",
   "aidownld",
+  "bsdownld",
+  "bsload",
   "mainmenu",
 ]
 refreshShips [
