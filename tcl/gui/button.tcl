@@ -76,11 +76,12 @@
       }
     }
 
-    method draw {} {
+    method draw {{enableFading yes}} {
       global applicationUpdateTime
       # Update highlighting
-      if {$highlighting > 0} {
-        set highlighting [expr {max(0.0,$highlighting-0.002*$applicationUpdateTime)}]
+      if {$highlighting > 0 && $enableFading} {
+        set highlighting \
+            [expr {max(0.0,$highlighting-0.002*$applicationUpdateTime)}]
       }
 
       # Draw background gradient first

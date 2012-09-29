@@ -160,8 +160,8 @@
     }
 
     method draw {} {
-      if {$activatee == [$pane getActive]} {set highlighting 1}
-      Button::draw
+      set active [expr {$activatee == [$pane getActive]}]
+      if {$active} {set highlighting 1}
+      Button::draw [expr {!$active}]
     }
   }
-
