@@ -38,10 +38,11 @@
     inherit BorderContainer
 
     constructor {name inittext {load {}} {save {}}
-                 {actionScript {}} {validateScript {}}} {
+                 {actionScript {}} {validateScript {}} {changedScript {}}} {
       BorderContainer::constructor 0.01
     } {
-      set impl [new ::gui::TextFieldImpl $inittext $load $save $actionScript $validateScript]
+      set impl [new ::gui::TextFieldImpl $inittext $load $save $actionScript \
+                    $validateScript $changedScript]
       set labl [new ::gui::ActivatorLabel $name $impl]
       setElt left $labl
       setElt centre $impl
@@ -103,6 +104,7 @@
     variable saver
     variable actionScript
     variable validator
+    variable changedScript
 
     # True if we show *s instead of characters
     variable obscured
@@ -110,7 +112,7 @@
     # Whether to allow focus
     variable enabled
 
-    constructor {initContents ld sv as vd} {
+    constructor {initContents ld sv as vd cs} {
       AWidget::constructor
     } {
       set contents $initContents
@@ -122,6 +124,7 @@
       set saver $sv
       set actionScript $as
       set validator $vd
+      set changedScript $cs
       set obscured no
       set enabled yes
       revert
@@ -210,7 +213,7 @@
 
     method revert {} {
       if {[string length $loader]} {
-        set contents [namespace eval :: $loader]
+        setText [namespace eval :: $loader]
       }
     }
 
@@ -292,7 +295,7 @@
           if {$cursor > 0} {
             set prefix [string range $contents 0 [expr {$cursor-2}]]
             set postfix [string range $contents $cursor [string length $contents]]
-            set contents $prefix$postfix
+            setText $prefix$postfix
             moveCursor [expr {$cursor-1}]
           }
         }
@@ -325,7 +328,7 @@
 
           set prefix [string range $contents 0 $ix-1]
           set suffix [string range $contents $end end]
-          set contents $prefix$suffix
+          setText $prefix$suffix
           moveCursor [expr {$ix}]
         }
         DOWN:?-C?:k_d -
@@ -333,7 +336,7 @@
           if {$cursor < [string length $contents]} {
             set prefix [string range $contents 0 [expr {$cursor-1}]]
             set postfix [string range $contents [expr {$cursor+1}] [string length $contents]]
-            set contents $prefix$postfix
+            setText $prefix$postfix
           }
         }
         DOWN:?A-?:k_d -
@@ -352,10 +355,10 @@
 
           set prefix [string range $contents 0 $end-1]
           set suffix [string range $contents $ix end]
-          set contents $prefix$suffix
+          setText $prefix$suffix
         }
         DOWN:?-C?:k_k {
-          set contents [string range $contents 0 $cursor-1]
+          setText [string range $contents 0 $cursor-1]
         }
         DOWN:????:k_tab -
         DOWN:????:k_escape {loseFocus}
@@ -374,7 +377,7 @@
         # Only update contents if valid
         if {[string length $validator]==0
         ||  [namespace eval :: "$validator [list $newContents]"]} {
-          set contents $newContents
+          setText $newContents
           moveCursor [expr {$cursor+1}]
         }
       }
@@ -410,7 +413,12 @@
     }
 
     method getText {} {return $contents}
-    method setText txt {set contents $txt}
+    method setText txt {
+      set contents $txt
+      if {$changedScript ne {}} {
+        namespace eval :: $changedScript
+      }
+    }
     method setEnabled enab {
       set enabled $enab
       if {!$enabled} loseFocus

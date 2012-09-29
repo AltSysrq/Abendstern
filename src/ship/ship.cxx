@@ -21,6 +21,8 @@
 
 #include <GL/gl.h>
 
+#include <libconfig.h++>
+
 #include "src/sim/game_field.hxx"
 #include "src/globals.hxx"
 #include "src/opto_flags.hxx"
@@ -55,6 +57,7 @@
 #include "src/net/ship_damage_geraet.hxx"
 
 using namespace std;
+using libconfig::Setting;
 
 #ifdef AB_OPENGL_14
 struct ShipRenderer {
@@ -1947,5 +1950,20 @@ Ship::Category Ship::categorise() const noth {
   //Interceptor: Reinforcement < 1
   if (reinforcement < 1) return Interceptor;
   //Anything else: Fighter
+  return Fighter;
+}
+
+Ship::Category Ship::categorise(const char* root) {
+  //Same rules as member function
+  const Setting& s(conf.lookup(root));
+  unsigned numCells = s["cells"].getLength();
+  float reinforcement = s["info"]["reinforcement"];
+
+  if (numCells < 25) return Swarm;
+  if (numCells >= 256 && reinforcement >= 3) return Subcapital;
+  if (numCells >= 256) return Defender;
+
+  if (reinforcement >= 3) return Attacker;
+  if (reinforcement < 1) return Interceptor;
   return Fighter;
 }

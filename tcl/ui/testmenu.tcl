@@ -50,10 +50,10 @@ proc runCmd cmd {
   }
 }
 
-proc setHumanShip ix {
+proc setHumanShip {root} {
   global shipSelector
-  set ::humanShip $ix ;# TestState
-  set ::humanShipMount [$ str hangar.effective.\[$ix\]] ;# Other
+  #set ::humanShip $ix ;# TestState
+  set ::humanShipMount $root
 }
 
 class TestMode {
@@ -65,7 +65,7 @@ class TestMode {
     ::makeHangarEffective [$::hangarList getSelection]
     set ::humanShip 0
     set ::humanShipMount [$ str hangar.effective.\[0\]]
-    $::shipSelector reset hangar.effective
+    #$::shipSelector reset hangar.effective
   }
   constructor a {
     ::gui::Mode::constructor
@@ -183,7 +183,7 @@ class TestMode {
     $hangarList setSelection 0
     $tabs add [_ T a tab_hangar] $hangarTab
     global shipSelector
-    set shipSelector [new gui::ShipChooser hangar.all_ships setHumanShip]
+    set shipSelector [new gui::ShipChooser setHumanShip]
     makeHangarEffective
     $tabs add [_ T a tab_ship] $shipSelector
     set settingsTop [new gui::BorderContainer 0 0.02]

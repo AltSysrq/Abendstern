@@ -971,6 +971,8 @@ class Ship: public GameObject {
 
   /** Returns the category into which this Ship falls. */
   Category categorise() const noth;
+  /** Categorises a ship by examining only its config root. */
+  static Category categorise(const char*);
 
   private:
   /* Subtract the given Cell's information from the ship, and perform any

@@ -567,6 +567,7 @@ class final Ship GameObject {
   fun cstr getDeathAttributions
   fun Ship::Category categorise
 }
+fun Ship::Category {Ship::categorise Ship_categorise} cstr
 
 class final ShipImageRenderer {} {
   fun bool renderNext

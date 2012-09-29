@@ -5,17 +5,15 @@ class ShipEditorDeletor {
 
   variable editor
   variable basename
-  variable index
 
-  constructor {edr bn ix} {
+  constructor {edr bn} {
     ::gui::Mode::constructor
   } {
     set editor $edr
     set basename $bn
-    set index $ix
 
     set root [new ::gui::VerticalContainer 0.01 centre]
-    set prettyname [$ str ship:$basename.info.name]
+    set prettyname [$ str $basename.info.name]
     $root add [new ::gui::Label [_ A editor delmode_title] centre]
     $root add [new ::gui::Label [_ A editor delmode_prompt] centre]
     $root add [new ::gui::Label "$prettyname?" centre]
@@ -33,9 +31,9 @@ class ShipEditorDeletor {
   }
 
   method accept {} {
-    set mount ship:$basename
+    set mount $basename
     set cls [string tolower [$ str $mount.info.class]]
-    set name $basename
+    set name [shipMount2Name $basename]
     $ close $mount
     file delete [shipMount2Path $mount]
     for {set i 0} {$i < [$ length hangar.all_ships]} {incr i} {
@@ -51,8 +49,6 @@ class ShipEditorDeletor {
 
     refreshStandardHangars
     $ sync hangar
-
-    set ::shipEditorSelected [expr {$index != 0? $index-1 : 0}]
 
     abort
   }

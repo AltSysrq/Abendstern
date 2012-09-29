@@ -95,6 +95,28 @@ $state setCallback [_ A boot ships] {
     expr {($numShipsToLoad-[llength $shipLoadQueue])*100/$numShipsToLoad}
   } else {
     refreshStandardHangars
+    # Ensure that the user has "preferred" ships
+    if {![$ exists conf.preferred]} {
+      $ add conf preferred STGroup
+    }
+    foreach class {A B C} {
+      if {![$ exists conf.preferred.$class] ||
+          ![$ exists [$ str conf.preferred.$class]]} {
+        catch {
+          $ remove conf.preferred.$class
+        }
+        $ adds conf.preferred $class \
+            [shipName2Mount [$ str hangar.[string tolower $class].\[0\]]]
+      }
+    }
+
+    if {![$ exists conf.preferred.main] ||
+        ![$ exists [$ str conf.preferred.main]]} {
+      catch {
+        $ remove conf.preferred.main
+      }
+      $ adds conf.preferred main [$ str conf.preferred.C]
+    }
     expr {200}
   }
 }

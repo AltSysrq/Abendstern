@@ -1,191 +1,368 @@
-  # ShipChooser allows the user to select a Ship from a libconfig
-  # catalogue. The current ship, along with some info, is shown
-  # in the dialogue.
-  # Stats for power and capacitance are the raw values divided
-  # by the number of cells in the ship.
-  # Whenever the ship is changed, the provided action is called,
-  # with the new index appended.
-  # At the bottom is a search field; when the user types into
-  # this field, only ships whose names contain that string
-  # (case insensitive) will be displayed, unless no ships do,
-  # in which case the current ship cannot be changed
-  class ShipChooser {
-    inherit BorderContainer
+# The ShipChooser allows the user to select a ship, filtering by name, author,
+# class, category, and user hangar.
+class ShipChooser {
+  inherit BorderContainer
 
-    variable catalogue
-    variable index
-    variable display
-    variable ship
-    variable field
+  variable action
+  variable fullList
+  variable filteredList
+  variable ssgGraph
+  variable field
+  variable ship
+  variable display
+  variable hangarsIndexed {}
 
-    variable ssgGraph
-    variable action
+  variable lstShips
+  variable lstAuthors
+  variable lstClasses
+  variable lstCategories
+  variable lstHangars
+  variable lname
+  variable lauthor
+  variable fsearch
 
-    variable nameLabel
-    variable authorLabel
-    variable searchField
-    variable prevSearchText
+  # Creates a new ShipChooser.
+  # action: Script to run when the ship selection is changed; has the root of
+  #         the ship appended.
+  # classes: A list of classes to allow the user to select; {} indicates the
+  #          "all classes" option.
+  # hangarActions: Not yet implemented
+  # additionalComponents: Components to add to the bottom pane
+  constructor {
+    action_
+    {classes {{} A B C}}
+    {hangarActions {}}
+    {additionalComponents {}}
+  } {
+    BorderContainer::constructor
+  } {
+    set fullList [generate-ship-list]
+    set action $action_
+    set display [new ::gui::SimpleShipDisplay]
+    set field [new GameField default 1 1]
+    set ship ""
 
-    constructor {cat act {init 0}} {
-      BorderContainer::constructor
-    } {
-      set catalogue $cat
-      set index $init
-      set action $act
-      set display [new ::gui::SimpleShipDisplay]
-      set field [new GameField default 1 1]
-      set ship ""
+    set lstShips [new ::gui::List \
+                      [_ A shipbrowse shiplist] {} no \
+                      [list $this selection-changed]]
+    set lstAuthors [new ::gui::List \
+                        [_ A editor author] [get-author-list] yes \
+                        [list $this filter-changed]]
+    set lstClasses [new ::gui::List \
+                        [_ A editor ship_class] [get-class-list $classes] yes \
+                        [list $this filter-changed]]
+    set lstCategories [new ::gui::List \
+                           [_ A editor category] [get-category-list] yes \
+                           [list $this filter-changed]]
+    set lstHangars [new ::gui::List \
+                        [_ A hangar in_hangar] [get-hangar-list] yes \
+                        [list $this filter-changed]]
+    set lname [new ::gui::Label ""]
+    set lauthor [new ::gui::Label ""]
+    set fsearch [new ::gui::TextField [_ A ship_chooser filter] "" {} {} {} \
+                     {} [list $this filter-changed]]
+    set ssgGraph [new ::gui::ShipSpiderGraph]
 
-      set selector [new ::gui::BorderContainer]
-      set leftb  [new ::gui::Button "<<" "$this previous"]
-      set rightb [new ::gui::Button ">>" "$this next"]
-      $leftb setLeft
-      $rightb setRight
-      $selector setElt left $leftb
-      $selector setElt right $rightb
-      set nameLabel [new ::gui::Label "NAME HERE" centre]
-      $selector setElt centre $nameLabel
-      setElt top $selector
+    setElt left $lstShips
+    set filters [new ::gui::VerticalContainer 0.01 grid]
+    $filters add $lstAuthors
+    $filters add $lstClasses
+    $filters add $lstCategories
+    $filters add $lstHangars
+    setElt right $filters
 
-      set main [new ::gui::StackContainer]
-      $main add $display
-      set labelPan [new ::gui::VerticalContainer]
-      set authorPan [new ::gui::HorizontalContainer]
-      $authorPan add [new ::gui::Label "[_ A editor author]: " left]
-      set authorLabel [new ::gui::Label "AUTHOR HERE" left]
-      $authorPan add $authorLabel
-      $labelPan add $authorPan
-      set ssgGraph [new ::gui::ShipSpiderGraph]
-      $labelPan add $ssgGraph
-      $main add $labelPan
-      setElt centre $main
+    set topmatter [new ::gui::VerticalContainer 0.01]
+    $topmatter add $lname
+    $topmatter add $lauthor
+    $topmatter add $ssgGraph
+    setElt top $topmatter
 
-      set searchField [new ::gui::TextField [_ A ship_chooser filter] ""]
-      set prevSearchText ""
-      setElt bottom $searchField
+    setElt centre $display
 
-      loadShip
+    set bottommatter [new ::gui::VerticalContainer 0.01]
+    $bottommatter add $fsearch
+    foreach c $additionalComponents {
+      $bottommatter add $c
     }
+    setElt bottom $bottommatter
 
-    method reset {cat {ix 0}} {
-      set catalogue $cat
-      set index $ix
-      loadShip
-    }
+    filter-changed
+  }
 
-    destructor {
-      if {[string length $ship]} {delete object $ship}
-      delete object $field
-    }
+  destructor {
+    del $ship $field
+  }
 
-    method draw {} {
-      # Before drawing, check to see if the filter text excludes the
-      # current ship
-      if {$prevSearchText != [$searchField getText]} {
-        catch {
-          set shipName [$ str [getAt $index].info.name]
-          set filter [$searchField getText]
-          set prevSearchText $filter
-          if {[string length $filter]
-          &&  -1 == [string first [string tolower $filter] [string tolower $shipName]]} {
-            next
-          }
-        }
+  method selected-properties {lst} {
+    set selection [$lst getSelection]
+    if {[llength $selection] != 0 &&
+        [llength $selection] != [llength [$lst getItems]]} {
+      set selected {}
+      set items [$lst getItems]
+      foreach ix $selection {
+        lappend selected [lindex $items $ix]
       }
 
-      ::gui::Container::draw
-    }
-
-    method getAt ix {
-      set mp [$ str $catalogue.\[$ix\]]
-      if {-1 == [string first : $mp]} {
-        set mp ship:$mp
-      }
-      return $mp
-    }
-
-    method loadShip {} {
-      if {[string length $ship]} {delete object $ship}
-      if {[catch {
-        set ship ""
-        set mp [getAt $index]
-        set ship [::loadShip $field $mp]
-        $display setShip $ship
-
-        $ship configureEngines yes no 1.0
-
-        $ssgGraph setShip $ship
-
-        $nameLabel setText [$ str $mp.info.name]
-        if {[$ exists $mp.info.author]} {
-          $authorLabel setText [$ str $mp.info.author]
-        } else {
-          $authorLabel setText [_ A gui unknown]
-        }
-      } err]} {
-        # If there is no ship in the current catalogue,
-        # the puts command will fail, as $mp will not be defined
-        if {[catch {
-          #puts "$mp: $err"
-          set err "$mp: $err"
-        }]} {
-          set err [_ A ship_chooser no_ships]
-        }
-        $nameLabel setText "\a\[(danger)$err\a\]"
-        $authorLabel setText "---"
-        $display setShip error
-      }
-    }
-
-    method getNameSafe root {
       set ret {}
-      catch {
-        set ret [$ str $root.info.name]
-      } err
+      foreach str $selected {
+        lappend ret [string range $str 2+[string first "\a\a" $str] end]
+      }
+
       return $ret
-    }
-
-    method previous {} {
-      # If there are zero or one ships in the catalogue,
-      # do nothing. Otherwise, cycle until we encounter
-      # something different or hit the original index
-      if {[$ length $catalogue] <= 1} return
-
-      set origix $index
-      set first yes
-      while {$first ||
-             ($origix != $index
-           && ([$ str $catalogue.\[$origix\]] == [getAt $index]
-            || ([string length [$searchField getText]]
-              && -1 == [string first \
-                        [string tolower [$searchField getText]] \
-                        [string tolower [getNameSafe [getAt $index]]]])))} {
-        set index [expr {($index-1)%[$ length $catalogue]}]
-        set first no
-      }
-      eval "$action $index"
-      loadShip
-    }
-
-    method next {} {
-      # If there are zero or one ships in the catalogue,
-      # do nothing. Otherwise, cycle until we encounter
-      # something different or hit the original index
-      if {[$ length $catalogue] <= 1} return
-
-      set origix $index
-      set first yes
-      while {$first ||
-             ($origix != $index
-           && ([$ str $catalogue.\[$origix\]] == [getAt $index]
-            || ([string length [$searchField getText]]
-              && -1 == [string first \
-                        [string tolower [$searchField getText]] \
-                        [string tolower [getNameSafe [getAt $index]]]])))} {
-        set index [expr {($index+1)%[$ length $catalogue]}]
-        set first no
-      }
-      eval "$action $index"
-      loadShip
+    } else {
+      return {}
     }
   }
+
+  method generate-ship-list {} {
+    set lst {}
+    conffor entry hangar.all_ships {
+      if {[catch {
+        set s {}
+        set rt [shipName2Mount [$ str $entry]]
+
+        # Get ship information, and stringprep its name
+        dict set s name [$ str $rt.info.name]
+        dict set s spname [::stringprep::stringprep basic [$ str $rt.info.name]]
+        dict set s author [$ str $rt.info.author]
+        dict set s class [$ str $rt.info.class]
+        dict set s category [Ship_categorise $rt]
+        dict set s hangars {}
+        dict set s root $rt
+        lappend lst $s
+      } err errinfo]} {
+        log "$entry: $err"
+        # Tcl for some reason escapes the error info with backslashes instead
+        # of using braces like list does, so convert both ways so the result is
+        # readable.
+        log [list {*}$errinfo]
+      }
+    }
+
+    lsort -command ::gui::compare-ship-dict-spname $lst
+  }
+
+  method get-author-list {} {
+    set authors {}
+    foreach s $fullList {
+      set a [dict get $s author]
+      lappend authors "$a\a\a[string tolower $a]"
+    }
+
+    lsort -dictionary -nocase -unique $authors
+  }
+
+  method get-class-list {classes} {
+    set lst {}
+    foreach class $classes {
+      if {$class ne ""} {
+        lappend lst [format "%s%s\a\a%s" [_ A editor class_prefix] \
+                         $class $class]
+      } else {
+        lappend lst [format "%s\a\a*" [_ A misc class_all_ships]]
+      }
+    }
+
+    return $lst
+  }
+
+  method get-category-list {} {
+    set lst {}
+    foreach cat {Swarm Interceptor Fighter Attacker Subcapital Defender} {
+      lappend lst [format "%s\a\a%s" \
+                       [_ A editor "cat[shipCategoryToInt $cat]"] $cat]
+    }
+
+    return $lst
+  }
+
+  method get-hangar-list {} {
+    set lst {}
+    conffor hangar hangar.user {
+      lappend lst [format "%s\a\a%s" \
+                       [$ str $hangar.name] $hangar]
+    }
+
+    lsort -dictionary -nocase $lst
+  }
+
+  method filter-changed args {
+    set filteredList {}
+    set classes [selected-properties $lstClasses]
+    if {-1 != [lsearch -exact $classes *]} {
+      set classes {}
+    }
+    set authors [selected-properties $lstAuthors]
+    set categories [selected-properties $lstCategories]
+    set hangars [selected-properties $lstHangars]
+
+    # Index any hangars which have not yet been indexed
+    foreach hangar $hangars {
+      if {![dict exists $hangarsIndexed $hangar]} {
+        index-hangar $hangar
+      }
+    }
+
+    # Loop through the full list, adding ships which pass all the filters.
+    foreach s $fullList {
+      if {$classes ne {} &&
+          -1 == [lsearch -exact $classes [dict get $s class]]} {
+        continue
+      }
+
+      if {$categories ne {} &&
+          -1 == [lsearch -exact $categories [dict get $s category]]} {
+        continue
+      }
+
+      if {$authors ne {} &&
+          -1 == [lsearch -sorted -exact -dictionary -nocase $authors \
+                     [string tolower [dict get $s author]]]} {
+        continue
+      }
+
+      if {$hangars ne {}} {
+        set inAnyHangar no
+        foreach hangar $hangars {
+          if {[dict exists $s hangars $hangar]} {
+            set inAnyHangar yes
+            break
+          }
+        }
+        if {!$inAnyHangar} continue
+      }
+
+      set fname [string trim [$fsearch getText]]
+      if {$fname ne "" &&
+          -1 == [string first [::stringprep::stringprep basic $fname] \
+                     [dict get $s spname]]} {
+        continue
+      }
+
+      # All applied filters match
+      lappend filteredList $s
+    }
+
+    # Get the currently-preferred ships to recreate the selection
+    set preferredMain [$ str conf.preferred.main]
+    set preferredC [$ str conf.preferred.C]
+    set preferredB [$ str conf.preferred.B]
+    set preferredA [$ str conf.preferred.A]
+
+    set preferredIx {}
+    # Convert to list items
+    set items {}
+    foreach s $filteredList {
+      set rt [dict get $s root]
+      if {$rt eq $preferredMain} {
+        set preferredIx [llength $items]
+      } elseif {$preferredIx eq {} &&
+                ($rt eq $preferredC ||
+                 $rt eq $preferredB ||
+                 $rt eq $preferredA)} {
+        set preferredIx [llength $items]
+      }
+
+      lappend items [dict get $s name]
+    }
+
+    # If there are any items, but no preferred selection, select the first item
+    if {$items ne {} && $preferredIx eq {}} {
+      set preferredIx 0
+    }
+
+    $lstShips setItems $items
+    $lstShips setSelection $preferredIx
+    selection-changed
+  }
+
+  method index-hangar {hangar} {
+    set contained {}
+    conffor entry $hangar.contents {
+      lappend contained [shipName2Mount [$ str $entry.target]]
+    }
+
+    set contained [lsort $contained]
+
+    set oldFullList $fullList
+    set fullList {}
+    foreach s $oldFullList {
+      set rt [dict get $s root]
+
+      if {-1 != [lsearch -sorted -exact $contained $rt]} {
+        set h [dict get $s hangars]
+        dict set h $hangar {}
+        dict set s hangars $h
+      }
+
+      lappend fullList $s
+    }
+  }
+
+  method selection-changed args {
+    set sel [$lstShips getSelection]
+    if {$sel eq {}} {
+      del $ship
+      set ship {}
+      $display setShip {}
+
+      $lname setText [_ A ship_chooser no_ships]
+      $lauthor setText ""
+    } else {
+      set s [lindex $filteredList $sel]
+      # Do nothing if a ship is loaded and is rooted here
+      if {$ship ne {} &&
+          [$ship cget -typeName] eq [dict get $s root]} {
+        return
+      }
+
+      del $ship
+      set ship {}
+
+      # Try to load the ship
+      if {[catch {
+        set ship [loadShip $field [dict get $s root]]
+      } err errinfo]} {
+        # Something went wrong!
+        log "Error loading ship $s: $err"
+        # Remove the ship from the full list and reset
+        set ix [lsearch -exact $fullList $s]
+        set fullList [lreplace $fullList $ix $ix]
+        filter-changed
+        return
+      }
+
+      # OK
+      $display setShip $ship
+      $lname setText [dict get $s name]
+      $lauthor setText [dict get $s author]
+      $ssgGraph setShip $ship
+
+      # Update preferred selections
+      $ sets conf.preferred.main [dict get $s root]
+      $ sets conf.preferred.[dict get $s class] [dict get $s root]
+
+      # Notify the callback, if requested
+      if {$action ne {}} {
+        namespace eval :: [list {*}$action [dict get $s root]]
+      }
+    }
+  }
+
+  # Returns the root of the currently-selected ship, or the empty string if
+  # there is no selection.
+  method get-selected {} {
+    set sel [$lstShips getSelection]
+    if {$sel eq {}} {
+      return {}
+    } else {
+      return [dict get [lindex $filteredList $sel] root]
+    }
+  }
+}
+
+proc compare-ship-dict-spname {a b} {
+  ::stringprep::compare basic \
+      [dict get $a spname] \
+      [dict get $b spname]
+}

@@ -55,7 +55,11 @@
         bottom {set y [expr {$b+[minHeight]}]}
         centre -
         center {set y [expr {($t+$b)/2.0+[minHeight]/2.0}]}
-        grid {set y $t; set getMinHeight "expr {($t-$b)/double([llength $members])}"}
+        grid {
+          set y $t
+          set getMinHeight \
+              [list expr {($t-$b)/double([llength $members]) - $shim}]
+        }
       }
       foreach mem $members {
         set mh [eval $getMinHeight]
