@@ -122,7 +122,7 @@
     method button {evt x y} {
       switch -glob $evt {
         DOWN:mb_left -
-        DOWN:mb_middle {
+        DOWN:mb_mid {
           if {[contains $x $y]} {
             set ::gui::cursorLockX $::cursorX
             # Jump to that position
@@ -138,7 +138,7 @@
           }
         }
         UP:mb_left -
-        UP:mb_middle {
+        UP:mb_mid {
           set ::gui::cursorLockX -1
         }
         DOWN:mb_wup {
