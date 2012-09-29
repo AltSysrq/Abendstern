@@ -49,6 +49,7 @@ class ShipEditorDeletor {
 
     refreshStandardHangars
     $ sync hangar
+    ::ship_index::del $mount
 
     abort
   }

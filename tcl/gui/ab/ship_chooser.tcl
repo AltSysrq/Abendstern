@@ -4,13 +4,11 @@ class ShipChooser {
   inherit BorderContainer
 
   variable action
-  variable fullList
   variable filteredList
   variable ssgGraph
   variable field
   variable ship
   variable display
-  variable hangarsIndexed {}
 
   variable lstShips
   variable lstAuthors
@@ -36,7 +34,12 @@ class ShipChooser {
   } {
     BorderContainer::constructor
   } {
-    set fullList [generate-ship-list]
+    global ::ship_index::fullList
+    lappend ::ship_index::choosers $this
+
+    if {$fullList eq {}} {
+      set fullList [generate-ship-list]
+    }
     set action $action_
     set display [new ::gui::SimpleShipDisplay]
     set field [new GameField default 1 1]
@@ -90,6 +93,8 @@ class ShipChooser {
   }
 
   destructor {
+    set ix [lsearch -exact $::ship_index::choosers $this]
+    set ::ship_index::choosers [lreplace $::ship_index::choosers $ix $ix]
     del $ship $field
   }
 
@@ -114,22 +119,25 @@ class ShipChooser {
     }
   }
 
+  method get-ship-dict {rt} {
+    set s {}
+    # Get ship information, and stringprep its name
+    dict set s name [$ str $rt.info.name]
+    dict set s spname [::stringprep::stringprep basic [$ str $rt.info.name]]
+    dict set s author [$ str $rt.info.author]
+    dict set s class [$ str $rt.info.class]
+    dict set s category [Ship_categorise $rt]
+    dict set s hangars {}
+    dict set s root $rt
+    return $s
+  }
+
   method generate-ship-list {} {
     set lst {}
     conffor entry hangar.all_ships {
       if {[catch {
-        set s {}
         set rt [shipName2Mount [$ str $entry]]
-
-        # Get ship information, and stringprep its name
-        dict set s name [$ str $rt.info.name]
-        dict set s spname [::stringprep::stringprep basic [$ str $rt.info.name]]
-        dict set s author [$ str $rt.info.author]
-        dict set s class [$ str $rt.info.class]
-        dict set s category [Ship_categorise $rt]
-        dict set s hangars {}
-        dict set s root $rt
-        lappend lst $s
+        lappend lst [get-ship-dict $rt]
       } err errinfo]} {
         log "$entry: $err"
         # Tcl for some reason escapes the error info with backslashes instead
@@ -142,7 +150,15 @@ class ShipChooser {
     lsort -command ::gui::compare-ship-dict-spname $lst
   }
 
+  method add-mount {root} {
+    global ::ship_index::fullList
+    lappend fullList [get-ship-dict $root]
+    set fullList \
+        [lsort -command ::gui::compare-ship-dict-spname $fullList]
+  }
+
   method get-author-list {} {
+    global ::ship_index::fullList
     set authors {}
     foreach s $fullList {
       set a [dict get $s author]
@@ -187,6 +203,7 @@ class ShipChooser {
   }
 
   method filter-changed args {
+    global ::ship_index::fullList ::ship_index::hangarsIndexed
     set filteredList {}
     set classes [selected-properties $lstClasses]
     if {-1 != [lsearch -exact $classes *]} {
@@ -277,6 +294,7 @@ class ShipChooser {
   }
 
   method index-hangar {hangar} {
+    global ::ship_index::fullList ::ship_index::hangarsIndexed
     set contained {}
     conffor entry $hangar.contents {
       lappend contained [shipName2Mount [$ str $entry.target]]
@@ -300,6 +318,7 @@ class ShipChooser {
   }
 
   method selection-changed args {
+    global ::ship_index::fullList ::ship_index::hangarsIndexed
     set sel [$lstShips getSelection]
     if {$sel eq {}} {
       del $ship

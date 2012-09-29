@@ -134,6 +134,8 @@ class ShipEditorMain {
           $ remix hangar.$cls $i
         }
       }
+
+      ::ship_index::del $mount
     }
     $ sync hangar
     $editor setMode [new ShipEditorInitMode $editor]
