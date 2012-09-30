@@ -133,7 +133,7 @@ class GameGUIMode {
     $gameparms add [new ::gui::Slider [_ A gamegui numais] int \
                     "$ int conf.game.nai" \
                     "$ seti conf.game.nai" \
-                    1 128 \
+                    1 64 \
                     1 {} \
                     "format %d" [$::gui::font width 199]]
     $gameparms add [new ::gui::Slider [_ A gamegui nteams] int \
