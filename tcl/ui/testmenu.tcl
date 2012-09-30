@@ -64,7 +64,7 @@ class TestMode {
   method makeHangarEffective {} {
     ::makeHangarEffective [$::hangarList getSelection]
     set ::humanShip 0
-    set ::humanShipMount [$ str hangar.effective.\[0\]]
+#    set ::humanShipMount [$ str hangar.effective.\[0\]]
     #$::shipSelector reset hangar.effective
   }
   constructor a {
