@@ -720,7 +720,7 @@
 +Filter
 
 -no_ships
-+Keine Schiffe im Katalog
++\a[(danger)Keine passende Schiffe\a]
 
 @hangar
 -in_hangar

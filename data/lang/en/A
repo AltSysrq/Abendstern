@@ -796,7 +796,7 @@
 +Filter
 
 -no_ships
-+No ships in catalogue
++\a[(danger)No Matching Ships\a]
 
 @hangar
 -in_hangar
