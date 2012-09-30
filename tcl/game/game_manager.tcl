@@ -30,6 +30,7 @@ class GameManager {
   variable env
   variable network
   variable communicator
+  variable standardHangar
 
   # Creates a new GameManager.
   #   networkGame       The NetworkGame instance to use, or 0 for a local game.
@@ -38,8 +39,11 @@ class GameManager {
   #   initmeth          Method to call to start the game, with arguments (see
   #                     respective methods in this class).
   #   background        Code to evaluate to create the background object
-  constructor {networkGame initmeth background} {
+  #   stdhangar         If true, make the appropriate AI best ships hangar
+  #                     effective before creating each mode.
+  constructor {networkGame initmeth background stdhangar} {
     set network $networkGame
+    set standardHangar $stdhangar
     if {$network == 0} {
       set communicator [new LoopbackCommunicator 0]
     } else {
@@ -140,18 +144,29 @@ class GameManager {
     [$env getField] updateBoundaries
 
     set m [string range [lindex $modestr 0] 0 3]
+    set cls [string index [lindex $modestr 0] 4]
+    if {$cls ne "A" && $cls ne "B" && $cls ne "C"} {
+      modeError $modestr
+      return
+    }
+
+    if {$standardHangar} {
+      makeHangarEffectiveByName hangar.user.bs$cls
+    }
 
     switch -glob -- $m {
       NULL      {setsub [new NullNetworkState $network]}
-      DM__      {setsub [new G_DM $desiredPlayers $env $communicator]}
+      DM__      {setsub [new G_DM $desiredPlayers $env $communicator $cls]}
       [2-6]TDM  {setsub [new G_XTDM $desiredPlayers [string index $m 0] \
-                             $env $communicator]}
-      LMS_      {setsub [new G_LMS $desiredPlayers $env $communicator]}
+                             $env $communicator $cls]}
+      LMS_      {setsub [new G_LMS $desiredPlayers $env $communicator $cls]}
       L[2-6]TS  {setsub [new G_LXTS $desiredPlayers [string index $m 1] \
-                             $env $communicator]}
-      HVC_      {setsub [new G_HVC $desiredPlayers $env $communicator]}
+                             $env $communicator $cls]}
+      HVC_      {setsub [new G_HVC $desiredPlayers $env $communicator $cls]}
       default   {modeError $modestr; return}
     }
+
+    $subapp configure -gameClass $cls
 
     if {$network != 0} {
       $network updateFieldSize

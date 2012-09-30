@@ -3,6 +3,9 @@
 class NullNetworkState {
   inherit gui::Application
 
+  # Not used; for compatibility with BasicGame
+  public variable gameClass C
+
   variable alive yes
 
   constructor {netw} {

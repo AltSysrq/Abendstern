@@ -36,12 +36,17 @@ proc refreshStandardHangars {} {
 # Makes a hangar effective, given an index of the
 # user hangar to use
 proc makeHangarEffective ix {
+  makeHangarEffectiveByName hangar.user.\[$ix\]
+}
+
+proc makeHangarEffectiveByName hangar {
   while {[$ length hangar.effective]} {
     $ remix hangar.effective 0
   }
-  for {set i 0} {$i < [$ length hangar.user.\[$ix\].contents]} {incr i} {
-    for {set j 0} {$j < [$ int hangar.user.\[$ix\].contents.\[$i\].weight]} {incr j} {
-      $ appends hangar.effective ship:[$ str hangar.user.\[$ix\].contents.\[$i\].target]
+  for {set i 0} {$i < [$ length $hangar.contents]} {incr i} {
+    for {set j 0} {$j < [$ int $hangar.contents.\[$i\].weight]} {incr j} {
+      $ appends hangar.effective \
+          [shipName2Mount [$ str $hangar.contents.\[$i\].target]]
     }
   }
 }

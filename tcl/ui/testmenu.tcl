@@ -54,6 +54,9 @@ proc setHumanShip {root} {
   global shipSelector
   #set ::humanShip $ix ;# TestState
   set ::humanShipMount $root
+  # Most people would expect to be able to use the ship they selected
+  # immediately; ensure that the class is appropriate for this to happen
+  $ sets conf.game.class [$ str $root.info.class]
 }
 
 class TestMode {
@@ -64,7 +67,7 @@ class TestMode {
   method makeHangarEffective {} {
     ::makeHangarEffective [$::hangarList getSelection]
     set ::humanShip 0
-    set ::humanShipMount [$ str hangar.effective.\[0\]]
+#    set ::humanShipMount [$ str hangar.effective.\[0\]]
     #$::shipSelector reset hangar.effective
   }
   constructor a {
@@ -85,9 +88,12 @@ class TestMode {
     }
     $main add [new gui::Button [_ T a logout] \
       "$app configure -retval \[new BootManager logout\]"]
-    if {"WINDOWS" == $::PLATFORM} {
-      $main add [new gui::Button [_ T a update_abendstern] "$app setMode \[new SelfUpdater\]"]
-    }
+    # The self-updater doesn't work anymore, due to the separation of system
+    # and user data. (And, in any case, it would corrupt the package as far as
+    # the Windows Installer is concerned.)
+    # if {"WINDOWS" == $::PLATFORM} {
+    #   $main add [new gui::Button [_ T a update_abendstern] "$app setMode \[new SelfUpdater\]"]
+    # }
     set quit [new gui::Button [_ A gui quit] "$app configure -retval \[new BootManager shutdown\]"]
     $quit setCancel
     $main add $quit

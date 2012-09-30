@@ -5,10 +5,10 @@ class G_XTDM {
           MixinSAWLocalTeam MixinSAWMatchTimeLeft MixinSAWClock \
           BasicGame
 
-  constructor {desiredPlayers nteams env comm} {
+  constructor {desiredPlayers nteams env comm class} {
     MixinAutobot::constructor $desiredPlayers
     MixinTeam::constructor $nteams
-    BasicGame::constructor $env $comm
+    BasicGame::constructor $env $comm $class
   } {
     if {[isOverseer]} {
       initialiseTeams

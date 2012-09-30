@@ -43,6 +43,11 @@ if {![$ exists conf.game.use_geneticai]} {
   $ addb conf.game use_geneticai no
 }
 
+# Add missing conf.game.class
+if {![$ exists conf.game.class]} {
+  $ adds conf.game class C
+}
+
 # Create custom control set if none exists
 if {![$ exists conf.custom_control]} {
   $ add conf custom_control STGroup

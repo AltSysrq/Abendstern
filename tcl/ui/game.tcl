@@ -35,10 +35,13 @@ class GameGUIMode {
   variable fipAddress
   variable fport
   variable lstlanGames
+  variable lhangars
 
   variable app
   variable network
   variable dummyField
+
+  public variable stdhangar yes
 
   constructor {app_} {
     Mode::constructor
@@ -115,15 +118,33 @@ class GameGUIMode {
 
     # Game parameters
     set gameparms [new ::gui::VerticalContainer 0.01]
+    set boxlists [new ::gui::HorizontalContainer 0.01 grid]
+    set modeboxen [new ::gui::VerticalContainer 0.01]
     set prevbox none
     foreach mode {dm xtdm lms lxts hvc} {
       set box [new ::gui::RadioButton [format [_ A game "g_${mode}_long"] X] \
                "expr {\[$ str conf.game.mode\] == {$mode}}" \
                "$ sets conf.game.mode $mode" \
                $prevbox]
-      $gameparms add $box
+      $modeboxen add $box
       set prevbox $box
     }
+    $boxlists add $modeboxen
+
+    set classboxen [new ::gui::VerticalContainer 0.01]
+    set prevbox none
+    foreach class {C B A} {
+      set box [new ::gui::RadioButton \
+                   [format "%s%s" [_ A editor class_prefix] $class] \
+                   "expr {\[$ str conf.game.class\] == {$class}}" \
+                   "$ sets conf.game.class $class" \
+                   $prevbox]
+      $classboxen add $box
+      set prevbox $box
+    }
+    $boxlists add $classboxen
+    $gameparms add $boxlists
+
     $gameparms add [new ::gui::Slider [_ A gamegui size] int \
                     "$ int conf.game.size" \
                     "$ seti conf.game.size" \
@@ -133,7 +154,7 @@ class GameGUIMode {
     $gameparms add [new ::gui::Slider [_ A gamegui numais] int \
                     "$ int conf.game.nai" \
                     "$ seti conf.game.nai" \
-                    1 128 \
+                    1 64 \
                     1 {} \
                     "format %d" [$::gui::font width 199]]
     $gameparms add [new ::gui::Slider [_ A gamegui nteams] int \
@@ -144,7 +165,23 @@ class GameGUIMode {
                     "format %d" [$::gui::font width 6]]
     $main add [_ A gamegui tab_parm] $gameparms
 
+    set aihangartop [new ::gui::BorderContainer 0 0.01]
+    set aihangar [new ::gui::VerticalContainer 0.01]
+    set aibestships [new ::gui::RadioButton [_ A gamegui ai_bestships] \
+                         {expr 1} "$this configure -stdhangar yes" none]
+    set aicustom [new ::gui::RadioButton [_ A gamegui ai_customships] \
+                      {expr 0} "$this configure -stdhangar no" $aibestships]
+    $aihangar add $aibestships
+    $aihangar add $aicustom
+    $aihangartop setElt top $aihangar
+    set lhangars [new ::gui::List [_ A gamegui ai_customhangar] \
+                      [getHangarList] no "$this setAiHangar"]
+    $aihangartop setElt centre $lhangars
+
+    $main add [_ A gamegui tab_aisettings] $aihangartop
+
     set top [new ::gui::BorderContainer 0]
+    $top makeCentreLast
     $top setElt centre $main
     set cancel [new ::gui::Button [_ A gui cancel] "$app die"]
     $cancel setCancel
@@ -161,6 +198,21 @@ class GameGUIMode {
 
   destructor {
     delete object $dummyField
+  }
+
+  method getHangarList {} {
+    set lst {}
+    conffor entry hangar.user {
+      lappend lst [$ str $entry.name]
+    }
+    return $lst
+  }
+
+  method setAiHangar {} {
+    set sel [$lhangars getSelection]
+    if {$sel ne {}} {
+      makeHangarEffective $sel
+    }
   }
 
   method update et {
@@ -181,7 +233,7 @@ class GameGUIMode {
     changeScreenName
     lassign [getGameStateArgs 0] modestr background
     $app setRet [new GameManager 0 \
-                     [list init-local-game $modestr] $background]
+                     [list init-local-game $modestr] $background $stdhangar]
   }
 
   method joinLanGameFromList {} {
@@ -190,7 +242,7 @@ class GameGUIMode {
     lassign [getGameStateArgs $network] modestr background
     $app setRet [new GameManager $network \
                      [list join-lan-game 1 [$lstlanGames getSelection]] \
-                     $background]
+                     $background $stdhangar]
   }
 
   method joinLanSpecified {} {
@@ -203,7 +255,7 @@ class GameGUIMode {
     lassign [getGameStateArgs $network] modestr background
     $app setRet [new GameManager $network \
                      [list join-private-game 0 $addr $port] \
-                     $background]
+                     $background $stdhangar]
   }
 
   method startLanGame {} {
@@ -212,7 +264,7 @@ class GameGUIMode {
     lassign [getGameStateArgs $network] modestr background
     $app setRet [new GameManager $network \
                      [list init-lan-game 4 1 $modestr] \
-                     $background]
+                     $background $stdhangar]
   }
 
   # Returns a two-item list of the modestr,background to use
@@ -278,7 +330,8 @@ class GameGUIMode {
       }
     }
 
-    set modestr [list "${ms}C0" $opts]
+    set cls [$ str conf.game.class]
+    set modestr [list "${ms}${cls}0" $opts]
     return [list $modestr $background]
   }
 
