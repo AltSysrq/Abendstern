@@ -113,10 +113,12 @@ class BasicGame {
   # Constructs a BasicGame.
   # env         The GameEnv to use
   # comm        The Communicator to use
-  constructor {env_ comm} {
+  # gameClass   The game class
+  constructor {env_ comm gameClass_} {
     ::gui::Application::constructor
   } {
     set env $env_
+    set gameClass $gameClass_
     set field [$env getField]
     $field clear
     set shipDeathFun [new BasicGameShipDeathCallback $this]

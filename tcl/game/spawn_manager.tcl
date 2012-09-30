@@ -34,9 +34,25 @@ class SpawnManager {
     if {"attachHuman" != $control} {
       selectRandomVPeerShip $vp
     } else {
-      setVPeerShip $vp $::humanShipMount
+      selectHumanVPShip $vp
     }
     return $vp
+  }
+
+  method selectHumanVPShip vp {
+    # Use conf.preferred.main if it exists and is of the appropriate class;
+    # otherwise use conf.preferred.$class
+    set class [$this cget -gameClass]
+    set ok no
+    catch {
+      set ok [expr {$class eq [$ str [$ str conf.preferred.main].info.class]}]
+      if {$ok} {
+        setVPeerShip $vp [$ str conf.preferred.main]
+      }
+    }
+    if {!$ok} {
+      setVPeerShip $vp [$ str conf.preferred.$class]
+    }
   }
 
   method disconnectVPeer vp {

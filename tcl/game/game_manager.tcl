@@ -156,13 +156,13 @@ class GameManager {
 
     switch -glob -- $m {
       NULL      {setsub [new NullNetworkState $network]}
-      DM__      {setsub [new G_DM $desiredPlayers $env $communicator]}
+      DM__      {setsub [new G_DM $desiredPlayers $env $communicator $cls]}
       [2-6]TDM  {setsub [new G_XTDM $desiredPlayers [string index $m 0] \
-                             $env $communicator]}
-      LMS_      {setsub [new G_LMS $desiredPlayers $env $communicator]}
+                             $env $communicator $cls]}
+      LMS_      {setsub [new G_LMS $desiredPlayers $env $communicator $cls]}
       L[2-6]TS  {setsub [new G_LXTS $desiredPlayers [string index $m 1] \
-                             $env $communicator]}
-      HVC_      {setsub [new G_HVC $desiredPlayers $env $communicator]}
+                             $env $communicator $cls]}
+      HVC_      {setsub [new G_HVC $desiredPlayers $env $communicator $cls]}
       default   {modeError $modestr; return}
     }
 

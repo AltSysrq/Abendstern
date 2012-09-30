@@ -5,9 +5,9 @@ class G_LMS {
           MixinSAWPlayersLeft MixinSAWRoundsOfMatch \
           BasicGame
 
-  constructor {desiredPlayers env comm} {
+  constructor {desiredPlayers env comm class} {
     MixinAutobot::constructor $desiredPlayers
-    BasicGame::constructor $env $comm
+    BasicGame::constructor $env $comm $class
   } {
     initHuman
     if {[isOverseer]} {
