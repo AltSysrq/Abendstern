@@ -54,6 +54,9 @@ proc setHumanShip {root} {
   global shipSelector
   #set ::humanShip $ix ;# TestState
   set ::humanShipMount $root
+  # Most people would expect to be able to use the ship they selected
+  # immediately; ensure that the class is appropriate for this to happen
+  $ sets conf.game.class [$ str $root.info.class]
 }
 
 class TestMode {
