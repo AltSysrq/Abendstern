@@ -1001,6 +1001,8 @@
 +Resume
 -exit
 +Quit Game
+-change_ship
++Change Ship...
 
 -g_dm_long
 +Deathmatch

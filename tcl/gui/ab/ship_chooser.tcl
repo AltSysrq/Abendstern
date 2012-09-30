@@ -9,6 +9,7 @@ class ShipChooser {
   variable field
   variable ship
   variable display
+  variable allowedClasses
 
   variable lstShips
   variable lstAuthors
@@ -44,6 +45,7 @@ class ShipChooser {
     set display [new ::gui::SimpleShipDisplay]
     set field [new GameField default 1 1]
     set ship ""
+    set allowedClasses $classes
 
     set lstShips [new ::gui::List \
                       [_ A shipbrowse shiplist] {} no \
@@ -208,6 +210,11 @@ class ShipChooser {
     set classes [selected-properties $lstClasses]
     if {-1 != [lsearch -exact $classes *]} {
       set classes {}
+    }
+    # If classes is the empty string, and allowedClasses does not contain {},
+    # replace with $allowedClasses
+    if {$classes eq {} && -1 == [lsearch -exact $allowedClasses {}]} {
+      set classes $allowedClasses
     }
     set authors [selected-properties $lstAuthors]
     set categories [selected-properties $lstCategories]

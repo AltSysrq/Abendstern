@@ -39,6 +39,17 @@ class SpawnManager {
     return $vp
   }
 
+  # Returns the human VPeer, or {} if there is none
+  method findHumanVPeer {} {
+    dict for {vp meth} $vpeerMethods {
+      if {$meth eq "attachHuman"} {
+        return $vp
+      }
+    }
+
+    return ""
+  }
+
   method selectHumanVPShip vp {
     # Use conf.preferred.main if it exists and is of the appropriate class;
     # otherwise use conf.preferred.$class
@@ -53,6 +64,12 @@ class SpawnManager {
     if {!$ok} {
       setVPeerShip $vp [$ str conf.preferred.$class]
     }
+  }
+
+  method populatePauseMenu panel {
+    $panel add [new ::gui::Button [_ A game change_ship] \
+                    "$this showShipChangeMenu"]
+    chain $panel
   }
 
   method disconnectVPeer vp {
@@ -107,5 +124,56 @@ class SpawnManager {
   # If teams are enabled, restricts the Spectator to the appropriate team.
   # Default does nothing.
   method restrictSpectator spect {
+  }
+
+  method showShipChangeMenu {} {
+    $this setMode [new ShipChangeMode $this]
+  }
+}
+
+class ShipChangeMode {
+  inherit ::gui::Mode
+
+  variable app
+
+  constructor {app_} {
+    ::gui::Mode::constructor
+  } {
+    set app $app_
+
+    set close [new ::gui::Button [_ A gui close] "$this done"]
+    $close setDefault
+    $close setCancel
+
+    set root [new ::gui::ShipChooser {} \
+                  [$app cget -gameClass] {} \
+                  $close]
+    refreshAccelerators
+    $root setSize 0 1 $::vheight 0
+  }
+
+  method enableRawInputForwarding {} {
+    return 0
+  }
+
+  method draw {} {
+    # Make the display more readable
+    glColour 0 0 0 0.85
+    glBegin GL_QUADS
+    glVertex 0 0
+    glVertex 1 0
+    glVertex 1 $::vheight
+    glVertex 0 $::vheight
+    glEnd
+
+    chain
+  }
+
+  method done {} {
+    $app unpause
+    set hvp [$app findHumanVPeer]
+    if {$hvp ne {}} {
+      $app selectHumanVPShip $hvp
+    }
   }
 }
