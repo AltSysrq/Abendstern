@@ -2,15 +2,14 @@
 # concerns and provides the most common functionality shared among the various
 # game modes (other than STRA).
 #
-# The network INFO system into an ad-hoc, temporary, pseudo-server-client
+# The network INFO system is an ad-hoc, temporary, pseudo-server-client
 # model of information distribution. From among the peers is selected the
 # Overseer, which is always the peer with the lowest userid and has indicated
 # it is ready to perform this function.
 #
 # For high-level information, the Overseer plays the role of a server. The
 # Overseer determines the true value of all game variables and the outcome of
-# votes (this trust is safe since we only let official, unmodified copies of
-# Abendstern join games).
+# non-kick votes.
 #
 # Both normal peers and the Overseer maintain all game state (both for
 # convenience and so that nothing is lost if the current Overseer disappears).
