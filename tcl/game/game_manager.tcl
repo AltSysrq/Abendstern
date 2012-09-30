@@ -166,6 +166,8 @@ class GameManager {
       default   {modeError $modestr; return}
     }
 
+    $subapp configure -gameClass $cls
+
     if {$network != 0} {
       $network updateFieldSize
       $communicator switchMode $modestr

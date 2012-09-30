@@ -40,6 +40,9 @@ class BasicGame {
   # Value returned by [$env cget -field]
   public variable field
 
+  # The class of this game
+  public variable gameClass C
+
   # The Communicator to use
   variable communicator
 
