@@ -60,9 +60,9 @@ class Shield: public AObject {
   float alpha;
 
   #ifndef DEBUG
-  #define NUM_RECTS 4
-  #else
   #define NUM_RECTS 3
+  #else
+  #define NUM_RECTS 2
   #endif
   CollisionRectangle collisionRects[NUM_RECTS];
   CollisionRectangle baseRects     [NUM_RECTS];
