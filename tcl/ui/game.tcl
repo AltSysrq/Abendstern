@@ -115,15 +115,33 @@ class GameGUIMode {
 
     # Game parameters
     set gameparms [new ::gui::VerticalContainer 0.01]
+    set boxlists [new ::gui::HorizontalContainer 0.01 grid]
+    set modeboxen [new ::gui::VerticalContainer 0.01]
     set prevbox none
     foreach mode {dm xtdm lms lxts hvc} {
       set box [new ::gui::RadioButton [format [_ A game "g_${mode}_long"] X] \
                "expr {\[$ str conf.game.mode\] == {$mode}}" \
                "$ sets conf.game.mode $mode" \
                $prevbox]
-      $gameparms add $box
+      $modeboxen add $box
       set prevbox $box
     }
+    $boxlists add $modeboxen
+
+    set classboxen [new ::gui::VerticalContainer 0.01]
+    set prevbox none
+    foreach class {C B A} {
+      set box [new ::gui::RadioButton \
+                   [format "%s%s" [_ A editor class_prefix] $class] \
+                   "expr {\[$ str conf.game.class\] == {$class}}" \
+                   "$ sets conf.game.class $class" \
+                   $prevbox]
+      $classboxen add $box
+      set prevbox $box
+    }
+    $boxlists add $classboxen
+    $gameparms add $boxlists
+
     $gameparms add [new ::gui::Slider [_ A gamegui size] int \
                     "$ int conf.game.size" \
                     "$ seti conf.game.size" \
@@ -145,6 +163,7 @@ class GameGUIMode {
     $main add [_ A gamegui tab_parm] $gameparms
 
     set top [new ::gui::BorderContainer 0]
+    $top makeCentreLast
     $top setElt centre $main
     set cancel [new ::gui::Button [_ A gui cancel] "$app die"]
     $cancel setCancel
@@ -278,7 +297,8 @@ class GameGUIMode {
       }
     }
 
-    set modestr [list "${ms}C0" $opts]
+    set cls [$ str conf.game.class]
+    set modestr [list "${ms}${cls}0" $opts]
     return [list $modestr $background]
   }
 
