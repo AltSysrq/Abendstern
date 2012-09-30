@@ -1161,6 +1161,8 @@
 +Internet
 -tab_parm
 +Eigenschaften
+-tab_aisettings
++KI-Schiffe
 
 -background
 +Hintergrund:
@@ -1209,6 +1211,13 @@
 +Experte
 -difficulty_4
 +Der Tod schmeckt mir gut!
+
+-ai_bestships
++KI nutzen immer die besten Schiffe
+-ai_customships
++KI nuzen Schiffe aus unterem Hangar
+-ai_customhangar
++Alternative Hangars
 
 @boot
 -hotpatch

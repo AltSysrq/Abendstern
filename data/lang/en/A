@@ -1237,6 +1237,8 @@
 +Internet
 -tab_parm
 +Setup
+-tab_aisettings
++AI Ships
 
 -background
 +Background:
@@ -1286,6 +1288,12 @@
 -difficulty_4
 +I love the taste of death!
 
+-ai_bestships
++AI use always recommended ships
+-ai_customships
++AI use ships from selected hangar in Local/LAN games
+-ai_customhangar
++Custom Hangar
 
 @boot
 -hotpatch
