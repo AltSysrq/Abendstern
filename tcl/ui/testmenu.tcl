@@ -88,9 +88,12 @@ class TestMode {
     }
     $main add [new gui::Button [_ T a logout] \
       "$app configure -retval \[new BootManager logout\]"]
-    if {"WINDOWS" == $::PLATFORM} {
-      $main add [new gui::Button [_ T a update_abendstern] "$app setMode \[new SelfUpdater\]"]
-    }
+    # The self-updater doesn't work anymore, due to the separation of system
+    # and user data. (And, in any case, it would corrupt the package as far as
+    # the Windows Installer is concerned.)
+    # if {"WINDOWS" == $::PLATFORM} {
+    #   $main add [new gui::Button [_ T a update_abendstern] "$app setMode \[new SelfUpdater\]"]
+    # }
     set quit [new gui::Button [_ A gui quit] "$app configure -retval \[new BootManager shutdown\]"]
     $quit setCancel
     $main add $quit
