@@ -181,7 +181,7 @@ class GameGUIMode {
     changeScreenName
     lassign [getGameStateArgs 0] modestr background
     $app setRet [new GameManager 0 \
-                     [list init-local-game $modestr] $background]
+                     [list init-local-game $modestr] $background yes]
   }
 
   method joinLanGameFromList {} {
@@ -190,7 +190,7 @@ class GameGUIMode {
     lassign [getGameStateArgs $network] modestr background
     $app setRet [new GameManager $network \
                      [list join-lan-game 1 [$lstlanGames getSelection]] \
-                     $background]
+                     $background yes]
   }
 
   method joinLanSpecified {} {
@@ -203,7 +203,7 @@ class GameGUIMode {
     lassign [getGameStateArgs $network] modestr background
     $app setRet [new GameManager $network \
                      [list join-private-game 0 $addr $port] \
-                     $background]
+                     $background yes]
   }
 
   method startLanGame {} {
@@ -212,7 +212,7 @@ class GameGUIMode {
     lassign [getGameStateArgs $network] modestr background
     $app setRet [new GameManager $network \
                      [list init-lan-game 4 1 $modestr] \
-                     $background]
+                     $background yes]
   }
 
   # Returns a two-item list of the modestr,background to use
