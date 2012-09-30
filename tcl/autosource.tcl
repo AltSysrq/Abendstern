@@ -2,6 +2,13 @@
 
 encoding system utf-8
 
+if {$PLATFORM == "WINDOWS"} {
+  # Manually load stringprep and its dependencies
+  source tcllib/stringprep/unicode_data.tcl
+  source tcllib/stringprep/unicode.tcl
+  source tcllib/stringprep/stringprep_data.tcl
+  source tcllib/stringprep/stringprep.tcl
+}
 package require stringprep
 ::stringprep::register basic -mapping {B.1 B.2} -normalization KC
 
