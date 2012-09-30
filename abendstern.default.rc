@@ -14,6 +14,7 @@ game	{
  nteams	4
  dmgmul	1.0
  use_geneticai	f
+ class	"C",
 }
 audio_enabled	t
 ship_colour	[1.0	1.0	1.0]
