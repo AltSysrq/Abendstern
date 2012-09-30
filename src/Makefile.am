@@ -22,10 +22,6 @@ COMMONCXXFLAGS=-Wall -I./config -DDATADIR='"'"$(pkgdatadir)"'"' \
 # Don't try to compile abendstern.cxx -> abendstern.o -> abendstern
 abendstern:;
 
-# Also clean generated files on clean
-clean:
-	rm -f ./tcl_iface/xxx/* ./tcl_iface/bridge.cxx ../tcl/bridge.tcl
-
 ./tcl_iface/xxx/rebuilt: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 	@echo '  TCL    tcl_iface/generate.tcl'
 	@$(TCL) ./tcl_iface/generate.tcl

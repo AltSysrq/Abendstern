@@ -10951,6 +10951,8 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+clean: clean-am
+
 clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-am
@@ -11037,10 +11039,6 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS
 
 # Don't try to compile abendstern.cxx -> abendstern.o -> abendstern
 abendstern:;
-
-# Also clean generated files on clean
-clean:
-	rm -f ./tcl_iface/xxx/* ./tcl_iface/bridge.cxx ../tcl/bridge.tcl
 
 ./tcl_iface/xxx/rebuilt: ./tcl_iface/definition.tcl ./tcl_iface/generate.tcl
 	@echo '  TCL    tcl_iface/generate.tcl'
