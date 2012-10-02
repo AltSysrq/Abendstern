@@ -11,12 +11,15 @@ ARCH=$(uname -m)
 BINARIES="abendstern abendsternuxgl14 abendsternuxgl21 abendsternuxgl32"
 FILES="abendstern.default.rc data fonts hangar.default images legal"
 FILES="$FILES COPYING README shaders tcl version"
-LIBRARIES="SDL-1.2 SDL_image-1.2 png12 drachen gmp itcl3.4 tcl8.5"
-LIBRARIES="$LIBRARIES jpeg tiff uuid FLAC vorbisenc vorbis ogg"
-LIBRARIES="$LIBRARIES directfb-1.2 fusion-1.2 direct-1.2 ts-0.0 jbig"
-if ldd src/abendsternuxgl32 | grep webp >&/dev/null; then
-    LIBRARIES="$LIBRARIES webp"
-fi
+LIBRARIES="SDL-1.2 SDL_image-1.2 png12 gmp itcl3.4 tcl8.5"
+OPTIONAL_LIBRARIES="drachen jpeg tiff uuid FLAC vorbisenc vorbis ogg webp"
+OPTIONAL_LIBRARIES="$OPTIONAL_LIBRARIES directfb-1.2 fusion-1.2 direct-1.2"
+OPTIONAL_LIBRARIES="$OPTIONAL_LIBRARIES ts-0.0 jbig drachen"
+for opt in $OPTIONAL_LIBRARIES; do
+    if ldd src/abendsternuxgl32 | grep $opt >&/dev/null; then
+        LIBRARIES="$LIBRARIES $opt"
+    fi
+done
 
 # amd64 is reported as x86_64, which is a rather silly name
 if [ "$ARCH" = "x86_64" ]; then
@@ -48,6 +51,7 @@ for library in $LIBRARIES; do
             true;
         else
             echo "Could not copy library $library"
+            exit 1
         fi
         test -e $OUTNAME/lib/lib$library.so || \
             ln -s $(basename $name) $OUTNAME/lib/lib$library.so
