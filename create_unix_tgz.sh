@@ -69,11 +69,13 @@ cp -R /usr/share/tcltk/tcllib1.14 $OUTNAME/lib/
 # Remove obsolete Tcl HTTP package
 rm -R $OUTNAME/lib/tcl8.5/http1.0
 
-# Patch autosource.tcl to manually load the http library since Tcl can't find
-# it for whatever reason.
+# Patch autosource.tcl to manually load the http and msgcat libraries since Tcl
+# can't find them for whatever reason.
 echo ';source' lib/tcl8.5/tcl8/http-2.7.7.tm >>$OUTNAME/tcl/autosource.tcl
+echo ';source' lib/tcl8.5/tcl8/msgcat-1.4.4.tm >>$OUTNAME/tcl/autosource.tcl
 echo source lib/tcl8.5/tcl8/http-2.7.7.tm | cat - tcl/bkginit.tcl \
     >$OUTNAME/tcl/bkginit.tcl
+echo ';source' lib/tcl8.5/tcl8/msgcat-1.4.4.tm >>$OUTNAME/tcl/bkginit.tcl
 
 # Add script to run with the appropriate LD config
 cp src/run_from_binary_dist.sh $OUTNAME/abendstern.sh
