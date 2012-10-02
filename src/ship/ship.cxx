@@ -1389,7 +1389,8 @@ bool Ship::collideWith(GameObject* other) noth {
            */
           set<Cell*> fragCells;
           cells[i]->getAdjoined(fragCells);
-          frag->cells.insert(frag->cells.end(), fragCells.begin(), fragCells.end());
+          frag->cells.insert(frag->cells.end(),
+                             fragCells.begin(), fragCells.end());
           for (unsigned int j=0; j<frag->cells.size(); ++j) {
             //Subtract from physics
             preremove(frag->cells[j]);
@@ -1436,6 +1437,16 @@ bool Ship::collideWith(GameObject* other) noth {
           if (isEmpty) {
             delete frag;
             continue;
+          }
+
+          //Ensure the zeroth cell in the fragment is non-empty
+          if (frag->cells[0]->isEmpty) {
+            for (unsigned i = 1; i < frag->cells.size(); ++i) {
+              if (!frag->cells[i]->isEmpty) {
+                swap(frag->cells[0], frag->cells[i]);
+                break;
+              }
+            }
           }
 
           //Detect the fragment's physics so we can position it so it looks
