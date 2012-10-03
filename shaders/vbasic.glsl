@@ -4,8 +4,8 @@
  * colour by vertices.
  */
 
-in vec4 vertex;
-in vec4 colour;
+attribute vec4 vertex;
+attribute vec4 colour;
 varying /* out */ vec4 varyingColour;
 uniform mat4 transform;
 

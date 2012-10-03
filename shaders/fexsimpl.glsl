@@ -5,9 +5,9 @@
  */
 
 uniform vec4 colour;
-/* varying */ in vec2 expCoord;
+varying /* in */ vec2 expCoord;
 
-varying out vec4 dst;
+#define dst gl_FragColor
 
 void main(void) {
   //Don't waste time with a sqrt if we don't have to

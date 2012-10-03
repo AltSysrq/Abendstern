@@ -1,7 +1,7 @@
 #version 120
 /* Open GL 2.1 vertex shader for explosions. */
 
-in vec2 vertex;
+attribute vec2 vertex;
 uniform mat4 transform;
 uniform float elapsedTime, sizeAt1Sec;
 uniform float ex, ey;

@@ -1,7 +1,7 @@
 #version 120
 /* Frag shader that discards everything. */
 
-varying out vec4 dst;
+#define dst gl_FragColor
 
 void main(void) {
   discard;

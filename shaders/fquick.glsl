@@ -2,7 +2,7 @@
 /* Quick fragment shader. Draws a single, uniform colour. */
 
 uniform vec4 colour;
-varying out vec4 dst;
+#define dst gl_FragColor
 
 void main(void) {
   dst=colour;
