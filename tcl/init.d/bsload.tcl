@@ -10,7 +10,11 @@ if {![info exists ::bsload::index]} {
       set filename [lindex $filenames $index]
       set ok no
       catch {
-        $ open [homeq hangar/0/$filename] ship:bs/$filename
+        set conffile [homeq hangar/0/$filename]
+        if {![file exists $conffile]} {
+          error "$filename does not exist"
+        }
+        $ openLazily $conffile ship:bs/$filename
         set ok yes
       }
 

@@ -21,13 +21,33 @@ using namespace std;
 
 ConfReg::~ConfReg() {
   for (iterator it=begin(); it != end(); ++it)
-    delete (*it).second.conf;
+    if (it->second.conf)
+      delete it->second.conf;
 }
 
 void ConfReg::open(const string& filename, const string& key) {
   create(filename, key);
   ConfigRegEntry& ent(map<string,ConfigRegEntry>::operator[](key));
   ent.conf->readFile(filename.c_str());
+}
+
+void ConfReg::openLazily(const string& filename, const string& key) {
+  iterator it = find(key);
+  if (it == end()) {
+    ConfigRegEntry ent;
+    ent.filename = filename;
+    ent.modified = false;
+    ent.conf = NULL;
+    map<string,ConfigRegEntry>::operator[](key) = ent;
+  } else {
+    ConfigRegEntry& ent(it->second);
+    if (ent.modified) ent.conf->writeFile(ent.filename.c_str());
+
+    ent.filename = filename;
+    ent.modified = false;
+    if (ent.conf) delete ent.conf;
+    ent.conf = NULL;
+  }
 }
 
 void ConfReg::create(const string& filename, const string& key) {
@@ -43,6 +63,8 @@ void ConfReg::create(const string& filename, const string& key) {
     if (ent.modified) ent.conf->writeFile(ent.filename.c_str());
     ent.filename=filename;
     ent.modified=false;
+    if (ent.conf) delete ent.conf;
+    ent.conf = new Config;
   }
 }
 
@@ -51,7 +73,7 @@ void ConfReg::close(const string& key) {
   if (it != end()) {
     ConfigRegEntry& ent((*it).second);
     if (ent.modified && !ent.filename.empty()) ent.conf->writeFile(ent.filename.c_str());
-    delete ent.conf;
+    if (ent.conf) delete ent.conf;
     erase(it);
   }
 }
@@ -61,7 +83,7 @@ void ConfReg::closeAll() {
   while (it != end()) {
     ConfigRegEntry& ent((*it).second);
     if (ent.modified && !ent.filename.empty()) ent.conf->writeFile(ent.filename.c_str());
-    delete ent.conf;
+    if (ent.conf) delete ent.conf;
     ++it;
   }
   clear();
@@ -78,7 +100,8 @@ Setting& ConfReg::operator[](const string& key) {
   if (it == end()) {
     throwSettingNotFoundException(key);
   }
-  return (*it).second.conf->getRoot();
+  load(it->second);
+  return it->second.conf->getRoot();
 }
 
 void ConfReg::modify(const string& key) {
@@ -86,7 +109,8 @@ void ConfReg::modify(const string& key) {
   if (it == end()) {
     throwSettingNotFoundException(key);
   }
-  (*it).second.modified=true;
+  if (it->second.conf)
+    it->second.modified=true;
 }
 
 void ConfReg::unmodify(const string& key) {
@@ -94,7 +118,8 @@ void ConfReg::unmodify(const string& key) {
   if (it == end()) {
     throwSettingNotFoundException(key);
   }
-  (*it).second.modified=false;
+  if (it->second.conf)
+    it->second.modified=false;
 }
 
 void ConfReg::sync(const string& key) {
@@ -123,7 +148,7 @@ void ConfReg::revert(const string& key) {
     throwSettingNotFoundException(key);
   }
   ConfigRegEntry& ent((*it).second);
-  if (ent.filename.empty()) return;
+  if (ent.filename.empty() || !ent.conf) return;
   ent.conf->readFile(ent.filename.c_str());
   ent.modified=false;
 }
@@ -131,7 +156,7 @@ void ConfReg::revert(const string& key) {
 void ConfReg::revertAll() {
   for (iterator it=begin(); it!=end(); ++it) {
     ConfigRegEntry& ent((*it).second);
-    if (ent.filename.empty()) continue;
+    if (ent.filename.empty() || !ent.conf) continue;
     ent.conf->readFile(ent.filename.c_str());
     ent.modified=false;
   }
@@ -144,7 +169,17 @@ void ConfReg::renameFile(const string& key, const string& filename) {
   }
   ConfigRegEntry& ent(it->second);
   ent.filename = filename;
-  ent.modified=true;
+  if (ent.conf)
+    ent.modified = true;
+}
+
+bool ConfReg::loaded(const string& key) {
+  iterator it = find(key);
+  if (it == end()) {
+    throwSettingNotFoundException(key);
+  }
+
+  return !!it->second.conf;
 }
 
 Setting& ConfReg::lookup(const string& path, bool mod) {
@@ -158,6 +193,7 @@ Setting& ConfReg::lookup(const string& path, bool mod) {
     if (it==end()) {
       throw NoSuchSettingException(path.c_str());
     }
+    load(it->second);
     if (mod) modify(path);
     return (*it).second.conf->getRoot();
   } else {
@@ -167,6 +203,7 @@ Setting& ConfReg::lookup(const string& path, bool mod) {
     if (it==end()) {
       throw NoSuchSettingException(path.c_str());
     }
+    load(it->second);
     if (mod) modify(mount);
     try {
       return (*it).second.conf->lookup(sub);
@@ -304,6 +341,18 @@ void ConfReg::pushBackString(const string& path, const string& s) {
 
 void ConfReg::remix(const string& path, unsigned ix) {
   lookup(path, true).remove(ix);
+}
+
+void ConfReg::load(ConfigRegEntry& ent) {
+  if (!ent.conf) {
+    ent.conf = new Config;
+    try {
+      ent.conf->readFile(ent.filename.c_str());
+    } catch (libconfig::ConfigException& ce) {
+      cerr << "ERROR: Could not load file " << ent.filename
+           << " into config mount: " << ce.what() << endl;
+    }
+  }
 }
 
 /* Copys the value of the source setting into the destination setting.

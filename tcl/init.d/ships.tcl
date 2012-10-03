@@ -74,7 +74,7 @@ $state setCallback [_ A boot ships] {
     set shipLoadQueue [lassign $shipLoadQueue path]
     set ship [shipPath2Mount $path]
     if {[catch {
-      $ open $path $ship
+      $ openLazily $path $ship
     } err]} {
       log "Couldn't load ship file $path: $err"
       continue

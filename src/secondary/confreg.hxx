@@ -62,6 +62,15 @@ class ConfReg: public AObject, private std::map<std::string, ConfigRegEntry> {
    * Any exceptions from libconfig propagate up.
    */
   void open(const std::string& filename, const std::string& key);
+  /**
+   * Registers the given filename to the given key. If something is at that key
+   * already, it is closed, then replaced.
+   *
+   * The file in question is not actually loaded until the key is
+   * accessed. When such a load is triggered, any errors which occur are logged
+   * to stderr, but otherwise ignored, resulting in an apparently empty config.
+   */
+  void openLazily(const std::string& filename, const std::string& key);
   /** Creates a new libconfig++ mount. The file is not read in. */
   void create(const std::string& filename, const std::string& key);
   /** Closes the given key, if it exists. If modified, the
@@ -89,8 +98,10 @@ class ConfReg: public AObject, private std::map<std::string, ConfigRegEntry> {
   /** Calls sync() on all roots */
   void syncAll();
 
-  /** Reload the config from disk (even if "not modified").
-   * Does nothing if the filename is empty.
+  /**
+   * Reload the config from disk (even if "not modified").
+   * Does nothing if the filename is empty, or if the key has not yet been
+   * loaded.
    */
   void revert(const std::string&);
   /** Call revert() on all roots */
@@ -101,6 +112,13 @@ class ConfReg: public AObject, private std::map<std::string, ConfigRegEntry> {
    * root, and sets its "modified" status.
    */
   void renameFile(const std::string& root, const std::string& filename);
+
+  /**
+   * Returns whether the given key, which must exist, has been loaded.
+   *
+   * @throws NoSuchSettingException if the key does not exist.
+   */
+  bool loaded(const std::string& key);
 
   /* The below functions are mainly intended for Tcl, but are usable by
    * other code.
@@ -259,6 +277,7 @@ class ConfReg: public AObject, private std::map<std::string, ConfigRegEntry> {
 
   private:
   void whitelistCheck(const std::string&);
+  void load(ConfigRegEntry&);
 };
 
 /** Copies the value of the source setting into the destination setting.
