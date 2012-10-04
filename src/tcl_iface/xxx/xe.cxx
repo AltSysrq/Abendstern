@@ -2057,9 +2057,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else arg0=NULL;
 };
 arg0Init=true;
-{int gen2004;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen2004);
-            arg1=gen2004;
+{int gen2008;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen2008);
+            arg1=gen2008;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -3010,7 +3010,7 @@ class TclVersusMatch : public VersusMatch {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1547 (
+     trampoline1551 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -3087,7 +3087,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1549 (
+     trampoline1553 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -3159,8 +3159,8 @@ error:
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1547", trampoline1547, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1549", trampoline1549, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1551", trampoline1551, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1553", trampoline1553, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(VersusMatch)),
                            * ete=new TypeExport(typeid(TclVersusMatch));
 ste->isAObject=ete->isAObject=true;
@@ -3172,7 +3172,7 @@ typeExports[&typeid(VersusMatch)]=ste;
 typeExports[&typeid(TclVersusMatch)]=ete;
 }
 };
-void classdec1546(bool safe, Tcl_Interp* interp) throw() {
+void classdec1550(bool safe, Tcl_Interp* interp) throw() {
   TclVersusMatch::cppDecCode(safe,interp);
 }
 
@@ -3180,7 +3180,7 @@ void classdec1546(bool safe, Tcl_Interp* interp) throw() {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1551 (
+     trampoline1555 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 4) {

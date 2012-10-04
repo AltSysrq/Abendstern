@@ -533,9 +533,9 @@ arg6Init=true;
               scriptError(Tcl_GetStringResult(interp));
             arg7 = (float)tmp;};
 arg7Init=true;
-{int gen1695;
-            int err = Tcl_GetBooleanFromObj(interp, objv[8], (int*)&gen1695);
-            arg8=gen1695;
+{int gen1699;
+            int err = Tcl_GetBooleanFromObj(interp, objv[8], (int*)&gen1699);
+            arg8=gen1699;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -809,9 +809,9 @@ arg6Init=true;
               scriptError(Tcl_GetStringResult(interp));
             arg7 = (float)tmp;};
 arg7Init=true;
-{int gen1697;
-            int err = Tcl_GetBooleanFromObj(interp, objv[8], (int*)&gen1697);
-            arg8=gen1697;
+{int gen1701;
+            int err = Tcl_GetBooleanFromObj(interp, objv[8], (int*)&gen1701);
+            arg8=gen1701;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -1093,9 +1093,9 @@ arg6Init=true;
               scriptError(Tcl_GetStringResult(interp));
             arg7 = (float)tmp;};
 arg7Init=true;
-{int gen1699;
-            int err = Tcl_GetBooleanFromObj(interp, objv[8], (int*)&gen1699);
-            arg8=gen1699;
+{int gen1703;
+            int err = Tcl_GetBooleanFromObj(interp, objv[8], (int*)&gen1703);
+            arg8=gen1703;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -1106,9 +1106,9 @@ arg8Init=true;
               scriptError(Tcl_GetStringResult(interp));
             arg9 = (float)tmp;};
 arg9Init=true;
-{int gen1700;
-            int err = Tcl_GetBooleanFromObj(interp, objv[10], (int*)&gen1700);
-            arg10=gen1700;
+{int gen1704;
+            int err = Tcl_GetBooleanFromObj(interp, objv[10], (int*)&gen1704);
+            arg10=gen1704;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -1386,9 +1386,9 @@ arg6Init=true;
               scriptError(Tcl_GetStringResult(interp));
             arg7 = (float)tmp;};
 arg7Init=true;
-{int gen1702;
-            int err = Tcl_GetBooleanFromObj(interp, objv[8], (int*)&gen1702);
-            arg8=gen1702;
+{int gen1706;
+            int err = Tcl_GetBooleanFromObj(interp, objv[8], (int*)&gen1706);
+            arg8=gen1706;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -1399,16 +1399,16 @@ arg8Init=true;
               scriptError(Tcl_GetStringResult(interp));
             arg9 = (float)tmp;};
 arg9Init=true;
-{int gen1703;
-            int err = Tcl_GetBooleanFromObj(interp, objv[10], (int*)&gen1703);
-            arg10=gen1703;
+{int gen1707;
+            int err = Tcl_GetBooleanFromObj(interp, objv[10], (int*)&gen1707);
+            arg10=gen1707;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
 arg10Init=true;
-{int gen1704;
-            int err = Tcl_GetBooleanFromObj(interp, objv[11], (int*)&gen1704);
-            arg11=gen1704;
+{int gen1708;
+            int err = Tcl_GetBooleanFromObj(interp, objv[11], (int*)&gen1708);
+            arg11=gen1708;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -1688,9 +1688,9 @@ arg6Init=true;
               scriptError(Tcl_GetStringResult(interp));
             arg7 = (float)tmp;};
 arg7Init=true;
-{int gen1706;
-            int err = Tcl_GetBooleanFromObj(interp, objv[8], (int*)&gen1706);
-            arg8=gen1706;
+{int gen1710;
+            int err = Tcl_GetBooleanFromObj(interp, objv[8], (int*)&gen1710);
+            arg8=gen1710;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -1701,23 +1701,23 @@ arg8Init=true;
               scriptError(Tcl_GetStringResult(interp));
             arg9 = (float)tmp;};
 arg9Init=true;
-{int gen1707;
-            int err = Tcl_GetBooleanFromObj(interp, objv[10], (int*)&gen1707);
-            arg10=gen1707;
+{int gen1711;
+            int err = Tcl_GetBooleanFromObj(interp, objv[10], (int*)&gen1711);
+            arg10=gen1711;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
 arg10Init=true;
-{int gen1708;
-            int err = Tcl_GetBooleanFromObj(interp, objv[11], (int*)&gen1708);
-            arg11=gen1708;
+{int gen1712;
+            int err = Tcl_GetBooleanFromObj(interp, objv[11], (int*)&gen1712);
+            arg11=gen1712;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
 arg11Init=true;
-{int gen1709;
-            int err = Tcl_GetBooleanFromObj(interp, objv[12], (int*)&gen1709);
-            arg12=gen1709;
+{int gen1713;
+            int err = Tcl_GetBooleanFromObj(interp, objv[12], (int*)&gen1713);
+            arg12=gen1713;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -1959,9 +1959,9 @@ arg2Init=true;
             goto error;
           }
         }
-{int gen1711;
-            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen1711);
-            arg3=gen1711;
+{int gen1715;
+            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen1715);
+            arg3=gen1715;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -3540,9 +3540,9 @@ arg1Init=true;
     } else arg2=NULL;
 };
 arg2Init=true;
-{int gen1994;
-            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen1994);
-            arg3=gen1994;
+{int gen1998;
+            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen1998);
+            arg3=gen1998;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -5147,7 +5147,7 @@ void classdec1244(bool safe, Tcl_Interp* interp) throw() {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1538 (
+     trampoline1542 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -5192,7 +5192,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1540 (
+     trampoline1544 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -5256,7 +5256,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1542 (
+     trampoline1546 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -5281,16 +5281,16 @@ arg0Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "Axis")) {arg1=joystick::Axis; goto done2258;}
+          if (0 == strcmp(tmp, "Axis")) {arg1=joystick::Axis; goto done2264;}
         
-          if (0 == strcmp(tmp, "BallX")) {arg1=joystick::BallX; goto done2258;}
+          if (0 == strcmp(tmp, "BallX")) {arg1=joystick::BallX; goto done2264;}
         
-          if (0 == strcmp(tmp, "BallY")) {arg1=joystick::BallY; goto done2258;}
+          if (0 == strcmp(tmp, "BallY")) {arg1=joystick::BallY; goto done2264;}
          {
           sprintf(staticError, "Unable to convert %s to joystick::AxisType", tmp);
           scriptError(staticError);
         } 
-done2258:;};
+done2264:;};
 arg1Init=true;
 try {
       ret =
@@ -5327,7 +5327,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1544 (
+     trampoline1548 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -5352,20 +5352,20 @@ arg0Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "Button")) {arg1=joystick::Button; goto done2259;}
+          if (0 == strcmp(tmp, "Button")) {arg1=joystick::Button; goto done2265;}
         
-          if (0 == strcmp(tmp, "HatUp")) {arg1=joystick::HatUp; goto done2259;}
+          if (0 == strcmp(tmp, "HatUp")) {arg1=joystick::HatUp; goto done2265;}
         
-          if (0 == strcmp(tmp, "HatDown")) {arg1=joystick::HatDown; goto done2259;}
+          if (0 == strcmp(tmp, "HatDown")) {arg1=joystick::HatDown; goto done2265;}
         
-          if (0 == strcmp(tmp, "HatLeft")) {arg1=joystick::HatLeft; goto done2259;}
+          if (0 == strcmp(tmp, "HatLeft")) {arg1=joystick::HatLeft; goto done2265;}
         
-          if (0 == strcmp(tmp, "HatRight")) {arg1=joystick::HatRight; goto done2259;}
+          if (0 == strcmp(tmp, "HatRight")) {arg1=joystick::HatRight; goto done2265;}
          {
           sprintf(staticError, "Unable to convert %s to joystick::ButtonType", tmp);
           scriptError(staticError);
         } 
-done2259:;};
+done2265:;};
 arg1Init=true;
 try {
       ret =

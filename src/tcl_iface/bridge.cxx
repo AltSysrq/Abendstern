@@ -296,20 +296,18 @@ void classdec1300(bool,Tcl_Interp*) throw();
 void classdec1329(bool,Tcl_Interp*) throw();
 
 void classdec1386(bool,Tcl_Interp*) throw();
-int get1481(ClientData,Tcl_Interp*,int,Tcl_Obj*const[]);
-int trampoline1483(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
-int trampoline1485(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
+int get1485(ClientData,Tcl_Interp*,int,Tcl_Obj*const[]);
 int trampoline1487(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 int trampoline1489(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
-
 int trampoline1491(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 int trampoline1493(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
+
 int trampoline1495(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 int trampoline1497(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 int trampoline1499(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
-
 int trampoline1501(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 int trampoline1503(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
+
 int trampoline1505(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 int trampoline1507(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 int trampoline1509(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
@@ -317,31 +315,33 @@ int trampoline1511(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 int trampoline1513(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 int trampoline1515(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 int trampoline1517(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
-
 int trampoline1519(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 int trampoline1521(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
-int trampoline1523(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 
+int trampoline1523(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 int trampoline1525(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 int trampoline1527(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
+
 int trampoline1529(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
+int trampoline1531(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
+int trampoline1533(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 
-void classdec1531(bool,Tcl_Interp*) throw();
-
-int trampoline1534(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
-int trampoline1536(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
+void classdec1535(bool,Tcl_Interp*) throw();
 
 int trampoline1538(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 int trampoline1540(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
+
 int trampoline1542(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 int trampoline1544(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
+int trampoline1546(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
+int trampoline1548(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 
-void classdec1546(bool,Tcl_Interp*) throw();
-int trampoline1551(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
-int trampoline1553(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
+void classdec1550(bool,Tcl_Interp*) throw();
 int trampoline1555(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
-
 int trampoline1557(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
+int trampoline1559(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
+
+int trampoline1561(ClientData,Tcl_Interp*,int,Tcl_Obj*const[])throw();
 
 
   Tcl_Interp* newInterpreter(bool safe, Tcl_Interp* master) {
@@ -683,62 +683,62 @@ classdec1300(safe, interp);
 classdec1329(safe, interp);
 }
 classdec1386(safe, interp);
-Tcl_CreateObjCommand(interp, "c++ get1481", get1481, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1483", trampoline1483, 0, NULL);
-if (!safe) {
-Tcl_CreateObjCommand(interp, "c++ trampoline1485", trampoline1485, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1485", get1485, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1487", trampoline1487, 0, NULL);
+if (!safe) {
 Tcl_CreateObjCommand(interp, "c++ trampoline1489", trampoline1489, 0, NULL);
-}
 Tcl_CreateObjCommand(interp, "c++ trampoline1491", trampoline1491, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1493", trampoline1493, 0, NULL);
+}
 Tcl_CreateObjCommand(interp, "c++ trampoline1495", trampoline1495, 0, NULL);
-if (!safe) {
 Tcl_CreateObjCommand(interp, "c++ trampoline1497", trampoline1497, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1499", trampoline1499, 0, NULL);
-}
-Tcl_CreateObjCommand(interp, "c++ trampoline1501", trampoline1501, 0, NULL);
 if (!safe) {
+Tcl_CreateObjCommand(interp, "c++ trampoline1501", trampoline1501, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1503", trampoline1503, 0, NULL);
+}
 Tcl_CreateObjCommand(interp, "c++ trampoline1505", trampoline1505, 0, NULL);
+if (!safe) {
 Tcl_CreateObjCommand(interp, "c++ trampoline1507", trampoline1507, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1509", trampoline1509, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1511", trampoline1511, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1513", trampoline1513, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1515", trampoline1515, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1517", trampoline1517, 0, NULL);
-}
-if (!safe) {
 Tcl_CreateObjCommand(interp, "c++ trampoline1519", trampoline1519, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1521", trampoline1521, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1523", trampoline1523, 0, NULL);
 }
 if (!safe) {
+Tcl_CreateObjCommand(interp, "c++ trampoline1523", trampoline1523, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1525", trampoline1525, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1527", trampoline1527, 0, NULL);
+}
+if (!safe) {
 Tcl_CreateObjCommand(interp, "c++ trampoline1529", trampoline1529, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1531", trampoline1531, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1533", trampoline1533, 0, NULL);
 }
 if (!safe) {
-classdec1531(safe, interp);
-}
-if (!safe) {
-Tcl_CreateObjCommand(interp, "c++ trampoline1534", trampoline1534, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1536", trampoline1536, 0, NULL);
+classdec1535(safe, interp);
 }
 if (!safe) {
 Tcl_CreateObjCommand(interp, "c++ trampoline1538", trampoline1538, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1540", trampoline1540, 0, NULL);
+}
+if (!safe) {
 Tcl_CreateObjCommand(interp, "c++ trampoline1542", trampoline1542, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1544", trampoline1544, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1546", trampoline1546, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1548", trampoline1548, 0, NULL);
 }
-classdec1546(safe, interp);
-Tcl_CreateObjCommand(interp, "c++ trampoline1551", trampoline1551, 0, NULL);
-if (!safe) {
-Tcl_CreateObjCommand(interp, "c++ trampoline1553", trampoline1553, 0, NULL);
+classdec1550(safe, interp);
 Tcl_CreateObjCommand(interp, "c++ trampoline1555", trampoline1555, 0, NULL);
-}
 if (!safe) {
 Tcl_CreateObjCommand(interp, "c++ trampoline1557", trampoline1557, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1559", trampoline1559, 0, NULL);
+}
+if (!safe) {
+Tcl_CreateObjCommand(interp, "c++ trampoline1561", trampoline1561, 0, NULL);
 }
 newInterpreterImplPost(interp);
 invokingInterpreter=master;
