@@ -74,13 +74,13 @@ $state setCallback [_ A boot ships] {
     set shipLoadQueue [lassign $shipLoadQueue path]
     set ship [shipPath2Mount $path]
     if {[catch {
-      $ open $path $ship
+      $ openLazily $path $ship
     } err]} {
       log "Couldn't load ship file $path: $err"
       continue
     }
     $ appends hangar.all_ships [shipMount2Name $ship]
-    set cls [string tolower [$ str $ship.info.class]]
+    set cls [string tolower [spc::get $ship class]]
     # Make sure the class is valid
     switch -- $cls {
       a -

@@ -5,12 +5,12 @@
  * for the trail, which may not be the case.
  */
 
-in float ix;
-in vec2 vertex;
-in vec2 velocity;
-in float creation;
-in float isolation;
-in float expansion;
+attribute float ix;
+attribute vec2 vertex;
+attribute vec2 velocity;
+attribute float creation;
+attribute float isolation;
+attribute float expansion;
 
 uniform vec4 baseColour;
 uniform vec4 colourFade;

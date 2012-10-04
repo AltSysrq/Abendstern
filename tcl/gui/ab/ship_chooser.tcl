@@ -124,13 +124,19 @@ class ShipChooser {
   method get-ship-dict {rt} {
     set s {}
     # Get ship information, and stringprep its name
-    dict set s name [$ str $rt.info.name]
-    dict set s spname [::stringprep::stringprep basic [$ str $rt.info.name]]
-    dict set s author [$ str $rt.info.author]
-    dict set s class [$ str $rt.info.class]
-    dict set s category [Ship_categorise $rt]
+    dict set s name [::spc::get $rt name]
+    dict set s spname [::stringprep::stringprep basic [::spc::get $rt name]]
+    dict set s author [::spc::get $rt author]
+    dict set s class [::spc::get $rt class]
+    dict set s category [::spc::get $rt category]
     dict set s hangars {}
     dict set s root $rt
+    set class [::spc::get $rt class]
+    if {"A" ne $class &&
+        "B" ne $class &&
+        "C" ne $class} {
+      error "Invalid class \"$class\""
+    }
     return $s
   }
 

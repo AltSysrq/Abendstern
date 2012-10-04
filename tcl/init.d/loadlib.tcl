@@ -14,3 +14,4 @@ package require sha256
 package require uuid
 
 source tcl/lssinfo.tcl
+source tcl/ship_properties_cache.tcl

@@ -4,9 +4,9 @@
  */
 
 uniform mat4 transform;
-in vec2 texCoord;
-in vec2 vertex;
-in float isLeft;
+attribute vec2 texCoord;
+attribute vec2 vertex;
+attribute float isLeft;
 uniform float dayNightLeft, dayNightRight;
 varying /* out */ vec2 varyingTexCoord;
 varying /* out */ float varyingDayNight;

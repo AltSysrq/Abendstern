@@ -1218,6 +1218,7 @@ enum Setting::Type ST {Setting::TypeInt    Int   } {Setting::TypeInt64   Int64} 
 class final ConfReg {} {
   unsafe {
     fun void open {} string string
+    fun void openLazily {} string string
     fun void create {} string string
     fun void close {} string
     fun void closeAll
@@ -1234,6 +1235,7 @@ class final ConfReg {} {
     fun void renameFile {} string string
   }
   fun bool exists {} string
+  fun bool loaded {} string
   fun bool {getBool bool} {} string
   fun int {getInt int} {} string
   fun float {getFloat float} {} string

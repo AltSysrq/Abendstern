@@ -3,7 +3,7 @@
  * no other attributes.
  */
 
-in vec2 vertex;
+attribute vec2 vertex;
 uniform mat4 transform;
 
 void main(void) {

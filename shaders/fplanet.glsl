@@ -5,9 +5,9 @@
 
 uniform sampler2D dayTex, nightTex;
 uniform vec4 glareColour;
-/* varying */ in float varyingDayNight;
-/* varying */ in vec2 varyingTexCoord;
-varying out vec4 dst;
+varying /* in */ float varyingDayNight;
+varying /* in */ vec2 varyingTexCoord;
+#define dst gl_FragColor
 
 void main(void) {
   if (varyingDayNight == 0) {

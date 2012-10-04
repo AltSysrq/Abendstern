@@ -4,9 +4,9 @@
 uniform vec3 baseColour;
 uniform float visibility;
 
-/* varying */ in vec2 varyingTexCoord;
+varying /* in */ vec2 varyingTexCoord;
 
-varying out vec4 dst;
+#define dst gl_FragColor
 
 void main(void) {
   vec2 v = varyingTexCoord*2 - vec2(1,1);

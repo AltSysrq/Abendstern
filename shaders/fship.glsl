@@ -9,8 +9,8 @@ uniform vec3 shipColour;
 uniform float highColour[128*3];
 uniform sampler2D mainTex, damTex;
 uniform float cloak;
-/* varying */ in vec2 varyingTexCoord;
-varying out vec4 dst;
+varying /* in */ vec2 varyingTexCoord;
+#define dst gl_FragColor
 
 void main(void) {
   vec4 colour=texture2D(mainTex, varyingTexCoord);

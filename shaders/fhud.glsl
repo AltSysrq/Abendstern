@@ -6,9 +6,9 @@
 uniform float topBarVal, botBarVal, leftBarVal, rightBarVal;
 uniform vec3  topBarCol, botBarCol, leftBarCol, rightBarCol;
 
-/* varying */ in vec2 varyingTexCoord;
-/* varying */ in vec2 screenCoord;
-varying out vec4 dst;
+varying /* in */ vec2 varyingTexCoord;
+varying /* in */ vec2 screenCoord;
+#define dst gl_FragColor
 
 const float pi = 3.1415926;
 

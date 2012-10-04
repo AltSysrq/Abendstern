@@ -5,8 +5,8 @@
  */
 
 uniform mat4 transform;
-in vec2 texCoord;
-in vec4 vertex;
+attribute vec2 texCoord;
+attribute vec4 vertex;
 varying /* out */ vec2 varyingTexCoord;
 
 void main(void) {

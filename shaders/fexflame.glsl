@@ -5,9 +5,9 @@ uniform vec4 colour;
 uniform float elapsedTime;
 uniform int id;
 
-/* varying */ in vec2 expCoord;
+varying /* in */ vec2 expCoord;
 
-varying out vec4 dst;
+#define dst gl_FragColor
 
 void main(void) {
   float r=expCoord.x*expCoord.x + expCoord.y*expCoord.y;

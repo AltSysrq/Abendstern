@@ -5,8 +5,8 @@
 
 uniform float green;
 
-/* varying */ in vec2 varyingTexCoord;
-varying out vec4 dst;
+varying /* in */ vec2 varyingTexCoord;
+#define dst gl_FragColor
 
 void main(void) {
   vec2 v = varyingTexCoord*2 - vec2(1,1);

@@ -1,14 +1,14 @@
 #version 120
 /* Stensiling texture stiple frag shader. */
 
-/* varying */ in vec2 varyingTexCoord;
-/* varying */ in vec2 screenCoord;
+varying /* in */ vec2 varyingTexCoord;
+varying /* in */ vec2 screenCoord;
 
 uniform int screenW, screenH;
 uniform sampler2D colourMap;
 uniform vec4 modColour;
 
-varying out vec4 dst;
+#define dst gl_FragColor
 
 //The % operator is non-standard in GLSL 1.2 and
 //illegal in GLSL ES 1.0 (why?).

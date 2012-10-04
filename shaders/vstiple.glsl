@@ -4,7 +4,7 @@
  */
 
 uniform mat4 transform;
-in vec4 vertex;
+attribute vec4 vertex;
 varying /* out */ vec2 screenCoord;
 
 void main(void) {

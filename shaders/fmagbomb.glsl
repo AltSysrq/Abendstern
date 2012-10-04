@@ -6,9 +6,9 @@
 
 uniform vec4 modColour;
 uniform float rotation;
-/* varying */ in vec2 varyingTexCoord;
+varying /* in */ vec2 varyingTexCoord;
 
-varying out vec4 dst;
+#define dst gl_FragColor
 
 void main(void) {
   float txx=(varyingTexCoord.x-0.5)*2;
