@@ -26,9 +26,8 @@ if {![info exists SHIPDNLD_PROCS]} {
     for {set i 0} {$i < [$ length hangar.all_ships]} {incr i} {
       set ship [$ str hangar.all_ships.\[$i\]]
       set ship [shipName2Mount $ship]
-      if {[$ exists $ship.info.guid]
-      &&  $guid eq [$ str $ship.info.guid]
-      &&  $owner == [$ int $ship.info.ownerid]} {
+      if {$guid eq [spc::get $ship guid] &&
+          $owner == [spc::get $ship ownerid]} {
         return [$ str hangar.all_ships.\[$i\]]
       }
     }

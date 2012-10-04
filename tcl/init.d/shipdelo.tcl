@@ -6,7 +6,7 @@ if {$::abnet::isConnected} {
     for {set i 0} {$i < [$ length hangar.all_ships]} {incr i} {
       set ship [$ str hangar.all_ships.\[$i\]]
       if {0 == [string first $::abnet::userid/ $ship]} {
-        lappend ourShips "[$ str [shipName2Mount $ship].info.guid].ship"
+        lappend ourShips "[spc::get [shipName2Mount $ship] guid].ship"
       }
     }
 

@@ -80,7 +80,7 @@ $state setCallback [_ A boot ships] {
       continue
     }
     $ appends hangar.all_ships [shipMount2Name $ship]
-    set cls [string tolower [$ str $ship.info.class]]
+    set cls [string tolower [spc::get $ship class]]
     # Make sure the class is valid
     switch -- $cls {
       a -

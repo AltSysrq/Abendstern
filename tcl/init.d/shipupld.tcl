@@ -38,6 +38,12 @@ if {[llength $ourShips]} {
         set ship [shipName2Mount $shipname]
         incr ourShipIx
 
+        # If not loaded, assume it does not need to be uploaded
+        # (This might not be correct, if Abendstern exited uncleanly and the
+        # ship file was not loaded since, but this will make this step much
+        # faster.)
+        if {![$ loaded $ship]} continue
+
         if {![$ exists $ship.info.sharing_enabled]} {
           $ addb $ship.info sharing_enabled yes
         }
