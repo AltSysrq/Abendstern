@@ -106,7 +106,7 @@ static inline float randomf() noth {
 
 Ship::Ship(GameField* field) :
   GameObject(field, randomf()*field->width, randomf()*field->height),
-  controller(NULL), effects(new ForwardingEffectsHandler(this)),
+  controller(NULL), effects(&nullEffectsHandler),
   renderer(NULL),
   validPhysics(0),
   colourR(0.8f), colourG(0.8f), colourB(0.8f),
