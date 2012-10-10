@@ -1301,6 +1301,27 @@ bool Ship::collideWith(GameObject* other) noth {
         controller->damage(totalDamage, damageXOff, damageYOff);
     }
 
+    /* If cells are destroyed, certain systems (such as PowerPlants) remove
+     * themselves from their container cell, and properly clear the
+     * PHYS_CELL_MASS_BITS. However, when we require the
+     * PHYS_CELL_LOCATION_PROPERTIES_BIT, for new empty cells, this triggers a
+     * recalculation of (among others) PHYS_SHIP_MASS_BIT, while the ship is in
+     * inconsistent state. preremove() assumes that all cells are removed in
+     * sequence while the ship was being disassembled in a consistent state, so
+     * this results in oddities such as a zero mass, for example in the
+     * fragment configuration
+     *   XYZ
+     * where Y is destroyed, and X.mass == Y.mass. When Y is removed, X and Z
+     * are separated, then the mass recalculation occurs, which only affects
+     * the root (we'll say X). Then Z is removed because it is a new fragment,
+     * and its mass is subtracted from that of thi ship, resulting in a ship
+     * mass of zero.
+     *
+     * Redetect the cell location properties bit now (if necessary) so that
+     * everything is consistent for the removal.
+     */
+    physicsRequire(PHYS_CELL_LOCATION_PROPERTIES_BIT);
+
     //Actually destroy destroyed cells
     for (set<Cell*>::const_iterator it = destroyed.begin();
          it != destroyed.end(); ++it) {
