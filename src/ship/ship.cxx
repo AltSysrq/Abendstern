@@ -1368,9 +1368,7 @@ bool Ship::collideWith(GameObject* other) noth {
             continue;
 
           //Find the cell's index
-          unsigned i;
-          for (i=0; cells[i] != *it; ++i) assert(i < cells.size());
-          bool attached=bridgeAttached.count(cells[i]);
+          bool attached=bridgeAttached.count(*it);
           if (attached) continue;
 
           //Fragment
@@ -1388,7 +1386,7 @@ bool Ship::collideWith(GameObject* other) noth {
            * the second blast to expire first.
            */
           set<Cell*> fragCells;
-          cells[i]->getAdjoined(fragCells);
+          (*it)->getAdjoined(fragCells);
           frag->cells.insert(frag->cells.end(),
                              fragCells.begin(), fragCells.end());
           for (unsigned int j=0; j<frag->cells.size(); ++j) {
@@ -1414,11 +1412,6 @@ bool Ship::collideWith(GameObject* other) noth {
                 toSkip.insert(cells[k]);
                 cells.erase(cells.begin() + k);
 
-                //Looks odd, but i is unsigned...
-                //(This is actually testing that i is not the maximum value for
-                //unsigned int, which indicates it has passed zero.)
-                if (k<=i && i<(((unsigned int)0)-1)) --i;
-                --k;
                 goto cellRemoved;
               }
             }
