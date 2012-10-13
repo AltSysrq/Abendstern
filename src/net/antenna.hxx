@@ -168,6 +168,13 @@ public:
    * Returns whether the system has a functioning IPv6 socket.
    */
   bool hasV6() const noth { return sock6; }
+
+  /**
+   * Immediately closes any sockets held by this Antenna, which will no longer
+   * be useful. Further operations on this Antenna, other than the destructor,
+   * will have undefined results after this call.
+   */
+  void close() noth;
 } extern antenna; ///< Primary instance of Antenna
 
 

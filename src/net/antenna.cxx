@@ -191,3 +191,22 @@ void Antenna::processIncomming() throw (asio::system_error) {
       tuner->receivePacket(source, this, data, len);
   }
 }
+
+void Antenna::close() noth {
+  if (sock4) {
+    try {
+      sock4->shutdown(asio::ip::udp::socket::shutdown_both);
+    } catch (...) {}
+    try {
+      sock4->close();
+    } catch (...) {}
+  }
+  if (sock6) {
+    try {
+      sock6->shutdown(asio::ip::udp::socket::shutdown_both);
+    } catch (...) {}
+    try {
+      sock6->close();
+    } catch (...) {}
+  }
+}
