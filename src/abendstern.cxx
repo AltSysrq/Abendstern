@@ -68,6 +68,7 @@
 #include "graphics/gl32emu.hxx"
 #include "graphics/matops.hxx"
 #include "secondary/frame_recorder.hxx"
+#include "net/antenna.hxx"
 #include "tcl_iface/bridge.hxx"
 #include "tcl_iface/slave_thread.hxx"
 
@@ -794,6 +795,12 @@ void shutdown() {
 }
 
 void exitPreliminaryRunMode() {
+  /* Close any sockets we have open so that the new process can use the same
+   * port numbers.
+   * (We don't rely on the port numbers being the same, but this greatly
+   * reduces port number contention.)
+   */
+  antenna.close();
 #ifdef WIN32
   const char* newexe;
   switch (recommendedGLType) {

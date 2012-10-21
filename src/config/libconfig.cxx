@@ -897,6 +897,9 @@ namespace libconfig {
     RArray* arr = new RArray;
     BArray blk;
     //Start by finding the initial capacity
+    //(This will always end up being non-zero since the loop executes at least
+    //once any we always add the sumber of settings in a block to the value on
+    //each iteration.)
     unsigned initcap = 0;
     for (iptr curr = base; curr; curr = blk.nxt) {
       bread(curr, &blk);
@@ -1012,8 +1015,11 @@ namespace libconfig {
       if (blk.value) ++grp->numEntries;
     }
 
-    grp->entries = new RGroup::OrderedEntry[grp->numEntries];
     grp->entriesCap = grp->numEntries;
+    //Never create a zero-element array
+    if (!grp->entriesCap)
+      grp->entriesCap = 1;
+    grp->entries = new RGroup::OrderedEntry[grp->numEntries];
     //Find the second power of two which is >= numEntries for the table size
     grp->tableSize = 1;
     while (grp->tableSize < grp->numEntries) grp->tableSize <<= 1;

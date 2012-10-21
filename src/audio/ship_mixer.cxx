@@ -998,6 +998,7 @@ namespace audio {
     : len(0), dat(new Sint16[length]), datlen(length), lock(SDL_CreateMutex()), volmul(vm)
     {
       src->get(dat, datlen);
+      delete src;
 
       static bool hasStatics = false;
       if (!hasStatics) {

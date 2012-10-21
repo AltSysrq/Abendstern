@@ -71,7 +71,6 @@ namespace test_state {
   }
 
   void enemyDeath(Ship* s, bool del) {
-    delete s->effects;
     s->shipExistenceFailure=NULL;
     if (mode != LastManStanding && mode != ManVsWorld) that->newEnemy();
   }

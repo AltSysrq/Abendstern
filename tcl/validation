@@ -80,6 +80,7 @@ tcl/ui/testmenu.tcl
 tcl/ui/game.tcl
 tcl/autosource.tcl
 tcl/self_update.tcl
+tcl/ship_properties_cache.tcl
 tcl/ship_edit.tcl
 tcl/gui.tcl
 tcl/safen_slave.tcl

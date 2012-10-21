@@ -9,12 +9,18 @@ o libgmp        (libgmp-dev)
 o OpenGL        (libgl1-mesa-dev or proprietary video driver headers)
 o tcl8.5        (tcl8.5-dev)
 o itcl3.4       (itcl3-dev)
-o tcl-tls       (tcl-tls)
 o tcllib        (tcllib)
 o libpng        (libpng12-dev or other version)
 o libpng++      (libpng++-dev)
 You also need ImageMagick for building some data files. It is usually found in
-a package named imagemagick.
+a package named imagemagick. pkg-config is used for detecting the packages, so
+you need it as well.
+
+On Ubuntu, you can install everything you need with the following command (copy
+all three lines at once):
+  sudo apt-get install build-essential g++ libasio-dev libboost-dev \
+    libsdl1.2-dev libsdl-image1.2-dev libgmp-dev libgl1-mesa-dev \
+    tcl8.5-dev itcl3-dev tcllib libpng++-dev imagemagick pkg-config
 
 To compile, do
   ./configure

@@ -123,9 +123,12 @@ AIControl::AIControl(Ship* s, const char* root, const char* iaic)
 
 AIControl::~AIControl() {
   for (map<string,State>::const_iterator it=states.begin();
-       it != states.end(); ++it)
+       it != states.end(); ++it) {
     for (unsigned i=0; i<(*it).second.modules.size(); ++i)
       delete (*it).second.modules[i].module;
+    for (unsigned i = 0; i < it->second.reflexes.size(); ++i)
+      delete it->second.reflexes[i];
+  }
 }
 
 void AIControl::update(float et) noth {

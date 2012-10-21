@@ -106,7 +106,7 @@ static inline float randomf() noth {
 
 Ship::Ship(GameField* field) :
   GameObject(field, randomf()*field->width, randomf()*field->height),
-  controller(NULL), effects(new ForwardingEffectsHandler(this)),
+  controller(NULL), effects(&nullEffectsHandler),
   renderer(NULL),
   validPhysics(0),
   colourR(0.8f), colourG(0.8f), colourB(0.8f),
@@ -1301,6 +1301,27 @@ bool Ship::collideWith(GameObject* other) noth {
         controller->damage(totalDamage, damageXOff, damageYOff);
     }
 
+    /* If cells are destroyed, certain systems (such as PowerPlants) remove
+     * themselves from their container cell, and properly clear the
+     * PHYS_CELL_MASS_BITS. However, when we require the
+     * PHYS_CELL_LOCATION_PROPERTIES_BIT, for new empty cells, this triggers a
+     * recalculation of (among others) PHYS_SHIP_MASS_BIT, while the ship is in
+     * inconsistent state. preremove() assumes that all cells are removed in
+     * sequence while the ship was being disassembled in a consistent state, so
+     * this results in oddities such as a zero mass, for example in the
+     * fragment configuration
+     *   XYZ
+     * where Y is destroyed, and X.mass == Y.mass. When Y is removed, X and Z
+     * are separated, then the mass recalculation occurs, which only affects
+     * the root (we'll say X). Then Z is removed because it is a new fragment,
+     * and its mass is subtracted from that of thi ship, resulting in a ship
+     * mass of zero.
+     *
+     * Redetect the cell location properties bit now (if necessary) so that
+     * everything is consistent for the removal.
+     */
+    physicsRequire(PHYS_CELL_LOCATION_PROPERTIES_BIT);
+
     //Actually destroy destroyed cells
     for (set<Cell*>::const_iterator it = destroyed.begin();
          it != destroyed.end(); ++it) {
@@ -1368,9 +1389,7 @@ bool Ship::collideWith(GameObject* other) noth {
             continue;
 
           //Find the cell's index
-          unsigned i;
-          for (i=0; cells[i] != *it; ++i) assert(i < cells.size());
-          bool attached=bridgeAttached.count(cells[i]);
+          bool attached=bridgeAttached.count(*it);
           if (attached) continue;
 
           //Fragment
@@ -1388,7 +1407,7 @@ bool Ship::collideWith(GameObject* other) noth {
            * the second blast to expire first.
            */
           set<Cell*> fragCells;
-          cells[i]->getAdjoined(fragCells);
+          (*it)->getAdjoined(fragCells);
           frag->cells.insert(frag->cells.end(),
                              fragCells.begin(), fragCells.end());
           for (unsigned int j=0; j<frag->cells.size(); ++j) {
@@ -1414,11 +1433,6 @@ bool Ship::collideWith(GameObject* other) noth {
                 toSkip.insert(cells[k]);
                 cells.erase(cells.begin() + k);
 
-                //Looks odd, but i is unsigned...
-                //(This is actually testing that i is not the maximum value for
-                //unsigned int, which indicates it has passed zero.)
-                if (k<=i && i<(((unsigned int)0)-1)) --i;
-                --k;
                 goto cellRemoved;
               }
             }

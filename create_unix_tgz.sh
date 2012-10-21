@@ -5,6 +5,11 @@
 # Output is
 #   abendstern-VERSION-KERNEL-ARCH.tgz
 
+# Rebuild
+./configure --disable-debug --disable-profile || exit 1
+#make clean || exit 1
+make $MAKE_OPTIONS || exit 1
+
 VERSION=$(cat version)
 KERNEL=$(uname -s)
 ARCH=$(uname -m)
@@ -27,11 +32,6 @@ if [ "$ARCH" = "x86_64" ]; then
 fi
 
 OUTNAME="abendstern-$VERSION-$KERNEL-$ARCH"
-
-# Rebuild
-./configure --disable-debug --disable-profile || exit 1
-#make clean || exit 1
-make || exit 1
 
 # Copy files
 mkdir $OUTNAME || exit 1

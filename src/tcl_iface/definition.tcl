@@ -490,7 +490,10 @@ fun unsigned shipCategoryToInt Ship::Category
 class final Ship GameObject {
   unsafe {
     var controller Controller* steal
-    var effects EffectsHandler* steal
+    # This used to be steal, since the Ship created its own
+    # ForwardingEffectsHandler. It no longer does (because this was impossible
+    # to manage correctly), so ownership is now whoever created the object.
+    var effects EffectsHandler*
     var shipExistenceFailure fun<void:Ship*,bool>::fun_t*
   }
 
