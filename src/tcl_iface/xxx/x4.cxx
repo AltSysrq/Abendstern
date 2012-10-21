@@ -518,18 +518,7 @@ static int set478 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
 
         //All is well, transfer ownership now
         EffectsHandler* tmp=(EffectsHandler*)ex->ptr;
-        if (tmp) switch (tmp->ownStat) {
-          case AObject::Cpp: 
-          case AObject::Tcl:
-            tmp->ownStatBak=tmp->ownStat;
-            tmp->ownStat=AObject::Cpp;
-            //So undo works properly
-            tmp->ownerBak.interpreter=tmp->owner.interpreter;
-            break;
-          case AObject::Container:
-            scriptError("Change of ownership of automatic C++ value");
-            break;
-        }
+        
         newVal = tmp;
     } else newVal=NULL;
 }
@@ -538,23 +527,7 @@ static int set478 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       
 
       //Transfer ownership of old value if necessary
-      {if ((parent->effects)) switch ((parent->effects)->ownStat) {
-            case AObject::Tcl:
-              if (interp == (parent->effects)->owner.interpreter) {
-                
-              }
-              //fall through
-            case AObject::Cpp:
-              (parent->effects)->ownStatBak=(parent->effects)->ownStat;
-              (parent->effects)->ownerBak.interpreter = (parent->effects)->owner.interpreter;
-              (parent->effects)->ownStat=AObject::Tcl;
-              (parent->effects)->owner.interpreter=interp;
-              break;
-            case AObject::Container:
-              cerr <<
-"FATAL: Attempt by C++ to give Tcl ownership of automatic value" << endl;
-              ::exit(EXIT_PROGRAM_BUG);
-          }}
+      {}
 
       //Set
       parent->effects = newVal;
