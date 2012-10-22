@@ -61,7 +61,8 @@ void DynamicCamera::doSetup() noth {
   //Handle vibration
   float vibx=vibration*(rand()/(float)RAND_MAX) - vibration/2,
         viby=vibration*(rand()/(float)RAND_MAX) - vibration/2;
-  mTrans(0.5f, vheight/2-(rotateMode!=None? lookAhead : 0), matrix_stack::view);
+  mTrans(0.5f, vheight/2-(rotateMode!=None? lookAhead*vheight : 0),
+         matrix_stack::view);
   mUScale(currZ, matrix_stack::view);
   mRot(-currT, matrix_stack::view);
   mTrans(-currX+vibx, -currY+viby, matrix_stack::view);
