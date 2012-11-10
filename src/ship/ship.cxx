@@ -1752,8 +1752,19 @@ void Ship::preremove(Cell* cell) noth {
     physicsClear(PHYS_CELL_LOCATION_PROPERTIES_BITS | PHYS_SHIP_COORDS_BITS);
   }
   //PHYS_SHIP_MASS_BIT: subtract cell mass
-  if (validPhysics & PHYS_SHIP_MASS_BIT)
+  if (validPhysics & PHYS_SHIP_MASS_BIT) {
     mass -= cell->physics.mass;
+    #ifndef NDEBUG
+    //Sanity check on mass
+    if (mass == 0.0f || mass == -0.0f) {
+      //All remaining cells must be empty or this cell
+      bool ok = true;
+      for (unsigned i = 0; ok && i < cells.size(); ++i)
+        ok &= (cells[i] == cell || cells[i]->isEmpty);
+      assert(ok);
+    }
+    #endif /* NDEBUG */
+  }
   //PHYS_SHIP_INERTIA_BIT: depends on PHYS_SHIP_COORDS_BIT, can't be patched
   //PHYS_SHIP_THRUST_BIT: subtract thrust components
   if ((validPhysics & PHYS_SHIP_THRUST_BIT) && !isFragment) {
