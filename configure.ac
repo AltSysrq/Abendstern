@@ -13,15 +13,22 @@ AM_MAINTAINER_MODE
 PKG_PROG_PKG_CONFIG()
 
 AC_ARG_ENABLE([debug], AS_HELP_STRING([--enable-debug], [Enable debugging.]))
+AC_ARG_ENABLE([optimise], AS_HELP_STRING([--disable-optimise],
+                                         [Disable optimisations]))
 AC_ARG_ENABLE([profile], AS_HELP_STRING([--enable-profile], [Enable profiling.]))
 AC_ARG_ENABLE([gl14], AS_HELP_STRING([--disable-gl14], [Don't build OpenGL 1.4 version.]))
 AC_ARG_ENABLE([gl21], AS_HELP_STRING([--disable-gl21], [Don't build OpenGL 2.1 version.]))
 AC_ARG_ENABLE([gl32], AS_HELP_STRING([--disable-gl32], [Don't build OpenGL 3.2 version.]))
 AC_ARG_WITH([glew], AS_HELP_STRING([--with-glew], [Use GLEW to access GL extensions.]))
 AS_IF([test "x$enable_debug" = "xyes"], [
-  AB_DEBUG_FLAGS='-DDEBUG -O0 -g3'
+  AB_DEBUG_FLAGS='-DDEBUG -g3'
 ], [
-  AB_DEBUG_FLAGS='-DNDEBUG -O3'
+  AB_DEBUG_FLAGS='-DNDEBUG'
+])
+AS_IF([test "x$enable_optimise" = "xno"],
+  AB_OPT_FLAGS='-O0'
+], [
+  AB_OPT_FLAGS='-O3'
 ])
 AS_IF([test "x$enable_profile" = "xyes"], [
   AB_PROFILE_FLAGS='-DPROFILE -pg -g3'
@@ -59,7 +66,8 @@ AS_IF([test "x$with_fonts" = "xno"], [
   AM_CONDITIONAL(ENABLE_FONTS, true)
 ])
 
-CXXFLAGS="$CXXFLAGS $AB_DEBUG_FLAGS $AB_PROFILE_FLAGS -DTHREAD_LOCAL=__thread"
+CXXFLAGS="$CXXFLAGS $AB_DEBUG_FLAGS $AB_OPT_FLAGS $AB_PROFILE_FLAGS \
+    -DTHREAD_LOCAL=__thread"
 LDFLAGS="$LDFLAGS $AB_PROFILE_FLAGS"
 
 # Checks for programs.
