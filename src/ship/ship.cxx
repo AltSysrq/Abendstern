@@ -1416,6 +1416,7 @@ bool Ship::collideWith(GameObject* other) noth {
           //Find all cells attached and remove from ours,
           //then create new ship
           Ship* frag=new Ship(field);
+          SetPhysicsLockedInScope _lockFrag(frag, true);
           frag->isFragment=frag->decorative=true;
           /* We don't call okToDecorate because then
            * the fragment will be doubly-exposed to
@@ -1489,6 +1490,7 @@ bool Ship::collideWith(GameObject* other) noth {
           //Get the old location of the root so we can adjust later
           pair<float,float> rootPos=cellCoord(this, frag->cells[0]);
           for (unsigned int j=0; j<frag->cells.size(); ++j) {
+            SetPhysicsLockedInScope _unlockFrag(frag, false);
             frag->cells[j]->disorient();
             frag->cells[j]->physicsClear(PHYS_CELL_LOCATION_PROPERTIES_BITS);
           }
@@ -1500,6 +1502,7 @@ bool Ship::collideWith(GameObject* other) noth {
           frag->x=frag->y=0;
           frag->reinforcement=this->reinforcement;
           //Move so it appears in the correct location
+          SetPhysicsLockedInScope _fragReady(frag, false);
           frag->physicsRequire(PHYS_SHIP_COORDS_BIT | PHYS_CELL_LOCATION_PROPERTIES_BIT);
           pair<float,float> offset=cellCoord(frag, frag->cells[0]);
           frag->x = rootPos.first - offset.first;
