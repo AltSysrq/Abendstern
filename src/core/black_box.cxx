@@ -49,12 +49,8 @@ struct Entry {
   unsigned nestingDepth;
 };
 
-static bool operator<(const Entry& a, const Entry& b) {
-  return a.when > b.when;
-}
-
 struct Section {
-  priority_queue<Entry> entries;
+  queue<Entry> entries;
   unsigned nestingDepth;
 
   Section() : nestingDepth(0) {}
@@ -112,7 +108,7 @@ BlackBox::~BlackBox() {
     //If nesting depth is zero, prune the queue
     unsigned long long pruneBefore = now - 10*TICKS_PER_SEC;
     if (0 == s.nestingDepth) {
-      while (s.entries.top().when < pruneBefore)
+      while (s.entries.front().when < pruneBefore)
         s.entries.pop();
     }
   }
@@ -129,9 +125,9 @@ void BlackBox::dump(const char* section) {
     Section& s(blackBoxSections[string(section)]);
     while (!s.entries.empty()) {
       fprintf(stderr, "    %16lld %*s %s\n",
-              now - s.entries.top().when,
-              2*s.entries.top().nestingDepth, "",
-              s.entries.top().what.c_str());
+              now - s.entries.front().when,
+              2*s.entries.front().nestingDepth, "",
+              s.entries.front().what.c_str());
       s.entries.pop();
     }
 
