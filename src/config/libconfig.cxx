@@ -678,7 +678,7 @@ namespace libconfig {
       toDelete.push(s);
 
     if (gcStrategy == GCS_Immediate) {
-      while (toDelete.size()) {
+      while (!toDelete.empty()) {
         Setting* other = toDelete.top();
         toDelete.pop();
         sfree(other);
