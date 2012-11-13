@@ -55,6 +55,7 @@
 #include "src/core/lxn.hxx"
 #include "src/control/human_controller.hxx"
 #include "src/net/ship_damage_geraet.hxx"
+#include "src/core/black_box.hxx"
 
 using namespace std;
 using libconfig::Setting;
@@ -274,6 +275,7 @@ void Ship::restoreFromZero(float* f) noth {
 }
 
 bool Ship::update(float et) noth {
+  BlackBox _bb("ship\0", "Ship %p->update(%f)", this, et);
   if (soundEffects && currentVFrameLast)
     audio::shipSoundEffects(currentFrameTime,this);
 
@@ -577,6 +579,8 @@ void Ship::radarBounds(radar_t::iterator& begin, radar_t::iterator& end) noth {
 }
 
 void Ship::physicsRequire(physics_bits bits) noth {
+  BlackBox _bb("ship\0", "Ship %p->physicsRequire(%X) (now=%X, &=%X)",
+               this, bits, validPhysics, bits & validPhysics);
   assert(!physicsLocked);
 
   //Return early if possible
@@ -1747,6 +1751,10 @@ void Ship::updateCurrPower() noth {
 }
 
 void Ship::preremove(Cell* cell) noth {
+  BlackBox _bb("ship\0",
+               "Ship %p->preremove(%p) hasmass:%d this->mass=%f, cell->mass=%f",
+               this, cell, (int)!!(validPhysics & PHYS_SHIP_MASS_BIT),
+               mass, cell->physics.mass);
   if (cell->isEmpty) return; //Nothing to do with EmptyCells
 
   //PHYS_SHIP_COORDS_BIT: can't be patched
@@ -1764,6 +1772,8 @@ void Ship::preremove(Cell* cell) noth {
       bool ok = true;
       for (unsigned i = 0; ok && i < cells.size(); ++i)
         ok &= (cells[i] == cell || cells[i]->isEmpty);
+      if (!ok)
+        BlackBox::dump("ship\0");
       assert(ok);
     }
     #endif /* NDEBUG */
