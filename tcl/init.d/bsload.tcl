@@ -7,33 +7,34 @@ if {![info exists ::bsload::index]} {
 
     proc callback {} {
       global ::bsload::index ::bsload::filenames
-      set filename [lindex $filenames $index]
-      set ok no
-      catch {
-        set conffile [homeq hangar/0/$filename]
-        if {![file exists $conffile]} {
-          error "$filename does not exist"
+      for {set times 0} {$times < 16} {incr times} {
+        set filename [lindex $filenames $index]
+        set ok no
+        catch {
+          set conffile [homeq hangar/0/$filename]
+          if {![file exists $conffile]} {
+            error "$filename does not exist"
+          }
+          $ openLazily $conffile ship:bs/$filename
+          set ok yes
         }
-        $ openLazily $conffile ship:bs/$filename
-        set ok yes
-      }
 
-      if {$ok} {
-        set class [string index $filename end-2]
-        set hangar hangar.user.bs$class.contents
-        set ix [$ length $hangar]
-        set entry $hangar.\[$ix\]
-        $ append $hangar STGroup
-        $ adds $entry target bs/$filename
-        $ addi $entry weight 1
-      }
+        if {$ok} {
+          set class [string index $filename end-2]
+          set hangar hangar.user.bs$class.contents
+          set ix [$ length $hangar]
+          set entry $hangar.\[$ix\]
+          $ append $hangar STGroup
+          $ adds $entry target bs/$filename
+          $ addi $entry weight 1
+        }
 
-      incr index
-      if {$index == [llength $filenames]} {
-        return 200
-      } else {
-        return [expr {int(100.0*$index/[llength $filenames])}]
+        incr index
+        if {$index == [llength $filenames]} {
+          return 200
+        }
       }
+      return [expr {int(100.0*$index/[llength $filenames])}]
     }
   }
 
