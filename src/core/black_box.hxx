@@ -12,8 +12,7 @@
  * considered subordinate to this one. On destruction, it is logged that the
  * BlackBox has terminated.
  *
- * If DEBUG is not defined, this class instead becomes a no-op inline function,
- * and BlackBox::dump() is uncallable.
+ * If DEBUG is not defined, this class instead becomes a no-op.
  */
 class BlackBox {
   const char* sections;
@@ -41,7 +40,11 @@ public:
   static void dump(const char* sections);
 };
 #else
-static inline void BlackBox(const char*, ...) {}
+class BlackBox {
+public:
+  BlackBox(const char*, ...) {}
+  static inline void dump(const char*) {}
+};
 #endif /* DEBUG or DOXYGEN */
 
 #endif /* BLACK_BOX_HXX_ */
