@@ -29,7 +29,11 @@ public:
    */
   BlackBox(const char* sections,
            const char* format,
-           ...);
+           ...)
+#ifdef __GNUC__
+  __attribute__((format (printf, 3, 4)))
+#endif
+  ;
   ~BlackBox();
 
   /**
