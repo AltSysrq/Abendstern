@@ -1378,7 +1378,7 @@ bool Ship::collideWith(GameObject* other) noth {
       }
 
       //Remove networking entry
-      if (networkCells.size() > 0)
+      if (!networkCells.empty())
         networkCells[cell->netIndex] = NULL;
 
       //Remove cell

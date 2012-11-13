@@ -91,7 +91,7 @@ void AIControl::init(const Setting& conf) {
     states[string(stateName)] = s;
   }
 
-  if (!states.size())
+  if (states.empty())
     throw runtime_error("Empty AI information");
 
   setState("boot");
