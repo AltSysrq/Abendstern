@@ -106,6 +106,7 @@ COMMONSOURCES= \
 ./core/game_state.cxx \
 ./core/lxn.cxx \
 ./core/aobject.cxx \
+./core/black_box.cxx \
 ./test_state.cxx \
 ./control/genetic_ai.cxx \
 ./control/ai/mod_misc/aim_self_destruct.cxx \
