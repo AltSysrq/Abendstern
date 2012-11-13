@@ -1108,6 +1108,7 @@ CollisionResult Ship::checkCollision(GameObject* other) noth {
 }
 
 bool Ship::collideWith(GameObject* other) noth {
+  BlackBox _bb("ship", "Ship %p->collideWith(%p)", this, other);
   physicsRequire(PHYS_SHIP_SHIELD_INVENTORY_BIT
                 |PHYS_SHIP_MASS_BIT
                 |PHYS_SHIP_INERTIA_BIT
