@@ -4,6 +4,7 @@ if {![info exists ::bsload::index]} {
   namespace eval bsload {
     set index {}
     set filenames $::bsdownld::filenames
+    set WEIGHTS {1 3 4 2 1 1}
 
     proc callback {} {
       global ::bsload::index ::bsload::filenames
@@ -20,13 +21,16 @@ if {![info exists ::bsload::index]} {
         }
 
         if {$ok} {
+          set weight [lindex $::bsload::WEIGHTS [string index $filename end-1]]
           set class [string index $filename end-2]
           set hangar hangar.user.bs$class.contents
-          set ix [$ length $hangar]
-          set entry $hangar.\[$ix\]
-          $ append $hangar STGroup
-          $ adds $entry target bs/$filename
-          $ addi $entry weight 1
+          for {set w 0} {$w < $weight} {incr w} {
+            set ix [$ length $hangar]
+            set entry $hangar.\[$ix\]
+            $ append $hangar STGroup
+            $ adds $entry target bs/$filename
+            $ addi $entry weight 1
+          }
         }
 
         incr index
