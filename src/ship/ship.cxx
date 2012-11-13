@@ -1755,7 +1755,7 @@ void Ship::preremove(Cell* cell) noth {
   BlackBox _bb("ship\0",
                "Ship %p->preremove(%p) hasmass:%d this->mass=%f, cell->mass=%f",
                this, cell, (int)!!(validPhysics & PHYS_SHIP_MASS_BIT),
-               mass, cell->physics.mass);
+               (float)mass, cell->physics.mass);
   if (cell->isEmpty) return; //Nothing to do with EmptyCells
 
   //PHYS_SHIP_COORDS_BIT: can't be patched
