@@ -494,6 +494,13 @@ class Ship: public GameObject {
   signed score;
 
   /**
+   * The score of the player piloting the ship. Maintained externally.
+   *
+   * Defaults to 0.
+   */
+  signed playerScore;
+
+  /**
    * If true, the Ship was killed with spontaneouslyDie().
    */
   bool diedSpontaneously;
