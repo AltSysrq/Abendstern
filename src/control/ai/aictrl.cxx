@@ -70,7 +70,7 @@ void AIControl::init(const Setting& conf) {
 
         string alias = (const char*)state[j]["alias"];
         if (!randomAliases.count(alias)) {
-          if (!state[j]["choises"].getLength() == 0)
+          if (state[j]["choises"].getLength() == 0)
             throw runtime_error("Empty choises for alias");
 
           randomAliases[alias] = (const char*)
