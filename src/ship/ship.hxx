@@ -286,7 +286,7 @@ class Ship: public GameObject {
   friend class SetPhysicsLockedInScope;
 
   /* Total mass of the ship. */
-  unsigned mass;
+  float mass;
   /* Determined by multiplying the distance from the centre
    * of gravity by the mass of respective cells.
    */
