@@ -465,6 +465,7 @@ class BasicGame {
     modifyIncomming 0 $vp $ship
 
     $ship configure -shipExistenceFailure [$shipDeathFun get]
+    $ship configure -playerScore [dpg $vp score]
 
     $field add $ship
     if {$reference} {
