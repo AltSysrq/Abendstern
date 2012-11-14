@@ -45,10 +45,13 @@ void AIControl::init(const Setting& conf) {
   if (iaicInfo)
     iaicInfoPrefix = "iaic." + conf.getPath();
 
+  map<string,string> randomAliases;
+
   //Load the states
   for (unsigned i=0; i<conf.getLength(); ++i) {
     const Setting& state(conf[i]);
     const char* stateName = state.getName();
+    const char* modname = NULL;
     State s;
     s.totalWeight=0;
 
@@ -58,11 +61,28 @@ void AIControl::init(const Setting& conf) {
       if (state[j].exists("module")) {
         isModule = true;
         namesrc = "module";
-      } else {
+      } else if (state[j].exists("reflex")) {
         isModule = false;
         namesrc = "reflex";
+      } else {
+        isModule = true;
+        namesrc = NULL;
+
+        string alias = (const char*)state[j]["alias"];
+        if (!randomAliases.count(alias)) {
+          if (!state[j]["choises"].getLength() == 0)
+            throw runtime_error("Empty choises for alias");
+
+          randomAliases[alias] = (const char*)
+            state[j]["choises"][rand() % state[j]["choises"].getLength()];
+        }
+
+        modname = randomAliases[alias].c_str();
       }
-      const char* modname=state[j][namesrc];
+
+      if (namesrc)
+        modname=state[j][namesrc];
+
       //Explicitly initialise weight to suppress warning since G++ can't tell
       //that it simply isn't touched if !isModule.
       int weight = 0;
