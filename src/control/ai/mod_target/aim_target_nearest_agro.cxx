@@ -35,7 +35,7 @@ void AIM_TargetNearestAgro::action() {
     float dx = s->getX() - ship->getX();
     float dy = s->getY() - ship->getY();
     float dist = dx*dx + dy*dy;
-    float agro = max(1.0f, (float)ship->playerScore);
+    float agro = max(1.0f, (float)s->playerScore);
     dist /= agro*agro;
     if (dist < minDist) {
       minDist = dist;
