@@ -261,6 +261,7 @@
     <ClInclude Include="..\..\..\src\control\ai\mod_state\aim_state_by_target_dist.hxx" />
     <ClInclude Include="..\..\..\src\control\ai\mod_target\aim_check_targetless.hxx" />
     <ClInclude Include="..\..\..\src\control\ai\mod_target\aim_target_nearest.hxx" />
+    <ClInclude Include="..\..\..\src\control\ai\mod_target\aim_target_nearest_agro.hxx" />
     <ClInclude Include="..\..\..\src\control\controller.hxx" />
     <ClInclude Include="..\..\..\src\control\genai\ci_cellex.hxx" />
     <ClInclude Include="..\..\..\src\control\genai\ci_cellt.hxx" />
@@ -289,6 +290,7 @@
     <ClInclude Include="..\..\..\src\control\human_controller.hxx" />
     <ClInclude Include="..\..\..\src\control\joystick.hxx" />
     <ClInclude Include="..\..\..\src\core\aobject.hxx" />
+    <ClInclude Include="..\..\..\src\core\black_box.hxx" />
     <ClInclude Include="..\..\..\src\core\game_state.hxx" />
     <ClInclude Include="..\..\..\src\core\init_state.hxx" />
     <ClInclude Include="..\..\..\src\core\lxn.hxx" />
@@ -486,6 +488,7 @@
     <ClCompile Include="..\..\..\src\control\ai\mod_state\aim_state_by_target_dist.cxx" />
     <ClCompile Include="..\..\..\src\control\ai\mod_target\aim_check_targetless.cxx" />
     <ClCompile Include="..\..\..\src\control\ai\mod_target\aim_target_nearest.cxx" />
+    <ClCompile Include="..\..\..\src\control\ai\mod_target\aim_target_nearest_agro.cxx" />
     <ClCompile Include="..\..\..\src\control\genai\ci_cellex.cxx" />
     <ClCompile Include="..\..\..\src\control\genai\ci_cellt.cxx" />
     <ClCompile Include="..\..\..\src\control\genai\ci_emotion.cxx" />
@@ -512,6 +515,7 @@
     <ClCompile Include="..\..\..\src\control\human_controller.cxx" />
     <ClCompile Include="..\..\..\src\control\joystick.cxx" />
     <ClCompile Include="..\..\..\src\core\aobject.cxx" />
+    <ClCompile Include="..\..\..\src\core\black_box.cxx" />
     <ClCompile Include="..\..\..\src\core\game_state.cxx" />
     <ClCompile Include="..\..\..\src\core\init_state.cxx" />
     <ClCompile Include="..\..\..\src\core\lxn.cxx" />
