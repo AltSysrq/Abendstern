@@ -217,9 +217,9 @@ static int set410 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {int gen1733;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1733);
-            newVal=gen1733;
+      {int gen1736;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1736);
+            newVal=gen1736;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -376,24 +376,24 @@ arg2Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1735;}
+          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1738;}
         
-          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1735;}
+          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1738;}
         
-          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1735;}
+          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1738;}
         
-          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1735;}
+          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1738;}
         
-          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1735;}
+          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1738;}
         
-          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1735;}
+          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1738;}
         
-          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1735;}
+          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1738;}
          {
           sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
           scriptError(staticError);
         } 
-done1735:;};
+done1738:;};
 arg3Init=true;
 {double tmp;
             int err = Tcl_GetDoubleFromObj(interp, objv[4], &tmp);
@@ -685,24 +685,24 @@ arg2Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1737;}
+          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1740;}
         
-          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1737;}
+          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1740;}
         
-          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1737;}
+          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1740;}
         
-          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1737;}
+          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1740;}
         
-          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1737;}
+          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1740;}
         
-          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1737;}
+          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1740;}
         
-          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1737;}
+          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1740;}
          {
           sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
           scriptError(staticError);
         } 
-done1737:;};
+done1740:;};
 arg3Init=true;
 {double tmp;
             int err = Tcl_GetDoubleFromObj(interp, objv[4], &tmp);
@@ -1010,24 +1010,24 @@ arg2Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1739;}
+          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1742;}
         
-          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1739;}
+          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1742;}
         
-          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1739;}
+          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1742;}
         
-          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1739;}
+          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1742;}
         
-          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1739;}
+          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1742;}
         
-          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1739;}
+          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1742;}
         
-          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1739;}
+          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1742;}
          {
           sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
           scriptError(staticError);
         } 
-done1739:;};
+done1742:;};
 arg3Init=true;
 {double tmp;
             int err = Tcl_GetDoubleFromObj(interp, objv[4], &tmp);
@@ -1344,24 +1344,24 @@ arg2Init=true;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1741;}
+          if (0 == strcmp(tmp, "Explosion::Simple")) {arg3=Explosion::Simple; goto done1744;}
         
-          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1741;}
+          if (0 == strcmp(tmp, "Explosion::Spark")) {arg3=Explosion::Spark; goto done1744;}
         
-          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1741;}
+          if (0 == strcmp(tmp, "Explosion::BigSpark")) {arg3=Explosion::BigSpark; goto done1744;}
         
-          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1741;}
+          if (0 == strcmp(tmp, "Explosion::Sparkle")) {arg3=Explosion::Sparkle; goto done1744;}
         
-          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1741;}
+          if (0 == strcmp(tmp, "Explosion::Incursion")) {arg3=Explosion::Incursion; goto done1744;}
         
-          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1741;}
+          if (0 == strcmp(tmp, "Explosion::Flame")) {arg3=Explosion::Flame; goto done1744;}
         
-          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1741;}
+          if (0 == strcmp(tmp, "Explosion::Invisible")) {arg3=Explosion::Invisible; goto done1744;}
          {
           sprintf(staticError, "Unable to convert %s to ExplosionType", tmp);
           scriptError(staticError);
         } 
-done1741:;};
+done1744:;};
 arg3Init=true;
 {double tmp;
             int err = Tcl_GetDoubleFromObj(interp, objv[4], &tmp);
@@ -2078,7 +2078,7 @@ static Planet* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline712 (
+     trampoline715 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 10) {
@@ -2351,7 +2351,7 @@ if (arg9Init) {arg9Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline712", trampoline712, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline715", trampoline715, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(Planet)),
                            * ete=new TypeExport(typeid(TclPlanet));
 ste->isAObject=ete->isAObject=true;
@@ -2365,15 +2365,15 @@ typeExports[&typeid(Planet)]=ste;
 typeExports[&typeid(TclPlanet)]=ete;
 }
 };
-void classdec711(bool safe, Tcl_Interp* interp) throw() {
+void classdec714(bool safe, Tcl_Interp* interp) throw() {
   TclPlanet::cppDecCode(safe,interp);
 }
 
- int get951 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get954 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get951", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get954", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -2388,11 +2388,11 @@ void classdec711(bool safe, Tcl_Interp* interp) throw() {
       #undef scriptError
     }
 
- int get953 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+ int get956 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 0) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get953", TCL_VOLATILE);
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get956", TCL_VOLATILE);
         return TCL_ERROR;
       }
       Tcl_Obj* objout;
@@ -2452,7 +2452,7 @@ static planetgen::Parameters* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline956 (
+     trampoline959 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -2591,126 +2591,6 @@ if (arg1Init) {arg1Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static int get958 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-      SHIFT;
-      #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-      if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get958", TCL_VOLATILE);
-        return TCL_ERROR;
-      }
-      Tcl_Obj* objout;
-      planetgen::Parameters* parent; {
-       
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(planetgen::Parameters)
-        &&  0==ex->type->superclasses.count(&typeid(planetgen::Parameters))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " planetgen::Parameters, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        planetgen::Parameters* tmp=(planetgen::Parameters*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-
-      } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->seed);}
-      Tcl_SetObjResult(interp, objout);
-      return TCL_OK;
-
-      error:
-      Tcl_SetResult(interp, scriptingErrorMessage, TCL_VOLATILE);
-      return TCL_ERROR;
-      #undef scriptError
-    }
-static int set959 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-      SHIFT;
-      #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-      if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set959", TCL_VOLATILE);
-        return TCL_ERROR;
-      }
-      unsigned newVal;
-      planetgen::Parameters* parent; {
-       
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(planetgen::Parameters)
-        &&  0==ex->type->superclasses.count(&typeid(planetgen::Parameters))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " planetgen::Parameters, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        planetgen::Parameters* tmp=(planetgen::Parameters*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-
-      } if (!parent) { scriptError("NULL this passed into C++"); }
-
-      //Extract value
-      {int tmp;
-            int err = Tcl_GetIntFromObj(interp, objv[1], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            newVal = (unsigned)tmp;}
-
-      //Any necessary checks
-      
-
-      //Transfer ownership of old value if necessary
-      {}
-
-      //Set
-      parent->seed = newVal;
-
-      //Return successfully
-      Tcl_SetObjResult(interp, objv[1]);
-      return TCL_OK;
-
-      error:
-      Tcl_SetResult(interp, scriptingErrorMessage, TCL_VOLATILE);
-      return TCL_ERROR;
-      #undef scriptError
-    }
-
 static int get961 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
@@ -2753,7 +2633,7 @@ static int get961 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->continents);}
+      {objout = Tcl_NewIntObj((int)parent->seed);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -2819,7 +2699,7 @@ static int set962 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       {}
 
       //Set
-      parent->continents = newVal;
+      parent->seed = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -2873,7 +2753,7 @@ static int get964 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->largeIslands);}
+      {objout = Tcl_NewIntObj((int)parent->continents);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -2939,7 +2819,7 @@ static int set965 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       {}
 
       //Set
-      parent->largeIslands = newVal;
+      parent->continents = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -2993,7 +2873,7 @@ static int get967 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->smallIslands);}
+      {objout = Tcl_NewIntObj((int)parent->largeIslands);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -3059,7 +2939,7 @@ static int set968 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       {}
 
       //Set
-      parent->smallIslands = newVal;
+      parent->largeIslands = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -3113,7 +2993,7 @@ static int get970 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->islandGrouping);}
+      {objout = Tcl_NewIntObj((int)parent->smallIslands);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -3129,7 +3009,7 @@ static int set971 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
         Tcl_SetResult(interp, "Invalid usage of internal glue function set971", TCL_VOLATILE);
         return TCL_ERROR;
       }
-      float newVal;
+      unsigned newVal;
       planetgen::Parameters* parent; {
        
       string name(Tcl_GetStringFromObj(objv[0], NULL));
@@ -3166,11 +3046,11 @@ static int set971 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[1], &tmp);
+      {int tmp;
+            int err = Tcl_GetIntFromObj(interp, objv[1], &tmp);
             if (err == TCL_ERROR)
               scriptError(Tcl_GetStringResult(interp));
-            newVal = (float)tmp;}
+            newVal = (unsigned)tmp;}
 
       //Any necessary checks
       
@@ -3179,7 +3059,7 @@ static int set971 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       {}
 
       //Set
-      parent->islandGrouping = newVal;
+      parent->smallIslands = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -3233,7 +3113,7 @@ static int get973 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->landSlope);}
+      {objout = Tcl_NewDoubleObj((double)parent->islandGrouping);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -3299,7 +3179,7 @@ static int set974 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       {}
 
       //Set
-      parent->landSlope = newVal;
+      parent->islandGrouping = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -3353,7 +3233,7 @@ static int get976 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->oceans);}
+      {objout = Tcl_NewDoubleObj((double)parent->landSlope);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -3369,7 +3249,7 @@ static int set977 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
         Tcl_SetResult(interp, "Invalid usage of internal glue function set977", TCL_VOLATILE);
         return TCL_ERROR;
       }
-      unsigned newVal;
+      float newVal;
       planetgen::Parameters* parent; {
        
       string name(Tcl_GetStringFromObj(objv[0], NULL));
@@ -3406,11 +3286,11 @@ static int set977 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {int tmp;
-            int err = Tcl_GetIntFromObj(interp, objv[1], &tmp);
+      {double tmp;
+            int err = Tcl_GetDoubleFromObj(interp, objv[1], &tmp);
             if (err == TCL_ERROR)
               scriptError(Tcl_GetStringResult(interp));
-            newVal = (unsigned)tmp;}
+            newVal = (float)tmp;}
 
       //Any necessary checks
       
@@ -3419,7 +3299,7 @@ static int set977 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       {}
 
       //Set
-      parent->oceans = newVal;
+      parent->landSlope = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -3473,7 +3353,7 @@ static int get979 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->seas);}
+      {objout = Tcl_NewIntObj((int)parent->oceans);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -3539,7 +3419,7 @@ static int set980 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       {}
 
       //Set
-      parent->seas = newVal;
+      parent->oceans = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -3593,7 +3473,7 @@ static int get982 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->lakes);}
+      {objout = Tcl_NewIntObj((int)parent->seas);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -3659,7 +3539,7 @@ static int set983 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       {}
 
       //Set
-      parent->lakes = newVal;
+      parent->seas = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -3713,7 +3593,7 @@ static int get985 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->rivers);}
+      {objout = Tcl_NewIntObj((int)parent->lakes);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -3779,7 +3659,7 @@ static int set986 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       {}
 
       //Set
-      parent->rivers = newVal;
+      parent->lakes = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -3833,7 +3713,7 @@ static int get988 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->mountainRanges);}
+      {objout = Tcl_NewIntObj((int)parent->rivers);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -3899,7 +3779,7 @@ static int set989 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       {}
 
       //Set
-      parent->mountainRanges = newVal;
+      parent->rivers = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -3953,7 +3833,7 @@ static int get991 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->mountainSteepness);}
+      {objout = Tcl_NewIntObj((int)parent->mountainRanges);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -3967,6 +3847,126 @@ static int set992 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
         Tcl_SetResult(interp, "Invalid usage of internal glue function set992", TCL_VOLATILE);
+        return TCL_ERROR;
+      }
+      unsigned newVal;
+      planetgen::Parameters* parent; {
+       
+      string name(Tcl_GetStringFromObj(objv[0], NULL));
+      if (name != "0") {
+        //Does it exist?
+        InterpInfo* info=interpreters[interp];
+        map<string,Export*>::iterator it=info->exportsByName.find(name);
+        if (it == info->exportsByName.end()) {
+          for (it=info->exportsByName.begin();
+               it != info->exportsByName.end(); ++it) {
+            cout << (*it).first << endl;
+          }
+          sprintf(staticError, "Invalid export passed to C++: %s",
+                  name.c_str());
+          scriptError(staticError);
+        }
+        Export* ex=(*it).second;
+        //OK, is the type correct?
+        if (ex->type->theType != typeid(planetgen::Parameters)
+        &&  0==ex->type->superclasses.count(&typeid(planetgen::Parameters))) {
+          //Nope
+          sprintf(staticError, "Wrong type passed to C++ function; expected"
+                               " planetgen::Parameters, "
+                               "got %s", ex->type->tclClassName.c_str());
+          scriptError(staticError);
+        }
+
+        //All is well, transfer ownership now
+        planetgen::Parameters* tmp=(planetgen::Parameters*)ex->ptr;
+        
+        parent = tmp;
+    } else parent=NULL;
+
+      } if (!parent) { scriptError("NULL this passed into C++"); }
+
+      //Extract value
+      {int tmp;
+            int err = Tcl_GetIntFromObj(interp, objv[1], &tmp);
+            if (err == TCL_ERROR)
+              scriptError(Tcl_GetStringResult(interp));
+            newVal = (unsigned)tmp;}
+
+      //Any necessary checks
+      
+
+      //Transfer ownership of old value if necessary
+      {}
+
+      //Set
+      parent->mountainRanges = newVal;
+
+      //Return successfully
+      Tcl_SetObjResult(interp, objv[1]);
+      return TCL_OK;
+
+      error:
+      Tcl_SetResult(interp, scriptingErrorMessage, TCL_VOLATILE);
+      return TCL_ERROR;
+      #undef scriptError
+    }
+
+static int get994 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+      SHIFT;
+      #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+      if (objc != 1) {
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get994", TCL_VOLATILE);
+        return TCL_ERROR;
+      }
+      Tcl_Obj* objout;
+      planetgen::Parameters* parent; {
+       
+      string name(Tcl_GetStringFromObj(objv[0], NULL));
+      if (name != "0") {
+        //Does it exist?
+        InterpInfo* info=interpreters[interp];
+        map<string,Export*>::iterator it=info->exportsByName.find(name);
+        if (it == info->exportsByName.end()) {
+          for (it=info->exportsByName.begin();
+               it != info->exportsByName.end(); ++it) {
+            cout << (*it).first << endl;
+          }
+          sprintf(staticError, "Invalid export passed to C++: %s",
+                  name.c_str());
+          scriptError(staticError);
+        }
+        Export* ex=(*it).second;
+        //OK, is the type correct?
+        if (ex->type->theType != typeid(planetgen::Parameters)
+        &&  0==ex->type->superclasses.count(&typeid(planetgen::Parameters))) {
+          //Nope
+          sprintf(staticError, "Wrong type passed to C++ function; expected"
+                               " planetgen::Parameters, "
+                               "got %s", ex->type->tclClassName.c_str());
+          scriptError(staticError);
+        }
+
+        //All is well, transfer ownership now
+        planetgen::Parameters* tmp=(planetgen::Parameters*)ex->ptr;
+        
+        parent = tmp;
+    } else parent=NULL;
+
+      } if (!parent) { scriptError("NULL this passed into C++"); }
+      {objout = Tcl_NewDoubleObj((double)parent->mountainSteepness);}
+      Tcl_SetObjResult(interp, objout);
+      return TCL_OK;
+
+      error:
+      Tcl_SetResult(interp, scriptingErrorMessage, TCL_VOLATILE);
+      return TCL_ERROR;
+      #undef scriptError
+    }
+static int set995 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+      SHIFT;
+      #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+      if (objc != 1+1) {
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set995", TCL_VOLATILE);
         return TCL_ERROR;
       }
       float newVal;
@@ -4031,126 +4031,6 @@ static int set992 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       #undef scriptError
     }
 
-static int get994 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-      SHIFT;
-      #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-      if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get994", TCL_VOLATILE);
-        return TCL_ERROR;
-      }
-      Tcl_Obj* objout;
-      planetgen::Parameters* parent; {
-       
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(planetgen::Parameters)
-        &&  0==ex->type->superclasses.count(&typeid(planetgen::Parameters))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " planetgen::Parameters, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        planetgen::Parameters* tmp=(planetgen::Parameters*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-
-      } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->enormousMountains);}
-      Tcl_SetObjResult(interp, objout);
-      return TCL_OK;
-
-      error:
-      Tcl_SetResult(interp, scriptingErrorMessage, TCL_VOLATILE);
-      return TCL_ERROR;
-      #undef scriptError
-    }
-static int set995 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-      SHIFT;
-      #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-      if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set995", TCL_VOLATILE);
-        return TCL_ERROR;
-      }
-      unsigned newVal;
-      planetgen::Parameters* parent; {
-       
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(planetgen::Parameters)
-        &&  0==ex->type->superclasses.count(&typeid(planetgen::Parameters))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " planetgen::Parameters, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        planetgen::Parameters* tmp=(planetgen::Parameters*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-
-      } if (!parent) { scriptError("NULL this passed into C++"); }
-
-      //Extract value
-      {int tmp;
-            int err = Tcl_GetIntFromObj(interp, objv[1], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            newVal = (unsigned)tmp;}
-
-      //Any necessary checks
-      
-
-      //Transfer ownership of old value if necessary
-      {}
-
-      //Set
-      parent->enormousMountains = newVal;
-
-      //Return successfully
-      Tcl_SetObjResult(interp, objv[1]);
-      return TCL_OK;
-
-      error:
-      Tcl_SetResult(interp, scriptingErrorMessage, TCL_VOLATILE);
-      return TCL_ERROR;
-      #undef scriptError
-    }
-
 static int get997 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
@@ -4193,7 +4073,7 @@ static int get997 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->craters);}
+      {objout = Tcl_NewIntObj((int)parent->enormousMountains);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -4259,7 +4139,7 @@ static int set998 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
       {}
 
       //Set
-      parent->craters = newVal;
+      parent->enormousMountains = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -4313,7 +4193,7 @@ static int get1000 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->maxCraterSize);}
+      {objout = Tcl_NewIntObj((int)parent->craters);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -4329,7 +4209,7 @@ static int set1001 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
         Tcl_SetResult(interp, "Invalid usage of internal glue function set1001", TCL_VOLATILE);
         return TCL_ERROR;
       }
-      float newVal;
+      unsigned newVal;
       planetgen::Parameters* parent; {
        
       string name(Tcl_GetStringFromObj(objv[0], NULL));
@@ -4366,11 +4246,11 @@ static int set1001 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[1], &tmp);
+      {int tmp;
+            int err = Tcl_GetIntFromObj(interp, objv[1], &tmp);
             if (err == TCL_ERROR)
               scriptError(Tcl_GetStringResult(interp));
-            newVal = (float)tmp;}
+            newVal = (unsigned)tmp;}
 
       //Any necessary checks
       
@@ -4379,7 +4259,7 @@ static int set1001 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
-      parent->maxCraterSize = newVal;
+      parent->craters = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -4433,7 +4313,7 @@ static int get1003 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->equatorTemperature);}
+      {objout = Tcl_NewDoubleObj((double)parent->maxCraterSize);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -4499,7 +4379,7 @@ static int set1004 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
-      parent->equatorTemperature = newVal;
+      parent->maxCraterSize = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -4553,7 +4433,7 @@ static int get1006 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->solarEquator);}
+      {objout = Tcl_NewDoubleObj((double)parent->equatorTemperature);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -4619,7 +4499,7 @@ static int set1007 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
-      parent->solarEquator = newVal;
+      parent->equatorTemperature = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -4673,7 +4553,7 @@ static int get1009 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->polarTemperature);}
+      {objout = Tcl_NewDoubleObj((double)parent->solarEquator);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -4739,7 +4619,7 @@ static int set1010 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
-      parent->polarTemperature = newVal;
+      parent->solarEquator = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -4793,7 +4673,7 @@ static int get1012 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->altitudeTemperatureDelta);}
+      {objout = Tcl_NewDoubleObj((double)parent->polarTemperature);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -4859,7 +4739,7 @@ static int set1013 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
-      parent->altitudeTemperatureDelta = newVal;
+      parent->polarTemperature = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -4913,7 +4793,7 @@ static int get1015 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->waterTemperatureDelta);}
+      {objout = Tcl_NewDoubleObj((double)parent->altitudeTemperatureDelta);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -4979,7 +4859,7 @@ static int set1016 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
-      parent->waterTemperatureDelta = newVal;
+      parent->altitudeTemperatureDelta = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -5033,7 +4913,7 @@ static int get1018 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->freezingPoint);}
+      {objout = Tcl_NewDoubleObj((double)parent->waterTemperatureDelta);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -5099,7 +4979,7 @@ static int set1019 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
-      parent->freezingPoint = newVal;
+      parent->waterTemperatureDelta = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -5153,7 +5033,7 @@ static int get1021 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->humidity);}
+      {objout = Tcl_NewDoubleObj((double)parent->freezingPoint);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -5219,7 +5099,7 @@ static int set1022 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
-      parent->humidity = newVal;
+      parent->freezingPoint = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -5273,7 +5153,7 @@ static int get1024 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->vapourTransport);}
+      {objout = Tcl_NewDoubleObj((double)parent->humidity);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -5339,7 +5219,7 @@ static int set1025 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
-      parent->vapourTransport = newVal;
+      parent->humidity = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -5393,7 +5273,7 @@ static int get1027 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->mountainBlockage);}
+      {objout = Tcl_NewDoubleObj((double)parent->vapourTransport);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -5459,7 +5339,7 @@ static int set1028 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
-      parent->mountainBlockage = newVal;
+      parent->vapourTransport = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -5513,7 +5393,7 @@ static int get1030 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->vegitationHumidity);}
+      {objout = Tcl_NewDoubleObj((double)parent->mountainBlockage);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -5579,7 +5459,7 @@ static int set1031 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
-      parent->vegitationHumidity = newVal;
+      parent->mountainBlockage = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -5633,7 +5513,7 @@ static int get1033 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->cities);}
+      {objout = Tcl_NewDoubleObj((double)parent->vegitationHumidity);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -5647,6 +5527,126 @@ static int set1034 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
       if (objc != 1+1) {
         Tcl_SetResult(interp, "Invalid usage of internal glue function set1034", TCL_VOLATILE);
+        return TCL_ERROR;
+      }
+      float newVal;
+      planetgen::Parameters* parent; {
+       
+      string name(Tcl_GetStringFromObj(objv[0], NULL));
+      if (name != "0") {
+        //Does it exist?
+        InterpInfo* info=interpreters[interp];
+        map<string,Export*>::iterator it=info->exportsByName.find(name);
+        if (it == info->exportsByName.end()) {
+          for (it=info->exportsByName.begin();
+               it != info->exportsByName.end(); ++it) {
+            cout << (*it).first << endl;
+          }
+          sprintf(staticError, "Invalid export passed to C++: %s",
+                  name.c_str());
+          scriptError(staticError);
+        }
+        Export* ex=(*it).second;
+        //OK, is the type correct?
+        if (ex->type->theType != typeid(planetgen::Parameters)
+        &&  0==ex->type->superclasses.count(&typeid(planetgen::Parameters))) {
+          //Nope
+          sprintf(staticError, "Wrong type passed to C++ function; expected"
+                               " planetgen::Parameters, "
+                               "got %s", ex->type->tclClassName.c_str());
+          scriptError(staticError);
+        }
+
+        //All is well, transfer ownership now
+        planetgen::Parameters* tmp=(planetgen::Parameters*)ex->ptr;
+        
+        parent = tmp;
+    } else parent=NULL;
+
+      } if (!parent) { scriptError("NULL this passed into C++"); }
+
+      //Extract value
+      {double tmp;
+            int err = Tcl_GetDoubleFromObj(interp, objv[1], &tmp);
+            if (err == TCL_ERROR)
+              scriptError(Tcl_GetStringResult(interp));
+            newVal = (float)tmp;}
+
+      //Any necessary checks
+      
+
+      //Transfer ownership of old value if necessary
+      {}
+
+      //Set
+      parent->vegitationHumidity = newVal;
+
+      //Return successfully
+      Tcl_SetObjResult(interp, objv[1]);
+      return TCL_OK;
+
+      error:
+      Tcl_SetResult(interp, scriptingErrorMessage, TCL_VOLATILE);
+      return TCL_ERROR;
+      #undef scriptError
+    }
+
+static int get1036 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+      SHIFT;
+      #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+      if (objc != 1) {
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1036", TCL_VOLATILE);
+        return TCL_ERROR;
+      }
+      Tcl_Obj* objout;
+      planetgen::Parameters* parent; {
+       
+      string name(Tcl_GetStringFromObj(objv[0], NULL));
+      if (name != "0") {
+        //Does it exist?
+        InterpInfo* info=interpreters[interp];
+        map<string,Export*>::iterator it=info->exportsByName.find(name);
+        if (it == info->exportsByName.end()) {
+          for (it=info->exportsByName.begin();
+               it != info->exportsByName.end(); ++it) {
+            cout << (*it).first << endl;
+          }
+          sprintf(staticError, "Invalid export passed to C++: %s",
+                  name.c_str());
+          scriptError(staticError);
+        }
+        Export* ex=(*it).second;
+        //OK, is the type correct?
+        if (ex->type->theType != typeid(planetgen::Parameters)
+        &&  0==ex->type->superclasses.count(&typeid(planetgen::Parameters))) {
+          //Nope
+          sprintf(staticError, "Wrong type passed to C++ function; expected"
+                               " planetgen::Parameters, "
+                               "got %s", ex->type->tclClassName.c_str());
+          scriptError(staticError);
+        }
+
+        //All is well, transfer ownership now
+        planetgen::Parameters* tmp=(planetgen::Parameters*)ex->ptr;
+        
+        parent = tmp;
+    } else parent=NULL;
+
+      } if (!parent) { scriptError("NULL this passed into C++"); }
+      {objout = Tcl_NewIntObj((int)parent->cities);}
+      Tcl_SetObjResult(interp, objout);
+      return TCL_OK;
+
+      error:
+      Tcl_SetResult(interp, scriptingErrorMessage, TCL_VOLATILE);
+      return TCL_ERROR;
+      #undef scriptError
+    }
+static int set1037 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+      SHIFT;
+      #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+      if (objc != 1+1) {
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1037", TCL_VOLATILE);
         return TCL_ERROR;
       }
       unsigned newVal;
@@ -5711,126 +5711,6 @@ static int set1034 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static int get1036 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-      SHIFT;
-      #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-      if (objc != 1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function get1036", TCL_VOLATILE);
-        return TCL_ERROR;
-      }
-      Tcl_Obj* objout;
-      planetgen::Parameters* parent; {
-       
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(planetgen::Parameters)
-        &&  0==ex->type->superclasses.count(&typeid(planetgen::Parameters))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " planetgen::Parameters, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        planetgen::Parameters* tmp=(planetgen::Parameters*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-
-      } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->maxCitySize);}
-      Tcl_SetObjResult(interp, objout);
-      return TCL_OK;
-
-      error:
-      Tcl_SetResult(interp, scriptingErrorMessage, TCL_VOLATILE);
-      return TCL_ERROR;
-      #undef scriptError
-    }
-static int set1037 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
-      SHIFT;
-      #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
-      if (objc != 1+1) {
-        Tcl_SetResult(interp, "Invalid usage of internal glue function set1037", TCL_VOLATILE);
-        return TCL_ERROR;
-      }
-      float newVal;
-      planetgen::Parameters* parent; {
-       
-      string name(Tcl_GetStringFromObj(objv[0], NULL));
-      if (name != "0") {
-        //Does it exist?
-        InterpInfo* info=interpreters[interp];
-        map<string,Export*>::iterator it=info->exportsByName.find(name);
-        if (it == info->exportsByName.end()) {
-          for (it=info->exportsByName.begin();
-               it != info->exportsByName.end(); ++it) {
-            cout << (*it).first << endl;
-          }
-          sprintf(staticError, "Invalid export passed to C++: %s",
-                  name.c_str());
-          scriptError(staticError);
-        }
-        Export* ex=(*it).second;
-        //OK, is the type correct?
-        if (ex->type->theType != typeid(planetgen::Parameters)
-        &&  0==ex->type->superclasses.count(&typeid(planetgen::Parameters))) {
-          //Nope
-          sprintf(staticError, "Wrong type passed to C++ function; expected"
-                               " planetgen::Parameters, "
-                               "got %s", ex->type->tclClassName.c_str());
-          scriptError(staticError);
-        }
-
-        //All is well, transfer ownership now
-        planetgen::Parameters* tmp=(planetgen::Parameters*)ex->ptr;
-        
-        parent = tmp;
-    } else parent=NULL;
-
-      } if (!parent) { scriptError("NULL this passed into C++"); }
-
-      //Extract value
-      {double tmp;
-            int err = Tcl_GetDoubleFromObj(interp, objv[1], &tmp);
-            if (err == TCL_ERROR)
-              scriptError(Tcl_GetStringResult(interp));
-            newVal = (float)tmp;}
-
-      //Any necessary checks
-      
-
-      //Transfer ownership of old value if necessary
-      {}
-
-      //Set
-      parent->maxCitySize = newVal;
-
-      //Return successfully
-      Tcl_SetObjResult(interp, objv[1]);
-      return TCL_OK;
-
-      error:
-      Tcl_SetResult(interp, scriptingErrorMessage, TCL_VOLATILE);
-      return TCL_ERROR;
-      #undef scriptError
-    }
-
 static int get1039 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
       SHIFT;
       #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
@@ -5873,7 +5753,7 @@ static int get1039 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewDoubleObj((double)parent->cityGrouping);}
+      {objout = Tcl_NewDoubleObj((double)parent->maxCitySize);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -5939,7 +5819,7 @@ static int set1040 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
-      parent->cityGrouping = newVal;
+      parent->maxCitySize = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -5993,7 +5873,7 @@ static int get1042 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->waterColour);}
+      {objout = Tcl_NewDoubleObj((double)parent->cityGrouping);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -6009,7 +5889,7 @@ static int set1043 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
         Tcl_SetResult(interp, "Invalid usage of internal glue function set1043", TCL_VOLATILE);
         return TCL_ERROR;
       }
-      unsigned newVal;
+      float newVal;
       planetgen::Parameters* parent; {
        
       string name(Tcl_GetStringFromObj(objv[0], NULL));
@@ -6046,11 +5926,11 @@ static int set1043 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       } if (!parent) { scriptError("NULL this passed into C++"); }
 
       //Extract value
-      {int tmp;
-            int err = Tcl_GetIntFromObj(interp, objv[1], &tmp);
+      {double tmp;
+            int err = Tcl_GetDoubleFromObj(interp, objv[1], &tmp);
             if (err == TCL_ERROR)
               scriptError(Tcl_GetStringResult(interp));
-            newVal = (unsigned)tmp;}
+            newVal = (float)tmp;}
 
       //Any necessary checks
       
@@ -6059,7 +5939,7 @@ static int set1043 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
-      parent->waterColour = newVal;
+      parent->cityGrouping = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -6113,7 +5993,7 @@ static int get1045 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->vegitationColour);}
+      {objout = Tcl_NewIntObj((int)parent->waterColour);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -6179,7 +6059,7 @@ static int set1046 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
-      parent->vegitationColour = newVal;
+      parent->waterColour = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -6233,7 +6113,7 @@ static int get1048 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->lowerPlanetColour);}
+      {objout = Tcl_NewIntObj((int)parent->vegitationColour);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -6299,7 +6179,7 @@ static int set1049 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
-      parent->lowerPlanetColour = newVal;
+      parent->vegitationColour = newVal;
 
       //Return successfully
       Tcl_SetObjResult(interp, objv[1]);
@@ -6353,7 +6233,7 @@ static int get1051 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
     } else parent=NULL;
 
       } if (!parent) { scriptError("NULL this passed into C++"); }
-      {objout = Tcl_NewIntObj((int)parent->upperPlanetColour);}
+      {objout = Tcl_NewIntObj((int)parent->lowerPlanetColour);}
       Tcl_SetObjResult(interp, objout);
       return TCL_OK;
 
@@ -6419,6 +6299,126 @@ static int set1052 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       {}
 
       //Set
+      parent->lowerPlanetColour = newVal;
+
+      //Return successfully
+      Tcl_SetObjResult(interp, objv[1]);
+      return TCL_OK;
+
+      error:
+      Tcl_SetResult(interp, scriptingErrorMessage, TCL_VOLATILE);
+      return TCL_ERROR;
+      #undef scriptError
+    }
+
+static int get1054 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+      SHIFT;
+      #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+      if (objc != 1) {
+        Tcl_SetResult(interp, "Invalid usage of internal glue function get1054", TCL_VOLATILE);
+        return TCL_ERROR;
+      }
+      Tcl_Obj* objout;
+      planetgen::Parameters* parent; {
+       
+      string name(Tcl_GetStringFromObj(objv[0], NULL));
+      if (name != "0") {
+        //Does it exist?
+        InterpInfo* info=interpreters[interp];
+        map<string,Export*>::iterator it=info->exportsByName.find(name);
+        if (it == info->exportsByName.end()) {
+          for (it=info->exportsByName.begin();
+               it != info->exportsByName.end(); ++it) {
+            cout << (*it).first << endl;
+          }
+          sprintf(staticError, "Invalid export passed to C++: %s",
+                  name.c_str());
+          scriptError(staticError);
+        }
+        Export* ex=(*it).second;
+        //OK, is the type correct?
+        if (ex->type->theType != typeid(planetgen::Parameters)
+        &&  0==ex->type->superclasses.count(&typeid(planetgen::Parameters))) {
+          //Nope
+          sprintf(staticError, "Wrong type passed to C++ function; expected"
+                               " planetgen::Parameters, "
+                               "got %s", ex->type->tclClassName.c_str());
+          scriptError(staticError);
+        }
+
+        //All is well, transfer ownership now
+        planetgen::Parameters* tmp=(planetgen::Parameters*)ex->ptr;
+        
+        parent = tmp;
+    } else parent=NULL;
+
+      } if (!parent) { scriptError("NULL this passed into C++"); }
+      {objout = Tcl_NewIntObj((int)parent->upperPlanetColour);}
+      Tcl_SetObjResult(interp, objout);
+      return TCL_OK;
+
+      error:
+      Tcl_SetResult(interp, scriptingErrorMessage, TCL_VOLATILE);
+      return TCL_ERROR;
+      #undef scriptError
+    }
+static int set1055 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+      SHIFT;
+      #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+      if (objc != 1+1) {
+        Tcl_SetResult(interp, "Invalid usage of internal glue function set1055", TCL_VOLATILE);
+        return TCL_ERROR;
+      }
+      unsigned newVal;
+      planetgen::Parameters* parent; {
+       
+      string name(Tcl_GetStringFromObj(objv[0], NULL));
+      if (name != "0") {
+        //Does it exist?
+        InterpInfo* info=interpreters[interp];
+        map<string,Export*>::iterator it=info->exportsByName.find(name);
+        if (it == info->exportsByName.end()) {
+          for (it=info->exportsByName.begin();
+               it != info->exportsByName.end(); ++it) {
+            cout << (*it).first << endl;
+          }
+          sprintf(staticError, "Invalid export passed to C++: %s",
+                  name.c_str());
+          scriptError(staticError);
+        }
+        Export* ex=(*it).second;
+        //OK, is the type correct?
+        if (ex->type->theType != typeid(planetgen::Parameters)
+        &&  0==ex->type->superclasses.count(&typeid(planetgen::Parameters))) {
+          //Nope
+          sprintf(staticError, "Wrong type passed to C++ function; expected"
+                               " planetgen::Parameters, "
+                               "got %s", ex->type->tclClassName.c_str());
+          scriptError(staticError);
+        }
+
+        //All is well, transfer ownership now
+        planetgen::Parameters* tmp=(planetgen::Parameters*)ex->ptr;
+        
+        parent = tmp;
+    } else parent=NULL;
+
+      } if (!parent) { scriptError("NULL this passed into C++"); }
+
+      //Extract value
+      {int tmp;
+            int err = Tcl_GetIntFromObj(interp, objv[1], &tmp);
+            if (err == TCL_ERROR)
+              scriptError(Tcl_GetStringResult(interp));
+            newVal = (unsigned)tmp;}
+
+      //Any necessary checks
+      
+
+      //Transfer ownership of old value if necessary
+      {}
+
+      //Set
       parent->upperPlanetColour = newVal;
 
       //Return successfully
@@ -6431,9 +6431,7 @@ static int set1052 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv
       #undef scriptError
     }
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline956", trampoline956, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ get958", get958, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ set959", set959, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline959", trampoline959, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ get961", get961, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ set962", set962, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ get964", get964, 0, NULL);
@@ -6496,6 +6494,8 @@ Tcl_CreateObjCommand(interp, "c++ get1048", get1048, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ set1049", set1049, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ get1051", get1051, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ set1052", set1052, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ get1054", get1054, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ set1055", set1055, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(planetgen::Parameters)),
                            * ete=new TypeExport(typeid(Tclplanetgen_colon_u_colon_Parameters));
 ste->isAObject=ete->isAObject=true;
@@ -6507,7 +6507,7 @@ typeExports[&typeid(planetgen::Parameters)]=ste;
 typeExports[&typeid(Tclplanetgen_colon_u_colon_Parameters)]=ete;
 }
 };
-void classdec955(bool safe, Tcl_Interp* interp) throw() {
+void classdec958(bool safe, Tcl_Interp* interp) throw() {
   Tclplanetgen_colon_u_colon_Parameters::cppDecCode(safe,interp);
 }
 
@@ -6515,7 +6515,7 @@ void classdec955(bool safe, Tcl_Interp* interp) throw() {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1054 (
+     trampoline1057 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -6592,7 +6592,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1056 (
+     trampoline1059 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -6648,7 +6648,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1058 (
+     trampoline1061 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -6693,7 +6693,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1060 (
+     trampoline1063 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -6738,7 +6738,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1062 (
+     trampoline1065 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -6780,7 +6780,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1064 (
+     trampoline1067 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -6895,7 +6895,7 @@ static GameDiscoverer* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1266 (
+     trampoline1269 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -7074,7 +7074,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1268 (
+     trampoline1271 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -7148,7 +7148,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1270 (
+     trampoline1273 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -7257,7 +7257,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1272 (
+     trampoline1275 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -7329,10 +7329,10 @@ error:
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1266", trampoline1266, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1268", trampoline1268, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1270", trampoline1270, 0, NULL);
-Tcl_CreateObjCommand(interp, "c++ trampoline1272", trampoline1272, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1269", trampoline1269, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1271", trampoline1271, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1273", trampoline1273, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1275", trampoline1275, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(GameDiscoverer)),
                            * ete=new TypeExport(typeid(TclGameDiscoverer));
 ste->isAObject=ete->isAObject=true;
@@ -7345,7 +7345,7 @@ typeExports[&typeid(GameDiscoverer)]=ste;
 typeExports[&typeid(TclGameDiscoverer)]=ete;
 }
 };
-void classdec1265(bool safe, Tcl_Interp* interp) throw() {
+void classdec1268(bool safe, Tcl_Interp* interp) throw() {
   TclGameDiscoverer::cppDecCode(safe,interp);
 }
 
@@ -7354,7 +7354,7 @@ void classdec1265(bool safe, Tcl_Interp* interp) throw() {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1561 (
+     trampoline1564 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {

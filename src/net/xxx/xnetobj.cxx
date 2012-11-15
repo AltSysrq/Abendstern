@@ -2691,7 +2691,7 @@ X->y = y;
   };
 
 INO_Ship4::INO_Ship4(NetworkConnection* cxn_)
-: ImportedGameObject(378, cxn_),
+: ImportedGameObject(386, cxn_),
   cxn(cxn_) 
 { }
 
@@ -2735,6 +2735,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -2810,24 +2812,26 @@ if (reinforcement != reinforcement) reinforcement = 0;
  else if (reinforcement > 32) reinforcement = 32;
 io::read_c(&DATA[287+0], currentCapacitancePercent);
 io::read_c(&DATA[288+0], insignia);
-isFragment = (DATA[296+0] >> 0) & 1;
-thrustOn = (DATA[296+0] >> 1) & 1;
-brakeOn = (DATA[296+0] >> 2) & 1;
-shieldsDeactivated = (DATA[296+0] >> 3) & 1;
-stealthMode = (DATA[296+0] >> 4) & 1;
-rootIsBridge = (DATA[296+0] >> 5) & 1;
-io::read_c(&DATA[297+0], rootTheta);
+io::read_c(&DATA[296+0], score);
+io::read_c(&DATA[300+0], playerScore);
+isFragment = (DATA[304+0] >> 0) & 1;
+thrustOn = (DATA[304+0] >> 1) & 1;
+brakeOn = (DATA[304+0] >> 2) & 1;
+shieldsDeactivated = (DATA[304+0] >> 3) & 1;
+stealthMode = (DATA[304+0] >> 4) & 1;
+rootIsBridge = (DATA[304+0] >> 5) & 1;
+io::read_c(&DATA[305+0], rootTheta);
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=2) {
-neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=2) {
-neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=2) {
-neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+323+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+323+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
 
@@ -2837,30 +2841,30 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=4) {
-cellType[0+ARRAY_OFFSET] = ((&DATA[0]+323+ARRAY_OFFSET*1/4)[0+0] >> 0) & 3;
-cellType[1+ARRAY_OFFSET] = ((&DATA[0]+323+ARRAY_OFFSET*1/4)[0+0] >> 2) & 3;
-cellType[2+ARRAY_OFFSET] = ((&DATA[0]+323+ARRAY_OFFSET*1/4)[0+0] >> 4) & 3;
-cellType[3+ARRAY_OFFSET] = ((&DATA[0]+323+ARRAY_OFFSET*1/4)[0+0] >> 6) & 3;
+cellType[0+ARRAY_OFFSET] = ((&DATA[0]+331+ARRAY_OFFSET*1/4)[0+0] >> 0) & 3;
+cellType[1+ARRAY_OFFSET] = ((&DATA[0]+331+ARRAY_OFFSET*1/4)[0+0] >> 2) & 3;
+cellType[2+ARRAY_OFFSET] = ((&DATA[0]+331+ARRAY_OFFSET*1/4)[0+0] >> 4) & 3;
+cellType[3+ARRAY_OFFSET] = ((&DATA[0]+331+ARRAY_OFFSET*1/4)[0+0] >> 6) & 3;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+324+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+332+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
-systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+329+ARRAY_OFFSET*1/1)[0+0] >> 0) & 3;
-systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+329+ARRAY_OFFSET*1/1)[0+0] >> 2) & 63;
+systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+337+ARRAY_OFFSET*1/1)[0+0] >> 0) & 3;
+systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+337+ARRAY_OFFSET*1/1)[0+0] >> 2) & 63;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+337+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+345+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
 
@@ -2868,11 +2872,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
@@ -2884,14 +2888,14 @@ if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
-gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
   
     X = new Ship(field);
@@ -3159,6 +3163,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -3264,18 +3270,22 @@ io::read_c(&DATA[287+0], currentCapacitancePercent);
     
 io::read_c(&DATA[288+0], insignia);
 X->insignia = insignia;
-isFragment = (DATA[296+0] >> 0) & 1;
+io::read_c(&DATA[296+0], score);
+X->score = score;
+io::read_c(&DATA[300+0], playerScore);
+X->playerScore = playerScore;
+isFragment = (DATA[304+0] >> 0) & 1;
 
       if (isFragment && !X->isFragment) {
         X->isFragment = true;
         cxn->unsetReference(X);
       }
     
-thrustOn = (DATA[296+0] >> 1) & 1;
+thrustOn = (DATA[304+0] >> 1) & 1;
 
-brakeOn = (DATA[296+0] >> 2) & 1;
+brakeOn = (DATA[304+0] >> 2) & 1;
 
-shieldsDeactivated = (DATA[296+0] >> 3) & 1;
+shieldsDeactivated = (DATA[304+0] >> 3) & 1;
 
       if (shieldsDeactivated && X->shieldsDeactivated) {
         shield_deactivate(X);
@@ -3288,18 +3298,18 @@ shieldsDeactivated = (DATA[296+0] >> 3) & 1;
         X->shields.clear();
       }
     
-stealthMode = (DATA[296+0] >> 4) & 1;
+stealthMode = (DATA[304+0] >> 4) & 1;
 
       X->setStealthMode(stealthMode);
     
-rootIsBridge = (DATA[296+0] >> 5) & 1;
+rootIsBridge = (DATA[304+0] >> 5) & 1;
 
       X->configureEngines(thrustOn, brakeOn, thrustPercent);
     
-io::read_c(&DATA[297+0], rootTheta);
+io::read_c(&DATA[305+0], rootTheta);
  destruction = false; 
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+324+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+332+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
 
@@ -3395,14 +3405,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
     }
   
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
 
@@ -3559,11 +3569,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
@@ -3606,7 +3616,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
 }
 
 ENO_Ship4::ENO_Ship4(NetworkConnection* cxn, Ship* obj)
-: ExportedGameObject(378, cxn, obj, clone(obj, cxn))
+: ExportedGameObject(386, cxn, obj, clone(obj, cxn))
   
 {
   //Populate initial data
@@ -3629,6 +3639,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -3760,14 +3772,14 @@ bool gatPlasmaTurbo[8];
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
-(&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+377+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+385+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
 
@@ -3819,11 +3831,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
 
@@ -3842,7 +3854,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+337+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+345+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
 
@@ -3880,8 +3892,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
-(&DATA[0]+329+ARRAY_OFFSET*1/1)[0+0] &= ~(3<<0); (&DATA[0]+329+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
-(&DATA[0]+329+ARRAY_OFFSET*1/1)[0+0] &= ~(63<<2); (&DATA[0]+329+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
+(&DATA[0]+337+ARRAY_OFFSET*1/1)[0+0] &= ~(3<<0); (&DATA[0]+337+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
+(&DATA[0]+337+ARRAY_OFFSET*1/1)[0+0] &= ~(63<<2); (&DATA[0]+337+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
 
@@ -3958,14 +3970,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
 
@@ -3979,7 +3991,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+324+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+332+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=4) {
 
@@ -4052,10 +4064,10 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=4) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=4) {
-(&DATA[0]+323+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<0); (&DATA[0]+323+ARRAY_OFFSET*1/4)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
-(&DATA[0]+323+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<2); (&DATA[0]+323+ARRAY_OFFSET*1/4)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
-(&DATA[0]+323+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<4); (&DATA[0]+323+ARRAY_OFFSET*1/4)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
-(&DATA[0]+323+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<6); (&DATA[0]+323+ARRAY_OFFSET*1/4)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
+(&DATA[0]+331+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<0); (&DATA[0]+331+ARRAY_OFFSET*1/4)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
+(&DATA[0]+331+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<2); (&DATA[0]+331+ARRAY_OFFSET*1/4)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
+(&DATA[0]+331+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<4); (&DATA[0]+331+ARRAY_OFFSET*1/4)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
+(&DATA[0]+331+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<6); (&DATA[0]+331+ARRAY_OFFSET*1/4)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
 
@@ -4088,37 +4100,41 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=2) {
-(&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+323+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+323+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+323+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+323+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=2) {
-(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=2) {
-(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
 }
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[297+0], rootTheta);
+io::write_c(&DATA[305+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
+DATA[304+0] &= ~(1<<5); DATA[304+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
+DATA[304+0] &= ~(1<<4); DATA[304+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
+DATA[304+0] &= ~(1<<3); DATA[304+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
+DATA[304+0] &= ~(1<<2); DATA[304+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
+DATA[304+0] &= ~(1<<1); DATA[304+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
+DATA[304+0] &= ~(1<<0); DATA[304+0] |= (isFragment & 1) << 0;
+playerScore = X->playerScore;
+io::write_c(&DATA[300+0], playerScore);
+score = X->score;
+io::write_c(&DATA[296+0], score);
 insignia = X->insignia;
 io::write_c(&DATA[288+0], insignia);
 
@@ -4197,6 +4213,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -4618,6 +4636,8 @@ thrustOn = X->thrustOn;
 
       isFragment = X->isFragment;
     
+playerScore = X->playerScore;
+score = X->score;
 insignia = X->insignia;
 
       currentCapacitancePercent = 255*X->getCapacitancePercent();
@@ -4912,6 +4932,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -4946,6 +4968,8 @@ reinforcement = X->reinforcement;
       currentCapacitancePercent = 255*X->getCapacitancePercent();
     
 insignia = X->insignia;
+score = X->score;
+playerScore = X->playerScore;
 
       isFragment = X->isFragment;
     
@@ -5118,6 +5142,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
 {float d=fabs(x.thrustPercent-y.thrustPercent)*10;FAR+=d;NEAR+=d;}
 {float d=fabs(x.reinforcement-y.reinforcement)*0;FAR+=d;NEAR+=d;}
 {float d=fabs(x.insignia-y.insignia)*100;FAR+=d;NEAR+=d;}
+{float d=fabs(x.score-y.score)*100;FAR+=d;NEAR+=d;}
+{float d=fabs(x.playerScore-y.playerScore)*100;FAR+=d;NEAR+=d;}
 
       if (x.isFragment != y.isFragment)
         return true; //MUST update
@@ -5215,6 +5241,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -5280,11 +5308,11 @@ struct {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+345+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+353+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
 
@@ -5361,14 +5389,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+328+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+336+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
 
@@ -5382,28 +5410,32 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+324+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+332+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[297+0], rootTheta);
+io::write_c(&DATA[305+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
+DATA[304+0] &= ~(1<<5); DATA[304+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
+DATA[304+0] &= ~(1<<4); DATA[304+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
+DATA[304+0] &= ~(1<<3); DATA[304+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
+DATA[304+0] &= ~(1<<2); DATA[304+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
+DATA[304+0] &= ~(1<<1); DATA[304+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
+DATA[304+0] &= ~(1<<0); DATA[304+0] |= (isFragment & 1) << 0;
+playerScore = X->playerScore;
+io::write_c(&DATA[300+0], playerScore);
+score = X->score;
+io::write_c(&DATA[296+0], score);
 insignia = X->insignia;
 io::write_c(&DATA[288+0], insignia);
 
@@ -5491,6 +5523,8 @@ X->vtheta = vtheta;
                             currentCapacitancePercent/255.0f;
     
 X->insignia = insignia;
+X->score = score;
+X->playerScore = playerScore;
 
       if (isFragment && !X->isFragment) {
         X->isFragment = true;
@@ -5812,7 +5846,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
     
 
 INO_Ship8::INO_Ship8(NetworkConnection* cxn_)
-: ImportedGameObject(456, cxn_),
+: ImportedGameObject(464, cxn_),
   cxn(cxn_) 
 { }
 
@@ -5856,6 +5890,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -5931,24 +5967,26 @@ if (reinforcement != reinforcement) reinforcement = 0;
  else if (reinforcement > 32) reinforcement = 32;
 io::read_c(&DATA[287+0], currentCapacitancePercent);
 io::read_c(&DATA[288+0], insignia);
-isFragment = (DATA[296+0] >> 0) & 1;
-thrustOn = (DATA[296+0] >> 1) & 1;
-brakeOn = (DATA[296+0] >> 2) & 1;
-shieldsDeactivated = (DATA[296+0] >> 3) & 1;
-stealthMode = (DATA[296+0] >> 4) & 1;
-rootIsBridge = (DATA[296+0] >> 5) & 1;
-io::read_c(&DATA[297+0], rootTheta);
+io::read_c(&DATA[296+0], score);
+io::read_c(&DATA[300+0], playerScore);
+isFragment = (DATA[304+0] >> 0) & 1;
+thrustOn = (DATA[304+0] >> 1) & 1;
+brakeOn = (DATA[304+0] >> 2) & 1;
+shieldsDeactivated = (DATA[304+0] >> 3) & 1;
+stealthMode = (DATA[304+0] >> 4) & 1;
+rootIsBridge = (DATA[304+0] >> 5) & 1;
+io::read_c(&DATA[305+0], rootTheta);
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=2) {
-neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=2) {
-neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+323+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+323+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=2) {
-neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+331+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+331+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+339+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+339+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=1) {
 
@@ -5958,30 +5996,30 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=4) {
-cellType[0+ARRAY_OFFSET] = ((&DATA[0]+347+ARRAY_OFFSET*1/4)[0+0] >> 0) & 3;
-cellType[1+ARRAY_OFFSET] = ((&DATA[0]+347+ARRAY_OFFSET*1/4)[0+0] >> 2) & 3;
-cellType[2+ARRAY_OFFSET] = ((&DATA[0]+347+ARRAY_OFFSET*1/4)[0+0] >> 4) & 3;
-cellType[3+ARRAY_OFFSET] = ((&DATA[0]+347+ARRAY_OFFSET*1/4)[0+0] >> 6) & 3;
+cellType[0+ARRAY_OFFSET] = ((&DATA[0]+355+ARRAY_OFFSET*1/4)[0+0] >> 0) & 3;
+cellType[1+ARRAY_OFFSET] = ((&DATA[0]+355+ARRAY_OFFSET*1/4)[0+0] >> 2) & 3;
+cellType[2+ARRAY_OFFSET] = ((&DATA[0]+355+ARRAY_OFFSET*1/4)[0+0] >> 4) & 3;
+cellType[3+ARRAY_OFFSET] = ((&DATA[0]+355+ARRAY_OFFSET*1/4)[0+0] >> 6) & 3;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+349+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+357+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
-systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+359+ARRAY_OFFSET*1/1)[0+0] >> 0) & 3;
-systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+359+ARRAY_OFFSET*1/1)[0+0] >> 2) & 63;
+systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+367+ARRAY_OFFSET*1/1)[0+0] >> 0) & 3;
+systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+367+ARRAY_OFFSET*1/1)[0+0] >> 2) & 63;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+375+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+383+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
 
@@ -5989,11 +6027,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
@@ -6005,14 +6043,14 @@ if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
-gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
   
     X = new Ship(field);
@@ -6280,6 +6318,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -6385,18 +6425,22 @@ io::read_c(&DATA[287+0], currentCapacitancePercent);
     
 io::read_c(&DATA[288+0], insignia);
 X->insignia = insignia;
-isFragment = (DATA[296+0] >> 0) & 1;
+io::read_c(&DATA[296+0], score);
+X->score = score;
+io::read_c(&DATA[300+0], playerScore);
+X->playerScore = playerScore;
+isFragment = (DATA[304+0] >> 0) & 1;
 
       if (isFragment && !X->isFragment) {
         X->isFragment = true;
         cxn->unsetReference(X);
       }
     
-thrustOn = (DATA[296+0] >> 1) & 1;
+thrustOn = (DATA[304+0] >> 1) & 1;
 
-brakeOn = (DATA[296+0] >> 2) & 1;
+brakeOn = (DATA[304+0] >> 2) & 1;
 
-shieldsDeactivated = (DATA[296+0] >> 3) & 1;
+shieldsDeactivated = (DATA[304+0] >> 3) & 1;
 
       if (shieldsDeactivated && X->shieldsDeactivated) {
         shield_deactivate(X);
@@ -6409,18 +6453,18 @@ shieldsDeactivated = (DATA[296+0] >> 3) & 1;
         X->shields.clear();
       }
     
-stealthMode = (DATA[296+0] >> 4) & 1;
+stealthMode = (DATA[304+0] >> 4) & 1;
 
       X->setStealthMode(stealthMode);
     
-rootIsBridge = (DATA[296+0] >> 5) & 1;
+rootIsBridge = (DATA[304+0] >> 5) & 1;
 
       X->configureEngines(thrustOn, brakeOn, thrustPercent);
     
-io::read_c(&DATA[297+0], rootTheta);
+io::read_c(&DATA[305+0], rootTheta);
  destruction = false; 
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+349+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+357+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
 
@@ -6516,14 +6560,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
     }
   
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
 
@@ -6680,11 +6724,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
@@ -6727,7 +6771,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
 }
 
 ENO_Ship8::ENO_Ship8(NetworkConnection* cxn, Ship* obj)
-: ExportedGameObject(456, cxn, obj, clone(obj, cxn))
+: ExportedGameObject(464, cxn, obj, clone(obj, cxn))
   
 {
   //Populate initial data
@@ -6750,6 +6794,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -6881,14 +6927,14 @@ bool gatPlasmaTurbo[8];
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
-(&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+455+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+463+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
 
@@ -6940,11 +6986,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
 
@@ -6963,7 +7009,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+375+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+383+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
 
@@ -7001,8 +7047,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
-(&DATA[0]+359+ARRAY_OFFSET*1/1)[0+0] &= ~(3<<0); (&DATA[0]+359+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
-(&DATA[0]+359+ARRAY_OFFSET*1/1)[0+0] &= ~(63<<2); (&DATA[0]+359+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
+(&DATA[0]+367+ARRAY_OFFSET*1/1)[0+0] &= ~(3<<0); (&DATA[0]+367+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
+(&DATA[0]+367+ARRAY_OFFSET*1/1)[0+0] &= ~(63<<2); (&DATA[0]+367+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
 
@@ -7079,14 +7125,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
 
@@ -7100,7 +7146,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+349+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+357+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=4) {
 
@@ -7173,10 +7219,10 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=4) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=4) {
-(&DATA[0]+347+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<0); (&DATA[0]+347+ARRAY_OFFSET*1/4)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
-(&DATA[0]+347+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<2); (&DATA[0]+347+ARRAY_OFFSET*1/4)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
-(&DATA[0]+347+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<4); (&DATA[0]+347+ARRAY_OFFSET*1/4)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
-(&DATA[0]+347+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<6); (&DATA[0]+347+ARRAY_OFFSET*1/4)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
+(&DATA[0]+355+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<0); (&DATA[0]+355+ARRAY_OFFSET*1/4)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
+(&DATA[0]+355+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<2); (&DATA[0]+355+ARRAY_OFFSET*1/4)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
+(&DATA[0]+355+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<4); (&DATA[0]+355+ARRAY_OFFSET*1/4)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
+(&DATA[0]+355+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<6); (&DATA[0]+355+ARRAY_OFFSET*1/4)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=1) {
 
@@ -7209,37 +7255,41 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=2) {
-(&DATA[0]+331+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+331+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+331+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+331+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+339+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+339+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+339+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+339+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=2) {
-(&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+315+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+323+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+323+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+323+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+323+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=2) {
-(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
 }
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[297+0], rootTheta);
+io::write_c(&DATA[305+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
+DATA[304+0] &= ~(1<<5); DATA[304+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
+DATA[304+0] &= ~(1<<4); DATA[304+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
+DATA[304+0] &= ~(1<<3); DATA[304+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
+DATA[304+0] &= ~(1<<2); DATA[304+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
+DATA[304+0] &= ~(1<<1); DATA[304+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
+DATA[304+0] &= ~(1<<0); DATA[304+0] |= (isFragment & 1) << 0;
+playerScore = X->playerScore;
+io::write_c(&DATA[300+0], playerScore);
+score = X->score;
+io::write_c(&DATA[296+0], score);
 insignia = X->insignia;
 io::write_c(&DATA[288+0], insignia);
 
@@ -7318,6 +7368,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -7739,6 +7791,8 @@ thrustOn = X->thrustOn;
 
       isFragment = X->isFragment;
     
+playerScore = X->playerScore;
+score = X->score;
 insignia = X->insignia;
 
       currentCapacitancePercent = 255*X->getCapacitancePercent();
@@ -8033,6 +8087,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -8067,6 +8123,8 @@ reinforcement = X->reinforcement;
       currentCapacitancePercent = 255*X->getCapacitancePercent();
     
 insignia = X->insignia;
+score = X->score;
+playerScore = X->playerScore;
 
       isFragment = X->isFragment;
     
@@ -8239,6 +8297,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
 {float d=fabs(x.thrustPercent-y.thrustPercent)*10;FAR+=d;NEAR+=d;}
 {float d=fabs(x.reinforcement-y.reinforcement)*0;FAR+=d;NEAR+=d;}
 {float d=fabs(x.insignia-y.insignia)*100;FAR+=d;NEAR+=d;}
+{float d=fabs(x.score-y.score)*100;FAR+=d;NEAR+=d;}
+{float d=fabs(x.playerScore-y.playerScore)*100;FAR+=d;NEAR+=d;}
 
       if (x.isFragment != y.isFragment)
         return true; //MUST update
@@ -8336,6 +8396,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -8401,11 +8463,11 @@ struct {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+391+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+399+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
 
@@ -8482,14 +8544,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+357+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+365+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
 
@@ -8503,28 +8565,32 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+349+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+357+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[297+0], rootTheta);
+io::write_c(&DATA[305+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
+DATA[304+0] &= ~(1<<5); DATA[304+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
+DATA[304+0] &= ~(1<<4); DATA[304+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
+DATA[304+0] &= ~(1<<3); DATA[304+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
+DATA[304+0] &= ~(1<<2); DATA[304+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
+DATA[304+0] &= ~(1<<1); DATA[304+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
+DATA[304+0] &= ~(1<<0); DATA[304+0] |= (isFragment & 1) << 0;
+playerScore = X->playerScore;
+io::write_c(&DATA[300+0], playerScore);
+score = X->score;
+io::write_c(&DATA[296+0], score);
 insignia = X->insignia;
 io::write_c(&DATA[288+0], insignia);
 
@@ -8612,6 +8678,8 @@ X->vtheta = vtheta;
                             currentCapacitancePercent/255.0f;
     
 X->insignia = insignia;
+X->score = score;
+X->playerScore = playerScore;
 
       if (isFragment && !X->isFragment) {
         X->isFragment = true;
@@ -8933,7 +9001,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
     
 
 INO_Ship16::INO_Ship16(NetworkConnection* cxn_)
-: ImportedGameObject(613, cxn_),
+: ImportedGameObject(621, cxn_),
   cxn(cxn_) 
 { }
 
@@ -8977,6 +9045,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -9052,24 +9122,26 @@ if (reinforcement != reinforcement) reinforcement = 0;
  else if (reinforcement > 32) reinforcement = 32;
 io::read_c(&DATA[287+0], currentCapacitancePercent);
 io::read_c(&DATA[288+0], insignia);
-isFragment = (DATA[296+0] >> 0) & 1;
-thrustOn = (DATA[296+0] >> 1) & 1;
-brakeOn = (DATA[296+0] >> 2) & 1;
-shieldsDeactivated = (DATA[296+0] >> 3) & 1;
-stealthMode = (DATA[296+0] >> 4) & 1;
-rootIsBridge = (DATA[296+0] >> 5) & 1;
-io::read_c(&DATA[297+0], rootTheta);
+io::read_c(&DATA[296+0], score);
+io::read_c(&DATA[300+0], playerScore);
+isFragment = (DATA[304+0] >> 0) & 1;
+thrustOn = (DATA[304+0] >> 1) & 1;
+brakeOn = (DATA[304+0] >> 2) & 1;
+shieldsDeactivated = (DATA[304+0] >> 3) & 1;
+stealthMode = (DATA[304+0] >> 4) & 1;
+rootIsBridge = (DATA[304+0] >> 5) & 1;
+io::read_c(&DATA[305+0], rootTheta);
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=2) {
-neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=2) {
-neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+331+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+331+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+339+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+339+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=2) {
-neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+363+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+363+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+371+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+371+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
 
@@ -9079,30 +9151,30 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=4) {
-cellType[0+ARRAY_OFFSET] = ((&DATA[0]+395+ARRAY_OFFSET*1/4)[0+0] >> 0) & 3;
-cellType[1+ARRAY_OFFSET] = ((&DATA[0]+395+ARRAY_OFFSET*1/4)[0+0] >> 2) & 3;
-cellType[2+ARRAY_OFFSET] = ((&DATA[0]+395+ARRAY_OFFSET*1/4)[0+0] >> 4) & 3;
-cellType[3+ARRAY_OFFSET] = ((&DATA[0]+395+ARRAY_OFFSET*1/4)[0+0] >> 6) & 3;
+cellType[0+ARRAY_OFFSET] = ((&DATA[0]+403+ARRAY_OFFSET*1/4)[0+0] >> 0) & 3;
+cellType[1+ARRAY_OFFSET] = ((&DATA[0]+403+ARRAY_OFFSET*1/4)[0+0] >> 2) & 3;
+cellType[2+ARRAY_OFFSET] = ((&DATA[0]+403+ARRAY_OFFSET*1/4)[0+0] >> 4) & 3;
+cellType[3+ARRAY_OFFSET] = ((&DATA[0]+403+ARRAY_OFFSET*1/4)[0+0] >> 6) & 3;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+399+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+407+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=1) {
-systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+419+ARRAY_OFFSET*1/1)[0+0] >> 0) & 3;
-systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+419+ARRAY_OFFSET*1/1)[0+0] >> 2) & 63;
+systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+427+ARRAY_OFFSET*1/1)[0+0] >> 0) & 3;
+systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+427+ARRAY_OFFSET*1/1)[0+0] >> 2) & 63;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+451+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+459+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=1) {
 
@@ -9110,11 +9182,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
@@ -9126,14 +9198,14 @@ if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
-gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
   
     X = new Ship(field);
@@ -9401,6 +9473,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -9506,18 +9580,22 @@ io::read_c(&DATA[287+0], currentCapacitancePercent);
     
 io::read_c(&DATA[288+0], insignia);
 X->insignia = insignia;
-isFragment = (DATA[296+0] >> 0) & 1;
+io::read_c(&DATA[296+0], score);
+X->score = score;
+io::read_c(&DATA[300+0], playerScore);
+X->playerScore = playerScore;
+isFragment = (DATA[304+0] >> 0) & 1;
 
       if (isFragment && !X->isFragment) {
         X->isFragment = true;
         cxn->unsetReference(X);
       }
     
-thrustOn = (DATA[296+0] >> 1) & 1;
+thrustOn = (DATA[304+0] >> 1) & 1;
 
-brakeOn = (DATA[296+0] >> 2) & 1;
+brakeOn = (DATA[304+0] >> 2) & 1;
 
-shieldsDeactivated = (DATA[296+0] >> 3) & 1;
+shieldsDeactivated = (DATA[304+0] >> 3) & 1;
 
       if (shieldsDeactivated && X->shieldsDeactivated) {
         shield_deactivate(X);
@@ -9530,18 +9608,18 @@ shieldsDeactivated = (DATA[296+0] >> 3) & 1;
         X->shields.clear();
       }
     
-stealthMode = (DATA[296+0] >> 4) & 1;
+stealthMode = (DATA[304+0] >> 4) & 1;
 
       X->setStealthMode(stealthMode);
     
-rootIsBridge = (DATA[296+0] >> 5) & 1;
+rootIsBridge = (DATA[304+0] >> 5) & 1;
 
       X->configureEngines(thrustOn, brakeOn, thrustPercent);
     
-io::read_c(&DATA[297+0], rootTheta);
+io::read_c(&DATA[305+0], rootTheta);
  destruction = false; 
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+399+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+407+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
 
@@ -9637,14 +9715,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
     }
   
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
 
@@ -9801,11 +9879,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
@@ -9848,7 +9926,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
 }
 
 ENO_Ship16::ENO_Ship16(NetworkConnection* cxn, Ship* obj)
-: ExportedGameObject(613, cxn, obj, clone(obj, cxn))
+: ExportedGameObject(621, cxn, obj, clone(obj, cxn))
   
 {
   //Populate initial data
@@ -9871,6 +9949,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -10002,14 +10082,14 @@ bool gatPlasmaTurbo[16];
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
-(&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+611+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+619+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
 
@@ -10061,11 +10141,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=1) {
 
@@ -10084,7 +10164,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+451+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+459+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=1) {
 
@@ -10122,8 +10202,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=1) {
-(&DATA[0]+419+ARRAY_OFFSET*1/1)[0+0] &= ~(3<<0); (&DATA[0]+419+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
-(&DATA[0]+419+ARRAY_OFFSET*1/1)[0+0] &= ~(63<<2); (&DATA[0]+419+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
+(&DATA[0]+427+ARRAY_OFFSET*1/1)[0+0] &= ~(3<<0); (&DATA[0]+427+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
+(&DATA[0]+427+ARRAY_OFFSET*1/1)[0+0] &= ~(63<<2); (&DATA[0]+427+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
 
@@ -10200,14 +10280,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
 
@@ -10221,7 +10301,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+399+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+407+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=4) {
 
@@ -10294,10 +10374,10 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=4) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=4) {
-(&DATA[0]+395+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<0); (&DATA[0]+395+ARRAY_OFFSET*1/4)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
-(&DATA[0]+395+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<2); (&DATA[0]+395+ARRAY_OFFSET*1/4)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
-(&DATA[0]+395+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<4); (&DATA[0]+395+ARRAY_OFFSET*1/4)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
-(&DATA[0]+395+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<6); (&DATA[0]+395+ARRAY_OFFSET*1/4)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
+(&DATA[0]+403+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<0); (&DATA[0]+403+ARRAY_OFFSET*1/4)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
+(&DATA[0]+403+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<2); (&DATA[0]+403+ARRAY_OFFSET*1/4)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
+(&DATA[0]+403+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<4); (&DATA[0]+403+ARRAY_OFFSET*1/4)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
+(&DATA[0]+403+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<6); (&DATA[0]+403+ARRAY_OFFSET*1/4)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
 
@@ -10330,37 +10410,41 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=2) {
-(&DATA[0]+363+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+363+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+363+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+363+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+371+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+371+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+371+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+371+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=2) {
-(&DATA[0]+331+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+331+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+331+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+331+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+339+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+339+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+339+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+339+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=2) {
-(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
 }
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[297+0], rootTheta);
+io::write_c(&DATA[305+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
+DATA[304+0] &= ~(1<<5); DATA[304+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
+DATA[304+0] &= ~(1<<4); DATA[304+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
+DATA[304+0] &= ~(1<<3); DATA[304+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
+DATA[304+0] &= ~(1<<2); DATA[304+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
+DATA[304+0] &= ~(1<<1); DATA[304+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
+DATA[304+0] &= ~(1<<0); DATA[304+0] |= (isFragment & 1) << 0;
+playerScore = X->playerScore;
+io::write_c(&DATA[300+0], playerScore);
+score = X->score;
+io::write_c(&DATA[296+0], score);
 insignia = X->insignia;
 io::write_c(&DATA[288+0], insignia);
 
@@ -10439,6 +10523,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -10860,6 +10946,8 @@ thrustOn = X->thrustOn;
 
       isFragment = X->isFragment;
     
+playerScore = X->playerScore;
+score = X->score;
 insignia = X->insignia;
 
       currentCapacitancePercent = 255*X->getCapacitancePercent();
@@ -11154,6 +11242,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -11188,6 +11278,8 @@ reinforcement = X->reinforcement;
       currentCapacitancePercent = 255*X->getCapacitancePercent();
     
 insignia = X->insignia;
+score = X->score;
+playerScore = X->playerScore;
 
       isFragment = X->isFragment;
     
@@ -11360,6 +11452,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
 {float d=fabs(x.thrustPercent-y.thrustPercent)*10;FAR+=d;NEAR+=d;}
 {float d=fabs(x.reinforcement-y.reinforcement)*0;FAR+=d;NEAR+=d;}
 {float d=fabs(x.insignia-y.insignia)*100;FAR+=d;NEAR+=d;}
+{float d=fabs(x.score-y.score)*100;FAR+=d;NEAR+=d;}
+{float d=fabs(x.playerScore-y.playerScore)*100;FAR+=d;NEAR+=d;}
 
       if (x.isFragment != y.isFragment)
         return true; //MUST update
@@ -11457,6 +11551,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -11522,11 +11618,11 @@ struct {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+483+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+491+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
 
@@ -11603,14 +11699,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+415+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+423+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
 
@@ -11624,28 +11720,32 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+399+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+407+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[297+0], rootTheta);
+io::write_c(&DATA[305+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
+DATA[304+0] &= ~(1<<5); DATA[304+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
+DATA[304+0] &= ~(1<<4); DATA[304+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
+DATA[304+0] &= ~(1<<3); DATA[304+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
+DATA[304+0] &= ~(1<<2); DATA[304+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
+DATA[304+0] &= ~(1<<1); DATA[304+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
+DATA[304+0] &= ~(1<<0); DATA[304+0] |= (isFragment & 1) << 0;
+playerScore = X->playerScore;
+io::write_c(&DATA[300+0], playerScore);
+score = X->score;
+io::write_c(&DATA[296+0], score);
 insignia = X->insignia;
 io::write_c(&DATA[288+0], insignia);
 
@@ -11733,6 +11833,8 @@ X->vtheta = vtheta;
                             currentCapacitancePercent/255.0f;
     
 X->insignia = insignia;
+X->score = score;
+X->playerScore = playerScore;
 
       if (isFragment && !X->isFragment) {
         X->isFragment = true;
@@ -12054,7 +12156,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
     
 
 INO_Ship64::INO_Ship64(NetworkConnection* cxn_)
-: ImportedGameObject(1555, cxn_),
+: ImportedGameObject(1563, cxn_),
   cxn(cxn_) 
 { }
 
@@ -12098,6 +12200,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -12173,24 +12277,26 @@ if (reinforcement != reinforcement) reinforcement = 0;
  else if (reinforcement > 32) reinforcement = 32;
 io::read_c(&DATA[287+0], currentCapacitancePercent);
 io::read_c(&DATA[288+0], insignia);
-isFragment = (DATA[296+0] >> 0) & 1;
-thrustOn = (DATA[296+0] >> 1) & 1;
-brakeOn = (DATA[296+0] >> 2) & 1;
-shieldsDeactivated = (DATA[296+0] >> 3) & 1;
-stealthMode = (DATA[296+0] >> 4) & 1;
-rootIsBridge = (DATA[296+0] >> 5) & 1;
-io::read_c(&DATA[297+0], rootTheta);
+io::read_c(&DATA[296+0], score);
+io::read_c(&DATA[300+0], playerScore);
+isFragment = (DATA[304+0] >> 0) & 1;
+thrustOn = (DATA[304+0] >> 1) & 1;
+brakeOn = (DATA[304+0] >> 2) & 1;
+shieldsDeactivated = (DATA[304+0] >> 3) & 1;
+stealthMode = (DATA[304+0] >> 4) & 1;
+rootIsBridge = (DATA[304+0] >> 5) & 1;
+io::read_c(&DATA[305+0], rootTheta);
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=2) {
-neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=2) {
-neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+427+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+427+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+435+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+435+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=2) {
-neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+555+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+555+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+563+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+563+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
 
@@ -12200,30 +12306,30 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=4) {
-cellType[0+ARRAY_OFFSET] = ((&DATA[0]+683+ARRAY_OFFSET*1/4)[0+0] >> 0) & 3;
-cellType[1+ARRAY_OFFSET] = ((&DATA[0]+683+ARRAY_OFFSET*1/4)[0+0] >> 2) & 3;
-cellType[2+ARRAY_OFFSET] = ((&DATA[0]+683+ARRAY_OFFSET*1/4)[0+0] >> 4) & 3;
-cellType[3+ARRAY_OFFSET] = ((&DATA[0]+683+ARRAY_OFFSET*1/4)[0+0] >> 6) & 3;
+cellType[0+ARRAY_OFFSET] = ((&DATA[0]+691+ARRAY_OFFSET*1/4)[0+0] >> 0) & 3;
+cellType[1+ARRAY_OFFSET] = ((&DATA[0]+691+ARRAY_OFFSET*1/4)[0+0] >> 2) & 3;
+cellType[2+ARRAY_OFFSET] = ((&DATA[0]+691+ARRAY_OFFSET*1/4)[0+0] >> 4) & 3;
+cellType[3+ARRAY_OFFSET] = ((&DATA[0]+691+ARRAY_OFFSET*1/4)[0+0] >> 6) & 3;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+699+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+707+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=1) {
-systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+779+ARRAY_OFFSET*1/1)[0+0] >> 0) & 3;
-systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+779+ARRAY_OFFSET*1/1)[0+0] >> 2) & 63;
+systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+787+ARRAY_OFFSET*1/1)[0+0] >> 0) & 3;
+systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+787+ARRAY_OFFSET*1/1)[0+0] >> 2) & 63;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+907+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+915+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=1) {
 
@@ -12231,11 +12337,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
@@ -12247,14 +12353,14 @@ if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=8) {
-gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
   
     X = new Ship(field);
@@ -12522,6 +12628,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -12627,18 +12735,22 @@ io::read_c(&DATA[287+0], currentCapacitancePercent);
     
 io::read_c(&DATA[288+0], insignia);
 X->insignia = insignia;
-isFragment = (DATA[296+0] >> 0) & 1;
+io::read_c(&DATA[296+0], score);
+X->score = score;
+io::read_c(&DATA[300+0], playerScore);
+X->playerScore = playerScore;
+isFragment = (DATA[304+0] >> 0) & 1;
 
       if (isFragment && !X->isFragment) {
         X->isFragment = true;
         cxn->unsetReference(X);
       }
     
-thrustOn = (DATA[296+0] >> 1) & 1;
+thrustOn = (DATA[304+0] >> 1) & 1;
 
-brakeOn = (DATA[296+0] >> 2) & 1;
+brakeOn = (DATA[304+0] >> 2) & 1;
 
-shieldsDeactivated = (DATA[296+0] >> 3) & 1;
+shieldsDeactivated = (DATA[304+0] >> 3) & 1;
 
       if (shieldsDeactivated && X->shieldsDeactivated) {
         shield_deactivate(X);
@@ -12651,18 +12763,18 @@ shieldsDeactivated = (DATA[296+0] >> 3) & 1;
         X->shields.clear();
       }
     
-stealthMode = (DATA[296+0] >> 4) & 1;
+stealthMode = (DATA[304+0] >> 4) & 1;
 
       X->setStealthMode(stealthMode);
     
-rootIsBridge = (DATA[296+0] >> 5) & 1;
+rootIsBridge = (DATA[304+0] >> 5) & 1;
 
       X->configureEngines(thrustOn, brakeOn, thrustPercent);
     
-io::read_c(&DATA[297+0], rootTheta);
+io::read_c(&DATA[305+0], rootTheta);
  destruction = false; 
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+699+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+707+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
 
@@ -12758,14 +12870,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
     }
   
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
 
@@ -12922,11 +13034,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
@@ -12969,7 +13081,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
 }
 
 ENO_Ship64::ENO_Ship64(NetworkConnection* cxn, Ship* obj)
-: ExportedGameObject(1555, cxn, obj, clone(obj, cxn))
+: ExportedGameObject(1563, cxn, obj, clone(obj, cxn))
   
 {
   //Populate initial data
@@ -12992,6 +13104,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -13123,14 +13237,14 @@ bool gatPlasmaTurbo[64];
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=8) {
-(&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+1547+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+1555+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
 
@@ -13182,11 +13296,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=1) {
 
@@ -13205,7 +13319,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+907+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+915+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=1) {
 
@@ -13243,8 +13357,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=1) {
-(&DATA[0]+779+ARRAY_OFFSET*1/1)[0+0] &= ~(3<<0); (&DATA[0]+779+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
-(&DATA[0]+779+ARRAY_OFFSET*1/1)[0+0] &= ~(63<<2); (&DATA[0]+779+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
+(&DATA[0]+787+ARRAY_OFFSET*1/1)[0+0] &= ~(3<<0); (&DATA[0]+787+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
+(&DATA[0]+787+ARRAY_OFFSET*1/1)[0+0] &= ~(63<<2); (&DATA[0]+787+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
 
@@ -13321,14 +13435,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
 
@@ -13342,7 +13456,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+699+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+707+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=4) {
 
@@ -13415,10 +13529,10 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=4) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=4) {
-(&DATA[0]+683+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<0); (&DATA[0]+683+ARRAY_OFFSET*1/4)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
-(&DATA[0]+683+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<2); (&DATA[0]+683+ARRAY_OFFSET*1/4)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
-(&DATA[0]+683+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<4); (&DATA[0]+683+ARRAY_OFFSET*1/4)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
-(&DATA[0]+683+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<6); (&DATA[0]+683+ARRAY_OFFSET*1/4)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
+(&DATA[0]+691+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<0); (&DATA[0]+691+ARRAY_OFFSET*1/4)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
+(&DATA[0]+691+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<2); (&DATA[0]+691+ARRAY_OFFSET*1/4)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
+(&DATA[0]+691+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<4); (&DATA[0]+691+ARRAY_OFFSET*1/4)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
+(&DATA[0]+691+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<6); (&DATA[0]+691+ARRAY_OFFSET*1/4)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
 
@@ -13451,37 +13565,41 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=2) {
-(&DATA[0]+555+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+555+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+555+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+555+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+563+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+563+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+563+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+563+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=2) {
-(&DATA[0]+427+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+427+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+427+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+427+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+435+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+435+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+435+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+435+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=2) {
-(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
 }
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[297+0], rootTheta);
+io::write_c(&DATA[305+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
+DATA[304+0] &= ~(1<<5); DATA[304+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
+DATA[304+0] &= ~(1<<4); DATA[304+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
+DATA[304+0] &= ~(1<<3); DATA[304+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
+DATA[304+0] &= ~(1<<2); DATA[304+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
+DATA[304+0] &= ~(1<<1); DATA[304+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
+DATA[304+0] &= ~(1<<0); DATA[304+0] |= (isFragment & 1) << 0;
+playerScore = X->playerScore;
+io::write_c(&DATA[300+0], playerScore);
+score = X->score;
+io::write_c(&DATA[296+0], score);
 insignia = X->insignia;
 io::write_c(&DATA[288+0], insignia);
 
@@ -13560,6 +13678,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -13981,6 +14101,8 @@ thrustOn = X->thrustOn;
 
       isFragment = X->isFragment;
     
+playerScore = X->playerScore;
+score = X->score;
 insignia = X->insignia;
 
       currentCapacitancePercent = 255*X->getCapacitancePercent();
@@ -14275,6 +14397,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -14309,6 +14433,8 @@ reinforcement = X->reinforcement;
       currentCapacitancePercent = 255*X->getCapacitancePercent();
     
 insignia = X->insignia;
+score = X->score;
+playerScore = X->playerScore;
 
       isFragment = X->isFragment;
     
@@ -14481,6 +14607,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
 {float d=fabs(x.thrustPercent-y.thrustPercent)*10;FAR+=d;NEAR+=d;}
 {float d=fabs(x.reinforcement-y.reinforcement)*0;FAR+=d;NEAR+=d;}
 {float d=fabs(x.insignia-y.insignia)*100;FAR+=d;NEAR+=d;}
+{float d=fabs(x.score-y.score)*100;FAR+=d;NEAR+=d;}
+{float d=fabs(x.playerScore-y.playerScore)*100;FAR+=d;NEAR+=d;}
 
       if (x.isFragment != y.isFragment)
         return true; //MUST update
@@ -14578,6 +14706,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -14643,11 +14773,11 @@ struct {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+1035+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+1043+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
 
@@ -14724,14 +14854,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+763+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+771+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
 
@@ -14745,28 +14875,32 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+699+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+707+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[297+0], rootTheta);
+io::write_c(&DATA[305+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
+DATA[304+0] &= ~(1<<5); DATA[304+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
+DATA[304+0] &= ~(1<<4); DATA[304+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
+DATA[304+0] &= ~(1<<3); DATA[304+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
+DATA[304+0] &= ~(1<<2); DATA[304+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
+DATA[304+0] &= ~(1<<1); DATA[304+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
+DATA[304+0] &= ~(1<<0); DATA[304+0] |= (isFragment & 1) << 0;
+playerScore = X->playerScore;
+io::write_c(&DATA[300+0], playerScore);
+score = X->score;
+io::write_c(&DATA[296+0], score);
 insignia = X->insignia;
 io::write_c(&DATA[288+0], insignia);
 
@@ -14854,6 +14988,8 @@ X->vtheta = vtheta;
                             currentCapacitancePercent/255.0f;
     
 X->insignia = insignia;
+X->score = score;
+X->playerScore = playerScore;
 
       if (isFragment && !X->isFragment) {
         X->isFragment = true;
@@ -15175,7 +15311,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
     
 
 INO_Ship256::INO_Ship256(NetworkConnection* cxn_)
-: ImportedGameObject(5323, cxn_),
+: ImportedGameObject(5331, cxn_),
   cxn(cxn_) 
 { }
 
@@ -15219,6 +15355,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -15294,24 +15432,26 @@ if (reinforcement != reinforcement) reinforcement = 0;
  else if (reinforcement > 32) reinforcement = 32;
 io::read_c(&DATA[287+0], currentCapacitancePercent);
 io::read_c(&DATA[288+0], insignia);
-isFragment = (DATA[296+0] >> 0) & 1;
-thrustOn = (DATA[296+0] >> 1) & 1;
-brakeOn = (DATA[296+0] >> 2) & 1;
-shieldsDeactivated = (DATA[296+0] >> 3) & 1;
-stealthMode = (DATA[296+0] >> 4) & 1;
-rootIsBridge = (DATA[296+0] >> 5) & 1;
-io::read_c(&DATA[297+0], rootTheta);
+io::read_c(&DATA[296+0], score);
+io::read_c(&DATA[300+0], playerScore);
+isFragment = (DATA[304+0] >> 0) & 1;
+thrustOn = (DATA[304+0] >> 1) & 1;
+brakeOn = (DATA[304+0] >> 2) & 1;
+shieldsDeactivated = (DATA[304+0] >> 3) & 1;
+stealthMode = (DATA[304+0] >> 4) & 1;
+rootIsBridge = (DATA[304+0] >> 5) & 1;
+io::read_c(&DATA[305+0], rootTheta);
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=2) {
-neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=2) {
-neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+811+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+811+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+819+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+819+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=2) {
-neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+1323+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+1323+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+1331+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+1331+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
 
@@ -15321,30 +15461,30 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=4) {
-cellType[0+ARRAY_OFFSET] = ((&DATA[0]+1835+ARRAY_OFFSET*1/4)[0+0] >> 0) & 3;
-cellType[1+ARRAY_OFFSET] = ((&DATA[0]+1835+ARRAY_OFFSET*1/4)[0+0] >> 2) & 3;
-cellType[2+ARRAY_OFFSET] = ((&DATA[0]+1835+ARRAY_OFFSET*1/4)[0+0] >> 4) & 3;
-cellType[3+ARRAY_OFFSET] = ((&DATA[0]+1835+ARRAY_OFFSET*1/4)[0+0] >> 6) & 3;
+cellType[0+ARRAY_OFFSET] = ((&DATA[0]+1843+ARRAY_OFFSET*1/4)[0+0] >> 0) & 3;
+cellType[1+ARRAY_OFFSET] = ((&DATA[0]+1843+ARRAY_OFFSET*1/4)[0+0] >> 2) & 3;
+cellType[2+ARRAY_OFFSET] = ((&DATA[0]+1843+ARRAY_OFFSET*1/4)[0+0] >> 4) & 3;
+cellType[3+ARRAY_OFFSET] = ((&DATA[0]+1843+ARRAY_OFFSET*1/4)[0+0] >> 6) & 3;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+1899+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+1907+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=1) {
-systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+2219+ARRAY_OFFSET*1/1)[0+0] >> 0) & 3;
-systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+2219+ARRAY_OFFSET*1/1)[0+0] >> 2) & 63;
+systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+2227+ARRAY_OFFSET*1/1)[0+0] >> 0) & 3;
+systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+2227+ARRAY_OFFSET*1/1)[0+0] >> 2) & 63;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+2731+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+2739+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=1) {
 
@@ -15352,11 +15492,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
@@ -15368,14 +15508,14 @@ if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=8) {
-gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
   
     X = new Ship(field);
@@ -15643,6 +15783,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -15748,18 +15890,22 @@ io::read_c(&DATA[287+0], currentCapacitancePercent);
     
 io::read_c(&DATA[288+0], insignia);
 X->insignia = insignia;
-isFragment = (DATA[296+0] >> 0) & 1;
+io::read_c(&DATA[296+0], score);
+X->score = score;
+io::read_c(&DATA[300+0], playerScore);
+X->playerScore = playerScore;
+isFragment = (DATA[304+0] >> 0) & 1;
 
       if (isFragment && !X->isFragment) {
         X->isFragment = true;
         cxn->unsetReference(X);
       }
     
-thrustOn = (DATA[296+0] >> 1) & 1;
+thrustOn = (DATA[304+0] >> 1) & 1;
 
-brakeOn = (DATA[296+0] >> 2) & 1;
+brakeOn = (DATA[304+0] >> 2) & 1;
 
-shieldsDeactivated = (DATA[296+0] >> 3) & 1;
+shieldsDeactivated = (DATA[304+0] >> 3) & 1;
 
       if (shieldsDeactivated && X->shieldsDeactivated) {
         shield_deactivate(X);
@@ -15772,18 +15918,18 @@ shieldsDeactivated = (DATA[296+0] >> 3) & 1;
         X->shields.clear();
       }
     
-stealthMode = (DATA[296+0] >> 4) & 1;
+stealthMode = (DATA[304+0] >> 4) & 1;
 
       X->setStealthMode(stealthMode);
     
-rootIsBridge = (DATA[296+0] >> 5) & 1;
+rootIsBridge = (DATA[304+0] >> 5) & 1;
 
       X->configureEngines(thrustOn, brakeOn, thrustPercent);
     
-io::read_c(&DATA[297+0], rootTheta);
+io::read_c(&DATA[305+0], rootTheta);
  destruction = false; 
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+1899+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+1907+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
 
@@ -15879,14 +16025,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
     }
   
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
 
@@ -16043,11 +16189,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
@@ -16090,7 +16236,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
 }
 
 ENO_Ship256::ENO_Ship256(NetworkConnection* cxn, Ship* obj)
-: ExportedGameObject(5323, cxn, obj, clone(obj, cxn))
+: ExportedGameObject(5331, cxn, obj, clone(obj, cxn))
   
 {
   //Populate initial data
@@ -16113,6 +16259,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -16244,14 +16392,14 @@ bool gatPlasmaTurbo[256];
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=8) {
-(&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+5291+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+5299+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
 
@@ -16303,11 +16451,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=1) {
 
@@ -16326,7 +16474,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+2731+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+2739+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=1) {
 
@@ -16364,8 +16512,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=1) {
-(&DATA[0]+2219+ARRAY_OFFSET*1/1)[0+0] &= ~(3<<0); (&DATA[0]+2219+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
-(&DATA[0]+2219+ARRAY_OFFSET*1/1)[0+0] &= ~(63<<2); (&DATA[0]+2219+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
+(&DATA[0]+2227+ARRAY_OFFSET*1/1)[0+0] &= ~(3<<0); (&DATA[0]+2227+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
+(&DATA[0]+2227+ARRAY_OFFSET*1/1)[0+0] &= ~(63<<2); (&DATA[0]+2227+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
 
@@ -16442,14 +16590,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
 
@@ -16463,7 +16611,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+1899+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+1907+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=4) {
 
@@ -16536,10 +16684,10 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=4) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=4) {
-(&DATA[0]+1835+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<0); (&DATA[0]+1835+ARRAY_OFFSET*1/4)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
-(&DATA[0]+1835+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<2); (&DATA[0]+1835+ARRAY_OFFSET*1/4)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
-(&DATA[0]+1835+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<4); (&DATA[0]+1835+ARRAY_OFFSET*1/4)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
-(&DATA[0]+1835+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<6); (&DATA[0]+1835+ARRAY_OFFSET*1/4)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
+(&DATA[0]+1843+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<0); (&DATA[0]+1843+ARRAY_OFFSET*1/4)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
+(&DATA[0]+1843+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<2); (&DATA[0]+1843+ARRAY_OFFSET*1/4)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
+(&DATA[0]+1843+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<4); (&DATA[0]+1843+ARRAY_OFFSET*1/4)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
+(&DATA[0]+1843+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<6); (&DATA[0]+1843+ARRAY_OFFSET*1/4)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
 
@@ -16572,37 +16720,41 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=2) {
-(&DATA[0]+1323+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+1323+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+1323+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+1323+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+1331+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+1331+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+1331+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+1331+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=2) {
-(&DATA[0]+811+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+811+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+811+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+811+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+819+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+819+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+819+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+819+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=2) {
-(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
 }
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[297+0], rootTheta);
+io::write_c(&DATA[305+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
+DATA[304+0] &= ~(1<<5); DATA[304+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
+DATA[304+0] &= ~(1<<4); DATA[304+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
+DATA[304+0] &= ~(1<<3); DATA[304+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
+DATA[304+0] &= ~(1<<2); DATA[304+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
+DATA[304+0] &= ~(1<<1); DATA[304+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
+DATA[304+0] &= ~(1<<0); DATA[304+0] |= (isFragment & 1) << 0;
+playerScore = X->playerScore;
+io::write_c(&DATA[300+0], playerScore);
+score = X->score;
+io::write_c(&DATA[296+0], score);
 insignia = X->insignia;
 io::write_c(&DATA[288+0], insignia);
 
@@ -16681,6 +16833,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -17102,6 +17256,8 @@ thrustOn = X->thrustOn;
 
       isFragment = X->isFragment;
     
+playerScore = X->playerScore;
+score = X->score;
 insignia = X->insignia;
 
       currentCapacitancePercent = 255*X->getCapacitancePercent();
@@ -17396,6 +17552,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -17430,6 +17588,8 @@ reinforcement = X->reinforcement;
       currentCapacitancePercent = 255*X->getCapacitancePercent();
     
 insignia = X->insignia;
+score = X->score;
+playerScore = X->playerScore;
 
       isFragment = X->isFragment;
     
@@ -17602,6 +17762,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
 {float d=fabs(x.thrustPercent-y.thrustPercent)*10;FAR+=d;NEAR+=d;}
 {float d=fabs(x.reinforcement-y.reinforcement)*0;FAR+=d;NEAR+=d;}
 {float d=fabs(x.insignia-y.insignia)*100;FAR+=d;NEAR+=d;}
+{float d=fabs(x.score-y.score)*100;FAR+=d;NEAR+=d;}
+{float d=fabs(x.playerScore-y.playerScore)*100;FAR+=d;NEAR+=d;}
 
       if (x.isFragment != y.isFragment)
         return true; //MUST update
@@ -17699,6 +17861,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -17764,11 +17928,11 @@ struct {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+3243+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+3251+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
 
@@ -17845,14 +18009,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+2155+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+2163+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
 
@@ -17866,28 +18030,32 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+1899+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+1907+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[297+0], rootTheta);
+io::write_c(&DATA[305+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
+DATA[304+0] &= ~(1<<5); DATA[304+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
+DATA[304+0] &= ~(1<<4); DATA[304+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
+DATA[304+0] &= ~(1<<3); DATA[304+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
+DATA[304+0] &= ~(1<<2); DATA[304+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
+DATA[304+0] &= ~(1<<1); DATA[304+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
+DATA[304+0] &= ~(1<<0); DATA[304+0] |= (isFragment & 1) << 0;
+playerScore = X->playerScore;
+io::write_c(&DATA[300+0], playerScore);
+score = X->score;
+io::write_c(&DATA[296+0], score);
 insignia = X->insignia;
 io::write_c(&DATA[288+0], insignia);
 
@@ -17975,6 +18143,8 @@ X->vtheta = vtheta;
                             currentCapacitancePercent/255.0f;
     
 X->insignia = insignia;
+X->score = score;
+X->playerScore = playerScore;
 
       if (isFragment && !X->isFragment) {
         X->isFragment = true;
@@ -18296,7 +18466,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
     
 
 INO_Ship1024::INO_Ship1024(NetworkConnection* cxn_)
-: ImportedGameObject(20395, cxn_),
+: ImportedGameObject(20403, cxn_),
   cxn(cxn_) 
 { }
 
@@ -18340,6 +18510,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -18415,24 +18587,26 @@ if (reinforcement != reinforcement) reinforcement = 0;
  else if (reinforcement > 32) reinforcement = 32;
 io::read_c(&DATA[287+0], currentCapacitancePercent);
 io::read_c(&DATA[288+0], insignia);
-isFragment = (DATA[296+0] >> 0) & 1;
-thrustOn = (DATA[296+0] >> 1) & 1;
-brakeOn = (DATA[296+0] >> 2) & 1;
-shieldsDeactivated = (DATA[296+0] >> 3) & 1;
-stealthMode = (DATA[296+0] >> 4) & 1;
-rootIsBridge = (DATA[296+0] >> 5) & 1;
-io::read_c(&DATA[297+0], rootTheta);
+io::read_c(&DATA[296+0], score);
+io::read_c(&DATA[300+0], playerScore);
+isFragment = (DATA[304+0] >> 0) & 1;
+thrustOn = (DATA[304+0] >> 1) & 1;
+brakeOn = (DATA[304+0] >> 2) & 1;
+shieldsDeactivated = (DATA[304+0] >> 3) & 1;
+stealthMode = (DATA[304+0] >> 4) & 1;
+rootIsBridge = (DATA[304+0] >> 5) & 1;
+io::read_c(&DATA[305+0], rootTheta);
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=2) {
-neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=2) {
-neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+2347+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+2347+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+2355+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+2355+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=2) {
-neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+4395+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+4395+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+4403+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+4403+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=1) {
 
@@ -18442,30 +18616,30 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=4) {
-cellType[0+ARRAY_OFFSET] = ((&DATA[0]+6443+ARRAY_OFFSET*1/4)[0+0] >> 0) & 3;
-cellType[1+ARRAY_OFFSET] = ((&DATA[0]+6443+ARRAY_OFFSET*1/4)[0+0] >> 2) & 3;
-cellType[2+ARRAY_OFFSET] = ((&DATA[0]+6443+ARRAY_OFFSET*1/4)[0+0] >> 4) & 3;
-cellType[3+ARRAY_OFFSET] = ((&DATA[0]+6443+ARRAY_OFFSET*1/4)[0+0] >> 6) & 3;
+cellType[0+ARRAY_OFFSET] = ((&DATA[0]+6451+ARRAY_OFFSET*1/4)[0+0] >> 0) & 3;
+cellType[1+ARRAY_OFFSET] = ((&DATA[0]+6451+ARRAY_OFFSET*1/4)[0+0] >> 2) & 3;
+cellType[2+ARRAY_OFFSET] = ((&DATA[0]+6451+ARRAY_OFFSET*1/4)[0+0] >> 4) & 3;
+cellType[3+ARRAY_OFFSET] = ((&DATA[0]+6451+ARRAY_OFFSET*1/4)[0+0] >> 6) & 3;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+6699+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+6707+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=1) {
-systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+7979+ARRAY_OFFSET*1/1)[0+0] >> 0) & 3;
-systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+7979+ARRAY_OFFSET*1/1)[0+0] >> 2) & 63;
+systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+7987+ARRAY_OFFSET*1/1)[0+0] >> 0) & 3;
+systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+7987+ARRAY_OFFSET*1/1)[0+0] >> 2) & 63;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+10027+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+10035+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=1) {
 
@@ -18473,11 +18647,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
@@ -18489,14 +18663,14 @@ if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=8) {
-gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
   
     X = new Ship(field);
@@ -18764,6 +18938,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -18869,18 +19045,22 @@ io::read_c(&DATA[287+0], currentCapacitancePercent);
     
 io::read_c(&DATA[288+0], insignia);
 X->insignia = insignia;
-isFragment = (DATA[296+0] >> 0) & 1;
+io::read_c(&DATA[296+0], score);
+X->score = score;
+io::read_c(&DATA[300+0], playerScore);
+X->playerScore = playerScore;
+isFragment = (DATA[304+0] >> 0) & 1;
 
       if (isFragment && !X->isFragment) {
         X->isFragment = true;
         cxn->unsetReference(X);
       }
     
-thrustOn = (DATA[296+0] >> 1) & 1;
+thrustOn = (DATA[304+0] >> 1) & 1;
 
-brakeOn = (DATA[296+0] >> 2) & 1;
+brakeOn = (DATA[304+0] >> 2) & 1;
 
-shieldsDeactivated = (DATA[296+0] >> 3) & 1;
+shieldsDeactivated = (DATA[304+0] >> 3) & 1;
 
       if (shieldsDeactivated && X->shieldsDeactivated) {
         shield_deactivate(X);
@@ -18893,18 +19073,18 @@ shieldsDeactivated = (DATA[296+0] >> 3) & 1;
         X->shields.clear();
       }
     
-stealthMode = (DATA[296+0] >> 4) & 1;
+stealthMode = (DATA[304+0] >> 4) & 1;
 
       X->setStealthMode(stealthMode);
     
-rootIsBridge = (DATA[296+0] >> 5) & 1;
+rootIsBridge = (DATA[304+0] >> 5) & 1;
 
       X->configureEngines(thrustOn, brakeOn, thrustPercent);
     
-io::read_c(&DATA[297+0], rootTheta);
+io::read_c(&DATA[305+0], rootTheta);
  destruction = false; 
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+6699+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+6707+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
 
@@ -19000,14 +19180,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
     }
   
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
 
@@ -19164,11 +19344,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
@@ -19211,7 +19391,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
 }
 
 ENO_Ship1024::ENO_Ship1024(NetworkConnection* cxn, Ship* obj)
-: ExportedGameObject(20395, cxn, obj, clone(obj, cxn))
+: ExportedGameObject(20403, cxn, obj, clone(obj, cxn))
   
 {
   //Populate initial data
@@ -19234,6 +19414,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -19365,14 +19547,14 @@ bool gatPlasmaTurbo[1024];
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=8) {
-(&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+20267+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+20275+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
 
@@ -19424,11 +19606,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=1) {
 
@@ -19447,7 +19629,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+10027+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+10035+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=1) {
 
@@ -19485,8 +19667,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=1) {
-(&DATA[0]+7979+ARRAY_OFFSET*1/1)[0+0] &= ~(3<<0); (&DATA[0]+7979+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
-(&DATA[0]+7979+ARRAY_OFFSET*1/1)[0+0] &= ~(63<<2); (&DATA[0]+7979+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
+(&DATA[0]+7987+ARRAY_OFFSET*1/1)[0+0] &= ~(3<<0); (&DATA[0]+7987+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
+(&DATA[0]+7987+ARRAY_OFFSET*1/1)[0+0] &= ~(63<<2); (&DATA[0]+7987+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
 
@@ -19563,14 +19745,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
 
@@ -19584,7 +19766,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+6699+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+6707+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=4) {
 
@@ -19657,10 +19839,10 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=4) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=4) {
-(&DATA[0]+6443+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<0); (&DATA[0]+6443+ARRAY_OFFSET*1/4)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
-(&DATA[0]+6443+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<2); (&DATA[0]+6443+ARRAY_OFFSET*1/4)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
-(&DATA[0]+6443+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<4); (&DATA[0]+6443+ARRAY_OFFSET*1/4)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
-(&DATA[0]+6443+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<6); (&DATA[0]+6443+ARRAY_OFFSET*1/4)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
+(&DATA[0]+6451+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<0); (&DATA[0]+6451+ARRAY_OFFSET*1/4)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
+(&DATA[0]+6451+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<2); (&DATA[0]+6451+ARRAY_OFFSET*1/4)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
+(&DATA[0]+6451+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<4); (&DATA[0]+6451+ARRAY_OFFSET*1/4)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
+(&DATA[0]+6451+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<6); (&DATA[0]+6451+ARRAY_OFFSET*1/4)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=1) {
 
@@ -19693,37 +19875,41 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=2) {
-(&DATA[0]+4395+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+4395+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+4395+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+4395+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+4403+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+4403+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+4403+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+4403+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=2) {
-(&DATA[0]+2347+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+2347+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+2347+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+2347+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+2355+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+2355+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+2355+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+2355+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=2) {
-(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
 }
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[297+0], rootTheta);
+io::write_c(&DATA[305+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
+DATA[304+0] &= ~(1<<5); DATA[304+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
+DATA[304+0] &= ~(1<<4); DATA[304+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
+DATA[304+0] &= ~(1<<3); DATA[304+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
+DATA[304+0] &= ~(1<<2); DATA[304+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
+DATA[304+0] &= ~(1<<1); DATA[304+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
+DATA[304+0] &= ~(1<<0); DATA[304+0] |= (isFragment & 1) << 0;
+playerScore = X->playerScore;
+io::write_c(&DATA[300+0], playerScore);
+score = X->score;
+io::write_c(&DATA[296+0], score);
 insignia = X->insignia;
 io::write_c(&DATA[288+0], insignia);
 
@@ -19802,6 +19988,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -20223,6 +20411,8 @@ thrustOn = X->thrustOn;
 
       isFragment = X->isFragment;
     
+playerScore = X->playerScore;
+score = X->score;
 insignia = X->insignia;
 
       currentCapacitancePercent = 255*X->getCapacitancePercent();
@@ -20517,6 +20707,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -20551,6 +20743,8 @@ reinforcement = X->reinforcement;
       currentCapacitancePercent = 255*X->getCapacitancePercent();
     
 insignia = X->insignia;
+score = X->score;
+playerScore = X->playerScore;
 
       isFragment = X->isFragment;
     
@@ -20723,6 +20917,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
 {float d=fabs(x.thrustPercent-y.thrustPercent)*10;FAR+=d;NEAR+=d;}
 {float d=fabs(x.reinforcement-y.reinforcement)*0;FAR+=d;NEAR+=d;}
 {float d=fabs(x.insignia-y.insignia)*100;FAR+=d;NEAR+=d;}
+{float d=fabs(x.score-y.score)*100;FAR+=d;NEAR+=d;}
+{float d=fabs(x.playerScore-y.playerScore)*100;FAR+=d;NEAR+=d;}
 
       if (x.isFragment != y.isFragment)
         return true; //MUST update
@@ -20820,6 +21016,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -20885,11 +21083,11 @@ struct {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+12075+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+12083+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
 
@@ -20966,14 +21164,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+7723+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+7731+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
 
@@ -20987,28 +21185,32 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+6699+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+6707+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[297+0], rootTheta);
+io::write_c(&DATA[305+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
+DATA[304+0] &= ~(1<<5); DATA[304+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
+DATA[304+0] &= ~(1<<4); DATA[304+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
+DATA[304+0] &= ~(1<<3); DATA[304+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
+DATA[304+0] &= ~(1<<2); DATA[304+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
+DATA[304+0] &= ~(1<<1); DATA[304+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
+DATA[304+0] &= ~(1<<0); DATA[304+0] |= (isFragment & 1) << 0;
+playerScore = X->playerScore;
+io::write_c(&DATA[300+0], playerScore);
+score = X->score;
+io::write_c(&DATA[296+0], score);
 insignia = X->insignia;
 io::write_c(&DATA[288+0], insignia);
 
@@ -21096,6 +21298,8 @@ X->vtheta = vtheta;
                             currentCapacitancePercent/255.0f;
     
 X->insignia = insignia;
+X->score = score;
+X->playerScore = playerScore;
 
       if (isFragment && !X->isFragment) {
         X->isFragment = true;
@@ -21417,7 +21621,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
     
 
 INO_Ship4094::INO_Ship4094(NetworkConnection* cxn_)
-: ImportedGameObject(80653, cxn_),
+: ImportedGameObject(80661, cxn_),
   cxn(cxn_) 
 { }
 
@@ -21461,6 +21665,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -21536,24 +21742,26 @@ if (reinforcement != reinforcement) reinforcement = 0;
  else if (reinforcement > 32) reinforcement = 32;
 io::read_c(&DATA[287+0], currentCapacitancePercent);
 io::read_c(&DATA[288+0], insignia);
-isFragment = (DATA[296+0] >> 0) & 1;
-thrustOn = (DATA[296+0] >> 1) & 1;
-brakeOn = (DATA[296+0] >> 2) & 1;
-shieldsDeactivated = (DATA[296+0] >> 3) & 1;
-stealthMode = (DATA[296+0] >> 4) & 1;
-rootIsBridge = (DATA[296+0] >> 5) & 1;
-io::read_c(&DATA[297+0], rootTheta);
+io::read_c(&DATA[296+0], score);
+io::read_c(&DATA[300+0], playerScore);
+isFragment = (DATA[304+0] >> 0) & 1;
+thrustOn = (DATA[304+0] >> 1) & 1;
+brakeOn = (DATA[304+0] >> 2) & 1;
+shieldsDeactivated = (DATA[304+0] >> 3) & 1;
+stealthMode = (DATA[304+0] >> 4) & 1;
+rootIsBridge = (DATA[304+0] >> 5) & 1;
+io::read_c(&DATA[305+0], rootTheta);
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=2) {
-neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits03[0+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits03[1+ARRAY_OFFSET] = ((&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=2) {
-neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+8487+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+8487+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits47[0+ARRAY_OFFSET] = ((&DATA[0]+8495+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits47[1+ARRAY_OFFSET] = ((&DATA[0]+8495+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=2) {
-neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+16675+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
-neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+16675+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
+neighboursBits8B[0+ARRAY_OFFSET] = ((&DATA[0]+16683+ARRAY_OFFSET*1/2)[0+0] >> 0) & 15;
+neighboursBits8B[1+ARRAY_OFFSET] = ((&DATA[0]+16683+ARRAY_OFFSET*1/2)[0+0] >> 4) & 15;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=1) {
 
@@ -21563,30 +21771,30 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
-cellType[0+ARRAY_OFFSET] = ((&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] >> 0) & 3;
-cellType[1+ARRAY_OFFSET] = ((&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] >> 2) & 3;
-cellType[2+ARRAY_OFFSET] = ((&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] >> 4) & 3;
-cellType[3+ARRAY_OFFSET] = ((&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] >> 6) & 3;
+cellType[0+ARRAY_OFFSET] = ((&DATA[0]+24871+ARRAY_OFFSET*1/4)[0+0] >> 0) & 3;
+cellType[1+ARRAY_OFFSET] = ((&DATA[0]+24871+ARRAY_OFFSET*1/4)[0+0] >> 2) & 3;
+cellType[2+ARRAY_OFFSET] = ((&DATA[0]+24871+ARRAY_OFFSET*1/4)[0+0] >> 4) & 3;
+cellType[3+ARRAY_OFFSET] = ((&DATA[0]+24871+ARRAY_OFFSET*1/4)[0+0] >> 6) & 3;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+25887+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+25895+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=1) {
-systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+31005+ARRAY_OFFSET*1/1)[0+0] >> 0) & 3;
-systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+31005+ARRAY_OFFSET*1/1)[0+0] >> 2) & 63;
+systemInfo[0+ARRAY_OFFSET].orientation = ((&DATA[0]+31013+ARRAY_OFFSET*1/1)[0+0] >> 0) & 3;
+systemInfo[0+ARRAY_OFFSET].type = ((&DATA[0]+31013+ARRAY_OFFSET*1/1)[0+0] >> 2) & 63;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+39197+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+39205+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=1) {
 
@@ -21594,11 +21802,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
@@ -21610,14 +21818,14 @@ if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=8) {
-gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+gatPlasmaTurbo[0+ARRAY_OFFSET] = ((&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+gatPlasmaTurbo[1+ARRAY_OFFSET] = ((&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+gatPlasmaTurbo[2+ARRAY_OFFSET] = ((&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+gatPlasmaTurbo[3+ARRAY_OFFSET] = ((&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+gatPlasmaTurbo[4+ARRAY_OFFSET] = ((&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+gatPlasmaTurbo[5+ARRAY_OFFSET] = ((&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+gatPlasmaTurbo[6+ARRAY_OFFSET] = ((&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+gatPlasmaTurbo[7+ARRAY_OFFSET] = ((&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
   
     X = new Ship(field);
@@ -21885,6 +22093,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -21990,18 +22200,22 @@ io::read_c(&DATA[287+0], currentCapacitancePercent);
     
 io::read_c(&DATA[288+0], insignia);
 X->insignia = insignia;
-isFragment = (DATA[296+0] >> 0) & 1;
+io::read_c(&DATA[296+0], score);
+X->score = score;
+io::read_c(&DATA[300+0], playerScore);
+X->playerScore = playerScore;
+isFragment = (DATA[304+0] >> 0) & 1;
 
       if (isFragment && !X->isFragment) {
         X->isFragment = true;
         cxn->unsetReference(X);
       }
     
-thrustOn = (DATA[296+0] >> 1) & 1;
+thrustOn = (DATA[304+0] >> 1) & 1;
 
-brakeOn = (DATA[296+0] >> 2) & 1;
+brakeOn = (DATA[304+0] >> 2) & 1;
 
-shieldsDeactivated = (DATA[296+0] >> 3) & 1;
+shieldsDeactivated = (DATA[304+0] >> 3) & 1;
 
       if (shieldsDeactivated && X->shieldsDeactivated) {
         shield_deactivate(X);
@@ -22014,18 +22228,18 @@ shieldsDeactivated = (DATA[296+0] >> 3) & 1;
         X->shields.clear();
       }
     
-stealthMode = (DATA[296+0] >> 4) & 1;
+stealthMode = (DATA[304+0] >> 4) & 1;
 
       X->setStealthMode(stealthMode);
     
-rootIsBridge = (DATA[296+0] >> 5) & 1;
+rootIsBridge = (DATA[304+0] >> 5) & 1;
 
       X->configureEngines(thrustOn, brakeOn, thrustPercent);
     
-io::read_c(&DATA[297+0], rootTheta);
+io::read_c(&DATA[305+0], rootTheta);
  destruction = false; 
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+25887+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::read_c(&(&DATA[0]+25895+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
@@ -22121,14 +22335,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
     }
   
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
-systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
-systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
-systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
-systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
-systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
-systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
-systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
-systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
+systemExist[0+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 0) & 1;
+systemExist[1+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 1) & 1;
+systemExist[2+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 2) & 1;
+systemExist[3+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 3) & 1;
+systemExist[4+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 4) & 1;
+systemExist[5+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 5) & 1;
+systemExist[6+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 6) & 1;
+systemExist[7+ARRAY_OFFSET] = ((&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] >> 7) & 1;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
 
@@ -22285,11 +22499,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::read_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::read_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::read_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::read_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::read_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::read_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::read_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::read_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::read_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::read_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 if (shields[0+ARRAY_OFFSET].radius != shields[0+ARRAY_OFFSET].radius) shields[0+ARRAY_OFFSET].radius = MIN_SHIELD_RAD;
@@ -22332,7 +22546,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 }
 
 ENO_Ship4094::ENO_Ship4094(NetworkConnection* cxn, Ship* obj)
-: ExportedGameObject(80653, cxn, obj, clone(obj, cxn))
+: ExportedGameObject(80661, cxn, obj, clone(obj, cxn))
   
 {
   //Populate initial data
@@ -22355,6 +22569,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -22486,14 +22702,14 @@ bool gatPlasmaTurbo[4096];
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=8) {
-(&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+80141+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+80149+ARRAY_OFFSET*1/8)[0+0] |= (gatPlasmaTurbo[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
@@ -22545,11 +22761,11 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=1) {
 
@@ -22568,7 +22784,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+39197+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+39205+ARRAY_OFFSET*1/1)[0+0], capacitors[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=1) {
 
@@ -22606,8 +22822,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=1) {
-(&DATA[0]+31005+ARRAY_OFFSET*1/1)[0+0] &= ~(3<<0); (&DATA[0]+31005+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
-(&DATA[0]+31005+ARRAY_OFFSET*1/1)[0+0] &= ~(63<<2); (&DATA[0]+31005+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
+(&DATA[0]+31013+ARRAY_OFFSET*1/1)[0+0] &= ~(3<<0); (&DATA[0]+31013+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].orientation & 3) << 0;
+(&DATA[0]+31013+ARRAY_OFFSET*1/1)[0+0] &= ~(63<<2); (&DATA[0]+31013+ARRAY_OFFSET*1/1)[0+0] |= (systemInfo[0+ARRAY_OFFSET].type & 63) << 2;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
 
@@ -22684,14 +22900,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
@@ -22705,7 +22921,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+25887+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+25895+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
 
@@ -22778,10 +22994,10 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4096; ARRAY_OFFSET+=4) {
-(&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<0); (&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
-(&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<2); (&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
-(&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<4); (&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
-(&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<6); (&DATA[0]+24863+ARRAY_OFFSET*1/4)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
+(&DATA[0]+24871+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<0); (&DATA[0]+24871+ARRAY_OFFSET*1/4)[0+0] |= (cellType[0+ARRAY_OFFSET] & 3) << 0;
+(&DATA[0]+24871+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<2); (&DATA[0]+24871+ARRAY_OFFSET*1/4)[0+0] |= (cellType[1+ARRAY_OFFSET] & 3) << 2;
+(&DATA[0]+24871+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<4); (&DATA[0]+24871+ARRAY_OFFSET*1/4)[0+0] |= (cellType[2+ARRAY_OFFSET] & 3) << 4;
+(&DATA[0]+24871+ARRAY_OFFSET*1/4)[0+0] &= ~(3<<6); (&DATA[0]+24871+ARRAY_OFFSET*1/4)[0+0] |= (cellType[3+ARRAY_OFFSET] & 3) << 6;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=1) {
 
@@ -22814,37 +23030,41 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=1) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=2) {
-(&DATA[0]+16675+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+16675+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+16675+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+16675+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+16683+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+16683+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+16683+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+16683+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits8B[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=2) {
-(&DATA[0]+8487+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+8487+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+8487+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+8487+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+8495+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+8495+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+8495+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+8495+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits47[1+ARRAY_OFFSET] & 15) << 4;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16376; ARRAY_OFFSET+=2) {
-(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
-(&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+299+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
+(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<0); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[0+ARRAY_OFFSET] & 15) << 0;
+(&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] &= ~(15<<4); (&DATA[0]+307+ARRAY_OFFSET*1/2)[0+0] |= (neighboursBits03[1+ARRAY_OFFSET] & 15) << 4;
 }
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[297+0], rootTheta);
+io::write_c(&DATA[305+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
+DATA[304+0] &= ~(1<<5); DATA[304+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
+DATA[304+0] &= ~(1<<4); DATA[304+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
+DATA[304+0] &= ~(1<<3); DATA[304+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
+DATA[304+0] &= ~(1<<2); DATA[304+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
+DATA[304+0] &= ~(1<<1); DATA[304+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
+DATA[304+0] &= ~(1<<0); DATA[304+0] |= (isFragment & 1) << 0;
+playerScore = X->playerScore;
+io::write_c(&DATA[300+0], playerScore);
+score = X->score;
+io::write_c(&DATA[296+0], score);
 insignia = X->insignia;
 io::write_c(&DATA[288+0], insignia);
 
@@ -22923,6 +23143,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -23344,6 +23566,8 @@ thrustOn = X->thrustOn;
 
       isFragment = X->isFragment;
     
+playerScore = X->playerScore;
+score = X->score;
 insignia = X->insignia;
 
       currentCapacitancePercent = 255*X->getCapacitancePercent();
@@ -23638,6 +23862,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -23672,6 +23898,8 @@ reinforcement = X->reinforcement;
       currentCapacitancePercent = 255*X->getCapacitancePercent();
     
 insignia = X->insignia;
+score = X->score;
+playerScore = X->playerScore;
 
       isFragment = X->isFragment;
     
@@ -23844,6 +24072,8 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 {float d=fabs(x.thrustPercent-y.thrustPercent)*10;FAR+=d;NEAR+=d;}
 {float d=fabs(x.reinforcement-y.reinforcement)*0;FAR+=d;NEAR+=d;}
 {float d=fabs(x.insignia-y.insignia)*100;FAR+=d;NEAR+=d;}
+{float d=fabs(x.score-y.score)*100;FAR+=d;NEAR+=d;}
+{float d=fabs(x.playerScore-y.playerScore)*100;FAR+=d;NEAR+=d;}
 
       if (x.isFragment != y.isFragment)
         return true; //MUST update
@@ -23941,6 +24171,8 @@ float thrustPercent;
 float reinforcement;
 unsigned char currentCapacitancePercent;
 unsigned long long insignia;
+signed int score;
+signed int playerScore;
 bool isFragment;
 bool thrustOn;
 bool brakeOn;
@@ -24006,11 +24238,11 @@ struct {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
-io::write_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
-io::write_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
-io::write_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
-io::write_c(&(&DATA[0]+47389+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
+io::write_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[0+0], shields[0+ARRAY_OFFSET].radius);
+io::write_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[4+0], shields[0+ARRAY_OFFSET].maxStrength);
+io::write_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[5+0], shields[0+ARRAY_OFFSET].currStrengthPercent);
+io::write_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[6+0], shields[0+ARRAY_OFFSET].currStability);
+io::write_c(&(&DATA[0]+47397+ARRAY_OFFSET*8/1)[7+0], shields[0+ARRAY_OFFSET].currAlpha);
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
 
@@ -24087,14 +24319,14 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
       
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
-(&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+29981+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<0); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[0+ARRAY_OFFSET] & 1) << 0;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<1); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[1+ARRAY_OFFSET] & 1) << 1;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<2); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[2+ARRAY_OFFSET] & 1) << 2;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<3); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[3+ARRAY_OFFSET] & 1) << 3;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<4); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[4+ARRAY_OFFSET] & 1) << 4;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<5); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[5+ARRAY_OFFSET] & 1) << 5;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<6); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[6+ARRAY_OFFSET] & 1) << 6;
+(&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] &= ~(1<<7); (&DATA[0]+29989+ARRAY_OFFSET*1/8)[0+0] |= (systemExist[7+ARRAY_OFFSET] & 1) << 7;
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
 
@@ -24108,28 +24340,32 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
     
 }
 for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
-io::write_c(&(&DATA[0]+25887+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
+io::write_c(&(&DATA[0]+25895+ARRAY_OFFSET*1/1)[0+0], cellDamage[0+ARRAY_OFFSET]);
 }
 
       rootTheta = X->cells[0]->getT();
     
-io::write_c(&DATA[297+0], rootTheta);
+io::write_c(&DATA[305+0], rootTheta);
 
       rootIsBridge = (X->cells[0]->usage == CellBridge);
     
-DATA[296+0] &= ~(1<<5); DATA[296+0] |= (rootIsBridge & 1) << 5;
+DATA[304+0] &= ~(1<<5); DATA[304+0] |= (rootIsBridge & 1) << 5;
 stealthMode = X->stealthMode;
-DATA[296+0] &= ~(1<<4); DATA[296+0] |= (stealthMode & 1) << 4;
+DATA[304+0] &= ~(1<<4); DATA[304+0] |= (stealthMode & 1) << 4;
 shieldsDeactivated = X->shieldsDeactivated;
-DATA[296+0] &= ~(1<<3); DATA[296+0] |= (shieldsDeactivated & 1) << 3;
+DATA[304+0] &= ~(1<<3); DATA[304+0] |= (shieldsDeactivated & 1) << 3;
 brakeOn = X->brakeOn;
-DATA[296+0] &= ~(1<<2); DATA[296+0] |= (brakeOn & 1) << 2;
+DATA[304+0] &= ~(1<<2); DATA[304+0] |= (brakeOn & 1) << 2;
 thrustOn = X->thrustOn;
-DATA[296+0] &= ~(1<<1); DATA[296+0] |= (thrustOn & 1) << 1;
+DATA[304+0] &= ~(1<<1); DATA[304+0] |= (thrustOn & 1) << 1;
 
       isFragment = X->isFragment;
     
-DATA[296+0] &= ~(1<<0); DATA[296+0] |= (isFragment & 1) << 0;
+DATA[304+0] &= ~(1<<0); DATA[304+0] |= (isFragment & 1) << 0;
+playerScore = X->playerScore;
+io::write_c(&DATA[300+0], playerScore);
+score = X->score;
+io::write_c(&DATA[296+0], score);
 insignia = X->insignia;
 io::write_c(&DATA[288+0], insignia);
 
@@ -24217,6 +24453,8 @@ X->vtheta = vtheta;
                             currentCapacitancePercent/255.0f;
     
 X->insignia = insignia;
+X->score = score;
+X->playerScore = playerScore;
 
       if (isFragment && !X->isFragment) {
         X->isFragment = true;
@@ -24634,4 +24872,4 @@ else
   return ego;
 }
 const unsigned char protocolHash[32] =
-{172,192,249,137,180,41,49,194,221,149,203,105,64,155,12,207,145,56,220,76,49,180,221,194,197,19,49,137,175,149,170,147};
+{227,241,207,121,53,16,20,138,45,253,114,127,68,124,177,10,206,230,206,6,4,1,216,65,79,144,178,199,27,37,215,39};
