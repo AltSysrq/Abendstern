@@ -15,6 +15,7 @@
 #include <stdexcept>
 #include <algorithm>
 #include <string>
+#include <cassert>
 #include <GL/gl.h>
 #include <SDL.h>
 
@@ -277,9 +278,15 @@ class Ship: public GameObject {
    * here, or 0 if any might not.
    */
   physics_bits validPhysics;
+  /* Used for debugging.
+   * When set, some part of the Ship code is assuming that physics properties
+   * will not be invalidated.
+   */
+  bool physicsLocked;
+  friend class SetPhysicsLockedInScope;
 
   /* Total mass of the ship. */
-  unsigned mass;
+  float mass;
   /* Determined by multiplying the distance from the centre
    * of gravity by the mass of respective cells.
    */
@@ -487,6 +494,13 @@ class Ship: public GameObject {
   signed score;
 
   /**
+   * The score of the player piloting the ship. Maintained externally.
+   *
+   * Defaults to 0.
+   */
+  signed playerScore;
+
+  /**
    * If true, the Ship was killed with spontaneouslyDie().
    */
   bool diedSpontaneously;
@@ -532,7 +546,10 @@ class Ship: public GameObject {
    * Even if (bits & PHYS_CELL_MASK) is non-zero, no cells are
    * informed about this.
    */
-  void physicsClear(physics_bits pb) noth { validPhysics &= ~pb; }
+  void physicsClear(physics_bits pb) noth {
+    assert(!physicsLocked);
+    validPhysics &= ~pb;
+  }
   /** Ensures that the specified physical calculations are
    * up-to-date.
    */

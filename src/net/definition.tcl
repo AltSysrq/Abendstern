@@ -600,6 +600,9 @@ vtype Ship$ssize Ship {
     }
   }
 
+  si 4 score { default 100 }
+  si 4 playerScore { default 100 }
+
   bit 1 isFragment {
     type bool
     extract {

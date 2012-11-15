@@ -54,7 +54,13 @@ class GlobalID: public AObject {
   unsigned short lport;
 
   GlobalID() {
-    std::memset(this, 0, sizeof(GlobalID));
+    //Set the data portion of the GlobalID to all zeros.
+    std::memset(&ipv, 0,
+                sizeof(GlobalID) -
+                //Poor man's offsetof (since we aren't allowed to use that on
+                //non-POD classes)
+                (reinterpret_cast<const char*>(&ipv) -
+                 reinterpret_cast<const char*>(this)));
   }
 
   /**

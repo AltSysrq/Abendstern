@@ -7,7 +7,7 @@
 
 # Rebuild
 ./configure --disable-debug --disable-profile || exit 1
-#make clean || exit 1
+make clean || exit 1
 make $MAKE_OPTIONS || exit 1
 
 VERSION=$(cat version)

@@ -718,7 +718,7 @@ void HumanController::retarget() noth {
 
   //If NULL, we may have blacklisted everything, so clear and try again
   if (!bestTarget) {
-    if (targetBlacklist.size()) {
+    if (!targetBlacklist.empty()) {
       targetBlacklist.clear();
       retarget(); return;
     } else {

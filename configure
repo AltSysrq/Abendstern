@@ -750,6 +750,7 @@ enable_option_checking
 enable_silent_rules
 enable_maintainer_mode
 enable_debug
+enable_optimise
 enable_profile
 enable_gl14
 enable_gl21
@@ -1403,6 +1404,7 @@ Optional Features:
   --enable-maintainer-mode  enable make rules and dependencies not useful
 			  (and sometimes confusing) to the casual installer
   --enable-debug          Enable debugging.
+  --disable-optimise      Disable optimisations
   --enable-profile        Enable profiling.
   --disable-gl14          Don't build OpenGL 1.4 version.
   --disable-gl21          Don't build OpenGL 2.1 version.
@@ -3111,6 +3113,11 @@ if test "${enable_debug+set}" = set; then :
   enableval=$enable_debug;
 fi
 
+# Check whether --enable-optimise was given.
+if test "${enable_optimise+set}" = set; then :
+  enableval=$enable_optimise;
+fi
+
 # Check whether --enable-profile was given.
 if test "${enable_profile+set}" = set; then :
   enableval=$enable_profile;
@@ -3139,11 +3146,19 @@ fi
 
 if test "x$enable_debug" = "xyes"; then :
 
-  AB_DEBUG_FLAGS='-DDEBUG -O0 -g3'
+  AB_DEBUG_FLAGS='-DDEBUG -g3'
 
 else
 
-  AB_DEBUG_FLAGS='-DNDEBUG -O3'
+  AB_DEBUG_FLAGS='-DNDEBUG'
+
+fi
+if test "x$enable_optimise" = "xno"; then :
+  AB_OPT_FLAGS='-O0'
+]
+else
+
+  AB_OPT_FLAGS='-O3'
 
 fi
 if test "x$enable_profile" = "xyes"; then :
@@ -3355,7 +3370,8 @@ fi
 
 fi
 
-CXXFLAGS="$CXXFLAGS $AB_DEBUG_FLAGS $AB_PROFILE_FLAGS -DTHREAD_LOCAL=__thread"
+CXXFLAGS="$CXXFLAGS $AB_DEBUG_FLAGS $AB_OPT_FLAGS $AB_PROFILE_FLAGS \
+    -DTHREAD_LOCAL=__thread"
 LDFLAGS="$LDFLAGS $AB_PROFILE_FLAGS"
 
 # Checks for programs.

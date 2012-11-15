@@ -106,6 +106,7 @@ COMMONSOURCES= \
 ./core/game_state.cxx \
 ./core/lxn.cxx \
 ./core/aobject.cxx \
+./core/black_box.cxx \
 ./test_state.cxx \
 ./control/genetic_ai.cxx \
 ./control/ai/mod_misc/aim_self_destruct.cxx \
@@ -127,6 +128,7 @@ COMMONSOURCES= \
 ./control/ai/mod_state/aim_indgoto.cxx \
 ./control/ai/mod_state/aim_check_has_weapons.cxx \
 ./control/ai/mod_target/aim_target_nearest.cxx \
+./control/ai/mod_target/aim_target_nearest_agro.cxx \
 ./control/ai/mod_target/aim_check_targetless.cxx \
 ./control/ai/aimod.cxx \
 ./control/ai/mod_navigation/aim_park.cxx \

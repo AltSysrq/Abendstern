@@ -1,8 +1,8 @@
 #! /bin/bash
 
 BASEDIR=/oss/Abendstern
-SRVDIR=/programmes/cpp/abendstern/srv/abendstern/package
-WWWDIR=/programmes/cpp/abendstern/srv/www
+SRVDIR=$(pwd)/srv/abendstern/package
+WWWDIR=$(pwd)/srv/www
 FILES="apply_update.bat Abendstern.exe abendstern.default.rc data fonts shaders images legal tcl library itcl3.4 tls1.6 tcllib bin"
 APP=Abendstern_WGL32
 

@@ -961,7 +961,7 @@ void NetworkGame::update(unsigned et) throw() {
     //overseer).
     if (overseer && (rand()&3) == 0) {
       pcgs[overseer->cxn]->sendGeneralQuery();
-    } else if (peers.size()) {
+    } else if (!peers.empty()) {
       //Pick a random peer to query
       unsigned ix = rand() % assembly.numConnections();
       Peer* peer = peers[assembly.getConnection(ix)];

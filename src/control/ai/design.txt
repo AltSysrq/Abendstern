@@ -50,5 +50,11 @@ There are four other events modules may respond to:
 The controller also supports "proceedures", which are simply lists of modules
 that are to be actioned in order before resuming normal operation.
 
+Certain modules may be grouped into "random aliases". A random alias is given a
+key name and a list of possible modules. Every instance of an alias with the
+same key uses the same module, but that module is selected randomly from the
+list for each AIController. All listed modules must be compatible with the rest
+of the module definition.
+
 Each state may define up to 4 reflexes. A reflex is like a normal module, but is
 executed every time a random state module is to be executed.

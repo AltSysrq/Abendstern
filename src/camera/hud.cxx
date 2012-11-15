@@ -199,7 +199,7 @@ HUD::HUD(Ship* ref, GameField* field) :
   timeSinceDamage(10000), stensilBufferSetup(0), fullScreenMap(false)
 {
   setRef(ref);
-  if (!statusIcons.size()) loadStatusIcons();
+  if (statusIcons.empty()) loadStatusIcons();
 }
 
 void HUD::update(float et) noth {

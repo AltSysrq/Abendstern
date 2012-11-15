@@ -36,6 +36,7 @@ class MixinScoreFrags {
         $this dps $localvp score [expr {[$this dpg $localvp score] + $delta}]
         set ship [$this getOwnedShip $localvp]
         if {$ship != 0} {
+          $ship configure -playerScore [$this dpg $localvp score]
           $ship configure -score [expr {[$ship cget -score]+$delta}]
           if {[$ship cget -controller] != 0} {
             [$ship cget -controller] notifyScore $delta

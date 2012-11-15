@@ -55,6 +55,7 @@
 #include "src/core/lxn.hxx"
 #include "src/control/human_controller.hxx"
 #include "src/net/ship_damage_geraet.hxx"
+#include "src/core/black_box.hxx"
 
 using namespace std;
 using libconfig::Setting;
@@ -104,11 +105,28 @@ static inline float randomf() noth {
   return (rand()%RAND_MAX)/(float)RAND_MAX;
 }
 
+class SetPhysicsLockedInScope {
+  Ship* const ship;
+  bool locked, wasLocked;
+
+public:
+  SetPhysicsLockedInScope(Ship* that, bool l)
+  : ship(that), locked(l), wasLocked(that->physicsLocked)
+  {
+    that->physicsLocked = l;
+  }
+
+  ~SetPhysicsLockedInScope() {
+    assert(ship->physicsLocked == locked);
+    ship->physicsLocked = wasLocked;
+  }
+};
+
 Ship::Ship(GameField* field) :
   GameObject(field, randomf()*field->width, randomf()*field->height),
   controller(NULL), effects(&nullEffectsHandler),
   renderer(NULL),
-  validPhysics(0),
+  validPhysics(0), physicsLocked(false),
   colourR(0.8f), colourG(0.8f), colourB(0.8f),
   theta(rand()*2*pi/(float)RAND_MAX), vtheta(0),
   cosTheta(cos(theta)), sinTheta(sin(theta)),
@@ -127,7 +145,7 @@ Ship::Ship(GameField* field) :
   radar(&defaultRadar), timeUntilRadarRefresh(0),
   soundEffects(false),
   blame(0xFFFFFF),
-  score(0),
+  score(0), playerScore(0),
   diedSpontaneously(false),
   damageMultiplier(1.0f),
   shipExistenceFailure(NULL),
@@ -149,7 +167,7 @@ Ship::Ship(const Ship& other)
   plasmaBurstLauncherInfo(other.plasmaBurstLauncherInfo),
   heatInfo(other.heatInfo),
   renderer(NULL),
-  validPhysics(0),
+  validPhysics(0), physicsLocked(false),
   colourR(other.colourR), colourG(other.colourG), colourB(other.colourB),
   theta(other.theta), vtheta(other.vtheta),
   cosTheta(other.cosTheta), sinTheta(other.sinTheta),
@@ -170,7 +188,7 @@ Ship::Ship(const Ship& other)
   injectedBlasts(other.injectedBlasts),
   insignia(other.insignia),
   blame(other.blame),
-  score(other.score),
+  score(other.score), playerScore(other.playerScore),
   diedSpontaneously(other.diedSpontaneously),
   damageMultiplier(other.damageMultiplier),
   shipExistenceFailure(other.shipExistenceFailure),
@@ -257,6 +275,7 @@ void Ship::restoreFromZero(float* f) noth {
 }
 
 bool Ship::update(float et) noth {
+  BlackBox _bb("ship\0", "Ship %p->update(%f)", this, et);
   if (soundEffects && currentVFrameLast)
     audio::shipSoundEffects(currentFrameTime,this);
 
@@ -560,6 +579,10 @@ void Ship::radarBounds(radar_t::iterator& begin, radar_t::iterator& end) noth {
 }
 
 void Ship::physicsRequire(physics_bits bits) noth {
+  BlackBox _bb("ship\0", "Ship %p->physicsRequire(%X) (now=%X, &=%X)",
+               this, bits, validPhysics, bits & validPhysics);
+  assert(!physicsLocked);
+
   //Return early if possible
   if (bits == (bits & validPhysics)) return;
 
@@ -1085,6 +1108,7 @@ CollisionResult Ship::checkCollision(GameObject* other) noth {
 }
 
 bool Ship::collideWith(GameObject* other) noth {
+  BlackBox _bb("ship", "Ship %p->collideWith(%p)", this, other);
   physicsRequire(PHYS_SHIP_SHIELD_INVENTORY_BIT
                 |PHYS_SHIP_MASS_BIT
                 |PHYS_SHIP_INERTIA_BIT
@@ -1303,13 +1327,12 @@ bool Ship::collideWith(GameObject* other) noth {
 
     /* If cells are destroyed, certain systems (such as PowerPlants) remove
      * themselves from their container cell, and properly clear the
-     * PHYS_CELL_MASS_BITS. However, when we require the
-     * PHYS_CELL_LOCATION_PROPERTIES_BIT, for new empty cells, this triggers a
-     * recalculation of (among others) PHYS_SHIP_MASS_BIT, while the ship is in
-     * inconsistent state. preremove() assumes that all cells are removed in
-     * sequence while the ship was being disassembled in a consistent state, so
-     * this results in oddities such as a zero mass, for example in the
-     * fragment configuration
+     * PHYS_CELL_MASS_BITS. However, when we require the PHYS_SHIP_COORDS_BIT,
+     * for new empty cells, this triggers a recalculation of (among others)
+     * PHYS_SHIP_MASS_BIT, while the ship is in inconsistent state. preremove()
+     * assumes that all cells are removed in sequence while the ship was being
+     * disassembled in a consistent state, so this results in oddities such as
+     * a zero mass, for example in the fragment configuration
      *   XYZ
      * where Y is destroyed, and X.mass == Y.mass. When Y is removed, X and Z
      * are separated, then the mass recalculation occurs, which only affects
@@ -1317,10 +1340,12 @@ bool Ship::collideWith(GameObject* other) noth {
      * and its mass is subtracted from that of thi ship, resulting in a ship
      * mass of zero.
      *
-     * Redetect the cell location properties bit now (if necessary) so that
-     * everything is consistent for the removal.
+     * Redetect the cell location properties and ship coords bits now (if
+     * necessary) so that everything is consistent for the removal.
      */
-    physicsRequire(PHYS_CELL_LOCATION_PROPERTIES_BIT);
+    physicsRequire(PHYS_CELL_LOCATION_PROPERTIES_BIT | PHYS_SHIP_COORDS_BIT);
+
+    SetPhysicsLockedInScope _splis(this, true);
 
     //Actually destroy destroyed cells
     for (set<Cell*>::const_iterator it = destroyed.begin();
@@ -1353,7 +1378,7 @@ bool Ship::collideWith(GameObject* other) noth {
       }
 
       //Remove networking entry
-      if (networkCells.size() > 0)
+      if (!networkCells.empty())
         networkCells[cell->netIndex] = NULL;
 
       //Remove cell
@@ -1396,6 +1421,7 @@ bool Ship::collideWith(GameObject* other) noth {
           //Find all cells attached and remove from ours,
           //then create new ship
           Ship* frag=new Ship(field);
+          SetPhysicsLockedInScope _lockFrag(frag, true);
           frag->isFragment=frag->decorative=true;
           /* We don't call okToDecorate because then
            * the fragment will be doubly-exposed to
@@ -1469,6 +1495,7 @@ bool Ship::collideWith(GameObject* other) noth {
           //Get the old location of the root so we can adjust later
           pair<float,float> rootPos=cellCoord(this, frag->cells[0]);
           for (unsigned int j=0; j<frag->cells.size(); ++j) {
+            SetPhysicsLockedInScope _unlockFrag(frag, false);
             frag->cells[j]->disorient();
             frag->cells[j]->physicsClear(PHYS_CELL_LOCATION_PROPERTIES_BITS);
           }
@@ -1480,6 +1507,7 @@ bool Ship::collideWith(GameObject* other) noth {
           frag->x=frag->y=0;
           frag->reinforcement=this->reinforcement;
           //Move so it appears in the correct location
+          SetPhysicsLockedInScope _fragReady(frag, false);
           frag->physicsRequire(PHYS_SHIP_COORDS_BIT | PHYS_CELL_LOCATION_PROPERTIES_BIT);
           pair<float,float> offset=cellCoord(frag, frag->cells[0]);
           frag->x = rootPos.first - offset.first;
@@ -1533,6 +1561,7 @@ bool Ship::collideWith(GameObject* other) noth {
         death(true);
         return false;
       } else {
+        SetPhysicsLockedInScope _splis(this, false);
         if (rootDestroyed) death(false);
         float oldx=x, oldy=y;
         //We will still float around even if we are a fragment, so redetect
@@ -1665,6 +1694,7 @@ void Ship::spontaneouslyDie() noth {
 }
 
 const vector<ShipSystem*>& Ship::getWeapons(unsigned w) const noth {
+  SetPhysicsLockedInScope _splis(const_cast<Ship*>(this), false);
   const_cast<Ship*>(this)->physicsRequire(PHYS_SHIP_WEAPON_INVENTORY_BIT);
   if (isFragment) const_cast<Ship*>(this)->weaponsMap[w].clear();
   return weaponsMap[w];
@@ -1722,13 +1752,33 @@ void Ship::updateCurrPower() noth {
 }
 
 void Ship::preremove(Cell* cell) noth {
+  BlackBox _bb("ship\0",
+               "Ship %p->preremove(%p) hasmass:%d this->mass=%f, cell->mass=%f",
+               this, cell, (int)!!(validPhysics & PHYS_SHIP_MASS_BIT),
+               (float)mass, cell->physics.mass);
   if (cell->isEmpty) return; //Nothing to do with EmptyCells
 
   //PHYS_SHIP_COORDS_BIT: can't be patched
-  physicsClear(PHYS_CELL_LOCATION_PROPERTIES_BITS | PHYS_SHIP_COORDS_BITS);
+  {
+    SetPhysicsLockedInScope _splis(this, false);
+    physicsClear(PHYS_CELL_LOCATION_PROPERTIES_BITS | PHYS_SHIP_COORDS_BITS);
+  }
   //PHYS_SHIP_MASS_BIT: subtract cell mass
-  if (validPhysics & PHYS_SHIP_MASS_BIT)
+  if (validPhysics & PHYS_SHIP_MASS_BIT) {
     mass -= cell->physics.mass;
+    #ifndef NDEBUG
+    //Sanity check on mass
+    if (mass == 0.0f || mass == -0.0f) {
+      //All remaining cells must be empty or this cell
+      bool ok = true;
+      for (unsigned i = 0; ok && i < cells.size(); ++i)
+        ok &= (cells[i] == cell || cells[i]->isEmpty);
+      if (!ok)
+        BlackBox::dump("ship\0");
+      assert(ok);
+    }
+    #endif /* NDEBUG */
+  }
   //PHYS_SHIP_INERTIA_BIT: depends on PHYS_SHIP_COORDS_BIT, can't be patched
   //PHYS_SHIP_THRUST_BIT: subtract thrust components
   if ((validPhysics & PHYS_SHIP_THRUST_BIT) && !isFragment) {
@@ -1739,7 +1789,8 @@ void Ship::preremove(Cell* cell) noth {
   //PHYS_SHIP_TORQUE_BIT: depends on PHYS_SHIP_COORDS_BIT, can't be patched
   //But we do need to check for now-invalidated pairing
   if (cell->physics.torquePair)
-    cell->physics.torquePair = cell->physics.torquePair->physics.torquePair = NULL;
+    cell->physics.torquePair =
+      cell->physics.torquePair->physics.torquePair = NULL;
   //PHYS_SHIP_ROT_THRUST_BIT: depends on PHYS_SHIP_COORDS_BIT, can't be patched
   //PHYS_SHIP_COOLING_BIT: adjust values and recalculate
   if ((validPhysics & PHYS_SHIP_COOLING_BIT) && !isFragment) {
@@ -1769,7 +1820,10 @@ void Ship::preremove(Cell* cell) noth {
   if (!isFragment) {
     if ((cell->physics.valid & PHYS_CELL_DS_EXIST_BIT) &&
         cell->physics.hasDispersionShield) {
-      cell->clearDSChain();
+      {
+        SetPhysicsLockedInScope _splis(this, false);
+        cell->clearDSChain();
+      }
       cellsWithDispersionShields.erase(find(cellsWithDispersionShields.begin(),
                                             cellsWithDispersionShields.end(),
                                             cell));
@@ -1784,11 +1838,14 @@ void Ship::preremove(Cell* cell) noth {
   }
 
   //No sense bothering with the other inventories
-  physicsClear(PHYS_SHIP_ENGINE_INVENTORY_BITS
-              |PHYS_SHIP_SHIELD_INVENTORY_BITS
-              |PHYS_SHIP_PBL_INVENTORY_BITS
-              |PHYS_SHIP_WEAPON_INVENTORY_BITS
-              );
+  {
+    SetPhysicsLockedInScope _splis(this, false);
+    physicsClear(PHYS_SHIP_ENGINE_INVENTORY_BITS
+                 |PHYS_SHIP_SHIELD_INVENTORY_BITS
+                 |PHYS_SHIP_PBL_INVENTORY_BITS
+                 |PHYS_SHIP_WEAPON_INVENTORY_BITS
+                );
+  }
 
   //Collision bounds are no longer valid
   collisionTree.free();

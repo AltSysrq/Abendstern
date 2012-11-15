@@ -183,7 +183,7 @@ bool ConfReg::loaded(const string& key) {
 }
 
 Setting& ConfReg::lookup(const string& path, bool mod) {
-  if (!path.size()) throw runtime_error("Null path specified");
+  if (path.empty()) throw runtime_error("Null path specified");
   whitelistCheck(path);
 
   size_t index=path.find('.');
