@@ -32,6 +32,7 @@
 #include "synchronous_control_geraet.hxx"
 #include "text_message_geraet.hxx"
 #include "src/core/lxn.hxx"
+#include "src/core/black_box.hxx"
 
 using namespace std;
 
@@ -393,6 +394,7 @@ NetworkGame::NetworkGame(GameField* field)
 }
 
 NetworkGame::~NetworkGame() {
+  BlackBox _bb("netg\0", "%p->~NetworkGame()", this);
   if (advertiser)
     delete advertiser;
   if (discoverer)
@@ -591,6 +593,8 @@ bool NetworkGame::acceptConnection(const Antenna::endpoint& source,
                                    string& errmsg, string& errl10n,
                                    const std::vector<byte>& auxData)
 throw() {
+  BlackBox _bb("netg\0", "NetworkGame %p->acceptConnection(%s:%d)",
+               this, source.address().to_string().c_str(), source.port());
   /* If there already exists a NetworkConnection to this endpoint, return true
    * but do nothing else (this could happen if we opened a NetworkConnection
    * before updating the NetworkAssembly).
@@ -638,6 +642,11 @@ void NetworkGame::receivePCGDeclaration(Peer* peer, const GlobalID& gid,
                                         bool positive)
 throw() {
   Peer* referred = getPeerByGid(gid);
+  BlackBox _bb("netg\0", "NetworkGame %p->receivePCGDeclaration(%p, %s, %d),%p",
+               this, peer, gid.toString().c_str(), (int)positive, referred);
+  //Ignore if they are talking about us
+  if (referred == &localPeer)
+    return;
   if (positive) {
     if (referred)
       peer->connectionsFrom.insert(referred);
@@ -717,6 +726,8 @@ Peer* NetworkGame::createPeer(const asio::ip::udp::endpoint& endpoint) throw() {
 }
 
 Peer* NetworkGame::createPeer(const GlobalID& gid) throw() {
+  BlackBox _bb("netg\0", "NetworkGame %p->createPeer(GID %s)",
+               this, gid.toString().c_str());
   Peer* peer = new Peer;
   peer->gid = gid;
   peer->overseerReady = false;
@@ -730,6 +741,8 @@ Peer* NetworkGame::createPeer(const GlobalID& gid) throw() {
 }
 
 Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
+  BlackBox _bb("netg\0", "NetworkGame %p->createPeer(CXN %p)",
+               this, cxn);
   Peer* peer = new Peer;
   peer->overseerReady = false;
   peer->connectionAttempts = 0;
@@ -743,6 +756,8 @@ Peer* NetworkGame::createPeer(NetworkConnection* cxn) throw() {
 }
 
 void NetworkGame::connectToPeer(Peer* peer) throw() {
+  BlackBox _bb("netg\0", "NetworkGame %p->connectToPeer(%p)",
+               this, peer);
   assert(peer->gid.ipv == localPeer.gid.ipv);
   const GlobalID& pgid(peer->gid), & lgid(localPeer.gid);
   unsigned short port;
@@ -783,6 +798,8 @@ void NetworkGame::connectToPeer(Peer* peer) throw() {
 
 void NetworkGame::closePeer(Peer* peer, unsigned banLength, bool closeCxn)
 throw() {
+  BlackBox _bb("netg\0", "NetworkGame %p->closePeer(%p, %d, %d)",
+               this, peer, banLength, (int)closeCxn);
   if (closeCxn)
     peer->cxn->scg->closeConnection();
   assembly.removeConnection(peer->cxn);
@@ -845,6 +862,8 @@ Peer* NetworkGame::getPeerByGid(const GlobalID& gid) throw() {
 }
 
 void NetworkGame::initCxn(NetworkConnection* cxn, Peer* peer) throw() {
+  BlackBox _bb("netg\0", "NetworkGame %p->initCxn(%p, %p)",
+               this, cxn, peer);
   cout << "Init cxn: " << cxn->endpoint << endl;
   assembly.addConnection(cxn);
   cxn->scg->openChannel(new network_game::NGSeqTextGeraet(this, cxn),
@@ -917,6 +936,7 @@ throw() {
 }
 
 void NetworkGame::update(unsigned et) throw() {
+  BlackBox _bb("netg\0", "NetworkGame %p->update(%d)", this, et);
   assembly.update(et);
   if (discoverer)
     discoverer->poll(&antenna);

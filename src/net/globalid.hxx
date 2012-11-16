@@ -63,6 +63,18 @@ class GlobalID: public AObject {
                  reinterpret_cast<const char*>(this)));
   }
 
+  //Copy constructor which copies the entire data section (including padding)
+  //Without this, the memcmp-based comparison has issues with uninitialised
+  //data in the padding between data
+  GlobalID(const GlobalID& that) {
+    std::memcpy(&ipv, &that.ipv,
+                sizeof(GlobalID) -
+                //Poor man's offsetof (since we aren't allowed to use that on
+                //non-POD classes)
+                (reinterpret_cast<const char*>(&ipv) -
+                 reinterpret_cast<const char*>(this)));
+  }
+
   /**
    * Returns the string representation of the ID.
    * For a v4 ID, the format is as follows:
@@ -79,7 +91,14 @@ class GlobalID: public AObject {
 
   //What happened to the default operator== ?
   bool operator==(const GlobalID& that) const {
-    return !std::memcmp(this, &that, sizeof(GlobalID));
+    return
+      this->ipv == that.ipv &&
+      this->iport == that.iport &&
+      this->lport == that.lport &&
+      (ipv != IPv4 || !memcmp(this->ia4, that.ia4, sizeof(ia4))) &&
+      (ipv != IPv4 || !memcmp(this->la4, that.la4, sizeof(la4))) &&
+      (ipv != IPv6 || !memcmp(this->ia6, that.ia6, sizeof(ia6))) &&
+      (ipv != IPv6 || !memcmp(this->la6, that.la6, sizeof(la6)));
   }
 };
 
