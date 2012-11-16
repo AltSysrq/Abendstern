@@ -638,6 +638,9 @@ void NetworkGame::receivePCGDeclaration(Peer* peer, const GlobalID& gid,
                                         bool positive)
 throw() {
   Peer* referred = getPeerByGid(gid);
+  //Ignore if they are talking about us
+  if (referred == &localPeer)
+    return;
   if (positive) {
     if (referred)
       peer->connectionsFrom.insert(referred);
