@@ -2,7 +2,6 @@
 # increment the teams' scores when their members get enemy kills.
 class MixinScoreTeamfrag {
   method receiveOverseer {peer msg} {
-    log "receiveOverseer $peer $msg"
     lassign $msg type
     if {$type == "kill-notification"} {
       lassign $msg type vpeer killer
