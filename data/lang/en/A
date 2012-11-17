@@ -1230,6 +1230,9 @@
 -killing_spree
 +%s is on a \a[(white)killing spree\a]!
 
+-entering_sudden_death
++Entering \a[(danger)sudden death\a] mode!
+
 @gamegui
 -tab_local
 +Local

@@ -19,6 +19,7 @@ foreach base {
   mod_match
   mod_round
   mod_round_spawn
+  mod_ai_sudden_death
   mod_saw_clock
   mod_saw_best_player
   mod_saw_local_player

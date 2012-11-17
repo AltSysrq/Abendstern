@@ -1154,6 +1154,9 @@
 -killing_spree
 +%s \a[(white)läuft Amok\a]!
 
+-entering_sudden_death
++\a[(danger)Schneller Tod\a]-Modus beginnt!
+
 @gamegui
 -tab_local
 +Lokales

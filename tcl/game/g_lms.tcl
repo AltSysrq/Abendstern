@@ -1,6 +1,7 @@
 class G_LMS {
   inherit MixinPerfectRadar MixinAutobot MixinScoreFrags \
           MixinRound MixinMatch MixinRoundSpawn MixinStatsFFA \
+          MixinAiSuddenDeath \
           MixinSAWClock MixinSAWBestPlayer MixinSAWLocalPlayer \
           MixinSAWPlayersLeft MixinSAWRoundsOfMatch \
           BasicGame
