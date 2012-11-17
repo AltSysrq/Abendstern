@@ -1137,7 +1137,7 @@
 -kill_dominate_assist3
 +%s (with %s's help) is \a[(white)invulnerable\a] to %s!
 -kill_dominate_assist4
-+%s (with %s's help) is \a[(white)overpowering\a]%s!
++%s (with %s's help) is \a[(white)overpowering\a] %s!
 
 -kill_domcont0
 +%s continues to \a[(white)dominate\a] %s

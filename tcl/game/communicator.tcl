@@ -63,6 +63,13 @@ class Communicator {
   # Returns the Peer associated with the given number (see get-peer-number)
   method get-peer-by-number {num}
 
+  # Returns a/the Peer associated with the given NID, or {} if there is no such
+  # peer
+  method get-peer-by-nid {num}
+
+  # Returns the NID of the given Peer, which is not guaranteed to be unique
+  method get-peer-nid {peer}
+
   # Returns whether the Communicator facilitates a networked game
   method is-networked {}
 

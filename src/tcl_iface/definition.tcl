@@ -1181,6 +1181,7 @@ unsafe {
     fun Peer* getLocalPeer
     fun Peer* getOverseer
     fun Peer* getPeerByConnection {} NetworkConnection*
+    fun Peer* getPeerByNid {} unsigned
     fun string getDisconnectReason
     fun void setNetIface {} NetIface*
     fun void setAdvertising {} cstr

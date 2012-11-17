@@ -715,7 +715,11 @@ class BasicGame {
       }
 
       # Send necessary messages
-      overseerMessage kill-notification $vp $killer $assist $secondary0 $secondary1
+      overseerMessage kill-notification $vp \
+          [externalise-pvp $killer] \
+          [externalise-pvp $assist] \
+          [externalise-pvp $secondary0] \
+          [externalise-pvp $secondary1]
       foreach var {killer assist secondary0 secondary1} {
         if {{} != [set $var]} {
           unicastMessage [lindex [set $var] 0] \
@@ -741,6 +745,22 @@ class BasicGame {
     } else {
       return {}
     }
+  }
+
+  # Converts the given {peer vpeer} combination to the external format, by
+  # replacing the peer with its NID
+  method externalise-pvp {pair} {
+    lassign $pair peer vpeer
+    if {$peer eq {}} {
+      return $pair
+    }
+    list [$communicator get-peer-nid $peer] $vpeer
+  }
+
+  # Reverses the operation of externalise-pvp
+  method internalise-pvp {pair} {
+    lassign $pair peer vpeer
+    list [$communicator get-peer-by-nid $peer] $vpeer
   }
 
   # END: SHIPS AND CONTROLLERS
