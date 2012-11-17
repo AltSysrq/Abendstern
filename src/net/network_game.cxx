@@ -589,6 +589,15 @@ Peer* NetworkGame::getPeerByConnection(NetworkConnection* cxn) throw() {
   return peers[cxn];
 }
 
+Peer* NetworkGame::getPeerByNid(unsigned nid) throw() {
+  if (nid == localPeer.nid) return &localPeer;
+
+  for (peers_t::const_iterator it = peers.begin(); it != peers.end(); ++it)
+    if (it->second->nid == nid) return it->second;
+
+  return NULL;
+}
+
 bool NetworkGame::acceptConnection(const Antenna::endpoint& source,
                                    string& errmsg, string& errl10n,
                                    const std::vector<byte>& auxData)
