@@ -343,6 +343,22 @@ X->y = y;
   #undef field
 }
 
+void ENO_EnergyCharge::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  EnergyCharge* l_local = static_cast<EnergyCharge*>(this->local.ref);
+  EnergyCharge* l_remote = static_cast<EnergyCharge*>(this->remote);
+  #define X l_local
+  
+  #undef X
+  #define X l_remote
+  
+  #undef X
+  #undef field
+  #undef T
+}
+
+
       ENO_EnergyCharge::ExplListener::ExplListener(EnergyCharge* it, ENO_EnergyCharge* that_)
       : ExplodeListener<EnergyCharge>(it), that(that_) {}
     
@@ -701,6 +717,22 @@ X->timeAlive = timeAlive;
   #undef DESTROY
   #undef field
 }
+
+void ENO_MagnetoBomb::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  MagnetoBomb* l_local = static_cast<MagnetoBomb*>(this->local.ref);
+  MagnetoBomb* l_remote = static_cast<MagnetoBomb*>(this->remote);
+  #define X l_local
+  
+  #undef X
+  #define X l_remote
+  
+  #undef X
+  #undef field
+  #undef T
+}
+
 
       ENO_MagnetoBomb::ExplListener::ExplListener(MagnetoBomb* it, ENO_MagnetoBomb* that_)
       : ExplodeListener<MagnetoBomb>(it), that(that_) {}
@@ -1061,6 +1093,22 @@ X->timeAlive = timeAlive;
   #undef field
 }
 
+void ENO_SemiguidedBomb::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  SemiguidedBomb* l_local = static_cast<SemiguidedBomb*>(this->local.ref);
+  SemiguidedBomb* l_remote = static_cast<SemiguidedBomb*>(this->remote);
+  #define X l_local
+  
+  #undef X
+  #define X l_remote
+  
+  #undef X
+  #undef field
+  #undef T
+}
+
+
       ENO_SemiguidedBomb::ExplListener::ExplListener(MagnetoBomb* it, ENO_SemiguidedBomb* that_)
       : ExplodeListener<MagnetoBomb>(it), that(that_) {}
     
@@ -1371,6 +1419,22 @@ X->mass = mass;
   #undef DESTROY
   #undef field
 }
+
+void ENO_PlasmaBurst::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  PlasmaBurst* l_local = static_cast<PlasmaBurst*>(this->local.ref);
+  PlasmaBurst* l_remote = static_cast<PlasmaBurst*>(this->remote);
+  #define X l_local
+  
+  #undef X
+  #define X l_remote
+  
+  #undef X
+  #undef field
+  #undef T
+}
+
 
       ENO_PlasmaBurst::ExplListener::ExplListener(PlasmaBurst* it, ENO_PlasmaBurst* that_)
       : ExplodeListener<PlasmaBurst>(it), that(that_) {}
@@ -1758,6 +1822,22 @@ X->ydir = ydir;
   #undef field
 }
 
+void ENO_Missile::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  Missile* l_local = static_cast<Missile*>(this->local.ref);
+  Missile* l_remote = static_cast<Missile*>(this->remote);
+  #define X l_local
+  
+  #undef X
+  #define X l_remote
+  
+  #undef X
+  #undef field
+  #undef T
+}
+
+
       ENO_Missile::ExplListener::ExplListener(Missile* it, ENO_Missile* that_)
       : ExplodeListener<Missile>(it), that(that_) {}
     
@@ -2098,6 +2178,22 @@ X->blame = blame;
   #undef field
 }
 
+void ENO_ParticleEmitter::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  ParticleEmitter* l_local = static_cast<ParticleEmitter*>(this->local.ref);
+  ParticleEmitter* l_remote = static_cast<ParticleEmitter*>(this->remote);
+  #define X l_local
+  
+  #undef X
+  #define X l_remote
+  
+  #undef X
+  #undef field
+  #undef T
+}
+
+
 
 INO_MonophasicEnergyPulse::INO_MonophasicEnergyPulse(NetworkConnection* cxn_)
 : ImportedGameObject(11, cxn_),
@@ -2370,6 +2466,22 @@ X->y = y;
   #undef field
 }
 
+void ENO_MonophasicEnergyPulse::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  MonophasicEnergyPulse* l_local = static_cast<MonophasicEnergyPulse*>(this->local.ref);
+  MonophasicEnergyPulse* l_remote = static_cast<MonophasicEnergyPulse*>(this->remote);
+  #define X l_local
+  
+  #undef X
+  #define X l_remote
+  
+  #undef X
+  #undef field
+  #undef T
+}
+
+
       ENO_MonophasicEnergyPulse::ExplListener::ExplListener(MonophasicEnergyPulse* it, ENO_MonophasicEnergyPulse* that_)
       : ExplodeListener<MonophasicEnergyPulse>(it), that(that_) {}
     
@@ -2602,6 +2714,22 @@ X->y = y;
   #undef DESTROY
   #undef field
 }
+
+void ENO_Spectator::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  Spectator* l_local = static_cast<Spectator*>(this->local.ref);
+  Spectator* l_remote = static_cast<Spectator*>(this->remote);
+  #define X l_local
+  
+  #undef X
+  #define X l_remote
+  
+  #undef X
+  #undef field
+  #undef T
+}
+
 
 
 
@@ -4180,8 +4308,6 @@ vx = X->vx;
 
 ENO_Ship4::~ENO_Ship4() {
   
-      cxn->sdg->delLocalShip(channel);
-    
 }
 
 void ENO_Ship4::init() throw() {
@@ -5833,6 +5959,24 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4; ARRAY_OFFSET+=1) {
   #undef field
 }
 
+void ENO_Ship4::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  Ship* l_local = static_cast<Ship*>(this->local.ref);
+  Ship* l_remote = static_cast<Ship*>(this->remote);
+  #define X l_local
+  
+      cxn->sdg->delLocalShip(channel);
+    
+  #undef X
+  #define X l_remote
+  
+  #undef X
+  #undef field
+  #undef T
+}
+
+
       ShieldGenerator* INO_Ship4::getShieldGenerator(const Cell* c) throw() {
         if (!c) return NULL;
         if (c->systems[0]
@@ -7335,8 +7479,6 @@ vx = X->vx;
 
 ENO_Ship8::~ENO_Ship8() {
   
-      cxn->sdg->delLocalShip(channel);
-    
 }
 
 void ENO_Ship8::init() throw() {
@@ -8988,6 +9130,24 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=1) {
   #undef field
 }
 
+void ENO_Ship8::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  Ship* l_local = static_cast<Ship*>(this->local.ref);
+  Ship* l_remote = static_cast<Ship*>(this->remote);
+  #define X l_local
+  
+      cxn->sdg->delLocalShip(channel);
+    
+  #undef X
+  #define X l_remote
+  
+  #undef X
+  #undef field
+  #undef T
+}
+
+
       ShieldGenerator* INO_Ship8::getShieldGenerator(const Cell* c) throw() {
         if (!c) return NULL;
         if (c->systems[0]
@@ -10490,8 +10650,6 @@ vx = X->vx;
 
 ENO_Ship16::~ENO_Ship16() {
   
-      cxn->sdg->delLocalShip(channel);
-    
 }
 
 void ENO_Ship16::init() throw() {
@@ -12143,6 +12301,24 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=1) {
   #undef field
 }
 
+void ENO_Ship16::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  Ship* l_local = static_cast<Ship*>(this->local.ref);
+  Ship* l_remote = static_cast<Ship*>(this->remote);
+  #define X l_local
+  
+      cxn->sdg->delLocalShip(channel);
+    
+  #undef X
+  #define X l_remote
+  
+  #undef X
+  #undef field
+  #undef T
+}
+
+
       ShieldGenerator* INO_Ship16::getShieldGenerator(const Cell* c) throw() {
         if (!c) return NULL;
         if (c->systems[0]
@@ -13645,8 +13821,6 @@ vx = X->vx;
 
 ENO_Ship64::~ENO_Ship64() {
   
-      cxn->sdg->delLocalShip(channel);
-    
 }
 
 void ENO_Ship64::init() throw() {
@@ -15298,6 +15472,24 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<64; ARRAY_OFFSET+=1) {
   #undef field
 }
 
+void ENO_Ship64::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  Ship* l_local = static_cast<Ship*>(this->local.ref);
+  Ship* l_remote = static_cast<Ship*>(this->remote);
+  #define X l_local
+  
+      cxn->sdg->delLocalShip(channel);
+    
+  #undef X
+  #define X l_remote
+  
+  #undef X
+  #undef field
+  #undef T
+}
+
+
       ShieldGenerator* INO_Ship64::getShieldGenerator(const Cell* c) throw() {
         if (!c) return NULL;
         if (c->systems[0]
@@ -16800,8 +16992,6 @@ vx = X->vx;
 
 ENO_Ship256::~ENO_Ship256() {
   
-      cxn->sdg->delLocalShip(channel);
-    
 }
 
 void ENO_Ship256::init() throw() {
@@ -18453,6 +18643,24 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<256; ARRAY_OFFSET+=1) {
   #undef field
 }
 
+void ENO_Ship256::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  Ship* l_local = static_cast<Ship*>(this->local.ref);
+  Ship* l_remote = static_cast<Ship*>(this->remote);
+  #define X l_local
+  
+      cxn->sdg->delLocalShip(channel);
+    
+  #undef X
+  #define X l_remote
+  
+  #undef X
+  #undef field
+  #undef T
+}
+
+
       ShieldGenerator* INO_Ship256::getShieldGenerator(const Cell* c) throw() {
         if (!c) return NULL;
         if (c->systems[0]
@@ -19955,8 +20163,6 @@ vx = X->vx;
 
 ENO_Ship1024::~ENO_Ship1024() {
   
-      cxn->sdg->delLocalShip(channel);
-    
 }
 
 void ENO_Ship1024::init() throw() {
@@ -21608,6 +21814,24 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<1024; ARRAY_OFFSET+=1) {
   #undef field
 }
 
+void ENO_Ship1024::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  Ship* l_local = static_cast<Ship*>(this->local.ref);
+  Ship* l_remote = static_cast<Ship*>(this->remote);
+  #define X l_local
+  
+      cxn->sdg->delLocalShip(channel);
+    
+  #undef X
+  #define X l_remote
+  
+  #undef X
+  #undef field
+  #undef T
+}
+
+
       ShieldGenerator* INO_Ship1024::getShieldGenerator(const Cell* c) throw() {
         if (!c) return NULL;
         if (c->systems[0]
@@ -23110,8 +23334,6 @@ vx = X->vx;
 
 ENO_Ship4094::~ENO_Ship4094() {
   
-      cxn->sdg->delLocalShip(channel);
-    
 }
 
 void ENO_Ship4094::init() throw() {
@@ -24762,6 +24984,24 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<4094; ARRAY_OFFSET+=1) {
   #undef DESTROY
   #undef field
 }
+
+void ENO_Ship4094::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  Ship* l_local = static_cast<Ship*>(this->local.ref);
+  Ship* l_remote = static_cast<Ship*>(this->remote);
+  #define X l_local
+  
+      cxn->sdg->delLocalShip(channel);
+    
+  #undef X
+  #define X l_remote
+  
+  #undef X
+  #undef field
+  #undef T
+}
+
 
       ShieldGenerator* INO_Ship4094::getShieldGenerator(const Cell* c) throw() {
         if (!c) return NULL;

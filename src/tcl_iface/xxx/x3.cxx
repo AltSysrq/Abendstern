@@ -87,469 +87,469 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "k_unknown")) {arg0=SDLK_UNKNOWN; goto done1569;}
+          if (0 == strcmp(tmp, "k_unknown")) {arg0=SDLK_UNKNOWN; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_enter")) {arg0=SDLK_RETURN; goto done1569;}
+          if (0 == strcmp(tmp, "k_enter")) {arg0=SDLK_RETURN; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_scrolllock")) {arg0=SDLK_SCROLLOCK; goto done1569;}
+          if (0 == strcmp(tmp, "k_scrolllock")) {arg0=SDLK_SCROLLOCK; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_backspace")) {arg0=SDLK_BACKSPACE; goto done1569;}
+          if (0 == strcmp(tmp, "k_backspace")) {arg0=SDLK_BACKSPACE; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_tab")) {arg0=SDLK_TAB; goto done1569;}
+          if (0 == strcmp(tmp, "k_tab")) {arg0=SDLK_TAB; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_clear")) {arg0=SDLK_CLEAR; goto done1569;}
+          if (0 == strcmp(tmp, "k_clear")) {arg0=SDLK_CLEAR; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_pause")) {arg0=SDLK_PAUSE; goto done1569;}
+          if (0 == strcmp(tmp, "k_pause")) {arg0=SDLK_PAUSE; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_escape")) {arg0=SDLK_ESCAPE; goto done1569;}
+          if (0 == strcmp(tmp, "k_escape")) {arg0=SDLK_ESCAPE; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_space")) {arg0=SDLK_SPACE; goto done1569;}
+          if (0 == strcmp(tmp, "k_space")) {arg0=SDLK_SPACE; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_exclaim")) {arg0=SDLK_EXCLAIM; goto done1569;}
+          if (0 == strcmp(tmp, "k_exclaim")) {arg0=SDLK_EXCLAIM; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_quotedbl")) {arg0=SDLK_QUOTEDBL; goto done1569;}
+          if (0 == strcmp(tmp, "k_quotedbl")) {arg0=SDLK_QUOTEDBL; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_hash")) {arg0=SDLK_HASH; goto done1569;}
+          if (0 == strcmp(tmp, "k_hash")) {arg0=SDLK_HASH; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_dollar")) {arg0=SDLK_DOLLAR; goto done1569;}
+          if (0 == strcmp(tmp, "k_dollar")) {arg0=SDLK_DOLLAR; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_ampersand")) {arg0=SDLK_AMPERSAND; goto done1569;}
+          if (0 == strcmp(tmp, "k_ampersand")) {arg0=SDLK_AMPERSAND; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_quote")) {arg0=SDLK_QUOTE; goto done1569;}
+          if (0 == strcmp(tmp, "k_quote")) {arg0=SDLK_QUOTE; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_leftparen")) {arg0=SDLK_LEFTPAREN; goto done1569;}
+          if (0 == strcmp(tmp, "k_leftparen")) {arg0=SDLK_LEFTPAREN; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_rightparen")) {arg0=SDLK_RIGHTPAREN; goto done1569;}
+          if (0 == strcmp(tmp, "k_rightparen")) {arg0=SDLK_RIGHTPAREN; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_asterisk")) {arg0=SDLK_ASTERISK; goto done1569;}
+          if (0 == strcmp(tmp, "k_asterisk")) {arg0=SDLK_ASTERISK; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_plus")) {arg0=SDLK_PLUS; goto done1569;}
+          if (0 == strcmp(tmp, "k_plus")) {arg0=SDLK_PLUS; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_comma")) {arg0=SDLK_COMMA; goto done1569;}
+          if (0 == strcmp(tmp, "k_comma")) {arg0=SDLK_COMMA; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_minus")) {arg0=SDLK_MINUS; goto done1569;}
+          if (0 == strcmp(tmp, "k_minus")) {arg0=SDLK_MINUS; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_period")) {arg0=SDLK_PERIOD; goto done1569;}
+          if (0 == strcmp(tmp, "k_period")) {arg0=SDLK_PERIOD; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_slash")) {arg0=SDLK_SLASH; goto done1569;}
+          if (0 == strcmp(tmp, "k_slash")) {arg0=SDLK_SLASH; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_0")) {arg0=SDLK_0; goto done1569;}
+          if (0 == strcmp(tmp, "k_0")) {arg0=SDLK_0; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_1")) {arg0=SDLK_1; goto done1569;}
+          if (0 == strcmp(tmp, "k_1")) {arg0=SDLK_1; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_2")) {arg0=SDLK_2; goto done1569;}
+          if (0 == strcmp(tmp, "k_2")) {arg0=SDLK_2; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_3")) {arg0=SDLK_3; goto done1569;}
+          if (0 == strcmp(tmp, "k_3")) {arg0=SDLK_3; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_4")) {arg0=SDLK_4; goto done1569;}
+          if (0 == strcmp(tmp, "k_4")) {arg0=SDLK_4; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_5")) {arg0=SDLK_5; goto done1569;}
+          if (0 == strcmp(tmp, "k_5")) {arg0=SDLK_5; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_6")) {arg0=SDLK_6; goto done1569;}
+          if (0 == strcmp(tmp, "k_6")) {arg0=SDLK_6; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_7")) {arg0=SDLK_7; goto done1569;}
+          if (0 == strcmp(tmp, "k_7")) {arg0=SDLK_7; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_8")) {arg0=SDLK_8; goto done1569;}
+          if (0 == strcmp(tmp, "k_8")) {arg0=SDLK_8; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_9")) {arg0=SDLK_9; goto done1569;}
+          if (0 == strcmp(tmp, "k_9")) {arg0=SDLK_9; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_colon")) {arg0=SDLK_COLON; goto done1569;}
+          if (0 == strcmp(tmp, "k_colon")) {arg0=SDLK_COLON; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_semicolon")) {arg0=SDLK_SEMICOLON; goto done1569;}
+          if (0 == strcmp(tmp, "k_semicolon")) {arg0=SDLK_SEMICOLON; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_less")) {arg0=SDLK_LESS; goto done1569;}
+          if (0 == strcmp(tmp, "k_less")) {arg0=SDLK_LESS; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_equals")) {arg0=SDLK_EQUALS; goto done1569;}
+          if (0 == strcmp(tmp, "k_equals")) {arg0=SDLK_EQUALS; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_greater")) {arg0=SDLK_GREATER; goto done1569;}
+          if (0 == strcmp(tmp, "k_greater")) {arg0=SDLK_GREATER; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_question")) {arg0=SDLK_QUESTION; goto done1569;}
+          if (0 == strcmp(tmp, "k_question")) {arg0=SDLK_QUESTION; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_at")) {arg0=SDLK_AT; goto done1569;}
+          if (0 == strcmp(tmp, "k_at")) {arg0=SDLK_AT; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_leftbracket")) {arg0=SDLK_LEFTBRACKET; goto done1569;}
+          if (0 == strcmp(tmp, "k_leftbracket")) {arg0=SDLK_LEFTBRACKET; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_backslash")) {arg0=SDLK_BACKSLASH; goto done1569;}
+          if (0 == strcmp(tmp, "k_backslash")) {arg0=SDLK_BACKSLASH; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_rightbracket")) {arg0=SDLK_RIGHTBRACKET; goto done1569;}
+          if (0 == strcmp(tmp, "k_rightbracket")) {arg0=SDLK_RIGHTBRACKET; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_caret")) {arg0=SDLK_CARET; goto done1569;}
+          if (0 == strcmp(tmp, "k_caret")) {arg0=SDLK_CARET; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_underscore")) {arg0=SDLK_UNDERSCORE; goto done1569;}
+          if (0 == strcmp(tmp, "k_underscore")) {arg0=SDLK_UNDERSCORE; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_backquote")) {arg0=SDLK_BACKQUOTE; goto done1569;}
+          if (0 == strcmp(tmp, "k_backquote")) {arg0=SDLK_BACKQUOTE; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_delete")) {arg0=SDLK_DELETE; goto done1569;}
+          if (0 == strcmp(tmp, "k_delete")) {arg0=SDLK_DELETE; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp0")) {arg0=SDLK_KP0; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp0")) {arg0=SDLK_KP0; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp1")) {arg0=SDLK_KP1; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp1")) {arg0=SDLK_KP1; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp2")) {arg0=SDLK_KP2; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp2")) {arg0=SDLK_KP2; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp3")) {arg0=SDLK_KP3; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp3")) {arg0=SDLK_KP3; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp4")) {arg0=SDLK_KP4; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp4")) {arg0=SDLK_KP4; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp5")) {arg0=SDLK_KP5; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp5")) {arg0=SDLK_KP5; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp6")) {arg0=SDLK_KP6; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp6")) {arg0=SDLK_KP6; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp7")) {arg0=SDLK_KP7; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp7")) {arg0=SDLK_KP7; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp8")) {arg0=SDLK_KP8; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp8")) {arg0=SDLK_KP8; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp9")) {arg0=SDLK_KP9; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp9")) {arg0=SDLK_KP9; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp_period")) {arg0=SDLK_KP_PERIOD; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp_period")) {arg0=SDLK_KP_PERIOD; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp_divide")) {arg0=SDLK_KP_DIVIDE; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp_divide")) {arg0=SDLK_KP_DIVIDE; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp_multiply")) {arg0=SDLK_KP_MULTIPLY; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp_multiply")) {arg0=SDLK_KP_MULTIPLY; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp_minus")) {arg0=SDLK_KP_MINUS; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp_minus")) {arg0=SDLK_KP_MINUS; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp_plus")) {arg0=SDLK_KP_PLUS; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp_plus")) {arg0=SDLK_KP_PLUS; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp_enter")) {arg0=SDLK_KP_ENTER; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp_enter")) {arg0=SDLK_KP_ENTER; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_kp_equals")) {arg0=SDLK_KP_EQUALS; goto done1569;}
+          if (0 == strcmp(tmp, "k_kp_equals")) {arg0=SDLK_KP_EQUALS; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_up")) {arg0=SDLK_UP; goto done1569;}
+          if (0 == strcmp(tmp, "k_up")) {arg0=SDLK_UP; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_down")) {arg0=SDLK_DOWN; goto done1569;}
+          if (0 == strcmp(tmp, "k_down")) {arg0=SDLK_DOWN; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_right")) {arg0=SDLK_RIGHT; goto done1569;}
+          if (0 == strcmp(tmp, "k_right")) {arg0=SDLK_RIGHT; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_left")) {arg0=SDLK_LEFT; goto done1569;}
+          if (0 == strcmp(tmp, "k_left")) {arg0=SDLK_LEFT; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_insert")) {arg0=SDLK_INSERT; goto done1569;}
+          if (0 == strcmp(tmp, "k_insert")) {arg0=SDLK_INSERT; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_home")) {arg0=SDLK_HOME; goto done1569;}
+          if (0 == strcmp(tmp, "k_home")) {arg0=SDLK_HOME; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_end")) {arg0=SDLK_END; goto done1569;}
+          if (0 == strcmp(tmp, "k_end")) {arg0=SDLK_END; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_pageup")) {arg0=SDLK_PAGEUP; goto done1569;}
+          if (0 == strcmp(tmp, "k_pageup")) {arg0=SDLK_PAGEUP; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_pagedown")) {arg0=SDLK_PAGEDOWN; goto done1569;}
+          if (0 == strcmp(tmp, "k_pagedown")) {arg0=SDLK_PAGEDOWN; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f1")) {arg0=SDLK_F1; goto done1569;}
+          if (0 == strcmp(tmp, "k_f1")) {arg0=SDLK_F1; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f2")) {arg0=SDLK_F2; goto done1569;}
+          if (0 == strcmp(tmp, "k_f2")) {arg0=SDLK_F2; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f3")) {arg0=SDLK_F3; goto done1569;}
+          if (0 == strcmp(tmp, "k_f3")) {arg0=SDLK_F3; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f4")) {arg0=SDLK_F4; goto done1569;}
+          if (0 == strcmp(tmp, "k_f4")) {arg0=SDLK_F4; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f5")) {arg0=SDLK_F5; goto done1569;}
+          if (0 == strcmp(tmp, "k_f5")) {arg0=SDLK_F5; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f6")) {arg0=SDLK_F6; goto done1569;}
+          if (0 == strcmp(tmp, "k_f6")) {arg0=SDLK_F6; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f7")) {arg0=SDLK_F7; goto done1569;}
+          if (0 == strcmp(tmp, "k_f7")) {arg0=SDLK_F7; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f8")) {arg0=SDLK_F8; goto done1569;}
+          if (0 == strcmp(tmp, "k_f8")) {arg0=SDLK_F8; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f9")) {arg0=SDLK_F9; goto done1569;}
+          if (0 == strcmp(tmp, "k_f9")) {arg0=SDLK_F9; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f10")) {arg0=SDLK_F10; goto done1569;}
+          if (0 == strcmp(tmp, "k_f10")) {arg0=SDLK_F10; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f11")) {arg0=SDLK_F11; goto done1569;}
+          if (0 == strcmp(tmp, "k_f11")) {arg0=SDLK_F11; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f12")) {arg0=SDLK_F12; goto done1569;}
+          if (0 == strcmp(tmp, "k_f12")) {arg0=SDLK_F12; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f13")) {arg0=SDLK_F13; goto done1569;}
+          if (0 == strcmp(tmp, "k_f13")) {arg0=SDLK_F13; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f14")) {arg0=SDLK_F14; goto done1569;}
+          if (0 == strcmp(tmp, "k_f14")) {arg0=SDLK_F14; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f15")) {arg0=SDLK_F15; goto done1569;}
+          if (0 == strcmp(tmp, "k_f15")) {arg0=SDLK_F15; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_numlock")) {arg0=SDLK_NUMLOCK; goto done1569;}
+          if (0 == strcmp(tmp, "k_numlock")) {arg0=SDLK_NUMLOCK; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_capslock")) {arg0=SDLK_CAPSLOCK; goto done1569;}
+          if (0 == strcmp(tmp, "k_capslock")) {arg0=SDLK_CAPSLOCK; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_rshift")) {arg0=SDLK_RSHIFT; goto done1569;}
+          if (0 == strcmp(tmp, "k_rshift")) {arg0=SDLK_RSHIFT; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_lshift")) {arg0=SDLK_LSHIFT; goto done1569;}
+          if (0 == strcmp(tmp, "k_lshift")) {arg0=SDLK_LSHIFT; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_rctrl")) {arg0=SDLK_RCTRL; goto done1569;}
+          if (0 == strcmp(tmp, "k_rctrl")) {arg0=SDLK_RCTRL; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_lctrl")) {arg0=SDLK_LCTRL; goto done1569;}
+          if (0 == strcmp(tmp, "k_lctrl")) {arg0=SDLK_LCTRL; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_ralt")) {arg0=SDLK_RALT; goto done1569;}
+          if (0 == strcmp(tmp, "k_ralt")) {arg0=SDLK_RALT; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_lalt")) {arg0=SDLK_LALT; goto done1569;}
+          if (0 == strcmp(tmp, "k_lalt")) {arg0=SDLK_LALT; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_rmeta")) {arg0=SDLK_RMETA; goto done1569;}
+          if (0 == strcmp(tmp, "k_rmeta")) {arg0=SDLK_RMETA; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_lmeta")) {arg0=SDLK_LMETA; goto done1569;}
+          if (0 == strcmp(tmp, "k_lmeta")) {arg0=SDLK_LMETA; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_lsuper")) {arg0=SDLK_LSUPER; goto done1569;}
+          if (0 == strcmp(tmp, "k_lsuper")) {arg0=SDLK_LSUPER; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_rsuper")) {arg0=SDLK_RSUPER; goto done1569;}
+          if (0 == strcmp(tmp, "k_rsuper")) {arg0=SDLK_RSUPER; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_mode")) {arg0=SDLK_MODE; goto done1569;}
+          if (0 == strcmp(tmp, "k_mode")) {arg0=SDLK_MODE; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_compose")) {arg0=SDLK_COMPOSE; goto done1569;}
+          if (0 == strcmp(tmp, "k_compose")) {arg0=SDLK_COMPOSE; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_help")) {arg0=SDLK_HELP; goto done1569;}
+          if (0 == strcmp(tmp, "k_help")) {arg0=SDLK_HELP; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_print")) {arg0=SDLK_PRINT; goto done1569;}
+          if (0 == strcmp(tmp, "k_print")) {arg0=SDLK_PRINT; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_sysreq")) {arg0=SDLK_SYSREQ; goto done1569;}
+          if (0 == strcmp(tmp, "k_sysreq")) {arg0=SDLK_SYSREQ; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_break")) {arg0=SDLK_BREAK; goto done1569;}
+          if (0 == strcmp(tmp, "k_break")) {arg0=SDLK_BREAK; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_menu")) {arg0=SDLK_MENU; goto done1569;}
+          if (0 == strcmp(tmp, "k_menu")) {arg0=SDLK_MENU; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_power")) {arg0=SDLK_POWER; goto done1569;}
+          if (0 == strcmp(tmp, "k_power")) {arg0=SDLK_POWER; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_euro")) {arg0=SDLK_EURO; goto done1569;}
+          if (0 == strcmp(tmp, "k_euro")) {arg0=SDLK_EURO; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_undo")) {arg0=SDLK_UNDO; goto done1569;}
+          if (0 == strcmp(tmp, "k_undo")) {arg0=SDLK_UNDO; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_a")) {arg0=SDLK_a; goto done1569;}
+          if (0 == strcmp(tmp, "k_a")) {arg0=SDLK_a; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_b")) {arg0=SDLK_b; goto done1569;}
+          if (0 == strcmp(tmp, "k_b")) {arg0=SDLK_b; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_c")) {arg0=SDLK_c; goto done1569;}
+          if (0 == strcmp(tmp, "k_c")) {arg0=SDLK_c; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_d")) {arg0=SDLK_d; goto done1569;}
+          if (0 == strcmp(tmp, "k_d")) {arg0=SDLK_d; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_e")) {arg0=SDLK_e; goto done1569;}
+          if (0 == strcmp(tmp, "k_e")) {arg0=SDLK_e; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_f")) {arg0=SDLK_f; goto done1569;}
+          if (0 == strcmp(tmp, "k_f")) {arg0=SDLK_f; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_g")) {arg0=SDLK_g; goto done1569;}
+          if (0 == strcmp(tmp, "k_g")) {arg0=SDLK_g; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_h")) {arg0=SDLK_h; goto done1569;}
+          if (0 == strcmp(tmp, "k_h")) {arg0=SDLK_h; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_i")) {arg0=SDLK_i; goto done1569;}
+          if (0 == strcmp(tmp, "k_i")) {arg0=SDLK_i; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_j")) {arg0=SDLK_j; goto done1569;}
+          if (0 == strcmp(tmp, "k_j")) {arg0=SDLK_j; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_k")) {arg0=SDLK_k; goto done1569;}
+          if (0 == strcmp(tmp, "k_k")) {arg0=SDLK_k; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_l")) {arg0=SDLK_l; goto done1569;}
+          if (0 == strcmp(tmp, "k_l")) {arg0=SDLK_l; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_m")) {arg0=SDLK_m; goto done1569;}
+          if (0 == strcmp(tmp, "k_m")) {arg0=SDLK_m; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_n")) {arg0=SDLK_n; goto done1569;}
+          if (0 == strcmp(tmp, "k_n")) {arg0=SDLK_n; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_o")) {arg0=SDLK_o; goto done1569;}
+          if (0 == strcmp(tmp, "k_o")) {arg0=SDLK_o; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_p")) {arg0=SDLK_p; goto done1569;}
+          if (0 == strcmp(tmp, "k_p")) {arg0=SDLK_p; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_q")) {arg0=SDLK_q; goto done1569;}
+          if (0 == strcmp(tmp, "k_q")) {arg0=SDLK_q; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_r")) {arg0=SDLK_r; goto done1569;}
+          if (0 == strcmp(tmp, "k_r")) {arg0=SDLK_r; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_s")) {arg0=SDLK_s; goto done1569;}
+          if (0 == strcmp(tmp, "k_s")) {arg0=SDLK_s; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_t")) {arg0=SDLK_t; goto done1569;}
+          if (0 == strcmp(tmp, "k_t")) {arg0=SDLK_t; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_u")) {arg0=SDLK_u; goto done1569;}
+          if (0 == strcmp(tmp, "k_u")) {arg0=SDLK_u; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_v")) {arg0=SDLK_v; goto done1569;}
+          if (0 == strcmp(tmp, "k_v")) {arg0=SDLK_v; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_w")) {arg0=SDLK_w; goto done1569;}
+          if (0 == strcmp(tmp, "k_w")) {arg0=SDLK_w; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_x")) {arg0=SDLK_x; goto done1569;}
+          if (0 == strcmp(tmp, "k_x")) {arg0=SDLK_x; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_y")) {arg0=SDLK_y; goto done1569;}
+          if (0 == strcmp(tmp, "k_y")) {arg0=SDLK_y; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_z")) {arg0=SDLK_z; goto done1569;}
+          if (0 == strcmp(tmp, "k_z")) {arg0=SDLK_z; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_0")) {arg0=SDLK_WORLD_0; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_0")) {arg0=SDLK_WORLD_0; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_1")) {arg0=SDLK_WORLD_1; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_1")) {arg0=SDLK_WORLD_1; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_2")) {arg0=SDLK_WORLD_2; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_2")) {arg0=SDLK_WORLD_2; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_3")) {arg0=SDLK_WORLD_3; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_3")) {arg0=SDLK_WORLD_3; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_4")) {arg0=SDLK_WORLD_4; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_4")) {arg0=SDLK_WORLD_4; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_5")) {arg0=SDLK_WORLD_5; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_5")) {arg0=SDLK_WORLD_5; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_6")) {arg0=SDLK_WORLD_6; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_6")) {arg0=SDLK_WORLD_6; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_7")) {arg0=SDLK_WORLD_7; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_7")) {arg0=SDLK_WORLD_7; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_8")) {arg0=SDLK_WORLD_8; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_8")) {arg0=SDLK_WORLD_8; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_9")) {arg0=SDLK_WORLD_9; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_9")) {arg0=SDLK_WORLD_9; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_10")) {arg0=SDLK_WORLD_10; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_10")) {arg0=SDLK_WORLD_10; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_11")) {arg0=SDLK_WORLD_11; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_11")) {arg0=SDLK_WORLD_11; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_12")) {arg0=SDLK_WORLD_12; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_12")) {arg0=SDLK_WORLD_12; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_13")) {arg0=SDLK_WORLD_13; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_13")) {arg0=SDLK_WORLD_13; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_14")) {arg0=SDLK_WORLD_14; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_14")) {arg0=SDLK_WORLD_14; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_15")) {arg0=SDLK_WORLD_15; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_15")) {arg0=SDLK_WORLD_15; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_16")) {arg0=SDLK_WORLD_16; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_16")) {arg0=SDLK_WORLD_16; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_17")) {arg0=SDLK_WORLD_17; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_17")) {arg0=SDLK_WORLD_17; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_18")) {arg0=SDLK_WORLD_18; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_18")) {arg0=SDLK_WORLD_18; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_19")) {arg0=SDLK_WORLD_19; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_19")) {arg0=SDLK_WORLD_19; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_20")) {arg0=SDLK_WORLD_20; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_20")) {arg0=SDLK_WORLD_20; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_21")) {arg0=SDLK_WORLD_21; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_21")) {arg0=SDLK_WORLD_21; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_22")) {arg0=SDLK_WORLD_22; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_22")) {arg0=SDLK_WORLD_22; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_23")) {arg0=SDLK_WORLD_23; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_23")) {arg0=SDLK_WORLD_23; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_24")) {arg0=SDLK_WORLD_24; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_24")) {arg0=SDLK_WORLD_24; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_25")) {arg0=SDLK_WORLD_25; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_25")) {arg0=SDLK_WORLD_25; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_26")) {arg0=SDLK_WORLD_26; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_26")) {arg0=SDLK_WORLD_26; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_27")) {arg0=SDLK_WORLD_27; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_27")) {arg0=SDLK_WORLD_27; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_28")) {arg0=SDLK_WORLD_28; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_28")) {arg0=SDLK_WORLD_28; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_29")) {arg0=SDLK_WORLD_29; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_29")) {arg0=SDLK_WORLD_29; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_30")) {arg0=SDLK_WORLD_30; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_30")) {arg0=SDLK_WORLD_30; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_31")) {arg0=SDLK_WORLD_31; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_31")) {arg0=SDLK_WORLD_31; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_32")) {arg0=SDLK_WORLD_32; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_32")) {arg0=SDLK_WORLD_32; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_33")) {arg0=SDLK_WORLD_33; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_33")) {arg0=SDLK_WORLD_33; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_34")) {arg0=SDLK_WORLD_34; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_34")) {arg0=SDLK_WORLD_34; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_35")) {arg0=SDLK_WORLD_35; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_35")) {arg0=SDLK_WORLD_35; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_36")) {arg0=SDLK_WORLD_36; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_36")) {arg0=SDLK_WORLD_36; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_37")) {arg0=SDLK_WORLD_37; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_37")) {arg0=SDLK_WORLD_37; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_38")) {arg0=SDLK_WORLD_38; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_38")) {arg0=SDLK_WORLD_38; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_39")) {arg0=SDLK_WORLD_39; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_39")) {arg0=SDLK_WORLD_39; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_40")) {arg0=SDLK_WORLD_40; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_40")) {arg0=SDLK_WORLD_40; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_41")) {arg0=SDLK_WORLD_41; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_41")) {arg0=SDLK_WORLD_41; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_42")) {arg0=SDLK_WORLD_42; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_42")) {arg0=SDLK_WORLD_42; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_43")) {arg0=SDLK_WORLD_43; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_43")) {arg0=SDLK_WORLD_43; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_44")) {arg0=SDLK_WORLD_44; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_44")) {arg0=SDLK_WORLD_44; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_45")) {arg0=SDLK_WORLD_45; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_45")) {arg0=SDLK_WORLD_45; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_46")) {arg0=SDLK_WORLD_46; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_46")) {arg0=SDLK_WORLD_46; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_47")) {arg0=SDLK_WORLD_47; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_47")) {arg0=SDLK_WORLD_47; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_48")) {arg0=SDLK_WORLD_48; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_48")) {arg0=SDLK_WORLD_48; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_49")) {arg0=SDLK_WORLD_49; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_49")) {arg0=SDLK_WORLD_49; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_50")) {arg0=SDLK_WORLD_50; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_50")) {arg0=SDLK_WORLD_50; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_51")) {arg0=SDLK_WORLD_51; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_51")) {arg0=SDLK_WORLD_51; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_52")) {arg0=SDLK_WORLD_52; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_52")) {arg0=SDLK_WORLD_52; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_53")) {arg0=SDLK_WORLD_53; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_53")) {arg0=SDLK_WORLD_53; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_54")) {arg0=SDLK_WORLD_54; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_54")) {arg0=SDLK_WORLD_54; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_55")) {arg0=SDLK_WORLD_55; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_55")) {arg0=SDLK_WORLD_55; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_56")) {arg0=SDLK_WORLD_56; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_56")) {arg0=SDLK_WORLD_56; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_57")) {arg0=SDLK_WORLD_57; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_57")) {arg0=SDLK_WORLD_57; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_58")) {arg0=SDLK_WORLD_58; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_58")) {arg0=SDLK_WORLD_58; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_59")) {arg0=SDLK_WORLD_59; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_59")) {arg0=SDLK_WORLD_59; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_60")) {arg0=SDLK_WORLD_60; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_60")) {arg0=SDLK_WORLD_60; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_61")) {arg0=SDLK_WORLD_61; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_61")) {arg0=SDLK_WORLD_61; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_62")) {arg0=SDLK_WORLD_62; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_62")) {arg0=SDLK_WORLD_62; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_63")) {arg0=SDLK_WORLD_63; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_63")) {arg0=SDLK_WORLD_63; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_64")) {arg0=SDLK_WORLD_64; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_64")) {arg0=SDLK_WORLD_64; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_65")) {arg0=SDLK_WORLD_65; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_65")) {arg0=SDLK_WORLD_65; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_66")) {arg0=SDLK_WORLD_66; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_66")) {arg0=SDLK_WORLD_66; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_67")) {arg0=SDLK_WORLD_67; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_67")) {arg0=SDLK_WORLD_67; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_68")) {arg0=SDLK_WORLD_68; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_68")) {arg0=SDLK_WORLD_68; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_69")) {arg0=SDLK_WORLD_69; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_69")) {arg0=SDLK_WORLD_69; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_70")) {arg0=SDLK_WORLD_70; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_70")) {arg0=SDLK_WORLD_70; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_71")) {arg0=SDLK_WORLD_71; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_71")) {arg0=SDLK_WORLD_71; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_72")) {arg0=SDLK_WORLD_72; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_72")) {arg0=SDLK_WORLD_72; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_73")) {arg0=SDLK_WORLD_73; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_73")) {arg0=SDLK_WORLD_73; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_74")) {arg0=SDLK_WORLD_74; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_74")) {arg0=SDLK_WORLD_74; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_75")) {arg0=SDLK_WORLD_75; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_75")) {arg0=SDLK_WORLD_75; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_76")) {arg0=SDLK_WORLD_76; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_76")) {arg0=SDLK_WORLD_76; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_77")) {arg0=SDLK_WORLD_77; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_77")) {arg0=SDLK_WORLD_77; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_78")) {arg0=SDLK_WORLD_78; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_78")) {arg0=SDLK_WORLD_78; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_79")) {arg0=SDLK_WORLD_79; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_79")) {arg0=SDLK_WORLD_79; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_80")) {arg0=SDLK_WORLD_80; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_80")) {arg0=SDLK_WORLD_80; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_81")) {arg0=SDLK_WORLD_81; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_81")) {arg0=SDLK_WORLD_81; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_82")) {arg0=SDLK_WORLD_82; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_82")) {arg0=SDLK_WORLD_82; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_83")) {arg0=SDLK_WORLD_83; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_83")) {arg0=SDLK_WORLD_83; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_84")) {arg0=SDLK_WORLD_84; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_84")) {arg0=SDLK_WORLD_84; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_85")) {arg0=SDLK_WORLD_85; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_85")) {arg0=SDLK_WORLD_85; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_86")) {arg0=SDLK_WORLD_86; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_86")) {arg0=SDLK_WORLD_86; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_87")) {arg0=SDLK_WORLD_87; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_87")) {arg0=SDLK_WORLD_87; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_88")) {arg0=SDLK_WORLD_88; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_88")) {arg0=SDLK_WORLD_88; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_89")) {arg0=SDLK_WORLD_89; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_89")) {arg0=SDLK_WORLD_89; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_90")) {arg0=SDLK_WORLD_90; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_90")) {arg0=SDLK_WORLD_90; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_91")) {arg0=SDLK_WORLD_91; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_91")) {arg0=SDLK_WORLD_91; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_92")) {arg0=SDLK_WORLD_92; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_92")) {arg0=SDLK_WORLD_92; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_93")) {arg0=SDLK_WORLD_93; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_93")) {arg0=SDLK_WORLD_93; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_94")) {arg0=SDLK_WORLD_94; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_94")) {arg0=SDLK_WORLD_94; goto done1571;}
         
-          if (0 == strcmp(tmp, "k_world_95")) {arg0=SDLK_WORLD_95; goto done1569;}
+          if (0 == strcmp(tmp, "k_world_95")) {arg0=SDLK_WORLD_95; goto done1571;}
          {
           char* end;
           arg0 = (SDLKey)strtol(tmp, &end, 10);
@@ -557,9 +557,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
             sprintf(staticError, "Unable to convert %s to SDLKey", tmp);
             scriptError(staticError);
           }
-          goto done1569;
+          goto done1571;
         } 
-done1569:;};
+done1571:;};
 arg0Init=true;
 try {
       ret =
@@ -1301,469 +1301,469 @@ static int set94 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "k_unknown")) {newVal=SDLK_UNKNOWN; goto done1572;}
+          if (0 == strcmp(tmp, "k_unknown")) {newVal=SDLK_UNKNOWN; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_enter")) {newVal=SDLK_RETURN; goto done1572;}
+          if (0 == strcmp(tmp, "k_enter")) {newVal=SDLK_RETURN; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_scrolllock")) {newVal=SDLK_SCROLLOCK; goto done1572;}
+          if (0 == strcmp(tmp, "k_scrolllock")) {newVal=SDLK_SCROLLOCK; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_backspace")) {newVal=SDLK_BACKSPACE; goto done1572;}
+          if (0 == strcmp(tmp, "k_backspace")) {newVal=SDLK_BACKSPACE; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_tab")) {newVal=SDLK_TAB; goto done1572;}
+          if (0 == strcmp(tmp, "k_tab")) {newVal=SDLK_TAB; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_clear")) {newVal=SDLK_CLEAR; goto done1572;}
+          if (0 == strcmp(tmp, "k_clear")) {newVal=SDLK_CLEAR; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_pause")) {newVal=SDLK_PAUSE; goto done1572;}
+          if (0 == strcmp(tmp, "k_pause")) {newVal=SDLK_PAUSE; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_escape")) {newVal=SDLK_ESCAPE; goto done1572;}
+          if (0 == strcmp(tmp, "k_escape")) {newVal=SDLK_ESCAPE; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_space")) {newVal=SDLK_SPACE; goto done1572;}
+          if (0 == strcmp(tmp, "k_space")) {newVal=SDLK_SPACE; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_exclaim")) {newVal=SDLK_EXCLAIM; goto done1572;}
+          if (0 == strcmp(tmp, "k_exclaim")) {newVal=SDLK_EXCLAIM; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_quotedbl")) {newVal=SDLK_QUOTEDBL; goto done1572;}
+          if (0 == strcmp(tmp, "k_quotedbl")) {newVal=SDLK_QUOTEDBL; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_hash")) {newVal=SDLK_HASH; goto done1572;}
+          if (0 == strcmp(tmp, "k_hash")) {newVal=SDLK_HASH; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_dollar")) {newVal=SDLK_DOLLAR; goto done1572;}
+          if (0 == strcmp(tmp, "k_dollar")) {newVal=SDLK_DOLLAR; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_ampersand")) {newVal=SDLK_AMPERSAND; goto done1572;}
+          if (0 == strcmp(tmp, "k_ampersand")) {newVal=SDLK_AMPERSAND; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_quote")) {newVal=SDLK_QUOTE; goto done1572;}
+          if (0 == strcmp(tmp, "k_quote")) {newVal=SDLK_QUOTE; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_leftparen")) {newVal=SDLK_LEFTPAREN; goto done1572;}
+          if (0 == strcmp(tmp, "k_leftparen")) {newVal=SDLK_LEFTPAREN; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_rightparen")) {newVal=SDLK_RIGHTPAREN; goto done1572;}
+          if (0 == strcmp(tmp, "k_rightparen")) {newVal=SDLK_RIGHTPAREN; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_asterisk")) {newVal=SDLK_ASTERISK; goto done1572;}
+          if (0 == strcmp(tmp, "k_asterisk")) {newVal=SDLK_ASTERISK; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_plus")) {newVal=SDLK_PLUS; goto done1572;}
+          if (0 == strcmp(tmp, "k_plus")) {newVal=SDLK_PLUS; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_comma")) {newVal=SDLK_COMMA; goto done1572;}
+          if (0 == strcmp(tmp, "k_comma")) {newVal=SDLK_COMMA; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_minus")) {newVal=SDLK_MINUS; goto done1572;}
+          if (0 == strcmp(tmp, "k_minus")) {newVal=SDLK_MINUS; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_period")) {newVal=SDLK_PERIOD; goto done1572;}
+          if (0 == strcmp(tmp, "k_period")) {newVal=SDLK_PERIOD; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_slash")) {newVal=SDLK_SLASH; goto done1572;}
+          if (0 == strcmp(tmp, "k_slash")) {newVal=SDLK_SLASH; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_0")) {newVal=SDLK_0; goto done1572;}
+          if (0 == strcmp(tmp, "k_0")) {newVal=SDLK_0; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_1")) {newVal=SDLK_1; goto done1572;}
+          if (0 == strcmp(tmp, "k_1")) {newVal=SDLK_1; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_2")) {newVal=SDLK_2; goto done1572;}
+          if (0 == strcmp(tmp, "k_2")) {newVal=SDLK_2; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_3")) {newVal=SDLK_3; goto done1572;}
+          if (0 == strcmp(tmp, "k_3")) {newVal=SDLK_3; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_4")) {newVal=SDLK_4; goto done1572;}
+          if (0 == strcmp(tmp, "k_4")) {newVal=SDLK_4; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_5")) {newVal=SDLK_5; goto done1572;}
+          if (0 == strcmp(tmp, "k_5")) {newVal=SDLK_5; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_6")) {newVal=SDLK_6; goto done1572;}
+          if (0 == strcmp(tmp, "k_6")) {newVal=SDLK_6; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_7")) {newVal=SDLK_7; goto done1572;}
+          if (0 == strcmp(tmp, "k_7")) {newVal=SDLK_7; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_8")) {newVal=SDLK_8; goto done1572;}
+          if (0 == strcmp(tmp, "k_8")) {newVal=SDLK_8; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_9")) {newVal=SDLK_9; goto done1572;}
+          if (0 == strcmp(tmp, "k_9")) {newVal=SDLK_9; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_colon")) {newVal=SDLK_COLON; goto done1572;}
+          if (0 == strcmp(tmp, "k_colon")) {newVal=SDLK_COLON; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_semicolon")) {newVal=SDLK_SEMICOLON; goto done1572;}
+          if (0 == strcmp(tmp, "k_semicolon")) {newVal=SDLK_SEMICOLON; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_less")) {newVal=SDLK_LESS; goto done1572;}
+          if (0 == strcmp(tmp, "k_less")) {newVal=SDLK_LESS; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_equals")) {newVal=SDLK_EQUALS; goto done1572;}
+          if (0 == strcmp(tmp, "k_equals")) {newVal=SDLK_EQUALS; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_greater")) {newVal=SDLK_GREATER; goto done1572;}
+          if (0 == strcmp(tmp, "k_greater")) {newVal=SDLK_GREATER; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_question")) {newVal=SDLK_QUESTION; goto done1572;}
+          if (0 == strcmp(tmp, "k_question")) {newVal=SDLK_QUESTION; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_at")) {newVal=SDLK_AT; goto done1572;}
+          if (0 == strcmp(tmp, "k_at")) {newVal=SDLK_AT; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_leftbracket")) {newVal=SDLK_LEFTBRACKET; goto done1572;}
+          if (0 == strcmp(tmp, "k_leftbracket")) {newVal=SDLK_LEFTBRACKET; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_backslash")) {newVal=SDLK_BACKSLASH; goto done1572;}
+          if (0 == strcmp(tmp, "k_backslash")) {newVal=SDLK_BACKSLASH; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_rightbracket")) {newVal=SDLK_RIGHTBRACKET; goto done1572;}
+          if (0 == strcmp(tmp, "k_rightbracket")) {newVal=SDLK_RIGHTBRACKET; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_caret")) {newVal=SDLK_CARET; goto done1572;}
+          if (0 == strcmp(tmp, "k_caret")) {newVal=SDLK_CARET; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_underscore")) {newVal=SDLK_UNDERSCORE; goto done1572;}
+          if (0 == strcmp(tmp, "k_underscore")) {newVal=SDLK_UNDERSCORE; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_backquote")) {newVal=SDLK_BACKQUOTE; goto done1572;}
+          if (0 == strcmp(tmp, "k_backquote")) {newVal=SDLK_BACKQUOTE; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_delete")) {newVal=SDLK_DELETE; goto done1572;}
+          if (0 == strcmp(tmp, "k_delete")) {newVal=SDLK_DELETE; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp0")) {newVal=SDLK_KP0; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp0")) {newVal=SDLK_KP0; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp1")) {newVal=SDLK_KP1; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp1")) {newVal=SDLK_KP1; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp2")) {newVal=SDLK_KP2; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp2")) {newVal=SDLK_KP2; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp3")) {newVal=SDLK_KP3; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp3")) {newVal=SDLK_KP3; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp4")) {newVal=SDLK_KP4; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp4")) {newVal=SDLK_KP4; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp5")) {newVal=SDLK_KP5; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp5")) {newVal=SDLK_KP5; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp6")) {newVal=SDLK_KP6; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp6")) {newVal=SDLK_KP6; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp7")) {newVal=SDLK_KP7; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp7")) {newVal=SDLK_KP7; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp8")) {newVal=SDLK_KP8; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp8")) {newVal=SDLK_KP8; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp9")) {newVal=SDLK_KP9; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp9")) {newVal=SDLK_KP9; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp_period")) {newVal=SDLK_KP_PERIOD; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp_period")) {newVal=SDLK_KP_PERIOD; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp_divide")) {newVal=SDLK_KP_DIVIDE; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp_divide")) {newVal=SDLK_KP_DIVIDE; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp_multiply")) {newVal=SDLK_KP_MULTIPLY; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp_multiply")) {newVal=SDLK_KP_MULTIPLY; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp_minus")) {newVal=SDLK_KP_MINUS; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp_minus")) {newVal=SDLK_KP_MINUS; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp_plus")) {newVal=SDLK_KP_PLUS; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp_plus")) {newVal=SDLK_KP_PLUS; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp_enter")) {newVal=SDLK_KP_ENTER; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp_enter")) {newVal=SDLK_KP_ENTER; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_kp_equals")) {newVal=SDLK_KP_EQUALS; goto done1572;}
+          if (0 == strcmp(tmp, "k_kp_equals")) {newVal=SDLK_KP_EQUALS; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_up")) {newVal=SDLK_UP; goto done1572;}
+          if (0 == strcmp(tmp, "k_up")) {newVal=SDLK_UP; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_down")) {newVal=SDLK_DOWN; goto done1572;}
+          if (0 == strcmp(tmp, "k_down")) {newVal=SDLK_DOWN; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_right")) {newVal=SDLK_RIGHT; goto done1572;}
+          if (0 == strcmp(tmp, "k_right")) {newVal=SDLK_RIGHT; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_left")) {newVal=SDLK_LEFT; goto done1572;}
+          if (0 == strcmp(tmp, "k_left")) {newVal=SDLK_LEFT; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_insert")) {newVal=SDLK_INSERT; goto done1572;}
+          if (0 == strcmp(tmp, "k_insert")) {newVal=SDLK_INSERT; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_home")) {newVal=SDLK_HOME; goto done1572;}
+          if (0 == strcmp(tmp, "k_home")) {newVal=SDLK_HOME; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_end")) {newVal=SDLK_END; goto done1572;}
+          if (0 == strcmp(tmp, "k_end")) {newVal=SDLK_END; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_pageup")) {newVal=SDLK_PAGEUP; goto done1572;}
+          if (0 == strcmp(tmp, "k_pageup")) {newVal=SDLK_PAGEUP; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_pagedown")) {newVal=SDLK_PAGEDOWN; goto done1572;}
+          if (0 == strcmp(tmp, "k_pagedown")) {newVal=SDLK_PAGEDOWN; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f1")) {newVal=SDLK_F1; goto done1572;}
+          if (0 == strcmp(tmp, "k_f1")) {newVal=SDLK_F1; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f2")) {newVal=SDLK_F2; goto done1572;}
+          if (0 == strcmp(tmp, "k_f2")) {newVal=SDLK_F2; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f3")) {newVal=SDLK_F3; goto done1572;}
+          if (0 == strcmp(tmp, "k_f3")) {newVal=SDLK_F3; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f4")) {newVal=SDLK_F4; goto done1572;}
+          if (0 == strcmp(tmp, "k_f4")) {newVal=SDLK_F4; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f5")) {newVal=SDLK_F5; goto done1572;}
+          if (0 == strcmp(tmp, "k_f5")) {newVal=SDLK_F5; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f6")) {newVal=SDLK_F6; goto done1572;}
+          if (0 == strcmp(tmp, "k_f6")) {newVal=SDLK_F6; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f7")) {newVal=SDLK_F7; goto done1572;}
+          if (0 == strcmp(tmp, "k_f7")) {newVal=SDLK_F7; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f8")) {newVal=SDLK_F8; goto done1572;}
+          if (0 == strcmp(tmp, "k_f8")) {newVal=SDLK_F8; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f9")) {newVal=SDLK_F9; goto done1572;}
+          if (0 == strcmp(tmp, "k_f9")) {newVal=SDLK_F9; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f10")) {newVal=SDLK_F10; goto done1572;}
+          if (0 == strcmp(tmp, "k_f10")) {newVal=SDLK_F10; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f11")) {newVal=SDLK_F11; goto done1572;}
+          if (0 == strcmp(tmp, "k_f11")) {newVal=SDLK_F11; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f12")) {newVal=SDLK_F12; goto done1572;}
+          if (0 == strcmp(tmp, "k_f12")) {newVal=SDLK_F12; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f13")) {newVal=SDLK_F13; goto done1572;}
+          if (0 == strcmp(tmp, "k_f13")) {newVal=SDLK_F13; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f14")) {newVal=SDLK_F14; goto done1572;}
+          if (0 == strcmp(tmp, "k_f14")) {newVal=SDLK_F14; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f15")) {newVal=SDLK_F15; goto done1572;}
+          if (0 == strcmp(tmp, "k_f15")) {newVal=SDLK_F15; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_numlock")) {newVal=SDLK_NUMLOCK; goto done1572;}
+          if (0 == strcmp(tmp, "k_numlock")) {newVal=SDLK_NUMLOCK; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_capslock")) {newVal=SDLK_CAPSLOCK; goto done1572;}
+          if (0 == strcmp(tmp, "k_capslock")) {newVal=SDLK_CAPSLOCK; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_rshift")) {newVal=SDLK_RSHIFT; goto done1572;}
+          if (0 == strcmp(tmp, "k_rshift")) {newVal=SDLK_RSHIFT; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_lshift")) {newVal=SDLK_LSHIFT; goto done1572;}
+          if (0 == strcmp(tmp, "k_lshift")) {newVal=SDLK_LSHIFT; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_rctrl")) {newVal=SDLK_RCTRL; goto done1572;}
+          if (0 == strcmp(tmp, "k_rctrl")) {newVal=SDLK_RCTRL; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_lctrl")) {newVal=SDLK_LCTRL; goto done1572;}
+          if (0 == strcmp(tmp, "k_lctrl")) {newVal=SDLK_LCTRL; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_ralt")) {newVal=SDLK_RALT; goto done1572;}
+          if (0 == strcmp(tmp, "k_ralt")) {newVal=SDLK_RALT; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_lalt")) {newVal=SDLK_LALT; goto done1572;}
+          if (0 == strcmp(tmp, "k_lalt")) {newVal=SDLK_LALT; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_rmeta")) {newVal=SDLK_RMETA; goto done1572;}
+          if (0 == strcmp(tmp, "k_rmeta")) {newVal=SDLK_RMETA; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_lmeta")) {newVal=SDLK_LMETA; goto done1572;}
+          if (0 == strcmp(tmp, "k_lmeta")) {newVal=SDLK_LMETA; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_lsuper")) {newVal=SDLK_LSUPER; goto done1572;}
+          if (0 == strcmp(tmp, "k_lsuper")) {newVal=SDLK_LSUPER; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_rsuper")) {newVal=SDLK_RSUPER; goto done1572;}
+          if (0 == strcmp(tmp, "k_rsuper")) {newVal=SDLK_RSUPER; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_mode")) {newVal=SDLK_MODE; goto done1572;}
+          if (0 == strcmp(tmp, "k_mode")) {newVal=SDLK_MODE; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_compose")) {newVal=SDLK_COMPOSE; goto done1572;}
+          if (0 == strcmp(tmp, "k_compose")) {newVal=SDLK_COMPOSE; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_help")) {newVal=SDLK_HELP; goto done1572;}
+          if (0 == strcmp(tmp, "k_help")) {newVal=SDLK_HELP; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_print")) {newVal=SDLK_PRINT; goto done1572;}
+          if (0 == strcmp(tmp, "k_print")) {newVal=SDLK_PRINT; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_sysreq")) {newVal=SDLK_SYSREQ; goto done1572;}
+          if (0 == strcmp(tmp, "k_sysreq")) {newVal=SDLK_SYSREQ; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_break")) {newVal=SDLK_BREAK; goto done1572;}
+          if (0 == strcmp(tmp, "k_break")) {newVal=SDLK_BREAK; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_menu")) {newVal=SDLK_MENU; goto done1572;}
+          if (0 == strcmp(tmp, "k_menu")) {newVal=SDLK_MENU; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_power")) {newVal=SDLK_POWER; goto done1572;}
+          if (0 == strcmp(tmp, "k_power")) {newVal=SDLK_POWER; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_euro")) {newVal=SDLK_EURO; goto done1572;}
+          if (0 == strcmp(tmp, "k_euro")) {newVal=SDLK_EURO; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_undo")) {newVal=SDLK_UNDO; goto done1572;}
+          if (0 == strcmp(tmp, "k_undo")) {newVal=SDLK_UNDO; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_a")) {newVal=SDLK_a; goto done1572;}
+          if (0 == strcmp(tmp, "k_a")) {newVal=SDLK_a; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_b")) {newVal=SDLK_b; goto done1572;}
+          if (0 == strcmp(tmp, "k_b")) {newVal=SDLK_b; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_c")) {newVal=SDLK_c; goto done1572;}
+          if (0 == strcmp(tmp, "k_c")) {newVal=SDLK_c; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_d")) {newVal=SDLK_d; goto done1572;}
+          if (0 == strcmp(tmp, "k_d")) {newVal=SDLK_d; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_e")) {newVal=SDLK_e; goto done1572;}
+          if (0 == strcmp(tmp, "k_e")) {newVal=SDLK_e; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_f")) {newVal=SDLK_f; goto done1572;}
+          if (0 == strcmp(tmp, "k_f")) {newVal=SDLK_f; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_g")) {newVal=SDLK_g; goto done1572;}
+          if (0 == strcmp(tmp, "k_g")) {newVal=SDLK_g; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_h")) {newVal=SDLK_h; goto done1572;}
+          if (0 == strcmp(tmp, "k_h")) {newVal=SDLK_h; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_i")) {newVal=SDLK_i; goto done1572;}
+          if (0 == strcmp(tmp, "k_i")) {newVal=SDLK_i; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_j")) {newVal=SDLK_j; goto done1572;}
+          if (0 == strcmp(tmp, "k_j")) {newVal=SDLK_j; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_k")) {newVal=SDLK_k; goto done1572;}
+          if (0 == strcmp(tmp, "k_k")) {newVal=SDLK_k; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_l")) {newVal=SDLK_l; goto done1572;}
+          if (0 == strcmp(tmp, "k_l")) {newVal=SDLK_l; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_m")) {newVal=SDLK_m; goto done1572;}
+          if (0 == strcmp(tmp, "k_m")) {newVal=SDLK_m; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_n")) {newVal=SDLK_n; goto done1572;}
+          if (0 == strcmp(tmp, "k_n")) {newVal=SDLK_n; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_o")) {newVal=SDLK_o; goto done1572;}
+          if (0 == strcmp(tmp, "k_o")) {newVal=SDLK_o; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_p")) {newVal=SDLK_p; goto done1572;}
+          if (0 == strcmp(tmp, "k_p")) {newVal=SDLK_p; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_q")) {newVal=SDLK_q; goto done1572;}
+          if (0 == strcmp(tmp, "k_q")) {newVal=SDLK_q; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_r")) {newVal=SDLK_r; goto done1572;}
+          if (0 == strcmp(tmp, "k_r")) {newVal=SDLK_r; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_s")) {newVal=SDLK_s; goto done1572;}
+          if (0 == strcmp(tmp, "k_s")) {newVal=SDLK_s; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_t")) {newVal=SDLK_t; goto done1572;}
+          if (0 == strcmp(tmp, "k_t")) {newVal=SDLK_t; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_u")) {newVal=SDLK_u; goto done1572;}
+          if (0 == strcmp(tmp, "k_u")) {newVal=SDLK_u; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_v")) {newVal=SDLK_v; goto done1572;}
+          if (0 == strcmp(tmp, "k_v")) {newVal=SDLK_v; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_w")) {newVal=SDLK_w; goto done1572;}
+          if (0 == strcmp(tmp, "k_w")) {newVal=SDLK_w; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_x")) {newVal=SDLK_x; goto done1572;}
+          if (0 == strcmp(tmp, "k_x")) {newVal=SDLK_x; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_y")) {newVal=SDLK_y; goto done1572;}
+          if (0 == strcmp(tmp, "k_y")) {newVal=SDLK_y; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_z")) {newVal=SDLK_z; goto done1572;}
+          if (0 == strcmp(tmp, "k_z")) {newVal=SDLK_z; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_0")) {newVal=SDLK_WORLD_0; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_0")) {newVal=SDLK_WORLD_0; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_1")) {newVal=SDLK_WORLD_1; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_1")) {newVal=SDLK_WORLD_1; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_2")) {newVal=SDLK_WORLD_2; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_2")) {newVal=SDLK_WORLD_2; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_3")) {newVal=SDLK_WORLD_3; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_3")) {newVal=SDLK_WORLD_3; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_4")) {newVal=SDLK_WORLD_4; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_4")) {newVal=SDLK_WORLD_4; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_5")) {newVal=SDLK_WORLD_5; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_5")) {newVal=SDLK_WORLD_5; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_6")) {newVal=SDLK_WORLD_6; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_6")) {newVal=SDLK_WORLD_6; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_7")) {newVal=SDLK_WORLD_7; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_7")) {newVal=SDLK_WORLD_7; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_8")) {newVal=SDLK_WORLD_8; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_8")) {newVal=SDLK_WORLD_8; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_9")) {newVal=SDLK_WORLD_9; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_9")) {newVal=SDLK_WORLD_9; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_10")) {newVal=SDLK_WORLD_10; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_10")) {newVal=SDLK_WORLD_10; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_11")) {newVal=SDLK_WORLD_11; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_11")) {newVal=SDLK_WORLD_11; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_12")) {newVal=SDLK_WORLD_12; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_12")) {newVal=SDLK_WORLD_12; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_13")) {newVal=SDLK_WORLD_13; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_13")) {newVal=SDLK_WORLD_13; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_14")) {newVal=SDLK_WORLD_14; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_14")) {newVal=SDLK_WORLD_14; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_15")) {newVal=SDLK_WORLD_15; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_15")) {newVal=SDLK_WORLD_15; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_16")) {newVal=SDLK_WORLD_16; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_16")) {newVal=SDLK_WORLD_16; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_17")) {newVal=SDLK_WORLD_17; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_17")) {newVal=SDLK_WORLD_17; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_18")) {newVal=SDLK_WORLD_18; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_18")) {newVal=SDLK_WORLD_18; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_19")) {newVal=SDLK_WORLD_19; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_19")) {newVal=SDLK_WORLD_19; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_20")) {newVal=SDLK_WORLD_20; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_20")) {newVal=SDLK_WORLD_20; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_21")) {newVal=SDLK_WORLD_21; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_21")) {newVal=SDLK_WORLD_21; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_22")) {newVal=SDLK_WORLD_22; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_22")) {newVal=SDLK_WORLD_22; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_23")) {newVal=SDLK_WORLD_23; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_23")) {newVal=SDLK_WORLD_23; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_24")) {newVal=SDLK_WORLD_24; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_24")) {newVal=SDLK_WORLD_24; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_25")) {newVal=SDLK_WORLD_25; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_25")) {newVal=SDLK_WORLD_25; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_26")) {newVal=SDLK_WORLD_26; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_26")) {newVal=SDLK_WORLD_26; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_27")) {newVal=SDLK_WORLD_27; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_27")) {newVal=SDLK_WORLD_27; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_28")) {newVal=SDLK_WORLD_28; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_28")) {newVal=SDLK_WORLD_28; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_29")) {newVal=SDLK_WORLD_29; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_29")) {newVal=SDLK_WORLD_29; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_30")) {newVal=SDLK_WORLD_30; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_30")) {newVal=SDLK_WORLD_30; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_31")) {newVal=SDLK_WORLD_31; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_31")) {newVal=SDLK_WORLD_31; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_32")) {newVal=SDLK_WORLD_32; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_32")) {newVal=SDLK_WORLD_32; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_33")) {newVal=SDLK_WORLD_33; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_33")) {newVal=SDLK_WORLD_33; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_34")) {newVal=SDLK_WORLD_34; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_34")) {newVal=SDLK_WORLD_34; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_35")) {newVal=SDLK_WORLD_35; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_35")) {newVal=SDLK_WORLD_35; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_36")) {newVal=SDLK_WORLD_36; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_36")) {newVal=SDLK_WORLD_36; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_37")) {newVal=SDLK_WORLD_37; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_37")) {newVal=SDLK_WORLD_37; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_38")) {newVal=SDLK_WORLD_38; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_38")) {newVal=SDLK_WORLD_38; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_39")) {newVal=SDLK_WORLD_39; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_39")) {newVal=SDLK_WORLD_39; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_40")) {newVal=SDLK_WORLD_40; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_40")) {newVal=SDLK_WORLD_40; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_41")) {newVal=SDLK_WORLD_41; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_41")) {newVal=SDLK_WORLD_41; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_42")) {newVal=SDLK_WORLD_42; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_42")) {newVal=SDLK_WORLD_42; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_43")) {newVal=SDLK_WORLD_43; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_43")) {newVal=SDLK_WORLD_43; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_44")) {newVal=SDLK_WORLD_44; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_44")) {newVal=SDLK_WORLD_44; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_45")) {newVal=SDLK_WORLD_45; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_45")) {newVal=SDLK_WORLD_45; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_46")) {newVal=SDLK_WORLD_46; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_46")) {newVal=SDLK_WORLD_46; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_47")) {newVal=SDLK_WORLD_47; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_47")) {newVal=SDLK_WORLD_47; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_48")) {newVal=SDLK_WORLD_48; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_48")) {newVal=SDLK_WORLD_48; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_49")) {newVal=SDLK_WORLD_49; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_49")) {newVal=SDLK_WORLD_49; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_50")) {newVal=SDLK_WORLD_50; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_50")) {newVal=SDLK_WORLD_50; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_51")) {newVal=SDLK_WORLD_51; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_51")) {newVal=SDLK_WORLD_51; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_52")) {newVal=SDLK_WORLD_52; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_52")) {newVal=SDLK_WORLD_52; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_53")) {newVal=SDLK_WORLD_53; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_53")) {newVal=SDLK_WORLD_53; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_54")) {newVal=SDLK_WORLD_54; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_54")) {newVal=SDLK_WORLD_54; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_55")) {newVal=SDLK_WORLD_55; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_55")) {newVal=SDLK_WORLD_55; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_56")) {newVal=SDLK_WORLD_56; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_56")) {newVal=SDLK_WORLD_56; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_57")) {newVal=SDLK_WORLD_57; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_57")) {newVal=SDLK_WORLD_57; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_58")) {newVal=SDLK_WORLD_58; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_58")) {newVal=SDLK_WORLD_58; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_59")) {newVal=SDLK_WORLD_59; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_59")) {newVal=SDLK_WORLD_59; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_60")) {newVal=SDLK_WORLD_60; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_60")) {newVal=SDLK_WORLD_60; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_61")) {newVal=SDLK_WORLD_61; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_61")) {newVal=SDLK_WORLD_61; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_62")) {newVal=SDLK_WORLD_62; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_62")) {newVal=SDLK_WORLD_62; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_63")) {newVal=SDLK_WORLD_63; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_63")) {newVal=SDLK_WORLD_63; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_64")) {newVal=SDLK_WORLD_64; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_64")) {newVal=SDLK_WORLD_64; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_65")) {newVal=SDLK_WORLD_65; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_65")) {newVal=SDLK_WORLD_65; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_66")) {newVal=SDLK_WORLD_66; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_66")) {newVal=SDLK_WORLD_66; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_67")) {newVal=SDLK_WORLD_67; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_67")) {newVal=SDLK_WORLD_67; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_68")) {newVal=SDLK_WORLD_68; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_68")) {newVal=SDLK_WORLD_68; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_69")) {newVal=SDLK_WORLD_69; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_69")) {newVal=SDLK_WORLD_69; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_70")) {newVal=SDLK_WORLD_70; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_70")) {newVal=SDLK_WORLD_70; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_71")) {newVal=SDLK_WORLD_71; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_71")) {newVal=SDLK_WORLD_71; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_72")) {newVal=SDLK_WORLD_72; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_72")) {newVal=SDLK_WORLD_72; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_73")) {newVal=SDLK_WORLD_73; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_73")) {newVal=SDLK_WORLD_73; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_74")) {newVal=SDLK_WORLD_74; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_74")) {newVal=SDLK_WORLD_74; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_75")) {newVal=SDLK_WORLD_75; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_75")) {newVal=SDLK_WORLD_75; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_76")) {newVal=SDLK_WORLD_76; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_76")) {newVal=SDLK_WORLD_76; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_77")) {newVal=SDLK_WORLD_77; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_77")) {newVal=SDLK_WORLD_77; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_78")) {newVal=SDLK_WORLD_78; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_78")) {newVal=SDLK_WORLD_78; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_79")) {newVal=SDLK_WORLD_79; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_79")) {newVal=SDLK_WORLD_79; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_80")) {newVal=SDLK_WORLD_80; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_80")) {newVal=SDLK_WORLD_80; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_81")) {newVal=SDLK_WORLD_81; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_81")) {newVal=SDLK_WORLD_81; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_82")) {newVal=SDLK_WORLD_82; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_82")) {newVal=SDLK_WORLD_82; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_83")) {newVal=SDLK_WORLD_83; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_83")) {newVal=SDLK_WORLD_83; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_84")) {newVal=SDLK_WORLD_84; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_84")) {newVal=SDLK_WORLD_84; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_85")) {newVal=SDLK_WORLD_85; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_85")) {newVal=SDLK_WORLD_85; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_86")) {newVal=SDLK_WORLD_86; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_86")) {newVal=SDLK_WORLD_86; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_87")) {newVal=SDLK_WORLD_87; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_87")) {newVal=SDLK_WORLD_87; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_88")) {newVal=SDLK_WORLD_88; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_88")) {newVal=SDLK_WORLD_88; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_89")) {newVal=SDLK_WORLD_89; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_89")) {newVal=SDLK_WORLD_89; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_90")) {newVal=SDLK_WORLD_90; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_90")) {newVal=SDLK_WORLD_90; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_91")) {newVal=SDLK_WORLD_91; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_91")) {newVal=SDLK_WORLD_91; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_92")) {newVal=SDLK_WORLD_92; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_92")) {newVal=SDLK_WORLD_92; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_93")) {newVal=SDLK_WORLD_93; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_93")) {newVal=SDLK_WORLD_93; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_94")) {newVal=SDLK_WORLD_94; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_94")) {newVal=SDLK_WORLD_94; goto done1574;}
         
-          if (0 == strcmp(tmp, "k_world_95")) {newVal=SDLK_WORLD_95; goto done1572;}
+          if (0 == strcmp(tmp, "k_world_95")) {newVal=SDLK_WORLD_95; goto done1574;}
          {
           char* end;
           newVal = (SDLKey)strtol(tmp, &end, 10);
@@ -1771,9 +1771,9 @@ static int set94 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]
             sprintf(staticError, "Unable to convert %s to SDLKey", tmp);
             scriptError(staticError);
           }
-          goto done1572;
+          goto done1574;
         } 
-done1572:;}
+done1574:;}
 
       //Any necessary checks
       
@@ -2172,14 +2172,14 @@ static int set104 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "DOWN")) {newVal=SDL_KEYDOWN; goto done1576;}
+          if (0 == strcmp(tmp, "DOWN")) {newVal=SDL_KEYDOWN; goto done1578;}
         
-          if (0 == strcmp(tmp, "UP")) {newVal=SDL_KEYUP; goto done1576;}
+          if (0 == strcmp(tmp, "UP")) {newVal=SDL_KEYUP; goto done1578;}
          {
           sprintf(staticError, "Unable to convert %s to Uint8", tmp);
           scriptError(staticError);
         } 
-done1576:;}
+done1578:;}
 
       //Any necessary checks
       
@@ -2315,14 +2315,14 @@ static int set107 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "PRESSED")) {newVal=SDL_PRESSED; goto done1578;}
+          if (0 == strcmp(tmp, "PRESSED")) {newVal=SDL_PRESSED; goto done1580;}
         
-          if (0 == strcmp(tmp, "RELEASED")) {newVal=SDL_RELEASED; goto done1578;}
+          if (0 == strcmp(tmp, "RELEASED")) {newVal=SDL_RELEASED; goto done1580;}
          {
           sprintf(staticError, "Unable to convert %s to Uint8", tmp);
           scriptError(staticError);
         } 
-done1578:;}
+done1580:;}
 
       //Any necessary checks
       
@@ -3661,14 +3661,14 @@ static int set151 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "DOWN")) {newVal=SDL_MOUSEBUTTONDOWN; goto done1588;}
+          if (0 == strcmp(tmp, "DOWN")) {newVal=SDL_MOUSEBUTTONDOWN; goto done1590;}
         
-          if (0 == strcmp(tmp, "UP")) {newVal=SDL_MOUSEBUTTONUP; goto done1588;}
+          if (0 == strcmp(tmp, "UP")) {newVal=SDL_MOUSEBUTTONUP; goto done1590;}
          {
           sprintf(staticError, "Unable to convert %s to Uint8", tmp);
           scriptError(staticError);
         } 
-done1588:;}
+done1590:;}
 
       //Any necessary checks
       
@@ -3927,20 +3927,20 @@ static int set157 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "mb_left")) {newVal=SDL_BUTTON_LEFT; goto done1591;}
+          if (0 == strcmp(tmp, "mb_left")) {newVal=SDL_BUTTON_LEFT; goto done1593;}
         
-          if (0 == strcmp(tmp, "mb_mid")) {newVal=SDL_BUTTON_MIDDLE; goto done1591;}
+          if (0 == strcmp(tmp, "mb_mid")) {newVal=SDL_BUTTON_MIDDLE; goto done1593;}
         
-          if (0 == strcmp(tmp, "mb_right")) {newVal=SDL_BUTTON_RIGHT; goto done1591;}
+          if (0 == strcmp(tmp, "mb_right")) {newVal=SDL_BUTTON_RIGHT; goto done1593;}
         
-          if (0 == strcmp(tmp, "mb_wup")) {newVal=SDL_BUTTON_WHEELUP; goto done1591;}
+          if (0 == strcmp(tmp, "mb_wup")) {newVal=SDL_BUTTON_WHEELUP; goto done1593;}
         
-          if (0 == strcmp(tmp, "mb_wdown")) {newVal=SDL_BUTTON_WHEELDOWN; goto done1591;}
+          if (0 == strcmp(tmp, "mb_wdown")) {newVal=SDL_BUTTON_WHEELDOWN; goto done1593;}
          {
           sprintf(staticError, "Unable to convert %s to Uint8", tmp);
           scriptError(staticError);
         } 
-done1591:;}
+done1593:;}
 
       //Any necessary checks
       
@@ -4076,14 +4076,14 @@ static int set160 (ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "PRESSED")) {newVal=SDL_PRESSED; goto done1593;}
+          if (0 == strcmp(tmp, "PRESSED")) {newVal=SDL_PRESSED; goto done1595;}
         
-          if (0 == strcmp(tmp, "RELEASED")) {newVal=SDL_RELEASED; goto done1593;}
+          if (0 == strcmp(tmp, "RELEASED")) {newVal=SDL_RELEASED; goto done1595;}
          {
           sprintf(staticError, "Unable to convert %s to Uint8", tmp);
           scriptError(staticError);
         } 
-done1593:;}
+done1595:;}
 
       //Any necessary checks
       
@@ -4392,469 +4392,469 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
         //Protect from buffer overflows in static error messages
         if (strlen(tmp) > 100) { scriptError("Enumeration value too long"); }
       
-          if (0 == strcmp(tmp, "k_unknown")) {arg0=SDLK_UNKNOWN; goto done1596;}
+          if (0 == strcmp(tmp, "k_unknown")) {arg0=SDLK_UNKNOWN; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_enter")) {arg0=SDLK_RETURN; goto done1596;}
+          if (0 == strcmp(tmp, "k_enter")) {arg0=SDLK_RETURN; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_scrolllock")) {arg0=SDLK_SCROLLOCK; goto done1596;}
+          if (0 == strcmp(tmp, "k_scrolllock")) {arg0=SDLK_SCROLLOCK; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_backspace")) {arg0=SDLK_BACKSPACE; goto done1596;}
+          if (0 == strcmp(tmp, "k_backspace")) {arg0=SDLK_BACKSPACE; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_tab")) {arg0=SDLK_TAB; goto done1596;}
+          if (0 == strcmp(tmp, "k_tab")) {arg0=SDLK_TAB; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_clear")) {arg0=SDLK_CLEAR; goto done1596;}
+          if (0 == strcmp(tmp, "k_clear")) {arg0=SDLK_CLEAR; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_pause")) {arg0=SDLK_PAUSE; goto done1596;}
+          if (0 == strcmp(tmp, "k_pause")) {arg0=SDLK_PAUSE; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_escape")) {arg0=SDLK_ESCAPE; goto done1596;}
+          if (0 == strcmp(tmp, "k_escape")) {arg0=SDLK_ESCAPE; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_space")) {arg0=SDLK_SPACE; goto done1596;}
+          if (0 == strcmp(tmp, "k_space")) {arg0=SDLK_SPACE; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_exclaim")) {arg0=SDLK_EXCLAIM; goto done1596;}
+          if (0 == strcmp(tmp, "k_exclaim")) {arg0=SDLK_EXCLAIM; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_quotedbl")) {arg0=SDLK_QUOTEDBL; goto done1596;}
+          if (0 == strcmp(tmp, "k_quotedbl")) {arg0=SDLK_QUOTEDBL; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_hash")) {arg0=SDLK_HASH; goto done1596;}
+          if (0 == strcmp(tmp, "k_hash")) {arg0=SDLK_HASH; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_dollar")) {arg0=SDLK_DOLLAR; goto done1596;}
+          if (0 == strcmp(tmp, "k_dollar")) {arg0=SDLK_DOLLAR; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_ampersand")) {arg0=SDLK_AMPERSAND; goto done1596;}
+          if (0 == strcmp(tmp, "k_ampersand")) {arg0=SDLK_AMPERSAND; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_quote")) {arg0=SDLK_QUOTE; goto done1596;}
+          if (0 == strcmp(tmp, "k_quote")) {arg0=SDLK_QUOTE; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_leftparen")) {arg0=SDLK_LEFTPAREN; goto done1596;}
+          if (0 == strcmp(tmp, "k_leftparen")) {arg0=SDLK_LEFTPAREN; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_rightparen")) {arg0=SDLK_RIGHTPAREN; goto done1596;}
+          if (0 == strcmp(tmp, "k_rightparen")) {arg0=SDLK_RIGHTPAREN; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_asterisk")) {arg0=SDLK_ASTERISK; goto done1596;}
+          if (0 == strcmp(tmp, "k_asterisk")) {arg0=SDLK_ASTERISK; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_plus")) {arg0=SDLK_PLUS; goto done1596;}
+          if (0 == strcmp(tmp, "k_plus")) {arg0=SDLK_PLUS; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_comma")) {arg0=SDLK_COMMA; goto done1596;}
+          if (0 == strcmp(tmp, "k_comma")) {arg0=SDLK_COMMA; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_minus")) {arg0=SDLK_MINUS; goto done1596;}
+          if (0 == strcmp(tmp, "k_minus")) {arg0=SDLK_MINUS; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_period")) {arg0=SDLK_PERIOD; goto done1596;}
+          if (0 == strcmp(tmp, "k_period")) {arg0=SDLK_PERIOD; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_slash")) {arg0=SDLK_SLASH; goto done1596;}
+          if (0 == strcmp(tmp, "k_slash")) {arg0=SDLK_SLASH; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_0")) {arg0=SDLK_0; goto done1596;}
+          if (0 == strcmp(tmp, "k_0")) {arg0=SDLK_0; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_1")) {arg0=SDLK_1; goto done1596;}
+          if (0 == strcmp(tmp, "k_1")) {arg0=SDLK_1; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_2")) {arg0=SDLK_2; goto done1596;}
+          if (0 == strcmp(tmp, "k_2")) {arg0=SDLK_2; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_3")) {arg0=SDLK_3; goto done1596;}
+          if (0 == strcmp(tmp, "k_3")) {arg0=SDLK_3; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_4")) {arg0=SDLK_4; goto done1596;}
+          if (0 == strcmp(tmp, "k_4")) {arg0=SDLK_4; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_5")) {arg0=SDLK_5; goto done1596;}
+          if (0 == strcmp(tmp, "k_5")) {arg0=SDLK_5; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_6")) {arg0=SDLK_6; goto done1596;}
+          if (0 == strcmp(tmp, "k_6")) {arg0=SDLK_6; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_7")) {arg0=SDLK_7; goto done1596;}
+          if (0 == strcmp(tmp, "k_7")) {arg0=SDLK_7; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_8")) {arg0=SDLK_8; goto done1596;}
+          if (0 == strcmp(tmp, "k_8")) {arg0=SDLK_8; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_9")) {arg0=SDLK_9; goto done1596;}
+          if (0 == strcmp(tmp, "k_9")) {arg0=SDLK_9; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_colon")) {arg0=SDLK_COLON; goto done1596;}
+          if (0 == strcmp(tmp, "k_colon")) {arg0=SDLK_COLON; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_semicolon")) {arg0=SDLK_SEMICOLON; goto done1596;}
+          if (0 == strcmp(tmp, "k_semicolon")) {arg0=SDLK_SEMICOLON; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_less")) {arg0=SDLK_LESS; goto done1596;}
+          if (0 == strcmp(tmp, "k_less")) {arg0=SDLK_LESS; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_equals")) {arg0=SDLK_EQUALS; goto done1596;}
+          if (0 == strcmp(tmp, "k_equals")) {arg0=SDLK_EQUALS; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_greater")) {arg0=SDLK_GREATER; goto done1596;}
+          if (0 == strcmp(tmp, "k_greater")) {arg0=SDLK_GREATER; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_question")) {arg0=SDLK_QUESTION; goto done1596;}
+          if (0 == strcmp(tmp, "k_question")) {arg0=SDLK_QUESTION; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_at")) {arg0=SDLK_AT; goto done1596;}
+          if (0 == strcmp(tmp, "k_at")) {arg0=SDLK_AT; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_leftbracket")) {arg0=SDLK_LEFTBRACKET; goto done1596;}
+          if (0 == strcmp(tmp, "k_leftbracket")) {arg0=SDLK_LEFTBRACKET; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_backslash")) {arg0=SDLK_BACKSLASH; goto done1596;}
+          if (0 == strcmp(tmp, "k_backslash")) {arg0=SDLK_BACKSLASH; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_rightbracket")) {arg0=SDLK_RIGHTBRACKET; goto done1596;}
+          if (0 == strcmp(tmp, "k_rightbracket")) {arg0=SDLK_RIGHTBRACKET; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_caret")) {arg0=SDLK_CARET; goto done1596;}
+          if (0 == strcmp(tmp, "k_caret")) {arg0=SDLK_CARET; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_underscore")) {arg0=SDLK_UNDERSCORE; goto done1596;}
+          if (0 == strcmp(tmp, "k_underscore")) {arg0=SDLK_UNDERSCORE; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_backquote")) {arg0=SDLK_BACKQUOTE; goto done1596;}
+          if (0 == strcmp(tmp, "k_backquote")) {arg0=SDLK_BACKQUOTE; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_delete")) {arg0=SDLK_DELETE; goto done1596;}
+          if (0 == strcmp(tmp, "k_delete")) {arg0=SDLK_DELETE; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp0")) {arg0=SDLK_KP0; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp0")) {arg0=SDLK_KP0; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp1")) {arg0=SDLK_KP1; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp1")) {arg0=SDLK_KP1; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp2")) {arg0=SDLK_KP2; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp2")) {arg0=SDLK_KP2; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp3")) {arg0=SDLK_KP3; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp3")) {arg0=SDLK_KP3; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp4")) {arg0=SDLK_KP4; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp4")) {arg0=SDLK_KP4; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp5")) {arg0=SDLK_KP5; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp5")) {arg0=SDLK_KP5; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp6")) {arg0=SDLK_KP6; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp6")) {arg0=SDLK_KP6; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp7")) {arg0=SDLK_KP7; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp7")) {arg0=SDLK_KP7; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp8")) {arg0=SDLK_KP8; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp8")) {arg0=SDLK_KP8; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp9")) {arg0=SDLK_KP9; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp9")) {arg0=SDLK_KP9; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp_period")) {arg0=SDLK_KP_PERIOD; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp_period")) {arg0=SDLK_KP_PERIOD; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp_divide")) {arg0=SDLK_KP_DIVIDE; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp_divide")) {arg0=SDLK_KP_DIVIDE; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp_multiply")) {arg0=SDLK_KP_MULTIPLY; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp_multiply")) {arg0=SDLK_KP_MULTIPLY; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp_minus")) {arg0=SDLK_KP_MINUS; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp_minus")) {arg0=SDLK_KP_MINUS; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp_plus")) {arg0=SDLK_KP_PLUS; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp_plus")) {arg0=SDLK_KP_PLUS; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp_enter")) {arg0=SDLK_KP_ENTER; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp_enter")) {arg0=SDLK_KP_ENTER; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_kp_equals")) {arg0=SDLK_KP_EQUALS; goto done1596;}
+          if (0 == strcmp(tmp, "k_kp_equals")) {arg0=SDLK_KP_EQUALS; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_up")) {arg0=SDLK_UP; goto done1596;}
+          if (0 == strcmp(tmp, "k_up")) {arg0=SDLK_UP; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_down")) {arg0=SDLK_DOWN; goto done1596;}
+          if (0 == strcmp(tmp, "k_down")) {arg0=SDLK_DOWN; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_right")) {arg0=SDLK_RIGHT; goto done1596;}
+          if (0 == strcmp(tmp, "k_right")) {arg0=SDLK_RIGHT; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_left")) {arg0=SDLK_LEFT; goto done1596;}
+          if (0 == strcmp(tmp, "k_left")) {arg0=SDLK_LEFT; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_insert")) {arg0=SDLK_INSERT; goto done1596;}
+          if (0 == strcmp(tmp, "k_insert")) {arg0=SDLK_INSERT; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_home")) {arg0=SDLK_HOME; goto done1596;}
+          if (0 == strcmp(tmp, "k_home")) {arg0=SDLK_HOME; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_end")) {arg0=SDLK_END; goto done1596;}
+          if (0 == strcmp(tmp, "k_end")) {arg0=SDLK_END; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_pageup")) {arg0=SDLK_PAGEUP; goto done1596;}
+          if (0 == strcmp(tmp, "k_pageup")) {arg0=SDLK_PAGEUP; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_pagedown")) {arg0=SDLK_PAGEDOWN; goto done1596;}
+          if (0 == strcmp(tmp, "k_pagedown")) {arg0=SDLK_PAGEDOWN; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f1")) {arg0=SDLK_F1; goto done1596;}
+          if (0 == strcmp(tmp, "k_f1")) {arg0=SDLK_F1; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f2")) {arg0=SDLK_F2; goto done1596;}
+          if (0 == strcmp(tmp, "k_f2")) {arg0=SDLK_F2; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f3")) {arg0=SDLK_F3; goto done1596;}
+          if (0 == strcmp(tmp, "k_f3")) {arg0=SDLK_F3; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f4")) {arg0=SDLK_F4; goto done1596;}
+          if (0 == strcmp(tmp, "k_f4")) {arg0=SDLK_F4; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f5")) {arg0=SDLK_F5; goto done1596;}
+          if (0 == strcmp(tmp, "k_f5")) {arg0=SDLK_F5; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f6")) {arg0=SDLK_F6; goto done1596;}
+          if (0 == strcmp(tmp, "k_f6")) {arg0=SDLK_F6; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f7")) {arg0=SDLK_F7; goto done1596;}
+          if (0 == strcmp(tmp, "k_f7")) {arg0=SDLK_F7; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f8")) {arg0=SDLK_F8; goto done1596;}
+          if (0 == strcmp(tmp, "k_f8")) {arg0=SDLK_F8; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f9")) {arg0=SDLK_F9; goto done1596;}
+          if (0 == strcmp(tmp, "k_f9")) {arg0=SDLK_F9; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f10")) {arg0=SDLK_F10; goto done1596;}
+          if (0 == strcmp(tmp, "k_f10")) {arg0=SDLK_F10; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f11")) {arg0=SDLK_F11; goto done1596;}
+          if (0 == strcmp(tmp, "k_f11")) {arg0=SDLK_F11; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f12")) {arg0=SDLK_F12; goto done1596;}
+          if (0 == strcmp(tmp, "k_f12")) {arg0=SDLK_F12; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f13")) {arg0=SDLK_F13; goto done1596;}
+          if (0 == strcmp(tmp, "k_f13")) {arg0=SDLK_F13; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f14")) {arg0=SDLK_F14; goto done1596;}
+          if (0 == strcmp(tmp, "k_f14")) {arg0=SDLK_F14; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f15")) {arg0=SDLK_F15; goto done1596;}
+          if (0 == strcmp(tmp, "k_f15")) {arg0=SDLK_F15; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_numlock")) {arg0=SDLK_NUMLOCK; goto done1596;}
+          if (0 == strcmp(tmp, "k_numlock")) {arg0=SDLK_NUMLOCK; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_capslock")) {arg0=SDLK_CAPSLOCK; goto done1596;}
+          if (0 == strcmp(tmp, "k_capslock")) {arg0=SDLK_CAPSLOCK; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_rshift")) {arg0=SDLK_RSHIFT; goto done1596;}
+          if (0 == strcmp(tmp, "k_rshift")) {arg0=SDLK_RSHIFT; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_lshift")) {arg0=SDLK_LSHIFT; goto done1596;}
+          if (0 == strcmp(tmp, "k_lshift")) {arg0=SDLK_LSHIFT; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_rctrl")) {arg0=SDLK_RCTRL; goto done1596;}
+          if (0 == strcmp(tmp, "k_rctrl")) {arg0=SDLK_RCTRL; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_lctrl")) {arg0=SDLK_LCTRL; goto done1596;}
+          if (0 == strcmp(tmp, "k_lctrl")) {arg0=SDLK_LCTRL; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_ralt")) {arg0=SDLK_RALT; goto done1596;}
+          if (0 == strcmp(tmp, "k_ralt")) {arg0=SDLK_RALT; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_lalt")) {arg0=SDLK_LALT; goto done1596;}
+          if (0 == strcmp(tmp, "k_lalt")) {arg0=SDLK_LALT; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_rmeta")) {arg0=SDLK_RMETA; goto done1596;}
+          if (0 == strcmp(tmp, "k_rmeta")) {arg0=SDLK_RMETA; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_lmeta")) {arg0=SDLK_LMETA; goto done1596;}
+          if (0 == strcmp(tmp, "k_lmeta")) {arg0=SDLK_LMETA; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_lsuper")) {arg0=SDLK_LSUPER; goto done1596;}
+          if (0 == strcmp(tmp, "k_lsuper")) {arg0=SDLK_LSUPER; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_rsuper")) {arg0=SDLK_RSUPER; goto done1596;}
+          if (0 == strcmp(tmp, "k_rsuper")) {arg0=SDLK_RSUPER; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_mode")) {arg0=SDLK_MODE; goto done1596;}
+          if (0 == strcmp(tmp, "k_mode")) {arg0=SDLK_MODE; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_compose")) {arg0=SDLK_COMPOSE; goto done1596;}
+          if (0 == strcmp(tmp, "k_compose")) {arg0=SDLK_COMPOSE; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_help")) {arg0=SDLK_HELP; goto done1596;}
+          if (0 == strcmp(tmp, "k_help")) {arg0=SDLK_HELP; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_print")) {arg0=SDLK_PRINT; goto done1596;}
+          if (0 == strcmp(tmp, "k_print")) {arg0=SDLK_PRINT; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_sysreq")) {arg0=SDLK_SYSREQ; goto done1596;}
+          if (0 == strcmp(tmp, "k_sysreq")) {arg0=SDLK_SYSREQ; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_break")) {arg0=SDLK_BREAK; goto done1596;}
+          if (0 == strcmp(tmp, "k_break")) {arg0=SDLK_BREAK; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_menu")) {arg0=SDLK_MENU; goto done1596;}
+          if (0 == strcmp(tmp, "k_menu")) {arg0=SDLK_MENU; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_power")) {arg0=SDLK_POWER; goto done1596;}
+          if (0 == strcmp(tmp, "k_power")) {arg0=SDLK_POWER; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_euro")) {arg0=SDLK_EURO; goto done1596;}
+          if (0 == strcmp(tmp, "k_euro")) {arg0=SDLK_EURO; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_undo")) {arg0=SDLK_UNDO; goto done1596;}
+          if (0 == strcmp(tmp, "k_undo")) {arg0=SDLK_UNDO; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_a")) {arg0=SDLK_a; goto done1596;}
+          if (0 == strcmp(tmp, "k_a")) {arg0=SDLK_a; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_b")) {arg0=SDLK_b; goto done1596;}
+          if (0 == strcmp(tmp, "k_b")) {arg0=SDLK_b; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_c")) {arg0=SDLK_c; goto done1596;}
+          if (0 == strcmp(tmp, "k_c")) {arg0=SDLK_c; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_d")) {arg0=SDLK_d; goto done1596;}
+          if (0 == strcmp(tmp, "k_d")) {arg0=SDLK_d; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_e")) {arg0=SDLK_e; goto done1596;}
+          if (0 == strcmp(tmp, "k_e")) {arg0=SDLK_e; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_f")) {arg0=SDLK_f; goto done1596;}
+          if (0 == strcmp(tmp, "k_f")) {arg0=SDLK_f; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_g")) {arg0=SDLK_g; goto done1596;}
+          if (0 == strcmp(tmp, "k_g")) {arg0=SDLK_g; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_h")) {arg0=SDLK_h; goto done1596;}
+          if (0 == strcmp(tmp, "k_h")) {arg0=SDLK_h; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_i")) {arg0=SDLK_i; goto done1596;}
+          if (0 == strcmp(tmp, "k_i")) {arg0=SDLK_i; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_j")) {arg0=SDLK_j; goto done1596;}
+          if (0 == strcmp(tmp, "k_j")) {arg0=SDLK_j; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_k")) {arg0=SDLK_k; goto done1596;}
+          if (0 == strcmp(tmp, "k_k")) {arg0=SDLK_k; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_l")) {arg0=SDLK_l; goto done1596;}
+          if (0 == strcmp(tmp, "k_l")) {arg0=SDLK_l; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_m")) {arg0=SDLK_m; goto done1596;}
+          if (0 == strcmp(tmp, "k_m")) {arg0=SDLK_m; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_n")) {arg0=SDLK_n; goto done1596;}
+          if (0 == strcmp(tmp, "k_n")) {arg0=SDLK_n; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_o")) {arg0=SDLK_o; goto done1596;}
+          if (0 == strcmp(tmp, "k_o")) {arg0=SDLK_o; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_p")) {arg0=SDLK_p; goto done1596;}
+          if (0 == strcmp(tmp, "k_p")) {arg0=SDLK_p; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_q")) {arg0=SDLK_q; goto done1596;}
+          if (0 == strcmp(tmp, "k_q")) {arg0=SDLK_q; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_r")) {arg0=SDLK_r; goto done1596;}
+          if (0 == strcmp(tmp, "k_r")) {arg0=SDLK_r; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_s")) {arg0=SDLK_s; goto done1596;}
+          if (0 == strcmp(tmp, "k_s")) {arg0=SDLK_s; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_t")) {arg0=SDLK_t; goto done1596;}
+          if (0 == strcmp(tmp, "k_t")) {arg0=SDLK_t; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_u")) {arg0=SDLK_u; goto done1596;}
+          if (0 == strcmp(tmp, "k_u")) {arg0=SDLK_u; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_v")) {arg0=SDLK_v; goto done1596;}
+          if (0 == strcmp(tmp, "k_v")) {arg0=SDLK_v; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_w")) {arg0=SDLK_w; goto done1596;}
+          if (0 == strcmp(tmp, "k_w")) {arg0=SDLK_w; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_x")) {arg0=SDLK_x; goto done1596;}
+          if (0 == strcmp(tmp, "k_x")) {arg0=SDLK_x; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_y")) {arg0=SDLK_y; goto done1596;}
+          if (0 == strcmp(tmp, "k_y")) {arg0=SDLK_y; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_z")) {arg0=SDLK_z; goto done1596;}
+          if (0 == strcmp(tmp, "k_z")) {arg0=SDLK_z; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_0")) {arg0=SDLK_WORLD_0; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_0")) {arg0=SDLK_WORLD_0; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_1")) {arg0=SDLK_WORLD_1; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_1")) {arg0=SDLK_WORLD_1; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_2")) {arg0=SDLK_WORLD_2; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_2")) {arg0=SDLK_WORLD_2; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_3")) {arg0=SDLK_WORLD_3; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_3")) {arg0=SDLK_WORLD_3; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_4")) {arg0=SDLK_WORLD_4; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_4")) {arg0=SDLK_WORLD_4; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_5")) {arg0=SDLK_WORLD_5; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_5")) {arg0=SDLK_WORLD_5; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_6")) {arg0=SDLK_WORLD_6; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_6")) {arg0=SDLK_WORLD_6; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_7")) {arg0=SDLK_WORLD_7; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_7")) {arg0=SDLK_WORLD_7; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_8")) {arg0=SDLK_WORLD_8; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_8")) {arg0=SDLK_WORLD_8; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_9")) {arg0=SDLK_WORLD_9; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_9")) {arg0=SDLK_WORLD_9; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_10")) {arg0=SDLK_WORLD_10; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_10")) {arg0=SDLK_WORLD_10; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_11")) {arg0=SDLK_WORLD_11; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_11")) {arg0=SDLK_WORLD_11; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_12")) {arg0=SDLK_WORLD_12; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_12")) {arg0=SDLK_WORLD_12; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_13")) {arg0=SDLK_WORLD_13; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_13")) {arg0=SDLK_WORLD_13; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_14")) {arg0=SDLK_WORLD_14; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_14")) {arg0=SDLK_WORLD_14; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_15")) {arg0=SDLK_WORLD_15; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_15")) {arg0=SDLK_WORLD_15; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_16")) {arg0=SDLK_WORLD_16; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_16")) {arg0=SDLK_WORLD_16; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_17")) {arg0=SDLK_WORLD_17; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_17")) {arg0=SDLK_WORLD_17; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_18")) {arg0=SDLK_WORLD_18; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_18")) {arg0=SDLK_WORLD_18; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_19")) {arg0=SDLK_WORLD_19; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_19")) {arg0=SDLK_WORLD_19; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_20")) {arg0=SDLK_WORLD_20; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_20")) {arg0=SDLK_WORLD_20; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_21")) {arg0=SDLK_WORLD_21; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_21")) {arg0=SDLK_WORLD_21; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_22")) {arg0=SDLK_WORLD_22; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_22")) {arg0=SDLK_WORLD_22; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_23")) {arg0=SDLK_WORLD_23; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_23")) {arg0=SDLK_WORLD_23; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_24")) {arg0=SDLK_WORLD_24; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_24")) {arg0=SDLK_WORLD_24; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_25")) {arg0=SDLK_WORLD_25; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_25")) {arg0=SDLK_WORLD_25; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_26")) {arg0=SDLK_WORLD_26; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_26")) {arg0=SDLK_WORLD_26; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_27")) {arg0=SDLK_WORLD_27; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_27")) {arg0=SDLK_WORLD_27; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_28")) {arg0=SDLK_WORLD_28; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_28")) {arg0=SDLK_WORLD_28; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_29")) {arg0=SDLK_WORLD_29; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_29")) {arg0=SDLK_WORLD_29; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_30")) {arg0=SDLK_WORLD_30; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_30")) {arg0=SDLK_WORLD_30; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_31")) {arg0=SDLK_WORLD_31; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_31")) {arg0=SDLK_WORLD_31; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_32")) {arg0=SDLK_WORLD_32; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_32")) {arg0=SDLK_WORLD_32; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_33")) {arg0=SDLK_WORLD_33; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_33")) {arg0=SDLK_WORLD_33; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_34")) {arg0=SDLK_WORLD_34; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_34")) {arg0=SDLK_WORLD_34; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_35")) {arg0=SDLK_WORLD_35; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_35")) {arg0=SDLK_WORLD_35; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_36")) {arg0=SDLK_WORLD_36; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_36")) {arg0=SDLK_WORLD_36; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_37")) {arg0=SDLK_WORLD_37; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_37")) {arg0=SDLK_WORLD_37; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_38")) {arg0=SDLK_WORLD_38; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_38")) {arg0=SDLK_WORLD_38; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_39")) {arg0=SDLK_WORLD_39; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_39")) {arg0=SDLK_WORLD_39; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_40")) {arg0=SDLK_WORLD_40; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_40")) {arg0=SDLK_WORLD_40; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_41")) {arg0=SDLK_WORLD_41; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_41")) {arg0=SDLK_WORLD_41; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_42")) {arg0=SDLK_WORLD_42; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_42")) {arg0=SDLK_WORLD_42; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_43")) {arg0=SDLK_WORLD_43; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_43")) {arg0=SDLK_WORLD_43; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_44")) {arg0=SDLK_WORLD_44; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_44")) {arg0=SDLK_WORLD_44; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_45")) {arg0=SDLK_WORLD_45; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_45")) {arg0=SDLK_WORLD_45; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_46")) {arg0=SDLK_WORLD_46; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_46")) {arg0=SDLK_WORLD_46; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_47")) {arg0=SDLK_WORLD_47; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_47")) {arg0=SDLK_WORLD_47; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_48")) {arg0=SDLK_WORLD_48; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_48")) {arg0=SDLK_WORLD_48; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_49")) {arg0=SDLK_WORLD_49; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_49")) {arg0=SDLK_WORLD_49; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_50")) {arg0=SDLK_WORLD_50; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_50")) {arg0=SDLK_WORLD_50; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_51")) {arg0=SDLK_WORLD_51; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_51")) {arg0=SDLK_WORLD_51; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_52")) {arg0=SDLK_WORLD_52; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_52")) {arg0=SDLK_WORLD_52; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_53")) {arg0=SDLK_WORLD_53; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_53")) {arg0=SDLK_WORLD_53; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_54")) {arg0=SDLK_WORLD_54; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_54")) {arg0=SDLK_WORLD_54; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_55")) {arg0=SDLK_WORLD_55; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_55")) {arg0=SDLK_WORLD_55; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_56")) {arg0=SDLK_WORLD_56; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_56")) {arg0=SDLK_WORLD_56; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_57")) {arg0=SDLK_WORLD_57; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_57")) {arg0=SDLK_WORLD_57; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_58")) {arg0=SDLK_WORLD_58; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_58")) {arg0=SDLK_WORLD_58; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_59")) {arg0=SDLK_WORLD_59; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_59")) {arg0=SDLK_WORLD_59; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_60")) {arg0=SDLK_WORLD_60; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_60")) {arg0=SDLK_WORLD_60; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_61")) {arg0=SDLK_WORLD_61; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_61")) {arg0=SDLK_WORLD_61; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_62")) {arg0=SDLK_WORLD_62; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_62")) {arg0=SDLK_WORLD_62; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_63")) {arg0=SDLK_WORLD_63; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_63")) {arg0=SDLK_WORLD_63; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_64")) {arg0=SDLK_WORLD_64; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_64")) {arg0=SDLK_WORLD_64; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_65")) {arg0=SDLK_WORLD_65; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_65")) {arg0=SDLK_WORLD_65; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_66")) {arg0=SDLK_WORLD_66; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_66")) {arg0=SDLK_WORLD_66; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_67")) {arg0=SDLK_WORLD_67; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_67")) {arg0=SDLK_WORLD_67; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_68")) {arg0=SDLK_WORLD_68; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_68")) {arg0=SDLK_WORLD_68; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_69")) {arg0=SDLK_WORLD_69; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_69")) {arg0=SDLK_WORLD_69; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_70")) {arg0=SDLK_WORLD_70; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_70")) {arg0=SDLK_WORLD_70; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_71")) {arg0=SDLK_WORLD_71; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_71")) {arg0=SDLK_WORLD_71; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_72")) {arg0=SDLK_WORLD_72; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_72")) {arg0=SDLK_WORLD_72; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_73")) {arg0=SDLK_WORLD_73; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_73")) {arg0=SDLK_WORLD_73; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_74")) {arg0=SDLK_WORLD_74; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_74")) {arg0=SDLK_WORLD_74; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_75")) {arg0=SDLK_WORLD_75; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_75")) {arg0=SDLK_WORLD_75; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_76")) {arg0=SDLK_WORLD_76; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_76")) {arg0=SDLK_WORLD_76; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_77")) {arg0=SDLK_WORLD_77; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_77")) {arg0=SDLK_WORLD_77; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_78")) {arg0=SDLK_WORLD_78; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_78")) {arg0=SDLK_WORLD_78; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_79")) {arg0=SDLK_WORLD_79; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_79")) {arg0=SDLK_WORLD_79; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_80")) {arg0=SDLK_WORLD_80; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_80")) {arg0=SDLK_WORLD_80; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_81")) {arg0=SDLK_WORLD_81; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_81")) {arg0=SDLK_WORLD_81; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_82")) {arg0=SDLK_WORLD_82; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_82")) {arg0=SDLK_WORLD_82; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_83")) {arg0=SDLK_WORLD_83; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_83")) {arg0=SDLK_WORLD_83; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_84")) {arg0=SDLK_WORLD_84; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_84")) {arg0=SDLK_WORLD_84; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_85")) {arg0=SDLK_WORLD_85; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_85")) {arg0=SDLK_WORLD_85; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_86")) {arg0=SDLK_WORLD_86; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_86")) {arg0=SDLK_WORLD_86; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_87")) {arg0=SDLK_WORLD_87; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_87")) {arg0=SDLK_WORLD_87; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_88")) {arg0=SDLK_WORLD_88; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_88")) {arg0=SDLK_WORLD_88; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_89")) {arg0=SDLK_WORLD_89; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_89")) {arg0=SDLK_WORLD_89; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_90")) {arg0=SDLK_WORLD_90; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_90")) {arg0=SDLK_WORLD_90; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_91")) {arg0=SDLK_WORLD_91; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_91")) {arg0=SDLK_WORLD_91; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_92")) {arg0=SDLK_WORLD_92; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_92")) {arg0=SDLK_WORLD_92; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_93")) {arg0=SDLK_WORLD_93; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_93")) {arg0=SDLK_WORLD_93; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_94")) {arg0=SDLK_WORLD_94; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_94")) {arg0=SDLK_WORLD_94; goto done1598;}
         
-          if (0 == strcmp(tmp, "k_world_95")) {arg0=SDLK_WORLD_95; goto done1596;}
+          if (0 == strcmp(tmp, "k_world_95")) {arg0=SDLK_WORLD_95; goto done1598;}
          {
           char* end;
           arg0 = (SDLKey)strtol(tmp, &end, 10);
@@ -4862,9 +4862,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
             sprintf(staticError, "Unable to convert %s to SDLKey", tmp);
             scriptError(staticError);
           }
-          goto done1596;
+          goto done1598;
         } 
-done1596:;};
+done1598:;};
 arg0Init=true;
 try {
       ret =
@@ -5451,9 +5451,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else arg0=NULL;
 };
 arg0Init=true;
-{int gen1764;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1764);
-            arg1=gen1764;
+{int gen1766;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1766);
+            arg1=gen1766;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -5571,9 +5571,9 @@ arg0Init=true;
     } else arg1=NULL;
 };
 arg1Init=true;
-{int gen1767;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1767);
-            arg2=gen1767;
+{int gen1769;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1769);
+            arg2=gen1769;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -7347,9 +7347,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else parent=NULL;
 }
       if (!parent) { scriptError("NULL this passed into C++"); }
-{int gen1934;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1934);
-            arg0=gen1934;
+{int gen1936;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen1936);
+            arg0=gen1936;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -7684,9 +7684,9 @@ void classdec739(bool safe, Tcl_Interp* interp) throw() {
       
 
       //Extract value
-      {int gen2075;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2075);
-            newVal=gen2075;
+      {int gen2077;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2077);
+            newVal=gen2077;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -7739,9 +7739,9 @@ void classdec739(bool safe, Tcl_Interp* interp) throw() {
       
 
       //Extract value
-      {int gen2076;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2076);
-            newVal=gen2076;
+      {int gen2078;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2078);
+            newVal=gen2078;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -7794,9 +7794,9 @@ void classdec739(bool safe, Tcl_Interp* interp) throw() {
       
 
       //Extract value
-      {int gen2077;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2077);
-            newVal=gen2077;
+      {int gen2079;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2079);
+            newVal=gen2079;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -7849,9 +7849,9 @@ void classdec739(bool safe, Tcl_Interp* interp) throw() {
       
 
       //Extract value
-      {int gen2078;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2078);
-            newVal=gen2078;
+      {int gen2080;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2080);
+            newVal=gen2080;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -7904,9 +7904,9 @@ void classdec739(bool safe, Tcl_Interp* interp) throw() {
       
 
       //Extract value
-      {int gen2079;
-            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2079);
-            newVal=gen2079;
+      {int gen2081;
+            int err = Tcl_GetBooleanFromObj(interp, objv[0], (int*)&gen2081);
+            newVal=gen2081;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -11221,9 +11221,9 @@ arg1Tcl=NULL;
 
       //OK!
 returnValueTcl = Tcl_GetObjResult(interp);
-        {int gen2161;
-            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen2161);
-            returnValue=gen2161;
+        {int gen2163;
+            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen2163);
+            returnValue=gen2163;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -11494,9 +11494,9 @@ arg0Tcl=NULL;
 
       //OK!
 returnValueTcl = Tcl_GetObjResult(interp);
-        {int gen2164;
-            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen2164);
-            returnValue=gen2164;
+        {int gen2166;
+            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen2166);
+            returnValue=gen2166;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -13499,6 +13499,142 @@ static int
      trampoline1341 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
+       if (objc != 2) {
+         Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
+         return TCL_ERROR;
+       }
+       invokingInterpreter=interp;
+       NetworkGame* parent=NULL;
+unsigned arg0; bool arg0Init=false;
+Peer* ret; Tcl_Obj* retTcl=NULL;
+PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
+{
+      string name(Tcl_GetStringFromObj(objv[0], NULL));
+      if (name != "0") {
+        //Does it exist?
+        InterpInfo* info=interpreters[interp];
+        map<string,Export*>::iterator it=info->exportsByName.find(name);
+        if (it == info->exportsByName.end()) {
+          for (it=info->exportsByName.begin();
+               it != info->exportsByName.end(); ++it) {
+            cout << (*it).first << endl;
+          }
+          sprintf(staticError, "Invalid export passed to C++: %s",
+                  name.c_str());
+          scriptError(staticError);
+        }
+        Export* ex=(*it).second;
+        //OK, is the type correct?
+        if (ex->type->theType != typeid(NetworkGame)
+        &&  0==ex->type->superclasses.count(&typeid(NetworkGame))) {
+          //Nope
+          sprintf(staticError, "Wrong type passed to C++ function; expected"
+                               " NetworkGame, "
+                               "got %s", ex->type->tclClassName.c_str());
+          scriptError(staticError);
+        }
+
+        //All is well, transfer ownership now
+        NetworkGame* tmp=(NetworkGame*)ex->ptr;
+        
+        parent = tmp;
+    } else parent=NULL;
+}
+      if (!parent) { scriptError("NULL this passed into C++"); }
+{int tmp;
+            int err = Tcl_GetIntFromObj(interp, objv[1], &tmp);
+            if (err == TCL_ERROR)
+              scriptError(Tcl_GetStringResult(interp));
+            arg0 = (unsigned)tmp;};
+arg0Init=true;
+try {
+      ret =
+     parent->
+     
+     getPeerByNid(arg0);
+
+    } catch (exception& ex) {
+      sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
+      scriptError(staticError);
+    }
+{if (!(ret)) {
+      retTcl=Tcl_NewStringObj("0", 1);
+    } else {
+      InterpInfo* info=interpreters[interp];
+      //Is it a valid export already?
+      void* ptr=const_cast<void*>((void*)(ret));
+      map<void*,Export*>::iterator it=info->exports.find(ptr);
+      Export* ex;
+      if (it == info->exports.end()) {
+        //No, create new one
+        (ret)->tclKnown=true;
+        ex=new Export;
+        ex->ptr=ptr;
+        ex->type=typeExports[&typeid(*(ret))];
+        ex->interp=interp;
+        
+
+        //Create the new Tcl-side object with
+        //  new Type {}
+        Tcl_Obj* cmd[3] = {
+          Tcl_NewStringObj("new", 3),
+          Tcl_NewStringObj(ex->type->tclClassName.c_str(),
+                           ex->type->tclClassName.size()),
+          Tcl_NewObj(),
+        };
+        for (unsigned i=0; i<lenof(cmd); ++i)
+          Tcl_IncrRefCount(cmd[i]);
+        int status=Tcl_EvalObjv(interp, lenof(cmd), cmd, TCL_EVAL_GLOBAL);
+        for (unsigned i=0; i<lenof(cmd); ++i)
+          Tcl_DecrRefCount(cmd[i]);
+        if (status == TCL_ERROR) {
+          sprintf(staticError, "Error exporting C++ object to Tcl: %s",
+                  Tcl_GetStringResult(interp));
+          scriptError(staticError);
+        }
+
+        //We can now get the name, and then have a fully-usable export
+        ex->tclrep=Tcl_GetStringResult(interp);
+        //Register
+        info->exports[(void*)(ret)]=ex;
+        info->exportsByName[ex->tclrep]=ex;
+      } else {
+        //Yes, use directly
+        ex = (*it).second;
+      }
+
+      //Ownership
+      
+
+      //Done
+      retTcl=Tcl_NewStringObj(ex->tclrep.c_str(), ex->tclrep.size());
+    }}
+Tcl_SetObjResult(interp, retTcl);
+POP_TCL_ERROR_HANDLER;
+      return TCL_OK;
+error:
+      POP_TCL_ERROR_HANDLER;
+      double_error:
+      #undef scriptError
+      #define scriptError(msg) { \
+        cerr << "Double-error; old message: " << scriptingErrorMessage << \
+        ", new message: " << msg << endl; \
+        scriptingErrorMessage = msg; goto double_error; \
+      }
+      if (parent) {}
+if (arg0Init) {arg0Init=false; }
+#undef scriptError
+Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
+#undef scriptError
+
+
+#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+
+#define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
+static int
+     trampoline1343 (
+     ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
+       SHIFT;
        if (objc != 1) {
          Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
          return TCL_ERROR;
@@ -13584,7 +13720,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1343 (
+     trampoline1345 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -13693,7 +13829,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1345 (
+     trampoline1347 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -13783,7 +13919,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1347 (
+     trampoline1349 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -13857,7 +13993,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1349 (
+     trampoline1351 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -13931,7 +14067,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1351 (
+     trampoline1353 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -14008,7 +14144,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1353 (
+     trampoline1355 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -14085,7 +14221,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1355 (
+     trampoline1357 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -14173,7 +14309,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1357 (
+     trampoline1359 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -14263,7 +14399,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1359 (
+     trampoline1361 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -14345,7 +14481,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1361 (
+     trampoline1363 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -14419,7 +14555,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1363 (
+     trampoline1365 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -14464,16 +14600,16 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else parent=NULL;
 }
       if (!parent) { scriptError("NULL this passed into C++"); }
-{int gen2191;
-            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen2191);
-            arg0=gen2191;
+{int gen2194;
+            int err = Tcl_GetBooleanFromObj(interp, objv[1], (int*)&gen2194);
+            arg0=gen2194;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
 arg0Init=true;
-{int gen2192;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen2192);
-            arg1=gen2192;
+{int gen2195;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen2195);
+            arg1=gen2195;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -14511,7 +14647,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1365 (
+     trampoline1367 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -14593,7 +14729,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1367 (
+     trampoline1369 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -14691,7 +14827,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1369 (
+     trampoline1371 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -14773,7 +14909,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1371 (
+     trampoline1373 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
@@ -14847,7 +14983,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1373 (
+     trampoline1375 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -14956,7 +15092,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1375 (
+     trampoline1377 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -15081,7 +15217,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1377 (
+     trampoline1379 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -15206,7 +15342,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1379 (
+     trampoline1381 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -15331,7 +15467,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1381 (
+     trampoline1383 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -15456,7 +15592,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1383 (
+     trampoline1385 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -15546,7 +15682,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1385 (
+     trampoline1387 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -15655,7 +15791,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1387 (
+     trampoline1389 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 3) {
@@ -15795,6 +15931,7 @@ Tcl_CreateObjCommand(interp, "c++ trampoline1381", trampoline1381, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1383", trampoline1383, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1385", trampoline1385, 0, NULL);
 Tcl_CreateObjCommand(interp, "c++ trampoline1387", trampoline1387, 0, NULL);
+Tcl_CreateObjCommand(interp, "c++ trampoline1389", trampoline1389, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(NetworkGame)),
                            * ete=new TypeExport(typeid(TclNetworkGame));
 ste->isAObject=ete->isAObject=true;

@@ -545,9 +545,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else arg0=NULL;
 };
 arg0Init=true;
-{int gen1906;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1906);
-            arg1=gen1906;
+{int gen1908;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1908);
+            arg1=gen1908;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -2827,9 +2827,9 @@ arg1Init=true;
     } else arg2=NULL;
 };
 arg2Init=true;
-{int gen2128;
-            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen2128);
-            arg3=gen2128;
+{int gen2130;
+            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen2130);
+            arg3=gen2130;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -2846,9 +2846,9 @@ arg4Init=true;
               scriptError(Tcl_GetStringResult(interp));
             arg5 = (unsigned)tmp;};
 arg5Init=true;
-{int gen2129;
-            int err = Tcl_GetBooleanFromObj(interp, objv[6], (int*)&gen2129);
-            arg6=gen2129;
+{int gen2131;
+            int err = Tcl_GetBooleanFromObj(interp, objv[6], (int*)&gen2131);
+            arg6=gen2131;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -3249,7 +3249,7 @@ void classdec1259(bool safe, Tcl_Interp* interp) throw() {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1560 (
+     trampoline1562 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -3291,7 +3291,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1562 (
+     trampoline1564 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {

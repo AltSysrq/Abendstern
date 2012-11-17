@@ -61,6 +61,7 @@ protected:
 private:
   void encode() throw();
   EnergyCharge* clone(const EnergyCharge*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   
       class ExplListener: public ExplodeListener<EnergyCharge> {
@@ -111,6 +112,7 @@ protected:
 private:
   void encode() throw();
   MagnetoBomb* clone(const MagnetoBomb*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   
       class ExplListener: public ExplodeListener<MagnetoBomb> {
@@ -161,6 +163,7 @@ protected:
 private:
   void encode() throw();
   SemiguidedBomb* clone(const SemiguidedBomb*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   
       class ExplListener: public ExplodeListener<MagnetoBomb> {
@@ -211,6 +214,7 @@ protected:
 private:
   void encode() throw();
   PlasmaBurst* clone(const PlasmaBurst*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   
       class ExplListener: public ExplodeListener<PlasmaBurst> {
@@ -261,6 +265,7 @@ protected:
 private:
   void encode() throw();
   Missile* clone(const Missile*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   
       class ExplListener: public ExplodeListener<Missile> {
@@ -311,6 +316,7 @@ protected:
 private:
   void encode() throw();
   ParticleEmitter* clone(const ParticleEmitter*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   
 };
@@ -351,6 +357,7 @@ protected:
 private:
   void encode() throw();
   MonophasicEnergyPulse* clone(const MonophasicEnergyPulse*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   
       class ExplListener: public ExplodeListener<MonophasicEnergyPulse> {
@@ -401,6 +408,7 @@ protected:
 private:
   void encode() throw();
   Spectator* clone(const Spectator*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   
 };
@@ -444,6 +452,7 @@ protected:
 private:
   void encode() throw();
   Ship* clone(const Ship*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   
       static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
@@ -491,6 +500,7 @@ protected:
 private:
   void encode() throw();
   Ship* clone(const Ship*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   
       static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
@@ -538,6 +548,7 @@ protected:
 private:
   void encode() throw();
   Ship* clone(const Ship*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   
       static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
@@ -585,6 +596,7 @@ protected:
 private:
   void encode() throw();
   Ship* clone(const Ship*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   
       static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
@@ -632,6 +644,7 @@ protected:
 private:
   void encode() throw();
   Ship* clone(const Ship*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   
       static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
@@ -679,6 +692,7 @@ protected:
 private:
   void encode() throw();
   Ship* clone(const Ship*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   
       static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {
@@ -726,6 +740,7 @@ protected:
 private:
   void encode() throw();
   Ship* clone(const Ship*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   
       static ShieldGenerator* getShieldGenerator(const Cell* c) throw() {

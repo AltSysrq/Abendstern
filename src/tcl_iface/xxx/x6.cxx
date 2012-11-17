@@ -157,9 +157,9 @@ arg2Init=true;
               scriptError(Tcl_GetStringResult(interp));
             arg3 = (float)tmp;};
 arg3Init=true;
-{int gen1598;
-            int err = Tcl_GetBooleanFromObj(interp, objv[4], (int*)&gen1598);
-            arg4=gen1598;
+{int gen1600;
+            int err = Tcl_GetBooleanFromObj(interp, objv[4], (int*)&gen1600);
+            arg4=gen1600;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -4809,7 +4809,7 @@ void classdec1167(bool safe, Tcl_Interp* interp) throw() {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1500 (
+     trampoline1502 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -4865,7 +4865,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1502 (
+     trampoline1504 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {
