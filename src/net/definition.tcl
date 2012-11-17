@@ -462,7 +462,7 @@ vtype Ship$ssize Ship {
     init {
       cxn->sdg->addLocalShip(channel, X);
     }
-    enodestructor {
+    destroy-local {
       cxn->sdg->delLocalShip(channel);
     }
     impl {
