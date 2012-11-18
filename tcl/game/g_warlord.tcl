@@ -56,6 +56,7 @@ class G_Warlord {
     # they should be given to another player at random when joining in the
     # middle of a round?
     dps $vp superiors {}
+    dps $vp teamkillKeepProb 1.0
 
     set ok no
     while {!$ok} {
@@ -88,9 +89,10 @@ class G_Warlord {
     return "[_ A game g_wlrd_long] ([_ A game g_wlrd]): $rnd"
   }
 
-  method clearSuperiors {} {
+  private method resetWarlordVPData {} {
     foreach vp [dpg list] {
       dps $vp superiors {}
+      dps $vp teamkillKeepProb 1.0
     }
   }
 
@@ -234,7 +236,7 @@ class G_Warlord {
 
   method setupRound join {
     if {!$join} {
-      clearSuperiors
+      resetWarlordVPData
     }
     recalcSubordinateTree
 
@@ -267,7 +269,7 @@ class G_Warlord {
       becomeSubordinateTo $lvp $peer $rvp
       releaseSubordinates $lvp
     } elseif {"AAllies" eq [getAlliance $killedInsignia $killerInsignia]} {
-      # Our ship was killed by a friend!
+      # Our ship was killed by a friend (or this was a suicide)!
       # Tell them they need to release their subordinates
       unicastMessage $peer teamkill-release-subordinates $rvp
     }
@@ -278,11 +280,12 @@ class G_Warlord {
     dps $lvp superiors [list [externalise-pvp [list $peer $rvp]] {*}$supsup]
   }
 
-  private method releaseSubordinates {vp} {
+  private method releaseSubordinates {vp {keepProb 0.0}} {
     set sups [dpg $vp superiors]
     foreach peer [getPeers] {
       foreach rvp [dpgp $peer list] {
-        if {[list 0 $vp] eq [getDirectSuperior $peer $rvp]} {
+        if {[list 0 $vp] eq [getDirectSuperior $peer $rvp] &&
+            rand() > $keepProb} {
           unicastMessage $peer release-to $sups $rvp
         }
       }
@@ -311,7 +314,8 @@ class G_Warlord {
       lassign $msg type vp
       if {$vp ni [dpg list]} return
 
-      releaseSubordinates $vp
+      releaseSubordinates $vp [dpg $vp teamkillKeepProb]
+      dps $vp teamkillKeepProb [expr {[dpg $vp teamkillKeepProb]/2.0}]
     } else {
       chain $peer $msg
     }

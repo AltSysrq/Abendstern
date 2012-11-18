@@ -100,9 +100,11 @@ Abendstern Game Modes
   All direct and indirect subordinates and superiors are friendly; players in
     the same tree but which are not subordinate or superior to each other are
     neutral.
-  No points for kills; suicide and team-kills release all subordinates to the
-    next owning player (or nobody, if the suicider or team-killer is
-    top-level). Neutral-kills have no effect.
+  No points for kills; suicide and team-kills release some/all subordinates to
+    the next owning player (or nobody, if the suicider or team-killer is
+    top-level). The initial suicide/teamkill releases no subordinates; on the
+    next, each has a 50% probability of being released; then 75%, and so on.
+    Neutral-kills have no effect.
   On enemy-kill death, all the player's direct subordinates are released and
     become direct subordinates of the killer.
   Rounds; at the end of each round, each player receives one point for each

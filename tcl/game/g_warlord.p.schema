@@ -14,5 +14,10 @@ aux-vpeer-data {
     insignia {
       integer {}
     }
+
+    +teamkillKeepProb 1.0
+    teamkillKeepProb {
+      float 1.0
+    }
   }
 }
