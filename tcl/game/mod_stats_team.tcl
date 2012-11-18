@@ -77,7 +77,7 @@ class MixinStatsTeam {
   }
 
   private method getStatsSubPanel team {
-    set pan [new ::gui::VerticalContainer 0.01]
+    set pan [new ::gui::VerticalContainer 0.002]
     set p [new ::gui::BorderContainer]
     $p setElt centre [new ::gui::Label "\a\[$::teamColourCode($team)$::teamName($team)\a\]" left]
     $p setElt right [new ::gui::Label \

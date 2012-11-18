@@ -435,7 +435,7 @@ class G_Warlord {
         incr percol
       }
 
-      set vpan [new ::gui::VerticalContainer 0.01]
+      set vpan [new ::gui::VerticalContainer 0.002]
       for {set row 0} {$row < $percol} {incr row; incr ix} {
         $vpan add [lindex $stats $ix]
       }
