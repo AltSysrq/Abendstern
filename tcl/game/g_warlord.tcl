@@ -64,7 +64,11 @@ class G_Warlord {
       set ok yes
 
       foreach peer [getPeers] {
-        foreach v [dpgp $peer list] {
+        set lst {}
+        catch {
+          set lst [dpgp $peer list]
+        }
+        foreach v $lst {
           catch {
             if {$insig == [dpgp $peer $v insignia]} {
               set ok no
