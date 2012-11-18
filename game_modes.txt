@@ -92,7 +92,25 @@ Abendstern Game Modes
     cyborg-cyborg is negative).
   Bonus points to last human remaining.
   Winner is player with most points.
-10. Point Race (RACE)
+10. Warlord (WLRD)
+  Each player on his own team.
+  Initially, all players mutually hostile.
+  When a player is non-team-killed, he becomes subordinate to the player who
+    killed him, including any subordinates he has.
+  All direct and indirect subordinates and superiors are friendly; players in
+    the same tree but which are not subordinate or superior to each other are
+    neutral.
+  No points for kills; suicide and team-kills release all subordinates to the
+    next owning player (or nobody, if the suicider or team-killer is
+    top-level). Neutral-kills have no effect.
+  On enemy-kill death, all the player's direct subordinates are released and
+    become direct subordinates of the killer.
+  Rounds; at the end of each round, each player receives one point for each
+    direct subordinate of theirs, and a quarter point for each indirect
+    subordinate (rounded down).
+  Each round ends when one player owns the entire tree.
+  10 rounds; winner is the player with the most points thereafter.
+11. Point Race (RACE)
   Every player is an enemy of every other
   "Starting gate" is 5-screen-radius circle at centre of map
   All players initially spawn here
@@ -103,4 +121,4 @@ Abendstern Game Modes
   A player can only activate a checkpoint after getting a primary kill on the
     guardian
   Winner is first player to touch all checkpoints and then the starting gate
-11. Strategy mode (SGTY)
+12. Strategy mode (SGTY)

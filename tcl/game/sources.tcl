@@ -33,6 +33,7 @@ foreach base {
   g_lms
   g_lxts
   g_hvc
+  g_warlord
   g_null
 } {
   source "tcl/game/$base.tcl"

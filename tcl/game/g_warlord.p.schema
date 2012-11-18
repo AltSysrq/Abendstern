@@ -1,0 +1,18 @@
+aux-vpeer-data {
+  within {
+    +superior {}
+    superior {
+      list {
+        list {
+          integer {}
+        }
+        llmin 2
+        llmax 2
+      }
+    }
+
+    insignia {
+      integer {}
+    }
+  }
+}

@@ -684,7 +684,7 @@ class BasicGame {
       } else {
         set who other
         catch {
-          if {[is-team-kill $killer $vp]} {
+          if {[isTeamKill $killer $vp]} {
             set who team
           }
         }
@@ -766,7 +766,7 @@ class BasicGame {
   # Returns whether the given {killer-peer killer-vpeer} vpeer represents a
   # teamkill. Default uses the team field of vpeer data, or false if that
   # throws
-  method is-team-kill {killer vp} {
+  method isTeamKill {killer vp} {
     set team no
     catch {
       if {[dpgp {*}$killer team] == [dpg $vp team]} {
