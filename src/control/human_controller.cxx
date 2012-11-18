@@ -580,8 +580,13 @@ void HumanController::update(float et) noth {
       retarget();
   }
 
-  //Automatically retarget if current target is dead
-  if (ship && (!ship->target.ref || !((Ship*)ship->target.ref)->hasPower())) retarget();
+  //Automatically retarget if current target is dead or non-enemy
+  if (ship &&
+      (!ship->target.ref ||
+       !((Ship*)ship->target.ref)->hasPower() ||
+       Enemies != getAlliance(ship->insignia,
+                              ((Ship*)ship->target.ref)->insignia)))
+    retarget();
 
   for (unsigned int i=0; i<sizeof(mouseButton)/sizeof(DigitalAction); ++i) {
     if (buttonsPressed[i] && mouseButton[i].on && mouseButton[i].repeat &&
