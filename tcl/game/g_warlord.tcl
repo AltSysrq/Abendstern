@@ -229,7 +229,7 @@ class G_Warlord {
           {set curr [getDirectSuperior {*}$curr]} {
         if {[dict exists $occurred $curr]} break
         dict set occurred $curr {}
-        lappend sups $curr
+        lappend sups [externalise-pvp $curr]
       }
 
       if {$sups ne [dpg $vp superiors]} {
