@@ -68,8 +68,10 @@ class G_HVC {
   }
 
   method setupRound join {
-    foreach vp [dpg list] {
-      unassimilate $vp
+    if {!$join} {
+      foreach vp [dpg list] {
+        unassimilate $vp
+      }
     }
 
     set timeUntilZeroCyborgCheck 2048

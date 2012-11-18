@@ -92,6 +92,8 @@
 +L6TS
 -HVC_
 +HVC
+-WLRD
++WLRD
 -VOID
 +Waiting
 

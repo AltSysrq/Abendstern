@@ -121,7 +121,7 @@ class GameGUIMode {
     set boxlists [new ::gui::HorizontalContainer 0.01 grid]
     set modeboxen [new ::gui::VerticalContainer 0.01]
     set prevbox none
-    foreach mode {dm xtdm lms lxts hvc} {
+    foreach mode {dm xtdm lms lxts hvc wlrd} {
       set box [new ::gui::RadioButton [format [_ A game "g_${mode}_long"] X] \
                "expr {\[$ str conf.game.mode\] == {$mode}}" \
                "$ sets conf.game.mode $mode" \
@@ -327,6 +327,9 @@ class GameGUIMode {
       }
       hvc {
         set ms HVC_
+      }
+      wlrd {
+        set ms WLRD
       }
     }
 

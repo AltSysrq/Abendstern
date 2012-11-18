@@ -1,7 +1,7 @@
 class G_LXTS {
   inherit MixinAutobot MixinScoreFrags MixinScoreTeamfrag MixinTeam \
           MixinRound MixinMatch MixinRoundSpawn MixinStatsTeam \
-          MixinPerfectRadar \
+          MixinPerfectRadar MixinAiSuddenDeath \
           MixinSAWBestPlayer MixinSAWLocalPlayer MixinSAWBestTeam \
           MixinSAWLocalTeam MixinSAWRoundsOfMatch MixinSAWPlayersLeft \
           MixinSAWClock \

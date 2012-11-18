@@ -1024,6 +1024,10 @@
 +HVC
 -g_hvc_long
 +Humans vs Cyborgs
+-g_wlrd
++WLRD
+-g_wlrd_long
++Warlord
 
 -vpeer_connected_fmt
 +Connected: \a[%s%s\a]
@@ -1048,6 +1052,8 @@
 +%s survived!
 -survivor_nobody
 +Nobody survived!
+-warlord_fmt
++Warlord: %s
 
 -team_join
 +%s joined team \a[%s%s\a]
@@ -1229,6 +1235,9 @@
 
 -killing_spree
 +%s is on a \a[(white)killing spree\a]!
+
+-entering_sudden_death
++Entering \a[(danger)sudden death\a] mode!
 
 @gamegui
 -tab_local

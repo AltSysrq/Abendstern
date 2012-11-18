@@ -948,6 +948,10 @@
 +MGC
 -g_hvc_long
 +Mensch gegen Cyborg
+-g_wlrd
++KHER
+-g_wlrd_long
++Krigsherr
 
 -vpeer_connected_fmt
 +Verbunden: \a[%s%s\a]
@@ -972,6 +976,8 @@
 +%s überlebten!
 -survivor_nobody
 +Keine überlebten!
+-warlord_fmt
++Kriegsherr: %s
 
 -team_join
 +%s trat bei \a[%s%s\a]
@@ -1153,6 +1159,9 @@
 
 -killing_spree
 +%s \a[(white)läuft Amok\a]!
+
+-entering_sudden_death
++\a[(danger)Schneller Tod\a]-Modus beginnt!
 
 @gamegui
 -tab_local

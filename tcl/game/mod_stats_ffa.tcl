@@ -49,7 +49,7 @@ class MixinStatsFFA {
         incr percol
       }
 
-      set vpan [new ::gui::VerticalContainer 0.01]
+      set vpan [new ::gui::VerticalContainer 0.002]
       for {set row 0} {$row < $percol} {incr row; incr ix} {
         set rpan [new ::gui::BorderContainer]
         $rpan setElt centre [new ::gui::Label [lindex $stats $ix 0] left]

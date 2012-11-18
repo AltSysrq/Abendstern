@@ -684,7 +684,7 @@ class BasicGame {
       } else {
         set who other
         catch {
-          if {[dpgp {*}$killer team] == [dpg $vp team]} {
+          if {[isTeamKill $killer $vp]} {
             set who team
           }
         }
@@ -761,6 +761,19 @@ class BasicGame {
   method internalise-pvp {pair} {
     lassign $pair peer vpeer
     list [$communicator get-peer-by-nid $peer] $vpeer
+  }
+
+  # Returns whether the given {killer-peer killer-vpeer} vpeer represents a
+  # teamkill. Default uses the team field of vpeer data, or false if that
+  # throws
+  method isTeamKill {killer vp} {
+    set team no
+    catch {
+      if {[dpgp {*}$killer team] == [dpg $vp team]} {
+        set team yes
+      }
+    }
+    return $team
   }
 
   # END: SHIPS AND CONTROLLERS
