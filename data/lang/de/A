@@ -1003,6 +1003,26 @@
 -hvc_humans_cyborgs_cnt_fmt
 +Mensch: %d   Cyborg: %d
 
+-warlord_rank_ensign
++Fähnrich
+-warlord_rank_lieutenant
++Leutnant
+-warlord_rank_lt_commander
++Lt-Kommandeur
+-warlord_rank_commander
++Kommandeur
+-warlord_rank_captain
++Kapitän
+-warlord_rank_commodore
++Kommodore
+-warlord_rank_admiral
++Admiral
+-warlord_rank_warlord
++Kriegsherr
+
+-warlord_leaders
++Fürhern: %d
+
 -kill_kill0
 +%s hat %s getötet
 -kill_kill1

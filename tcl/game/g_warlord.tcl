@@ -470,6 +470,60 @@ class G_Warlord {
     return $top
   }
 
+  private method rankToString {rank} {
+    set RANKS {ensign lieutenant lt_commander commander captain commodore
+      admiral warlord}
+    if {$rank < [llength $RANKS]} {
+      set key [lindex $RANKS $rank]
+    } else {
+      set key [lindex $RANKS end]
+    }
+
+    return "[_ A game warlord_rank_$key] ($rank)"
+  }
+
+  method getStatusAreaElements {} {
+    set l [chain]
+
+    set maxRank 0
+    set maxRankPlayer [list 0 [lindex [dpg list] 0]]
+    set playerRank 0
+    set playerExt [externalise-pvp {0 0}]
+    foreach peer [getPeers] {
+      foreach vp [dpgp $peer list] {
+        set rank [llength [dpgp $peer $vp superiors]]
+        set sups [dpgp $peer $vp superiors]
+        set sup [lindex $sups end]
+
+        if {$rank > $maxRank} {
+          set maxRank $rank
+          set maxRankPlayer [internalise-pvp $sup]
+        }
+
+        set plix [lsearch -exact $sups $playerExt]
+        incr plix ;# Move base so it is one-based
+        # Still works since (-1+1)=0, which is the minimum rank anyway
+        if {$plix > $playerRank} {
+          set playerRank $plix
+        }
+      }
+    }
+
+    lappend l 0 \
+        [format "\a\[%s%s\a\]: %s" \
+             [getStatsColour {*}$maxRankPlayer] \
+             [dpgp {*}$maxRankPlayer name] \
+             [rankToString $maxRank]]
+    lappend l 1 \
+        [format "\a\[%s%s\a\]: %s" \
+             [getStatsColour 0 0] \
+             [dpg 0 name] \
+             [rankToString $playerRank]]
+    lappend l 2 \
+        [format [_ A game warlord_leaders] [dict size $subordinateTree]]
+    return $l
+  }
+
   method loadSchemata sec {
     chain $sec
     loadSchema g_warlord $sec
