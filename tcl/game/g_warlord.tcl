@@ -361,7 +361,7 @@ class G_Warlord {
         # Local vpeer, award points
         set vp [lindex $root 1]
         set score [dpg $vp score]
-        set score [expr {$score + 4*[dict size $roots] + $icount}]
+        set score [expr {$score + 4*[dict size $subs] + $icount}]
         dps $vp score $score
       }
       incr count $icount
