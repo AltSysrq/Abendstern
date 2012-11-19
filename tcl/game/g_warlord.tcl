@@ -392,6 +392,7 @@ class G_Warlord {
   method getStatsPanel {} {
     set barColourRotation {FF00FF FF0000 00FFFF FFFF00 0000FF 00FF00}
     set stats {}
+    set needRotateBarColour yes
     foreach {depth pvp} [depthFirstList $subordinateTree 0] {
       lassign $pvp peer
       set name [dpgp {*}$pvp name]
@@ -411,10 +412,13 @@ class G_Warlord {
       }
 
       if {$depth == 0} {
+        set needRotateBarColour yes
+      } elseif {$needRotateBarColour} {
         # Next bar colour
         set fst [lindex $barColourRotation 0]
         set barColourRotation  [lrange $barColourRotation 1 end]
         lappend barColourRotation $fst
+        set needRotateBarColour no
       }
 
       set bars [string repeat "| " $depth]
