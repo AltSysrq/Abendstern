@@ -54,6 +54,13 @@ namespace abuhops {
    * externally-visible address/port of the local host.
    */
   bool ready();
+
+  /**
+   * Performs any time-based updates necessary.
+   *
+   * @param et The time, in milliseconds, since the last call to update().
+   */
+  void update(unsigned et);
 }
 
 #endif /* ABUHOPS_HXX_ */
