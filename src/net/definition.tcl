@@ -462,7 +462,7 @@ vtype Ship$ssize Ship {
     init {
       cxn->sdg->addLocalShip(channel, X);
     }
-    enodestructor {
+    destroy-local {
       cxn->sdg->delLocalShip(channel);
     }
     impl {
@@ -599,6 +599,9 @@ vtype Ship$ssize Ship {
       X->insignia = insignia;
     }
   }
+
+  si 4 score { default 100 }
+  si 4 playerScore { default 100 }
 
   bit 1 isFragment {
     type bool

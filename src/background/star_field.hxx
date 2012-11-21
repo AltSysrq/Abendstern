@@ -48,6 +48,10 @@ class StarField: public Background {
   //The current glare colour from explosions
   float glareR, glareG, glareB;
 
+  //The field dimensions at the time when we last positioned the background
+  //objects
+  float oldFieldW, oldFieldH;
+
   public: virtual ~StarField();
 
   public:

@@ -91,6 +91,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-game_state.$(OBJEXT) \
 	abendsternuxgl14-lxn.$(OBJEXT) \
 	abendsternuxgl14-aobject.$(OBJEXT) \
+	abendsternuxgl14-black_box.$(OBJEXT) \
 	abendsternuxgl14-test_state.$(OBJEXT) \
 	abendsternuxgl14-genetic_ai.$(OBJEXT) \
 	abendsternuxgl14-aim_self_destruct.$(OBJEXT) \
@@ -112,6 +113,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-aim_indgoto.$(OBJEXT) \
 	abendsternuxgl14-aim_check_has_weapons.$(OBJEXT) \
 	abendsternuxgl14-aim_target_nearest.$(OBJEXT) \
+	abendsternuxgl14-aim_target_nearest_agro.$(OBJEXT) \
 	abendsternuxgl14-aim_check_targetless.$(OBJEXT) \
 	abendsternuxgl14-aimod.$(OBJEXT) \
 	abendsternuxgl14-aim_park.$(OBJEXT) \
@@ -303,6 +305,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-game_state.$(OBJEXT) \
 	abendsternuxgl21-lxn.$(OBJEXT) \
 	abendsternuxgl21-aobject.$(OBJEXT) \
+	abendsternuxgl21-black_box.$(OBJEXT) \
 	abendsternuxgl21-test_state.$(OBJEXT) \
 	abendsternuxgl21-genetic_ai.$(OBJEXT) \
 	abendsternuxgl21-aim_self_destruct.$(OBJEXT) \
@@ -324,6 +327,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-aim_indgoto.$(OBJEXT) \
 	abendsternuxgl21-aim_check_has_weapons.$(OBJEXT) \
 	abendsternuxgl21-aim_target_nearest.$(OBJEXT) \
+	abendsternuxgl21-aim_target_nearest_agro.$(OBJEXT) \
 	abendsternuxgl21-aim_check_targetless.$(OBJEXT) \
 	abendsternuxgl21-aimod.$(OBJEXT) \
 	abendsternuxgl21-aim_park.$(OBJEXT) \
@@ -513,6 +517,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-game_state.$(OBJEXT) \
 	abendsternuxgl32-lxn.$(OBJEXT) \
 	abendsternuxgl32-aobject.$(OBJEXT) \
+	abendsternuxgl32-black_box.$(OBJEXT) \
 	abendsternuxgl32-test_state.$(OBJEXT) \
 	abendsternuxgl32-genetic_ai.$(OBJEXT) \
 	abendsternuxgl32-aim_self_destruct.$(OBJEXT) \
@@ -534,6 +539,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-aim_indgoto.$(OBJEXT) \
 	abendsternuxgl32-aim_check_has_weapons.$(OBJEXT) \
 	abendsternuxgl32-aim_target_nearest.$(OBJEXT) \
+	abendsternuxgl32-aim_target_nearest_agro.$(OBJEXT) \
 	abendsternuxgl32-aim_check_targetless.$(OBJEXT) \
 	abendsternuxgl32-aimod.$(OBJEXT) \
 	abendsternuxgl32-aim_park.$(OBJEXT) \
@@ -917,6 +923,7 @@ COMMONSOURCES = \
 ./core/game_state.cxx \
 ./core/lxn.cxx \
 ./core/aobject.cxx \
+./core/black_box.cxx \
 ./test_state.cxx \
 ./control/genetic_ai.cxx \
 ./control/ai/mod_misc/aim_self_destruct.cxx \
@@ -938,6 +945,7 @@ COMMONSOURCES = \
 ./control/ai/mod_state/aim_indgoto.cxx \
 ./control/ai/mod_state/aim_check_has_weapons.cxx \
 ./control/ai/mod_target/aim_target_nearest.cxx \
+./control/ai/mod_target/aim_target_nearest_agro.cxx \
 ./control/ai/mod_target/aim_check_targetless.cxx \
 ./control/ai/aimod.cxx \
 ./control/ai/mod_navigation/aim_park.cxx \
@@ -1257,6 +1265,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_self_destruct.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_state_by_target_dist.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_target_nearest.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_target_nearest_agro.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_varset.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_veto_fire.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_weapon_level.Po@am__quote@
@@ -1269,6 +1278,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-async_ack_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-audio.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-background_object.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-black_box.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-blast.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-block_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-bridge.Po@am__quote@
@@ -1470,6 +1480,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_self_destruct.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_state_by_target_dist.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_target_nearest.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_target_nearest_agro.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_varset.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_veto_fire.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_weapon_level.Po@am__quote@
@@ -1482,6 +1493,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-async_ack_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-audio.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-background_object.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-black_box.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-blast.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-block_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-bridge.Po@am__quote@
@@ -1683,6 +1695,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_self_destruct.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_state_by_target_dist.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_target_nearest.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_target_nearest_agro.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_varset.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_veto_fire.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_weapon_level.Po@am__quote@
@@ -1695,6 +1708,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-async_ack_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-audio.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-background_object.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-black_box.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-blast.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-block_geraet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-bridge.Po@am__quote@
@@ -2348,6 +2362,20 @@ abendsternuxgl14-aobject.obj: ./core/aobject.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-aobject.obj `if test -f './core/aobject.cxx'; then $(CYGPATH_W) './core/aobject.cxx'; else $(CYGPATH_W) '$(srcdir)/./core/aobject.cxx'; fi`
 
+abendsternuxgl14-black_box.o: ./core/black_box.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-black_box.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-black_box.Tpo -c -o abendsternuxgl14-black_box.o `test -f './core/black_box.cxx' || echo '$(srcdir)/'`./core/black_box.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-black_box.Tpo $(DEPDIR)/abendsternuxgl14-black_box.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./core/black_box.cxx' object='abendsternuxgl14-black_box.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-black_box.o `test -f './core/black_box.cxx' || echo '$(srcdir)/'`./core/black_box.cxx
+
+abendsternuxgl14-black_box.obj: ./core/black_box.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-black_box.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-black_box.Tpo -c -o abendsternuxgl14-black_box.obj `if test -f './core/black_box.cxx'; then $(CYGPATH_W) './core/black_box.cxx'; else $(CYGPATH_W) '$(srcdir)/./core/black_box.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-black_box.Tpo $(DEPDIR)/abendsternuxgl14-black_box.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./core/black_box.cxx' object='abendsternuxgl14-black_box.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-black_box.obj `if test -f './core/black_box.cxx'; then $(CYGPATH_W) './core/black_box.cxx'; else $(CYGPATH_W) '$(srcdir)/./core/black_box.cxx'; fi`
+
 abendsternuxgl14-test_state.o: ./test_state.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-test_state.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-test_state.Tpo -c -o abendsternuxgl14-test_state.o `test -f './test_state.cxx' || echo '$(srcdir)/'`./test_state.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-test_state.Tpo $(DEPDIR)/abendsternuxgl14-test_state.Po
@@ -2641,6 +2669,20 @@ abendsternuxgl14-aim_target_nearest.obj: ./control/ai/mod_target/aim_target_near
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_target_nearest.cxx' object='abendsternuxgl14-aim_target_nearest.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-aim_target_nearest.obj `if test -f './control/ai/mod_target/aim_target_nearest.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_target_nearest.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_target_nearest.cxx'; fi`
+
+abendsternuxgl14-aim_target_nearest_agro.o: ./control/ai/mod_target/aim_target_nearest_agro.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-aim_target_nearest_agro.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-aim_target_nearest_agro.Tpo -c -o abendsternuxgl14-aim_target_nearest_agro.o `test -f './control/ai/mod_target/aim_target_nearest_agro.cxx' || echo '$(srcdir)/'`./control/ai/mod_target/aim_target_nearest_agro.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-aim_target_nearest_agro.Tpo $(DEPDIR)/abendsternuxgl14-aim_target_nearest_agro.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_target_nearest_agro.cxx' object='abendsternuxgl14-aim_target_nearest_agro.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-aim_target_nearest_agro.o `test -f './control/ai/mod_target/aim_target_nearest_agro.cxx' || echo '$(srcdir)/'`./control/ai/mod_target/aim_target_nearest_agro.cxx
+
+abendsternuxgl14-aim_target_nearest_agro.obj: ./control/ai/mod_target/aim_target_nearest_agro.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-aim_target_nearest_agro.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-aim_target_nearest_agro.Tpo -c -o abendsternuxgl14-aim_target_nearest_agro.obj `if test -f './control/ai/mod_target/aim_target_nearest_agro.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_target_nearest_agro.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_target_nearest_agro.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-aim_target_nearest_agro.Tpo $(DEPDIR)/abendsternuxgl14-aim_target_nearest_agro.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_target_nearest_agro.cxx' object='abendsternuxgl14-aim_target_nearest_agro.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-aim_target_nearest_agro.obj `if test -f './control/ai/mod_target/aim_target_nearest_agro.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_target_nearest_agro.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_target_nearest_agro.cxx'; fi`
 
 abendsternuxgl14-aim_check_targetless.o: ./control/ai/mod_target/aim_check_targetless.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-aim_check_targetless.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-aim_check_targetless.Tpo -c -o abendsternuxgl14-aim_check_targetless.o `test -f './control/ai/mod_target/aim_check_targetless.cxx' || echo '$(srcdir)/'`./control/ai/mod_target/aim_check_targetless.cxx
@@ -5330,6 +5372,20 @@ abendsternuxgl21-aobject.obj: ./core/aobject.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-aobject.obj `if test -f './core/aobject.cxx'; then $(CYGPATH_W) './core/aobject.cxx'; else $(CYGPATH_W) '$(srcdir)/./core/aobject.cxx'; fi`
 
+abendsternuxgl21-black_box.o: ./core/black_box.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-black_box.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-black_box.Tpo -c -o abendsternuxgl21-black_box.o `test -f './core/black_box.cxx' || echo '$(srcdir)/'`./core/black_box.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-black_box.Tpo $(DEPDIR)/abendsternuxgl21-black_box.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./core/black_box.cxx' object='abendsternuxgl21-black_box.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-black_box.o `test -f './core/black_box.cxx' || echo '$(srcdir)/'`./core/black_box.cxx
+
+abendsternuxgl21-black_box.obj: ./core/black_box.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-black_box.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-black_box.Tpo -c -o abendsternuxgl21-black_box.obj `if test -f './core/black_box.cxx'; then $(CYGPATH_W) './core/black_box.cxx'; else $(CYGPATH_W) '$(srcdir)/./core/black_box.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-black_box.Tpo $(DEPDIR)/abendsternuxgl21-black_box.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./core/black_box.cxx' object='abendsternuxgl21-black_box.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-black_box.obj `if test -f './core/black_box.cxx'; then $(CYGPATH_W) './core/black_box.cxx'; else $(CYGPATH_W) '$(srcdir)/./core/black_box.cxx'; fi`
+
 abendsternuxgl21-test_state.o: ./test_state.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-test_state.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-test_state.Tpo -c -o abendsternuxgl21-test_state.o `test -f './test_state.cxx' || echo '$(srcdir)/'`./test_state.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-test_state.Tpo $(DEPDIR)/abendsternuxgl21-test_state.Po
@@ -5623,6 +5679,20 @@ abendsternuxgl21-aim_target_nearest.obj: ./control/ai/mod_target/aim_target_near
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_target_nearest.cxx' object='abendsternuxgl21-aim_target_nearest.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-aim_target_nearest.obj `if test -f './control/ai/mod_target/aim_target_nearest.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_target_nearest.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_target_nearest.cxx'; fi`
+
+abendsternuxgl21-aim_target_nearest_agro.o: ./control/ai/mod_target/aim_target_nearest_agro.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-aim_target_nearest_agro.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-aim_target_nearest_agro.Tpo -c -o abendsternuxgl21-aim_target_nearest_agro.o `test -f './control/ai/mod_target/aim_target_nearest_agro.cxx' || echo '$(srcdir)/'`./control/ai/mod_target/aim_target_nearest_agro.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-aim_target_nearest_agro.Tpo $(DEPDIR)/abendsternuxgl21-aim_target_nearest_agro.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_target_nearest_agro.cxx' object='abendsternuxgl21-aim_target_nearest_agro.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-aim_target_nearest_agro.o `test -f './control/ai/mod_target/aim_target_nearest_agro.cxx' || echo '$(srcdir)/'`./control/ai/mod_target/aim_target_nearest_agro.cxx
+
+abendsternuxgl21-aim_target_nearest_agro.obj: ./control/ai/mod_target/aim_target_nearest_agro.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-aim_target_nearest_agro.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-aim_target_nearest_agro.Tpo -c -o abendsternuxgl21-aim_target_nearest_agro.obj `if test -f './control/ai/mod_target/aim_target_nearest_agro.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_target_nearest_agro.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_target_nearest_agro.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-aim_target_nearest_agro.Tpo $(DEPDIR)/abendsternuxgl21-aim_target_nearest_agro.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_target_nearest_agro.cxx' object='abendsternuxgl21-aim_target_nearest_agro.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-aim_target_nearest_agro.obj `if test -f './control/ai/mod_target/aim_target_nearest_agro.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_target_nearest_agro.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_target_nearest_agro.cxx'; fi`
 
 abendsternuxgl21-aim_check_targetless.o: ./control/ai/mod_target/aim_check_targetless.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-aim_check_targetless.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-aim_check_targetless.Tpo -c -o abendsternuxgl21-aim_check_targetless.o `test -f './control/ai/mod_target/aim_check_targetless.cxx' || echo '$(srcdir)/'`./control/ai/mod_target/aim_check_targetless.cxx
@@ -8312,6 +8382,20 @@ abendsternuxgl32-aobject.obj: ./core/aobject.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-aobject.obj `if test -f './core/aobject.cxx'; then $(CYGPATH_W) './core/aobject.cxx'; else $(CYGPATH_W) '$(srcdir)/./core/aobject.cxx'; fi`
 
+abendsternuxgl32-black_box.o: ./core/black_box.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-black_box.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-black_box.Tpo -c -o abendsternuxgl32-black_box.o `test -f './core/black_box.cxx' || echo '$(srcdir)/'`./core/black_box.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-black_box.Tpo $(DEPDIR)/abendsternuxgl32-black_box.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./core/black_box.cxx' object='abendsternuxgl32-black_box.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-black_box.o `test -f './core/black_box.cxx' || echo '$(srcdir)/'`./core/black_box.cxx
+
+abendsternuxgl32-black_box.obj: ./core/black_box.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-black_box.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-black_box.Tpo -c -o abendsternuxgl32-black_box.obj `if test -f './core/black_box.cxx'; then $(CYGPATH_W) './core/black_box.cxx'; else $(CYGPATH_W) '$(srcdir)/./core/black_box.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-black_box.Tpo $(DEPDIR)/abendsternuxgl32-black_box.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./core/black_box.cxx' object='abendsternuxgl32-black_box.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-black_box.obj `if test -f './core/black_box.cxx'; then $(CYGPATH_W) './core/black_box.cxx'; else $(CYGPATH_W) '$(srcdir)/./core/black_box.cxx'; fi`
+
 abendsternuxgl32-test_state.o: ./test_state.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-test_state.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-test_state.Tpo -c -o abendsternuxgl32-test_state.o `test -f './test_state.cxx' || echo '$(srcdir)/'`./test_state.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-test_state.Tpo $(DEPDIR)/abendsternuxgl32-test_state.Po
@@ -8605,6 +8689,20 @@ abendsternuxgl32-aim_target_nearest.obj: ./control/ai/mod_target/aim_target_near
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_target_nearest.cxx' object='abendsternuxgl32-aim_target_nearest.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-aim_target_nearest.obj `if test -f './control/ai/mod_target/aim_target_nearest.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_target_nearest.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_target_nearest.cxx'; fi`
+
+abendsternuxgl32-aim_target_nearest_agro.o: ./control/ai/mod_target/aim_target_nearest_agro.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-aim_target_nearest_agro.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-aim_target_nearest_agro.Tpo -c -o abendsternuxgl32-aim_target_nearest_agro.o `test -f './control/ai/mod_target/aim_target_nearest_agro.cxx' || echo '$(srcdir)/'`./control/ai/mod_target/aim_target_nearest_agro.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-aim_target_nearest_agro.Tpo $(DEPDIR)/abendsternuxgl32-aim_target_nearest_agro.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_target_nearest_agro.cxx' object='abendsternuxgl32-aim_target_nearest_agro.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-aim_target_nearest_agro.o `test -f './control/ai/mod_target/aim_target_nearest_agro.cxx' || echo '$(srcdir)/'`./control/ai/mod_target/aim_target_nearest_agro.cxx
+
+abendsternuxgl32-aim_target_nearest_agro.obj: ./control/ai/mod_target/aim_target_nearest_agro.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-aim_target_nearest_agro.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-aim_target_nearest_agro.Tpo -c -o abendsternuxgl32-aim_target_nearest_agro.obj `if test -f './control/ai/mod_target/aim_target_nearest_agro.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_target_nearest_agro.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_target_nearest_agro.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-aim_target_nearest_agro.Tpo $(DEPDIR)/abendsternuxgl32-aim_target_nearest_agro.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./control/ai/mod_target/aim_target_nearest_agro.cxx' object='abendsternuxgl32-aim_target_nearest_agro.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-aim_target_nearest_agro.obj `if test -f './control/ai/mod_target/aim_target_nearest_agro.cxx'; then $(CYGPATH_W) './control/ai/mod_target/aim_target_nearest_agro.cxx'; else $(CYGPATH_W) '$(srcdir)/./control/ai/mod_target/aim_target_nearest_agro.cxx'; fi`
 
 abendsternuxgl32-aim_check_targetless.o: ./control/ai/mod_target/aim_check_targetless.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-aim_check_targetless.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-aim_check_targetless.Tpo -c -o abendsternuxgl32-aim_check_targetless.o `test -f './control/ai/mod_target/aim_check_targetless.cxx' || echo '$(srcdir)/'`./control/ai/mod_target/aim_check_targetless.cxx

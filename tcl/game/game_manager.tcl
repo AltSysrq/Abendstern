@@ -23,6 +23,7 @@
 #   LMS_        Last man standing
 #   L#MS        Last team standing
 #   HVC_        Humans vs Cyborgs
+#   WLRD        Warlord
 #   NULL        Intermission state
 class GameManager {
   inherit ::gui::Application
@@ -163,6 +164,7 @@ class GameManager {
       L[2-6]TS  {setsub [new G_LXTS $desiredPlayers [string index $m 1] \
                              $env $communicator $cls]}
       HVC_      {setsub [new G_HVC $desiredPlayers $env $communicator $cls]}
+      WLRD      {setsub [new G_Warlord $desiredPlayers $env $communicator $cls]}
       default   {modeError $modestr; return}
     }
 

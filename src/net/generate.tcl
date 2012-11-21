@@ -78,6 +78,12 @@ package require sha256
 #     Added to the end of the implementation.
 #   init CODE
 #     The body of the init() function of the ENO class.
+#   destroy-local CODE
+#     The body of the destroyRemote() function of the ENO class, with X as the
+#     local object
+#   destroy-remote CODE
+#     The body of the destroyRemote() function of the ENO class, with X as the
+#     remote object.
 #   update-control
 #   compare-control
 #   transmission-control
@@ -343,6 +349,7 @@ protected:
 private:
   void encode() throw();
   $cname* clone(const $cname*, NetworkConnection*) const throw();
+  virtual void destroyRemote() throw();
 
   [cxxj enoheader]
 };
@@ -483,6 +490,22 @@ void ENO_${name}::updateRemote() throw() {
   #undef DESTROY
   #undef field
 }
+
+void ENO_${name}::destroyRemote() throw() {
+  #define T 0
+  #define field (this->cxn->parent->field)
+  $cname* l_local = static_cast<$cname*>(this->local.ref);
+  $cname* l_remote = static_cast<$cname*>(this->remote);
+  #define X l_local
+  [cxxj destroy-local]
+  #undef X
+  #define X l_remote
+  [cxxj destroy-remote]
+  #undef X
+  #undef field
+  #undef T
+}
+
 [cxxj impl]
 "
   incr geraetnum

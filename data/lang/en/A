@@ -1024,6 +1024,10 @@
 +HVC
 -g_hvc_long
 +Humans vs Cyborgs
+-g_wlrd
++WLRD
+-g_wlrd_long
++Warlord
 
 -vpeer_connected_fmt
 +Connected: \a[%s%s\a]
@@ -1048,6 +1052,8 @@
 +%s survived!
 -survivor_nobody
 +Nobody survived!
+-warlord_fmt
++Warlord: %s
 
 -team_join
 +%s joined team \a[%s%s\a]
@@ -1072,6 +1078,26 @@
 +Resistance was futile!
 -hvc_humans_cyborgs_cnt_fmt
 +Humans: %d   Cyborgs: %d
+
+-warlord_rank_ensign
++Ensign
+-warlord_rank_lieutenant
++Lieutenant
+-warlord_rank_lt_commander
++Lt. Commander
+-warlord_rank_commander
++Commander
+-warlord_rank_captain
++Captain
+-warlord_rank_commodore
++Commodore
+-warlord_rank_admiral
++Admiral
+-warlord_rank_warlord
++Warlord
+
+-warlord_leaders
++Leaders: %d
 
 -kill_kill0
 +%s killed %s
@@ -1137,7 +1163,7 @@
 -kill_dominate_assist3
 +%s (with %s's help) is \a[(white)invulnerable\a] to %s!
 -kill_dominate_assist4
-+%s (with %s's help) is \a[(white)overpowering\a]%s!
++%s (with %s's help) is \a[(white)overpowering\a] %s!
 
 -kill_domcont0
 +%s continues to \a[(white)dominate\a] %s
@@ -1229,6 +1255,9 @@
 
 -killing_spree
 +%s is on a \a[(white)killing spree\a]!
+
+-entering_sudden_death
++Entering \a[(danger)sudden death\a] mode!
 
 @gamegui
 -tab_local

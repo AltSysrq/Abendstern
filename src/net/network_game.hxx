@@ -314,6 +314,13 @@ public:
   Peer* getPeerByConnection(NetworkConnection*) throw();
 
   /**
+   * Returns the Peer associated with the given NID, or NULL if no such Peer
+   * exists. If there is a NID collision (which can rarely happen on LAN
+   * games), it is undefined which peer will be returned.
+   */
+  Peer* getPeerByNid(unsigned) throw();
+
+  /**
    * Changes to the given new field.
    */
   void changeField(GameField* f) throw() {

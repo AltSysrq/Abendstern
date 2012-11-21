@@ -55,6 +55,7 @@
 #include "src/core/lxn.hxx"
 #include "src/control/human_controller.hxx"
 #include "src/net/ship_damage_geraet.hxx"
+#include "src/core/black_box.hxx"
 
 using namespace std;
 using libconfig::Setting;
@@ -144,7 +145,7 @@ Ship::Ship(GameField* field) :
   radar(&defaultRadar), timeUntilRadarRefresh(0),
   soundEffects(false),
   blame(0xFFFFFF),
-  score(0),
+  score(0), playerScore(0),
   diedSpontaneously(false),
   damageMultiplier(1.0f),
   shipExistenceFailure(NULL),
@@ -187,7 +188,7 @@ Ship::Ship(const Ship& other)
   injectedBlasts(other.injectedBlasts),
   insignia(other.insignia),
   blame(other.blame),
-  score(other.score),
+  score(other.score), playerScore(other.playerScore),
   diedSpontaneously(other.diedSpontaneously),
   damageMultiplier(other.damageMultiplier),
   shipExistenceFailure(other.shipExistenceFailure),
@@ -274,6 +275,7 @@ void Ship::restoreFromZero(float* f) noth {
 }
 
 bool Ship::update(float et) noth {
+  BlackBox _bb("ship\0", "Ship %p->update(%f)", this, et);
   if (soundEffects && currentVFrameLast)
     audio::shipSoundEffects(currentFrameTime,this);
 
@@ -577,6 +579,8 @@ void Ship::radarBounds(radar_t::iterator& begin, radar_t::iterator& end) noth {
 }
 
 void Ship::physicsRequire(physics_bits bits) noth {
+  BlackBox _bb("ship\0", "Ship %p->physicsRequire(%X) (now=%X, &=%X)",
+               this, bits, validPhysics, bits & validPhysics);
   assert(!physicsLocked);
 
   //Return early if possible
@@ -1104,6 +1108,7 @@ CollisionResult Ship::checkCollision(GameObject* other) noth {
 }
 
 bool Ship::collideWith(GameObject* other) noth {
+  BlackBox _bb("ship", "Ship %p->collideWith(%p)", this, other);
   physicsRequire(PHYS_SHIP_SHIELD_INVENTORY_BIT
                 |PHYS_SHIP_MASS_BIT
                 |PHYS_SHIP_INERTIA_BIT
@@ -1373,7 +1378,7 @@ bool Ship::collideWith(GameObject* other) noth {
       }
 
       //Remove networking entry
-      if (networkCells.size() > 0)
+      if (!networkCells.empty())
         networkCells[cell->netIndex] = NULL;
 
       //Remove cell
@@ -1416,6 +1421,7 @@ bool Ship::collideWith(GameObject* other) noth {
           //Find all cells attached and remove from ours,
           //then create new ship
           Ship* frag=new Ship(field);
+          SetPhysicsLockedInScope _lockFrag(frag, true);
           frag->isFragment=frag->decorative=true;
           /* We don't call okToDecorate because then
            * the fragment will be doubly-exposed to
@@ -1489,6 +1495,7 @@ bool Ship::collideWith(GameObject* other) noth {
           //Get the old location of the root so we can adjust later
           pair<float,float> rootPos=cellCoord(this, frag->cells[0]);
           for (unsigned int j=0; j<frag->cells.size(); ++j) {
+            SetPhysicsLockedInScope _unlockFrag(frag, false);
             frag->cells[j]->disorient();
             frag->cells[j]->physicsClear(PHYS_CELL_LOCATION_PROPERTIES_BITS);
           }
@@ -1500,6 +1507,7 @@ bool Ship::collideWith(GameObject* other) noth {
           frag->x=frag->y=0;
           frag->reinforcement=this->reinforcement;
           //Move so it appears in the correct location
+          SetPhysicsLockedInScope _fragReady(frag, false);
           frag->physicsRequire(PHYS_SHIP_COORDS_BIT | PHYS_CELL_LOCATION_PROPERTIES_BIT);
           pair<float,float> offset=cellCoord(frag, frag->cells[0]);
           frag->x = rootPos.first - offset.first;
@@ -1744,6 +1752,10 @@ void Ship::updateCurrPower() noth {
 }
 
 void Ship::preremove(Cell* cell) noth {
+  BlackBox _bb("ship\0",
+               "Ship %p->preremove(%p) hasmass:%d this->mass=%f, cell->mass=%f",
+               this, cell, (int)!!(validPhysics & PHYS_SHIP_MASS_BIT),
+               (float)mass, cell->physics.mass);
   if (cell->isEmpty) return; //Nothing to do with EmptyCells
 
   //PHYS_SHIP_COORDS_BIT: can't be patched
@@ -1761,6 +1773,8 @@ void Ship::preremove(Cell* cell) noth {
       bool ok = true;
       for (unsigned i = 0; ok && i < cells.size(); ++i)
         ok &= (cells[i] == cell || cells[i]->isEmpty);
+      if (!ok)
+        BlackBox::dump("ship\0");
       assert(ok);
     }
     #endif /* NDEBUG */

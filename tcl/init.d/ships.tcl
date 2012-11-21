@@ -70,7 +70,7 @@ foreach hangar {all_ships a b c effective} {
 $state setCallback [_ A boot ships] {
   if {[catch {
   # Load a few ships
-  for {set i 0} {$i < 4 && [llength $shipLoadQueue]} {incr i} {
+  for {set i 0} {$i < 16 && [llength $shipLoadQueue]} {incr i} {
     set shipLoadQueue [lassign $shipLoadQueue path]
     set ship [shipPath2Mount $path]
     if {[catch {
@@ -92,6 +92,11 @@ $state setCallback [_ A boot ships] {
         log "Warning: $ship has invalid class $cls"
         continue
       }
+    }
+
+    # If we actually loaded the ship, don't load any more this frame
+    if {[$ loaded $ship]} {
+      break
     }
   }
   } err]} { log $err }

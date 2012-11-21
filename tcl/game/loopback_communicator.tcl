@@ -53,6 +53,14 @@ class LoopbackCommunicator {
     return 0
   }
 
+  method get-peer-by-nid {num} {
+    return 0
+  }
+
+  method get-peer-nid {peer} {
+    return 0
+  }
+
   method delete-with-parent {} {
     return 1
   }

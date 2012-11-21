@@ -55,6 +55,8 @@ static const char*const textureFiles[] = {
 
 StarField::StarField(GameObject* ref, GameField* field, int count) {
   glareR=glareG=glareB=0;
+  oldFieldW = field->width;
+  oldFieldH = field->height;
 
   reference=ref;
   this->field=field;
@@ -176,6 +178,16 @@ void StarField::update(float time) noth {
 #define SHEAR_THRESH 0.0001f
 void StarField::draw() noth {
   BEGINGP("StarField")
+
+  //Relocate background objects if necessary
+  if (oldFieldW != field->width || oldFieldH != field->height) {
+    oldFieldW = field->width;
+    oldFieldH = field->height;
+
+    for (int i = 0; i < numBkgObjects; ++i)
+      bkgObjects[i]->randomize(field->width, field->height);
+  }
+
   float speed=0, angle=0, angcos, angsin;
   if (reference) {
     float rvx=reference->getVX(),

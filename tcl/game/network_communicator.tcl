@@ -91,6 +91,24 @@ class NetworkCommunicator {
     dict get $peersByNumber $num
   }
 
+  method get-peer-by-nid {num} {
+    set ret [$network getPeerByNid $num]
+    if {$ret == 0} {
+      set ret {}
+    }
+    if {$ret eq [$network getLocalPeer]} {
+      set ret 0
+    }
+    return $ret
+  }
+
+  method get-peer-nid {peer} {
+    if {$peer == 0} {
+      set peer [$network getLocalPeer]
+    }
+    $peer cget -nid
+  }
+
   method is-networked {} {
     return 1
   }

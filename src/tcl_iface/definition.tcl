@@ -501,7 +501,8 @@ class final Ship GameObject {
   fun pair<float,float> {cellCoord cellSubCoord} static {Ship* {check ok=val;}} {Cell* {check ok=val;}} float float
   var insignia unsigned
   var blame unsigned
-  var score unsigned
+  var score int
+  var playerScore int
   var damageMultiplier float
   const diedSpontaneously bool
   const typeName string
@@ -1180,6 +1181,7 @@ unsafe {
     fun Peer* getLocalPeer
     fun Peer* getOverseer
     fun Peer* getPeerByConnection {} NetworkConnection*
+    fun Peer* getPeerByNid {} unsigned
     fun string getDisconnectReason
     fun void setNetIface {} NetIface*
     fun void setAdvertising {} cstr

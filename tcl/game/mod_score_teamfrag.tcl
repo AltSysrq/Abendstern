@@ -6,8 +6,8 @@ class MixinScoreTeamfrag {
     if {$type == "kill-notification"} {
       lassign $msg type vpeer killer
       if {$killer != {}} {
-        lassign $killer kp kvp
-        if {$kp == 0} { set kp 0 }
+        lassign [$this internalise-pvp $killer] kp kvp
+        if {$kp eq {}} return
 
         set ok yes
         if {$kp == $peer && $kvp == $vpeer} {

@@ -286,7 +286,7 @@ class Ship: public GameObject {
   friend class SetPhysicsLockedInScope;
 
   /* Total mass of the ship. */
-  unsigned mass;
+  float mass;
   /* Determined by multiplying the distance from the centre
    * of gravity by the mass of respective cells.
    */
@@ -492,6 +492,13 @@ class Ship: public GameObject {
    * Defaults to 0.
    */
   signed score;
+
+  /**
+   * The score of the player piloting the ship. Maintained externally.
+   *
+   * Defaults to 0.
+   */
+  signed playerScore;
 
   /**
    * If true, the Ship was killed with spontaneouslyDie().

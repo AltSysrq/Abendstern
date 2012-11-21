@@ -465,6 +465,7 @@ class BasicGame {
     modifyIncomming 0 $vp $ship
 
     $ship configure -shipExistenceFailure [$shipDeathFun get]
+    $ship configure -playerScore [dpg $vp score]
 
     $field add $ship
     if {$reference} {
@@ -683,7 +684,7 @@ class BasicGame {
       } else {
         set who other
         catch {
-          if {[dpgp {*}$killer team] == [dpg $vp team]} {
+          if {[isTeamKill $killer $vp]} {
             set who team
           }
         }
@@ -714,7 +715,11 @@ class BasicGame {
       }
 
       # Send necessary messages
-      overseerMessage kill-notification $vp $killer $assist $secondary0 $secondary1
+      overseerMessage kill-notification $vp \
+          [externalise-pvp $killer] \
+          [externalise-pvp $assist] \
+          [externalise-pvp $secondary0] \
+          [externalise-pvp $secondary1]
       foreach var {killer assist secondary0 secondary1} {
         if {{} != [set $var]} {
           unicastMessage [lindex [set $var] 0] \
@@ -740,6 +745,35 @@ class BasicGame {
     } else {
       return {}
     }
+  }
+
+  # Converts the given {peer vpeer} combination to the external format, by
+  # replacing the peer with its NID
+  method externalise-pvp {pair} {
+    lassign $pair peer vpeer
+    if {$peer eq {}} {
+      return $pair
+    }
+    list [$communicator get-peer-nid $peer] $vpeer
+  }
+
+  # Reverses the operation of externalise-pvp
+  method internalise-pvp {pair} {
+    lassign $pair peer vpeer
+    list [$communicator get-peer-by-nid $peer] $vpeer
+  }
+
+  # Returns whether the given {killer-peer killer-vpeer} vpeer represents a
+  # teamkill. Default uses the team field of vpeer data, or false if that
+  # throws
+  method isTeamKill {killer vp} {
+    set team no
+    catch {
+      if {[dpgp {*}$killer team] == [dpg $vp team]} {
+        set team yes
+      }
+    }
+    return $team
   }
 
   # END: SHIPS AND CONTROLLERS
