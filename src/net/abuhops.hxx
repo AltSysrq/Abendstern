@@ -41,6 +41,12 @@ namespace abuhops {
    */
   void list(void (*)(void* userdata, const unsigned char*, unsigned),
             void* userdata);
+  /**
+   * Stops listening to ADVERTs. This will not actually stop a running list of
+   * them, but will prevent the callback passed to list() from being called
+   * again.
+   */
+  void stopList();
 
   /**
    * Sends the given packet to the given destination via a PROXY triangular

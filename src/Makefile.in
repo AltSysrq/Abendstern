@@ -245,6 +245,7 @@ am__objects_1 = abendsternuxgl14-bridge.$(OBJEXT) \
 	abendsternuxgl14-ship_damage_geraet.$(OBJEXT) \
 	abendsternuxgl14-network_game.$(OBJEXT) \
 	abendsternuxgl14-windows_firewall_opener.$(OBJEXT) \
+	abendsternuxgl14-abuhops.$(OBJEXT) \
 	abendsternuxgl14-network_test.$(OBJEXT) \
 	abendsternuxgl14-xnetobj.$(OBJEXT) \
 	abendsternuxgl14-namegen.$(OBJEXT) \
@@ -459,6 +460,7 @@ am__objects_2 = abendsternuxgl21-bridge.$(OBJEXT) \
 	abendsternuxgl21-ship_damage_geraet.$(OBJEXT) \
 	abendsternuxgl21-network_game.$(OBJEXT) \
 	abendsternuxgl21-windows_firewall_opener.$(OBJEXT) \
+	abendsternuxgl21-abuhops.$(OBJEXT) \
 	abendsternuxgl21-network_test.$(OBJEXT) \
 	abendsternuxgl21-xnetobj.$(OBJEXT) \
 	abendsternuxgl21-namegen.$(OBJEXT) \
@@ -671,6 +673,7 @@ am__objects_3 = abendsternuxgl32-bridge.$(OBJEXT) \
 	abendsternuxgl32-ship_damage_geraet.$(OBJEXT) \
 	abendsternuxgl32-network_game.$(OBJEXT) \
 	abendsternuxgl32-windows_firewall_opener.$(OBJEXT) \
+	abendsternuxgl32-abuhops.$(OBJEXT) \
 	abendsternuxgl32-network_test.$(OBJEXT) \
 	abendsternuxgl32-xnetobj.$(OBJEXT) \
 	abendsternuxgl32-namegen.$(OBJEXT) \
@@ -1077,6 +1080,7 @@ COMMONSOURCES = \
 ./net/ship_damage_geraet.cxx \
 ./net/network_game.cxx \
 ./net/windows_firewall_opener.cxx \
+./net/abuhops.cxx \
 ./net/network_test.cxx \
 ./net/xxx/xnetobj.cxx \
 ./secondary/namegen.cxx \
@@ -1242,6 +1246,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-abendstern.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-abstract_system_painter.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-abuhops.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-acsgi.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aictrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-aim_avoid_edge.Po@am__quote@
@@ -1457,6 +1462,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl14-xnetobj.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-abendstern.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-abstract_system_painter.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-abuhops.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-acsgi.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aictrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-aim_avoid_edge.Po@am__quote@
@@ -1672,6 +1678,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl21-xnetobj.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-abendstern.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-abstract_system_painter.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-abuhops.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-acsgi.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aictrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/abendsternuxgl32-aim_avoid_edge.Po@am__quote@
@@ -4517,6 +4524,20 @@ abendsternuxgl14-windows_firewall_opener.obj: ./net/windows_firewall_opener.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/windows_firewall_opener.cxx' object='abendsternuxgl14-windows_firewall_opener.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-windows_firewall_opener.obj `if test -f './net/windows_firewall_opener.cxx'; then $(CYGPATH_W) './net/windows_firewall_opener.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/windows_firewall_opener.cxx'; fi`
+
+abendsternuxgl14-abuhops.o: ./net/abuhops.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-abuhops.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-abuhops.Tpo -c -o abendsternuxgl14-abuhops.o `test -f './net/abuhops.cxx' || echo '$(srcdir)/'`./net/abuhops.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-abuhops.Tpo $(DEPDIR)/abendsternuxgl14-abuhops.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/abuhops.cxx' object='abendsternuxgl14-abuhops.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-abuhops.o `test -f './net/abuhops.cxx' || echo '$(srcdir)/'`./net/abuhops.cxx
+
+abendsternuxgl14-abuhops.obj: ./net/abuhops.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-abuhops.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl14-abuhops.Tpo -c -o abendsternuxgl14-abuhops.obj `if test -f './net/abuhops.cxx'; then $(CYGPATH_W) './net/abuhops.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/abuhops.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl14-abuhops.Tpo $(DEPDIR)/abendsternuxgl14-abuhops.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/abuhops.cxx' object='abendsternuxgl14-abuhops.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl14-abuhops.obj `if test -f './net/abuhops.cxx'; then $(CYGPATH_W) './net/abuhops.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/abuhops.cxx'; fi`
 
 abendsternuxgl14-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl14_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl14-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl14-network_test.Tpo -c -o abendsternuxgl14-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx
@@ -7528,6 +7549,20 @@ abendsternuxgl21-windows_firewall_opener.obj: ./net/windows_firewall_opener.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-windows_firewall_opener.obj `if test -f './net/windows_firewall_opener.cxx'; then $(CYGPATH_W) './net/windows_firewall_opener.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/windows_firewall_opener.cxx'; fi`
 
+abendsternuxgl21-abuhops.o: ./net/abuhops.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-abuhops.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-abuhops.Tpo -c -o abendsternuxgl21-abuhops.o `test -f './net/abuhops.cxx' || echo '$(srcdir)/'`./net/abuhops.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-abuhops.Tpo $(DEPDIR)/abendsternuxgl21-abuhops.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/abuhops.cxx' object='abendsternuxgl21-abuhops.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-abuhops.o `test -f './net/abuhops.cxx' || echo '$(srcdir)/'`./net/abuhops.cxx
+
+abendsternuxgl21-abuhops.obj: ./net/abuhops.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-abuhops.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl21-abuhops.Tpo -c -o abendsternuxgl21-abuhops.obj `if test -f './net/abuhops.cxx'; then $(CYGPATH_W) './net/abuhops.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/abuhops.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-abuhops.Tpo $(DEPDIR)/abendsternuxgl21-abuhops.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/abuhops.cxx' object='abendsternuxgl21-abuhops.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl21-abuhops.obj `if test -f './net/abuhops.cxx'; then $(CYGPATH_W) './net/abuhops.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/abuhops.cxx'; fi`
+
 abendsternuxgl21-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl21_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl21-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl21-network_test.Tpo -c -o abendsternuxgl21-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl21-network_test.Tpo $(DEPDIR)/abendsternuxgl21-network_test.Po
@@ -10537,6 +10572,20 @@ abendsternuxgl32-windows_firewall_opener.obj: ./net/windows_firewall_opener.cxx
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/windows_firewall_opener.cxx' object='abendsternuxgl32-windows_firewall_opener.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-windows_firewall_opener.obj `if test -f './net/windows_firewall_opener.cxx'; then $(CYGPATH_W) './net/windows_firewall_opener.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/windows_firewall_opener.cxx'; fi`
+
+abendsternuxgl32-abuhops.o: ./net/abuhops.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-abuhops.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-abuhops.Tpo -c -o abendsternuxgl32-abuhops.o `test -f './net/abuhops.cxx' || echo '$(srcdir)/'`./net/abuhops.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-abuhops.Tpo $(DEPDIR)/abendsternuxgl32-abuhops.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/abuhops.cxx' object='abendsternuxgl32-abuhops.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-abuhops.o `test -f './net/abuhops.cxx' || echo '$(srcdir)/'`./net/abuhops.cxx
+
+abendsternuxgl32-abuhops.obj: ./net/abuhops.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-abuhops.obj -MD -MP -MF $(DEPDIR)/abendsternuxgl32-abuhops.Tpo -c -o abendsternuxgl32-abuhops.obj `if test -f './net/abuhops.cxx'; then $(CYGPATH_W) './net/abuhops.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/abuhops.cxx'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/abendsternuxgl32-abuhops.Tpo $(DEPDIR)/abendsternuxgl32-abuhops.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='./net/abuhops.cxx' object='abendsternuxgl32-abuhops.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -c -o abendsternuxgl32-abuhops.obj `if test -f './net/abuhops.cxx'; then $(CYGPATH_W) './net/abuhops.cxx'; else $(CYGPATH_W) '$(srcdir)/./net/abuhops.cxx'; fi`
 
 abendsternuxgl32-network_test.o: ./net/network_test.cxx
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(abendsternuxgl32_CXXFLAGS) $(CXXFLAGS) -MT abendsternuxgl32-network_test.o -MD -MP -MF $(DEPDIR)/abendsternuxgl32-network_test.Tpo -c -o abendsternuxgl32-network_test.o `test -f './net/network_test.cxx' || echo '$(srcdir)/'`./net/network_test.cxx
