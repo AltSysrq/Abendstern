@@ -21,6 +21,7 @@ EmptyCell::EmptyCell(Ship* ship, Cell* neighbour)
     x = neighbour->x;
     y = neighbour->y;
   }
+  theta = 0;
   oriented = neighbour && neighbour->oriented;
   netIndex=-1;
   isEmpty = true;
