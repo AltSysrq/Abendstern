@@ -3556,6 +3556,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -3575,6 +3576,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -3594,6 +3596,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -3613,6 +3616,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -3632,6 +3636,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -3651,6 +3656,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -3670,6 +3676,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -3689,6 +3696,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -5785,6 +5793,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -5804,6 +5813,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -5823,6 +5833,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -5842,6 +5853,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -5861,6 +5873,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -5880,6 +5893,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -5899,6 +5913,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -5918,6 +5933,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -6727,6 +6743,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -6746,6 +6763,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -6765,6 +6783,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -6784,6 +6803,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -6803,6 +6823,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -6822,6 +6843,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -6841,6 +6863,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -6860,6 +6883,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -8956,6 +8980,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -8975,6 +9000,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -8994,6 +9020,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -9013,6 +9040,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -9032,6 +9060,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -9051,6 +9080,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -9070,6 +9100,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -9089,6 +9120,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<16; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -9898,6 +9930,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -9917,6 +9950,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -9936,6 +9970,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -9955,6 +9990,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -9974,6 +10010,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -9993,6 +10030,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -10012,6 +10050,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -10031,6 +10070,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -12127,6 +12167,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -12146,6 +12187,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -12165,6 +12207,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -12184,6 +12227,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -12203,6 +12247,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -12222,6 +12267,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -12241,6 +12287,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -12260,6 +12307,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<32; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -13069,6 +13117,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -13088,6 +13137,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -13107,6 +13157,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -13126,6 +13177,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -13145,6 +13197,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -13164,6 +13217,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -13183,6 +13237,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -13202,6 +13257,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -15298,6 +15354,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -15317,6 +15374,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -15336,6 +15394,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -15355,6 +15414,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -15374,6 +15434,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -15393,6 +15454,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -15412,6 +15474,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -15431,6 +15494,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<128; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -16240,6 +16304,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -16259,6 +16324,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -16278,6 +16344,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -16297,6 +16364,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -16316,6 +16384,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -16335,6 +16404,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -16354,6 +16424,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -16373,6 +16444,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -18469,6 +18541,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -18488,6 +18561,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -18507,6 +18581,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -18526,6 +18601,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -18545,6 +18621,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -18564,6 +18641,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -18583,6 +18661,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -18602,6 +18681,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<512; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -19411,6 +19491,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -19430,6 +19511,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -19449,6 +19531,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -19468,6 +19551,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -19487,6 +19571,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -19506,6 +19591,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -19525,6 +19611,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -19544,6 +19631,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -21640,6 +21728,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -21659,6 +21748,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -21678,6 +21768,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -21697,6 +21788,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -21716,6 +21808,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -21735,6 +21828,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -21754,6 +21848,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -21773,6 +21868,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<2048; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -22582,6 +22678,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -22601,6 +22698,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -22620,6 +22718,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -22639,6 +22738,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -22658,6 +22758,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -22677,6 +22778,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -22696,6 +22798,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -22715,6 +22818,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -24811,6 +24915,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -24830,6 +24935,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -24849,6 +24955,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -24868,6 +24975,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -24887,6 +24995,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -24906,6 +25015,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -24925,6 +25035,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
@@ -24944,6 +25055,7 @@ for (unsigned ARRAY_OFFSET=0; ARRAY_OFFSET<8192; ARRAY_OFFSET+=8) {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();
