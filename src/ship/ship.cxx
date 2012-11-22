@@ -1048,6 +1048,7 @@ const vector<CollisionRectangle*>* Ship::getCollisionBounds() noth {
 }
 
 pair<float,float> Ship::cellCoord(const Ship* parent, const Cell* cell, float x, float y) noth {
+  const_cast<Cell*>(cell)->physicsRequire(PHYS_CELL_LOCATION_PROPERTIES_BIT);
   float ptcos = parent->cosTheta;
   float ptsin = parent->sinTheta;
   float cellTheta=cell->getT()*pi/180 + parent->theta;
@@ -1059,6 +1060,7 @@ pair<float,float> Ship::cellCoord(const Ship* parent, const Cell* cell, float x,
                                cell->x*ptsin);
 }
 pair<float,float> Ship::cellCoord(const Ship* parent, const Cell* cell) noth {
+  const_cast<Cell*>(cell)->physicsRequire(PHYS_CELL_LOCATION_PROPERTIES_BIT);
   float ptcos = parent->cosTheta;
   float ptsin = parent->sinTheta;
   return make_pair(parent->x + cell->x*ptcos -
@@ -1068,6 +1070,7 @@ pair<float,float> Ship::cellCoord(const Ship* parent, const Cell* cell) noth {
 }
 
 pair<float,float> Ship::getCellVelocity(const Cell* cell) const noth {
+  const_cast<Cell*>(cell)->physicsRequire(PHYS_CELL_LOCATION_PROPERTIES_BIT);
   float dist=cell->physics.distance,
        angle=cell->physics.angle + theta;
   //Since vtheta is in radians, it is 2*pi*<percentage>

@@ -924,6 +924,7 @@ vtype Ship$ssize Ship {
             X->networkCells[cellix]->systems[sysix]->destroy(0xFFFFFF);
             delete X->networkCells[cellix]->systems[sysix];
             X->networkCells[cellix]->systems[sysix] = NULL;
+            X->networkCells[cellix]->clearDSChain();
             X->networkCells[cellix]->physicsClear(PHYS_CELL_ALL|PHYS_SHIP_ALL);
             X->cellChanged(X->networkCells[cellix]);
             X->refreshUpdates();

@@ -196,9 +196,16 @@ extern ConfReg conf;
 
 extern bool debug_freeze;
 
+/**
+ * If set to true, never time remote hosts out. This is useful if debugging one
+ * of them with Valgrind.
+ */
+extern bool suppressRemoteHostTimeout;
+
 #ifdef DEBUG
 /** Same as fmod(), but doesn't raise an FPE when the numerator
  * is zero (which GNU libm does, for some reason).
+ * (This is necessary since we enable almost all FPEs in the DEBUG build.)
  */
 static inline float dbfmod(float x, float y) {
   return x == 0? 0 : std::fmod(x,y);

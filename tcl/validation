@@ -40,6 +40,8 @@ tcl/game/g_dm.tcl
 tcl/game/network_communicator.tcl
 tcl/game/g_lms.tcl
 tcl/game/mod_score_teamfrag.tcl
+tcl/game/mod_ai_sudden_death.tcl
+tcl/game/g_warlord.tcl
 tcl/autoexec.tcl
 tcl/abnet.tcl
 tcl/lssinfo.tcl

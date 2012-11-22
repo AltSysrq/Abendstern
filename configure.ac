@@ -25,7 +25,7 @@ AS_IF([test "x$enable_debug" = "xyes"], [
 ], [
   AB_DEBUG_FLAGS='-DNDEBUG'
 ])
-AS_IF([test "x$enable_optimise" = "xno"],
+AS_IF([test "x$enable_optimise" = "xno"], [
   AB_OPT_FLAGS='-O0'
 ], [
   AB_OPT_FLAGS='-O3'
