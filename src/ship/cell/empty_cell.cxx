@@ -17,9 +17,12 @@ EmptyCell::EmptyCell(Ship* ship, Cell* neighbour)
 {
   _intrinsicMass=0;
   neighbours[0]=neighbour;
-  x = neighbour->x;
-  y = neighbour->y;
-  oriented = neighbour->oriented;
+  if (neighbour) {
+    x = neighbour->x;
+    y = neighbour->y;
+  }
+  theta = 0;
+  oriented = neighbour && neighbour->oriented;
   netIndex=-1;
   isEmpty = true;
 

@@ -369,6 +369,9 @@ int main(int argc, char** argv) {
     else if (0 == strcmp(argv[i], "-lcgcs-none")) {
       lcgcs = libconfig::GCS_None;
     }
+    else if (0 == strcmp(argv[i], "-suppress-remote-host-timeout")) {
+      suppressRemoteHostTimeout = true;
+    }
     else {
       if (strcmp(argv[i], "-?")
       &&  strcmp(argv[i], "-help") && strcmp(argv[i], "--help"))
@@ -384,6 +387,8 @@ int main(int argc, char** argv) {
               "  -c[ache] int   Set number of MB of RAM to use for config cache\n"
               "  -F[ast]        Force elapsed time for each frame to 10 ms\n"
               "  -prelim        Start in preliminary configuration mode\n"
+              "  -suppress-remote-host-timeout\n"
+              "                 Don't time remote hosts out in network games.\n"
               "  -?, -help      Print this help message" << endl;
       exit(EXIT_SUCCESS);
     }

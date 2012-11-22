@@ -3154,8 +3154,9 @@ else
 
 fi
 if test "x$enable_optimise" = "xno"; then :
+
   AB_OPT_FLAGS='-O0'
-]
+
 else
 
   AB_OPT_FLAGS='-O3'

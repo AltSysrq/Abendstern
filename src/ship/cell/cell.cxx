@@ -455,16 +455,29 @@ void Cell::physicsRequire(physics_bits bits) noth {
 
 void Cell::clearDSChain() noth {
   if (!(physics.valid & PHYS_CELL_DS_EXIST_BIT)) return;
-  Cell* curr = physics.nextDepDS, *nxt;
-  while (curr) {
-    nxt = curr->physics.nextDepDS;
-    curr->physics.nearestDS = NULL;
-    curr->physics.distanceDS = -1;
-    curr->physics.prevDepDS = curr->physics.nextDepDS = NULL;
-    curr->physicsClear(PHYS_CELL_DS_NEAREST_BITS);
-    curr = nxt;
+  if (physics.hasDispersionShield) {
+    Cell* curr = physics.nextDepDS, *nxt;
+    while (curr) {
+      nxt = curr->physics.nextDepDS;
+      curr->physics.nearestDS = NULL;
+      curr->physics.distanceDS = -1;
+      curr->physics.prevDepDS = curr->physics.nextDepDS = NULL;
+      curr->physicsClear(PHYS_CELL_DS_NEAREST_BITS);
+      curr = nxt;
+    }
+    physics.nextDepDS = physics.prevDepDS = NULL;
+  } else {
+    if (physics.valid & PHYS_CELL_DS_NEAREST_BIT) {
+      Cell* next = physics.nextDepDS, * prev = physics.prevDepDS;
+      if (next)
+        next->physics.prevDepDS = prev;
+      if (prev)
+        prev->physics.nextDepDS = next;
+
+      physics.nearestDS = physics.prevDepDS = physics.nextDepDS = NULL;
+      physics.distanceDS = -1;
+    }
   }
-  physics.nextDepDS = physics.prevDepDS = NULL;
 }
 
 void Cell::freeTexture() noth {

@@ -37,6 +37,7 @@ throw();
 #include "src/sim/game_object.hxx"
 #include "src/core/lxn.hxx"
 #include "src/exit_conditions.hxx"
+#include "src/globals.hxx"
 
 using namespace std;
 
@@ -177,7 +178,8 @@ void NetworkConnection::update(unsigned et) noth {
     }
   }
 
-  if (lastIncommingTime + DISCONNECT_TIME < SDL_GetTicks()) {
+  if (lastIncommingTime + DISCONNECT_TIME < SDL_GetTicks() &&
+      !suppressRemoteHostTimeout) {
     scg->closeConnection("Timed out", "timed_out");
   }
 
