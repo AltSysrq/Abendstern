@@ -2,6 +2,8 @@
 #include <config.h>
 #endif
 
+#include <asio.hpp>
+
 #include <cstring>
 #include <cstdlib>
 
@@ -31,10 +33,14 @@ namespace abuhops {
 
   #define IPV4PORT 12545
   #define IPV6PORT 12546
+  #define SERVER "ABENDSTERN.SERVEGAME.COM."
 
   static unsigned timeUntilPing = 0;
   static bool isConnected = false;
   static bool knowIpv4Address = false, knowIpv6Address = false;
+
+  static Antenna::endpoint server4, server6;
+  static bool hasv4 = false, hasv6 = false;
 
   static void (*listCallback)(void*, const unsigned*, unsigned) = NULL;
   static void* listCallbackUserdata = NULL;
