@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Name="Abendstern" Id="autowix:guid:product121118"
+  <Product Name="Abendstern" Id="autowix:guid:product121122"
            UpgradeCode="autowix:guid:upgradecode"
            Manufacturer="Jason Lingle"
-           Language="1033" Codepage="1252" Version="0.0.12.121118">
+           Language="1033" Codepage="1252" Version="0.0.13.1211122">
     <Package Id="*" Keywords="Installer"
              Description="Abendstern Windows Installer"
              InstallerVersion="100"
