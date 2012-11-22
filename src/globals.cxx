@@ -24,6 +24,7 @@ bool fastForward;
 ConfReg conf;
 float sparkCountMultiplier=1.0f;
 unsigned frameRate;
+bool suppressRemoteHostTimeout = false;
 
 #ifdef PROFILE
   std::map<const char*,float> gp_profile, gp_currFPSProfile;
