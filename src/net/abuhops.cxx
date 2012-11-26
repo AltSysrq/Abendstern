@@ -11,6 +11,7 @@
 #include "antenna.hxx"
 #include "tuner.hxx"
 #include "io.hxx"
+#include "packet_processor.hxx"
 #include "abuhops.hxx"
 
 using namespace std;
@@ -48,7 +49,7 @@ namespace abuhops {
 
   static bool isConnected4 = false,  isConnected6 = false, isConnecting = true;
   static unsigned timeUntilConnectXmit = 0;
-  static unsigned char connectPacket[1+4+4+HMAC_SIZE+MAX_NAME_LENGTH+1];
+  static byte connectPacket[1+4+4+HMAC_SIZE+MAX_NAME_LENGTH+1];
   static unsigned connectPacketSize;
   static unsigned connectionAttempts = 0;
 
@@ -61,6 +62,7 @@ namespace abuhops {
   static void* listCallbackUserdata = NULL;
 
   static void sendConnectPacket();
+  static void processPacket(bool v6, const byte* data, unsigned len);
 
   void connect(unsigned id, const char* name,
                unsigned timestamp, const char* hmac) {
@@ -105,7 +107,7 @@ namespace abuhops {
     connectionAttempts = 0;
 
     //Write the connection packet
-    unsigned char* pack = connectPacket;
+    byte* pack = connectPacket;
     *pack++ = CONNECT;
     io::write(pack, id);
     io::write(pack, timestamp);
@@ -146,18 +148,33 @@ namespace abuhops {
   }
 
   void ensureRegistered() {
-    //TODO
+    class PP: public PacketProcessor {
+    public:
+      bool v6;
+      PP(bool v) : v6(v) {}
+      virtual void process(const Antenna::endpoint&, Antenna*, Tuner*,
+                           const byte* data, unsigned len) {
+        processPacket(v6, data, len);
+      }
+    } static ppv4(false), ppv6(true);
+
+    if (antenna.tuner) {
+      if (hasv4)
+        antenna.tuner->connect(server4, &ppv4);
+      if (hasv6)
+        antenna.tuner->connect(server6, &ppv6);
+    }
   }
 
   void bye() {
     //TODO
   }
 
-  void post(const unsigned char* dat, unsigned len) {
+  void post(const byte* dat, unsigned len) {
     //TODO
   }
 
-  void list(void (*callback)(void*, const unsigned char*, unsigned),
+  void list(void (*callback)(void*, const byte*, unsigned),
             void* userdata) {
     //TODO
   }
@@ -167,7 +184,7 @@ namespace abuhops {
   }
 
   void proxy(const Antenna::endpoint& dst,
-             const unsigned char* dat, unsigned len) {
+             const byte* dat, unsigned len) {
     //TODO
   }
 
@@ -177,6 +194,10 @@ namespace abuhops {
   }
 
   void update(unsigned et) {
+    //TODO
+  }
+
+  static void processPacket(bool v6, const byte* dat, unsigned len) {
     //TODO
   }
 }
