@@ -167,7 +167,13 @@ namespace abuhops {
   }
 
   void bye() {
-    //TODO
+    byte pack = BYE;
+    if (hasv4)
+      antenna.send(server4, &pack, 1);
+    if (hasv6)
+      antenna.send(server6, &pack, 1);
+
+    isConnecting = isConnected4 = isConnected6 = false;
   }
 
   void post(const byte* dat, unsigned len) {
