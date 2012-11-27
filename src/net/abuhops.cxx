@@ -201,7 +201,8 @@ namespace abuhops {
   }
 
   void stopList() {
-    //TODO
+    listCallback = NULL;
+    listCallbackUserdata = NULL;
   }
 
   void proxy(const Antenna::endpoint& dst,
