@@ -182,9 +182,9 @@ namespace abuhops {
     pack[0] = POST;
     memcpy(&pack[1], dat, len);
 
-    if (hasv4)
+    if (isConnected4)
       antenna.send(server4, &pack[0], pack.size());
-    if (hasv6)
+    if (isConnected6)
       antenna.send(server6, &pack[0], pack.size());
   }
 
