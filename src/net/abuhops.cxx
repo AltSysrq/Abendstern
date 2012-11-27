@@ -59,7 +59,7 @@ namespace abuhops {
   static Antenna::endpoint server4, server6;
   static bool hasv4 = false, hasv6 = false;
 
-  static void (*listCallback)(void*, const unsigned*, unsigned) = NULL;
+  static void (*listCallback)(void*, const byte*, unsigned) = NULL;
   static void* listCallbackUserdata = NULL;
 
   static void sendConnectPacket();
@@ -190,7 +190,14 @@ namespace abuhops {
 
   void list(void (*callback)(void*, const byte*, unsigned),
             void* userdata) {
-    //TODO
+    listCallback = callback;
+    listCallbackUserdata = userdata;
+
+    byte pack = LIST;
+    if (isConnected4)
+      antenna.send(server4, &pack, 1);
+    if (isConnected6)
+      antenna.send(server6, &pack, 1);
   }
 
   void stopList() {
