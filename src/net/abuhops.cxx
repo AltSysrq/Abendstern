@@ -206,8 +206,28 @@ namespace abuhops {
   }
 
   void proxy(const Antenna::endpoint& dst,
-             const byte* dat, unsigned len) {
-    //TODO
+             const byte* payload, unsigned len) {
+    vector<byte> pack(1 + (dst.address().is_v4()? 4 : 2*8) + 2 + len);
+    pack[0] = PROXY;
+    byte* dat = &pack[1];
+    if (dst.address().is_v4()) {
+      asio::ip::address_v4::bytes_type b(dst.address().to_v4().to_bytes());
+      memcpy(dat, &b[0], 4);
+      dat += 4;
+    } else {
+      asio::ip::address_v6::bytes_type b(dst.address().to_v6().to_bytes());
+      for (unsigned i = 0; i < 8; ++i)
+        io::write(dat, b[i]);
+    }
+    io::write(dat, dst.port());
+    memcpy(dat, payload, len);
+
+    if (dst.address().is_v4() && isConnected4)
+      antenna.send(server4, &pack[0], pack.size());
+    else if (dst.address().is_v6() && isConnected6)
+      antenna.send(server6, &pack[0], pack.size());
+    else
+      cerr << "warn: Attempt to proxy via unavailable IP version." << endl;
   }
 
   bool ready() {
