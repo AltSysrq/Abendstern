@@ -231,8 +231,8 @@ namespace abuhops {
   }
 
   bool ready() {
-    //TODO
-    return false;
+    return (knowIpv4Address && isConnected4) ||
+           (knowIpv6Address && isConnected6);
   }
 
   void update(unsigned et) {
