@@ -7,6 +7,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <iostream>
+#include <vector>
 
 #include "antenna.hxx"
 #include "tuner.hxx"
@@ -177,7 +178,14 @@ namespace abuhops {
   }
 
   void post(const byte* dat, unsigned len) {
-    //TODO
+    vector<byte> pack(1 + len);
+    pack[0] = POST;
+    memcpy(&pack[1], dat, len);
+
+    if (hasv4)
+      antenna.send(server4, &pack[0], pack.size());
+    if (hasv6)
+      antenna.send(server6, &pack[0], pack.size());
   }
 
   void list(void (*callback)(void*, const byte*, unsigned),
