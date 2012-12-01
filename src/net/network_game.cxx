@@ -733,9 +733,7 @@ throw() {
     gid.ipv = GlobalID::IPv6;
     const asio::ip::address_v6 addr(address.to_v6());
     const asio::ip::address_v6::bytes_type data(addr.to_bytes());
-    for (unsigned i=0; i<8; ++i)
-      //data is in network (backwards) byte order
-      gid.la6[i] = data[i*2+1] | (data[i*2] << 8);
+    io::a6tohbo(gid.la6, &data[0]);
   }
   gid.lport = endpoint.port();
 }
@@ -803,14 +801,9 @@ void NetworkGame::connectToPeer(Peer* peer) throw() {
                                     pgid.la6 : pgid.ia6);
     port = (lanMode || !memcmp(pgid.ia6, lgid.ia6, sizeof(pgid.ia6))?
             pgid.lport : pgid.iport);
-    //Why doesn't boost::array have a constructor taking a native array?
+
     asio::ip::address_v6::bytes_type ba;
-    memcpy(&ba[0], abytes, 16);
-    #if SDL_BYTEORDER == SDL_LIL_ENDIAN
-    //Convert to NBO
-    for (unsigned i = 0; i < 16; ++i)
-      swap(ba[i], ba[i+1]);
-    #endif
+    io::a6fromhbo(&ba[0], abytes);
     addr = asio::ip::address_v6(ba);
   }
 
@@ -987,11 +980,7 @@ throw() {
                                  gid.iport);
   } else {
     asio::ip::address_v6::bytes_type addr;
-    byte* dst = &addr[0];
-    for (unsigned i = 0; i < 8; ++i) {
-      *dst++ = gid.ia6[i] >> 8;
-      *dst++ = gid.ia6[i] & 0xFF;
-    }
+    io::a6fromhbo(&addr[0], gid.ia6);
     endpoint = Antenna::endpoint(asio::ip::address(asio::ip::address_v6(addr)),
                                  gid.iport);
   }

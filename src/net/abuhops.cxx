@@ -216,11 +216,8 @@ namespace abuhops {
       dat += 4;
     } else {
       asio::ip::address_v6::bytes_type b(dst.address().to_v6().to_bytes());
-      //Convert from "network" byte order to sane byte order
-      for (unsigned i = 0; i < 8; ++i) {
-        *dat++ = b[i*2 + 1];
-        *dat++ = b[i*2 + 0];
-      }
+      io::a6fromlbo(dat, &b[0]);
+      dat += 16;
     }
     io::write(dat, dst.port());
     memcpy(dat, payload, len);

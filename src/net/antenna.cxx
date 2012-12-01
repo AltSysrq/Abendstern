@@ -13,6 +13,7 @@
 
 #include "antenna.hxx"
 #include "tuner.hxx"
+#include "io.hxx"
 #include "src/globals.hxx"
 
 using namespace std;
@@ -101,11 +102,7 @@ Antenna::Antenna() : sock4(NULL), sock6(NULL) {
       const asio::ip::address_v6::bytes_type lip6 =
           tmpsock.local_endpoint().address().to_v6().to_bytes();
 
-      for (unsigned i=0; i<8; ++i) {
-        unsigned short msb = lip6[i*2];
-        unsigned short lsb = lip6[i*2+1];
-        gid6.la6[i] = (msb << 8) | lsb;
-      }
+      io::a6tohbo(gid6.la6, &lip6[0]);
       cout << "Our local IPv6 address/port is: "
            << tmpsock.local_endpoint().address()
            << " : " << gid6.lport << endl;

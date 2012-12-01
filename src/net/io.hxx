@@ -92,6 +92,52 @@ namespace io {
     memcpy(dst, src.c_str(), src.size()+1);
     dst += src.size()+1;
   }
+
+  /**
+   * Converts an IPv6 address from "network" byte order to little-endian
+   * order.
+   */
+  static inline void a6tolbo(byte* dst, const byte* src) {
+    for (unsigned i = 0; i < 8; ++i) {
+      dst[i*2 + 0] = src[i*2 + 1];
+      dst[i*2 + 1] = src[i*2 + 0];
+    }
+  }
+
+  /**
+   * Converts an IPv6 address from network byte order to host byte order.
+   */
+  static inline void a6tohbo(unsigned short* dst, const byte* src) {
+    memcpy(dst, src, 16);
+#if SDL_BYTEORDER == SDL_LIL_ENDIAN
+    for (unsigned i = 0; i < 8; ++i)
+      dst[i] = ((dst[i] >> 8) & 0xFF) | ((dst[i] << 8) & 0xFF00);
+#endif
+  }
+
+  /**
+   * Converts an IPv6 address from little-endian order to network byte order.
+   */
+  static inline void a6fromlbo(byte* dst, const byte* src) {
+    for (unsigned i = 0; i < 8; ++i) {
+      dst[i*2 + 0] = src[i*2 + 1];
+      dst[i*2 + 1] = src[i*2 + 0];
+    }
+  }
+
+  /**
+   * Converts an IPv6 address from host byte order to network byte order.
+   */
+  static inline void a6fromhbo(byte* dst, const unsigned short* src) {
+    memcpy(dst, src, 16);
+#if SDL_BYTEORDER == SDL_LIL_ENDIAN
+    for (unsigned i = 0; i < 8; ++i) {
+      byte t = dst[i*2];
+      dst[i*2] = dst[i*2 + 1];
+      dst[i*2 + 1] = t;
+    }
+#endif
+  }
 }
 
 #endif /* IO_HXX_ */
