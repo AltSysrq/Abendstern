@@ -266,7 +266,44 @@ namespace abuhops {
     }
   }
 
+  static void processYouAre(bool, const byte*, unsigned);
+  static void processPong(bool, const byte*, unsigned);
+  static void processFromOther(bool, const byte*, unsigned);
+  static void processAdvert(bool, const byte*, unsigned);
+  static void (*const packetTypes[256])(bool, const byte*, unsigned) = {
+    processYouAre,
+    processPong,
+    processFromOther,
+    processAdvert,
+    NULL,
+    /* processSignature, */
+    /* rest of array is NULL implicitly */
+  };
+
   static void processPacket(bool v6, const byte* dat, unsigned len) {
+    if (packetTypes[dat[0]])
+      packetTypes[dat[0]](v6, dat+1, len-1);
+    else {
+#ifdef DEBUG
+      cerr << "WARN: Dropping unknown abuhops packet type " << (unsigned)dat[0]
+           << endl;
+#endif
+    }
+  }
+
+  static void processYouAre(bool v6, const byte* dat, unsigned len) {
+    //TODO
+  }
+
+  static void processPong(bool v6, const byte* dat, unsigned len) {
+    //Nothing to do
+  }
+
+  static void processFromOther(bool v6, const byte* dat, unsigned len) {
+    //TODO
+  }
+
+  static void processAdvert(bool v6, const byte* dat, unsigned len) {
     //TODO
   }
 }
