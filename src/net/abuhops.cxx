@@ -236,7 +236,34 @@ namespace abuhops {
   }
 
   void update(unsigned et) {
-    //TODO
+    if (isConnecting) {
+      //Move to non-connecting state if both IP versions we support are
+      //connected
+      if ((!hasv4 || isConnected4) && (!hasv6 || isConnected6))
+        isConnecting = true;
+      //Otherwise, retransmit connect packet if necessary
+      else if (timeUntilConnectXmit <= et)
+        sendConnectPacket();
+      else
+        timeUntilConnectXmit -= et;
+    } else if (isConnected4 || isConnected6) {
+      //Send PING if needed
+      if (timeUntilPing < et) {
+        bool whoAmI = (hasv4 && !knowIpv4Address) ||
+                      (hasv6 && !knowIpv6Address);
+        byte pack[2] = { PING, (byte)whoAmI };
+        if (hasv4)
+          antenna.send(server4, pack, 2);
+        if (hasv6)
+          antenna.send(server6, pack, 2);
+
+        unsigned lower = whoAmI? MIN_TIME_BETWEEN_WHOAMI:MIN_TIME_BETWEEN_PING;
+        unsigned upper = whoAmI? MAX_TIME_BETWEEN_WHOAMI:MAX_TIME_BETWEEN_PING;
+        timeUntilPing = lower + rand()%(upper-lower);
+      } else {
+        timeUntilPing -= et;
+      }
+    }
   }
 
   static void processPacket(bool v6, const byte* dat, unsigned len) {
