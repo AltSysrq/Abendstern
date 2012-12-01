@@ -340,8 +340,16 @@ namespace abuhops {
       antenna.tuner->receivePacket(defaultEndpoint, &antenna, dat, len);
   }
 
+  static const char requiredAdvertHeader[] = "Abendspiel";
   static void processAdvert(bool v6, const byte* dat, unsigned len) {
     Antenna::endpoint defaultEndpoint;
+    if (len < sizeof(requiredAdvertHeader) ||
+        memcmp(dat, requiredAdvertHeader, sizeof(requiredAdvertHeader)-1)) {
+#ifdef DEBUG
+      cerr << "WARN: Dropping non-Abendspiel ADVERT" << endl;
+#endif
+      return;
+    }
 
     if (antenna.tuner)
       antenna.tuner->receivePacket(defaultEndpoint, &antenna, dat, len);
