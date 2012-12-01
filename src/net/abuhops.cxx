@@ -341,6 +341,9 @@ namespace abuhops {
   }
 
   static void processAdvert(bool v6, const byte* dat, unsigned len) {
-    //TODO
+    Antenna::endpoint defaultEndpoint;
+
+    if (antenna.tuner)
+      antenna.tuner->receivePacket(defaultEndpoint, &antenna, dat, len);
   }
 }
