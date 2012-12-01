@@ -734,7 +734,8 @@ throw() {
     const asio::ip::address_v6 addr(address.to_v6());
     const asio::ip::address_v6::bytes_type data(addr.to_bytes());
     for (unsigned i=0; i<8; ++i)
-      gid.la6[i] = data[i*2] | (data[i*2+1] << 8);
+      //data is in network (backwards) byte order
+      gid.la6[i] = data[i*2+1] | (data[i*2] << 8);
   }
   gid.lport = endpoint.port();
 }
@@ -987,8 +988,10 @@ throw() {
   } else {
     asio::ip::address_v6::bytes_type addr;
     byte* dst = &addr[0];
-    for (unsigned i = 0; i < 8; ++i)
-      io::write(dst, gid.ia6[i]);
+    for (unsigned i = 0; i < 8; ++i) {
+      *dst++ = gid.ia6[i] >> 8;
+      *dst++ = gid.ia6[i] & 0xFF;
+    }
     endpoint = Antenna::endpoint(asio::ip::address(asio::ip::address_v6(addr)),
                                  gid.iport);
   }
