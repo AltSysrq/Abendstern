@@ -326,7 +326,18 @@ namespace abuhops {
   }
 
   static void processFromOther(bool v6, const byte* dat, unsigned len) {
-    //TODO
+    if (!len) {
+#ifdef DEBUG
+      cerr << "WARN: Dropping FROM-OTHER with empty payload." << endl;
+#endif
+      return;
+    }
+
+    //The default endpoint is used to tell the NetworkGame that it must get the
+    //Internet IP address from the STX itself
+    Antenna::endpoint defaultEndpoint;
+    if (antenna.tuner)
+      antenna.tuner->receivePacket(defaultEndpoint, &antenna, dat, len);
   }
 
   static void processAdvert(bool v6, const byte* dat, unsigned len) {
