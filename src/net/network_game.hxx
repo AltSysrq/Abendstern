@@ -326,7 +326,7 @@ public:
   void changeField(GameField* f) throw() {
     assembly.changeField(f);
   }
-  
+
   /**
    * Updates all field sizes to match the current.
    */
@@ -369,7 +369,7 @@ private:
   //Marks the local peer as overseer-ready and notifies other peers of the
   //change
   void becomeOverseerReady() throw();
-  
+
   //Closes any existing connection to the given Peer, removes references to it,
   //sends disconnect notifications to other peers, and may take measures to
   //block reconnects from the peer.
@@ -384,6 +384,11 @@ private:
   //Interprets the STX auxilliary data given; if it is acceptable, sets fields
   //in the Peer; otherwise, closes the peer.
   void acceptStxAux(const std::vector<byte>&, Peer*) throw();
+  //Parses STX aux data for a GlobalID and converts it into an endpoint
+  //representing the Internet address of that GlobalID.
+  //Returns whether the STX aux was valid.
+  bool getEndpointFromStxAux(Antenna::endpoint&, const std::vector<byte>&)
+  throw();
 };
 
 #endif /* NETWORK_GAME_HXX_ */

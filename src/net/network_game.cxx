@@ -598,12 +598,27 @@ Peer* NetworkGame::getPeerByNid(unsigned nid) throw() {
   return NULL;
 }
 
-bool NetworkGame::acceptConnection(const Antenna::endpoint& source,
+bool NetworkGame::acceptConnection(const Antenna::endpoint& source_,
                                    string& errmsg, string& errl10n,
                                    const std::vector<byte>& auxData)
 throw() {
+  Antenna::endpoint source(source_);
   BlackBox _bb("netg\0", "NetworkGame %p->acceptConnection(%s:%d)",
                this, source.address().to_string().c_str(), source.port());
+  Antenna::endpoint defaultEndpoint;
+  if (source == defaultEndpoint) {
+    // This is comming via abuhops triangular routing.
+    // Get the (Internet) IP address out of the STX aux
+    if (getEndpointFromStxAux(source, auxData)) {
+      BlackBox _bb("netg\0", "(Resolved address from STX: %s:%d)",
+                   source.address().to_string().c_str(), source.port());
+    } else {
+#ifdef DEBUG
+      cerr << "WARN: Unable to get endpoint of triangularly-routed STX" << endl;
+#endif
+      return false;
+    }
+  }
   /* If there already exists a NetworkConnection to this endpoint, return true
    * but do nothing else (this could happen if we opened a NetworkConnection
    * before updating the NetworkAssembly).
@@ -942,6 +957,42 @@ throw() {
   dat += gidlen;
   peer->screenName.assign((const char*)dat, auxData.size() - 4 - gidlen);
   peer->receivedStx = true;
+}
+
+bool NetworkGame::getEndpointFromStxAux(Antenna::endpoint& endpoint,
+                                        const vector<byte>& auxData)
+throw() {
+  //Force the compiler to inline these, since it wants to extenralise them for
+  //some reason
+  static char ipv4[PeerConnectivityGeraet::ipv4size],
+              ipv6[PeerConnectivityGeraet::ipv6size];
+  unsigned gidlen = (localPeer.gid.ipv == GlobalID::IPv4?
+                     sizeof(ipv4) : sizeof(ipv6));
+  if (auxData.size() < 4 + gidlen + 1) {
+    //Too short
+    return false;
+  }
+
+  const byte* dat = &auxData[0];
+  dat += 4;
+  GlobalID gid;
+  PeerConnectivityGeraet::readGid(gid, dat,
+                                  localPeer.gid.ipv == GlobalID::IPv4);
+
+  if (localPeer.gid.ipv == GlobalID::IPv4) {
+    asio::ip::address_v4::bytes_type addr;
+    copy(&addr[0], gid.ia4, &addr[0]+4);
+    endpoint = Antenna::endpoint(asio::ip::address(asio::ip::address_v4(addr)),
+                                 gid.iport);
+  } else {
+    asio::ip::address_v6::bytes_type addr;
+    byte* dst = &addr[0];
+    for (unsigned i = 0; i < 8; ++i)
+      io::write(dst, gid.ia6[i]);
+    endpoint = Antenna::endpoint(asio::ip::address(asio::ip::address_v6(addr)),
+                                 gid.iport);
+  }
+  return true;
 }
 
 void NetworkGame::update(unsigned et) throw() {
