@@ -292,7 +292,33 @@ namespace abuhops {
   }
 
   static void processYouAre(bool v6, const byte* dat, unsigned len) {
-    //TODO
+    if (v6) {
+      GlobalID& gid(*antenna.getGlobalID6());
+      if (len != 8*2 + 2) {
+#ifdef DEBUG
+        cerr << "WARN: Dropping IPv6 YOU-ARE packet of length " << len << endl;
+#endif
+      } else {
+        for (unsigned i = 0; i < 8; ++i)
+          io::read(dat, gid.ia6[i]);
+        io::read(dat, gid.iport);
+
+        knowIpv6Address = true;
+      }
+    } else {
+      GlobalID& gid(*antenna.getGlobalID4());
+      if (len != 4 + 2) {
+#ifdef DEBUG
+        cerr << "WARN: Dropping IPv4 YOU-ARE packet of length " << len << endl;
+#endif
+      } else {
+        memcpy(gid.ia4, dat, 4);
+        dat += 4;
+        io::read(dat, gid.iport);
+
+        knowIpv4Address = true;
+      }
+    }
   }
 
   static void processPong(bool v6, const byte* dat, unsigned len) {
