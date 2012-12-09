@@ -27,7 +27,12 @@ const unsigned short Antenna::wellKnownPorts[4] = {
   12544, 25449, 54490, 44905
 };
 
-Antenna::Antenna() : sock4(NULL), sock6(NULL) {
+Antenna::Antenna() :
+  sock4(NULL),
+  sock6(NULL),
+  defaultTuner(new Tuner),
+  tuner(defaultTuner)
+{
   gid4.ipv = GlobalID::IPv4;
   gid6.ipv = GlobalID::IPv6;
 
@@ -121,6 +126,7 @@ Antenna::Antenna() : sock4(NULL), sock6(NULL) {
 Antenna::~Antenna() {
   if (sock4) delete sock4;
   if (sock6) delete sock6;
+  delete defaultTuner;
 }
 
 void Antenna::setInternetInformation4(unsigned char a0,
