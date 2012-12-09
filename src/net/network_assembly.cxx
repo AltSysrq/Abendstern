@@ -29,7 +29,7 @@ NetworkAssembly::~NetworkAssembly() {
   for (unsigned i=0; i<packetProcessors.size(); ++i)
     delete packetProcessors[i];
   delete tuner;
-  antenna->tuner = NULL;
+  antenna->tuner = antenna->defaultTuner;
 }
 
 void NetworkAssembly::removeConnection(unsigned ix) noth {
