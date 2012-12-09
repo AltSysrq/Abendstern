@@ -82,7 +82,7 @@ namespace abuhops {
         //Look server IP address up
         asio::io_service svc;
         asio::ip::udp::resolver resolver(svc);
-        asio::ip::udp::resolver::query query(SERVER);
+        asio::ip::udp::resolver::query query(SERVER, "0");
         asio::ip::udp::resolver::iterator it(resolver.resolve(query)), end;
         while (it != end && (!hasv4 || !hasv6)) {
           asio::ip::address addr(it++->endpoint().address());
