@@ -447,6 +447,20 @@ namespace eval ::abnet {
     _successHook $args
   }
 
+  # Requests to connect to Abuhops.
+  # If an abuhops-auth message is received, and abuhopsCancel has not been
+  # called since, abuhops_connect will be called to establish the connection.
+  proc abuhopsConnect {} {
+    _abuhopsConnect
+  }
+
+  # Aborts any pending connection to Abuhops.
+  # If authentication information is received after this call, but before a
+  # call to abuhopsConnect, such authentication information will be ignored.
+  proc abuhopsCancel {} {
+    _abuhopsCancel
+  }
+
   ### NO DECLARATIONS BELOW THIS POINT SHOULD BE ACCESSED
   ### BY EXTERNAL CODE
 
@@ -1124,6 +1138,18 @@ namespace eval ::abnet {
     namespace eval :: $code
   }
 
+  set abuhopsCancelled yes
+  proc abuhopsConnect {} {
+    if {!$::abnet::isConnected} return
+    enable abuhops-auth
+    set ::abnet::abuhopsCancelled no
+    writeServer top-abuhops-auth
+  }
+
+  proc abuhopsCancel {} {
+    set ::abnet::abuhopsCancelled yes
+  }
+
   proc message-error {l10n english} {
     set report $english
     catch {
@@ -1371,6 +1397,13 @@ namespace eval ::abnet {
       create-job-$type {*}$args
     } err]} {
       jobFailed "Error creating job: $type $args: $err"
+    }
+  }
+
+  proc message-abuhops-auth {id name timestamp hmac} {
+    disable abuhops-auth
+    if {!$::abnet::abuhopsCancelled} {
+      ::abuhops_connect $id $name $timestamp $hmac
     }
   }
 

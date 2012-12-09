@@ -194,10 +194,13 @@ class GameGUIMode {
     $root setSize 0 1 $::vheight 0
 
     refreshLan
+    abnet::abuhopsConnect
   }
 
   destructor {
     delete object $dummyField
+    del $network
+    abnet::abuhopsCancel
   }
 
   method getHangarList {} {
@@ -243,6 +246,8 @@ class GameGUIMode {
     $app setRet [new GameManager $network \
                      [list join-lan-game 1 [$lstlanGames getSelection]] \
                      $background $stdhangar]
+    # Null our network var so it isn't deleted
+    set network 0
   }
 
   method joinLanSpecified {} {
@@ -256,6 +261,8 @@ class GameGUIMode {
     $app setRet [new GameManager $network \
                      [list join-private-game 0 $addr $port] \
                      $background $stdhangar]
+    # Null our network var so it isn't deleted
+    set network 0
   }
 
   method startLanGame {} {
@@ -265,6 +272,8 @@ class GameGUIMode {
     $app setRet [new GameManager $network \
                      [list init-lan-game 4 1 $modestr] \
                      $background $stdhangar]
+    # Null our network var so it isn't deleted
+    set network 0
   }
 
   # Returns a two-item list of the modestr,background to use
