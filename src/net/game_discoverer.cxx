@@ -175,11 +175,11 @@ noth {
     res.passwordProtected = false;
     res.peerCount = peercnt;
     if (v6) {
-      for (unsigned i = 0; i < 8; ++i)
-        io::read(data, res.peergid.la6[i]);
+      io::a6tohbo(res.peergid.la6, data);
+      data += 2*8;
       io::read(data, res.peergid.lport);
-      for (unsigned i = 0; i < 8; ++i)
-        io::read(data, res.peergid.ia6[i]);
+      io::a6tohbo(res.peergid.ia6, data);
+      data += 2*8;
       io::read(data, res.peergid.iport);
     } else {
       memcpy(res.peergid.la4, data, 4);
