@@ -320,6 +320,8 @@ namespace abuhops {
 
         knowIpv6Address = true;
         isConnected6 = true;
+
+        cout << "Our IPv6 GlobalID is " << gid.toString() << endl;
       }
     } else {
       GlobalID& gid(*antenna.getGlobalID4());
@@ -334,6 +336,8 @@ namespace abuhops {
 
         knowIpv4Address = true;
         isConnected4 = true;
+
+        cout << "Our IPv4 GlobalID is " << gid.toString() << endl;
       }
     }
   }
@@ -360,13 +364,23 @@ namespace abuhops {
   }
 
   static const char requiredAdvertHeader[] = "Abendspiel";
+  #define ADVERT_IPV_OFF (sizeof(requiredAdvertHeader)-1 + 4 + 1)
   static void processAdvert(bool v6, const byte* dat, unsigned len) {
     debug("<< ADVERT");
     Antenna::endpoint defaultEndpoint;
-    if (len < sizeof(requiredAdvertHeader) ||
+    if (len < sizeof(requiredAdvertHeader) + ADVERT_IPV_OFF ||
         memcmp(dat, requiredAdvertHeader, sizeof(requiredAdvertHeader)-1)) {
 #ifdef DEBUG
       cerr << "WARN: Dropping non-Abendspiel ADVERT" << endl;
+#endif
+      return;
+    }
+
+    //Ensure that the reported IP version of the advert matches the Abuhops
+    //realm it is comming from
+    if ((unsigned)v6 != dat[ADVERT_IPV_OFF]) {
+#ifdef DEBUG
+      cerr << "WARN: Dropping ADVERT for wrong IP version" << endl;
 #endif
       return;
     }
