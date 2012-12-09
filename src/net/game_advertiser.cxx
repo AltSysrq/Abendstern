@@ -66,10 +66,10 @@ noth {
     //OK
     byte pack[] = {
       'A', 'b', 'e', 'n', 'd', 's', 'p', 'i', 'e', 'l',
-      (byte)(overseerid >> 24),
-      (byte)(overseerid >> 16),
-      (byte)(overseerid >>  8),
       (byte)(overseerid >>  0),
+      (byte)(overseerid >>  8),
+      (byte)(overseerid >> 16),
+      (byte)(overseerid >> 24),
       peerCount, passwordProtected,
       (byte)gameMode[0], (byte)gameMode[1],
       (byte)gameMode[2], (byte)gameMode[3],
