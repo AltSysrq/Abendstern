@@ -13,6 +13,7 @@
 #include "network_geraet.hxx"
 #include "tuner.hxx"
 #include "antenna.hxx"
+#include "abuhops.hxx"
 
 using namespace std;;
 
@@ -21,6 +22,8 @@ NetworkAssembly::NetworkAssembly(GameField* field_, Antenna* antenna_)
 {
   antenna->tuner = tuner;
   field->networkAssembly = this;
+
+  abuhops::ensureRegistered();
 }
 
 NetworkAssembly::~NetworkAssembly() {
@@ -30,6 +33,12 @@ NetworkAssembly::~NetworkAssembly() {
     delete packetProcessors[i];
   delete tuner;
   antenna->tuner = antenna->defaultTuner;
+
+  abuhops::ensureRegistered();
+  //Since this class is the one controlling abuhops, we must disconnect it when
+  //destroyed, since it will no longer receive updates.
+  abuhops::stopList();
+  abuhops::bye();
 }
 
 void NetworkAssembly::removeConnection(unsigned ix) noth {
@@ -56,6 +65,7 @@ void NetworkAssembly::addConnection(NetworkConnection* cxn) noth {
 }
 
 void NetworkAssembly::update(unsigned et) noth {
+  abuhops::update(et);
   wfo.update(et);
   antenna->processIncomming();
   for (unsigned i=0; i<connections.size(); ++i)
