@@ -103,34 +103,93 @@ noth {
   //Past trigger
   data += sizeof(trigger);
   len -= sizeof(trigger);
-  if (len != 4+1+1+4) {
-    #ifdef DEBUG
-    cerr << "Warning: Ignoring Abendspiel of unexpected length: "
-         << len << ", from " << source << endl;
-    #endif
-    return;
-  }
-
-  Uint32 oid;
-  byte peercnt, pwprot;
-  char mode[4];
-  io::read(data, oid);
-  io::read(data, peercnt);
-  io::read(data, pwprot);
-  strncpy((char*)mode, (const char*)data, 4);
-
-  //Don't add result if the overseer has the same ID as another
-  for (unsigned i=0; i<results.size(); ++i)
-    if (results[i].overseer == oid)
+  Antenna::endpoint defaultEndpoint;
+  if (source != defaultEndpoint) {
+    //LAN advert
+    if (len != 4+1+1+4) {
+#ifdef DEBUG
+      cerr << "Warning: Ignoring Abendspiel of unexpected length: "
+           << len << ", from " << source << endl;
+#endif
       return;
+    }
 
-  //OK, add result
-  Result res;
-  res.peer = source;
-  res.overseer = oid;
-  res.passwordProtected = pwprot;
-  res.peerCount = peercnt;
-  memcpy(res.gameMode, mode, sizeof(mode));
-  results.push_back(res);
-  sort(results.begin(), results.end(), resultLessThan);
+    Uint32 oid;
+    byte peercnt, pwprot;
+    char mode[4];
+    io::read(data, oid);
+    io::read(data, peercnt);
+    io::read(data, pwprot);
+    strncpy((char*)mode, (const char*)data, 4);
+
+    //Don't add result if the overseer has the same ID as another
+    for (unsigned i=0; i<results.size(); ++i)
+      if (results[i].overseer == oid)
+        return;
+
+    //OK, add result
+    Result res;
+    res.connectByEndpoint = true;
+    res.peer = source;
+    res.overseer = oid;
+    res.passwordProtected = pwprot;
+    res.peerCount = peercnt;
+    memcpy(res.gameMode, mode, sizeof(mode));
+    results.push_back(res);
+    sort(results.begin(), results.end(), resultLessThan);
+  } else {
+    //Abuhops advert
+    if (len < 4+1+1+4) {
+#ifdef DEBUG
+      cerr << "Warning: Ignoring Abendspiel ADVERT of bad length: "
+           << len << endl;
+#endif
+      return;
+    }
+
+    bool v6 = data[4+1];
+    if (len != 4+1+1+4 + 2*(v6? 2+8*2 : 2+4)) {
+#ifdef DEBUG
+      cerr << "Warning: Ignoring Abendspiel ADVERT of unexpected length: "
+           << len << endl;
+#endif
+      return;
+    }
+
+    unsigned oid;
+    byte peercnt;
+    io::read(data, oid);
+    io::read(data, peercnt);
+    ++data; //IP version
+
+    //Don't add result if the overseer has the same ID as another
+    for (unsigned i=0; i<results.size(); ++i)
+      if (results[i].overseer == oid)
+        return;
+
+    //OK
+    Result res;
+    res.connectByEndpoint = false;
+    res.peergid.ipv = v6? GlobalID::IPv6 : GlobalID::IPv4;
+    res.overseer = oid;
+    res.passwordProtected = false;
+    res.peerCount = peercnt;
+    if (v6) {
+      for (unsigned i = 0; i < 8; ++i)
+        io::read(data, res.peergid.la6[i]);
+      io::read(data, res.peergid.lport);
+      for (unsigned i = 0; i < 8; ++i)
+        io::read(data, res.peergid.ia6[i]);
+      io::read(data, res.peergid.iport);
+    } else {
+      memcpy(res.peergid.la4, data, 4);
+      data += 4;
+      io::read(data, res.peergid.lport);
+      memcpy(res.peergid.ia4, data, 4);
+      data += 4;
+      io::read(data, res.peergid.iport);
+    }
+    strncpy((char*)res.gameMode, (char*)data, sizeof(res.gameMode));
+    results.push_back(res);
+  }
 }
