@@ -46,6 +46,12 @@ namespace abuhops {
   #define HMAC_SIZE 32
   #define MAX_NAME_LENGTH 128
 
+  #ifdef DEBUG
+  #define debug(x) cout << "abuhops: " << x << endl;
+  #else
+  #define debug(x)
+  #endif
+
   static unsigned timeUntilPing = 0;
 
   static bool isConnected4 = false,  isConnected6 = false, isConnecting = true;
@@ -68,6 +74,7 @@ namespace abuhops {
   void connect(unsigned id, const char* name,
                unsigned timestamp, const char* hmac) {
     static bool hasInit = false;
+    debug(">> CONNECT");
     if (!hasInit) {
       hasInit = true;
 
@@ -131,6 +138,7 @@ namespace abuhops {
   }
 
   static void sendConnectPacket() {
+    debug(">> CONNECT (send)");
     if (hasv4 && !isConnected4)
       antenna.send(server4, connectPacket, connectPacketSize);
     if (hasv6 && !isConnected6)
@@ -168,6 +176,7 @@ namespace abuhops {
   }
 
   void bye() {
+    debug(">> BYE");
     byte pack = BYE;
     if (hasv4)
       antenna.send(server4, &pack, 1);
@@ -178,6 +187,7 @@ namespace abuhops {
   }
 
   void post(const byte* dat, unsigned len) {
+    debug(">> POST");
     vector<byte> pack(1 + len);
     pack[0] = POST;
     memcpy(&pack[1], dat, len);
@@ -190,6 +200,7 @@ namespace abuhops {
 
   void list(void (*callback)(void*, const byte*, unsigned),
             void* userdata) {
+    debug(">> LIST");
     listCallback = callback;
     listCallbackUserdata = userdata;
 
@@ -207,6 +218,7 @@ namespace abuhops {
 
   void proxy(const Antenna::endpoint& dst,
              const byte* payload, unsigned len) {
+    debug(">> PROXY");
     vector<byte> pack(1 + (dst.address().is_v4()? 4 : 2*8) + 2 + len);
     pack[0] = PROXY;
     byte* dat = &pack[1];
@@ -292,6 +304,7 @@ namespace abuhops {
   }
 
   static void processYouAre(bool v6, const byte* dat, unsigned len) {
+    debug("<< YOU-ARE");
     if (v6) {
       GlobalID& gid(*antenna.getGlobalID6());
       if (len != 8*2 + 2) {
@@ -323,9 +336,11 @@ namespace abuhops {
 
   static void processPong(bool v6, const byte* dat, unsigned len) {
     //Nothing to do
+    debug("<< PONG");
   }
 
   static void processFromOther(bool v6, const byte* dat, unsigned len) {
+    debug("<< FROM-OTHER");
     if (!len) {
 #ifdef DEBUG
       cerr << "WARN: Dropping FROM-OTHER with empty payload." << endl;
@@ -342,6 +357,7 @@ namespace abuhops {
 
   static const char requiredAdvertHeader[] = "Abendspiel";
   static void processAdvert(bool v6, const byte* dat, unsigned len) {
+    debug("<< ADVERT");
     Antenna::endpoint defaultEndpoint;
     if (len < sizeof(requiredAdvertHeader) ||
         memcmp(dat, requiredAdvertHeader, sizeof(requiredAdvertHeader)-1)) {
