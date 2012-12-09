@@ -157,11 +157,13 @@ PKG_CHECK_MODULES([SDL], [sdl])
 PKG_CHECK_MODULES([SDLIMG], [SDL_image])
 PKG_CHECK_MODULES([GL], [gl])
 PKG_CHECK_MODULES([PNG], [libpng])
-AC_SEARCH_LIBS(Tcl_Init, [tcl8.5], [],
+AC_SEARCH_LIBS(Tcl_Init, [tcl8.5 tcl85], [],
 [AC_MSG_ERROR([unable to locate a Tcl library])])
 #For whatever reason, some distros place itcl somewhere outside the lib path,
 #so check everywhere it could be
-AC_SEARCH_LIBS(Itcl_Init, [itcl3.4 ictl3.4/itcl3.4 itcl/itcl3.4 tcl8.5/itcl/itcl3.4 tcl8.5/itcl3.4/itcl3.4], [],
+AC_SEARCH_LIBS(Itcl_Init, [itcl3.4 ictl3.4/itcl3.4 itcl/itcl3.4 dnl
+                           tcl8.5/itcl/itcl3.4 tcl8.5/itcl3.4/itcl3.4 dnl
+                           itcl34], [],
 [AC_MSG_ERROR([unable to locate an Itcl library])])
 AC_SEARCH_LIBS(__gmpz_powm, [gmp mpir], [],
 [AC_MSG_ERROR([unable to locate a GMP or MPIR library])])
