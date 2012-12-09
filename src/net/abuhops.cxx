@@ -319,6 +319,7 @@ namespace abuhops {
         io::read(dat, gid.iport);
 
         knowIpv6Address = true;
+        isConnected6 = true;
       }
     } else {
       GlobalID& gid(*antenna.getGlobalID4());
@@ -332,6 +333,7 @@ namespace abuhops {
         io::read(dat, gid.iport);
 
         knowIpv4Address = true;
+        isConnected4 = true;
       }
     }
   }
