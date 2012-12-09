@@ -379,9 +379,13 @@ namespace abuhops {
     //Ensure that the reported IP version of the advert matches the Abuhops
     //realm it is comming from
     if ((unsigned)v6 != dat[ADVERT_IPV_OFF]) {
+      /*
+       * This warning is meaningless, since the Abendstern abuhops client
+       * always posts to both realms.
 #ifdef DEBUG
       cerr << "WARN: Dropping ADVERT for wrong IP version" << endl;
 #endif
+      */
       return;
     }
 
