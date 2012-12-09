@@ -1196,10 +1196,6 @@ unsafe {
     fun void connectToNothing {} bool bool
     fun void connectToDiscovery {} unsigned
     fun void connectToLan {} cstr unsigned
-    #fun void connectToInternet {} cstr
-    #fun void startUdpHolePunch {} bool
-    #fun bool hasInternet4
-    #fun bool hasInternet6
     fun void update {} unsigned
     fun void updateFieldSize
     fun void changeField {} GameField*
