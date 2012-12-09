@@ -106,6 +106,8 @@ namespace abuhops {
       //if it is not available
       hasv4 &= antenna.hasV4();
       hasv6 &= antenna.hasV6();
+
+      ensureRegistered();
     }
 
     //Set initial conditions
