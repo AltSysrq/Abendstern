@@ -1149,7 +1149,7 @@ unsafe {
   }
 }
 
-cxx src/net/network_game.hxx src/net/network_connection.hxx
+cxx src/net/network_game.hxx src/net/network_connection.hxx src/net/abuhops.hxx
 unsafe {
   class final Peer {} {
     const gid GlobalID
@@ -1212,6 +1212,8 @@ unsafe {
     fun void sendGameMode {} Peer*
     fun void setBlameMask {} Peer* unsigned
   }
+
+  fun void {abuhops::connect abuhops_connect} unsigned cstr unsigned cstr
 }
 
 cxx src/secondary/confreg.hxx
