@@ -1113,7 +1113,7 @@ unsafe {
 cxx src/net/game_advertiser.hxx src/net/tuner.hxx
 unsafe {
   class final GameAdvertiser PacketProcessor {
-    constructor default Tuner* bool unsigned unsigned bool cstr
+    constructor default Tuner* bool unsigned unsigned bool cstr bool
     fun void setOverseerId {} unsigned
     fun void setPeerCount {} unsigned
     fun void setGameMode {} cstr

@@ -25,6 +25,7 @@ class GameAdvertiser: public PacketProcessor {
   bool v6;
   Uint32 overseerid;
   byte peerCount, passwordProtected;
+  bool isInternet;
   char gameMode[4];
 
 public:
@@ -37,10 +38,12 @@ public:
    * @param passwordProtected whether a password is required to join the game
    * @param gameMode a string describing the game mode; the first four
    * characters are used if it is longer than 4.
+   * @param isInternet Whether this is an Internet (via Abuhops) or LAN game.
    */
   GameAdvertiser(Tuner* tuner, bool v6,
                  Uint32 overseerid, byte peerCount,
-                 bool passwordProtected, const char* gameMode);
+                 bool passwordProtected, const char* gameMode,
+                 bool isInternet);
   virtual ~GameAdvertiser();
 
   /**
@@ -60,6 +63,9 @@ public:
   virtual void process(const Antenna::endpoint& source,
                        Antenna* antenna, Tuner* tuner,
                        const byte* data, unsigned len) noth;
+
+private:
+  void postIfNeeded();
 };
 
 #endif /* GAME_ADVERTISER_HXX_ */

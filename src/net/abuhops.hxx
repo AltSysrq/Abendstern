@@ -34,7 +34,7 @@ namespace abuhops {
   /**
    * POSTs the given raw data to the Abuhops server.
    */
-  void post(const unsigned char*, unsigned);
+  void post(bool v6, const unsigned char*, unsigned);
   /**
    * Begins LISTing postings on Abuhops, calling the given function for each
    * packet (where the data is the payload of each ADVERT).

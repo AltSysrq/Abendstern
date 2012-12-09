@@ -188,15 +188,15 @@ namespace abuhops {
     isConnecting = isConnected4 = isConnected6 = false;
   }
 
-  void post(const byte* dat, unsigned len) {
+  void post(bool v6, const byte* dat, unsigned len) {
     debug(">> POST");
     vector<byte> pack(1 + len);
     pack[0] = POST;
     memcpy(&pack[1], dat, len);
 
-    if (isConnected4)
+    if (isConnected4 && !v6)
       antenna.send(server4, &pack[0], pack.size());
-    if (isConnected6)
+    if (isConnected6 && v6)
       antenna.send(server6, &pack[0], pack.size());
   }
 

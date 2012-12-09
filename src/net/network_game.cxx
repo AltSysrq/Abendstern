@@ -425,7 +425,7 @@ void NetworkGame::setAdvertising(const char* gameMode) throw() {
                                     overseer? overseer->nid : localPeer.nid,
                                     peers.size()+1, //+1 for self
                                     false, //TODO
-                                    gameMode);
+                                    gameMode, !lanMode);
 }
 
 void NetworkGame::stopAdvertising() throw() {
