@@ -555,10 +555,16 @@ void NetworkGame::connectToDiscovery(unsigned rix, bool internet) throw() {
     exit(EXIT_SCRIPTING_BUG);
   }
 
-  asio::ip::udp::endpoint endpoint = results[ix].peer;
-  initialiseListener(endpoint.address().is_v6());
-  lanMode = true;
-  createPeer(endpoint);
+  if (!internet) {
+    asio::ip::udp::endpoint endpoint = results[ix].peer;
+    initialiseListener(endpoint.address().is_v6());
+    lanMode = true;
+    createPeer(endpoint);
+  } else {
+    initialiseListener(results[ix].peergid.ipv == GlobalID::IPv6);
+    lanMode = false;
+    createPeer(results[ix].peergid);
+  }
 }
 
 void NetworkGame::alterDats(const string& msg, Peer* peer) throw() {
