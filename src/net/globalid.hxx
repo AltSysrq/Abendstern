@@ -78,14 +78,14 @@ class GlobalID: public AObject {
   /**
    * Returns the string representation of the ID.
    * For a v4 ID, the format is as follows:
-   *   %03d.%03d.%03d.%03d:%05d/%03d.%03d.%03d.%03d:%05d
-   * and for v6
-   *   %04x.%04x.%04x.%04x.%04x.%04x.%04x.%04x:%05d/%04x.%04x.%04x.%04x.%04x.%04x.%04x.%04x:%05d
+   *   %d.%d.%d.%d:%d/%d.%d.%d.%d:%d
+   * and for v
+   *   %x.%x.%x.%x.%x.%x.%x.%x:%d/%x.%x.%x.%x.%x.%x.%x.%x:%d
    * Note that the v6 format uses dots in the IPv6 address, since colons are
    * used for ports.
    *
    * In both cases, the overall format is
-   *   lan-address:lan-port/internet-address:internet-port
+   *   internet-address:internet-port/lan-address:lan-port
    */
   std::string toString() const;
 
