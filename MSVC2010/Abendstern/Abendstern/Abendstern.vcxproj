@@ -312,6 +312,7 @@
     <ClInclude Include="..\..\..\src\graphics\square.hxx" />
     <ClInclude Include="..\..\..\src\graphics\vaoemu.hxx" />
     <ClInclude Include="..\..\..\src\graphics\vec.hxx" />
+    <ClInclude Include="..\..\..\src\net\abuhops.hxx" />
     <ClInclude Include="..\..\..\src\net\antenna.hxx" />
     <ClInclude Include="..\..\..\src\net\anticipatory_channels.hxx" />
     <ClInclude Include="..\..\..\src\net\async_ack_geraet.hxx" />
@@ -535,6 +536,7 @@
     <ClCompile Include="..\..\..\src\graphics\square.cxx" />
     <ClCompile Include="..\..\..\src\graphics\vaoemu.cxx" />
     <ClCompile Include="..\..\..\src\graphics\vec.cxx" />
+    <ClCompile Include="..\..\..\src\net\abuhops.cxx" />
     <ClCompile Include="..\..\..\src\net\antenna.cxx" />
     <ClCompile Include="..\..\..\src\net\anticipatory_channels.cxx" />
     <ClCompile Include="..\..\..\src\net\async_ack_geraet.cxx" />
