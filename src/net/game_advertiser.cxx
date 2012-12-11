@@ -111,6 +111,10 @@ void GameAdvertiser::postIfNeeded() {
 
     memcpy(dst, gameMode, sizeof(gameMode));
 
-    abuhops::post(v6, &pack[0], pack.size());
+    if (pack.size() != prevAbuhopsPost.size() ||
+        memcmp(&pack[0], &prevAbuhopsPost[0], pack.size())) {
+      abuhops::post(v6, &pack[0], pack.size());
+      prevAbuhopsPost = pack;
+    }
   }
 }

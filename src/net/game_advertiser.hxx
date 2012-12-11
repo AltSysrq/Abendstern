@@ -9,6 +9,8 @@
 
 #include <SDL.h>
 
+#include <vector>
+
 #include "packet_processor.hxx"
 
 /**
@@ -27,6 +29,8 @@ class GameAdvertiser: public PacketProcessor {
   byte peerCount, passwordProtected;
   bool isInternet;
   char gameMode[4];
+
+  std::vector<byte> prevAbuhopsPost;
 
 public:
   /**
