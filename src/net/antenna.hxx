@@ -77,6 +77,14 @@ public:
   virtual ~Antenna();
 
   /**
+   * The Tuner to use when no special handling is needed; eg, when not in a
+   * network game and such.
+   *
+   * This is owned by the Antenna, and is the default value of tuner.
+   */
+  Tuner*const defaultTuner;
+
+  /**
    * The Tuner to use to examine incomming packets.
    * If this is non-NULL, all incomming packets will be passed through
    * the Tuner's receivePacket() function.

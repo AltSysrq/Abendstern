@@ -33,6 +33,7 @@
 #include "text_message_geraet.hxx"
 #include "src/core/lxn.hxx"
 #include "src/core/black_box.hxx"
+#include "src/exit_conditions.hxx"
 
 using namespace std;
 
@@ -425,7 +426,7 @@ void NetworkGame::setAdvertising(const char* gameMode) throw() {
                                     overseer? overseer->nid : localPeer.nid,
                                     peers.size()+1, //+1 for self
                                     false, //TODO
-                                    gameMode);
+                                    gameMode, !lanMode);
 }
 
 void NetworkGame::stopAdvertising() throw() {
@@ -452,15 +453,23 @@ bool NetworkGame::discoveryScanDone() const throw() {
   return discoverer && 1.0f == discoverer->progress();
 }
 
-string NetworkGame::getDiscoveryResults() throw() {
+string NetworkGame::getDiscoveryResults(bool internet) throw() {
   ostringstream oss;
   if (!discoverer) return oss.str();
 
   const vector<GameDiscoverer::Result>& results = discoverer->getResults();
   for (unsigned i=0; i<results.size(); ++i) {
+    if (results[i].toInternet != internet)
+      continue;
+
     char gameMode[5] = {0}, buffer[256];
     string realGameMode;
     string ipa(results[i].peer.address().to_string());
+    if (results[i].toInternet)
+      ipa = results[i].peergid.toString();
+    else
+      ipa = results[i].peer.address().to_string();
+
     //Get NTBS from game mode
     strncpy(gameMode, results[i].gameMode, 4);
     realGameMode = l10n::lookup('N', "modes", gameMode);
@@ -534,11 +543,33 @@ void NetworkGame::connectToLan(const char* ipaddress, unsigned port) throw() {
   createPeer(asio::ip::udp::endpoint(address, port));
 }
 
-void NetworkGame::connectToDiscovery(unsigned ix) throw() {
-  asio::ip::udp::endpoint endpoint = discoverer->getResults()[ix].peer;
-  initialiseListener(endpoint.address().is_v6());
-  lanMode = true;
-  createPeer(endpoint);
+void NetworkGame::connectToDiscovery(unsigned rix, bool internet) throw() {
+  //Convert raw index to the intermingled index
+  const vector<GameDiscoverer::Result>& results = discoverer->getResults();
+  unsigned ix;
+  for (ix = 0; ix < results.size(); ++ix) {
+    if (results[ix].toInternet == internet) {
+      if (rix) --rix;
+      else break;
+    }
+  }
+
+  if (ix >= results.size()) {
+    cerr << "connectToDiscovery called on bad rix: "
+         << rix << ' ' << internet << endl;
+    exit(EXIT_SCRIPTING_BUG);
+  }
+
+  if (!internet) {
+    asio::ip::udp::endpoint endpoint = results[ix].peer;
+    initialiseListener(endpoint.address().is_v6());
+    lanMode = true;
+    createPeer(endpoint);
+  } else {
+    initialiseListener(results[ix].peergid.ipv == GlobalID::IPv6);
+    lanMode = false;
+    createPeer(results[ix].peergid);
+  }
 }
 
 void NetworkGame::alterDats(const string& msg, Peer* peer) throw() {
@@ -598,12 +629,27 @@ Peer* NetworkGame::getPeerByNid(unsigned nid) throw() {
   return NULL;
 }
 
-bool NetworkGame::acceptConnection(const Antenna::endpoint& source,
+bool NetworkGame::acceptConnection(const Antenna::endpoint& source_,
                                    string& errmsg, string& errl10n,
                                    const std::vector<byte>& auxData)
 throw() {
+  Antenna::endpoint source(source_);
   BlackBox _bb("netg\0", "NetworkGame %p->acceptConnection(%s:%d)",
                this, source.address().to_string().c_str(), source.port());
+  Antenna::endpoint defaultEndpoint;
+  if (source == defaultEndpoint) {
+    // This is comming via abuhops triangular routing.
+    // Get the (Internet) IP address out of the STX aux
+    if (getEndpointFromStxAux(source, auxData)) {
+      BlackBox _bb("netg\0", "(Resolved address from STX: %s:%d)",
+                   source.address().to_string().c_str(), source.port());
+    } else {
+#ifdef DEBUG
+      cerr << "WARN: Unable to get endpoint of triangularly-routed STX" << endl;
+#endif
+      return false;
+    }
+  }
   /* If there already exists a NetworkConnection to this endpoint, return true
    * but do nothing else (this could happen if we opened a NetworkConnection
    * before updating the NetworkAssembly).
@@ -718,8 +764,7 @@ throw() {
     gid.ipv = GlobalID::IPv6;
     const asio::ip::address_v6 addr(address.to_v6());
     const asio::ip::address_v6::bytes_type data(addr.to_bytes());
-    for (unsigned i=0; i<8; ++i)
-      gid.la6[i] = data[i*2] | (data[i*2+1] << 8);
+    io::a6tohbo(gid.la6, &data[0]);
   }
   gid.lport = endpoint.port();
 }
@@ -787,14 +832,9 @@ void NetworkGame::connectToPeer(Peer* peer) throw() {
                                     pgid.la6 : pgid.ia6);
     port = (lanMode || !memcmp(pgid.ia6, lgid.ia6, sizeof(pgid.ia6))?
             pgid.lport : pgid.iport);
-    //Why doesn't boost::array have a constructor taking a native array?
+
     asio::ip::address_v6::bytes_type ba;
-    memcpy(&ba[0], abytes, 16);
-    #if SDL_BYTEORDER == SDL_LIL_ENDIAN
-    //Convert to NBO
-    for (unsigned i = 0; i < 16; ++i)
-      swap(ba[i], ba[i+1]);
-    #endif
+    io::a6fromhbo(&ba[0], abytes);
     addr = asio::ip::address_v6(ba);
   }
 
@@ -942,6 +982,40 @@ throw() {
   dat += gidlen;
   peer->screenName.assign((const char*)dat, auxData.size() - 4 - gidlen);
   peer->receivedStx = true;
+}
+
+bool NetworkGame::getEndpointFromStxAux(Antenna::endpoint& endpoint,
+                                        const vector<byte>& auxData)
+throw() {
+  //Force the compiler to inline these, since it wants to extenralise them for
+  //some reason
+  static char ipv4[PeerConnectivityGeraet::ipv4size],
+              ipv6[PeerConnectivityGeraet::ipv6size];
+  unsigned gidlen = (localPeer.gid.ipv == GlobalID::IPv4?
+                     sizeof(ipv4) : sizeof(ipv6));
+  if (auxData.size() < 4 + gidlen + 1) {
+    //Too short
+    return false;
+  }
+
+  const byte* dat = &auxData[0];
+  dat += 4;
+  GlobalID gid;
+  PeerConnectivityGeraet::readGid(gid, dat,
+                                  localPeer.gid.ipv == GlobalID::IPv4);
+
+  if (localPeer.gid.ipv == GlobalID::IPv4) {
+    asio::ip::address_v4::bytes_type addr;
+    copy(&addr[0], gid.ia4, &addr[0]+4);
+    endpoint = Antenna::endpoint(asio::ip::address(asio::ip::address_v4(addr)),
+                                 gid.iport);
+  } else {
+    asio::ip::address_v6::bytes_type addr;
+    io::a6fromhbo(&addr[0], gid.ia6);
+    endpoint = Antenna::endpoint(asio::ip::address(asio::ip::address_v6(addr)),
+                                 gid.iport);
+  }
+  return true;
 }
 
 void NetworkGame::update(unsigned et) throw() {

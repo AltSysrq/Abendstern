@@ -1113,7 +1113,7 @@ unsafe {
 cxx src/net/game_advertiser.hxx src/net/tuner.hxx
 unsafe {
   class final GameAdvertiser PacketProcessor {
-    constructor default Tuner* bool unsigned unsigned bool cstr
+    constructor default Tuner* bool unsigned unsigned bool cstr bool
     fun void setOverseerId {} unsigned
     fun void setPeerCount {} unsigned
     fun void setGameMode {} cstr
@@ -1149,7 +1149,7 @@ unsafe {
   }
 }
 
-cxx src/net/network_game.hxx src/net/network_connection.hxx
+cxx src/net/network_game.hxx src/net/network_connection.hxx src/net/abuhops.hxx
 unsafe {
   class final Peer {} {
     const gid GlobalID
@@ -1189,17 +1189,13 @@ unsafe {
     fun void startDiscoveryScan
     fun float discoveryScanProgress
     fun bool discoveryScanDone
-    fun string getDiscoveryResults
+    fun string getDiscoveryResults {} bool
     fun void setLocalPeerName {} cstr
     fun void setLocalPeerNID {} unsigned
     fun void setLocalPeerNIDAuto {}
     fun void connectToNothing {} bool bool
-    fun void connectToDiscovery {} unsigned
+    fun void connectToDiscovery {} unsigned bool
     fun void connectToLan {} cstr unsigned
-    #fun void connectToInternet {} cstr
-    #fun void startUdpHolePunch {} bool
-    #fun bool hasInternet4
-    #fun bool hasInternet6
     fun void update {} unsigned
     fun void updateFieldSize
     fun void changeField {} GameField*
@@ -1212,6 +1208,10 @@ unsafe {
     fun void sendGameMode {} Peer*
     fun void setBlameMask {} Peer* unsigned
   }
+
+  fun void {abuhops::connect abuhops_connect} unsigned cstr unsigned cstr
+  fun bool {abuhops::ready abuhops_ready}
+  fun void {abuhops::list abuhops_list}
 }
 
 cxx src/secondary/confreg.hxx

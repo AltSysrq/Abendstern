@@ -35,11 +35,14 @@ class GameGUIMode {
   variable fipAddress
   variable fport
   variable lstlanGames
+  variable lstinetGames
   variable lhangars
 
   variable app
   variable network
   variable dummyField
+
+  variable wasAbuhopsReady no
 
   public variable stdhangar yes
 
@@ -115,6 +118,19 @@ class GameGUIMode {
                       "$this startLanGame"]
     $planTop setElt bottom $planBot
     $main add [_ A gamegui tab_lan] $planTop
+
+    set pinetTop [new ::gui::BorderContainer 0 0.01]
+    set lstinetGames [new ::gui::List [_ A gamegui inetgamelist]]
+    $pinetTop setElt centre $lstinetGames
+    set pinetButtons [new ::gui::HorizontalContainer 0.01 grid]
+    $pinetButtons add [new ::gui::Button [_ A gamegui join_from_list] \
+                           "$this joinInetGameFromList"]
+    $pinetButtons add [new ::gui::Button [_ A gamegui startinet] \
+                           "$this startInetGame"]
+    $pinetButtons add [new ::gui::Button [_ A gamegui refresh] \
+                           "$this refreshLan"]
+    $pinetTop setElt bottom $pinetButtons
+    $main add [_ A gamegui tab_internet] $pinetTop
 
     # Game parameters
     set gameparms [new ::gui::VerticalContainer 0.01]
@@ -193,11 +209,14 @@ class GameGUIMode {
     refreshAccelerators
     $root setSize 0 1 $::vheight 0
 
+    abnet::abuhopsConnect
     refreshLan
   }
 
   destructor {
     delete object $dummyField
+    del $network
+    abnet::abuhopsCancel
   }
 
   method getHangarList {} {
@@ -218,11 +237,25 @@ class GameGUIMode {
   method update et {
     if {$network != 0} {
       $network update [expr {int($et)}]
+
+      # If we are now ready on Abuhops, but weren't before, implicitly refresh
+      if {!$wasAbuhopsReady && [abuhops_ready]} {
+        refreshLan
+        set wasAbuhopsReady yes
+      }
+
       set sel [$lstlanGames getSelection]
-      set items [$network getDiscoveryResults]
+      set items [$network getDiscoveryResults false]
       $lstlanGames setItems $items
       if {[llength $sel] > 0 && $sel >= 0 && $sel < [llength $items]} {
         $lstlanGames setSelection $sel
+      }
+
+      set sel [$lstinetGames getSelection]
+      set items [$network getDiscoveryResults true]
+      $lstinetGames setItems $items
+      if {[llength $sel] > 0 && $sel >= 0 && $sel < [llength $items]} {
+        $lstinetGames setSelection $sel
       }
     }
   }
@@ -243,6 +276,17 @@ class GameGUIMode {
     $app setRet [new GameManager $network \
                      [list join-lan-game 1 [$lstlanGames getSelection]] \
                      $background $stdhangar]
+    # Null our network var so it isn't deleted
+    set network 0
+  }
+
+  method joinInetGameFromList {} {
+    if {![llength [$lstinetGames getSelection]]} return
+    lassign [getGameStateArgs $network] modestr background
+    $app setRet [new GameManager $network \
+                     [list join-inet-game [$lstinetGames getSelection]] \
+                     $background yes]
+    set network 0
   }
 
   method joinLanSpecified {} {
@@ -256,6 +300,8 @@ class GameGUIMode {
     $app setRet [new GameManager $network \
                      [list join-private-game 0 $addr $port] \
                      $background $stdhangar]
+    # Null our network var so it isn't deleted
+    set network 0
   }
 
   method startLanGame {} {
@@ -265,6 +311,17 @@ class GameGUIMode {
     $app setRet [new GameManager $network \
                      [list init-lan-game 4 1 $modestr] \
                      $background $stdhangar]
+    # Null our network var so it isn't deleted
+    set network 0
+  }
+
+  method startInetGame {} {
+    lassign [getGameStateArgs $network] modestr background
+    $app setRet [new GameManager $network \
+                     [list init-inet-game 4 $modestr] \
+                     $background $stdhangar]
+    # Null our network var so it isn't deleted
+    set network 0
   }
 
   # Returns a two-item list of the modestr,background to use
@@ -341,6 +398,9 @@ class GameGUIMode {
   method refreshLan {} {
     if {[$network discoveryScanProgress] < 0 || [$network discoveryScanDone]} {
       $network startDiscoveryScan
+    } else {
+      # In any case, resend the Abuhops LIST request
+      abuhops_list
     }
   }
 

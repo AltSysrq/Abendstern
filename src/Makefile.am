@@ -260,6 +260,7 @@ COMMONSOURCES= \
 ./net/ship_damage_geraet.cxx \
 ./net/network_game.cxx \
 ./net/windows_firewall_opener.cxx \
+./net/abuhops.cxx \
 ./net/network_test.cxx \
 ./net/xxx/xnetobj.cxx \
 ./secondary/namegen.cxx \

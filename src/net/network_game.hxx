@@ -209,8 +209,10 @@ public:
   bool discoveryScanDone() const throw();
   /**
    * Returns a Tcl list of scan results, suitable for display to the user.
+   *
+   * @param internet Whether Internet (true) or LAN (false) games are returned.
    */
-  std::string getDiscoveryResults() throw();
+  std::string getDiscoveryResults(bool internet) throw();
 
   /**
    * Sets the local peer's screen name to that given.
@@ -235,38 +237,17 @@ public:
    */
   void connectToNothing(bool ipv6, bool lanMode) throw();
   /**
-   * Initiates a game using the discovery result at the given index.
+   * Initiates a game using the discovery result at the given index, counting
+   * only by discovery results which are / are not Internet games, as stated by
+   * parm internet.
    * Begins listening automatically.
    */
-  void connectToDiscovery(unsigned) throw();
+  void connectToDiscovery(unsigned, bool internet) throw();
+
   /**
    * Initiates a game to the given LAN IP address/port combination.
    */
   void connectToLan(const char*, unsigned) throw();
-  /**
-   * Initiates a game to the given la:lp/ia:ip string (ie, an Internet game).
-   */
-  void connectToInternet(const char*) throw();
-
-  /**
-   * Begins sending UDP hole-punching packets to abendstern.servegame.com.
-   *
-   * On success for a certain protocol, the GlobalID for the appropriate IP
-   * version in the primary antenna is updated appropriately.
-   *
-   * @param lanpatch true if the "LAN-patch" is active; that is, a set of rule
-   * changes that allow networking to function correctly behind the same NAT as
-   * the abendstern.servegame.com server.
-   */
-  void startUdpHolePunch(bool lanpatch) throw();
-  /**
-   * Returns whether IPv4 hole-punching was successful.
-   */
-  bool hasInternet4() const throw();
-  /**
-   * Returns whether IPv6 hole-punching was successful.
-   */
-  bool hasInternet6() const throw();
 
   /**
    * Updates the NetworkAssembly and anything else that needs updating.
@@ -326,7 +307,7 @@ public:
   void changeField(GameField* f) throw() {
     assembly.changeField(f);
   }
-  
+
   /**
    * Updates all field sizes to match the current.
    */
@@ -369,7 +350,7 @@ private:
   //Marks the local peer as overseer-ready and notifies other peers of the
   //change
   void becomeOverseerReady() throw();
-  
+
   //Closes any existing connection to the given Peer, removes references to it,
   //sends disconnect notifications to other peers, and may take measures to
   //block reconnects from the peer.
@@ -384,6 +365,11 @@ private:
   //Interprets the STX auxilliary data given; if it is acceptable, sets fields
   //in the Peer; otherwise, closes the peer.
   void acceptStxAux(const std::vector<byte>&, Peer*) throw();
+  //Parses STX aux data for a GlobalID and converts it into an endpoint
+  //representing the Internet address of that GlobalID.
+  //Returns whether the STX aux was valid.
+  bool getEndpointFromStxAux(Antenna::endpoint&, const std::vector<byte>&)
+  throw();
 };
 
 #endif /* NETWORK_GAME_HXX_ */

@@ -777,7 +777,8 @@ void Nebula::runOnce() {
   }
 
   //Swap front and back buffers
-  swap(pointsFront, pointsBack);
+  //Cast to void* due to bug in g++4.4.5
+  swap((void*&)pointsFront, (void*&)pointsBack);
   if (swapBuffers) swap(frontBuffer, backBuffer);
 }
 

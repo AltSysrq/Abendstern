@@ -26,8 +26,12 @@ public:
    * Defines a single, unique game discovered on the network.
    */
   struct Result {
+    ///Whether to connect by endpoint or by GID
+    bool toInternet;
     ///An arbitrary peer that can be used to connect to the game
     asio::ip::udp::endpoint peer;
+    ///A GlobalID of a peer that can be used to connect to the game
+    GlobalID peergid;
     ///Numeric ID of the overseer
     Uint32 overseer;
     ///Whether a password is required to access the game

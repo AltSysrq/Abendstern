@@ -118,11 +118,22 @@ Requests a Game-Discovery packet as an answer. Peers participating in LAN games
 should answer appropriately.
 
 "Abendspiel" Game Discovery
-Contents:
-  uint32        Client number of overseer (see Peer Information Gerät)
+Contents (LAN games):
+  uint32        Client number of overseer (see STX aux information)
   byte          Peer count
   byte          Zero if open, one if password-protected
   char[4]       Game mode
+Contents (Internet games):
+  uint32        Client number of overseer
+  byte          Peer count
+  byte          0 = IPv4, 1 = IPv6
+  globalid      Global ID of sender
+  char[4]       Game mode
+Describes a game currently in progress. For Internet games, the packet is
+actually stored in Abuhops via POST/ADVERT; thus, a full globalid is required
+to know how to connect to the sender. The IP version byte MUST match the
+Abuhops realm the packet was POSTed to, and the globalid must be of that
+version as well.
 
 --- STANDARD GERÄTE ---
 The Geräte below are used by the protocol, and are not specific to Abendstern.

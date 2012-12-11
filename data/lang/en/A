@@ -1286,6 +1286,8 @@
 +Screen name
 -langamelist
 +Discovered games
+-inetgamelist
++Internet games
 -refresh
 +Refresh
 -join_from_list
@@ -1298,6 +1300,8 @@
 +Connect
 -startlan
 +Start \a&New LAN Game
+-startinet
++Create \a&New
 
 -size
 +Field size
