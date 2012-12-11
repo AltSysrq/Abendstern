@@ -33,7 +33,6 @@ tcl/game/g_hvc.tcl
 tcl/game/g_lms.tcl
 tcl/game/g_lxts.tcl
 tcl/game/g_warlord.tcl
-tcl/game/game_manager.tcl
 tcl/game/loopback_communicator.tcl
 tcl/game/mod_ai_sudden_death.tcl
 tcl/game/mod_score_frags.tcl
@@ -42,8 +41,8 @@ tcl/game/mod_stats_ffa.tcl
 tcl/game/mod_stats_team.tcl
 tcl/game/network_communicator.tcl
 tcl/game/sources.tcl
+tcl/game/game_manager.tcl
 tcl/autoexec.tcl
-tcl/abnet.tcl
 tcl/lssinfo.tcl
 tcl/boot.tcl
 tcl/editor/barrmcell.tcl
@@ -149,4 +148,5 @@ tcl/gui/ab/ship_chooser.tcl
 tcl/gui/label.tcl
 tcl/bridge.tcl
 tcl/aspectai.tcl
+tcl/abnet.tcl
 tcl/init.d/rc
