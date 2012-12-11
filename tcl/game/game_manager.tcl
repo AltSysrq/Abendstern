@@ -202,7 +202,7 @@ class GameManager {
     createMode "NULLC0 {}"
 
     init-lan
-    $network connectToDiscovery $ix
+    $network connectToDiscovery $ix false
     if {$advertising} {
       $network setAdvertising NULL
     }

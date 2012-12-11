@@ -46,8 +46,8 @@ NetworkTest::NetworkTest()
   }
 
   //If any result was found, connect to it
-  if (!game.getDiscoveryResults().empty())
-    game.connectToDiscovery(0);
+  if (!game.getDiscoveryResults(false).empty())
+    game.connectToDiscovery(0, false);
   else
     //Otherwise, start IPv4 LAN game
     game.connectToNothing(false, true);

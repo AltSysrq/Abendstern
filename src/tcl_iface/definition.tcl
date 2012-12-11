@@ -1189,12 +1189,12 @@ unsafe {
     fun void startDiscoveryScan
     fun float discoveryScanProgress
     fun bool discoveryScanDone
-    fun string getDiscoveryResults
+    fun string getDiscoveryResults {} bool
     fun void setLocalPeerName {} cstr
     fun void setLocalPeerNID {} unsigned
     fun void setLocalPeerNIDAuto {}
     fun void connectToNothing {} bool bool
-    fun void connectToDiscovery {} unsigned
+    fun void connectToDiscovery {} unsigned bool
     fun void connectToLan {} cstr unsigned
     fun void update {} unsigned
     fun void updateFieldSize

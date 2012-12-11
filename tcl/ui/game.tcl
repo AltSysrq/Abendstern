@@ -222,7 +222,7 @@ class GameGUIMode {
     if {$network != 0} {
       $network update [expr {int($et)}]
       set sel [$lstlanGames getSelection]
-      set items [$network getDiscoveryResults]
+      set items [$network getDiscoveryResults false]
       $lstlanGames setItems $items
       if {[llength $sel] > 0 && $sel >= 0 && $sel < [llength $items]} {
         $lstlanGames setSelection $sel

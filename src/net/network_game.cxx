@@ -33,6 +33,7 @@
 #include "text_message_geraet.hxx"
 #include "src/core/lxn.hxx"
 #include "src/core/black_box.hxx"
+#include "src/exit_conditions.hxx"
 
 using namespace std;
 
@@ -452,12 +453,15 @@ bool NetworkGame::discoveryScanDone() const throw() {
   return discoverer && 1.0f == discoverer->progress();
 }
 
-string NetworkGame::getDiscoveryResults() throw() {
+string NetworkGame::getDiscoveryResults(bool internet) throw() {
   ostringstream oss;
   if (!discoverer) return oss.str();
 
   const vector<GameDiscoverer::Result>& results = discoverer->getResults();
   for (unsigned i=0; i<results.size(); ++i) {
+    if (results[i].connectByEndpoint != internet)
+      continue;
+
     char gameMode[5] = {0}, buffer[256];
     string realGameMode;
     string ipa(results[i].peer.address().to_string());
@@ -534,8 +538,24 @@ void NetworkGame::connectToLan(const char* ipaddress, unsigned port) throw() {
   createPeer(asio::ip::udp::endpoint(address, port));
 }
 
-void NetworkGame::connectToDiscovery(unsigned ix) throw() {
-  asio::ip::udp::endpoint endpoint = discoverer->getResults()[ix].peer;
+void NetworkGame::connectToDiscovery(unsigned rix, bool internet) throw() {
+  //Convert raw index to the intermingled index
+  const vector<GameDiscoverer::Result>& results = discoverer->getResults();
+  unsigned ix;
+  for (ix = 0; ix < results.size(); ++ix) {
+    if (results[ix].connectByEndpoint == internet) {
+      if (rix) --rix;
+      else break;
+    }
+  }
+
+  if (ix >= results.size()) {
+    cerr << "connectToDiscovery called on bad rix: "
+         << rix << ' ' << internet << endl;
+    exit(EXIT_SCRIPTING_BUG);
+  }
+
+  asio::ip::udp::endpoint endpoint = results[ix].peer;
   initialiseListener(endpoint.address().is_v6());
   lanMode = true;
   createPeer(endpoint);

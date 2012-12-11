@@ -209,8 +209,10 @@ public:
   bool discoveryScanDone() const throw();
   /**
    * Returns a Tcl list of scan results, suitable for display to the user.
+   *
+   * @param internet Whether Internet (true) or LAN (false) games are returned.
    */
-  std::string getDiscoveryResults() throw();
+  std::string getDiscoveryResults(bool internet) throw();
 
   /**
    * Sets the local peer's screen name to that given.
@@ -235,10 +237,13 @@ public:
    */
   void connectToNothing(bool ipv6, bool lanMode) throw();
   /**
-   * Initiates a game using the discovery result at the given index.
+   * Initiates a game using the discovery result at the given index, counting
+   * only by discovery results which are / are not Internet games, as stated by
+   * parm internet.
    * Begins listening automatically.
    */
-  void connectToDiscovery(unsigned) throw();
+  void connectToDiscovery(unsigned, bool internet) throw();
+
   /**
    * Initiates a game to the given LAN IP address/port combination.
    */
