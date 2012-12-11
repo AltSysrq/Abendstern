@@ -1210,6 +1210,7 @@ unsafe {
   }
 
   fun void {abuhops::connect abuhops_connect} unsigned cstr unsigned cstr
+  fun bool {abuhops::ready abuhops_ready}
 }
 
 cxx src/secondary/confreg.hxx

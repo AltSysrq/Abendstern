@@ -42,6 +42,8 @@ class GameGUIMode {
   variable network
   variable dummyField
 
+  variable wasAbuhopsReady no
+
   public variable stdhangar yes
 
   constructor {app_} {
@@ -235,11 +237,25 @@ class GameGUIMode {
   method update et {
     if {$network != 0} {
       $network update [expr {int($et)}]
+
+      # If we are now ready on Abuhops, but weren't before, implicitly refresh
+      if {!$wasAbuhopsReady && [abuhops_ready]} {
+        refreshLan
+        set wasAbuhopsReady yes
+      }
+
       set sel [$lstlanGames getSelection]
       set items [$network getDiscoveryResults false]
       $lstlanGames setItems $items
       if {[llength $sel] > 0 && $sel >= 0 && $sel < [llength $items]} {
         $lstlanGames setSelection $sel
+      }
+
+      set sel [$lstinetGames getSelection]
+      set items [$network getDiscoveryResults true]
+      $lstinetGames setItems $items
+      if {[llength $sel] > 0 && $sel >= 0 && $sel < [llength $items]} {
+        $lstinetGames setSelection $sel
       }
     }
   }
