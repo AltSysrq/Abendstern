@@ -209,8 +209,8 @@ class GameGUIMode {
     refreshAccelerators
     $root setSize 0 1 $::vheight 0
 
-    refreshLan
     abnet::abuhopsConnect
+    refreshLan
   }
 
   destructor {
@@ -398,6 +398,9 @@ class GameGUIMode {
   method refreshLan {} {
     if {[$network discoveryScanProgress] < 0 || [$network discoveryScanDone]} {
       $network startDiscoveryScan
+    } else {
+      # In any case, resend the Abuhops LIST request
+      abuhops_list
     }
   }
 

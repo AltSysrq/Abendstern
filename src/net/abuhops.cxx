@@ -64,13 +64,13 @@ namespace abuhops {
 
   static Antenna::endpoint server4, server6;
   static bool hasv4 = false, hasv6 = false;
+  static bool hasInit = false;
 
   static void sendConnectPacket();
   static void processPacket(bool v6, const byte* data, unsigned len);
 
   void connect(unsigned id, const char* name,
                unsigned timestamp, const char* hmac) {
-    static bool hasInit = false;
     debug(">> CONNECT");
     if (!hasInit) {
       hasInit = true;
@@ -237,8 +237,9 @@ namespace abuhops {
   }
 
   bool ready() {
-    return (knowIpv4Address && isConnected4) ||
-           (knowIpv6Address && isConnected6);
+    return hasInit &&
+           (!hasv4 || (knowIpv4Address && isConnected4)) &&
+           (!hasv6 || (knowIpv6Address && isConnected6));
   }
 
   void update(unsigned et) {
