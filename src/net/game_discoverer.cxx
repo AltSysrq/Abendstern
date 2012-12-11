@@ -131,7 +131,7 @@ noth {
 
     //OK, add result
     Result res;
-    res.connectByEndpoint = true;
+    res.toInternet = false;
     res.peer = source;
     res.overseer = oid;
     res.passwordProtected = pwprot;
@@ -171,7 +171,7 @@ noth {
 
     //OK
     Result res;
-    res.connectByEndpoint = true;
+    res.toInternet = true;
     res.peergid.ipv = v6? GlobalID::IPv6 : GlobalID::IPv4;
     res.overseer = oid;
     res.passwordProtected = false;

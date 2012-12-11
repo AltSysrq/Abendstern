@@ -459,12 +459,17 @@ string NetworkGame::getDiscoveryResults(bool internet) throw() {
 
   const vector<GameDiscoverer::Result>& results = discoverer->getResults();
   for (unsigned i=0; i<results.size(); ++i) {
-    if (results[i].connectByEndpoint != internet)
+    if (results[i].toInternet != internet)
       continue;
 
     char gameMode[5] = {0}, buffer[256];
     string realGameMode;
     string ipa(results[i].peer.address().to_string());
+    if (results[i].toInternet)
+      ipa = results[i].peergid.toString();
+    else
+      ipa = results[i].peer.address().to_string();
+
     //Get NTBS from game mode
     strncpy(gameMode, results[i].gameMode, 4);
     realGameMode = l10n::lookup('N', "modes", gameMode);
@@ -543,7 +548,7 @@ void NetworkGame::connectToDiscovery(unsigned rix, bool internet) throw() {
   const vector<GameDiscoverer::Result>& results = discoverer->getResults();
   unsigned ix;
   for (ix = 0; ix < results.size(); ++ix) {
-    if (results[ix].connectByEndpoint == internet) {
+    if (results[ix].toInternet == internet) {
       if (rix) --rix;
       else break;
     }

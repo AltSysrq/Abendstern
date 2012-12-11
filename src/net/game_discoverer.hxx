@@ -27,7 +27,7 @@ public:
    */
   struct Result {
     ///Whether to connect by endpoint or by GID
-    bool connectByEndpoint;
+    bool toInternet;
     ///An arbitrary peer that can be used to connect to the game
     asio::ip::udp::endpoint peer;
     ///A GlobalID of a peer that can be used to connect to the game
