@@ -1210,6 +1210,8 @@
 +Anzeigename
 -langamelist
 +Entdeckte Spiele
+-inetgamelist
++Internet-Spiele
 -refresh
 +Erneut suchen
 -join_from_list
@@ -1222,6 +1224,8 @@
 +Verbinden
 -startlan
 +Neues LAN-Spiel starten
+-startinet
++Neues \a&starten
 
 -size
 +Feldgroße

@@ -181,6 +181,11 @@ class GameManager {
     $network setLocalPeerName $::abnet::username
   }
 
+  method init-inet {} {
+    $network setLocalPeerNID $::abnet::userid
+    $network setLocalPeerName $::abnet::username
+  }
+
   # Initialising method which starts a new local game
   method init-local-game modestr {
     createMode $modestr
@@ -217,6 +222,21 @@ class GameManager {
     if {$advertising} {
       $network setAdvertising NULL
     }
+  }
+
+  method init-inet-game {ipv modestr} {
+    init-inet
+    $network connectToNothing [expr {$ipv == 6}] false
+    $network setAdvertising $modestr
+    createMode $modestr
+  }
+
+  method join-inet-game {ix} {
+    createMode "NULLC0 {}"
+
+    init-inet
+    $network connectToDiscovery $ix true
+    $network setAdvertising NULL
   }
 
   method remote-swich-state {modestr} {

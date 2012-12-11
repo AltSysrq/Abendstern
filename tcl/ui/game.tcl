@@ -35,6 +35,7 @@ class GameGUIMode {
   variable fipAddress
   variable fport
   variable lstlanGames
+  variable lstinetGames
   variable lhangars
 
   variable app
@@ -115,6 +116,19 @@ class GameGUIMode {
                       "$this startLanGame"]
     $planTop setElt bottom $planBot
     $main add [_ A gamegui tab_lan] $planTop
+
+    set pinetTop [new ::gui::BorderContainer 0 0.01]
+    set lstinetGames [new ::gui::List [_ A gamegui inetgamelist]]
+    $pinetTop setElt centre $lstinetGames
+    set pinetButtons [new ::gui::HorizontalContainer 0.01 grid]
+    $pinetButtons add [new ::gui::Button [_ A gamegui join_from_list] \
+                           "$this joinInetGameFromList"]
+    $pinetButtons add [new ::gui::Button [_ A gamegui startinet] \
+                           "$this startInetGame"]
+    $pinetButtons add [new ::gui::Button [_ A gamegui refresh] \
+                           "$this refreshLan"]
+    $pinetTop setElt bottom $pinetButtons
+    $main add [_ A gamegui tab_internet] $pinetTop
 
     # Game parameters
     set gameparms [new ::gui::VerticalContainer 0.01]
@@ -250,6 +264,15 @@ class GameGUIMode {
     set network 0
   }
 
+  method joinInetGameFromList {} {
+    if {![llength [$lstinetGames getSelection]]} return
+    lassign [getGameStateArgs $network] modestr background
+    $app setRet [new GameManager $network \
+                     [list join-inet-game [$lstinetGames getSelection]] \
+                     $background yes]
+    set network 0
+  }
+
   method joinLanSpecified {} {
     changeScreenName
     set addr [$fipAddress getText]
@@ -271,6 +294,15 @@ class GameGUIMode {
     lassign [getGameStateArgs $network] modestr background
     $app setRet [new GameManager $network \
                      [list init-lan-game 4 1 $modestr] \
+                     $background $stdhangar]
+    # Null our network var so it isn't deleted
+    set network 0
+  }
+
+  method startInetGame {} {
+    lassign [getGameStateArgs $network] modestr background
+    $app setRet [new GameManager $network \
+                     [list init-inet-game 4 $modestr] \
                      $background $stdhangar]
     # Null our network var so it isn't deleted
     set network 0
