@@ -161,7 +161,7 @@ namespace abuhops {
       bool v6;
       PP(bool v) : v6(v) {}
       virtual void process(const Antenna::endpoint&, Antenna*, Tuner*,
-                           const byte* data, unsigned len) {
+                           const byte* data, unsigned len) noth {
         processPacket(v6, data, len);
       }
     } static ppv4(false), ppv6(true);
