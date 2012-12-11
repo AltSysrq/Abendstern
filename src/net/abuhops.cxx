@@ -360,7 +360,7 @@ namespace abuhops {
   static void processAdvert(bool v6, const byte* dat, unsigned len) {
     debug("<< ADVERT");
     Antenna::endpoint defaultEndpoint;
-    if (len < sizeof(requiredAdvertHeader) + ADVERT_IPV_OFF ||
+    if (len < ADVERT_IPV_OFF ||
         memcmp(dat, requiredAdvertHeader, sizeof(requiredAdvertHeader)-1)) {
 #ifdef DEBUG
       cerr << "WARN: Dropping non-Abendspiel ADVERT" << endl;
