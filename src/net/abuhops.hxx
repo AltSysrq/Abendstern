@@ -36,17 +36,10 @@ namespace abuhops {
    */
   void post(bool v6, const unsigned char*, unsigned);
   /**
-   * Begins LISTing postings on Abuhops, calling the given function for each
-   * packet (where the data is the payload of each ADVERT).
+   * Begins LISTing postings on Abuhops, routing them through the tuner of the
+   * default Antenna as if they originated from the default endpoint.
    */
-  void list(void (*)(void* userdata, const unsigned char*, unsigned),
-            void* userdata);
-  /**
-   * Stops listening to ADVERTs. This will not actually stop a running list of
-   * them, but will prevent the callback passed to list() from being called
-   * again.
-   */
-  void stopList();
+  void list();
 
   /**
    * Sends the given packet to the given destination via a PROXY triangular

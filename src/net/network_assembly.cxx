@@ -37,7 +37,6 @@ NetworkAssembly::~NetworkAssembly() {
   abuhops::ensureRegistered();
   //Since this class is the one controlling abuhops, we must disconnect it when
   //destroyed, since it will no longer receive updates.
-  abuhops::stopList();
   abuhops::bye();
 }
 

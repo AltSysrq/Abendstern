@@ -65,9 +65,6 @@ namespace abuhops {
   static Antenna::endpoint server4, server6;
   static bool hasv4 = false, hasv6 = false;
 
-  static void (*listCallback)(void*, const byte*, unsigned) = NULL;
-  static void* listCallbackUserdata = NULL;
-
   static void sendConnectPacket();
   static void processPacket(bool v6, const byte* data, unsigned len);
 
@@ -200,11 +197,8 @@ namespace abuhops {
       antenna.send(server6, &pack[0], pack.size());
   }
 
-  void list(void (*callback)(void*, const byte*, unsigned),
-            void* userdata) {
+  void list() {
     debug(">> LIST");
-    listCallback = callback;
-    listCallbackUserdata = userdata;
 
     byte pack = LIST;
     if (isConnected4)
@@ -214,8 +208,6 @@ namespace abuhops {
   }
 
   void stopList() {
-    listCallback = NULL;
-    listCallbackUserdata = NULL;
   }
 
   void proxy(const Antenna::endpoint& dst,
