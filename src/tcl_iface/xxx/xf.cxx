@@ -545,9 +545,9 @@ PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
     } else arg0=NULL;
 };
 arg0Init=true;
-{int gen1908;
-            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1908);
-            arg1=gen1908;
+{int gen1914;
+            int err = Tcl_GetBooleanFromObj(interp, objv[2], (int*)&gen1914);
+            arg1=gen1914;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -2703,12 +2703,12 @@ void classdec909(bool safe, Tcl_Interp* interp) throw() {
 
 class TclGameAdvertiser : public GameAdvertiser {
       public:
-TclGameAdvertiser(Tuner* arg2, bool arg3, unsigned arg4, unsigned arg5, bool arg6, const char* arg7) : GameAdvertiser(arg2, arg3, arg4, arg5, arg6, arg7) {
+TclGameAdvertiser(Tuner* arg2, bool arg3, unsigned arg4, unsigned arg5, bool arg6, const char* arg7, bool arg8) : GameAdvertiser(arg2, arg3, arg4, arg5, arg6, arg7, arg8) {
         tclExtended=invokingInterpreter;
         tclKnown=true;
       }
 static GameAdvertiser* constructordefault
-    (const string& name, const string& magicCookie,  Tuner* arg2, bool arg3, unsigned arg4, unsigned arg5, bool arg6, const char* arg7) {
+    (const string& name, const string& magicCookie,  Tuner* arg2, bool arg3, unsigned arg4, unsigned arg5, bool arg6, const char* arg7, bool arg8) {
       InterpInfo* info=interpreters[invokingInterpreter];
       //Validate magic cookie
       if (magicCookie != info->magicCookie) {
@@ -2725,7 +2725,7 @@ static GameAdvertiser* constructordefault
         scriptError("Double allocation");
       }
       GameAdvertiser* ret;
-      ret=new GameAdvertiser(arg2, arg3, arg4, arg5, arg6, arg7);
+      ret=new GameAdvertiser(arg2, arg3, arg4, arg5, arg6, arg7, arg8);
       if (ret) {
         ret->tclKnown = true;
         //The trampoline will take care of assigning ownership to Tcl, we
@@ -2749,7 +2749,7 @@ static int
      trampoline1260 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
-       if (objc != 8) {
+       if (objc != 9) {
          Tcl_SetResult(interp, "Incorrect number of arguments passed to internal function", TCL_VOLATILE);
          return TCL_ERROR;
        }
@@ -2763,6 +2763,7 @@ unsigned arg4; bool arg4Init=false;
 unsigned arg5; bool arg5Init=false;
 bool arg6; bool arg6Init=false;
 const char* arg7; bool arg7Init=false;
+bool arg8; bool arg8Init=false;
 GameAdvertiser* ret; Tcl_Obj* retTcl=NULL;
 PUSH_TCL_ERROR_HANDLER(errorOccurred); if (errorOccurred) goto error;
 
@@ -2827,9 +2828,9 @@ arg1Init=true;
     } else arg2=NULL;
 };
 arg2Init=true;
-{int gen2130;
-            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen2130);
-            arg3=gen2130;
+{int gen2136;
+            int err = Tcl_GetBooleanFromObj(interp, objv[3], (int*)&gen2136);
+            arg3=gen2136;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -2846,9 +2847,9 @@ arg4Init=true;
               scriptError(Tcl_GetStringResult(interp));
             arg5 = (unsigned)tmp;};
 arg5Init=true;
-{int gen2131;
-            int err = Tcl_GetBooleanFromObj(interp, objv[6], (int*)&gen2131);
-            arg6=gen2131;
+{int gen2137;
+            int err = Tcl_GetBooleanFromObj(interp, objv[6], (int*)&gen2137);
+            arg6=gen2137;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }};
@@ -2867,11 +2868,18 @@ arg6Init=true;
           arg7 = Tcl_UniCharToUtfDString(tuc, length, &dstr);
         };
 arg7Init=true;
+{int gen2138;
+            int err = Tcl_GetBooleanFromObj(interp, objv[8], (int*)&gen2138);
+            arg8=gen2138;
+            if (err == TCL_ERROR) {
+              scriptError(Tcl_GetStringResult(interp));
+            }};
+arg8Init=true;
 try {
       ret =
      
      
-     constructordefault(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+     constructordefault(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
 
     } catch (exception& ex) {
       sprintf(staticError, "%s: %s", typeid(ex).name(), ex.what());
@@ -2966,6 +2974,7 @@ if (arg4Init) {arg4Init=false; }
 if (arg5Init) {arg5Init=false; }
 if (arg6Init) {arg6Init=false; }
 if (arg7Init) {arg7Init=false; }
+if (arg8Init) {arg8Init=false; }
 #undef scriptError
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
@@ -3249,7 +3258,7 @@ void classdec1259(bool safe, Tcl_Interp* interp) throw() {
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1562 (
+     trampoline1568 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 0) {
@@ -3291,7 +3300,7 @@ Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
  int
-     trampoline1564 (
+     trampoline1570 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 1) {

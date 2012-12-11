@@ -467,9 +467,9 @@ arg0Tcl=NULL;
 
       //OK!
 returnValueTcl = Tcl_GetObjResult(interp);
-        {int gen1887;
-            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen1887);
-            returnValue=gen1887;
+        {int gen1893;
+            int err = Tcl_GetBooleanFromObj(interp, returnValueTcl, (int*)&gen1893);
+            returnValue=gen1893;
             if (err == TCL_ERROR) {
               scriptError(Tcl_GetStringResult(interp));
             }}
@@ -3844,7 +3844,7 @@ static NetworkTest* constructordefault
 
 #define scriptError(desc) { scriptingErrorMessage=desc; goto error; }
 static int
-     trampoline1541 (
+     trampoline1547 (
      ClientData, Tcl_Interp* interp, int objc, Tcl_Obj*const objv[]) throw() {
        SHIFT;
        if (objc != 2) {
@@ -3983,7 +3983,7 @@ if (arg1Init) {arg1Init=false; }
 Tcl_SetResult(interp, scriptingErrorMessage, NULL); return TCL_ERROR; }
 #undef scriptError
 
-static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1541", trampoline1541, 0, NULL);
+static void cppDecCode(bool safe,Tcl_Interp* interp) throw() {Tcl_CreateObjCommand(interp, "c++ trampoline1547", trampoline1547, 0, NULL);
 TypeExport* ste=new TypeExport(typeid(NetworkTest)),
                            * ete=new TypeExport(typeid(TclNetworkTest));
 ste->isAObject=ete->isAObject=true;
@@ -3997,7 +3997,7 @@ typeExports[&typeid(NetworkTest)]=ste;
 typeExports[&typeid(TclNetworkTest)]=ete;
 }
 };
-void classdec1540(bool safe, Tcl_Interp* interp) throw() {
+void classdec1546(bool safe, Tcl_Interp* interp) throw() {
   TclNetworkTest::cppDecCode(safe,interp);
 }
 
