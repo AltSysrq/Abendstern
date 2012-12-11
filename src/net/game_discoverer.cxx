@@ -171,7 +171,7 @@ noth {
 
     //OK
     Result res;
-    res.connectByEndpoint = false;
+    res.connectByEndpoint = true;
     res.peergid.ipv = v6? GlobalID::IPv6 : GlobalID::IPv4;
     res.overseer = oid;
     res.passwordProtected = false;
