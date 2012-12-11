@@ -15,6 +15,7 @@
 #include "antenna.hxx"
 #include "tuner.hxx"
 #include "io.hxx"
+#include "abuhops.hxx"
 #include "src/globals.hxx"
 
 using namespace std;
@@ -44,6 +45,7 @@ void GameDiscoverer::start() noth {
   nextBroadcast = SDL_GetTicks();
   currentTry = 0;
   results.clear();
+  abuhops::list();
 }
 
 void GameDiscoverer::poll(Antenna* antenna) noth {
