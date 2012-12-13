@@ -12,6 +12,7 @@
 #include "synchronous_control_geraet.hxx"
 #include "io.hxx"
 #include "network_appinfo.hxx"
+#include "abuhops.hxx"
 #include "src/exit_conditions.hxx"
 #include "src/core/lxn.hxx"
 
@@ -358,6 +359,9 @@ void SynchronousControlGeraet::transmitStx() throw() {
          &auxDataOut[0], auxDataOut.size());
   cxn->send(stx,
             5+sizeof(protocolHash)+sizeof(applicationName)+auxDataOut.size());
+  abuhops::proxy(cxn->endpoint, stx,
+                 5+sizeof(protocolHash)+sizeof(applicationName)+
+                     auxDataOut.size());
   lastPackOutType = STX;
   lastPackOutSeq = 0;
   timeSinceTxn = 0;
