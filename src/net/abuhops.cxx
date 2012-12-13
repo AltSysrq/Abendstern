@@ -247,7 +247,7 @@ namespace abuhops {
       //Move to non-connecting state if both IP versions we support are
       //connected
       if ((!hasv4 || isConnected4) && (!hasv6 || isConnected6))
-        isConnecting = true;
+        isConnecting = false;
       //Otherwise, retransmit connect packet if necessary
       else if (timeUntilConnectXmit <= et)
         sendConnectPacket();
@@ -258,6 +258,7 @@ namespace abuhops {
       if (timeUntilPing < et) {
         bool whoAmI = (hasv4 && !knowIpv4Address) ||
                       (hasv6 && !knowIpv6Address);
+        debug(">> PING " << whoAmI);
         byte pack[2] = { PING, (byte)whoAmI };
         if (hasv4)
           antenna.send(server4, pack, 2);
