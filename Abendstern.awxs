@@ -64,6 +64,7 @@
           <autowixfilecomponents from="version" />
           <autowixfilecomponents from="abendstern.ico" />
           <autowixfilecomponents from="apply_update.bat" />
+          <autowixfilecomponents from="SDL.dll" />
         </Directory>
       </Directory>
 
